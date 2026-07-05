@@ -42,10 +42,15 @@ def load_graph(graph_path: Path) -> tuple[list[dict], list[dict], str | None]:
 
 
 def find_graph(repo: Path, explicit: Path | None = None) -> Path | None:
-    """Resolve the graph source: explicit path > graphify-out/ > .isidore/ (scanner output)."""
+    """Resolve the graph source.
+
+    Precedence: explicit --graph > this tool's own `.isidore/graph.json` (built by `scan`) >
+    known third-party producers. The extra producers are a convenience so existing graphs work
+    out of the box; the tool's own output always wins to avoid surprising a user who ran `scan`.
+    """
     candidates = [explicit] if explicit else [
-        repo / "graphify-out" / "graph.json",
         repo / ISIDORE_DIR / "graph.json",
+        repo / "graphify-out" / "graph.json",   # optional third-party producer, documented
     ]
     for candidate in candidates:
         if candidate and candidate.is_file():

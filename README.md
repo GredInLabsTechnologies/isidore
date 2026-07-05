@@ -37,16 +37,20 @@ cd your-repo
 isidore scan                      # build a structure graph (Python repos, stdlib ast)
 isidore compile                   # dry-run: shows the plan, 0 LLM calls
 
-export ISIDORE_MODEL=gpt-oss:120b-cloud    # any model on any OpenAI-compatible endpoint
+# point at ANY OpenAI-compatible endpoint — local server or hosted API
+export ISIDORE_BASE_URL=http://localhost:11434/v1   # or an OpenAI/OpenRouter/vLLM/... URL
+export ISIDORE_MODEL=<model-id-your-endpoint-exposes>
+export ISIDORE_API_KEY=<token>                      # only if your endpoint needs one
 isidore compile --execute         # compiles wiki/ (quickstart.md, module pages, index.toon)
 
 isidore ask "how does the auth flow handle expired tokens?"   # one call, cited answer
+isidore claims --check            # CI gate: exit 1 if any claim's evidence went stale (0 LLM calls)
 ```
 
-Provider: any OpenAI-compatible endpoint via `ISIDORE_BASE_URL` (default
-`http://localhost:11434/v1`, i.e. Ollama), `ISIDORE_MODEL`, optional `ISIDORE_API_KEY`.
-A local or free-tier model is usually plenty — the prompt already contains verified facts;
-the model only writes prose.
+Provider: any OpenAI-compatible endpoint via `ISIDORE_BASE_URL`, `ISIDORE_MODEL`, optional
+`ISIDORE_API_KEY`. Isidore has no preferred provider; the default base URL is just the
+conventional local-server port. A small or free-tier model is usually plenty — the prompt
+already contains verified facts, so the model only writes prose.
 
 ## What you get
 
@@ -57,6 +61,11 @@ the model only writes prose.
   how to change safely — with `path:line` citations that are mechanically verified.
 - `wiki/flow-<name>.md` — cross-cutting flow pages ("how a request travels"), BFS-derived
   from seeds you declare in `isidore.json`. `isidore suggest-flows` prints candidates.
+- `wiki/claims.toon` — the page's key facts as **evidence-anchored claims**: each is a single
+  falsifiable statement bound to its `path:line` by a content hash of the cited lines. On every
+  compile the hashes are re-checked with **zero LLM calls**, so a code change flags exactly the
+  claims it invalidates and forces only their page to regenerate. `isidore claims --check` is a
+  CI gate for documentation truth (exit 1 on any stale/orphan claim).
 - `wiki/findings.toon` — **compilation residue**: since the model already read the excerpts,
   structured side-observations ride the same call at ~zero marginal cost — suspected bugs,
   doc/code drift, open questions (an *unverified triage queue*, never a report) — plus
@@ -80,7 +89,8 @@ extra fields are ignored, so existing graph producers work as-is:
 ```
 
 `file_type`: `code` | `document` | anything else. `source_location`: `L<line>`, 1-based.
-By default isidore looks for `graphify-out/graph.json`, then `.isidore/graph.json`.
+By default isidore uses its own `.isidore/graph.json` (from `scan`), then falls back to a
+`graphify-out/graph.json` if present. Any producer emitting the format above works via `--graph`.
 
 ## Config (`isidore.json`, optional)
 
