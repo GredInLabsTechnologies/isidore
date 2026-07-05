@@ -105,9 +105,34 @@ def test_evidence_state_ignores_neighbors_whitespace_and_line_shifts(tmp_path):
 def test_anchor_claims_quarantines_ghost_paths(tmp_path):
     repo = _make_repo(tmp_path)
     _clean, raw = parse_claims_block(PAGE_WITH_CLAIMS)
-    anchored, dropped = anchor_claims(repo, raw)
-    assert len(anchored) == 1 and dropped == 1
+    anchored, dropped, repaired = anchor_claims(repo, raw)
+    assert len(anchored) == 1 and dropped == 1 and repaired == 0
     assert anchored[0]["id"].startswith("c-") and anchored[0]["ehash"]
+
+
+def test_resolve_citation_unique_suffix_only():
+    from isidore.claims import resolve_citation
+    known = {"apps/web/src/App.tsx", "apps/mobile/src/Main.tsx", "pkg/util.py"}
+    # shortened path resolves to the unique real file
+    assert resolve_citation("src/App.tsx", known) == "apps/web/src/App.tsx"
+    assert resolve_citation("App.tsx", known) == "apps/web/src/App.tsx"
+    # ambiguous suffix (src/ matches two) -> None (never guess)
+    assert resolve_citation("src", known) is None
+    # unknown -> None
+    assert resolve_citation("ghost/x.py", known) is None
+    assert resolve_citation("util.py", known) == "pkg/util.py"
+
+
+def test_anchor_claims_repairs_shortened_path(tmp_path):
+    # a claim citing a shortened path is REPAIRED (not dropped) when it uniquely matches a real file
+    real = tmp_path / "apps" / "web" / "src"
+    real.mkdir(parents=True)
+    (real / "App.tsx").write_text("export const App = () => null\n", encoding="utf-8")
+    raw = [{"statement": "App is defined", "evidence": "src/App.tsx:1"}]
+    anchored, dropped, repaired = anchor_claims(
+        tmp_path, raw, known_files={"apps/web/src/App.tsx"})
+    assert dropped == 0 and repaired == 1
+    assert anchored[0]["evidence"] == "apps/web/src/App.tsx:1"
 
 
 def test_claim_id_stable_and_distinct():
@@ -118,7 +143,7 @@ def test_claim_id_stable_and_distinct():
 def test_check_claims_states_ok_stale_orphan(tmp_path):
     repo = _make_repo(tmp_path)
     _clean, raw = parse_claims_block(PAGE_WITH_CLAIMS)
-    anchored, _ = anchor_claims(repo, raw)
+    anchored, _, _ = anchor_claims(repo, raw)
     pages_state = {"mod0-core.md": {"claims": anchored}}
 
     assert [r["state"] for r in check_claims(repo, pages_state)] == ["ok"]
@@ -136,7 +161,7 @@ def test_check_claims_states_ok_stale_orphan(tmp_path):
 def test_render_claims_reports_summary(tmp_path):
     repo = _make_repo(tmp_path)
     _clean, raw = parse_claims_block(PAGE_WITH_CLAIMS)
-    anchored, _ = anchor_claims(repo, raw)
+    anchored, _, _ = anchor_claims(repo, raw)
     out = render_claims(repo, {"p.md": {"claims": anchored}}, "beef")
     assert "claims[1]" in out and "0 stale/orphan" in out and "beef" in out
 

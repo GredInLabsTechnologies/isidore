@@ -419,6 +419,7 @@ class CompileResult:
     findings_dropped: int = 0
     claims_total: int = 0
     claims_dropped: int = 0
+    claims_repaired: int = 0
     claims_stale_pages: list[str] = field(default_factory=list)
 
 
@@ -480,15 +481,17 @@ def compile_wiki(
 
     wiki_dir.mkdir(exist_ok=True)
     generate = generator if generator is not None else default_generator()
+    known_files = {n["source_file"] for n in nodes if n.get("source_file")}
 
     for name in to_generate:
         spec, prompt, digest = contexts[name]
         raw = generate(prompt)
         markdown, raw_claims = parse_claims_block(raw)
         markdown, page_findings = parse_findings_block(markdown)
-        claims, claims_dropped = anchor_claims(repo, raw_claims)
+        claims, claims_dropped, claims_repaired = anchor_claims(repo, raw_claims, known_files)
         result.claims_total += len(claims)
         result.claims_dropped += claims_dropped
+        result.claims_repaired += claims_repaired
         kept, dropped = filter_findings(page_findings, repo)
         result.findings_kept += len(kept)
         result.findings_dropped += len(dropped)

@@ -66,7 +66,8 @@ def _cmd_compile(args) -> int:
     print(f"[isidore] plan: {result.planned} pages · dirty: {len(result.dirty)} · "
           f"generated: {len(result.generated)} · pruned: {len(result.pruned)} · "
           f"findings kept/dropped: {result.findings_kept}/{result.findings_dropped} · "
-          f"claims new/dropped: {result.claims_total}/{result.claims_dropped}")
+          f"claims new/repaired/dropped: {result.claims_total}/{result.claims_repaired}/"
+          f"{result.claims_dropped}")
     if result.claims_stale_pages:
         print(f"[isidore] stale claims forced regeneration of: "
               f"{', '.join(result.claims_stale_pages)}")

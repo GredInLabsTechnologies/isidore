@@ -137,22 +137,49 @@ def claim_id(statement: str, evidence: str) -> str:
     return "c-" + hashlib.sha256(f"{statement}\x00{evidence}".encode("utf-8")).hexdigest()[:8]
 
 
-def anchor_claims(repo: Path, raw_claims: list[dict]) -> tuple[list[dict], int]:
-    """Quarantine filter + anchoring. Returns (anchored claims, dropped count).
+def resolve_citation(cited_path: str, known_files: set[str] | None) -> str | None:
+    """Repair a shortened citation to a real file, or None if it can't be resolved uniquely.
 
-    A claim whose evidence path does not exist is dropped BEFORE storage — same mechanical
-    hallucination filter as findings.
+    Models (especially on TS/JS) drop the module prefix — citing `src/App.tsx` for the real
+    `apps/web/src/App.tsx`. Rather than quarantine those valid claims, resolve the cited path as a
+    UNIQUE suffix of a known file. Ambiguous (>1 match) or unknown → None (still quarantined). This
+    recovers coverage on polyglot repos without ever accepting a guess.
+    """
+    if not known_files:
+        return None
+    norm = cited_path.replace("\\", "/").lstrip("./").lstrip("/")
+    if not norm:
+        return None
+    matches = [f for f in known_files if f == norm or f.replace("\\", "/").endswith("/" + norm)]
+    return matches[0] if len(matches) == 1 else None
+
+
+def anchor_claims(repo: Path, raw_claims: list[dict],
+                  known_files: set[str] | None = None) -> tuple[list[dict], int, int]:
+    """Quarantine filter + anchoring. Returns (anchored claims, dropped, repaired).
+
+    A claim whose evidence path does not exist is first RESOLVED against known files (a shortened
+    path is repaired to its unique real match); only if it still can't be found is it dropped.
     """
     anchored: list[dict] = []
-    dropped = 0
+    dropped = repaired = 0
     for c in raw_claims:
-        ehash = evidence_hash(repo, c["evidence"])
+        evidence = c["evidence"]
+        ehash = evidence_hash(repo, evidence)
         if ehash is None:
-            dropped += 1
-            continue
-        anchored.append({"id": claim_id(c["statement"], c["evidence"]),
-                         "statement": c["statement"], "evidence": c["evidence"], "ehash": ehash})
-    return anchored, dropped
+            path_part, _sep, line_part = evidence.replace("\\", "/").rpartition(":")
+            resolved = resolve_citation(path_part or evidence, known_files)
+            if resolved is not None:
+                evidence = f"{resolved}:{line_part}" if _sep else resolved
+                ehash = evidence_hash(repo, evidence)
+                if ehash is not None:
+                    repaired += 1
+            if ehash is None:
+                dropped += 1
+                continue
+        anchored.append({"id": claim_id(c["statement"], evidence),
+                         "statement": c["statement"], "evidence": evidence, "ehash": ehash})
+    return anchored, dropped, repaired
 
 
 def check_claims(repo: Path, pages_state: dict) -> list[dict]:
