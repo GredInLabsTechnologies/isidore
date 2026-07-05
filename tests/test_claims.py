@@ -9,6 +9,7 @@ from isidore.claims import (
     check_claims,
     claim_id,
     evidence_hash,
+    evidence_state,
     parse_claims_block,
     render_claims,
     stale_pages,
@@ -60,29 +61,45 @@ def test_parse_claims_block_extracts_and_strips():
     assert "isidore-findings" in clean
 
 
-def test_evidence_hash_window_and_orphan(tmp_path):
+def test_evidence_hash_is_the_cited_line_content(tmp_path):
     repo = _make_repo(tmp_path)
     h1 = evidence_hash(repo, "mod0/core/file0.py:3")
     assert h1 and len(h1) == 12
     assert evidence_hash(repo, "mod0/core/file0.py:3") == h1  # determinista
     assert evidence_hash(repo, "ghost/nope.py:1") is None
-    # sin línea: hash del fichero entero
-    assert evidence_hash(repo, "mod0/core/file0.py") is not None
+    assert evidence_hash(repo, "mod0/core/file0.py:999") is None  # línea fuera de rango
+    assert evidence_hash(repo, "mod0/core/file0.py") is not None  # sin línea: hash del fichero
 
-    # cambiar una línea DENTRO de la ventana ±2 cambia el hash
+    # cambiar la LÍNEA CITADA (L3) cambia el hash
     target = repo / "mod0" / "core" / "file0.py"
-    target.write_text(target.read_text(encoding="utf-8").replace("line 2", "CHANGED"),
+    target.write_text(target.read_text(encoding="utf-8").replace("line 3 of", "CHANGED of"),
                       encoding="utf-8")
     assert evidence_hash(repo, "mod0/core/file0.py:3") != h1
 
 
-def test_evidence_hash_ignores_changes_outside_window(tmp_path):
+def test_evidence_state_ignores_neighbors_whitespace_and_line_shifts(tmp_path):
     repo = _make_repo(tmp_path)
-    h1 = evidence_hash(repo, "mod0/core/file0.py:3")
+    anchor = evidence_hash(repo, "mod0/core/file0.py:3")
     target = repo / "mod0" / "core" / "file0.py"
-    target.write_text(target.read_text(encoding="utf-8").replace("line 9", "FAR CHANGE"),
-                      encoding="utf-8")
-    assert evidence_hash(repo, "mod0/core/file0.py:3") == h1
+    original = target.read_text(encoding="utf-8")
+
+    # cambiar una línea VECINA (L2) NO marca stale (solo importa la línea citada)
+    target.write_text(original.replace("line 2 of", "TOUCHED of"), encoding="utf-8")
+    assert evidence_state(repo, "mod0/core/file0.py:3", anchor) == "ok"
+
+    # re-indentar la línea citada (whitespace) NO marca stale
+    target.write_text(original.replace("line 3 of", "    line 3 of"), encoding="utf-8")
+    assert evidence_state(repo, "mod0/core/file0.py:3", anchor) == "ok"
+
+    # insertar líneas ARRIBA desplaza el número pero NO marca stale (ancla por contenido)
+    target.write_text("new top line\nanother\n" + original, encoding="utf-8")
+    assert evidence_state(repo, "mod0/core/file0.py:3", anchor) == "ok"
+
+    # cambiar la línea citada SÍ marca stale; borrar el fichero => orphan
+    target.write_text(original.replace("line 3 of", "REAL CHANGE of"), encoding="utf-8")
+    assert evidence_state(repo, "mod0/core/file0.py:3", anchor) == "stale"
+    target.unlink()
+    assert evidence_state(repo, "mod0/core/file0.py:3", anchor) == "orphan"
 
 
 def test_anchor_claims_quarantines_ghost_paths(tmp_path):
@@ -143,12 +160,11 @@ def test_stale_claim_forces_page_regeneration_without_llm_detection(tmp_path):
                  generator=lambda p: PAGE_WITH_CLAIMS)
 
     # cambio FUERA de las ventanas de extracto del contexto (línea 9; extractos centran L3±25...
-    # con ficheros de 10 líneas todo cae dentro — así que el caso puro es: contexto igual pero
-    # claim stale. Forzamos: tocar solo la línea 2 (dentro de la ventana del claim L3±2) de un
-    # fichero NO usado como extracto no es posible aquí; validamos la UNIÓN: dirty por claim.
+    # el claim está anclado a la LÍNEA CITADA (file0.py:3); mutarla la marca stale y fuerza
+    # regenerar SOLO esa página (aunque el contexto ensamblado no se moviera).
     prev_state = json.loads((repo / "wiki" / ".isidore-state.json").read_text(encoding="utf-8"))
     target = repo / "mod0" / "core" / "file0.py"
-    target.write_text(target.read_text(encoding="utf-8").replace("line 2", "MUTATED"),
+    target.write_text(target.read_text(encoding="utf-8").replace("line 3 of", "MUTATED of"),
                       encoding="utf-8")
 
     calls = []
@@ -164,7 +180,7 @@ def test_dry_run_still_detects_stale_claims_for_free(tmp_path):
     compile_wiki(repo, graph_path=_gp(repo), execute=True,
                  generator=lambda p: PAGE_WITH_CLAIMS)
     target = repo / "mod0" / "core" / "file0.py"
-    target.write_text(target.read_text(encoding="utf-8").replace("line 2", "MUTATED"),
+    target.write_text(target.read_text(encoding="utf-8").replace("line 3 of", "MUTATED of"),
                       encoding="utf-8")
 
     calls = []
