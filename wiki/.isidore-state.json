@@ -1,0 +1,40 @@
+{
+  "commit": null,
+  "pages": {
+    "src-isidore.md": {
+      "context_hash": "e24ba27c38bc10cb93bf7390d5cb01f343c6d13a40be6cf819959def0b4d2494",
+      "findings": [],
+      "kind": "module",
+      "name": "src/isidore"
+    },
+    "tests-test_pipeline_py.md": {
+      "context_hash": "0272ded2542c150d207a16b3aed409547a8d6edd4e9d840f26bfbc86e81872f3",
+      "findings": [
+        {
+          "kind": "drift",
+          "note": "Docstring mentions LLM generator counting, but the presented tests never invoke LLM\u2011related code.",
+          "where": "tests/test_pipeline.py:1"
+        },
+        {
+          "kind": "question",
+          "note": "Why are many pipeline functions imported (e.g., compile_wiki, suggest_flows) if only plan_pages is exercised here?",
+          "where": "tests/test_pipeline.py:9-L21"
+        }
+      ],
+      "kind": "module",
+      "name": "tests/test_pipeline.py"
+    },
+    "tests-test_units_py.md": {
+      "context_hash": "ec0185aec4097fbc306f4fdb7a72a9c55cf32642fe58bd9c5555eaf3aa55bfa2",
+      "findings": [
+        {
+          "kind": "drift",
+          "note": "several imported symbols (build_request, PageSpec, ask, gather_evidence, question_terms, render_toon_index) are never referenced in any test, suggesting dead imports",
+          "where": "tests/test_units.py:6"
+        }
+      ],
+      "kind": "module",
+      "name": "tests/test_units.py"
+    }
+  }
+}

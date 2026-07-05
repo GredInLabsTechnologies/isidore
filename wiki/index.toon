@@ -1,0 +1,27 @@
+# isidore wiki index · commit ?
+# same catalog as quickstart.md, in TOON tables (cheap for agents to load)
+modules[3]{module,files,symbols,page}:
+  src/isidore,9,65,src-isidore.md
+  tests/test_pipeline.py,1,26,tests-test_pipeline_py.md
+  tests/test_units.py,1,18,tests-test_units_py.md
+flows[0]{flow,modules,page}:
+hot_symbols[18]{module,symbol,file,line,degree}:
+  src/isidore,pipeline.py,src/isidore/pipeline.py,1,20
+  src/isidore,cli.py,src/isidore/cli.py,1,10
+  src/isidore,graph.py,src/isidore/graph.py,1,10
+  src/isidore,findings.py,src/isidore/findings.py,1,9
+  src/isidore,qa.py,src/isidore/qa.py,1,6
+  src/isidore,render.py,src/isidore/render.py,1,5
+  tests/test_pipeline.py,test_pipeline.py,tests/test_pipeline.py,1,25
+  tests/test_pipeline.py,_node(),tests/test_pipeline.py,26,0
+  tests/test_pipeline.py,_link(),tests/test_pipeline.py,31,0
+  tests/test_pipeline.py,_make_repo(),tests/test_pipeline.py,35,0
+  tests/test_pipeline.py,_graph(),tests/test_pipeline.py,59,0
+  tests/test_pipeline.py,_gp(),tests/test_pipeline.py,64,0
+  tests/test_units.py,test_units.py,tests/test_units.py,1,17
+  tests/test_units.py,test_toon_encode_table_quoting_and_counts(),tests/test_units.py,24,0
+  tests/test_units.py,test_module_of_normalizes_and_buckets(),tests/test_units.py,31,0
+  tests/test_units.py,test_scan_repo_extracts_symbols_imports_and_docs(),tests/test_units.py,37,0
+  tests/test_units.py,test_scan_tolerates_syntax_errors(),tests/test_units.py,56,0
+  tests/test_units.py,test_write_scan_and_find_graph_roundtrip(),tests/test_units.py,62,0
+module_deps[0]{from,to,links}:
