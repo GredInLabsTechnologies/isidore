@@ -1,11 +1,31 @@
-# isidore claims · commit ?
+# isidore claims · commit 4e29c9bd4203ed06b6b11ae2ea4a12d79cd05fc2
 # each claim is anchored to its evidence by a content hash; state is re-checked
 # mechanically on every compile (zero LLM calls). stale/orphan => page regenerates.
-# summary: 6 claims, 0 stale/orphan
-claims[6]{page,id,statement,evidence,state}:
-  src-isidore.md,c-ecbbd86f,Isidore compiles an agent‑oriented wiki from a repository’s structure graph,src/isidore/cli.py:1,ok
-  tests-test_pipeline_py.md,c-fc3f1d10,"_node returns a dict with keys id, source_file, file_type, label, source_location",tests/test_pipeline.py:L26,ok
-  tests-test_pipeline_py.md,c-c2752ae8,"_link returns a dict with keys source, target, relation",tests/test_pipeline.py:L31,ok
-  tests-test_units_py.md,c-5e0e3c79,encode_table produces a two‑line quoted CSV output with a count column for the given inputs,tests/test_units.py:26,ok
-  tests-test_units_py.md,c-9e84756c,"scan_repo includes \"contains\" and \"imports\" relations in its link output",tests/test_units.py:53,ok
-  tests-test_units_py.md,c-0d6d224b,scan_repo tolerates a syntactically‑invalid Python file and still includes its filename as a node label,tests/test_units.py:58,ok
+# summary: 26 claims, 0 stale/orphan
+claims[26]{page,id,statement,evidence,state}:
+  src-isidore.md,c-c14bacf4,The compiler pipeline is deterministic except for a single bounded LLM call per dirty page,src/isidore/pipeline.py:3,ok
+  src-isidore.md,c-bf503b58,Isidore detects claim-level staleness without any LLM calls,src/isidore/claims.py:5,ok
+  src-isidore.md,c-85889738,"Claim hashes are computed as a SHA‑256 over the cited line ±2 lines, whitespace‑normalized, then truncated to 12 hex characters",src/isidore/claims.py:13,ok
+  src-isidore.md,c-ebebcfdb,"The structure graph format is a JSON object with \"nodes\" and \"links\" (or \"edges\") arrays",src/isidore/graph.py:5,ok
+  src-isidore.md,c-8d99f308,The CLI 'claims' subcommand performs a zero‑LLM staleness audit and can exit with code 1 if any claim is stale,src/isidore/cli.py:8,ok
+  src-isidore.md,c-cdaf8b1e,Findings are side observations collected during compilation with near‑zero marginal cost,src/isidore/findings.py:1,ok
+  tests-test_claims_py.md,c-dbf1eff7,"module docstring describes claims parsing, anchoring/quarantine, and zero‑LLM staleness property",tests/test_claims.py:1,ok
+  tests-test_claims_py.md,c-c9749e72,"module imports anchor_claims, check_claims, claim_id, evidence_hash, evidence_state, parse_claims_block, render_claims, stale_pages from isidore.claims",tests/test_claims.py:8,ok
+  tests-test_claims_py.md,c-a018aa4c,_make_repo creates 12 source files each with 10 lines and a graph.json file in a graphify-out directory,tests/test_claims.py:40,ok
+  tests-test_claims_py.md,c-bd25700a,"test_parse_claims_block_extracts_and_stips verifies that the cleaned page no longer contains \"isidore-claims\" and still contains \"Fine page.\"",tests/test_claims.py:58,ok
+  tests-test_claims_py.md,c-1b17ffe5,test_evidence_hash_is_the_cited_line_content confirms evidence_hash returns a deterministic 12‑character hash for a valid citation and None for missing files or out‑of‑range lines,tests/test_claims.py:67,ok
+  tests-test_claims_py.md,c-daa814f5,"test_evidence_state_ignores_neighbors_whitespace_and_line_shifts confirms that changing a neighboring line, re‑indenting, or inserting lines above does not mark a citation stale, but modifying the cited line marks it stale and deleting the file marks it orphan",tests/test_claims.py:88,ok
+  tests-test_pipeline_py.md,c-4fa450c5,"_node returns a dict with keys \"id\", \"source_file\", \"file_type\", \"label\", and \"source_location\".",tests/test_pipeline.py:27,ok
+  tests-test_pipeline_py.md,c-c1aeef72,"_link returns a dict with keys \"source\", \"target\", and \"relation\".",tests/test_pipeline.py:32,ok
+  tests-test_pipeline_py.md,c-1d792d55,"_make_repo writes a JSON file named \"graph.json\" under \"graphify-out\".",tests/test_pipeline.py:54,ok
+  tests-test_pipeline_py.md,c-20a58bef,"_graph reads \"graph.json\" and returns the contained \"nodes\" and \"links\".",tests/test_pipeline.py:61,ok
+  tests-test_pipeline_py.md,c-6c388507,"_gp returns the path to \"graph.json\" inside the repository.",tests/test_pipeline.py:65,ok
+  tests-test_pipeline_py.md,c-c056b748,"test_plan_pages_selects_top_modules_excluding_small_and_concepts asserts that plan_pages returns specs named \"mod0/core\", \"mod1/core\", and \"mod2/core\".",tests/test_pipeline.py:78,ok
+  tests-test_pipeline_py.md,c-2d0609d1,test_plan_pages_top_k_and_none_means_all asserts that top_k=2 yields two specs and top_k=None yields three specs.,tests/test_pipeline.py:85,ok
+  tests-test_pipeline_py.md,c-d132f684,test_plan_pages_records_cross_module_deps is defined to test cross‑module dependency recording.,tests/test_pipeline.py:88,ok
+  tests-test_units_py.md,c-9caef5bc,"encode_table(\"t\", [\"a\",\"b\"], [{\"a\":\"x,y\",\"b\":None},{\"a\":\"\",\"b\":True}]) produces the lines ['t[2]{a,b}:','  \"x,y\",','  ,1']",tests/test_units.py:28,ok
+  tests-test_units_py.md,c-83ce9653,"module_of(\"a/b/c.py\", 2) returns \"a/b\"",tests/test_units.py:34,ok
+  tests-test_units_py.md,c-fe192535,"scan_repo(tmp_path) yields node labels that include \"alpha.py\", \"beta.py\", \"top()\", \"Thing\", \"helper()\", and \"notes.md\"",tests/test_units.py:52,ok
+  tests-test_units_py.md,c-8c17b4af,"scan_repo(tmp_path) never produces nodes whose source_file path contains \".venv\"",tests/test_units.py:53,ok
+  tests-test_units_py.md,c-3a7580a7,write_scan(tmp_path) returns a path such that find_graph(tmp_path) equals that path,tests/test_units.py:67,ok
+  tests-test_units_py.md,c-5c326b9d,"parse_findings_block(md) strips the ``isidore-findings`` fence and extracts findings kinds [\"bug\",\"drift\",\"question\"]",tests/test_units.py:84,ok

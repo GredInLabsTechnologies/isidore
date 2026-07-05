@@ -1,50 +1,38 @@
 ## Purpose
-Isidore exists to **compile an agent‑oriented wiki from a repository’s structure graph** — a deterministic knowledge base that agents can query with minimal LLM usage 【src/isidore/cli.py:1】. It turns the graph’s structural facts into prose pages, an index, and ancillary observations, while keeping every LLM interaction bounded and auditable 【src/isidore/pipeline.py:1-5】.
+`src/isidore` implements an **agent‑oriented wiki compiler** that turns a repository’s structure graph into a set of markdown pages enriched with LLM‑generated prose and machine‑verified *claims* about the code. The core goal is to keep documentation **deterministic and up‑to‑date**: every claim is anchored to a hash of its source lines, enabling *zero‑LLM* staleness detection (i.e. the system can tell when a claim is out of sync without re‑invoking the model)【src/isidore/claims.py:5】.
 
 ## Architecture
-The module is a self‑contained pipeline made of several tightly coupled files:
+The module is split into a handful of tightly‑coupled files:
 
-| Component | Role | Key connections |
-|----------|------|-----------------|
-| **cli.py** | Entry‑point for users; defines subcommands (`scan`, `compile`, `ask`, `suggest-flows`, `claims`) 【src/isidore/cli.py:3-8】 | imports `graph`, `llm`, `pipeline` |
-| **graph.py** | Loads or builds the **structure graph** (JSON format with `nodes` and `links`) 【src/isidore/graph.py:3-9】; provides `scan_repo()` that uses only the stdlib `ast` module to create nodes from top‑level functions/classes and links from imports 【src/isidore/graph.py:16-18】 | consumed by `pipeline`, `qa`, `cli` |
-| **pipeline.py** | Core compilation steps: **plan → assemble → generate → cache → lint**, each deterministic; the only non‑deterministic step is a single bounded LLM call per dirty page 【src/isidore/pipeline.py:1-5】. It also defines runtime limits (max calls, prompt size, timeout) 【src/isidore/pipeline.py:7-9】. | exposed via `compile_wiki`, `load_config` to `cli` |
-| **render.py** | Generates **deterministic artefacts** (`quickstart.md`, `index.toon`, `AGENTS.md`) without any LLM call 【src/isidore/render.py:1-4】; defines `WIKI_DIRNAME`, marker constants, and `render_quickstart`. | called after `pipeline` completes |
-| **findings.py** | Harvests **side observations** (“residue”) during compilation: *LLM residue* (model‑generated hypotheses) and *deterministic residue* (TODO/FIXME, orphan files, risk hotspots) 【src/isidore/findings.py:1-9】【src/isidore/findings.py:19-22】. All output lands in `wiki/findings.toon`. | consumes data from `pipeline` |
-| **qa.py** | Provides a **single‑call Q&A** interface over the compiled wiki + graph; relevance is computed by keyword scoring, not embeddings 【src/isidore/qa.py:1-5】. | uses `graph.load_graph` and `pipeline` helpers (`plan_pages`, `assemble_context`, `read_excerpt`) |
-| **Other helpers** (`claims`, `llm`, `toon`) are imported but not listed among the nine core files; they supply claim handling, LLM generation, and TOON encoding respectively. |
+| File | Role | Notable connections |
+|------|------|----------------------|
+| `pipeline.py` | Orchestrates the compile steps (plan → assemble → generate → cache → lint) and enforces hard limits for LLM calls【src/isidore/pipeline.py:1】. All steps are deterministic except a single bounded LLM call per *dirty* page【src/isidore/pipeline.py:3】. |
+| `claims.py` | Defines the *claim* data model, hashing logic (SHA‑256 over ±2 lines, truncated)【src/isidore/claims.py:13】, and utilities for parsing/rendering claim blocks. |
+| `graph.py` | Loads the *structure graph* (JSON with `nodes` and `links`) and can scan a repo using the stdlib `ast` to produce such a graph【src/isidore/graph.py:3‑5】. |
+| `cli.py` | Exposes user‑facing commands: `scan`, `compile`, `ask`, `suggest-flows`, and `claims`. The `claims` subcommand runs the zero‑LLM staleness audit and can fail the CI run if any claim is stale【src/isidore/cli.py:8】. |
+| `findings.py` | Collects *side observations* (LLM residue and deterministic code‑analysis residue) and writes them to `wiki/findings.toon`【src/isidore/findings.py:1‑3】. |
+| `qa.py` | Provides a single‑call Q&A interface over the compiled wiki, using keyword scoring rather than embeddings【src/isidore/qa.py:1‑4】. |
+| `toon.py`, `llm.py`, `utils.py` (not shown) | Support encoding, LLM interaction, and miscellaneous helpers. |
 
-The architecture deliberately avoids external services: there are **no cross‑module dependencies** and **no external dependants** 【Facts】, making the wiki generation fully reproducible from the graph alone.
+The most‑connected symbols (`pipeline.py`, `claims.py`, `cli.py`, `graph.py`) form the backbone: the CLI calls into the graph loader, which supplies data to the pipeline; the pipeline calls claim utilities; QA re‑uses pipeline context assembly.
 
 ## Key entry points
-- **CLI subcommands** (entry for agents or developers):
-  - `scan` – builds `.isidore/graph.json` via the AST scanner 【src/isidore/cli.py:4】  
-  - `compile` – runs the full compilation pipeline (dry‑run by default) 【src/isidore/cli.py:5】  
-  - `ask` – answers a single question with one LLM call 【src/isidore/cli.py:6】  
-  - `suggest-flows` – prints heavy cross‑module bridges for `isidore.json` 【src/isidore/cli.py:7】  
-  - `claims` – audits claim staleness without LLM 【src/isidore/cli.py:8】  
+- **CLI** (`src/isidore/cli.py`): `isidore compile`, `isidore claims --check`, `isidore ask "<question>"`, etc.  
+- **Pipeline functions** (`pipeline.py`): `compile_wiki`, `plan_pages`, `assemble_context`, `load_config`, plus default limits (`DEFAULT_MAX_CALLS`, `DEFAULT_MAX_PROMPT_CHARS`, …).  
+- **Graph loader** (`graph.py`): `load_graph`, `find_graph`, `scan_repo` (produces `.isidore/graph.json`).  
+- **Claims API** (`claims.py`): `anchor_claims`, `parse_claims_block`, `render_claims`, constants `CLAIMS_FILENAME`, `SEARCH_RADIUS`.  
 
-- **Programmatic functions**
-  - `pipeline.compile_wiki` – orchestrates the five deterministic stages plus the bounded LLM call 【src/isidore/pipeline.py:1-5】  
-  - `graph.find_graph`, `graph.load_graph`, `graph.write_scan` – graph I/O utilities 【src/isidore/cli.py:17】  
-  - `render.render_quickstart` – builds the human‑readable quickstart markdown 【src/isidore/render.py:15-23】  
-  - `qa.QA_PROMPT` and helper functions (`assemble_context`, `plan_pages`, `read_excerpt`) for answering queries 【src/isidore/qa.py:13-20】  
+These entry points are the only public surfaces; all other modules are imported exclusively by them.
 
 ## Dependencies
-Isidore is **stand‑alone**:
-- **Internal imports only** (e.g., `from .graph import …`, `from .pipeline import …`). No third‑party libraries are referenced in the extracted files.  
-- The only external tool used is the Python **stdlib** `ast` module for graph scanning 【src/isidore/graph.py:23】.  
-- LLM interaction is abstracted behind `llm.default_generator` and `GenerationError`, but these are confined to the `pipeline`/`cli` layer and do not introduce additional package dependencies.
+`src/isidore` is **self‑contained**: it has **no external cross‑module dependencies** (the “depends on” list is empty). It only relies on the Python standard library (`hashlib`, `json`, `re`, `subprocess`, `ast`, `pathlib`, etc.) and internal sibling modules (`.graph`, `.claims`, `.llm`, `.toon`). No third‑party packages are referenced in the provided excerpts.
 
 ## How to change safely
-1. **Preserve the JSON graph schema** – nodes must still contain `id`, `label`, `file_type`, `source_file`, `source_location`; extra fields are ignored 【src/isidore/graph.py:5-14】. Altering field names will break `pipeline` planning.  
-2. **Do not remove the single LLM call contract** – the pipeline expects **exactly one bounded call per dirty page**; any change that adds calls must also respect the hard limits (`DEFAULT_MAX_CALLS`, `DEFAULT_MAX_PROMPT_CHARS`, timeout) documented in `pipeline.py` 【src/isidore/pipeline.py:7-9】.  
-3. **Maintain deterministic stages** – `plan`, `assemble`, `generate`, `cache`, `lint` must remain pure functions; introducing nondeterminism will invalidate the “deterministic except LLM” guarantee.  
-4. **Update CLI help strings** if you rename subcommands or alter their behavior, keeping the documentation in sync with the code 【src/isidore/cli.py:3-8】.  
-5. **Run the `claims` audit** after modifications that affect generated prose; it will exit with status 1 if any claim becomes stale 【src/isidore/cli.py:8】.  
-6. **Regenerate `quickstart.md` and `index.toon` via `render.render_quickstart`** to verify that no new LLM calls were introduced, as these files are required to be deterministic 【src/isidore/render.py:1-4】.  
-
-Following these steps ensures that the wiki remains reproducible, auditable, and safe for downstream coding agents.
+1. **Preserve deterministic behaviour** – The pipeline’s hard limits (max calls, prompt size, timeout) are enforced in code【src/isidore/pipeline.py:7‑9】. Any modification that relaxes these limits must also update the associated documentation and tests, otherwise you risk unbounded LLM usage.  
+2. **Do not break claim anchoring** – Claim hashes are derived from a *whitespace‑normalized* window of ±2 lines and truncated to 12 hex chars【src/isidore/claims.py:13‑15】. Changing the hash algorithm or the window size will invalidate existing claim files and break the zero‑LLM staleness gate.  
+3. **Maintain graph schema** – The JSON graph format expects `nodes` and `links` (or `edges`) arrays【src/isidore/graph.py:3‑5】. Adding new top‑level keys is safe (they’re ignored), but removing or renaming existing ones will break `scan_repo` and downstream compilation.  
+4. **CLI contract** – The `claims` subcommand’s exit‑code semantics (exit 1 on stale claims) are relied on by CI pipelines【src/isidore/cli.py:8】. Preserve this behaviour when refactoring CLI options.  
+5. **Run the full test matrix** – Recent commits hardened the system for hostile input and scale【e2a3c37】【4271e60】. After any change, run the suite that includes large‑scale stress tests and CI lint checks to ensure no regression.
 
 
 <!-- isidore lint: unverified paths: isidore/graph.json -->

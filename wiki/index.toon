@@ -1,27 +1,34 @@
-# isidore wiki index · commit ?
+# isidore wiki index · commit 4e29c9bd4203ed06b6b11ae2ea4a12d79cd05fc2
 # same catalog as quickstart.md, in TOON tables (cheap for agents to load)
-modules[3]{module,files,symbols,page}:
-  src/isidore,9,65,src-isidore.md
-  tests/test_pipeline.py,1,26,tests-test_pipeline_py.md
-  tests/test_units.py,1,18,tests-test_units_py.md
+modules[4]{module,files,symbols,page}:
+  src/isidore,10,81,src-isidore.md
+  tests/test_pipeline.py,1,28,tests-test_pipeline_py.md
+  tests/test_units.py,1,20,tests-test_units_py.md
+  tests/test_claims.py,1,15,tests-test_claims_py.md
 flows[0]{flow,modules,page}:
-hot_symbols[18]{module,symbol,file,line,degree}:
-  src/isidore,pipeline.py,src/isidore/pipeline.py,1,20
-  src/isidore,cli.py,src/isidore/cli.py,1,10
-  src/isidore,graph.py,src/isidore/graph.py,1,10
+hot_symbols[24]{module,symbol,file,line,degree}:
+  src/isidore,pipeline.py,src/isidore/pipeline.py,1,21
+  src/isidore,claims.py,src/isidore/claims.py,1,14
+  src/isidore,cli.py,src/isidore/cli.py,1,11
+  src/isidore,graph.py,src/isidore/graph.py,1,11
   src/isidore,findings.py,src/isidore/findings.py,1,9
   src/isidore,qa.py,src/isidore/qa.py,1,6
-  src/isidore,render.py,src/isidore/render.py,1,5
-  tests/test_pipeline.py,test_pipeline.py,tests/test_pipeline.py,1,25
+  tests/test_pipeline.py,test_pipeline.py,tests/test_pipeline.py,1,27
   tests/test_pipeline.py,_node(),tests/test_pipeline.py,26,0
   tests/test_pipeline.py,_link(),tests/test_pipeline.py,31,0
   tests/test_pipeline.py,_make_repo(),tests/test_pipeline.py,35,0
   tests/test_pipeline.py,_graph(),tests/test_pipeline.py,59,0
   tests/test_pipeline.py,_gp(),tests/test_pipeline.py,64,0
-  tests/test_units.py,test_units.py,tests/test_units.py,1,17
-  tests/test_units.py,test_toon_encode_table_quoting_and_counts(),tests/test_units.py,24,0
-  tests/test_units.py,test_module_of_normalizes_and_buckets(),tests/test_units.py,31,0
-  tests/test_units.py,test_scan_repo_extracts_symbols_imports_and_docs(),tests/test_units.py,37,0
-  tests/test_units.py,test_scan_tolerates_syntax_errors(),tests/test_units.py,56,0
-  tests/test_units.py,test_write_scan_and_find_graph_roundtrip(),tests/test_units.py,62,0
+  tests/test_units.py,test_units.py,tests/test_units.py,1,19
+  tests/test_units.py,test_toon_encode_table_quoting_and_counts(),tests/test_units.py,26,0
+  tests/test_units.py,test_module_of_normalizes_and_buckets(),tests/test_units.py,33,0
+  tests/test_units.py,test_scan_repo_extracts_symbols_imports_and_docs(),tests/test_units.py,39,0
+  tests/test_units.py,test_scan_tolerates_syntax_errors(),tests/test_units.py,58,0
+  tests/test_units.py,test_write_scan_and_find_graph_roundtrip(),tests/test_units.py,64,0
+  tests/test_claims.py,test_claims.py,tests/test_claims.py,1,14
+  tests/test_claims.py,_make_repo(),tests/test_claims.py,33,0
+  tests/test_claims.py,_gp(),tests/test_claims.py,52,0
+  tests/test_claims.py,test_parse_claims_block_extracts_and_strips(),tests/test_claims.py,56,0
+  tests/test_claims.py,test_evidence_hash_is_the_cited_line_content(),tests/test_claims.py,64,0
+  tests/test_claims.py,test_evidence_state_ignores_neighbors_whitespace_and_line_shifts(),tests/test_claims.py,80,0
 module_deps[0]{from,to,links}:
