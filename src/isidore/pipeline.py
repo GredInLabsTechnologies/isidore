@@ -533,10 +533,17 @@ def compile_wiki(
             commit,
         ), encoding="utf-8", newline="\n")
 
+    # AGENTS.md is the one PRE-EXISTING file we touch — preserve its line-ending style so we don't
+    # rewrite every line (CRLF->LF) and turn a 6-line insert into a whole-file diff. Read raw bytes
+    # to detect CRLF before universal-newline translation hides it.
     agents_md = repo / "AGENTS.md"
-    existing = agents_md.read_text(encoding="utf-8") if agents_md.is_file() else ""
-    agents_md.write_text(upsert_agents_block(existing, agents_md_block()),
-                         encoding="utf-8", newline="\n")
+    raw = agents_md.read_bytes() if agents_md.is_file() else b""
+    uses_crlf = b"\r\n" in raw
+    existing = raw.decode("utf-8", errors="replace").replace("\r\n", "\n")
+    merged = upsert_agents_block(existing, agents_md_block())
+    if uses_crlf:
+        merged = merged.replace("\n", "\r\n")
+    agents_md.write_bytes(merged.encode("utf-8"))
 
     (wiki_dir / CLAIMS_FILENAME).write_text(
         render_claims(repo, pages_state, commit), encoding="utf-8", newline="\n")

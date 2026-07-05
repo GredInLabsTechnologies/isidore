@@ -272,6 +272,22 @@ def test_lint_annotates_page_with_unverified_paths(tmp_path):
     assert "unverified paths" in page and result.lint_findings
 
 
+def test_compile_preserves_crlf_line_endings_in_agents_md(tmp_path):
+    # regression (scale, found on GIMO): a CRLF AGENTS.md must NOT be rewritten to LF — that turned
+    # a 6-line insert into an all-985-lines diff. Only the appended block is new; the rest is byte-stable.
+    repo = _make_repo(tmp_path, n_modules=1)
+    agents = repo / "AGENTS.md"
+    agents.write_bytes("# Rules\r\n\r\nLine one.\r\nLine two.\r\n".encode("utf-8"))
+
+    compile_wiki(repo, graph_path=_gp(repo), execute=True, generator=lambda p: PAGE)
+
+    out = agents.read_bytes()
+    assert b"\r\n" in out, "CRLF preservado"
+    assert b"\n\n" not in out.replace(b"\r\n", b""), "no se coló ningún LF suelto"
+    assert out.startswith("# Rules\r\n\r\nLine one.\r\nLine two.\r\n".encode("utf-8"))
+    assert MARKER_START.encode("utf-8") in out
+
+
 def test_git_log_survives_non_ascii_commit_messages(tmp_path):
     # regression: git output with accents (UTF-8) must not crash on Windows (cp1252 default)
     import subprocess as sp
