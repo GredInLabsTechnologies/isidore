@@ -162,7 +162,7 @@ def scan_repo(repo: Path) -> tuple[list[dict], list[dict]]:
 def git_head(repo: Path) -> str | None:
     try:
         out = subprocess.run(["git", "rev-parse", "HEAD"], cwd=repo, capture_output=True,
-                             text=True, timeout=15, check=False)
+                             encoding="utf-8", errors="replace", timeout=15, check=False)
         return out.stdout.strip() or None if out.returncode == 0 else None
     except (OSError, subprocess.TimeoutExpired):
         return None

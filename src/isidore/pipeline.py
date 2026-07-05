@@ -292,7 +292,8 @@ def read_excerpt(repo: Path, source_file: str, location: str,
 def git_log_for(repo: Path, pathspec: str, n: int = 8) -> str:
     try:
         out = subprocess.run(["git", "log", "--oneline", f"-{n}", "--", pathspec],
-                             cwd=repo, capture_output=True, text=True, timeout=30, check=False)
+                             cwd=repo, capture_output=True, encoding="utf-8", errors="replace",
+                             timeout=30, check=False)
         return out.stdout.strip() if out.returncode == 0 else ""
     except (OSError, subprocess.TimeoutExpired):
         return ""

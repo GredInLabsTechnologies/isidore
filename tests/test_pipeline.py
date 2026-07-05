@@ -272,6 +272,22 @@ def test_lint_annotates_page_with_unverified_paths(tmp_path):
     assert "unverified paths" in page and result.lint_findings
 
 
+def test_git_log_survives_non_ascii_commit_messages(tmp_path):
+    # regression: git output with accents (UTF-8) must not crash on Windows (cp1252 default)
+    import subprocess as sp
+
+    from isidore.pipeline import git_log_for
+    repo = _make_repo(tmp_path, n_modules=1)
+    env = {**__import__("os").environ, "GIT_AUTHOR_NAME": "T", "GIT_AUTHOR_EMAIL": "t@t",
+           "GIT_COMMITTER_NAME": "T", "GIT_COMMITTER_EMAIL": "t@t"}
+    sp.run(["git", "init", "-q"], cwd=repo, check=False, env=env)
+    sp.run(["git", "add", "-A"], cwd=repo, check=False, env=env)
+    sp.run(["git", "commit", "-qm", "refactor módulo: cañón, ñoño, €uro, 日本語"],
+           cwd=repo, check=False, env=env)
+    out = git_log_for(repo, "mod0/core")     # must return a string, never raise
+    assert isinstance(out, str)
+
+
 def test_missing_graph_raises_and_missing_model_fails_closed(tmp_path, monkeypatch):
     repo = tmp_path / "empty"
     repo.mkdir()

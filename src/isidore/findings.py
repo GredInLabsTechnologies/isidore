@@ -144,7 +144,8 @@ def coverage_gap_candidates(module_specs) -> list[dict]:
 def _churn(repo: Path, pathspec: str, n: int = 50) -> int:
     try:
         out = subprocess.run(["git", "log", "--oneline", f"-{n}", "--", pathspec],
-                             cwd=repo, capture_output=True, text=True, timeout=30, check=False)
+                             cwd=repo, capture_output=True, encoding="utf-8", errors="replace",
+                             timeout=30, check=False)
         return len(out.stdout.strip().splitlines()) if out.returncode == 0 else 0
     except (OSError, subprocess.TimeoutExpired):
         return 0
