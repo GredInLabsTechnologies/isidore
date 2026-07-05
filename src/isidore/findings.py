@@ -90,14 +90,24 @@ def filter_findings(findings: list[dict], repo: Path) -> tuple[list[dict], list[
 
 # ------------------------------------------------------- deterministic residue
 
+MAX_TODO_FILE_BYTES = 2_000_000       # skip pathologically large files (generated/vendored)
+MAX_TODO_FILES = 4000                 # bound total files scanned so a huge repo can't stall a compile
+
+
 def harvest_todos(repo: Path, source_files: set[str], cap: int = 200) -> list[dict]:
-    """TODO/FIXME/HACK/XXX with file:line — regex over the files the graph already knows."""
+    """TODO/FIXME/HACK/XXX with file:line — regex over the files the graph already knows.
+
+    Bounded for scale: skips files over MAX_TODO_FILE_BYTES and scans at most MAX_TODO_FILES
+    (sorted for determinism), so this stays fast even on very large repos.
+    """
     rows: list[dict] = []
-    for rel in sorted(source_files):
+    for rel in sorted(source_files)[:MAX_TODO_FILES]:
         path = repo / rel
         if not path.is_file():
             continue
         try:
+            if path.stat().st_size > MAX_TODO_FILE_BYTES:
+                continue
             lines = path.read_text(encoding="utf-8", errors="replace").splitlines()
         except OSError:
             continue

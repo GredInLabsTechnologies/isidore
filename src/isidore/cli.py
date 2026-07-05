@@ -14,7 +14,7 @@ import json
 import sys
 from pathlib import Path
 
-from .graph import find_graph, load_graph, write_scan
+from .graph import GraphError, find_graph, load_graph, write_scan
 from .llm import GenerationError, default_generator
 from .pipeline import (
     DEFAULT_MAX_CALLS,
@@ -59,7 +59,7 @@ def _cmd_compile(args) -> int:
                                       DEFAULT_MAX_PROMPT_CHARS),
             flows_config=config.get("flows", []),
         )
-    except (FileNotFoundError, GenerationError) as exc:
+    except (FileNotFoundError, GraphError, GenerationError) as exc:
         print(f"ERROR: {exc}", file=sys.stderr)
         return 2
 

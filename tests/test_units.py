@@ -3,6 +3,8 @@ from __future__ import annotations
 
 import json
 
+import pytest
+
 from isidore.findings import (
     filter_findings,
     harvest_todos,
@@ -11,7 +13,7 @@ from isidore.findings import (
     render_findings,
     coverage_gap_candidates,
 )
-from isidore.graph import find_graph, load_graph, module_of, scan_repo, write_scan
+from isidore.graph import GraphError, find_graph, load_graph, module_of, scan_repo, write_scan
 from isidore.llm import build_request
 from isidore.pipeline import PageSpec
 from isidore.qa import ask, gather_evidence, question_terms
@@ -98,6 +100,34 @@ def test_harvest_todos_finds_markers_with_lines(tmp_path):
                                    encoding="utf-8")
     rows = harvest_todos(tmp_path, {"a.py"})
     assert [(r["marker"], r["line"]) for r in rows] == [("TODO", 2), ("FIXME", 3)]
+
+
+def test_harvest_todos_skips_oversized_files(tmp_path):
+    # regression (scale): a pathologically large file must not stall the compile
+    from isidore.findings import MAX_TODO_FILE_BYTES
+    huge = tmp_path / "huge.py"
+    huge.write_text("# TODO ignored\n" + ("x = 1\n" * (MAX_TODO_FILE_BYTES // 5)), encoding="utf-8")
+    (tmp_path / "small.py").write_text("# TODO real\n", encoding="utf-8")
+    rows = harvest_todos(tmp_path, {"huge.py", "small.py"})
+    assert [r["file"] for r in rows] == ["small.py"], "el fichero gigante se salta"
+
+
+def test_load_graph_raises_graph_error_on_malformed_and_wrong_shape(tmp_path):
+    # regression (robustness): a corrupt graph must fail clean, not crash with a raw traceback
+    bad = tmp_path / "bad.json"
+    bad.write_text('{"nodes":[{"id":', encoding="utf-8")
+    with pytest.raises(GraphError):
+        load_graph(bad)
+
+    not_obj = tmp_path / "arr.json"
+    not_obj.write_text("[1,2,3]", encoding="utf-8")
+    with pytest.raises(GraphError):
+        load_graph(not_obj)
+
+    wrong = tmp_path / "wrong.json"
+    wrong.write_text('{"nodes":"oops","links":[]}', encoding="utf-8")
+    with pytest.raises(GraphError):
+        load_graph(wrong)
 
 
 def test_orphan_and_coverage_gap_candidates():

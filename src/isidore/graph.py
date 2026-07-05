@@ -34,10 +34,22 @@ SKIP_DIRS = {
 }
 
 
+class GraphError(ValueError):
+    """The graph file exists but is not valid (malformed JSON or wrong shape)."""
+
+
 def load_graph(graph_path: Path) -> tuple[list[dict], list[dict], str | None]:
-    data = json.loads(graph_path.read_text(encoding="utf-8"))
+    raw = graph_path.read_text(encoding="utf-8", errors="replace")
+    try:
+        data = json.loads(raw)
+    except json.JSONDecodeError as exc:
+        raise GraphError(f"malformed graph JSON at {graph_path}: {exc}") from exc
+    if not isinstance(data, dict):
+        raise GraphError(f"graph at {graph_path} must be a JSON object, got {type(data).__name__}")
     nodes = data.get("nodes", [])
     links = data.get("links", data.get("edges", []))
+    if not isinstance(nodes, list) or not isinstance(links, list):
+        raise GraphError(f"graph at {graph_path}: 'nodes'/'links' must be lists")
     return nodes, links, data.get("built_at_commit")
 
 
