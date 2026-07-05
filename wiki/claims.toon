@@ -1,0 +1,11 @@
+# isidore claims · commit ?
+# each claim is anchored to its evidence by a content hash; state is re-checked
+# mechanically on every compile (zero LLM calls). stale/orphan => page regenerates.
+# summary: 6 claims, 0 stale/orphan
+claims[6]{page,id,statement,evidence,state}:
+  src-isidore.md,c-ecbbd86f,Isidore compiles an agent‑oriented wiki from a repository’s structure graph,src/isidore/cli.py:1,ok
+  tests-test_pipeline_py.md,c-fc3f1d10,"_node returns a dict with keys id, source_file, file_type, label, source_location",tests/test_pipeline.py:L26,ok
+  tests-test_pipeline_py.md,c-c2752ae8,"_link returns a dict with keys source, target, relation",tests/test_pipeline.py:L31,ok
+  tests-test_units_py.md,c-5e0e3c79,encode_table produces a two‑line quoted CSV output with a count column for the given inputs,tests/test_units.py:26,ok
+  tests-test_units_py.md,c-9e84756c,"scan_repo includes \"contains\" and \"imports\" relations in its link output",tests/test_units.py:53,ok
+  tests-test_units_py.md,c-0d6d224b,scan_repo tolerates a syntactically‑invalid Python file and still includes its filename as a node label,tests/test_units.py:58,ok

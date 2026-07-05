@@ -1,47 +1,48 @@
 ## Purpose
-`tests/test_pipeline.py` validates the **compiler pipeline** logic in an isolated, network‑free environment.  
-The module’s docstring states the intention clearly: it “always injects the LLM generator and counts” it, ensuring that pipeline components can be exercised without external calls【tests/test_pipeline.py:1】. The primary focus of the tests is the **page planning** functionality (`plan_pages`) while providing a full synthetic repository to feed the pipeline.
+`tests/test_pipeline.py` validates the **compiler pipeline** without making network calls. The top‑level docstring states the suite runs “no network: the LLM generator is always injected and counted”【tests/test_pipeline.py:L1】. Its primary goal is to ensure that page‑planning logic (`plan_pages`) behaves correctly given synthetic repository data.
 
 ## Architecture
 The file is organized into three layers:
 
-1. **Test scaffolding helpers** – Functions that build a fake repository and expose its graph data:
-   * `_node` creates a node dictionary for the graph【tests/test_pipeline.py:26】.
-   * `_link` creates an edge dictionary between two nodes【tests/test_pipeline.py:31】.
-   * `_make_repo` populates a temporary directory with a configurable number of modules, source files, and a `graph.json` file describing the nodes and links【tests/test_pipeline.py:35】‑【tests/test_pipeline.py:56】.
-   * `_graph` loads `graph.json` and returns the node/link collections【tests/test_pipeline.py:59】‑【tests/test_pipeline.py:61】.
-   * `_gp` yields the path to the generated `graph.json`【tests/test_pipeline.py:64】‑【tests/test_pipeline.py:65】.
+1. **Test helpers** – functions that fabricate a fake repository and supply graph data:
+   * `_node` builds a node descriptor dictionary【tests/test_pipeline.py:L26】.
+   * `_link` builds a link descriptor dictionary【tests/test_pipeline.py:L31】.
+   * `_make_repo` creates a temporary directory hierarchy, writes placeholder Python files, README documents, and a `graph.json` file that aggregates the generated nodes and links【tests/test_pipeline.py:L35-L55】.
+   * `_graph` loads that JSON and returns the node and link lists【tests/test_pipeline.py:L59-L61】.
+   * `_gp` returns the path to the generated `graph.json` file【tests/test_pipeline.py:L64-L65】.
 
-2. **Imports** – The test module brings in the pipeline API (`assemble_context`, `compile_wiki`, `context_hash`, `lint_cited_paths`, `plan_flows`, `plan_pages`, `prompt_for`, `read_excerpt`, `suggest_flows`) and rendering markers (`MARKER_END`, `MARKER_START`, `agents_md_block`, `upsert_agents_block`) to ensure the pipeline’s public surface is available during test execution【tests/test_pipeline.py:9-L21】. The `GenerationError` import hints at future LLM‑related checks.
+2. **Test cases** – each `test_…` function invokes the helpers to construct input data, calls a pipeline function, and asserts on its output:
+   * `test_plan_pages_selects_top_modules_excluding_small_and_concepts` checks that `plan_pages` drops concept‑type nodes and modules whose symbol count is below `min_symbols`【tests/test_pipeline.py:L70-L78】.
+   * `test_plan_pages_top_k_and_none_means_all` verifies that the `top_k` argument limits the number of returned page specs, and that `None` yields all specs【tests/test_pipeline.py:L81-L86】.
+   * `test_plan_pages_records_cross_module_deps` begins a scenario meant to exercise cross‑module dependency handling【tests/test_pipeline.py:L88-L89】.
 
-3. **Test cases** – Concrete `pytest` functions that invoke `plan_pages` on the synthetic graph and assert expected outcomes:
-   * `test_plan_pages_selects_top_modules_excluding_small_and_concepts` verifies that modules with fewer than `min_symbols` symbols and “concept” nodes are filtered out【tests/test_pipeline.py:70-L78】.
-   * `test_plan_pages_top_k_and_none_means_all` checks that `top_k` limits the result set and that `None` selects all modules【tests/test_pipeline.py:81-L86】.
-   * Additional tests (e.g., `test_plan_pages_records_cross_module_deps`) are hinted at but not fully shown, indicating broader coverage of cross‑module dependencies.
+3. **Imports & constants** – the module pulls in the pipeline API (`assemble_context`, `compile_wiki`, `context_hash`, `lint_cited_paths`, `plan_flows`, `plan_pages`, `prompt_for`, `read_excerpt`, `suggest_flows`)【tests/test_pipeline.py:L9-L20】, rendering utilities (`MARKER_END`, `MARKER_START`, `agents_md_block`, `upsert_agents_block`)【tests/test_pipeline.py:L21】, and testing tools (`pytest`, `json`, `Path`)【tests/test_pipeline.py:L4-L8】.
 
 ## Key entry points
-| Symbol | Role | Location |
-|--------|------|----------|
-| `_node` | Constructs a graph node dict used by the synthetic repo | 【tests/test_pipeline.py:26】 |
-| `_link` | Constructs a graph edge dict linking nodes | 【tests/test_pipeline.py:31】 |
-| `_make_repo` | Generates a temporary repository with source files and a `graph.json` artifact | 【tests/test_pipeline.py:35】‑【tests/test_pipeline.py:56】 |
-| `_graph` | Reads the generated `graph.json` into Python structures for the tests | 【tests/test_pipeline.py:59】‑【tests/test_pipeline.py:61】 |
-| `test_plan_pages_selects_top_modules_excluding_small_and_concepts` | Asserts that only sufficiently large modules are turned into page specs | 【tests/test_pipeline.py:70】‑【tests/test_pipeline.py:78】 |
-| `test_plan_pages_top_k_and_none_means_all` | Confirms the `top_k` parameter’s slicing behavior | 【tests/test_pipeline.py:81】‑【tests/test_pipeline.py:86】 |
-
-These helpers feed the **pipeline** entry point `plan_pages`, which is the core function under test.
+| Entry point | Role |
+|------------|------|
+| `_node` | Constructs a node dictionary used by the fake graph. |
+| `_link` | Constructs a link dictionary used by the fake graph. |
+| `_make_repo` | Generates a synthetic repository with source files, READMEs, and a `graph.json` output. |
+| `_graph` | Reads `graph.json` and returns `(nodes, links)`. |
+| `test_plan_pages_selects_top_modules_excluding_small_and_concepts` | Asserts that `plan_pages` filters out concept nodes and modules with too few symbols. |
+| `test_plan_pages_top_k_and_none_means_all` | Asserts the `top_k` limiting behaviour of `plan_pages`. |
+| `test_plan_pages_records_cross_module_deps` | Intended to verify that `plan_pages` records dependencies across modules. |
 
 ## Dependencies
-* **Standard library** – `json`, `pathlib.Path`.
-* **Third‑party** – `pytest` for test execution.
-* **Internal** – `isidore.llm.GenerationError` (imported but not exercised in the shown tests) and a suite of symbols from `isidore.pipeline` and `isidore.render` that provide the public API under test【tests/test_pipeline.py:9-L21】.
-* **No external network** – The test environment deliberately avoids external calls, as indicated by the docstring.
+* **Standard library** – `json`, `pathlib.Path`, `pytest`.  
+* **Isidore packages** – `isidore.llm.GenerationError` (imported but not directly used in the visible tests)【tests/test_pipeline.py:L9】; `isidore.pipeline` symbols listed above【tests/test_pipeline.py:L10-L20】; `isidore.render` markers and helpers【tests/test_pipeline.py:L21】.  
+* **No external services** – the tests run entirely offline, matching the “no network” promise.
 
 ## How to change safely
-1. **Preserve the synthetic graph contract** – `_make_repo` must continue to emit a `graph.json` with top‑level keys `"nodes"` and `"links"` and a `"built_at_commit"` string. Any structural change will break `_graph` and downstream `plan_pages` expectations.
-2. **Maintain node/link schema** – The dictionaries produced by `_node` and `_link` should keep the fields `id`, `source_file`, `file_type`, `label`, `source_location` (for nodes) and `source`, `target`, `relation` (for links). Tests rely on these keys when filtering by `file_type` or counting symbols.
-3. **Update test expectations in tandem** – If the `plan_pages` signature or default filtering logic changes (e.g., different `min_symbols` default), adjust the assertions in the test functions accordingly.
-4. **Retain import list** – Even if some imported pipeline functions are not used in the currently visible tests, they may be exercised by hidden tests. Removing them could cause import‑time failures.
-5. **Do not introduce network calls** – Keep the “no network” guarantee; any new test code should mock or inject LLM generators if LLM interaction becomes necessary.
+1. **Preserve helper signatures** – `_node`, `_link`, `_make_repo`, `_graph`, and `_gp` are relied upon by multiple test cases. Changing parameter names or return types will break imports and assertions.  
+2. **Maintain graph schema** – `plan_pages` expects nodes with keys `id`, `source_file`, `file_type`, `label`, `source_location`. Adding or renaming keys requires updating the test expectations (e.g., the assertions in `test_plan_pages_*`).  
+3. **Respect filtering logic** – tests encode assumptions about `plan_pages`:
+   * Nodes of `file_type="concept"` are ignored (see the addition of a concept node in the first test)【tests/test_pipeline.py:L73-L78】.  
+   * Modules with fewer than `min_symbols` symbols are excluded (the “tiny” node added with default `file_type="code"` should not appear)【tests/test_pipeline.py:L74-L78】.  
+   * `top_k` limits the number of returned specs; `None` means “all”【tests/test_pipeline.py:L84-L86】.  
+   If you modify `plan_pages` or its contract, update these tests accordingly.  
+4. **Do not introduce network calls** – the suite’s purpose is to verify offline behaviour; adding HTTP requests or external LLM calls will cause failures unrelated to the pipeline logic.  
+5. **Run the full test matrix** after any change to ensure all three `test_plan_pages_*` cases still pass, as they collectively cover filtering, limiting, and cross‑module dependency handling.
 
 ---

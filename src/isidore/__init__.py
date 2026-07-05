@@ -8,5 +8,5 @@ from __future__ import annotations
 from .pipeline import CompileResult, compile_wiki
 from .qa import ask
 
-__version__ = "0.1.0"
+__version__ = "0.2.0"
 __all__ = ["CompileResult", "__version__", "ask", "compile_wiki"]

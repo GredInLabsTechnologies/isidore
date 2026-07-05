@@ -5,6 +5,7 @@ Subcommands:
   compile        compile/refresh the wiki (dry-run by default; --execute to generate)
   ask            answer one question over the compiled wiki + graph (one LLM call)
   suggest-flows  print the heaviest cross-module bridges as flow candidates for isidore.json
+  claims         zero-LLM staleness audit of every claim (--check: exit 1 if any is stale)
 """
 from __future__ import annotations
 
@@ -64,7 +65,11 @@ def _cmd_compile(args) -> int:
 
     print(f"[isidore] plan: {result.planned} pages · dirty: {len(result.dirty)} · "
           f"generated: {len(result.generated)} · pruned: {len(result.pruned)} · "
-          f"findings kept/dropped: {result.findings_kept}/{result.findings_dropped}")
+          f"findings kept/dropped: {result.findings_kept}/{result.findings_dropped} · "
+          f"claims new/dropped: {result.claims_total}/{result.claims_dropped}")
+    if result.claims_stale_pages:
+        print(f"[isidore] stale claims forced regeneration of: "
+              f"{', '.join(result.claims_stale_pages)}")
     for name in result.dirty:
         mark = "GEN " if name in result.generated else ("CAP " if name in result.skipped_by_cap
                                                         else "dry ")
@@ -109,6 +114,22 @@ def _cmd_suggest_flows(args) -> int:
     return 0
 
 
+def _cmd_claims(args) -> int:
+    from .claims import check_claims
+    from .pipeline import WIKI_DIRNAME, load_state
+
+    state = load_state(args.repo / WIKI_DIRNAME)
+    rows = check_claims(args.repo, state.get("pages", {}))
+    if not rows:
+        print("[isidore] no anchored claims yet — run `isidore compile --execute` first")
+        return 0
+    bad = [r for r in rows if r["state"] != "ok"]
+    print(f"[isidore] {len(rows)} claims · {len(bad)} stale/orphan (0 LLM calls)")
+    for r in bad:
+        print(f"  {r['state'].upper()} {r['page']} {r['id']}: {r['statement']} [{r['evidence']}]")
+    return 1 if (bad and args.check) else 0
+
+
 def main(argv: list[str] | None = None) -> int:
     # Windows consoles default to cp1252; model output routinely carries characters outside it
     for stream in (sys.stdout, sys.stderr):
@@ -144,6 +165,12 @@ def main(argv: list[str] | None = None) -> int:
     p_flows.add_argument("--repo", type=Path, default=Path("."))
     p_flows.add_argument("--graph", type=Path, default=None)
     p_flows.set_defaults(func=_cmd_suggest_flows)
+
+    p_claims = sub.add_parser("claims", help="zero-LLM staleness audit of anchored claims")
+    p_claims.add_argument("--repo", type=Path, default=Path("."))
+    p_claims.add_argument("--check", action="store_true",
+                          help="exit 1 if any claim is stale/orphan (CI gate)")
+    p_claims.set_defaults(func=_cmd_claims)
 
     args = parser.parse_args(argv)
     return args.func(args)

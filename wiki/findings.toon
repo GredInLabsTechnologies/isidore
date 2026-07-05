@@ -1,12 +1,10 @@
 # isidore findings · commit ?
 # suspects/drift/questions: UNVERIFIED model observations (triage queue).
 # todos/orphans/test_gaps/hotspots: mechanical facts from graph+git, no LLM.
-# summary: 0 bug suspects, 2 drift, 1 questions, 6 todos, 0 orphan files, 1 test gaps
-suspects[2]{kind,where,note}:
-  drift,tests/test_pipeline.py:1,"Docstring mentions LLM generator counting, but the presented tests never invoke LLM‑related code."
-  drift,tests/test_units.py:6,"several imported symbols (build_request, PageSpec, ask, gather_evidence, question_terms, render_toon_index) are never referenced in any test, suggesting dead imports"
+# summary: 0 bug suspects, 0 drift, 1 questions, 6 todos, 0 orphan files, 1 test gaps
+suspects[0]{kind,where,note}:
 questions[1]{where,note}:
-  tests/test_pipeline.py:9-L21,"Why are many pipeline functions imported (e.g., compile_wiki, suggest_flows) if only plan_pages is exercised here?"
+  ,How is the LLM generator “always injected and counted” if the tests never reference GenerationError or any mock injection?
 terms[0]{where,note}:
 todos[6]{marker,file,line,note}:
   TODO,src/isidore/findings.py,19,/FIXME/HACK
@@ -18,4 +16,7 @@ todos[6]{marker,file,line,note}:
 orphan_files[0]{file}:
 test_gaps[1]{module,symbols}:
   src/isidore,65
-hotspots[0]{module,symbol,file,line,degree,churn,risk}:
+hotspots[3]{module,symbol,file,line,degree,churn,risk}:
+  tests/test_pipeline.py,test_pipeline.py,tests/test_pipeline.py,1,25,1,25
+  src/isidore,pipeline.py,src/isidore/pipeline.py,1,20,1,20
+  tests/test_units.py,test_units.py,tests/test_units.py,1,17,1,17

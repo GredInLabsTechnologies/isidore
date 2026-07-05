@@ -18,6 +18,14 @@ from collections import Counter, defaultdict, deque
 from dataclasses import dataclass, field
 from pathlib import Path
 
+from .claims import (
+    CLAIMS_FILENAME,
+    CLAIMS_PROMPT_ADDENDUM,
+    anchor_claims,
+    parse_claims_block,
+    render_claims,
+    stale_pages,
+)
 from .findings import (
     FINDINGS_FILENAME,
     FINDINGS_PROMPT_ADDENDUM,
@@ -338,7 +346,8 @@ def assemble_context(repo: Path, spec: PageSpec, *,
 
 def prompt_for(spec: PageSpec, context: str) -> str:
     template = FLOW_PROMPT if spec.kind == "flow" else MODULE_PROMPT
-    return template.format(name=spec.name, facts=context) + FINDINGS_PROMPT_ADDENDUM
+    return (template.format(name=spec.name, facts=context)
+            + CLAIMS_PROMPT_ADDENDUM + FINDINGS_PROMPT_ADDENDUM)
 
 
 def context_hash(prompt: str) -> str:
@@ -407,6 +416,9 @@ class CompileResult:
     warnings: list[str] = field(default_factory=list)
     findings_kept: int = 0
     findings_dropped: int = 0
+    claims_total: int = 0
+    claims_dropped: int = 0
+    claims_stale_pages: list[str] = field(default_factory=list)
 
 
 def compile_wiki(
@@ -440,6 +452,10 @@ def compile_wiki(
     state = load_state(wiki_dir)
     pages_state: dict = state.setdefault("pages", {})
 
+    # staleness de claims: re-hash de la evidencia — 0 llamadas LLM, corre SIEMPRE (dry-run incl.)
+    claim_stale = stale_pages(repo, pages_state)
+    result.claims_stale_pages = sorted(claim_stale)
+
     contexts: dict[str, tuple[PageSpec, str, str]] = {}
     for spec in specs:
         context, warns = assemble_context(repo, spec, max_chars=max_prompt_chars)
@@ -448,7 +464,9 @@ def compile_wiki(
         digest = context_hash(prompt)
         contexts[spec.filename] = (spec, prompt, digest)
         prev = pages_state.get(spec.filename, {})
-        if prev.get("context_hash") != digest or not (wiki_dir / spec.filename).is_file():
+        if (prev.get("context_hash") != digest
+                or spec.filename in claim_stale
+                or not (wiki_dir / spec.filename).is_file()):
             result.dirty.append(spec.filename)
 
     to_generate = result.dirty[:max_calls]
@@ -465,7 +483,11 @@ def compile_wiki(
     for name in to_generate:
         spec, prompt, digest = contexts[name]
         raw = generate(prompt)
-        markdown, page_findings = parse_findings_block(raw)
+        markdown, raw_claims = parse_claims_block(raw)
+        markdown, page_findings = parse_findings_block(markdown)
+        claims, claims_dropped = anchor_claims(repo, raw_claims)
+        result.claims_total += len(claims)
+        result.claims_dropped += claims_dropped
         kept, dropped = filter_findings(page_findings, repo)
         result.findings_kept += len(kept)
         result.findings_dropped += len(dropped)
@@ -475,7 +497,7 @@ def compile_wiki(
             markdown += "\n\n<!-- isidore lint: unverified paths: " + ", ".join(missing) + " -->\n"
         (wiki_dir / name).write_text(markdown, encoding="utf-8", newline="\n")
         pages_state[name] = {"context_hash": digest, "kind": spec.kind, "name": spec.name,
-                             "findings": kept}
+                             "findings": kept, "claims": claims}
         result.generated.append(name)
 
     # prune only when the MODULE/FLOW left the graph/config — never because of a smaller top-k
@@ -514,6 +536,9 @@ def compile_wiki(
     existing = agents_md.read_text(encoding="utf-8") if agents_md.is_file() else ""
     agents_md.write_text(upsert_agents_block(existing, agents_md_block()),
                          encoding="utf-8", newline="\n")
+
+    (wiki_dir / CLAIMS_FILENAME).write_text(
+        render_claims(repo, pages_state, commit), encoding="utf-8", newline="\n")
 
     state["commit"] = commit
     save_state(wiki_dir, state)

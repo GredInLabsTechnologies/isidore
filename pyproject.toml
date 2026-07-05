@@ -4,7 +4,7 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "isidore-wiki"
-version = "0.1.0"
+version = "0.2.0"
 description = "Compile an agent-oriented wiki from your codebase's structure graph — one bounded LLM call per page, deterministic everything else."
 readme = "README.md"
 license = { text = "MIT" }

@@ -2,37 +2,68 @@
   "commit": null,
   "pages": {
     "src-isidore.md": {
-      "context_hash": "e24ba27c38bc10cb93bf7390d5cb01f343c6d13a40be6cf819959def0b4d2494",
+      "claims": [
+        {
+          "ehash": "5bfd099dbb79",
+          "evidence": "src/isidore/cli.py:1",
+          "id": "c-ecbbd86f",
+          "statement": "Isidore compiles an agent\u2011oriented wiki from a repository\u2019s structure graph"
+        }
+      ],
+      "context_hash": "65c5b0da5be27cb2712fe564fa38e5d9c0010474c344a6313e50c97079a7f224",
       "findings": [],
       "kind": "module",
       "name": "src/isidore"
     },
     "tests-test_pipeline_py.md": {
-      "context_hash": "0272ded2542c150d207a16b3aed409547a8d6edd4e9d840f26bfbc86e81872f3",
-      "findings": [
+      "claims": [
         {
-          "kind": "drift",
-          "note": "Docstring mentions LLM generator counting, but the presented tests never invoke LLM\u2011related code.",
-          "where": "tests/test_pipeline.py:1"
+          "ehash": "1fa783ca4dfd",
+          "evidence": "tests/test_pipeline.py:L26",
+          "id": "c-fc3f1d10",
+          "statement": "_node returns a dict with keys id, source_file, file_type, label, source_location"
         },
         {
+          "ehash": "4ae8a2473a69",
+          "evidence": "tests/test_pipeline.py:L31",
+          "id": "c-c2752ae8",
+          "statement": "_link returns a dict with keys source, target, relation"
+        }
+      ],
+      "context_hash": "6d13479177259306fd893fcd72c3a1af0d44a476e6e2d42f9050fbb58bada3a9",
+      "findings": [
+        {
           "kind": "question",
-          "note": "Why are many pipeline functions imported (e.g., compile_wiki, suggest_flows) if only plan_pages is exercised here?",
-          "where": "tests/test_pipeline.py:9-L21"
+          "note": "How is the LLM generator \u201calways injected and counted\u201d if the tests never reference GenerationError or any mock injection?",
+          "where": ""
         }
       ],
       "kind": "module",
       "name": "tests/test_pipeline.py"
     },
     "tests-test_units_py.md": {
-      "context_hash": "ec0185aec4097fbc306f4fdb7a72a9c55cf32642fe58bd9c5555eaf3aa55bfa2",
-      "findings": [
+      "claims": [
         {
-          "kind": "drift",
-          "note": "several imported symbols (build_request, PageSpec, ask, gather_evidence, question_terms, render_toon_index) are never referenced in any test, suggesting dead imports",
-          "where": "tests/test_units.py:6"
+          "ehash": "d6a3cdaaa186",
+          "evidence": "tests/test_units.py:26",
+          "id": "c-5e0e3c79",
+          "statement": "encode_table produces a two\u2011line quoted CSV output with a count column for the given inputs"
+        },
+        {
+          "ehash": "8b3eec6f61e6",
+          "evidence": "tests/test_units.py:53",
+          "id": "c-9e84756c",
+          "statement": "scan_repo includes \"contains\" and \"imports\" relations in its link output"
+        },
+        {
+          "ehash": "699378f5adb2",
+          "evidence": "tests/test_units.py:58",
+          "id": "c-0d6d224b",
+          "statement": "scan_repo tolerates a syntactically\u2011invalid Python file and still includes its filename as a node label"
         }
       ],
+      "context_hash": "293881c24e6816886cd4093661acc262fef2dd4c831fff6fae45a90ac1f11ad0",
+      "findings": [],
       "kind": "module",
       "name": "tests/test_units.py"
     }
