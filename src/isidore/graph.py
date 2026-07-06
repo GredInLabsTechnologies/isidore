@@ -81,12 +81,75 @@ def module_of(source_file: str | None, depth: int) -> str:
 
 # ------------------------------------------------------------------ scanner
 
+def git_listed_files(repo: Path) -> set[str] | None:
+    """Repo files git tracks or would track: `git ls-files` cached + untracked-not-ignored.
+
+    Returns POSIX-relative paths, or None when `repo` is not a git working tree (or git is
+    unavailable) — callers MUST treat None as "cannot tell, do not filter". This is the source
+    of truth for "is this real source?": `--exclude-standard` honors .gitignore / .git/info/exclude
+    / global excludes, so gitignored build artifacts (a Gradle/Chaquopy copy of a source tree,
+    a vendored subtree) are excluded; `--others` keeps brand-new files not yet `git add`ed, so
+    writing a file and indexing before committing still works. `-z` = NUL-separated, unquoted
+    paths (robust to spaces/unicode).
+    """
+    try:
+        out = subprocess.run(
+            ["git", "ls-files", "-z", "--cached", "--others", "--exclude-standard"],
+            cwd=repo, capture_output=True, timeout=30, check=False,
+        )
+    except (OSError, subprocess.TimeoutExpired):
+        return None
+    if out.returncode != 0:
+        return None
+    return {p for p in out.stdout.decode("utf-8", errors="replace").split("\0") if p}
+
+
+def _norm_source_file(source_file: str) -> str:
+    rel = source_file.replace("\\", "/")
+    return rel[2:] if rel.startswith("./") else rel
+
+
+def restrict_to_tracked(
+    nodes: list[dict], links: list[dict], repo: Path,
+) -> tuple[list[dict], list[dict], set[str]]:
+    """Drop graph nodes whose source_file is gitignored/untracked, from ANY producer.
+
+    The internal scanner already skips them, but Isidore also consumes third-party graphs
+    (Graphify, --graph) whose producers walk the raw filesystem and so can index build
+    artifacts. Filtering here, at the point of consumption, protects every code path: a node
+    whose source_file is not git-listed is not maintained source and is removed, along with any
+    link touching it. Nodes without a source_file (concepts) are always kept. Returns
+    (nodes, links, dropped_source_files); dropped is empty when `repo` is not a git tree
+    (cannot tell what's ignored -> index everything, unchanged behavior).
+    """
+    listed = git_listed_files(repo)
+    if listed is None:
+        return nodes, links, set()
+    kept_nodes: list[dict] = []
+    dropped: set[str] = set()
+    for n in nodes:
+        src = n.get("source_file")
+        if not src or _norm_source_file(src) in listed:
+            kept_nodes.append(n)
+        else:
+            dropped.add(_norm_source_file(src))
+    if not dropped:
+        return kept_nodes, links, dropped
+    kept_ids = {n["id"] for n in kept_nodes if "id" in n}
+    kept_links = [
+        link for link in links
+        if link.get("source") in kept_ids and link.get("target") in kept_ids
+    ]
+    return kept_nodes, kept_links, dropped
+
+
 def _node_id(rel_path: str, symbol: str | None = None) -> str:
     base = rel_path.replace("/", "_").replace(".", "_").replace("-", "_")
     return f"{base}_{symbol}" if symbol else base
 
 
 def _iter_source_files(repo: Path) -> list[Path]:
+    listed = git_listed_files(repo)
     found: list[Path] = []
     stack = [repo]
     while stack:
@@ -96,7 +159,12 @@ def _iter_source_files(repo: Path) -> list[Path]:
                 if entry.name not in SKIP_DIRS and not entry.name.startswith("."):
                     stack.append(entry)
             elif entry.suffix in (".py", ".md"):
-                found.append(entry)
+                # In a git tree, index only what git tracks/would-track: a raw walk otherwise
+                # picks up gitignored build artifacts (e.g. a Gradle/Chaquopy copy of a source
+                # tree) as if they were maintained source. `listed is None` => not a git tree,
+                # so fall back to the plain walk (unchanged behavior for non-git dirs).
+                if listed is None or entry.relative_to(repo).as_posix() in listed:
+                    found.append(entry)
     return found
 
 

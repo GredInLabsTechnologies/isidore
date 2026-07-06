@@ -37,7 +37,7 @@ from .findings import (
     risk_hotspots,
     coverage_gap_candidates,
 )
-from .graph import CONCEPTS_BUCKET, load_graph, module_of
+from .graph import CONCEPTS_BUCKET, load_graph, module_of, restrict_to_tracked
 from .llm import GenerationError, default_generator
 from .render import (
     agents_md_block,
@@ -444,6 +444,16 @@ def compile_wiki(
             "or point --graph at a graph.json (see README for the format)")
 
     nodes, links, commit = load_graph(graph_path)
+    # Exclude gitignored/untracked paths (build artifacts) from ANY producer's graph. A raw
+    # filesystem walk (ours or Graphify's) indexes e.g. a Gradle/Chaquopy copy of a source tree
+    # as a phantom duplicate module with stale symbols; git is the source of truth for real code.
+    nodes, links, dropped_paths = restrict_to_tracked(nodes, links, repo)
+    if dropped_paths:
+        sample = ", ".join(sorted(dropped_paths)[:3])
+        result.warnings.append(
+            f"excluded {len(dropped_paths)} gitignored/untracked path(s) from the graph "
+            f"(build artifacts / vendored trees, not tracked source): {sample}"
+            + (" ..." if len(dropped_paths) > 3 else ""))
     all_modules = plan_pages(nodes, links, module_depth=module_depth, top_k=None,
                              min_symbols=min_symbols)
     flows = plan_flows(nodes, links, flows_config or [], module_depth=module_depth)

@@ -69,6 +69,66 @@ def test_write_scan_and_find_graph_roundtrip(tmp_path):
     assert nodes and isinstance(links, list)
 
 
+def _git_repo(path):
+    """Init a minimal git repo at `path`; skip the test if git is unavailable."""
+    import shutil
+    import subprocess
+    if shutil.which("git") is None:
+        pytest.skip("git not available")
+    for args in (["init", "-q"], ["config", "user.email", "t@t"], ["config", "user.name", "t"]):
+        subprocess.run(["git", *args], cwd=path, check=True, capture_output=True)
+
+
+def test_scan_excludes_gitignored_build_artifacts(tmp_path):
+    """The reported GIMO bug: a gitignored build-artifact copy must NOT be indexed as source."""
+    _git_repo(tmp_path)
+    (tmp_path / ".gitignore").write_text("build_copy/\n", encoding="utf-8")
+    (tmp_path / "real.py").write_text("def real():\n    pass\n", encoding="utf-8")
+    (tmp_path / "brand_new.py").write_text("def fresh():\n    pass\n", encoding="utf-8")  # untracked, not ignored
+    art = tmp_path / "build_copy"
+    art.mkdir()
+    (art / "stale.py").write_text("def phantom():\n    pass\n", encoding="utf-8")  # gitignored
+
+    nodes, _links = scan_repo(tmp_path)
+    sources = {n.get("source_file") for n in nodes}
+    assert "real.py" in sources                      # tracked-intent kept
+    assert "brand_new.py" in sources                 # new-but-not-ignored kept
+    assert "build_copy/stale.py" not in sources      # gitignored artifact excluded
+    assert all("phantom" not in n.get("label", "") for n in nodes)
+
+
+def test_restrict_to_tracked_filters_foreign_graph(tmp_path):
+    """A third-party graph (e.g. Graphify) that indexed a gitignored path gets cleaned + links pruned."""
+    from isidore.graph import restrict_to_tracked
+    _git_repo(tmp_path)
+    (tmp_path / ".gitignore").write_text("dist/\n", encoding="utf-8")
+    (tmp_path / "keep.py").write_text("x = 1\n", encoding="utf-8")
+    (tmp_path / "dist").mkdir()
+    (tmp_path / "dist" / "ghost.py").write_text("y = 2\n", encoding="utf-8")
+
+    nodes = [
+        {"id": "concept", "label": "Idea"},                                   # no source_file -> kept
+        {"id": "keep", "source_file": "keep.py"},                             # tracked -> kept
+        {"id": "ghost", "source_file": "dist/ghost.py"},                     # gitignored -> dropped
+    ]
+    links = [{"source": "keep", "target": "ghost", "relation": "imports"}]    # touches ghost -> pruned
+
+    kept_nodes, kept_links, dropped = restrict_to_tracked(nodes, links, tmp_path)
+    kept_ids = {n["id"] for n in kept_nodes}
+    assert kept_ids == {"concept", "keep"}
+    assert dropped == {"dist/ghost.py"}
+    assert kept_links == []                                                   # dangling link removed
+
+
+def test_restrict_to_tracked_noop_without_git(tmp_path):
+    """Outside a git tree we cannot tell what's ignored -> index everything, unchanged."""
+    from isidore.graph import restrict_to_tracked
+    nodes = [{"id": "a", "source_file": "whatever/x.py"}]
+    links = [{"source": "a", "target": "a"}]
+    kept_nodes, kept_links, dropped = restrict_to_tracked(nodes, links, tmp_path)
+    assert kept_nodes == nodes and kept_links == links and dropped == set()
+
+
 # ------------------------------------------------------------------- findings
 
 def test_parse_findings_block_extracts_and_strips():
