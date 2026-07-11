@@ -43,9 +43,38 @@ HARD rules for the `path:line` — a claim is WORTHLESS if its citation is inven
   claim. Fewer, exactly-cited claims are far better than many with invented citations.
 Other rules: 3-8 claims; each is one specific checkable fact (behavior, constraint, relationship),
 never an opinion or a summary.
+- Assert only what the evidence SHOWS. NEVER claim that something does not exist, is not defined,
+  or is not handled anywhere — your excerpts are partial, so absence is unprovable and such claims
+  are dropped mechanically before they are stored.
 """
 
 _FENCE = re.compile(r"```isidore-claims\s*\n(.*?)```", re.DOTALL)
+
+# Absence-hallucination backstop. A claim/finding asserting that something does NOT exist / is not
+# defined / is not handled cannot be evidence-anchored: its "evidence" would be the ABSENCE of code,
+# and the excerpts a page sees are partial by construction (report from claude-gimo, 2026-07-07: two
+# false positives from absence-in-excerpt). Such statements are dropped mechanically. Deliberately
+# CONSERVATIVE — it fires only on existential/definitional absence, never on property or behavioral
+# negations about evidenced code ("X is not thread-safe", "the lock is not released on error").
+_NEG_EXISTENTIAL = re.compile(
+    r"(?i)("
+    r"\bthere\s+(?:is|are)\s+no\b"
+    r"|\bno\s+\w[\w./-]*(?:\s+\w+){0,3}?\s+(?:exists?|is\s+defined|are\s+defined|is\s+present|"
+    r"is\s+used|is\s+handled|is\s+configured|is\s+implemented)"
+    r"|\b(?:is|are)\s+(?:not|never)\s+(?:defined|declared|implemented|configured|present|"
+    r"registered|initialized|instantiated|imported|exported|handled|referenced|found|set\s+up)\b"
+    r"|\b(?:does\s+not|doesn't|do\s+not|don't)\s+(?:exist|define|declare|implement|configure|"
+    r"register|import|handle|reference)\b"
+    r"|\bis\s+missing\b|\bare\s+missing\b|\bis\s+absent\b|\bare\s+absent\b"
+    r"|\bno\s+longer\s+exists?\b|\bnot\s+implemented\b|\bnonexistent\b"
+    r")"
+)
+
+
+def is_negative_existential(statement: str) -> bool:
+    """True for statements asserting existential/definitional ABSENCE (unanchorable). Conservative:
+    behavioral negations ('not released', 'not called', 'not thread-safe') are NOT flagged."""
+    return bool(_NEG_EXISTENTIAL.search(statement or ""))
 
 
 def parse_claims_block(markdown: str) -> tuple[str, list[dict]]:
@@ -194,6 +223,25 @@ def check_claims(repo: Path, pages_state: dict) -> list[dict]:
             rows.append({"page": page, "id": c["id"], "statement": c["statement"],
                          "evidence": c["evidence"], "state": state})
     return rows
+
+
+def claims_for_file(repo: Path, pages_state: dict, path: str) -> list[dict]:
+    """The documentation contract of a file: every anchored claim whose evidence points at it. Agent
+    pre-flight — 'before editing X, these wiki assertions depend on X (recompile its pages after)'."""
+    norm = path.replace("\\", "/").lstrip("./").lstrip("/")
+    rows = []
+    for r in check_claims(repo, pages_state):
+        ev = r["evidence"].replace("\\", "/").rsplit(":", 1)[0]
+        if ev == norm or ev.endswith("/" + norm) or norm.endswith("/" + ev):
+            rows.append(r)
+    return rows
+
+
+def claims_grep(repo: Path, pages_state: dict, term: str) -> list[dict]:
+    """Free-text search over verified atomic facts — answers many questions with 0 LLM calls."""
+    needle = term.lower()
+    return [r for r in check_claims(repo, pages_state)
+            if needle in r["statement"].lower() or needle in r["evidence"].lower()]
 
 
 def stale_pages(repo: Path, pages_state: dict) -> set[str]:

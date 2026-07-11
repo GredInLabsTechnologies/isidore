@@ -37,14 +37,49 @@ EVIDENCE
 DEFAULT_MAX_EVIDENCE_CHARS = 24_000
 _WORD = re.compile(r"[a-zA-Z_][a-zA-Z0-9_]{2,}")
 
+# Common English function words are dropped from the query: without this a claim scores a false
+# match on stopwords like "the"/"for" (e.g. every claim containing "the session") and the --offline
+# path would answer an unrelated question instead of refusing. Domain words are never in this set.
+_STOPWORDS = frozenset({
+    "the", "and", "for", "are", "was", "were", "with", "that", "this", "from", "into", "your",
+    "you", "how", "does", "did", "what", "why", "who", "whom", "where", "when", "which", "whose",
+    "has", "have", "had", "not", "but", "its", "their", "there", "here", "then", "than", "them",
+    "they", "our", "out", "get", "got", "can", "could", "would", "should", "will", "shall", "may",
+    "might", "must", "about", "over", "under", "between", "using", "use", "used", "via", "per",
+})
+
 
 def question_terms(question: str) -> set[str]:
-    return {w.lower() for w in _WORD.findall(question)}
+    return {w for w in (w.lower() for w in _WORD.findall(question)) if w not in _STOPWORDS}
 
 
 def score_text(terms: set[str], text: str) -> int:
     lowered = text.lower()
     return sum(lowered.count(t) for t in terms)
+
+
+def gather_claims(repo: Path, question: str) -> list[tuple[int, dict]]:
+    """Score every anchored claim (verified atomic fact) against the question. Claims are the
+    cheapest, highest-signal evidence there is — a checked statement with a `path:line` anchor."""
+    from .claims import check_claims
+    from .pipeline import load_state
+    terms = question_terms(question)
+    state = load_state(repo / WIKI_DIRNAME)
+    scored: list[tuple[int, dict]] = []
+    for row in check_claims(repo, state.get("pages", {})):
+        score = score_text(terms, row["statement"]) * 3 + score_text(terms, row["evidence"])
+        if score:
+            scored.append((score, row))
+    scored.sort(key=lambda t: -t[0])
+    # de-dup identical statements (the same claim can ride several pages) keeping the best score
+    seen: set[str] = set()
+    deduped: list[tuple[int, dict]] = []
+    for score, row in scored:
+        key = f"{row['statement']}\x00{row['evidence']}"
+        if key not in seen:
+            seen.add(key)
+            deduped.append((score, row))
+    return deduped
 
 
 def gather_evidence(
@@ -61,6 +96,13 @@ def gather_evidence(
     wiki_dir = repo / WIKI_DIRNAME
     sources: list[str] = []
     parts: list[str] = []
+
+    # Verified claims first — cheapest signal per token, each already anchored to a path:line.
+    claims = gather_claims(repo, question)
+    if claims:
+        parts.append("--- verified claims (anchored, machine-checked facts) ---\n" + "\n".join(
+            f"- {row['statement']} [{row['evidence']}] ({row['state']})" for _s, row in claims[:6]))
+        sources.extend(f"claim [{row['evidence']}]" for _s, row in claims[:6])
 
     quickstart = wiki_dir / "quickstart.md"
     if quickstart.is_file():
@@ -108,8 +150,27 @@ def gather_evidence(
     return evidence, sources
 
 
+OFFLINE_MIN_SCORE = 3      # >= one statement-term hit (statement matches are weighted x3)
+
+
+def answer_offline(repo: Path, question: str) -> str:
+    """Answer from verified claims with ZERO LLM calls, or refuse honestly. Never fabricates."""
+    claims = gather_claims(repo, question)
+    if not claims or claims[0][0] < OFFLINE_MIN_SCORE:
+        return ("No confident offline answer: no verified claim matched strongly enough. "
+                "Re-run without --offline for a full-evidence LLM answer, or rephrase with the "
+                "exact symbol/module name.")
+    lines = ["Offline answer from verified claims (0 LLM calls):"]
+    for _score, row in claims[:5]:
+        flag = "" if row["state"] == "ok" else f"  ⚠ {row['state']}"
+        lines.append(f"- {row['statement']} [{row['evidence']}]{flag}")
+    return "\n".join(lines)
+
+
 def ask(repo: Path, question: str, *, graph_path: Path, generator,
-        module_depth: int = DEFAULT_MODULE_DEPTH) -> str:
+        module_depth: int = DEFAULT_MODULE_DEPTH, offline: bool = False) -> str:
+    if offline:
+        return answer_offline(repo, question)
     evidence, _sources = gather_evidence(repo, question, graph_path=graph_path,
                                          module_depth=module_depth)
     if not evidence.strip():

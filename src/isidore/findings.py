@@ -47,7 +47,9 @@ question | | what remains unclear and why it matters
 
 Rules for this block: kinds are bug|drift|question|term; cite only paths present in the facts;
 one line per observation; omit the block entirely if you have none. These are triage hypotheses,
-not conclusions — do not mention them in the page itself.
+not conclusions — do not mention them in the page itself. Do NOT report that something does not
+exist / is not defined / is not handled anywhere — your excerpts are partial, so absence is not
+observable; report only what the evidence shows (a suspicious line, a doc-vs-code mismatch).
 """
 
 _FENCE = re.compile(r"```isidore-findings\s*\n(.*?)```", re.DOTALL)
@@ -119,6 +121,23 @@ def harvest_todos(repo: Path, source_files: set[str], cap: int = 200) -> list[di
                 if len(rows) >= cap:
                     return rows
     return rows
+
+
+def findings_new(repo: Path, pages_state: dict, since: str) -> tuple[list[dict], list[dict]]:
+    """Findings whose evidence lies in files changed since `since` — what this change introduced.
+
+    Returns (stored LLM findings in the changed files, TODO/FIXME markers in the changed .py files).
+    """
+    from .changeset import changed_lines
+    changed = set(changed_lines(repo, since))
+    llm: list[dict] = []
+    for entry in pages_state.values():
+        for f in entry.get("findings", []):
+            path = f.get("where", "").split(":", 1)[0].replace("\\", "/").strip()
+            if path and path in changed:
+                llm.append(f)
+    todos = harvest_todos(repo, {f for f in changed if f.endswith(".py")})
+    return llm, todos
 
 
 def orphan_file_candidates(nodes: list[dict], links: list[dict], cap: int = 40) -> list[dict]:

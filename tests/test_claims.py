@@ -10,11 +10,37 @@ from isidore.claims import (
     claim_id,
     evidence_hash,
     evidence_state,
+    is_negative_existential,
     parse_claims_block,
     render_claims,
     stale_pages,
 )
 from isidore.pipeline import compile_wiki
+
+
+def test_is_negative_existential_flags_absence_not_behavior():
+    # existential/definitional absence -> flagged (unanchorable, absence-in-excerpt hallucination)
+    for s in [
+        "There is no retry logic here",
+        "no cache exists for this path",
+        "the endpoint is not defined",
+        "validation is not handled",
+        "the config option does not exist",
+        "error handling is missing",
+        "this feature is not implemented",
+        "the flag is nonexistent",
+    ]:
+        assert is_negative_existential(s), s
+    # behavioral / property negations about EVIDENCED code -> kept
+    for s in [
+        "the lock is not released on the error path",
+        "resolve() is not thread-safe",
+        "the callback is not called on timeout",
+        "input is not validated before use",
+        "the retry count is 3",
+        "the cache is disabled for flows",
+    ]:
+        assert not is_negative_existential(s), s
 
 PAGE_WITH_CLAIMS = """## Purpose
 Fine page.

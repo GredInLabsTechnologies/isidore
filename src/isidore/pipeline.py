@@ -18,10 +18,13 @@ from collections import Counter, defaultdict, deque
 from dataclasses import dataclass, field
 from pathlib import Path
 
+from .changeset import affected_modules, changed_lines, changed_symbols
+from .journal import append_run, record_page_change
 from .claims import (
     CLAIMS_FILENAME,
     CLAIMS_PROMPT_ADDENDUM,
     anchor_claims,
+    is_negative_existential,
     parse_claims_block,
     render_claims,
     stale_pages,
@@ -74,6 +77,8 @@ Structure (use these exact section headings):
 Rules:
 - Cite sources inline as `path:line` using ONLY paths that appear in the facts.
 - Explain WHY the module exists and how its pieces relate, not just a file inventory.
+- Describe only what IS evidenced. NEVER state that something does not exist, is not used, or is
+  not handled — your facts are excerpts, not the whole repo, so absence cannot be proven here.
 - Max ~600 words. No preamble, no closing remarks — start directly with the first heading.
 
 FACTS
@@ -96,11 +101,24 @@ Structure (use these exact section headings):
 Rules:
 - Cite sources inline as `path:line` using ONLY paths that appear in the facts.
 - Present the flow as an ordered narrative (A calls B because...), grounded in the graph links given.
+- Describe only evidenced steps. NEVER state that a step/handler does not exist or is not handled —
+  your facts are excerpts, not the whole repo, so absence cannot be proven here.
 - Max ~600 words. No preamble — start directly with the first heading.
 
 FACTS
 =====
 {facts}
+"""
+
+# Appended to a page's prompt for its ONE bounded repair retry when the first draft cited paths that
+# do not exist in the repo (the hallucination lint failed). The phantom paths are named back so the
+# model can remove or replace them instead of the page shipping with a dead citation inside.
+LINT_REPAIR_ADDENDUM = """
+
+CORRECTION REQUIRED. Your previous version cited paths that DO NOT EXIST in this repository:
+{paths}
+Rewrite the page: remove or replace EACH of those citations with a path that appears VERBATIM in the
+FACTS above. Cite only real paths. Keep the rest of the page unchanged.
 """
 
 
@@ -125,6 +143,22 @@ class PageSpec:
 
 # ------------------------------------------------------------------ planning
 
+def module_dep_edges(nodes: list[dict], links: list[dict],
+                     module_depth: int = DEFAULT_MODULE_DEPTH) -> Counter:
+    """Cross-module dependency edges (src_module, dst_module) -> link count. Shared by page planning
+    and the impact fingerprint so both see the SAME coupling graph."""
+    by_id = {n["id"]: n for n in nodes if "id" in n}
+    dep: Counter = Counter()
+    for link in links:
+        s, t = by_id.get(link.get("source")), by_id.get(link.get("target"))
+        if not s or not t:
+            continue
+        ms = module_of(s.get("source_file"), module_depth)
+        mt = module_of(t.get("source_file"), module_depth)
+        if ms != mt:
+            dep[(ms, mt)] += 1
+    return dep
+
 def plan_pages(
     nodes: list[dict],
     links: list[dict],
@@ -138,8 +172,6 @@ def plan_pages(
     top_k=None returns ALL eligible modules — pruning must compare against the full universe
     so a later run with a smaller --top-k never deletes valid pages.
     """
-    by_id = {n["id"]: n for n in nodes if "id" in n}
-
     out_degree: Counter[str] = Counter()
     for link in links:
         src = link.get("source")
@@ -161,15 +193,7 @@ def plan_pages(
             symbols[mod].append((n.get("label", n.get("id", "?")), src_file or "", loc,
                                  out_degree.get(n.get("id", ""), 0)))
 
-    dep_out: Counter[tuple[str, str]] = Counter()
-    for link in links:
-        s, t = by_id.get(link.get("source")), by_id.get(link.get("target"))
-        if not s or not t:
-            continue
-        ms = module_of(s.get("source_file"), module_depth)
-        mt = module_of(t.get("source_file"), module_depth)
-        if ms != mt:
-            dep_out[(ms, mt)] += 1
+    dep_out = module_dep_edges(nodes, links, module_depth)
 
     specs: list[PageSpec] = []
     for mod, syms in symbols.items():
@@ -375,6 +399,23 @@ def lint_cited_paths(markdown: str, repo: Path) -> list[str]:
     return missing
 
 
+def annotate_unverified_paths(markdown: str, missing: set[str]) -> str:
+    """Annotate every cited path that does not exist in the repo, inline and visibly — never strip
+    the prose. Deterministic and reversible: the next successful regeneration replaces the page."""
+    def _mark(match: re.Match) -> str:
+        token = match.group(0)
+        if token.replace("\\", "/").lstrip("/") in missing:
+            return f"{token} [⚠ isidore: path not found]"
+        return token
+    return _PATH_TOKEN.sub(_mark, markdown)
+
+
+def _split_negative_existential(items: list[dict], key: str) -> tuple[list[dict], int]:
+    """Drop items whose `key` text asserts existential absence (unanchorable). Returns (kept, n)."""
+    kept = [it for it in items if not is_negative_existential(it.get(key, ""))]
+    return kept, len(items) - len(kept)
+
+
 # --------------------------------------------------------------------- state
 
 def load_state(wiki_dir: Path) -> dict:
@@ -404,6 +445,48 @@ def load_config(repo: Path) -> dict:
     return {}
 
 
+# -------------------------------------------------------------------- scope
+
+def _match_only(spec: PageSpec, selectors: list[str]) -> bool:
+    """A page matches a selector if the selector equals its filename, or is a prefix of / substring
+    of its module path or name. Loose on purpose — the compile reports `scoped: N of M` so the user
+    sees the breadth."""
+    for sel in selectors:
+        sel = sel.strip()
+        if not sel:
+            continue
+        if spec.filename == sel or spec.name == sel:
+            return True
+        if spec.name.startswith(sel.rstrip("/")) or sel in spec.filename or sel in spec.name:
+            return True
+    return False
+
+
+def _resolve_scope(nodes, links, specs, flows, claim_stale, repo, state, *, module_depth,
+                   only, changed, since, affected_depth, result) -> "set[str] | None":
+    """Compute the eligible page filenames for this run, or None for a full compile."""
+    if only:
+        pages = {s.filename for s in specs if _match_only(s, only)}
+        result.warnings.append(f"scoped by --only to {len(pages)} of {len(specs)} planned page(s)")
+        return pages
+    if not changed:
+        return None
+    ref = since or state.get("commit")
+    if not ref:
+        result.warnings.append("--changed had no baseline commit (never compiled here) — full compile")
+        return None
+    clines = changed_lines(repo, ref)
+    csyms = changed_symbols(nodes, clines)
+    amods = affected_modules(nodes, links, csyms, module_depth=module_depth, depth=affected_depth)
+    pages = {s.filename for s in specs if s.kind == "module" and s.name in amods}
+    pages |= {s.filename for s in flows if set(s.modules) & amods}   # flows touching an affected zone
+    pages |= set(claim_stale)                                        # always refresh drifted claims
+    result.warnings.append(
+        f"scoped by --changed since {ref[:12]}: {len(clines)} file(s), {len(csyms)} symbol(s), "
+        f"{len(amods)} affected module(s) -> {len(pages)} page(s)")
+    return pages
+
+
 # ------------------------------------------------------------------ compile
 
 @dataclass
@@ -413,12 +496,16 @@ class CompileResult:
     generated: list[str] = field(default_factory=list)
     skipped_by_cap: list[str] = field(default_factory=list)
     pruned: list[str] = field(default_factory=list)
+    quarantined: list[str] = field(default_factory=list)
+    retries: int = 0
     lint_findings: dict[str, list[str]] = field(default_factory=dict)
     warnings: list[str] = field(default_factory=list)
     findings_kept: int = 0
     findings_dropped: int = 0
+    findings_dropped_negative: int = 0
     claims_total: int = 0
     claims_dropped: int = 0
+    claims_dropped_negative: int = 0
     claims_repaired: int = 0
     claims_stale_pages: list[str] = field(default_factory=list)
 
@@ -435,8 +522,19 @@ def compile_wiki(
     max_calls: int = DEFAULT_MAX_CALLS,
     max_prompt_chars: int = DEFAULT_MAX_PROMPT_CHARS,
     flows_config: list[dict] | None = None,
+    only: list[str] | None = None,
+    changed: bool = False,
+    since: str | None = None,
+    affected_depth: int = 1,
 ) -> CompileResult:
-    """Run the pipeline. With execute=False no LLM is called and no page is written."""
+    """Run the pipeline. With execute=False no LLM is called and no page is written.
+
+    Scoping (never deletes — prune is disabled whenever a scope is active):
+      only     restrict to pages whose module/filename matches one of these selectors.
+      changed  restrict to pages in the blast radius of the git changes since `since` (default: the
+               commit recorded at the last compile) — the changed modules plus their dependents
+               (fan-in, `affected_depth` hops) plus any claim-stale pages.
+    """
     result = CompileResult()
     if graph_path is None or not graph_path.is_file():
         raise FileNotFoundError(
@@ -468,8 +566,17 @@ def compile_wiki(
     claim_stale = stale_pages(repo, pages_state)
     result.claims_stale_pages = sorted(claim_stale)
 
+    # Scope: which page filenames are eligible this run (None = all). Prune is disabled while any
+    # scope is active — scoping documents a zone, it must never delete another zone's page.
+    scope_pages = _resolve_scope(nodes, links, specs, flows, claim_stale, repo, state,
+                                 module_depth=module_depth, only=only, changed=changed,
+                                 since=since, affected_depth=affected_depth, result=result)
+    scoped = scope_pages is not None
+
     contexts: dict[str, tuple[PageSpec, str, str]] = {}
     for spec in specs:
+        if scoped and spec.filename not in scope_pages:
+            continue      # out of scope: not assembled, not hash-checked, not generated, not touched
         context, warns = assemble_context(repo, spec, max_chars=max_prompt_chars)
         result.warnings.extend(warns)
         prompt = prompt_for(spec, context)
@@ -481,23 +588,73 @@ def compile_wiki(
                 or not (wiki_dir / spec.filename).is_file()):
             result.dirty.append(spec.filename)
 
-    to_generate = result.dirty[:max_calls]
-    result.skipped_by_cap = result.dirty[max_calls:]
-    for name in result.skipped_by_cap:
-        result.warnings.append(f"{name}: dirty but over --max-calls={max_calls} cap (pending)")
+    # Deterministic dirty ordering so the --max-calls cap bites the LEAST important pages: pages a
+    # previous run left pending (skipped by its cap) drain FIRST — never re-skip the same page
+    # forever — then claim-stale pages, then heavily-depended-on (high fan-in) modules, then name.
+    def _dirty_key(name: str) -> tuple:
+        spec = contexts[name][0]
+        prev = pages_state.get(name, {})
+        fan_in = sum(c for _m, c in spec.deps_in) if spec.kind == "module" else 0
+        return (0 if prev.get("pending") else 1, 0 if name in claim_stale else 1, -fan_in, name)
+    result.dirty.sort(key=_dirty_key)
+
+    # --max-calls 0 == unlimited (explicit opt-out of the bounded-cost default).
+    unlimited = (max_calls == 0)
+    calls_budget = float("inf") if unlimited else max_calls
 
     if not execute:
+        cap = len(result.dirty) if unlimited else max_calls
+        result.skipped_by_cap = result.dirty[cap:]
+        for name in result.skipped_by_cap:
+            result.warnings.append(f"{name}: dirty but over --max-calls={max_calls} cap (pending)")
         return result
 
     wiki_dir.mkdir(exist_ok=True)
     generate = generator if generator is not None else default_generator()
     known_files = {n["source_file"] for n in nodes if n.get("source_file")}
 
-    for name in to_generate:
+    calls_made = 0
+    for name in result.dirty:
+        if calls_made >= calls_budget:
+            # over the call budget this run — mark pending so the NEXT run drains it first.
+            result.skipped_by_cap.append(name)
+            pages_state.setdefault(name, {})["pending"] = True
+            result.warnings.append(f"{name}: dirty but over --max-calls={max_calls} cap (pending)")
+            continue
         spec, prompt, digest = contexts[name]
         raw = generate(prompt)
+        calls_made += 1
         markdown, raw_claims = parse_claims_block(raw)
         markdown, page_findings = parse_findings_block(markdown)
+
+        # Lint gate: a page citing paths that do not exist gets ONE bounded repair retry (the
+        # phantom paths are named back to the model). The retry consumes the call budget — honest
+        # cost. If it still fails, the page ships with each phantom citation annotated INLINE and
+        # is marked quarantined; it is never silently emitted with a dead citation inside (Bug A).
+        missing = lint_cited_paths(markdown, repo)
+        if missing and calls_made < calls_budget:
+            result.retries += 1
+            repair = prompt + LINT_REPAIR_ADDENDUM.format(
+                paths="\n".join(f"  - {p}" for p in missing))
+            raw = generate(repair)
+            calls_made += 1
+            markdown, raw_claims = parse_claims_block(raw)
+            markdown, page_findings = parse_findings_block(markdown)
+            missing = lint_cited_paths(markdown, repo)
+
+        quarantined = bool(missing)
+        if missing:
+            result.lint_findings[name] = missing
+            markdown = annotate_unverified_paths(markdown, set(missing))
+            result.quarantined.append(name)
+
+        # Absence-hallucination backstop: claims/findings asserting existential absence cannot be
+        # evidence-anchored (their "evidence" is the absence of code), so drop them by construction.
+        raw_claims, neg_claims = _split_negative_existential(raw_claims, "statement")
+        page_findings, neg_findings = _split_negative_existential(page_findings, "note")
+        result.claims_dropped_negative += neg_claims
+        result.findings_dropped_negative += neg_findings
+
         claims, claims_dropped, claims_repaired = anchor_claims(repo, raw_claims, known_files)
         result.claims_total += len(claims)
         result.claims_dropped += claims_dropped
@@ -505,23 +662,30 @@ def compile_wiki(
         kept, dropped = filter_findings(page_findings, repo)
         result.findings_kept += len(kept)
         result.findings_dropped += len(dropped)
-        missing = lint_cited_paths(markdown, repo)
-        if missing:
-            result.lint_findings[name] = missing
-            markdown += "\n\n<!-- isidore lint: unverified paths: " + ", ".join(missing) + " -->\n"
-        (wiki_dir / name).write_text(markdown, encoding="utf-8", newline="\n")
+
+        # per-page H2-level changelog: capture the old prose before overwriting, carry the page's
+        # history forward, and record what changed in its understanding (0 LLM).
+        page_path = wiki_dir / name
+        old_content = page_path.read_text(encoding="utf-8") if page_path.is_file() else ""
+        prev_history = pages_state.get(name, {}).get("history", [])
+        page_path.write_text(markdown, encoding="utf-8", newline="\n")
         pages_state[name] = {"context_hash": digest, "kind": spec.kind, "name": spec.name,
-                             "findings": kept, "claims": claims}
+                             "findings": kept, "claims": claims, "quarantined": quarantined,
+                             "history": prev_history}
+        record_page_change(pages_state[name], commit, old_content, markdown)
         result.generated.append(name)
 
-    # prune only when the MODULE/FLOW left the graph/config — never because of a smaller top-k
+    # prune only when the MODULE/FLOW left the graph/config — never because of a smaller top-k, and
+    # NEVER under a scope (--only/--changed only saw a slice of the repo; deleting the rest would be
+    # catastrophic data loss).
     eligible = {s.filename for s in all_modules} | {s.filename for s in flows}
-    for name in [n for n in pages_state if n not in eligible]:
-        page = wiki_dir / name
-        if page.is_file():
-            page.unlink()
-        del pages_state[name]
-        result.pruned.append(name)
+    if not scoped:
+        for name in [n for n in pages_state if n not in eligible]:
+            page = wiki_dir / name
+            if page.is_file():
+                page.unlink()
+            del pages_state[name]
+            result.pruned.append(name)
 
     module_specs = all_modules[:top_k]
     (wiki_dir / "quickstart.md").write_text(
@@ -561,7 +725,28 @@ def compile_wiki(
     (wiki_dir / CLAIMS_FILENAME).write_text(
         render_claims(repo, pages_state, commit), encoding="utf-8", newline="\n")
 
-    state["commit"] = commit
+    # Advance the --changed baseline only when this run actually covered every change since it: a
+    # full compile does, and so does --changed (it refreshed the blast radius). --only saw a slice,
+    # so it must NOT move the baseline or the next --changed would skip the unscoped changes. The
+    # dependency fingerprint (for `isidore impact`'s emergent-edge detection) advances on the same
+    # rule — it records the coupling graph the user has acknowledged.
+    if not only:
+        state["commit"] = commit
+        state["deps"] = sorted([ms, mt, c] for (ms, mt), c in
+                               module_dep_edges(nodes, links, module_depth).items())
+
+    # journal this run for `isidore stats` (cost telemetry + unstable-page detection, 0 LLM).
+    append_run(state, {
+        "commit": (commit or "?")[:12],
+        "planned": result.planned,
+        "dirty": len(result.dirty),
+        "generated": len(result.generated),
+        "skipped": len(result.skipped_by_cap),
+        "quarantined": len(result.quarantined),
+        "retries": result.retries,
+        "calls_saved": max(0, len(contexts) - len(result.dirty)),
+        "generated_pages": list(result.generated),
+    })
     save_state(wiki_dir, state)
     return result
 

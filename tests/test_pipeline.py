@@ -234,6 +234,102 @@ def test_max_calls_cap_warns_loudly(tmp_path):
     assert any("cap" in w for w in result.warnings)
 
 
+def test_max_calls_zero_is_unlimited(tmp_path):
+    repo = _make_repo(tmp_path)
+    result = compile_wiki(repo, graph_path=_gp(repo), execute=True, max_calls=0,
+                          generator=lambda p: PAGE)
+    assert len(result.generated) == 3 and result.skipped_by_cap == []
+
+
+def test_pending_pages_drain_first_across_runs(tmp_path):
+    # A page skipped by the cap is marked pending and generated FIRST next run — the backlog drains
+    # instead of the same page being re-skipped forever.
+    repo = _make_repo(tmp_path)
+    def n_pages() -> int:
+        return len(list((repo / "wiki").glob("mod*-core.md")))
+    compile_wiki(repo, graph_path=_gp(repo), execute=True, max_calls=1, generator=lambda p: PAGE)
+    assert n_pages() == 1
+    r2 = compile_wiki(repo, graph_path=_gp(repo), execute=True, max_calls=1, generator=lambda p: PAGE)
+    assert n_pages() == 2 and len(r2.generated) == 1        # a previously-pending page, not a re-skip
+    compile_wiki(repo, graph_path=_gp(repo), execute=True, max_calls=1, generator=lambda p: PAGE)
+    assert n_pages() == 3                                   # backlog fully drained
+
+
+def test_only_scopes_to_matching_pages_and_disables_prune(tmp_path):
+    repo = _make_repo(tmp_path)
+    compile_wiki(repo, graph_path=_gp(repo), execute=True, generator=lambda p: PAGE)
+    before = {p.name: p.read_bytes() for p in (repo / "wiki").glob("mod*-core.md")}
+    # touch every module's source so ALL pages would be dirty without scope
+    for m in range(3):
+        f = repo / f"mod{m}" / "core" / "file0.py"
+        f.write_text(f.read_text(encoding="utf-8").replace("line 3", "EDIT 3"), encoding="utf-8")
+    calls = []
+    result = compile_wiki(repo, graph_path=_gp(repo), execute=True, only=["mod1/core"],
+                          generator=lambda p: calls.append(p) or PAGE)
+    assert result.dirty == ["mod1-core.md"] and len(calls) == 1
+    # out-of-scope pages untouched on disk
+    assert (repo / "wiki" / "mod0-core.md").read_bytes() == before["mod0-core.md"]
+    assert (repo / "wiki" / "mod2-core.md").read_bytes() == before["mod2-core.md"]
+    # prune disabled under scope even if a module vanished from the graph
+    data = json.loads(_gp(repo).read_text(encoding="utf-8"))
+    data["nodes"] = [n for n in data["nodes"] if not str(n.get("source_file", "")).startswith("mod2/")]
+    data["links"] = [ln for ln in data["links"]
+                     if not (str(ln["source"]).startswith("m2_") or str(ln["target"]).startswith("m2_"))]
+    _gp(repo).write_text(json.dumps(data), encoding="utf-8")
+    r2 = compile_wiki(repo, graph_path=_gp(repo), execute=True, only=["mod1/core"],
+                      generator=lambda p: PAGE)
+    assert r2.pruned == [] and (repo / "wiki" / "mod2-core.md").is_file()
+
+
+def test_changed_scopes_to_blast_radius_over_a_real_git_repo(tmp_path):
+    import shutil
+    import subprocess
+    if shutil.which("git") is None:
+        import pytest
+        pytest.skip("git not available")
+    from isidore.graph import write_scan
+
+    repo = tmp_path / "repo"
+    (repo / "aaa").mkdir(parents=True)
+    (repo / "bbb").mkdir(parents=True)
+    # aaa/x.py imports bbb/y.py  => module aaa depends on module bbb (fan-in: bbb -> aaa)
+    (repo / "bbb" / "__init__.py").write_text("", encoding="utf-8")
+    (repo / "aaa" / "__init__.py").write_text("", encoding="utf-8")
+    (repo / "bbb" / "y.py").write_text(
+        "\n".join(["def helper():", "    return 1"] + [f"# pad {i}" for i in range(15)]),
+        encoding="utf-8")
+    (repo / "aaa" / "x.py").write_text(
+        "\n".join(["import bbb.y", "def caller():", "    return bbb.y.helper()"]
+                  + [f"# pad {i}" for i in range(15)]), encoding="utf-8")
+    (repo / "ccc").mkdir()
+    (repo / "ccc" / "__init__.py").write_text("", encoding="utf-8")
+    (repo / "ccc" / "z.py").write_text(
+        "\n".join(["def unrelated():", "    return 2"] + [f"# pad {i}" for i in range(15)]),
+        encoding="utf-8")
+
+    for args in (["init", "-q"], ["config", "user.email", "t@t"], ["config", "user.name", "t"],
+                 ["add", "-A"], ["commit", "-qm", "seed"]):
+        subprocess.run(["git", *args], cwd=repo, check=True, capture_output=True)
+
+    gp = write_scan(repo)
+    compile_wiki(repo, graph_path=gp, execute=True, min_symbols=1, generator=lambda p: PAGE)
+    # edit ONLY bbb/y.py's helper body
+    y = repo / "bbb" / "y.py"
+    y.write_text(y.read_text(encoding="utf-8").replace("return 1", "return 42"), encoding="utf-8")
+    write_scan(repo)  # refresh graph locations (still pre-commit; --changed diffs against last commit)
+
+    calls = []
+    result = compile_wiki(repo, graph_path=gp, execute=True, changed=True, min_symbols=1,
+                          generator=lambda p: calls.append(p) or PAGE)
+    # Only the truly-changed page regenerates (the hash gate skips the hash-clean fan-in page) —
+    # this is the whole point: scope narrows what is CONSIDERED, the context hash decides what is
+    # rewritten. ccc (unrelated) is never even considered.
+    assert result.dirty == ["bbb-y_py.md"] and len(calls) == 1
+    scope_msg = next(w for w in result.warnings if "scoped by --changed" in w)
+    assert "2 affected module(s)" in scope_msg          # bbb (changed) + aaa (fan-in dependent)
+    assert not any("ccc" in d for d in result.dirty)     # unrelated module excluded from scope
+
+
 def test_prune_only_when_module_leaves_graph_not_on_smaller_top_k(tmp_path):
     repo = _make_repo(tmp_path)
     compile_wiki(repo, graph_path=_gp(repo), execute=True, generator=lambda p: PAGE)
@@ -264,12 +360,53 @@ def test_flow_pages_compile_alongside_module_pages(tmp_path):
     assert "flow-hop.md" in (repo / "wiki" / "quickstart.md").read_text(encoding="utf-8")
 
 
-def test_lint_annotates_page_with_unverified_paths(tmp_path):
+def test_lint_gate_retries_then_quarantines_when_phantom_path_persists(tmp_path):
+    # Bug A fix: a page citing a nonexistent path must NOT ship silently. It gets ONE bounded retry
+    # (the phantom path named back), and if still bad it ships with the citation annotated inline
+    # AND is marked quarantined — never emitted with a dead citation and no signal.
     repo = _make_repo(tmp_path, n_modules=1)
-    result = compile_wiki(repo, graph_path=_gp(repo), execute=True,
-                          generator=lambda p: "## Purpose\nUses `fake/dir/x.py`.\n")
+    calls = []
+    result = compile_wiki(
+        repo, graph_path=_gp(repo), execute=True,
+        generator=lambda p: calls.append(p) or "## Purpose\nUses `fake/dir/x.py`.\n")
     page = (repo / "wiki" / "mod0-core.md").read_text(encoding="utf-8")
-    assert "unverified paths" in page and result.lint_findings
+    assert "[⚠ isidore: path not found]" in page          # annotated inline, not silently shipped
+    assert "mod0-core.md" in result.quarantined and result.retries == 1
+    assert len(calls) == 2                                 # original + one repair retry
+    assert "CORRECTION REQUIRED" in calls[1] and "fake/dir/x.py" in calls[1]
+    import json
+    state = json.loads((repo / "wiki" / ".isidore-state.json").read_text(encoding="utf-8"))
+    assert state["pages"]["mod0-core.md"]["quarantined"] is True
+
+
+def test_lint_gate_retry_repairs_and_clears_quarantine(tmp_path):
+    # If the retry fixes the citation, the page is NOT quarantined and ships clean.
+    repo = _make_repo(tmp_path, n_modules=1)
+    good = "## Purpose\nUses `mod0/core/file0.py`.\n"
+    seq = iter(["## Purpose\nUses `fake/ghost.py`.\n", good])
+    result = compile_wiki(repo, graph_path=_gp(repo), execute=True, generator=lambda p: next(seq))
+    page = (repo / "wiki" / "mod0-core.md").read_text(encoding="utf-8")
+    assert "[⚠ isidore: path not found]" not in page
+    assert result.quarantined == [] and result.retries == 1
+
+
+def test_absence_claims_and_findings_dropped_but_behavioral_kept(tmp_path):
+    repo = _make_repo(tmp_path, n_modules=1)
+    real = "mod0/core/file0.py"
+    page = (
+        "## Purpose\nText.\n\n"
+        "```isidore-claims\n"
+        f"There is no retry logic in this module | {real}:3\n"          # absence -> dropped
+        f"file0 is not thread-safe | {real}:3\n"                        # behavioral -> kept
+        "```\n\n"
+        "```isidore-findings\n"
+        f"bug | {real}:3 | no error handling exists for the parse path\n"  # absence -> dropped
+        f"bug | {real}:3 | the lock is not released on the error path\n"   # behavioral -> kept
+        "```\n"
+    )
+    result = compile_wiki(repo, graph_path=_gp(repo), execute=True, generator=lambda p: page)
+    assert result.claims_dropped_negative == 1 and result.claims_total == 1
+    assert result.findings_dropped_negative == 1 and result.findings_kept == 1
 
 
 def test_compile_preserves_crlf_line_endings_in_agents_md(tmp_path):

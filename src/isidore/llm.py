@@ -39,7 +39,7 @@ def build_request(base_url: str, model: str, prompt: str,
         "temperature": 0,
         "stream": False,
     }).encode("utf-8")
-    headers = {"Content-Type": "application/json"}
+    headers = {"Content-Type": "application/json", "User-Agent": "Mozilla/5.0 (isidore-wiki)"}
     if api_key:
         headers["Authorization"] = f"Bearer {api_key}"
     return urllib.request.Request(
