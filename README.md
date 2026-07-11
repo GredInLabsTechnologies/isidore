@@ -34,7 +34,7 @@ silent escalation to a pricier one), one timeout per call. No shell access, no s
 pip install isidore-wiki
 
 cd your-repo
-isidore scan                      # build a structure graph (Python repos, stdlib ast)
+isidore scan                      # build a structure graph — ANY language, zero dependencies
 isidore compile                   # dry-run: shows the plan, 0 LLM calls
 
 # point at ANY OpenAI-compatible endpoint — local server or hosted API
@@ -73,11 +73,26 @@ already contains verified facts, so the model only writes prose.
   links, and risk hotspots (connection degree × git churn).
 - A delimited, idempotent reference block in `AGENTS.md` pointing agents at the wiki.
 
+## Languages
+
+`isidore scan` is **multi-language and zero-dependency** — no tree-sitter, no native wheels, no
+external binary, so it runs anywhere Python does (including ARM Linux). One engine, driven by a
+declarative table (`langspec.py`); adding a language is adding a row. Three honest tiers:
+
+- **Python** — exact parse via the stdlib `ast` (functions, classes, imports, precise spans).
+- **JS/TS, Java, Kotlin, Scala, Groovy, C, C++, C#, Go, Rust, Swift, PHP, Ruby, shell, Lua,
+  Elixir, …** — top-level and one-level-nested symbols (functions, methods, types) with line
+  spans, via a comment/string-sanitized, brace-depth-tracked scan.
+- **Any other text file** — a bare file node, so it still appears in its module page.
+
+It is intentionally structural, not a compiler: false positives are possible and tolerated. For
+precise cross-language symbols and real call graphs, bring your own graph (below).
+
 ## Bring your own graph
 
-`isidore scan` covers Python repos with nothing but the stdlib. For anything richer
-(cross-language, call graphs), point `--graph` at a JSON file in this tool-agnostic shape —
-extra fields are ignored, so existing graph producers work as-is:
+For anything richer than the built-in scanner (precise call graphs, semantic edges), point
+`--graph` at a JSON file in this tool-agnostic shape — extra fields are ignored, so existing
+graph producers (e.g. Graphify) work as-is:
 
 ```json
 {

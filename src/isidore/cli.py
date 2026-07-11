@@ -1,7 +1,7 @@
 """isidore — compile an agent-oriented wiki from your codebase's structure graph.
 
 Subcommands:
-  scan           build a structure graph for a Python repo (stdlib ast) -> .isidore/graph.json
+  scan           build a structure graph for a repo in ANY language (zero-dep) -> .isidore/graph.json
   compile        compile/refresh the wiki (dry-run by default; --execute to generate)
   ask            answer one question over the compiled wiki + graph (one LLM call)
   suggest-flows  print the heaviest cross-module bridges as flow candidates for isidore.json
@@ -234,7 +234,7 @@ def main(argv: list[str] | None = None) -> int:
                                      formatter_class=argparse.RawDescriptionHelpFormatter)
     sub = parser.add_subparsers(dest="command", required=True)
 
-    p_scan = sub.add_parser("scan", help="build a structure graph (Python repos, stdlib ast)")
+    p_scan = sub.add_parser("scan", help="build a structure graph for any language (zero-dep)")
     p_scan.add_argument("--repo", type=Path, default=Path("."))
     p_scan.set_defaults(func=_cmd_scan)
 

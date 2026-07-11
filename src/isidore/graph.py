@@ -1,4 +1,4 @@
-"""Structure graph: loading, module grouping, and a built-in Python AST scanner.
+"""Structure graph: loading, module grouping, and a built-in multi-language scanner.
 
 Isidore consumes a simple, tool-agnostic graph format (JSON):
 
@@ -13,10 +13,13 @@ Isidore consumes a simple, tool-agnostic graph format (JSON):
 - `source_location`: "L<line>" (1-based) or null.
 - Extra fields are ignored, so richer producers (e.g. Graphify) work as-is.
 
-If no graph exists, `scan_repo()` builds one for Python codebases using only the stdlib
-`ast` module: files and their top-level functions/classes become nodes; containment and
-resolvable imports become links. It is intentionally simple — any external producer with
-deeper analysis (calls, cross-language) will yield richer wikis through the same format.
+If no graph exists, `scan_repo()` builds one with **zero dependencies, any architecture**:
+Python goes through the stdlib `ast` for an exact parse; every other language goes through the
+declarative engine in `langspec.py` (comment/string-sanitized, brace-depth-tracked symbol rules);
+and any remaining text file still becomes a bare file node, so coverage is universal. Files and
+their top-level functions/classes/methods become nodes; containment and resolvable imports become
+links. It is intentionally simple — any external producer with deeper analysis (calls, precise
+cross-language) will yield richer wikis through the same format.
 """
 from __future__ import annotations
 
@@ -24,6 +27,8 @@ import ast
 import json
 import subprocess
 from pathlib import Path, PurePosixPath
+
+from .langspec import BARE_CODE_EXTS, BINARY_EXTS, LANGUAGES, extract, spec_for
 
 CONCEPTS_BUCKET = "(concepts)"
 ISIDORE_DIR = ".isidore"
@@ -148,6 +153,21 @@ def _node_id(rel_path: str, symbol: str | None = None) -> str:
     return f"{base}_{symbol}" if symbol else base
 
 
+def _is_binary(path: Path, sniff: int = 4096) -> bool:
+    """Cheap binary guard: a NUL byte in the first few KB. Extension fast-paths run before this."""
+    try:
+        with path.open("rb") as fh:
+            return b"\0" in fh.read(sniff)
+    except OSError:
+        return True
+
+
+# Extensions the scanner will open: symbol-extracted languages/documents, bare-but-textual source,
+# plus Python (handled by the exact ast path). Anything else is only opened if it has no suffix or
+# an unknown one and passes the NUL-byte sniff — so brand-new languages still get a file node.
+_KNOWN_TEXT_EXTS = frozenset(LANGUAGES) | BARE_CODE_EXTS | {".py"}
+
+
 def _iter_source_files(repo: Path) -> list[Path]:
     listed = git_listed_files(repo)
     found: list[Path] = []
@@ -158,18 +178,28 @@ def _iter_source_files(repo: Path) -> list[Path]:
             if entry.is_dir():
                 if entry.name not in SKIP_DIRS and not entry.name.startswith("."):
                     stack.append(entry)
-            elif entry.suffix in (".py", ".md"):
-                # In a git tree, index only what git tracks/would-track: a raw walk otherwise
-                # picks up gitignored build artifacts (e.g. a Gradle/Chaquopy copy of a source
-                # tree) as if they were maintained source. `listed is None` => not a git tree,
-                # so fall back to the plain walk (unchanged behavior for non-git dirs).
-                if listed is None or entry.relative_to(repo).as_posix() in listed:
-                    found.append(entry)
+                continue
+            suffix = entry.suffix.lower()
+            if suffix in BINARY_EXTS:
+                continue
+            # Known text/source extension -> index it. Unknown-or-no extension -> index it too, but
+            # only after a NUL-byte sniff, so a new language gets at least a file node while random
+            # binaries are skipped. Universal coverage without indexing blobs.
+            if suffix and suffix not in _KNOWN_TEXT_EXTS and _is_binary(entry):
+                continue
+            if not suffix and _is_binary(entry):
+                continue
+            # In a git tree, index only what git tracks/would-track: a raw walk otherwise picks up
+            # gitignored build artifacts (e.g. a Gradle/Chaquopy copy of a source tree) as if they
+            # were maintained source. `listed is None` => not a git tree, so fall back to the plain
+            # walk (unchanged behavior for non-git dirs).
+            if listed is None or entry.relative_to(repo).as_posix() in listed:
+                found.append(entry)
     return found
 
 
 def _scan_python_file(repo: Path, path: Path) -> tuple[list[dict], list[dict], list[str]]:
-    """One file -> (nodes, containment links, imported module names)."""
+    """One Python file -> (nodes, containment links, imported module names). Exact, via stdlib ast."""
     rel = path.relative_to(repo).as_posix()
     file_id = _node_id(rel)
     nodes = [{"id": file_id, "label": path.name, "file_type": "code",
@@ -185,14 +215,59 @@ def _scan_python_file(repo: Path, path: Path) -> tuple[list[dict], list[dict], l
         if isinstance(item, (ast.FunctionDef, ast.AsyncFunctionDef, ast.ClassDef)):
             suffix = "()" if not isinstance(item, ast.ClassDef) else ""
             sym_id = _node_id(rel, item.name)
+            # Record the FULL line span (L<start>-L<end>), not just the start. The change-set
+            # detector (changeset.py) needs a symbol's extent to decide whether a git hunk touched
+            # it. read_excerpt still reads the leading L<start> (its regex is L(\d+)), so this is
+            # backwards compatible with older start-only graphs.
+            end = getattr(item, "end_lineno", None) or item.lineno
             nodes.append({"id": sym_id, "label": f"{item.name}{suffix}", "file_type": "code",
-                          "source_file": rel, "source_location": f"L{item.lineno}"})
+                          "source_file": rel, "source_location": f"L{item.lineno}-L{end}"})
             links.append({"source": file_id, "target": sym_id, "relation": "contains"})
         elif isinstance(item, ast.Import):
             imports.extend(alias.name for alias in item.names)
         elif isinstance(item, ast.ImportFrom) and item.module:
             imports.append(("." * item.level) + item.module)
     return nodes, links, imports
+
+
+def _scan_generic_file(repo: Path, path: Path, spec) -> tuple[list[dict], list[dict], list[str]]:
+    """One non-Python file -> (nodes, containment links, imports) via the declarative engine.
+
+    A `document`-kind spec yields just the file node (no symbols). A `code` spec runs the symbol
+    engine. The node shape is identical to the Python scanner's, so downstream code is unaware of
+    the language. Symbol node ids are salted with the start line to stay unique when a language
+    legitimately repeats a name (overloads, a method and a same-named free function).
+    """
+    rel = path.relative_to(repo).as_posix()
+    file_id = _node_id(rel)
+    nodes = [{"id": file_id, "label": path.name, "file_type": spec.kind,
+              "source_file": rel, "source_location": "L1"}]
+    links: list[dict] = []
+    if spec.kind != "code":
+        return nodes, links, []
+    try:
+        text = path.read_text(encoding="utf-8", errors="replace")
+    except OSError:
+        return nodes, links, []
+    symbols, imports = extract(text, spec)
+    seen: set[str] = {file_id}
+    for sym in symbols:
+        sym_id = _node_id(rel, f"{sym['name']}_L{sym['line']}")
+        if sym_id in seen:
+            continue
+        seen.add(sym_id)
+        nodes.append({"id": sym_id, "label": f"{sym['name']}{sym['suffix']}", "file_type": "code",
+                      "source_file": rel, "source_location": f"L{sym['line']}-L{sym['end_line']}"})
+        links.append({"source": file_id, "target": sym_id, "relation": "contains"})
+    return nodes, links, imports
+
+
+def _scan_bare_file(repo: Path, path: Path, kind: str = "code") -> tuple[list[dict], list[dict], list[str]]:
+    """A textual file we do not symbol-parse -> a single file node, so it still shows up in a module."""
+    rel = path.relative_to(repo).as_posix()
+    nodes = [{"id": _node_id(rel), "label": path.name, "file_type": kind,
+              "source_file": rel, "source_location": "L1"}]
+    return nodes, [], []
 
 
 def _resolve_import(importer_rel: str, module: str, known: dict[str, str]) -> str | None:
@@ -212,8 +287,20 @@ def _resolve_import(importer_rel: str, module: str, known: dict[str, str]) -> st
     return None
 
 
+def _scan_one_file(repo: Path, path: Path) -> tuple[list[dict], list[dict], list[str]]:
+    """Route a file to the right scanner: exact ast for Python, the declarative engine for known
+    languages/documents, a bare file node for anything else textual."""
+    suffix = path.suffix.lower()
+    if suffix == ".py":
+        return _scan_python_file(repo, path)
+    spec = spec_for(suffix)
+    if spec is not None:
+        return _scan_generic_file(repo, path, spec)
+    return _scan_bare_file(repo, path)
+
+
 def scan_repo(repo: Path) -> tuple[list[dict], list[dict]]:
-    """Build a structure graph for a Python repo with stdlib ast only."""
+    """Build a structure graph for a repo in ANY language, zero dependencies (see module docstring)."""
     nodes: list[dict] = []
     links: list[dict] = []
     pending_imports: list[tuple[str, str]] = []  # (importer rel, module name)
@@ -221,11 +308,7 @@ def scan_repo(repo: Path) -> tuple[list[dict], list[dict]]:
 
     for path in _iter_source_files(repo):
         rel = path.relative_to(repo).as_posix()
-        if path.suffix == ".md":
-            nodes.append({"id": _node_id(rel), "label": path.name, "file_type": "document",
-                          "source_file": rel, "source_location": "L1"})
-            continue
-        file_nodes, file_links, imports = _scan_python_file(repo, path)
+        file_nodes, file_links, imports = _scan_one_file(repo, path)
         nodes.extend(file_nodes)
         links.extend(file_links)
         file_ids[rel] = file_nodes[0]["id"]

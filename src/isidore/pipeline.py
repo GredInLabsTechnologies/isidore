@@ -538,7 +538,7 @@ def compile_wiki(
     result = CompileResult()
     if graph_path is None or not graph_path.is_file():
         raise FileNotFoundError(
-            f"no structure graph found for {repo} — run `isidore scan` (Python repos) "
+            f"no structure graph found for {repo} — run `isidore scan` (any language, zero-dep) "
             "or point --graph at a graph.json (see README for the format)")
 
     nodes, links, commit = load_graph(graph_path)
