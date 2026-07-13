@@ -167,8 +167,88 @@ def answer_offline(repo: Path, question: str) -> str:
     return "\n".join(lines)
 
 
+def gather_knowledge_claims(question: str) -> list[tuple[int, dict]]:
+    from .claims import check_claims
+    from .knowledge import load_knowledge_state
+    terms = question_terms(question)
+    state = load_knowledge_state()
+    scored: list[tuple[int, dict]] = []
+    # repo is Path(".") because src:// resolver does not need physical repo path
+    for row in check_claims(Path("."), state.get("pages", {})):
+        score = score_text(terms, row["statement"]) * 3 + score_text(terms, row["evidence"])
+        if score:
+            scored.append((score, row))
+    scored.sort(key=lambda t: -t[0])
+    seen: set[str] = set()
+    deduped: list[tuple[int, dict]] = []
+    for score, row in scored:
+        key = f"{row['statement']}\x00{row['evidence']}"
+        if key not in seen:
+            seen.add(key)
+            deduped.append((score, row))
+    return deduped
+
+
+def answer_knowledge_offline(question: str) -> str:
+    claims = gather_knowledge_claims(question)
+    if not claims or claims[0][0] < OFFLINE_MIN_SCORE:
+        return ("No confident offline answer: no verified knowledge claim matched strongly enough. "
+                "Re-run without --offline for a full-evidence LLM answer.")
+    lines = ["Offline answer from verified knowledge base claims (0 LLM calls):"]
+    for _score, row in claims[:5]:
+        flag = "" if row["state"] == "ok" else f"  ⚠ {row['state']}"
+        lines.append(f"- {row['statement']} [{row['evidence']}]{flag}")
+    return "\n".join(lines)
+
+
+def ask_knowledge(question: str, generator, offline: bool = False) -> str:
+    if offline:
+        return answer_knowledge_offline(question)
+
+    from .knowledge import knowledge_dir, load_knowledge_state
+    wiki_dir = knowledge_dir()
+    state = load_knowledge_state()
+    pages_state = state.get("pages", {})
+
+    parts: list[str] = []
+
+    # 1. Claims
+    claims = gather_knowledge_claims(question)
+    if claims:
+        parts.append("--- verified claims (anchored, machine-checked facts) ---\n" + "\n".join(
+            f"- {row['statement']} [{row['evidence']}] ({row['state']})" for _s, row in claims[:6]))
+
+    # 2. Topic Pages
+    terms = question_terms(question)
+    scored = []
+    for page_name, entry in pages_state.items():
+        page = wiki_dir / page_name
+        body = page.read_text(encoding="utf-8", errors="replace") if page.is_file() else ""
+        score = score_text(terms, page_name) * 5 + score_text(terms, body)
+        if score:
+            scored.append((score, page_name, body))
+    scored.sort(key=lambda t: -t[0])
+
+    for _score, page_name, body in scored[:2]:
+        if body:
+            parts.append(f"--- knowledge page {page_name} ---\n{body}")
+
+    evidence = "\n\n".join(parts)
+    if not evidence.strip():
+        return ("No evidence found in knowledge base for this question. "
+                "Run `isidore sync --execute` first.")
+
+    if len(evidence) > DEFAULT_MAX_EVIDENCE_CHARS:
+        evidence = evidence[:DEFAULT_MAX_EVIDENCE_CHARS]
+
+    return generator(QA_PROMPT.format(question=question, evidence=evidence))
+
+
 def ask(repo: Path, question: str, *, graph_path: Path, generator,
-        module_depth: int = DEFAULT_MODULE_DEPTH, offline: bool = False) -> str:
+        module_depth: int = DEFAULT_MODULE_DEPTH, offline: bool = False,
+        knowledge: bool = False) -> str:
+    if knowledge:
+        return ask_knowledge(question, generator, offline)
     if offline:
         return answer_offline(repo, question)
     evidence, _sources = gather_evidence(repo, question, graph_path=graph_path,
