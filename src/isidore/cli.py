@@ -74,9 +74,18 @@ def _cmd_compile(args) -> int:
           f"{result.findings_dropped_negative} · "
           f"claims new/repaired/dropped/absence: {result.claims_total}/{result.claims_repaired}/"
           f"{result.claims_dropped}/{result.claims_dropped_negative}")
+    if result.certificates:
+        m = result.verified_mass
+        print(f"[isidore] certificates: {len(result.certificates)} · verified mass "
+              f"{m['green']} proved / {m['yellow']} anchored / {m['gray']} narrative · "
+              f"marks: {result.marks_raised} · reconciler flags: {result.reconcile_violations} · "
+              f"refuted (model errors quarantined, not published): {result.claims_refuted}")
     if result.claims_stale_pages:
         print(f"[isidore] stale claims forced regeneration of: "
               f"{', '.join(result.claims_stale_pages)}")
+    if result.security_flagged:
+        print(f"[isidore] ⚠ SECURITY banner forced on {len(result.security_flagged)} page(s): "
+              f"{', '.join(result.security_flagged)}", file=sys.stderr)
     quarantined = set(result.quarantined)
     generated = set(result.generated)
     skipped = set(result.skipped_by_cap)
@@ -101,15 +110,15 @@ def _cmd_compile(args) -> int:
 def _cmd_ask(args) -> int:
     if args.offline:
         # 0-LLM path: answer from verified claims. No graph or endpoint required.
-        print(ask(args.repo, args.question, graph_path=Path("."), generator=None, offline=True))
+        print(ask(args.repo, args.question, graph_path=Path("."), generator=None, offline=True, knowledge=args.knowledge))
         return 0
     graph_path = find_graph(args.repo, args.graph)
-    if graph_path is None:
+    if graph_path is None and not args.knowledge:
         print("ERROR: no structure graph — run `isidore scan` first", file=sys.stderr)
         return 2
     try:
-        answer = ask(args.repo, args.question, graph_path=graph_path,
-                     generator=default_generator())
+        answer = ask(args.repo, args.question, graph_path=graph_path or Path("."),
+                     generator=default_generator(), knowledge=args.knowledge)
     except GenerationError as exc:
         print(f"ERROR: {exc}", file=sys.stderr)
         return 2
@@ -156,26 +165,33 @@ def _cmd_claims(args) -> int:
     from .claims import check_claims, claims_for_file, claims_grep
     from .pipeline import WIKI_DIRNAME, load_state
 
-    state = load_state(args.repo / WIKI_DIRNAME)
-    pages = state.get("pages", {})
+    if getattr(args, "home", False):
+        from .knowledge import load_knowledge_state
+        pages = load_knowledge_state().get("pages", {})
+        repo = Path(".")
+    else:
+        state = load_state(args.repo / WIKI_DIRNAME)
+        pages = state.get("pages", {})
+        repo = args.repo
+
     if getattr(args, "by_file", None):
-        rows = claims_for_file(args.repo, pages, args.by_file)
+        rows = claims_for_file(repo, pages, args.by_file)
         print(f"[isidore] {len(rows)} claim(s) anchored to {args.by_file} (0 LLM calls)")
         for r in rows:
             print(f"  {r['state'].upper()} {r['page']}: {r['statement']} [{r['evidence']}]")
         return 0
     if getattr(args, "grep", None):
-        rows = claims_grep(args.repo, pages, args.grep)
+        rows = claims_grep(repo, pages, args.grep)
         print(f"[isidore] {len(rows)} claim(s) matching {args.grep!r} (0 LLM calls)")
         for r in rows:
             print(f"  {r['state'].upper()} {r['page']}: {r['statement']} [{r['evidence']}]")
         return 0
-    rows = check_claims(args.repo, pages)
+    rows = check_claims(repo, pages)
     if not rows:
         print("[isidore] no anchored claims yet — run `isidore compile --execute` first")
         return 0
     bad = [r for r in rows if r["state"] != "ok"]
-    print(f"[isidore] {len(rows)} claims · {len(bad)} stale/orphan (0 LLM calls)")
+    print(f"[isidore] {len(rows)} claims · {len(bad)} stale/orphan/superseded (0 LLM calls)")
     for r in bad:
         print(f"  {r['state'].upper()} {r['page']} {r['id']}: {r['statement']} [{r['evidence']}]")
     return 1 if (bad and args.check) else 0
@@ -205,6 +221,13 @@ def _cmd_stats(args) -> int:
 
 
 def _cmd_findings(args) -> int:
+    if getattr(args, "action", None) == "resolve":
+        if not getattr(args, "finding_id", None):
+            print("ERROR: resolve action requires a finding ID", file=sys.stderr)
+            return 2
+        from .findings import resolve_finding
+        return resolve_finding(args.repo, args.finding_id, args.actor or "human", args.reason or "")
+
     from .findings import findings_new
     from .pipeline import WIKI_DIRNAME, load_state
 
@@ -222,6 +245,54 @@ def _cmd_findings(args) -> int:
     for t in todos:
         print(f"  {t['marker']} {t['file']}:{t['line']}: {t['note']}")
     return 0
+
+
+def _cmd_sync(args) -> int:
+    from .knowledge import compile_topics
+    from .connectors.base import all_connectors, missing_env, IngestOptions
+
+    # 1. Ingest enabled connectors
+    print("[isidore] running ingestion connectors...")
+    for conn in all_connectors():
+        if missing_env(conn):
+            print(f"[isidore] connector '{conn.id}' skipped: missing required env vars: {conn.required_env}", file=sys.stderr)
+            continue
+        try:
+            options = IngestOptions(limit=args.limit)
+            res = conn.ingest(options)
+            print(f"  {conn.id}: {res.status} ({res.counts.get('items', 0)} item(s) ingested)")
+        except Exception as exc:
+            print(f"[isidore] connector '{conn.id}' failed: {exc}", file=sys.stderr)
+
+    # 2. Recompile stale topics
+    print("[isidore] compiling knowledge topics...")
+    try:
+        res = compile_topics(execute=args.execute, max_calls=args.max_calls)
+    except Exception as exc:
+        print(f"ERROR compiling topics: {exc}", file=sys.stderr)
+        return 2
+
+    print(f"[isidore] plan: {res.planned} topics · dirty: {len(res.dirty)} · "
+          f"generated: {len(res.generated)} · skipped: {len(res.skipped_by_cap)}")
+    for name in res.dirty:
+        mark = "GEN " if name in res.generated else "CAP " if name in res.skipped_by_cap else "dry "
+        print(f"  {mark}{name}")
+
+    if not args.execute:
+        print("[isidore] DRY-RUN — 0 LLM calls. Pass --execute to sync.", file=sys.stderr)
+
+    # 3. Claims check
+    from .claims import check_claims
+    from .knowledge import load_knowledge_state
+    pages = load_knowledge_state().get("pages", {})
+    rows = check_claims(Path("."), pages)
+    bad = [r for r in rows if r["state"] != "ok"]
+    print(f"[isidore] {len(rows)} claims · {len(bad)} stale/orphan/superseded (0 LLM calls)")
+    for r in bad:
+        print(f"  {r['state'].upper()} {r['page']} {r['id']}: {r['statement']} [{r['evidence']}]")
+
+    return 0
+
 
 
 def main(argv: list[str] | None = None) -> int:
@@ -267,7 +338,9 @@ def main(argv: list[str] | None = None) -> int:
     p_ask.add_argument("--repo", type=Path, default=Path("."))
     p_ask.add_argument("--graph", type=Path, default=None)
     p_ask.add_argument("--offline", action="store_true",
-                       help="answer from verified claims only, 0 LLM calls (or refuse honestly)")
+                        help="answer from verified claims only, 0 LLM calls (or refuse honestly)")
+    p_ask.add_argument("--knowledge", action="store_true",
+                        help="QA over the knowledge base instead of the repository wiki")
     p_ask.set_defaults(func=_cmd_ask)
 
     p_flows = sub.add_parser("suggest-flows", help="print flow candidates for isidore.json")
@@ -307,6 +380,10 @@ def main(argv: list[str] | None = None) -> int:
     p_findings.add_argument("--repo", type=Path, default=Path("."))
     p_findings.add_argument("--new", action="store_true", help="only findings in the changed files")
     p_findings.add_argument("--since", default=None, help="git ref baseline (default: last compiled commit)")
+    p_findings.add_argument("action", nargs="?", choices=["resolve"], help="action to perform (e.g. resolve)")
+    p_findings.add_argument("finding_id", nargs="?", help="ID of the finding to resolve")
+    p_findings.add_argument("--actor", help="actor resolving the finding")
+    p_findings.add_argument("--reason", help="reason for resolution")
     p_findings.set_defaults(func=_cmd_findings)
 
     p_claims = sub.add_parser("claims", help="zero-LLM staleness audit of anchored claims")
@@ -316,7 +393,26 @@ def main(argv: list[str] | None = None) -> int:
     p_claims.add_argument("--grep", default=None, help="search claims by statement/evidence text")
     p_claims.add_argument("--check", action="store_true",
                           help="exit 1 if any claim is stale/orphan (CI gate)")
+    p_claims.add_argument("--home", action="store_true",
+                          help="audit claims from the knowledge home instead of the repository")
     p_claims.set_defaults(func=_cmd_claims)
+
+    p_sync = sub.add_parser("sync", help="ingest enabled connectors -> compile dirty topics -> claims check")
+    p_sync.add_argument("--execute", action="store_true",
+                        help="execute compiles (default dry-run)")
+    p_sync.add_argument("--limit", type=int, default=None,
+                        help="limit number of ingested items per connector")
+    p_sync.add_argument("--max-calls", type=int, default=10,
+                        help="max LLM calls for compiling topic pages")
+    p_sync.set_defaults(func=_cmd_sync)
+
+
+    # PCP (ADR-0033): each lane module exposes register_cli(sub) and owns its subcommand. This loop
+    # is written ONCE (P0) so no lane ever edits cli.py again — verify (A), contracts (B),
+    # pyramid (D), render (E). Lane C has no CLI (its marks flow through the pipeline).
+    from . import contracts as _contracts, humanpack as _humanpack, pyramid as _pyramid, verify as _verify
+    for _mod in (_verify, _contracts, _pyramid, _humanpack):
+        _mod.register_cli(sub)
 
     args = parser.parse_args(argv)
     return args.func(args)

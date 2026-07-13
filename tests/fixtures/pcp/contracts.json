@@ -1,0 +1,12 @@
+{
+  "contracts": [
+    {
+      "evidence": "svc/auth.py:14",
+      "id": "c-d64d0c93",
+      "note": "auth must always route JWT verification through verify_jwt",
+      "predicate": "calls:authenticate;verify_jwt",
+      "promoted_at": "2026-07-12T00:00:00+00:00",
+      "promoted_by": "claude-agora"
+    }
+  ]
+}

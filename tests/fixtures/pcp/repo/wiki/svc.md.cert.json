@@ -1,0 +1,85 @@
+{
+  "child_cert_hashes": {},
+  "claims": [
+    {
+      "detail": "authenticate body has a call to verify_jwt",
+      "ehash": "0f4f56be82b1",
+      "evidence": "svc/auth.py:14",
+      "id": "c-d64d0c93",
+      "oracle": "ast",
+      "predicate": "calls:authenticate;verify_jwt",
+      "statement": "authenticate verifies the JWT by calling verify_jwt",
+      "verdict": "TRUE"
+    },
+    {
+      "detail": "MAX_ATTEMPTS assigned literal 5",
+      "ehash": "234aa98f1c0f",
+      "evidence": "svc/auth.py:7",
+      "id": "c-49c1cd4c",
+      "oracle": "ast",
+      "predicate": "value:MAX_ATTEMPTS;5",
+      "statement": "the attempt ceiling MAX_ATTEMPTS is 5",
+      "verdict": "TRUE"
+    },
+    {
+      "detail": "imports edge present in graph",
+      "ehash": "cc92d602edbd",
+      "evidence": "svc/auth.py:5",
+      "id": "c-4f1074e3",
+      "oracle": "graph",
+      "predicate": "imports:svc/auth.py;svc/tokens.py",
+      "statement": "the auth module imports the tokens service",
+      "verdict": "TRUE"
+    },
+    {
+      "detail": "os.environ[\"AUTH_SIGNING_KEY\"] found",
+      "ehash": "fac6bd2f57b6",
+      "evidence": "svc/auth.py:13",
+      "id": "c-b286ca6c",
+      "oracle": "grep",
+      "predicate": "env:AUTH_SIGNING_KEY",
+      "statement": "authenticate reads the AUTH_SIGNING_KEY environment variable",
+      "verdict": "TRUE"
+    },
+    {
+      "detail": "symbol node present in graph",
+      "ehash": "b35ac700f702",
+      "evidence": "svc/auth.py:10",
+      "id": "c-03e67502",
+      "oracle": "graph",
+      "predicate": "defines:svc/auth.py;authenticate",
+      "statement": "the auth module defines authenticate",
+      "verdict": "TRUE"
+    },
+    {
+      "detail": "existence-anchored only (no predicate)",
+      "ehash": "9f730a1a70a6",
+      "evidence": "svc/auth.py:16",
+      "id": "c-6b60d028",
+      "oracle": "none",
+      "predicate": "",
+      "statement": "authenticate returns None when the token is invalid",
+      "verdict": "UNDECIDABLE"
+    }
+  ],
+  "graph_commit": "0f1e5ba0000000000000000000000000000000ff",
+  "marks": [
+    {
+      "disposition": "",
+      "family": "entropy",
+      "file": "svc/auth.py",
+      "line": 23,
+      "reason": "high-entropy credential literal (sk_live_ prefix) in an auth-path module",
+      "severity": "danger"
+    }
+  ],
+  "mass": {
+    "gray": 1,
+    "green": 2,
+    "yellow": 1
+  },
+  "page": "svc.md",
+  "prose_sha256": "0980aed798de3a42592abeef1eb8e128697f95446d91c9af89f620e85d938211",
+  "version": "pcp-1",
+  "violations": []
+}

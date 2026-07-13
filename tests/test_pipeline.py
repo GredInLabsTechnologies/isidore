@@ -168,6 +168,25 @@ def test_lint_flags_only_nonexistent_paths_with_directories(tmp_path):
     assert findings == ["invented/ghost.py"]
 
 
+def test_lint_ignores_placeholders_and_code_blocks(tmp_path):
+    repo = _make_repo(tmp_path, n_modules=1)
+    
+    # 1. Test system placeholders are ignored
+    md_placeholders = "Do not turn `src/pkg/x.py` into `pkg/x.py` or use `src/x.py`."
+    assert lint_cited_paths(md_placeholders, repo) == []
+    
+    # 2. Test paths inside code blocks are ignored
+    md_code_block = (
+        "Here is an example:\n"
+        "```python\n"
+        "import invented/ghost.py\n"
+        "```\n"
+        "But check out `mod0/core/file0.py` in prose."
+    )
+    assert lint_cited_paths(md_code_block, repo) == []
+
+
+
 # ----------------------------------------------------------------- agents.md
 
 def test_upsert_agents_block_is_idempotent_and_preserves_content():

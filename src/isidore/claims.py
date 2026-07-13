@@ -26,11 +26,40 @@ CLAIMS_FILENAME = "claims.toon"
 SEARCH_RADIUS = 40      # how far from the recorded line to look for the shifted cited content
 
 CLAIMS_PROMPT_ADDENDUM = """
-Also append a fenced block distilling the page's key FACTUAL assertions as verifiable claims:
+Also append a fenced block distilling the page's key FACTUAL assertions as verifiable claims. Each
+claim is `<statement> | <path:line>` and SHOULD carry a third field — a MACHINE-CHECKABLE predicate —
+whenever the fact is exactly one of the decidable forms below. That predicate is verified against the
+code with ZERO extra LLM calls, turning the claim from merely "cited" into "PROVEN". Give as many
+claims a predicate as you honestly can.
 
 ```isidore-claims
-<single falsifiable statement about the code> | path:line
+<statement> | path:line | <predicate>
 ```
+
+Predicate grammar (third field) — `<kind>:<arg1>;<arg2>` (separate args with SEMICOLONS, never commas):
+- calls:CALLER;CALLEE   — CALLER's body calls CALLEE            e.g. calls:authenticate;verify_jwt
+- defines:FILE;SYMBOL   — FILE defines a top-level SYMBOL        e.g. defines:src/auth.py;authenticate
+- imports:FILE;TARGET   — FILE imports TARGET module/file        e.g. imports:src/auth.py;src/tokens.py
+- value:NAME;LITERAL    — module-level NAME equals LITERAL        e.g. value:MAX_ATTEMPTS;5
+- signature:FN;A1;A2    — FN's parameter names, in order          e.g. signature:authenticate;request
+- env:NAME              — the env var NAME is read somewhere      e.g. env:AUTH_SIGNING_KEY
+
+Predicate rules:
+- Add it ONLY when the statement IS exactly that fact, and copy the args verbatim from the FACTS
+  (function/const/file names as the code spells them; for `calls`, the callee is the called name,
+  e.g. the last part of a dotted call). A WRONG predicate is verified FALSE — worse than none.
+- If no form fits, OMIT the third field: a two-field claim is still valid (it stays "cited", not
+  "proven"). Never invent a predicate just to fill the field.
+
+Common mistakes that get a predicate REFUTED — do NOT make these:
+- `env:` is ONLY for real environment variables read via os.environ/os.getenv/process.env. NEVER
+  use it for a function, class, constant, or registry name (e.g. `env:scan_repo` is wrong — scan_repo
+  is a function, not an env var).
+- `value:` needs the EXACT literal as written in the code. Copy it character-for-character. If the
+  value is anything but a plain literal (a call like `Path(...)`, an expression, another name), do
+  NOT use `value:` at all. Never guess the number/string.
+- `defines:` is for a symbol DECLARED in that file. A symbol the file IMPORTS is not defined there.
+- `calls:CALLER;CALLEE` only if CALLEE literally appears called inside CALLER's body.
 
 HARD rules for the `path:line` — a claim is WORTHLESS if its citation is invented:
 - Copy the path VERBATIM from the FACTS. The exact strings you may cite appear as
@@ -77,16 +106,30 @@ def is_negative_existential(statement: str) -> bool:
     return bool(_NEG_EXISTENTIAL.search(statement or ""))
 
 
+def parse_predicate_field(raw: str | None):
+    """Parse a claim's optional third field into a pcp.Predicate (or None). PCP typed-claim grammar."""
+    from .pcp import parse_predicate
+    return parse_predicate(raw)
+
+
 def parse_claims_block(markdown: str) -> tuple[str, list[dict]]:
-    """Split a generated page into (clean page, raw claim rows). Tolerant of malformed lines."""
+    """Split a generated page into (clean page, raw claim rows). Tolerant of malformed lines.
+
+    Claim line grammar: `<statement> | <path:line>` with an OPTIONAL PCP third field
+    `| <kind>:<arg;arg>` (see pcp.parse_predicate). Two-field claims stay valid (backwards
+    compatible): the predicate is simply absent and the claim is existence-anchored only.
+    """
     rows: list[dict] = []
 
     def _consume(match: re.Match) -> str:
         for raw in match.group(1).splitlines():
-            parts = [p.strip() for p in raw.rsplit("|", 1)]
-            if len(parts) != 2 or not parts[0] or not parts[1]:
+            parts = [p.strip() for p in raw.split("|")]
+            if len(parts) < 2 or not parts[0] or not parts[1]:
                 continue
-            rows.append({"statement": parts[0], "evidence": parts[1]})
+            row = {"statement": parts[0], "evidence": parts[1]}
+            if len(parts) >= 3 and parts[2]:
+                row["predicate"] = parts[2]
+            rows.append(row)
         return ""
 
     clean = _FENCE.sub(_consume, markdown).rstrip() + "\n"
@@ -94,6 +137,11 @@ def parse_claims_block(markdown: str) -> tuple[str, list[dict]]:
 
 
 def _split_evidence(evidence: str) -> tuple[str, int | None]:
+    if evidence.startswith("src://"):
+        path_part, sep, line_part = evidence.rpartition(":")
+        if sep and line_part.lstrip("L").isdigit():
+            return path_part.strip(), int(line_part.lstrip("L"))
+        return evidence.strip(), None
     path_part, sep, line_part = evidence.replace("\\", "/").rpartition(":")
     if sep and line_part.lstrip("L").isdigit():
         return path_part.strip(), int(line_part.lstrip("L"))
@@ -128,6 +176,20 @@ def evidence_hash(repo: Path, evidence: str) -> str | None:
     content, so `evidence_state` finds it nearby and does NOT cry wolf. Only a real change to the
     cited line itself flips the fingerprint. Returns None if the path is gone (orphan).
     """
+    if evidence.startswith("src://"):
+        from .connectors.store import resolve_uri
+        uri, line = _split_evidence(evidence)
+        item = resolve_uri(uri)
+        if item is None:
+            return None
+        if line is None:
+            return item.get("chash")
+        content = item.get("content", "")
+        lines = content.splitlines()
+        if not (1 <= line <= len(lines)):
+            return None
+        return _hash(_normalize(lines[line - 1]))
+
     rel, line = _split_evidence(evidence)
     lines = _read_lines(repo, rel)
     if lines is None:
@@ -139,13 +201,48 @@ def evidence_hash(repo: Path, evidence: str) -> str | None:
     return _hash(_normalize(lines[line - 1]))
 
 
-def evidence_state(repo: Path, evidence: str, stored_hash: str) -> str:
-    """"ok" | "stale" | "orphan" — content-anchored, tolerant of line shifts.
+def evidence_state(repo: Path, evidence: str, stored_hash: str, compiled_at: str | None = None) -> str:
+    """"ok" | "stale" | "orphan" | "superseded" — content-anchored, tolerant of line shifts.
 
-    ok     the cited line's fingerprint is found at or near its recorded line (maybe shifted);
-    stale  the path exists but the cited content changed / is no longer near the recorded line;
-    orphan the evidence path is gone.
+    ok         the cited line's fingerprint is found at or near its recorded line (maybe shifted);
+    stale      the path exists but the cited content changed / is no longer near the recorded line;
+    orphan     the evidence path is gone;
+    superseded the stream has items newer than the compiled_at watermark.
     """
+    if evidence.startswith("src://"):
+        from .connectors.store import resolve_uri, iter_items
+        uri, line = _split_evidence(evidence)
+        item = resolve_uri(uri)
+        if item is None:
+            return "orphan"
+
+        parts = uri[len("src://"):].split("/")
+        if len(parts) == 2:
+            cid, instance = parts[0], None
+        elif len(parts) == 3:
+            cid, instance = parts[0], parts[1]
+        else:
+            return "orphan"
+
+        stream = item.get("stream")
+        if compiled_at:
+            for other in iter_items(cid, instance, stream):
+                other_ts = other.get("ts", "")
+                if other_ts > compiled_at:
+                    return "superseded"
+
+        if line is None:
+            current = item.get("chash")
+            return "ok" if current == stored_hash else "stale"
+
+        content = item.get("content", "")
+        lines = content.splitlines()
+        for offset in range(0, SEARCH_RADIUS + 1):
+            for idx in {line - 1 - offset, line - 1 + offset}:
+                if 0 <= idx < len(lines) and _hash(_normalize(lines[idx])) == stored_hash:
+                    return "ok"
+        return "stale"
+
     rel, line = _split_evidence(evidence)
     lines = _read_lines(repo, rel)
     if lines is None:
@@ -159,6 +256,7 @@ def evidence_state(repo: Path, evidence: str, stored_hash: str) -> str:
             if 0 <= idx < len(lines) and _hash(_normalize(lines[idx])) == stored_hash:
                 return "ok"
     return "stale"
+
 
 
 def claim_id(statement: str, evidence: str) -> str:
@@ -207,7 +305,8 @@ def anchor_claims(repo: Path, raw_claims: list[dict],
                 dropped += 1
                 continue
         anchored.append({"id": claim_id(c["statement"], evidence),
-                         "statement": c["statement"], "evidence": evidence, "ehash": ehash})
+                         "statement": c["statement"], "evidence": evidence, "ehash": ehash,
+                         "predicate": c.get("predicate", "")})
     return anchored, dropped, repaired
 
 
@@ -218,8 +317,9 @@ def check_claims(repo: Path, pages_state: dict) -> list[dict]:
     """
     rows: list[dict] = []
     for page, entry in sorted(pages_state.items()):
+        compiled_at = entry.get("compiled_at")
         for c in entry.get("claims", []):
-            state = evidence_state(repo, c["evidence"], c["ehash"])
+            state = evidence_state(repo, c["evidence"], c["ehash"], compiled_at)
             rows.append({"page": page, "id": c["id"], "statement": c["statement"],
                          "evidence": c["evidence"], "state": state})
     return rows
@@ -231,7 +331,8 @@ def claims_for_file(repo: Path, pages_state: dict, path: str) -> list[dict]:
     norm = path.replace("\\", "/").lstrip("./").lstrip("/")
     rows = []
     for r in check_claims(repo, pages_state):
-        ev = r["evidence"].replace("\\", "/").rsplit(":", 1)[0]
+        ev, _ = _split_evidence(r["evidence"])
+        ev = ev.replace("\\", "/")
         if ev == norm or ev.endswith("/" + norm) or norm.endswith("/" + ev):
             rows.append(r)
     return rows

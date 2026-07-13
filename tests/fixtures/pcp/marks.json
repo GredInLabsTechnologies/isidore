@@ -1,0 +1,7 @@
+{
+  "marks": [
+    {"family": "entropy", "file": "svc/auth.py", "line": 23, "reason": "high-entropy credential literal (sk_live_ prefix) in an auth-path module", "severity": "danger", "disposition": ""},
+    {"family": "sink", "file": "svc/auth.py", "line": 13, "reason": "os.environ read of a signing key — secret handling site", "severity": "info", "disposition": ""},
+    {"family": "topology", "file": "svc/tokens.py", "line": 5, "reason": "verify_jwt is reachable from the auth entrypoint; crypto/verification surface", "severity": "warn", "disposition": ""}
+  ]
+}

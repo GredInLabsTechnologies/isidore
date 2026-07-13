@@ -239,3 +239,37 @@ def test_dry_run_still_detects_stale_claims_for_free(tmp_path):
                           generator=lambda p: calls.append(p) or "x")
     assert result.claims_stale_pages == ["mod0-core.md"]
     assert calls == [], "la detección de staleness jamás cuesta una llamada"
+
+
+def test_claims_for_file_with_src():
+    from isidore.claims import claims_for_file
+    pages_state = {
+        "page1.md": {
+            "claims": [
+                {"id": "c1", "statement": "Fact A", "evidence": "src://git-repo/item-1:5", "ehash": "h1"},
+                {"id": "c2", "statement": "Fact B", "evidence": "src://git-repo/item-2", "ehash": "h2"},
+                {"id": "c3", "statement": "Fact C", "evidence": "local/path/file.py:10", "ehash": "h3"},
+                {"id": "c4", "statement": "Fact D", "evidence": "local/path/file2.py", "ehash": "h4"},
+            ]
+        }
+    }
+    # Test src:// path with line number matches base
+    res = claims_for_file(Path("."), pages_state, "src://git-repo/item-1")
+    assert len(res) == 1
+    assert res[0]["id"] == "c1"
+
+    # Test src:// path without line number matches base
+    res = claims_for_file(Path("."), pages_state, "src://git-repo/item-2")
+    assert len(res) == 1
+    assert res[0]["id"] == "c2"
+
+    # Test local path with line number matches base
+    res = claims_for_file(Path("."), pages_state, "local/path/file.py")
+    assert len(res) == 1
+    assert res[0]["id"] == "c3"
+
+    # Test local path without line number matches base
+    res = claims_for_file(Path("."), pages_state, "local/path/file2.py")
+    assert len(res) == 1
+    assert res[0]["id"] == "c4"
+

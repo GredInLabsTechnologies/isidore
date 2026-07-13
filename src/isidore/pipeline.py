@@ -34,14 +34,20 @@ from .findings import (
     FINDINGS_PROMPT_ADDENDUM,
     filter_findings,
     harvest_todos,
+    insert_security_banner,
     orphan_file_candidates,
     parse_findings_block,
     render_findings,
     risk_hotspots,
+    security_banner,
     coverage_gap_candidates,
 )
 from .graph import CONCEPTS_BUCKET, load_graph, module_of, restrict_to_tracked
 from .llm import GenerationError, default_generator
+from .pcp import CERT_SUFFIX, VerifyContext, write_certificate
+from .verify import build_certificate
+from .detectors import scan as scan_marks
+from .reconcile import reconcile
 from .render import (
     agents_md_block,
     render_quickstart,
@@ -390,10 +396,18 @@ _PATH_TOKEN = re.compile(
 def lint_cited_paths(markdown: str, repo: Path) -> list[str]:
     """File-looking paths cited in the prose that do NOT exist in the repo."""
     missing: list[str] = []
-    for token in sorted({m.group(0) for m in _PATH_TOKEN.finditer(markdown)}):
+    # Strip triple-backtick code blocks to avoid scanning dummy code paths
+    clean_md = re.sub(r"```.*?```", "", markdown, flags=re.DOTALL)
+    
+    # System placeholders from prompts to ignore
+    SYSTEM_PLACEHOLDER_PATHS = {"src/pkg/x.py", "pkg/x.py", "src/x.py"}
+
+    for token in sorted({m.group(0) for m in _PATH_TOKEN.finditer(clean_md)}):
         rel = token.replace("\\", "/").lstrip("/")
         if "/" not in rel:
             continue  # bare names like config.json are too false-positive-prone
+        if rel in SYSTEM_PLACEHOLDER_PATHS:
+            continue
         if not (repo / rel).exists():
             missing.append(rel)
     return missing
@@ -508,6 +522,14 @@ class CompileResult:
     claims_dropped_negative: int = 0
     claims_repaired: int = 0
     claims_stale_pages: list[str] = field(default_factory=list)
+    security_flagged: list[str] = field(default_factory=list)  # pages with a forced SECURITY banner
+    # PCP (ADR-0033): pages that got a re-verifiable certificate, aggregate verified mass, and the
+    # deterministic-mark / reconciler counts for this run.
+    certificates: list[str] = field(default_factory=list)
+    verified_mass: dict = field(default_factory=lambda: {"green": 0, "yellow": 0, "gray": 0})
+    marks_raised: int = 0
+    reconcile_violations: int = 0
+    claims_refuted: int = 0   # typed claims the verifier proved FALSE -> archived, never published
 
 
 def compile_wiki(
@@ -613,6 +635,12 @@ def compile_wiki(
     generate = generator if generator is not None else default_generator()
     known_files = {n["source_file"] for n in nodes if n.get("source_file")}
 
+    # PCP wiring (ADR-0033): compute the verify context + deterministic security marks ONCE (0 LLM,
+    # before any generation). Per dirty page we then build a re-verifiable certificate, reconcile the
+    # model's own outputs, and let danger marks force the banner (monotonic escalation, invariant I10).
+    verify_ctx = VerifyContext(repo=repo, nodes=nodes, links=links, commit=commit)
+    all_marks = scan_marks(repo, verify_ctx)
+
     calls_made = 0
     for name in result.dirty:
         if calls_made >= calls_budget:
@@ -663,15 +691,69 @@ def compile_wiki(
         result.findings_kept += len(kept)
         result.findings_dropped += len(dropped)
 
+        # deterministic security marks for THIS page's files (lane C): they enter as data, and via
+        # monotonic escalation (I10) a danger mark forces the banner even if the LLM never mentions it.
+        if spec.kind == "module":
+            page_files = {n["source_file"] for n in nodes if n.get("source_file")
+                          and module_of(n["source_file"], module_depth) == spec.name}
+        else:
+            mods = set(getattr(spec, "modules", []) or [])
+            page_files = {n["source_file"] for n in nodes if n.get("source_file")
+                          and module_of(n["source_file"], module_depth) in mods}
+        page_marks = [m for m in all_marks if m.file in page_files]
+
+        # Force the SECURITY banner: an LLM security suspect OR a deterministic danger mark prepends a
+        # loud, code-not-prose warning. The narrative can be socially engineered into calling a
+        # backdoor an "internal shortcut"; the banner is code, so the model cannot lower it.
+        banner = security_banner(kept)
+        danger = [m for m in page_marks if m.severity == "danger"]
+        if not banner and danger:
+            ev = "\n".join(f"> - `{m.file}:{m.line}` — {m.reason}" for m in danger)
+            banner = ("> [!WARNING]\n> **SECURITY — deterministic detectors flagged this code (0 LLM). "
+                      "Verify; never document as an intended feature.**\n>\n" + ev)
+        if banner:
+            markdown = insert_security_banner(markdown, banner)
+            result.security_flagged.append(name)
+
+        # reconcile the model's own outputs (lane B): prose vs findings vs claims vs marks -> internal
+        # contradictions (the vigil case). 0 LLM.
+        violations = reconcile(markdown, kept, claims, page_marks)
+
         # per-page H2-level changelog: capture the old prose before overwriting, carry the page's
         # history forward, and record what changed in its understanding (0 LLM).
         page_path = wiki_dir / name
         old_content = page_path.read_text(encoding="utf-8") if page_path.is_file() else ""
         prev_history = pages_state.get(name, {}).get("history", [])
         page_path.write_text(markdown, encoding="utf-8", newline="\n")
+        import time
+        iso_now = time.strftime("%Y-%m-%dT%H:%M:%SZ", time.gmtime())
+
+        # build + persist the re-verifiable certificate (lane A): verify each typed claim against the
+        # graph/AST, classify prose mass, hash the prose (tamper anchor). Written next to the page.
+        cert = build_certificate(name, markdown, claims, verify_ctx, marks=page_marks,
+                                 violations=violations)
+        write_certificate(cert, wiki_dir / (name + CERT_SUFFIX))
+        result.certificates.append(name)
+        result.marks_raised += len(page_marks)
+        result.reconcile_violations += len(violations)
+        result.verified_mass["green"] += cert.mass.green
+        result.verified_mass["yellow"] += cert.mass.yellow
+        result.verified_mass["gray"] += cert.mass.gray
+
+        # QUARANTINE refuted claims: a predicate the verifier proved FALSE is a MODEL ERROR — it is
+        # kept in the certificate (audit trail, `refuted`) but NEVER published as knowledge. The
+        # model can hallucinate; its hallucination does not reach the wiki. TRUE/UNDECIDABLE/anchored
+        # claims are published; the sentence behind a refuted claim already reads gray (unproven).
+        from .pcp import FALSE as _FALSE
+        published = [cv for cv in cert.claims if cv.verdict != _FALSE]
+        result.claims_refuted += sum(1 for cv in cert.claims if cv.verdict == _FALSE)
+        claims_with_verdicts = [{"id": cv.id, "statement": cv.statement, "evidence": cv.evidence,
+                                 "ehash": cv.ehash, "predicate": cv.predicate, "verdict": cv.verdict}
+                                for cv in published]
         pages_state[name] = {"context_hash": digest, "kind": spec.kind, "name": spec.name,
-                             "findings": kept, "claims": claims, "quarantined": quarantined,
-                             "history": prev_history}
+                             "findings": kept, "claims": claims_with_verdicts,
+                             "quarantined": quarantined, "history": prev_history,
+                             "compiled_at": iso_now}
         record_page_change(pages_state[name], commit, old_content, markdown)
         result.generated.append(name)
 

@@ -1,0 +1,16 @@
+{
+  "nodes": [
+    {"id": "auth_py", "label": "auth.py", "file_type": "code", "source_file": "svc/auth.py", "source_location": "L1"},
+    {"id": "auth_py_authenticate", "label": "authenticate()", "file_type": "code", "source_file": "svc/auth.py", "source_location": "L10-L19"},
+    {"id": "auth_py_MAX_ATTEMPTS", "label": "MAX_ATTEMPTS", "file_type": "code", "source_file": "svc/auth.py", "source_location": "L7"},
+    {"id": "tokens_py", "label": "tokens.py", "file_type": "code", "source_file": "svc/tokens.py", "source_location": "L1"},
+    {"id": "tokens_py_verify_jwt", "label": "verify_jwt()", "file_type": "code", "source_file": "svc/tokens.py", "source_location": "L5-L12"}
+  ],
+  "links": [
+    {"source": "auth_py", "target": "auth_py_authenticate", "relation": "contains"},
+    {"source": "auth_py", "target": "auth_py_MAX_ATTEMPTS", "relation": "contains"},
+    {"source": "tokens_py", "target": "tokens_py_verify_jwt", "relation": "contains"},
+    {"source": "auth_py", "target": "tokens_py", "relation": "imports"}
+  ],
+  "built_at_commit": "0f1e5ba0000000000000000000000000000000ff"
+}

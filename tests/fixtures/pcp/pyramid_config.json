@@ -1,0 +1,11 @@
+{
+  "pyramid": {
+    "subsystems": [
+      {"name": "authentication", "modules": ["svc"], "globs": ["svc/**"]}
+    ],
+    "product_pages": [
+      {"name": "overview", "kind": "overview"},
+      {"name": "how-auth-works", "kind": "flow", "subsystems": ["authentication"]}
+    ]
+  }
+}

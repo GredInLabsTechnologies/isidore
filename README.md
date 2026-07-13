@@ -72,6 +72,43 @@ already contains verified facts, so the model only writes prose.
   purely mechanical facts: TODO/FIXME harvest, orphan-file candidates, modules without test
   links, and risk hotspots (connection degree × git churn).
 - A delimited, idempotent reference block in `AGENTS.md` pointing agents at the wiki.
+- `wiki/<page>.md.cert.json` — a **re-verifiable certificate** for each page (see below).
+
+## Proof-carrying prose — how to read a certified page
+
+A model writes the prose, but it cannot *hide* a claim that the code contradicts. Each page ships a
+certificate; every sentence carries one of three confidence levels:
+
+- **green — proved.** The sentence rests on a *typed claim* the compiler checked against the code
+  with zero LLM calls: `calls(a,b)`, `defines(file,sym)`, `imports(file,tgt)`, `value(name,literal)`,
+  `signature(fn,args)`, `env(NAME)`. A green claim is TRUE against the current graph/AST.
+- **yellow — anchored.** Cited to a real `path:line` (content-hashed) but not a decidable predicate.
+  Its evidence exists; its meaning isn't machine-proved.
+- **gray — narrative.** No citation: design rationale, judgement, opinion. Honestly un-load-bearing —
+  the certificate never dresses it up as fact.
+
+The certificate also records deterministic **security marks** (high-entropy secrets, dangerous sinks,
+auth-reachable surface — 0 LLM) and a hash of the prose. Two guarantees follow:
+
+- **Tamper-evident.** Edit a published page and `isidore verify` fails — the prose no longer matches
+  its hash. A monotonic-escalation rule means a danger mark forces a loud banner the prose can't lower.
+- **Offline & free.** `isidore verify` re-checks every claim and certificate with **no LLM calls**.
+
+```bash
+isidore verify                          # re-verify all pages offline (0 LLM); nonzero on tamper/FALSE
+isidore verify --min-verified-mass 0.3  # CI gate: fail if <30% of sentences are green (proved)
+isidore verify --fail-on-marks          # CI gate: fail on any unresolved danger-severity mark
+isidore verify --contracts              # CI gate: fail if a promoted claim->contract is now FALSE
+isidore contracts --promote <claim-id>  # graduate a proved claim to a CI-enforced invariant
+```
+
+The gates are **opt-in** (off by default). A ready-to-copy pre-commit / CI step:
+
+```yaml
+# .github/workflows/docs.yml (or a pre-commit hook)
+- run: isidore claims --check                       # evidence still anchored (0 LLM)
+- run: isidore verify --contracts --fail-on-marks   # certificates intact, invariants hold (0 LLM)
+```
 
 ## Languages
 
