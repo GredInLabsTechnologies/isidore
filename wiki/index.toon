@@ -1,34 +1,62 @@
-# isidore wiki index · commit 4e29c9bd4203ed06b6b11ae2ea4a12d79cd05fc2
+# isidore wiki index · commit 3f4179988e00df03aec751ce3053e147645c7381
 # same catalog as quickstart.md, in TOON tables (cheap for agents to load)
-modules[4]{module,files,symbols,page}:
-  src/isidore,10,81,src-isidore.md
-  tests/test_pipeline.py,1,28,tests-test_pipeline_py.md
-  tests/test_units.py,1,20,tests-test_units_py.md
-  tests/test_claims.py,1,15,tests-test_claims_py.md
+modules[8]{module,files,symbols,page}:
+  src/isidore,29,293,src-isidore.md
+  tests/test_pipeline.py,1,35,tests-test_pipeline_py.md
+  tests/test_units.py,1,24,tests-test_units_py.md
+  tests/test_claims.py,1,17,tests-test_claims_py.md
+  tests/test_connectors_f1.py,1,16,tests-test_connectors_f1_py.md
+  tests/test_langspec.py,1,14,tests-test_langspec_py.md
+  tests/test_pcp_seams.py,1,11,tests-test_pcp_seams_py.md
+  tests/test_security_prose.py,1,11,tests-test_security_prose_py.md
 flows[0]{flow,modules,page}:
-hot_symbols[24]{module,symbol,file,line,degree}:
-  src/isidore,pipeline.py,src/isidore/pipeline.py,1,21
-  src/isidore,claims.py,src/isidore/claims.py,1,14
-  src/isidore,cli.py,src/isidore/cli.py,1,11
-  src/isidore,graph.py,src/isidore/graph.py,1,11
-  src/isidore,findings.py,src/isidore/findings.py,1,9
-  src/isidore,qa.py,src/isidore/qa.py,1,6
-  tests/test_pipeline.py,test_pipeline.py,tests/test_pipeline.py,1,27
-  tests/test_pipeline.py,_node(),tests/test_pipeline.py,26,0
-  tests/test_pipeline.py,_link(),tests/test_pipeline.py,31,0
-  tests/test_pipeline.py,_make_repo(),tests/test_pipeline.py,35,0
-  tests/test_pipeline.py,_graph(),tests/test_pipeline.py,59,0
-  tests/test_pipeline.py,_gp(),tests/test_pipeline.py,64,0
-  tests/test_units.py,test_units.py,tests/test_units.py,1,19
-  tests/test_units.py,test_toon_encode_table_quoting_and_counts(),tests/test_units.py,26,0
-  tests/test_units.py,test_module_of_normalizes_and_buckets(),tests/test_units.py,33,0
-  tests/test_units.py,test_scan_repo_extracts_symbols_imports_and_docs(),tests/test_units.py,39,0
-  tests/test_units.py,test_scan_tolerates_syntax_errors(),tests/test_units.py,58,0
-  tests/test_units.py,test_write_scan_and_find_graph_roundtrip(),tests/test_units.py,64,0
-  tests/test_claims.py,test_claims.py,tests/test_claims.py,1,14
-  tests/test_claims.py,_make_repo(),tests/test_claims.py,33,0
-  tests/test_claims.py,_gp(),tests/test_claims.py,52,0
-  tests/test_claims.py,test_parse_claims_block_extracts_and_strips(),tests/test_claims.py,56,0
-  tests/test_claims.py,test_evidence_hash_is_the_cited_line_content(),tests/test_claims.py,64,0
-  tests/test_claims.py,test_evidence_state_ignores_neighbors_whitespace_and_line_shifts(),tests/test_claims.py,80,0
+hot_symbols[48]{module,symbol,file,line,degree}:
+  src/isidore,pipeline.py,src/isidore/pipeline.py,1,32
+  src/isidore,verify.py,src/isidore/verify.py,1,30
+  src/isidore,pcp.py,src/isidore/pcp.py,1,23
+  src/isidore,graph.py,src/isidore/graph.py,1,19
+  src/isidore,claims.py,src/isidore/claims.py,1,18
+  src/isidore,findings.py,src/isidore/findings.py,1,17
+  tests/test_pipeline.py,test_pipeline.py,tests/test_pipeline.py,1,34
+  tests/test_pipeline.py,_node(),tests/test_pipeline.py,26-L28,0
+  tests/test_pipeline.py,_link(),tests/test_pipeline.py,31-L32,0
+  tests/test_pipeline.py,_make_repo(),tests/test_pipeline.py,35-L56,0
+  tests/test_pipeline.py,_graph(),tests/test_pipeline.py,59-L61,0
+  tests/test_pipeline.py,_gp(),tests/test_pipeline.py,64-L65,0
+  tests/test_units.py,test_units.py,tests/test_units.py,1,23
+  tests/test_units.py,test_toon_encode_table_quoting_and_counts(),tests/test_units.py,26-L28,0
+  tests/test_units.py,test_module_of_normalizes_and_buckets(),tests/test_units.py,33-L36,0
+  tests/test_units.py,test_scan_repo_extracts_symbols_imports_and_docs(),tests/test_units.py,39-L55,0
+  tests/test_units.py,test_scan_tolerates_syntax_errors(),tests/test_units.py,58-L61,0
+  tests/test_units.py,test_write_scan_and_find_graph_roundtrip(),tests/test_units.py,64-L69,0
+  tests/test_claims.py,test_claims.py,tests/test_claims.py,1,16
+  tests/test_claims.py,test_is_negative_existential_flags_absence_not_behavior(),tests/test_claims.py,21-L43,0
+  tests/test_claims.py,_make_repo(),tests/test_claims.py,59-L75,0
+  tests/test_claims.py,_gp(),tests/test_claims.py,78-L79,0
+  tests/test_claims.py,test_parse_claims_block_extracts_and_strips(),tests/test_claims.py,82-L87,0
+  tests/test_claims.py,test_evidence_hash_is_the_cited_line_content(),tests/test_claims.py,90-L103,0
+  tests/test_connectors_f1.py,test_connectors_f1.py,tests/test_connectors_f1.py,1,15
+  tests/test_connectors_f1.py,_git(),tests/test_connectors_f1.py,18-L19,0
+  tests/test_connectors_f1.py,_make_repo(),tests/test_connectors_f1.py,22-L30,0
+  tests/test_connectors_f1.py,_head(),tests/test_connectors_f1.py,33-L35,0
+  tests/test_connectors_f1.py,test_home_env_override(),tests/test_connectors_f1.py,40-L44,0
+  tests/test_connectors_f1.py,test_write_items_stamps_chash_and_does_not_mutate(),tests/test_connectors_f1.py,47-L54,0
+  tests/test_langspec.py,test_langspec.py,tests/test_langspec.py,1,13
+  tests/test_langspec.py,_names(),tests/test_langspec.py,13-L15,0
+  tests/test_langspec.py,test_sanitize_blanks_comments_and_strings_preserving_lines(),tests/test_langspec.py,20-L28,0
+  tests/test_langspec.py,test_sanitize_handles_escaped_quote(),tests/test_langspec.py,31-L33,0
+  tests/test_langspec.py,test_rust_functions_types_and_spans(),tests/test_langspec.py,38-L53,0
+  tests/test_langspec.py,test_typescript_class_and_arrow_and_imports(),tests/test_langspec.py,56-L67,0
+  tests/test_pcp_seams.py,test_pcp_seams.py,tests/test_pcp_seams.py,1,10
+  tests/test_pcp_seams.py,test_golden_graph_loads(),tests/test_pcp_seams.py,36-L39,0
+  tests/test_pcp_seams.py,test_golden_certificate_round_trips(),tests/test_pcp_seams.py,42-L54,0
+  tests/test_pcp_seams.py,test_golden_contracts_load(),tests/test_pcp_seams.py,57-L59,0
+  tests/test_pcp_seams.py,test_golden_marks_and_pyramid_config_parse(),tests/test_pcp_seams.py,62-L67,0
+  tests/test_pcp_seams.py,test_predicate_parse_and_serialize_round_trip(),tests/test_pcp_seams.py,77-L80,0
+  tests/test_security_prose.py,test_security_prose.py,tests/test_security_prose.py,1,10
+  tests/test_security_prose.py,test_detects_the_camouflaged_backdoor(),tests/test_security_prose.py,21-L22,0
+  tests/test_security_prose.py,test_detects_common_security_vocabulary(),tests/test_security_prose.py,25-L35,0
+  tests/test_security_prose.py,test_ignores_non_security_and_wrong_kinds(),tests/test_security_prose.py,38-L42,0
+  tests/test_security_prose.py,test_negation_guard_does_not_escalate_safety_affirming_notes(),tests/test_security_prose.py,45-L55,0
+  tests/test_security_prose.py,test_hardcoded_with_intervening_word_is_caught(),tests/test_security_prose.py,58-L63,0
 module_deps[0]{from,to,links}:

@@ -1,0 +1,119 @@
+{
+  "child_cert_hashes": {},
+  "claims": [
+    {
+      "detail": "tests/test_units.py defines test_toon_encode_table_quoting_and_counts",
+      "ehash": "7e91cbd5b207",
+      "evidence": "tests/test_units.py:26",
+      "id": "c-d5887fee",
+      "oracle": "graph",
+      "predicate": "defines:tests/test_units.py;test_toon_encode_table_quoting_and_counts",
+      "statement": "The module defines a test function named test_toon_encode_table_quoting_and_counts",
+      "verdict": "TRUE"
+    },
+    {
+      "detail": "tests/test_units.py defines test_module_of_normalizes_and_buckets",
+      "ehash": "fbdd7a2a2f0a",
+      "evidence": "tests/test_units.py:33",
+      "id": "c-4db6ddf9",
+      "oracle": "graph",
+      "predicate": "defines:tests/test_units.py;test_module_of_normalizes_and_buckets",
+      "statement": "The module defines a test function named test_module_of_normalizes_and_buckets",
+      "verdict": "TRUE"
+    },
+    {
+      "detail": "tests/test_units.py defines test_scan_repo_extracts_symbols_imports_and_docs",
+      "ehash": "eea8bdf9e535",
+      "evidence": "tests/test_units.py:39",
+      "id": "c-3279d42e",
+      "oracle": "graph",
+      "predicate": "defines:tests/test_units.py;test_scan_repo_extracts_symbols_imports_and_docs",
+      "statement": "The module defines a test function named test_scan_repo_extracts_symbols_imports_and_docs",
+      "verdict": "TRUE"
+    },
+    {
+      "detail": "tests/test_units.py defines test_scan_tolerates_syntax_errors",
+      "ehash": "ff1973ec12e5",
+      "evidence": "tests/test_units.py:58",
+      "id": "c-c8b249d6",
+      "oracle": "graph",
+      "predicate": "defines:tests/test_units.py;test_scan_tolerates_syntax_errors",
+      "statement": "The module defines a test function named test_scan_tolerates_syntax_errors",
+      "verdict": "TRUE"
+    },
+    {
+      "detail": "tests/test_units.py defines test_write_scan_and_find_graph_roundtrip",
+      "ehash": "38fc5620fcee",
+      "evidence": "tests/test_units.py:64",
+      "id": "c-62802617",
+      "oracle": "graph",
+      "predicate": "defines:tests/test_units.py;test_write_scan_and_find_graph_roundtrip",
+      "statement": "The module defines a test function named test_write_scan_and_find_graph_roundtrip",
+      "verdict": "TRUE"
+    },
+    {
+      "detail": "tests/test_units.py defines test_scan_excludes_gitignored_build_artifacts",
+      "ehash": "90daaaa83a75",
+      "evidence": "tests/test_units.py:82",
+      "id": "c-5fcd78fa",
+      "oracle": "graph",
+      "predicate": "defines:tests/test_units.py;test_scan_excludes_gitignored_build_artifacts",
+      "statement": "The module defines a test function named test_scan_excludes_gitignored_build_artifacts",
+      "verdict": "TRUE"
+    },
+    {
+      "detail": "no import edge tests/test_units.py->isidore.toon in the graph; imports are partially resolved, so absence is not decidable",
+      "ehash": "3209ea8a84f2",
+      "evidence": "tests/test_units.py:21",
+      "id": "c-b302ba15",
+      "oracle": "none",
+      "predicate": "imports:tests/test_units.py;isidore.toon",
+      "statement": "The module imports encode_table from isidore.toon",
+      "verdict": "UNDECIDABLE"
+    },
+    {
+      "detail": "no import edge tests/test_units.py->isidore.graph in the graph; imports are partially resolved, so absence is not decidable",
+      "ehash": "7702b939f411",
+      "evidence": "tests/test_units.py:16",
+      "id": "c-f34307a0",
+      "oracle": "none",
+      "predicate": "imports:tests/test_units.py;isidore.graph",
+      "statement": "The module imports scan_repo from isidore.graph",
+      "verdict": "UNDECIDABLE"
+    }
+  ],
+  "graph_commit": "3f4179988e00df03aec751ce3053e147645c7381",
+  "marks": [
+    {
+      "disposition": "",
+      "family": "topology",
+      "file": "tests/test_units.py",
+      "line": 1,
+      "reason": "auth/secret/crypto surface (direct)",
+      "severity": "info"
+    },
+    {
+      "disposition": "",
+      "family": "entropy",
+      "file": "tests/test_units.py",
+      "line": 268,
+      "reason": "credential-shaped literal (sk- prefix)",
+      "severity": "danger"
+    }
+  ],
+  "mass": {
+    "gray": 18,
+    "green": 14,
+    "yellow": 2
+  },
+  "page": "tests-test_units_py.md",
+  "prose_sha256": "8a16616705542e04c1426a66ce6dd6d74b6168983adbdd25ecaabe8ee40521d3",
+  "version": "pcp-1",
+  "violations": [
+    {
+      "detail": "Security-relevant mark (entropy) at tests/test_units.py:268 has no covering claim.",
+      "kind": "mark-uncovered",
+      "where": "tests/test_units.py:268"
+    }
+  ]
+}

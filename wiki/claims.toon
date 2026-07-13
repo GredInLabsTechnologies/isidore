@@ -1,31 +1,53 @@
-# isidore claims · commit 4e29c9bd4203ed06b6b11ae2ea4a12d79cd05fc2
+# isidore claims · commit 3f4179988e00df03aec751ce3053e147645c7381
 # each claim is anchored to its evidence by a content hash; state is re-checked
 # mechanically on every compile (zero LLM calls). stale/orphan => page regenerates.
-# summary: 26 claims, 0 stale/orphan
-claims[26]{page,id,statement,evidence,state}:
-  src-isidore.md,c-c14bacf4,The compiler pipeline is deterministic except for a single bounded LLM call per dirty page,src/isidore/pipeline.py:3,ok
-  src-isidore.md,c-bf503b58,Isidore detects claim-level staleness without any LLM calls,src/isidore/claims.py:5,ok
-  src-isidore.md,c-85889738,"Claim hashes are computed as a SHA‑256 over the cited line ±2 lines, whitespace‑normalized, then truncated to 12 hex characters",src/isidore/claims.py:13,ok
-  src-isidore.md,c-ebebcfdb,"The structure graph format is a JSON object with \"nodes\" and \"links\" (or \"edges\") arrays",src/isidore/graph.py:5,ok
-  src-isidore.md,c-8d99f308,The CLI 'claims' subcommand performs a zero‑LLM staleness audit and can exit with code 1 if any claim is stale,src/isidore/cli.py:8,ok
-  src-isidore.md,c-cdaf8b1e,Findings are side observations collected during compilation with near‑zero marginal cost,src/isidore/findings.py:1,ok
-  tests-test_claims_py.md,c-dbf1eff7,"module docstring describes claims parsing, anchoring/quarantine, and zero‑LLM staleness property",tests/test_claims.py:1,ok
-  tests-test_claims_py.md,c-c9749e72,"module imports anchor_claims, check_claims, claim_id, evidence_hash, evidence_state, parse_claims_block, render_claims, stale_pages from isidore.claims",tests/test_claims.py:8,ok
-  tests-test_claims_py.md,c-a018aa4c,_make_repo creates 12 source files each with 10 lines and a graph.json file in a graphify-out directory,tests/test_claims.py:40,ok
-  tests-test_claims_py.md,c-bd25700a,"test_parse_claims_block_extracts_and_stips verifies that the cleaned page no longer contains \"isidore-claims\" and still contains \"Fine page.\"",tests/test_claims.py:58,ok
-  tests-test_claims_py.md,c-1b17ffe5,test_evidence_hash_is_the_cited_line_content confirms evidence_hash returns a deterministic 12‑character hash for a valid citation and None for missing files or out‑of‑range lines,tests/test_claims.py:67,ok
-  tests-test_claims_py.md,c-daa814f5,"test_evidence_state_ignores_neighbors_whitespace_and_line_shifts confirms that changing a neighboring line, re‑indenting, or inserting lines above does not mark a citation stale, but modifying the cited line marks it stale and deleting the file marks it orphan",tests/test_claims.py:88,ok
-  tests-test_pipeline_py.md,c-4fa450c5,"_node returns a dict with keys \"id\", \"source_file\", \"file_type\", \"label\", and \"source_location\".",tests/test_pipeline.py:27,ok
-  tests-test_pipeline_py.md,c-c1aeef72,"_link returns a dict with keys \"source\", \"target\", and \"relation\".",tests/test_pipeline.py:32,ok
-  tests-test_pipeline_py.md,c-1d792d55,"_make_repo writes a JSON file named \"graph.json\" under \"graphify-out\".",tests/test_pipeline.py:54,ok
-  tests-test_pipeline_py.md,c-20a58bef,"_graph reads \"graph.json\" and returns the contained \"nodes\" and \"links\".",tests/test_pipeline.py:61,ok
-  tests-test_pipeline_py.md,c-6c388507,"_gp returns the path to \"graph.json\" inside the repository.",tests/test_pipeline.py:65,ok
-  tests-test_pipeline_py.md,c-c056b748,"test_plan_pages_selects_top_modules_excluding_small_and_concepts asserts that plan_pages returns specs named \"mod0/core\", \"mod1/core\", and \"mod2/core\".",tests/test_pipeline.py:78,ok
-  tests-test_pipeline_py.md,c-2d0609d1,test_plan_pages_top_k_and_none_means_all asserts that top_k=2 yields two specs and top_k=None yields three specs.,tests/test_pipeline.py:85,ok
-  tests-test_pipeline_py.md,c-d132f684,test_plan_pages_records_cross_module_deps is defined to test cross‑module dependency recording.,tests/test_pipeline.py:88,ok
-  tests-test_units_py.md,c-9caef5bc,"encode_table(\"t\", [\"a\",\"b\"], [{\"a\":\"x,y\",\"b\":None},{\"a\":\"\",\"b\":True}]) produces the lines ['t[2]{a,b}:','  \"x,y\",','  ,1']",tests/test_units.py:28,ok
-  tests-test_units_py.md,c-83ce9653,"module_of(\"a/b/c.py\", 2) returns \"a/b\"",tests/test_units.py:34,ok
-  tests-test_units_py.md,c-fe192535,"scan_repo(tmp_path) yields node labels that include \"alpha.py\", \"beta.py\", \"top()\", \"Thing\", \"helper()\", and \"notes.md\"",tests/test_units.py:52,ok
-  tests-test_units_py.md,c-8c17b4af,"scan_repo(tmp_path) never produces nodes whose source_file path contains \".venv\"",tests/test_units.py:53,ok
-  tests-test_units_py.md,c-3a7580a7,write_scan(tmp_path) returns a path such that find_graph(tmp_path) equals that path,tests/test_units.py:67,ok
-  tests-test_units_py.md,c-5c326b9d,"parse_findings_block(md) strips the ``isidore-findings`` fence and extracts findings kinds [\"bug\",\"drift\",\"question\"]",tests/test_units.py:84,ok
+# summary: 48 claims, 0 stale/orphan
+claims[48]{page,id,statement,evidence,state}:
+  src-isidore.md,c-0e461ef1,The pipeline is deterministic except for a single bounded LLM call per dirty page.,src/isidore/pipeline.py:3,ok
+  src-isidore.md,c-709e4b57,"The graph format accepts \"edges\" or \"links\" for relationships.",src/isidore/graph.py:8,ok
+  src-isidore.md,c-a1cb0639,Claims are anchored to code with a content hash of the cited lines.,src/isidore/claims.py:5,ok
+  src-isidore.md,c-ea8bca6b,"A verifier returns TRUE, FALSE, or UNDECIDABLE.",src/isidore/verify.py:9,ok
+  src-isidore.md,c-c577ed6e,The SEARCH_RADIUS for claim evidence is 40 lines.,src/isidore/claims.py:26,ok
+  src-isidore.md,c-528fb5cc,Findings are stored in wiki/findings.toon.,src/isidore/findings.py:23,ok
+  src-isidore.md,c-cc4a7498,The pipeline preserves line-ending style of files.,src/isidore/pipeline.py:16,ok
+  src-isidore.md,c-acb2b659,The verifier for `calls` may reparse the cited file's AST.,src/isidore/verify.py:7,ok
+  src-isidore.md,c-bfe70065,The `defines` verifier uses the graph.json oracle.,src/isidore/verify.py:4,ok
+  src-isidore.md,c-faaa035b,The `imports` verifier uses the graph.json oracle.,src/isidore/verify.py:4,ok
+  src-isidore.md,c-74e1849e,The `env` verifier uses a deterministic textual scan.,src/isidore/verify.py:7,ok
+  tests-test_claims_py.md,c-bc3cb03c,The module tests the classification of existential vs. behavioral claims,tests/test_claims.py:21,ok
+  tests-test_claims_py.md,c-6d8eca4a,The module verifies that claims are parsed from Markdown blocks,tests/test_claims.py:82,ok
+  tests-test_claims_py.md,c-775dd23e,The evidence hash is computed from the cited line's content,tests/test_claims.py:90,ok
+  tests-test_claims_py.md,c-3fd44a28,The evidence state ignores changes to neighboring lines,tests/test_claims.py:106,ok
+  tests-test_claims_py.md,c-5def4d5c,The module uses a synthetic repository for testing,tests/test_claims.py:59,ok
+  tests-test_claims_py.md,c-660f723b,The evidence hash changes when the cited line is modified,tests/test_claims.py:100,ok
+  tests-test_claims_py.md,c-19fdb569,The claims block is stripped after parsing,tests/test_claims.py:83,ok
+  tests-test_connectors_f1_py.md,c-8cdbe090,The module tests the idempotency of the GitRepoConnector,tests/test_connectors_f1.py:3,ok
+  tests-test_connectors_f1_py.md,c-9a6859fa,The test ensures re-ingesting a git repo with no changes yields zero items,tests/test_connectors_f1.py:3,ok
+  tests-test_connectors_f1_py.md,c-ed2c2e3f,The helper function _make_repo creates a git repository with a single commit,tests/test_connectors_f1.py:22,ok
+  tests-test_connectors_f1_py.md,c-182ccfa4,The test verifies that the knowledge home directory can be overridden via environment variables,tests/test_connectors_f1.py:40,ok
+  tests-test_connectors_f1_py.md,c-7f94a037,The test confirms that items are written to the store with a content hash (chash),tests/test_connectors_f1.py:47,ok
+  tests-test_connectors_f1_py.md,c-b0f03811,The test ensures that the original item dictionary remains unmodified,tests/test_connectors_f1.py:50,ok
+  tests-test_connectors_f1_py.md,c-385d77c7,The test validates that missing or corrupt state files return a default state structure,tests/test_connectors_f1.py:57,ok
+  tests-test_connectors_f1_py.md,c-a0d82f97,The test confirms that only the last 20 runs are retained in the state,tests/test_connectors_f1.py:67,ok
+  tests-test_langspec_py.md,c-375c73b5,The module tests the multi-language scanner's declarative engine,tests/test_langspec.py:L1,ok
+  tests-test_pcp_seams_py.md,c-d2a67c87,The module tests/test_pcp_seams.py exists to validate the PCP seam's public surface,tests/test_pcp_seams.py:1,ok
+  tests-test_pcp_seams_py.md,c-5f9ce12c,The test_golden_graph_loads function validates the golden graph fixture,tests/test_pcp_seams.py:36,ok
+  tests-test_pcp_seams_py.md,c-4852e1fb,The test_golden_certificate_round_trips function ensures certificates can round-trip,tests/test_pcp_seams.py:42,ok
+  tests-test_pcp_seams_py.md,c-4b85d69e,The test_golden_contracts_load function validates the contracts fixture,tests/test_pcp_seams.py:57,ok
+  tests-test_pcp_seams_py.md,c-4f2088d9,The test_golden_marks_and_pyramid_config_parse function checks marks and pyramid config parsing,tests/test_pcp_seams.py:62,ok
+  tests-test_pcp_seams_py.md,c-32861597,The test_predicate_parse_and_serialize_round_trip function tests predicate parsing and serialization,tests/test_pcp_seams.py:77,ok
+  tests-test_pcp_seams_py.md,c-56980526,The test_registry_has_every_kind_and_is_fail_closed function validates the predicate registry,tests/test_pcp_seams.py:95,ok
+  tests-test_pipeline_py.md,c-89643527,The module tests the `plan_pages` function from `isidore.pipeline`,tests/test_pipeline.py:70,ok
+  tests-test_pipeline_py.md,c-f569abca,The `_make_repo` function generates a synthetic repository with configurable modules and symbols,tests/test_pipeline.py:35,ok
+  tests-test_pipeline_py.md,c-9465ff6d,The `_graph` function loads the graph data from the synthetic repository,tests/test_pipeline.py:59,ok
+  tests-test_pipeline_py.md,c-6bc815c8,"The test cases validate the `plan_pages` function's behavior, including selecting top modules and handling `top_k` parameters",tests/test_pipeline.py:70,ok
+  tests-test_pipeline_py.md,c-79fcfab5,The module uses `pytest` for testing,tests/test_pipeline.py:7,ok
+  tests-test_pipeline_py.md,c-9584370d,The module depends on `isidore.pipeline` for the `plan_pages` function,tests/test_pipeline.py:16,ok
+  tests-test_security_prose_py.md,c-5fac1357,The module tests security escalation logic,tests/test_security_prose.py:1,ok
+  tests-test_security_prose_py.md,c-7612e86b,The test detects a camouflaged backdoor,tests/test_security_prose.py:21,ok
+  tests-test_security_prose_py.md,c-9a3e7142,The test verifies common security vocabulary,tests/test_security_prose.py:25,ok
+  tests-test_security_prose_py.md,c-1a5e017c,The test ignores non-security findings,tests/test_security_prose.py:38,ok
+  tests-test_security_prose_py.md,c-ca54fa6f,The test prevents false positives for safety-affirming notes,tests/test_security_prose.py:45,ok
+  tests-test_security_prose_py.md,c-20b8f5a7,The test catches hardcoded secrets with intervening words,tests/test_security_prose.py:58,ok
+  tests-test_security_prose_py.md,c-987fa7c7,The banner is loud and lists evidence,tests/test_security_prose.py:66,ok
+  tests-test_security_prose_py.md,c-1c32be3f,The banner is placed under the H1,tests/test_security_prose.py:79,ok

@@ -1,0 +1,542 @@
+{
+  "child_cert_hashes": {},
+  "claims": [
+    {
+      "detail": "no predicate (existence-anchored only)",
+      "ehash": "906171e70802",
+      "evidence": "src/isidore/pipeline.py:3",
+      "id": "c-0e461ef1",
+      "oracle": "none",
+      "predicate": "",
+      "statement": "The pipeline is deterministic except for a single bounded LLM call per dirty page.",
+      "verdict": "UNDECIDABLE"
+    },
+    {
+      "detail": "no predicate (existence-anchored only)",
+      "ehash": "802c051ee918",
+      "evidence": "src/isidore/graph.py:8",
+      "id": "c-709e4b57",
+      "oracle": "none",
+      "predicate": "",
+      "statement": "The graph format accepts \"edges\" or \"links\" for relationships.",
+      "verdict": "UNDECIDABLE"
+    },
+    {
+      "detail": "src/isidore/claims.py defines anchor_claims",
+      "ehash": "d5ee2ef5c05e",
+      "evidence": "src/isidore/claims.py:5",
+      "id": "c-a1cb0639",
+      "oracle": "graph",
+      "predicate": "defines:src/isidore/claims.py;anchor_claims",
+      "statement": "Claims are anchored to code with a content hash of the cited lines.",
+      "verdict": "TRUE"
+    },
+    {
+      "detail": "no predicate (existence-anchored only)",
+      "ehash": "5af45019f483",
+      "evidence": "src/isidore/verify.py:9",
+      "id": "c-ea8bca6b",
+      "oracle": "none",
+      "predicate": "",
+      "statement": "A verifier returns TRUE, FALSE, or UNDECIDABLE.",
+      "verdict": "UNDECIDABLE"
+    },
+    {
+      "detail": "SEARCH_RADIUS == 40",
+      "ehash": "864eebe9fea0",
+      "evidence": "src/isidore/claims.py:26",
+      "id": "c-c577ed6e",
+      "oracle": "ast",
+      "predicate": "value:SEARCH_RADIUS;40",
+      "statement": "The SEARCH_RADIUS for claim evidence is 40 lines.",
+      "verdict": "TRUE"
+    },
+    {
+      "detail": "affected_modules has no call to git",
+      "ehash": "1ab714f1e140",
+      "evidence": "src/isidore/pipeline.py:22",
+      "id": "c-10842d3d",
+      "oracle": "ast",
+      "predicate": "calls:affected_modules;git",
+      "statement": "The module uses git as the source of truth for file changes.",
+      "verdict": "FALSE"
+    },
+    {
+      "detail": "no predicate (existence-anchored only)",
+      "ehash": "25be119bb8c1",
+      "evidence": "src/isidore/findings.py:23",
+      "id": "c-528fb5cc",
+      "oracle": "none",
+      "predicate": "",
+      "statement": "Findings are stored in wiki/findings.toon.",
+      "verdict": "UNDECIDABLE"
+    },
+    {
+      "detail": "caller 'preserve_line_endings' not a Python symbol in the graph",
+      "ehash": "7d8752c4c7ea",
+      "evidence": "src/isidore/pipeline.py:16",
+      "id": "c-cc4a7498",
+      "oracle": "none",
+      "predicate": "calls:preserve_line_endings;git",
+      "statement": "The pipeline preserves line-ending style of files.",
+      "verdict": "UNDECIDABLE"
+    },
+    {
+      "detail": "no predicate (existence-anchored only)",
+      "ehash": "d5b772e9dd54",
+      "evidence": "src/isidore/verify.py:7",
+      "id": "c-acb2b659",
+      "oracle": "none",
+      "predicate": "",
+      "statement": "The verifier for `calls` may reparse the cited file's AST.",
+      "verdict": "UNDECIDABLE"
+    },
+    {
+      "detail": "caller 'defines_verifier' not a Python symbol in the graph",
+      "ehash": "b1bd38130168",
+      "evidence": "src/isidore/verify.py:4",
+      "id": "c-bfe70065",
+      "oracle": "none",
+      "predicate": "calls:defines_verifier;graph.json",
+      "statement": "The `defines` verifier uses the graph.json oracle.",
+      "verdict": "UNDECIDABLE"
+    },
+    {
+      "detail": "caller 'imports_verifier' not a Python symbol in the graph",
+      "ehash": "b1bd38130168",
+      "evidence": "src/isidore/verify.py:4",
+      "id": "c-faaa035b",
+      "oracle": "none",
+      "predicate": "calls:imports_verifier;graph.json",
+      "statement": "The `imports` verifier uses the graph.json oracle.",
+      "verdict": "UNDECIDABLE"
+    },
+    {
+      "detail": "no predicate (existence-anchored only)",
+      "ehash": "d5b772e9dd54",
+      "evidence": "src/isidore/verify.py:7",
+      "id": "c-74e1849e",
+      "oracle": "none",
+      "predicate": "",
+      "statement": "The `env` verifier uses a deterministic textual scan.",
+      "verdict": "UNDECIDABLE"
+    }
+  ],
+  "graph_commit": "3f4179988e00df03aec751ce3053e147645c7381",
+  "marks": [
+    {
+      "disposition": "",
+      "family": "topology",
+      "file": "src/isidore/__init__.py",
+      "line": 1,
+      "reason": "reachable from auth/secret surface: src/isidore/detectors.py",
+      "severity": "info"
+    },
+    {
+      "disposition": "",
+      "family": "topology",
+      "file": "src/isidore/changeset.py",
+      "line": 1,
+      "reason": "reachable from auth/secret surface: src/isidore/detectors.py",
+      "severity": "info"
+    },
+    {
+      "disposition": "",
+      "family": "topology",
+      "file": "src/isidore/claims.py",
+      "line": 1,
+      "reason": "reachable from auth/secret surface: src/isidore/detectors.py",
+      "severity": "info"
+    },
+    {
+      "disposition": "",
+      "family": "topology",
+      "file": "src/isidore/cli.py",
+      "line": 1,
+      "reason": "reachable from auth/secret surface: src/isidore/detectors.py",
+      "severity": "info"
+    },
+    {
+      "disposition": "",
+      "family": "topology",
+      "file": "src/isidore/contracts.py",
+      "line": 1,
+      "reason": "reachable from auth/secret surface: src/isidore/detectors.py",
+      "severity": "info"
+    },
+    {
+      "disposition": "",
+      "family": "topology",
+      "file": "src/isidore/detectors.py",
+      "line": 1,
+      "reason": "auth/secret/crypto surface (direct)",
+      "severity": "info"
+    },
+    {
+      "disposition": "",
+      "family": "entropy",
+      "file": "src/isidore/detectors.py",
+      "line": 29,
+      "reason": "credential-shaped literal (-----BEGIN prefix)",
+      "severity": "danger"
+    },
+    {
+      "disposition": "",
+      "family": "entropy",
+      "file": "src/isidore/detectors.py",
+      "line": 29,
+      "reason": "credential-shaped literal (AIza prefix)",
+      "severity": "danger"
+    },
+    {
+      "disposition": "",
+      "family": "entropy",
+      "file": "src/isidore/detectors.py",
+      "line": 29,
+      "reason": "credential-shaped literal (AKIA prefix)",
+      "severity": "danger"
+    },
+    {
+      "disposition": "",
+      "family": "entropy",
+      "file": "src/isidore/detectors.py",
+      "line": 29,
+      "reason": "credential-shaped literal (gho_ prefix)",
+      "severity": "danger"
+    },
+    {
+      "disposition": "",
+      "family": "entropy",
+      "file": "src/isidore/detectors.py",
+      "line": 29,
+      "reason": "credential-shaped literal (ghp_ prefix)",
+      "severity": "danger"
+    },
+    {
+      "disposition": "",
+      "family": "entropy",
+      "file": "src/isidore/detectors.py",
+      "line": 29,
+      "reason": "credential-shaped literal (glpat- prefix)",
+      "severity": "danger"
+    },
+    {
+      "disposition": "",
+      "family": "entropy",
+      "file": "src/isidore/detectors.py",
+      "line": 29,
+      "reason": "credential-shaped literal (ya29. prefix)",
+      "severity": "danger"
+    },
+    {
+      "disposition": "",
+      "family": "sink",
+      "file": "src/isidore/detectors.py",
+      "line": 34,
+      "reason": "eval()",
+      "severity": "danger"
+    },
+    {
+      "disposition": "",
+      "family": "sink",
+      "file": "src/isidore/detectors.py",
+      "line": 35,
+      "reason": "exec()",
+      "severity": "danger"
+    },
+    {
+      "disposition": "",
+      "family": "sink",
+      "file": "src/isidore/detectors.py",
+      "line": 36,
+      "reason": "os.system()",
+      "severity": "danger"
+    },
+    {
+      "disposition": "",
+      "family": "sink",
+      "file": "src/isidore/detectors.py",
+      "line": 38,
+      "reason": "pickle.loads()",
+      "severity": "danger"
+    },
+    {
+      "disposition": "",
+      "family": "sink",
+      "file": "src/isidore/detectors.py",
+      "line": 39,
+      "reason": "yaml.load() without Loader",
+      "severity": "danger"
+    },
+    {
+      "disposition": "",
+      "family": "sink",
+      "file": "src/isidore/detectors.py",
+      "line": 43,
+      "reason": "eval()",
+      "severity": "danger"
+    },
+    {
+      "disposition": "",
+      "family": "topology",
+      "file": "src/isidore/export.py",
+      "line": 1,
+      "reason": "reachable from auth/secret surface: src/isidore/detectors.py",
+      "severity": "info"
+    },
+    {
+      "disposition": "",
+      "family": "topology",
+      "file": "src/isidore/findings.py",
+      "line": 1,
+      "reason": "reachable from auth/secret surface: src/isidore/detectors.py",
+      "severity": "info"
+    },
+    {
+      "disposition": "",
+      "family": "topology",
+      "file": "src/isidore/graph.py",
+      "line": 1,
+      "reason": "reachable from auth/secret surface: src/isidore/detectors.py",
+      "severity": "info"
+    },
+    {
+      "disposition": "",
+      "family": "topology",
+      "file": "src/isidore/humanpack.py",
+      "line": 1,
+      "reason": "reachable from auth/secret surface: src/isidore/detectors.py",
+      "severity": "info"
+    },
+    {
+      "disposition": "",
+      "family": "topology",
+      "file": "src/isidore/impact.py",
+      "line": 1,
+      "reason": "reachable from auth/secret surface: src/isidore/detectors.py",
+      "severity": "info"
+    },
+    {
+      "disposition": "",
+      "family": "topology",
+      "file": "src/isidore/journal.py",
+      "line": 1,
+      "reason": "reachable from auth/secret surface: src/isidore/detectors.py",
+      "severity": "info"
+    },
+    {
+      "disposition": "",
+      "family": "topology",
+      "file": "src/isidore/llm.py",
+      "line": 1,
+      "reason": "reachable from auth/secret surface: src/isidore/detectors.py",
+      "severity": "info"
+    },
+    {
+      "disposition": "",
+      "family": "topology",
+      "file": "src/isidore/pcp.py",
+      "line": 1,
+      "reason": "reachable from auth/secret surface: src/isidore/detectors.py",
+      "severity": "info"
+    },
+    {
+      "disposition": "",
+      "family": "entropy",
+      "file": "src/isidore/pcp.py",
+      "line": 207,
+      "reason": "high-entropy literal (>=24 chars, >=3.5 bits/char)",
+      "severity": "danger"
+    },
+    {
+      "disposition": "",
+      "family": "topology",
+      "file": "src/isidore/pipeline.py",
+      "line": 1,
+      "reason": "reachable from auth/secret surface: src/isidore/detectors.py",
+      "severity": "info"
+    },
+    {
+      "disposition": "",
+      "family": "topology",
+      "file": "src/isidore/pyramid.py",
+      "line": 1,
+      "reason": "reachable from auth/secret surface: src/isidore/detectors.py",
+      "severity": "info"
+    },
+    {
+      "disposition": "",
+      "family": "topology",
+      "file": "src/isidore/qa.py",
+      "line": 1,
+      "reason": "reachable from auth/secret surface: src/isidore/detectors.py",
+      "severity": "info"
+    },
+    {
+      "disposition": "",
+      "family": "topology",
+      "file": "src/isidore/reconcile.py",
+      "line": 1,
+      "reason": "reachable from auth/secret surface: src/isidore/detectors.py",
+      "severity": "info"
+    },
+    {
+      "disposition": "",
+      "family": "entropy",
+      "file": "src/isidore/reconcile.py",
+      "line": 76,
+      "reason": "high-entropy literal (>=24 chars, >=3.5 bits/char)",
+      "severity": "danger"
+    },
+    {
+      "disposition": "",
+      "family": "entropy",
+      "file": "src/isidore/reconcile.py",
+      "line": 93,
+      "reason": "high-entropy literal (>=24 chars, >=3.5 bits/char)",
+      "severity": "danger"
+    },
+    {
+      "disposition": "",
+      "family": "entropy",
+      "file": "src/isidore/reconcile.py",
+      "line": 110,
+      "reason": "high-entropy literal (>=24 chars, >=3.5 bits/char)",
+      "severity": "danger"
+    },
+    {
+      "disposition": "",
+      "family": "entropy",
+      "file": "src/isidore/reconcile.py",
+      "line": 119,
+      "reason": "high-entropy literal (>=24 chars, >=3.5 bits/char)",
+      "severity": "danger"
+    },
+    {
+      "disposition": "",
+      "family": "topology",
+      "file": "src/isidore/render.py",
+      "line": 1,
+      "reason": "reachable from auth/secret surface: src/isidore/detectors.py",
+      "severity": "info"
+    },
+    {
+      "disposition": "",
+      "family": "topology",
+      "file": "src/isidore/verify.py",
+      "line": 1,
+      "reason": "reachable from auth/secret surface: src/isidore/detectors.py",
+      "severity": "info"
+    }
+  ],
+  "mass": {
+    "gray": 38,
+    "green": 20,
+    "yellow": 1
+  },
+  "page": "src-isidore.md",
+  "prose_sha256": "476d13b003437e74272f328e5cb2318d4700482bf073e5d82e9add8eeccb06e6",
+  "version": "pcp-1",
+  "violations": [
+    {
+      "detail": "Prose omits mention of file 'src/isidore/pipeline.py' cited in finding.",
+      "kind": "prose-omits-finding",
+      "where": "src/isidore/pipeline.py:16"
+    },
+    {
+      "detail": "Prose omits mention of file 'src/isidore/claims.py' cited in finding.",
+      "kind": "prose-omits-finding",
+      "where": "src/isidore/claims.py:26"
+    },
+    {
+      "detail": "Security-relevant mark (entropy) at src/isidore/detectors.py:29 has no covering claim.",
+      "kind": "mark-uncovered",
+      "where": "src/isidore/detectors.py:29"
+    },
+    {
+      "detail": "Security-relevant mark (entropy) at src/isidore/detectors.py:29 has no covering claim.",
+      "kind": "mark-uncovered",
+      "where": "src/isidore/detectors.py:29"
+    },
+    {
+      "detail": "Security-relevant mark (entropy) at src/isidore/detectors.py:29 has no covering claim.",
+      "kind": "mark-uncovered",
+      "where": "src/isidore/detectors.py:29"
+    },
+    {
+      "detail": "Security-relevant mark (entropy) at src/isidore/detectors.py:29 has no covering claim.",
+      "kind": "mark-uncovered",
+      "where": "src/isidore/detectors.py:29"
+    },
+    {
+      "detail": "Security-relevant mark (entropy) at src/isidore/detectors.py:29 has no covering claim.",
+      "kind": "mark-uncovered",
+      "where": "src/isidore/detectors.py:29"
+    },
+    {
+      "detail": "Security-relevant mark (entropy) at src/isidore/detectors.py:29 has no covering claim.",
+      "kind": "mark-uncovered",
+      "where": "src/isidore/detectors.py:29"
+    },
+    {
+      "detail": "Security-relevant mark (entropy) at src/isidore/detectors.py:29 has no covering claim.",
+      "kind": "mark-uncovered",
+      "where": "src/isidore/detectors.py:29"
+    },
+    {
+      "detail": "Security-relevant mark (sink) at src/isidore/detectors.py:34 has no covering claim.",
+      "kind": "mark-uncovered",
+      "where": "src/isidore/detectors.py:34"
+    },
+    {
+      "detail": "Security-relevant mark (sink) at src/isidore/detectors.py:35 has no covering claim.",
+      "kind": "mark-uncovered",
+      "where": "src/isidore/detectors.py:35"
+    },
+    {
+      "detail": "Security-relevant mark (sink) at src/isidore/detectors.py:36 has no covering claim.",
+      "kind": "mark-uncovered",
+      "where": "src/isidore/detectors.py:36"
+    },
+    {
+      "detail": "Security-relevant mark (sink) at src/isidore/detectors.py:38 has no covering claim.",
+      "kind": "mark-uncovered",
+      "where": "src/isidore/detectors.py:38"
+    },
+    {
+      "detail": "Security-relevant mark (sink) at src/isidore/detectors.py:39 has no covering claim.",
+      "kind": "mark-uncovered",
+      "where": "src/isidore/detectors.py:39"
+    },
+    {
+      "detail": "Security-relevant mark (sink) at src/isidore/detectors.py:43 has no covering claim.",
+      "kind": "mark-uncovered",
+      "where": "src/isidore/detectors.py:43"
+    },
+    {
+      "detail": "Security-relevant mark (entropy) at src/isidore/pcp.py:207 has no covering claim.",
+      "kind": "mark-uncovered",
+      "where": "src/isidore/pcp.py:207"
+    },
+    {
+      "detail": "Security-relevant mark (entropy) at src/isidore/reconcile.py:76 has no covering claim.",
+      "kind": "mark-uncovered",
+      "where": "src/isidore/reconcile.py:76"
+    },
+    {
+      "detail": "Security-relevant mark (entropy) at src/isidore/reconcile.py:93 has no covering claim.",
+      "kind": "mark-uncovered",
+      "where": "src/isidore/reconcile.py:93"
+    },
+    {
+      "detail": "Security-relevant mark (entropy) at src/isidore/reconcile.py:110 has no covering claim.",
+      "kind": "mark-uncovered",
+      "where": "src/isidore/reconcile.py:110"
+    },
+    {
+      "detail": "Security-relevant mark (entropy) at src/isidore/reconcile.py:119 has no covering claim.",
+      "kind": "mark-uncovered",
+      "where": "src/isidore/reconcile.py:119"
+    }
+  ]
+}

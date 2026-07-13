@@ -1,0 +1,76 @@
+{
+  "child_cert_hashes": {},
+  "claims": [
+    {
+      "detail": "test_plan_pages_selects_top_modules_excluding_small_and_concepts calls plan_pages",
+      "ehash": "68c72366c749",
+      "evidence": "tests/test_pipeline.py:70",
+      "id": "c-89643527",
+      "oracle": "ast",
+      "predicate": "calls:test_plan_pages_selects_top_modules_excluding_small_and_concepts;plan_pages",
+      "statement": "The module tests the `plan_pages` function from `isidore.pipeline`",
+      "verdict": "TRUE"
+    },
+    {
+      "detail": "tests/test_pipeline.py defines _make_repo",
+      "ehash": "0164cd6d162e",
+      "evidence": "tests/test_pipeline.py:35",
+      "id": "c-f569abca",
+      "oracle": "graph",
+      "predicate": "defines:tests/test_pipeline.py;_make_repo",
+      "statement": "The `_make_repo` function generates a synthetic repository with configurable modules and symbols",
+      "verdict": "TRUE"
+    },
+    {
+      "detail": "tests/test_pipeline.py defines _graph",
+      "ehash": "6b6b7479841e",
+      "evidence": "tests/test_pipeline.py:59",
+      "id": "c-9465ff6d",
+      "oracle": "graph",
+      "predicate": "defines:tests/test_pipeline.py;_graph",
+      "statement": "The `_graph` function loads the graph data from the synthetic repository",
+      "verdict": "TRUE"
+    },
+    {
+      "detail": "test_plan_pages_selects_top_modules_excluding_small_and_concepts calls plan_pages",
+      "ehash": "68c72366c749",
+      "evidence": "tests/test_pipeline.py:70",
+      "id": "c-6bc815c8",
+      "oracle": "ast",
+      "predicate": "calls:test_plan_pages_selects_top_modules_excluding_small_and_concepts;plan_pages",
+      "statement": "The test cases validate the `plan_pages` function's behavior, including selecting top modules and handling `top_k` parameters",
+      "verdict": "TRUE"
+    },
+    {
+      "detail": "no import edge tests/test_pipeline.py->pytest in the graph; imports are partially resolved, so absence is not decidable",
+      "ehash": "db7b0741c947",
+      "evidence": "tests/test_pipeline.py:7",
+      "id": "c-79fcfab5",
+      "oracle": "none",
+      "predicate": "imports:tests/test_pipeline.py;pytest",
+      "statement": "The module uses `pytest` for testing",
+      "verdict": "UNDECIDABLE"
+    },
+    {
+      "detail": "no import edge tests/test_pipeline.py->isidore.pipeline in the graph; imports are partially resolved, so absence is not decidable",
+      "ehash": "766ab5923c30",
+      "evidence": "tests/test_pipeline.py:16",
+      "id": "c-9584370d",
+      "oracle": "none",
+      "predicate": "imports:tests/test_pipeline.py;isidore.pipeline",
+      "statement": "The module depends on `isidore.pipeline` for the `plan_pages` function",
+      "verdict": "UNDECIDABLE"
+    }
+  ],
+  "graph_commit": "3f4179988e00df03aec751ce3053e147645c7381",
+  "marks": [],
+  "mass": {
+    "gray": 10,
+    "green": 18,
+    "yellow": 1
+  },
+  "page": "tests-test_pipeline_py.md",
+  "prose_sha256": "c6f2eb641a1f1f738dfd4bbeadfdeaae3f8e4dc1ef55711c0fca8dca00eb8c80",
+  "version": "pcp-1",
+  "violations": []
+}

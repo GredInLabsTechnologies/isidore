@@ -1,0 +1,86 @@
+{
+  "child_cert_hashes": {},
+  "claims": [
+    {
+      "detail": "no predicate (existence-anchored only)",
+      "ehash": "0f534ef449cd",
+      "evidence": "tests/test_pcp_seams.py:1",
+      "id": "c-d2a67c87",
+      "oracle": "none",
+      "predicate": "",
+      "statement": "The module tests/test_pcp_seams.py exists to validate the PCP seam's public surface",
+      "verdict": "UNDECIDABLE"
+    },
+    {
+      "detail": "test_golden_graph_loads calls load_graph",
+      "ehash": "f2d4efdb85bc",
+      "evidence": "tests/test_pcp_seams.py:36",
+      "id": "c-5f9ce12c",
+      "oracle": "ast",
+      "predicate": "calls:test_golden_graph_loads;load_graph",
+      "statement": "The test_golden_graph_loads function validates the golden graph fixture",
+      "verdict": "TRUE"
+    },
+    {
+      "detail": "test_golden_certificate_round_trips calls read_certificate",
+      "ehash": "08036236f822",
+      "evidence": "tests/test_pcp_seams.py:42",
+      "id": "c-4852e1fb",
+      "oracle": "ast",
+      "predicate": "calls:test_golden_certificate_round_trips;read_certificate",
+      "statement": "The test_golden_certificate_round_trips function ensures certificates can round-trip",
+      "verdict": "TRUE"
+    },
+    {
+      "detail": "test_golden_contracts_load calls read_contracts",
+      "ehash": "62585bea45e1",
+      "evidence": "tests/test_pcp_seams.py:57",
+      "id": "c-4b85d69e",
+      "oracle": "ast",
+      "predicate": "calls:test_golden_contracts_load;read_contracts",
+      "statement": "The test_golden_contracts_load function validates the contracts fixture",
+      "verdict": "TRUE"
+    },
+    {
+      "detail": "test_golden_marks_and_pyramid_config_parse calls loads",
+      "ehash": "d50c4722b9a4",
+      "evidence": "tests/test_pcp_seams.py:62",
+      "id": "c-4f2088d9",
+      "oracle": "ast",
+      "predicate": "calls:test_golden_marks_and_pyramid_config_parse;json.loads",
+      "statement": "The test_golden_marks_and_pyramid_config_parse function checks marks and pyramid config parsing",
+      "verdict": "TRUE"
+    },
+    {
+      "detail": "test_predicate_parse_and_serialize_round_trip calls parse_predicate",
+      "ehash": "c1a6d26c2ef3",
+      "evidence": "tests/test_pcp_seams.py:77",
+      "id": "c-32861597",
+      "oracle": "ast",
+      "predicate": "calls:test_predicate_parse_and_serialize_round_trip;parse_predicate",
+      "statement": "The test_predicate_parse_and_serialize_round_trip function tests predicate parsing and serialization",
+      "verdict": "TRUE"
+    },
+    {
+      "detail": "test_registry_has_every_kind_and_is_fail_closed calls verify_predicate",
+      "ehash": "ce138b19e6ef",
+      "evidence": "tests/test_pcp_seams.py:95",
+      "id": "c-56980526",
+      "oracle": "ast",
+      "predicate": "calls:test_registry_has_every_kind_and_is_fail_closed;verify_predicate",
+      "statement": "The test_registry_has_every_kind_and_is_fail_closed function validates the predicate registry",
+      "verdict": "TRUE"
+    }
+  ],
+  "graph_commit": "3f4179988e00df03aec751ce3053e147645c7381",
+  "marks": [],
+  "mass": {
+    "gray": 17,
+    "green": 21,
+    "yellow": 0
+  },
+  "page": "tests-test_pcp_seams_py.md",
+  "prose_sha256": "fca66ab3eae9e5c2f63899725c912c8b3cdfe2f166c05bf74f654d01b7d16e95",
+  "version": "pcp-1",
+  "violations": []
+}

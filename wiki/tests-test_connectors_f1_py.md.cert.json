@@ -1,0 +1,96 @@
+{
+  "child_cert_hashes": {},
+  "claims": [
+    {
+      "detail": "caller 'test_connectors_f1.py' not a Python symbol in the graph",
+      "ehash": "f3f5fe82e4b9",
+      "evidence": "tests/test_connectors_f1.py:3",
+      "id": "c-8cdbe090",
+      "oracle": "none",
+      "predicate": "calls:test_connectors_f1.py;GitRepoConnector",
+      "statement": "The module tests the idempotency of the GitRepoConnector",
+      "verdict": "UNDECIDABLE"
+    },
+    {
+      "detail": "caller 'test_connectors_f1.py' not a Python symbol in the graph",
+      "ehash": "f3f5fe82e4b9",
+      "evidence": "tests/test_connectors_f1.py:3",
+      "id": "c-9a6859fa",
+      "oracle": "none",
+      "predicate": "calls:test_connectors_f1.py;_make_repo",
+      "statement": "The test ensures re-ingesting a git repo with no changes yields zero items",
+      "verdict": "UNDECIDABLE"
+    },
+    {
+      "detail": "_make_repo calls _git",
+      "ehash": "5280f716416a",
+      "evidence": "tests/test_connectors_f1.py:22",
+      "id": "c-ed2c2e3f",
+      "oracle": "ast",
+      "predicate": "calls:_make_repo;_git",
+      "statement": "The helper function _make_repo creates a git repository with a single commit",
+      "verdict": "TRUE"
+    },
+    {
+      "detail": "ISIDORE_HOME read in src/isidore/home.py",
+      "ehash": "5d31f74210d8",
+      "evidence": "tests/test_connectors_f1.py:40",
+      "id": "c-182ccfa4",
+      "oracle": "grep",
+      "predicate": "env:ISIDORE_HOME",
+      "statement": "The test verifies that the knowledge home directory can be overridden via environment variables",
+      "verdict": "TRUE"
+    },
+    {
+      "detail": "test_write_items_stamps_chash_and_does_not_mutate calls write_items",
+      "ehash": "f64063ab3ff4",
+      "evidence": "tests/test_connectors_f1.py:47",
+      "id": "c-7f94a037",
+      "oracle": "ast",
+      "predicate": "calls:test_write_items_stamps_chash_and_does_not_mutate;store.write_items",
+      "statement": "The test confirms that items are written to the store with a content hash (chash)",
+      "verdict": "TRUE"
+    },
+    {
+      "detail": "test_write_items_stamps_chash_and_does_not_mutate calls write_items",
+      "ehash": "14a0cde4f176",
+      "evidence": "tests/test_connectors_f1.py:50",
+      "id": "c-b0f03811",
+      "oracle": "ast",
+      "predicate": "calls:test_write_items_stamps_chash_and_does_not_mutate;store.write_items",
+      "statement": "The test ensures that the original item dictionary remains unmodified",
+      "verdict": "TRUE"
+    },
+    {
+      "detail": "test_read_state_missing_and_corrupt_return_default calls read_state",
+      "ehash": "f4de7bbfb9a4",
+      "evidence": "tests/test_connectors_f1.py:57",
+      "id": "c-385d77c7",
+      "oracle": "ast",
+      "predicate": "calls:test_read_state_missing_and_corrupt_return_default;store.read_state",
+      "statement": "The test validates that missing or corrupt state files return a default state structure",
+      "verdict": "TRUE"
+    },
+    {
+      "detail": "test_record_run_keeps_last_20 calls record_run",
+      "ehash": "78dd354cbd26",
+      "evidence": "tests/test_connectors_f1.py:67",
+      "id": "c-a0d82f97",
+      "oracle": "ast",
+      "predicate": "calls:test_record_run_keeps_last_20;store.record_run",
+      "statement": "The test confirms that only the last 20 runs are retained in the state",
+      "verdict": "TRUE"
+    }
+  ],
+  "graph_commit": "3f4179988e00df03aec751ce3053e147645c7381",
+  "marks": [],
+  "mass": {
+    "gray": 14,
+    "green": 21,
+    "yellow": 0
+  },
+  "page": "tests-test_connectors_f1_py.md",
+  "prose_sha256": "ccd5a45ebe090ed379fdcd15537e5166c4816348cb96384424d1203fc6a3bb46",
+  "version": "pcp-1",
+  "violations": []
+}

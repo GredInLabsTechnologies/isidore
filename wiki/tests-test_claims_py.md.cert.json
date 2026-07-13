@@ -1,0 +1,86 @@
+{
+  "child_cert_hashes": {},
+  "claims": [
+    {
+      "detail": "test_is_negative_existential_flags_absence_not_behavior calls is_negative_existential",
+      "ehash": "48ee2fb383bc",
+      "evidence": "tests/test_claims.py:21",
+      "id": "c-bc3cb03c",
+      "oracle": "ast",
+      "predicate": "calls:test_is_negative_existential_flags_absence_not_behavior;is_negative_existential",
+      "statement": "The module tests the classification of existential vs. behavioral claims",
+      "verdict": "TRUE"
+    },
+    {
+      "detail": "test_parse_claims_block_extracts_and_strips calls parse_claims_block",
+      "ehash": "58568a4e9cb5",
+      "evidence": "tests/test_claims.py:82",
+      "id": "c-6d8eca4a",
+      "oracle": "ast",
+      "predicate": "calls:test_parse_claims_block_extracts_and_strips;parse_claims_block",
+      "statement": "The module verifies that claims are parsed from Markdown blocks",
+      "verdict": "TRUE"
+    },
+    {
+      "detail": "test_evidence_hash_is_the_cited_line_content calls evidence_hash",
+      "ehash": "7ec0bc809d2f",
+      "evidence": "tests/test_claims.py:90",
+      "id": "c-775dd23e",
+      "oracle": "ast",
+      "predicate": "calls:test_evidence_hash_is_the_cited_line_content;evidence_hash",
+      "statement": "The evidence hash is computed from the cited line's content",
+      "verdict": "TRUE"
+    },
+    {
+      "detail": "test_evidence_state_ignores_neighbors_whitespace_and_line_shifts calls evidence_state",
+      "ehash": "0951da7c38e8",
+      "evidence": "tests/test_claims.py:106",
+      "id": "c-3fd44a28",
+      "oracle": "ast",
+      "predicate": "calls:test_evidence_state_ignores_neighbors_whitespace_and_line_shifts;evidence_state",
+      "statement": "The evidence state ignores changes to neighboring lines",
+      "verdict": "TRUE"
+    },
+    {
+      "detail": "_make_repo calls mkdir",
+      "ehash": "ef0c3b837882",
+      "evidence": "tests/test_claims.py:59",
+      "id": "c-5def4d5c",
+      "oracle": "ast",
+      "predicate": "calls:_make_repo;Path.mkdir",
+      "statement": "The module uses a synthetic repository for testing",
+      "verdict": "TRUE"
+    },
+    {
+      "detail": "test_evidence_hash_is_the_cited_line_content calls evidence_hash",
+      "ehash": "be436eb91143",
+      "evidence": "tests/test_claims.py:100",
+      "id": "c-660f723b",
+      "oracle": "ast",
+      "predicate": "calls:test_evidence_hash_is_the_cited_line_content;evidence_hash",
+      "statement": "The evidence hash changes when the cited line is modified",
+      "verdict": "TRUE"
+    },
+    {
+      "detail": "test_parse_claims_block_extracts_and_strips calls parse_claims_block",
+      "ehash": "ce2a3073dbe5",
+      "evidence": "tests/test_claims.py:83",
+      "id": "c-19fdb569",
+      "oracle": "ast",
+      "predicate": "calls:test_parse_claims_block_extracts_and_strips;parse_claims_block",
+      "statement": "The claims block is stripped after parsing",
+      "verdict": "TRUE"
+    }
+  ],
+  "graph_commit": "3f4179988e00df03aec751ce3053e147645c7381",
+  "marks": [],
+  "mass": {
+    "gray": 13,
+    "green": 16,
+    "yellow": 0
+  },
+  "page": "tests-test_claims_py.md",
+  "prose_sha256": "56eff1eb107335e87ac2b572330d94c8ce2fa45dca4dc20ec6b2a81bc5f10c3c",
+  "version": "pcp-1",
+  "violations": []
+}

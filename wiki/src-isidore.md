@@ -1,38 +1,52 @@
+> [!WARNING]
+> **SECURITY — deterministic detectors flagged this code (0 LLM). Verify; never document as an intended feature.**
+>
+> - `src/isidore/detectors.py:29` — credential-shaped literal (-----BEGIN prefix)
+> - `src/isidore/detectors.py:29` — credential-shaped literal (AIza prefix)
+> - `src/isidore/detectors.py:29` — credential-shaped literal (AKIA prefix)
+> - `src/isidore/detectors.py:29` — credential-shaped literal (gho_ prefix)
+> - `src/isidore/detectors.py:29` — credential-shaped literal (ghp_ prefix)
+> - `src/isidore/detectors.py:29` — credential-shaped literal (glpat- prefix)
+> - `src/isidore/detectors.py:29` — credential-shaped literal (ya29. prefix)
+> - `src/isidore/detectors.py:34` — eval()
+> - `src/isidore/detectors.py:35` — exec()
+> - `src/isidore/detectors.py:36` — os.system()
+> - `src/isidore/detectors.py:38` — pickle.loads()
+> - `src/isidore/detectors.py:39` — yaml.load() without Loader
+> - `src/isidore/detectors.py:43` — eval()
+> - `src/isidore/pcp.py:207` — high-entropy literal (>=24 chars, >=3.5 bits/char)
+> - `src/isidore/reconcile.py:76` — high-entropy literal (>=24 chars, >=3.5 bits/char)
+> - `src/isidore/reconcile.py:93` — high-entropy literal (>=24 chars, >=3.5 bits/char)
+> - `src/isidore/reconcile.py:110` — high-entropy literal (>=24 chars, >=3.5 bits/char)
+> - `src/isidore/reconcile.py:119` — high-entropy literal (>=24 chars, >=3.5 bits/char)
 ## Purpose
-`src/isidore` implements an **agent‑oriented wiki compiler** that turns a repository’s structure graph into a set of markdown pages enriched with LLM‑generated prose and machine‑verified *claims* about the code. The core goal is to keep documentation **deterministic and up‑to‑date**: every claim is anchored to a hash of its source lines, enabling *zero‑LLM* staleness detection (i.e. the system can tell when a claim is out of sync without re‑invoking the model)【src/isidore/claims.py:5】.
+The `src/isidore` module is a compiler pipeline for generating and verifying structured documentation from code. It treats documentation as a derived artifact, not a primary source, and focuses on **deterministic, evidence-anchored claims** that can be automatically verified. The pipeline ensures that documentation remains accurate by tracking changes in code and flagging stale claims, reducing the need for manual review.
 
 ## Architecture
-The module is split into a handful of tightly‑coupled files:
+The module follows a **frozen seam** design (ADR-0033), where the core types and predicate grammar are defined in `pcp.py` and shared across five lanes (A–E). The pipeline consists of four stages:
+1. **Plan**: Determine which pages need updating based on code changes.
+2. **Assemble**: Gather context for each page from the codebase.
+3. **Generate**: Use an LLM to produce prose and structured claims.
+4. **Cache**: Store the results and track staleness.
 
-| File | Role | Notable connections |
-|------|------|----------------------|
-| `pipeline.py` | Orchestrates the compile steps (plan → assemble → generate → cache → lint) and enforces hard limits for LLM calls【src/isidore/pipeline.py:1】. All steps are deterministic except a single bounded LLM call per *dirty* page【src/isidore/pipeline.py:3】. |
-| `claims.py` | Defines the *claim* data model, hashing logic (SHA‑256 over ±2 lines, truncated)【src/isidore/claims.py:13】, and utilities for parsing/rendering claim blocks. |
-| `graph.py` | Loads the *structure graph* (JSON with `nodes` and `links`) and can scan a repo using the stdlib `ast` to produce such a graph【src/isidore/graph.py:3‑5】. |
-| `cli.py` | Exposes user‑facing commands: `scan`, `compile`, `ask`, `suggest-flows`, and `claims`. The `claims` subcommand runs the zero‑LLM staleness audit and can fail the CI run if any claim is stale【src/isidore/cli.py:8】. |
-| `findings.py` | Collects *side observations* (LLM residue and deterministic code‑analysis residue) and writes them to `wiki/findings.toon`【src/isidore/findings.py:1‑3】. |
-| `qa.py` | Provides a single‑call Q&A interface over the compiled wiki, using keyword scoring rather than embeddings【src/isidore/qa.py:1‑4】. |
-| `toon.py`, `llm.py`, `utils.py` (not shown) | Support encoding, LLM interaction, and miscellaneous helpers. |
-
-The most‑connected symbols (`pipeline.py`, `claims.py`, `cli.py`, `graph.py`) form the backbone: the CLI calls into the graph loader, which supplies data to the pipeline; the pipeline calls claim utilities; QA re‑uses pipeline context assembly.
+Key invariants:
+- **Fail-closed**: A claim is never marked as true if its verifier returns `UNDECIDABLE`.
+- **Monotonic escalation**: Once a mark (e.g., a claim or finding) is created, it is never removed by the model.
+- **Zero-LLM verification**: Certificates can be re-verified offline with no LLM calls.
 
 ## Key entry points
-- **CLI** (`src/isidore/cli.py`): `isidore compile`, `isidore claims --check`, `isidore ask "<question>"`, etc.  
-- **Pipeline functions** (`pipeline.py`): `compile_wiki`, `plan_pages`, `assemble_context`, `load_config`, plus default limits (`DEFAULT_MAX_CALLS`, `DEFAULT_MAX_PROMPT_CHARS`, …).  
-- **Graph loader** (`graph.py`): `load_graph`, `find_graph`, `scan_repo` (produces `.isidore/graph.json`).  
-- **Claims API** (`claims.py`): `anchor_claims`, `parse_claims_block`, `render_claims`, constants `CLAIMS_FILENAME`, `SEARCH_RADIUS`.  
-
-These entry points are the only public surfaces; all other modules are imported exclusively by them.
+- `pipeline.py`: Orchestrates the compilation pipeline (`plan`, `assemble`, `generate`, `cache`).
+- `verify.py`: Implements verifiers for typed claims (e.g., `defines`, `calls`, `imports`).
+- `pcp.py`: Defines the core types, predicate grammar, and verifier registry.
+- `graph.py`: Loads and scans the codebase into a structure graph.
+- `claims.py`: Manages evidence-anchored claims with content hashing.
+- `findings.py`: Harvests side observations (e.g., bugs, drift) during compilation.
 
 ## Dependencies
-`src/isidore` is **self‑contained**: it has **no external cross‑module dependencies** (the “depends on” list is empty). It only relies on the Python standard library (`hashlib`, `json`, `re`, `subprocess`, `ast`, `pathlib`, etc.) and internal sibling modules (`.graph`, `.claims`, `.llm`, `.toon`). No third‑party packages are referenced in the provided excerpts.
+The module has **no cross-module dependencies** and relies only on the Python standard library (`ast`, `hashlib`, `subprocess`, etc.). It uses `git` as the source of truth for file changes and `graph.json` as the structure graph.
 
 ## How to change safely
-1. **Preserve deterministic behaviour** – The pipeline’s hard limits (max calls, prompt size, timeout) are enforced in code【src/isidore/pipeline.py:7‑9】. Any modification that relaxes these limits must also update the associated documentation and tests, otherwise you risk unbounded LLM usage.  
-2. **Do not break claim anchoring** – Claim hashes are derived from a *whitespace‑normalized* window of ±2 lines and truncated to 12 hex chars【src/isidore/claims.py:13‑15】. Changing the hash algorithm or the window size will invalidate existing claim files and break the zero‑LLM staleness gate.  
-3. **Maintain graph schema** – The JSON graph format expects `nodes` and `links` (or `edges`) arrays【src/isidore/graph.py:3‑5】. Adding new top‑level keys is safe (they’re ignored), but removing or renaming existing ones will break `scan_repo` and downstream compilation.  
-4. **CLI contract** – The `claims` subcommand’s exit‑code semantics (exit 1 on stale claims) are relied on by CI pipelines【src/isidore/cli.py:8】. Preserve this behaviour when refactoring CLI options.  
-5. **Run the full test matrix** – Recent commits hardened the system for hostile input and scale【e2a3c37】【4271e60】. After any change, run the suite that includes large‑scale stress tests and CI lint checks to ensure no regression.
-
-
-<!-- isidore lint: unverified paths: isidore/graph.json -->
+- **Claims and verifiers**: New claim types must be added to `pcp.py` and implemented in `verify.py`. Ensure verifiers are fail-closed (return `UNDECIDABLE` for undecidable cases).
+- **Pipeline stages**: Changes to `pipeline.py` must preserve the deterministic nature of the pipeline. LLM calls are bounded by `--max-calls` and a per-prompt character budget.
+- **Graph and scanning**: Modifications to `graph.py` or `langspec.py` must ensure the graph remains tool-agnostic and compatible with external producers.
+- **Staleness detection**: Changes to `claims.py` must maintain the content-hash anchor for claim-level staleness detection.

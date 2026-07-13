@@ -1,0 +1,137 @@
+{
+  "child_cert_hashes": {},
+  "claims": [
+    {
+      "detail": "no predicate (existence-anchored only)",
+      "ehash": "bf12751d5371",
+      "evidence": "tests/test_security_prose.py:1",
+      "id": "c-5fac1357",
+      "oracle": "none",
+      "predicate": "",
+      "statement": "The module tests security escalation logic",
+      "verdict": "UNDECIDABLE"
+    },
+    {
+      "detail": "test_detects_the_camouflaged_backdoor calls is_security_finding",
+      "ehash": "238c568b4d9b",
+      "evidence": "tests/test_security_prose.py:21",
+      "id": "c-7612e86b",
+      "oracle": "ast",
+      "predicate": "calls:test_detects_the_camouflaged_backdoor;is_security_finding",
+      "statement": "The test detects a camouflaged backdoor",
+      "verdict": "TRUE"
+    },
+    {
+      "detail": "test_detects_common_security_vocabulary calls is_security_finding",
+      "ehash": "4127acecf965",
+      "evidence": "tests/test_security_prose.py:25",
+      "id": "c-9a3e7142",
+      "oracle": "ast",
+      "predicate": "calls:test_detects_common_security_vocabulary;is_security_finding",
+      "statement": "The test verifies common security vocabulary",
+      "verdict": "TRUE"
+    },
+    {
+      "detail": "test_ignores_non_security_and_wrong_kinds calls is_security_finding",
+      "ehash": "5c34dfd57c62",
+      "evidence": "tests/test_security_prose.py:38",
+      "id": "c-1a5e017c",
+      "oracle": "ast",
+      "predicate": "calls:test_ignores_non_security_and_wrong_kinds;is_security_finding",
+      "statement": "The test ignores non-security findings",
+      "verdict": "TRUE"
+    },
+    {
+      "detail": "test_negation_guard_does_not_escalate_safety_affirming_notes calls is_security_finding",
+      "ehash": "93b7791d19e1",
+      "evidence": "tests/test_security_prose.py:45",
+      "id": "c-ca54fa6f",
+      "oracle": "ast",
+      "predicate": "calls:test_negation_guard_does_not_escalate_safety_affirming_notes;is_security_finding",
+      "statement": "The test prevents false positives for safety-affirming notes",
+      "verdict": "TRUE"
+    },
+    {
+      "detail": "test_hardcoded_with_intervening_word_is_caught calls is_security_finding",
+      "ehash": "99967fc5302a",
+      "evidence": "tests/test_security_prose.py:58",
+      "id": "c-20b8f5a7",
+      "oracle": "ast",
+      "predicate": "calls:test_hardcoded_with_intervening_word_is_caught;is_security_finding",
+      "statement": "The test catches hardcoded secrets with intervening words",
+      "verdict": "TRUE"
+    },
+    {
+      "detail": "test_banner_is_loud_and_lists_evidence calls security_banner",
+      "ehash": "8f3e143b6d5d",
+      "evidence": "tests/test_security_prose.py:66",
+      "id": "c-987fa7c7",
+      "oracle": "ast",
+      "predicate": "calls:test_banner_is_loud_and_lists_evidence;security_banner",
+      "statement": "The banner is loud and lists evidence",
+      "verdict": "TRUE"
+    },
+    {
+      "detail": "test_banner_goes_under_the_h1 calls insert_security_banner",
+      "ehash": "7f5ed96edc70",
+      "evidence": "tests/test_security_prose.py:79",
+      "id": "c-1c32be3f",
+      "oracle": "ast",
+      "predicate": "calls:test_banner_goes_under_the_h1;insert_security_banner",
+      "statement": "The banner is placed under the H1",
+      "verdict": "TRUE"
+    }
+  ],
+  "graph_commit": "3f4179988e00df03aec751ce3053e147645c7381",
+  "marks": [
+    {
+      "disposition": "",
+      "family": "sink",
+      "file": "tests/test_security_prose.py",
+      "line": 29,
+      "reason": "eval()",
+      "severity": "danger"
+    },
+    {
+      "disposition": "",
+      "family": "sink",
+      "file": "tests/test_security_prose.py",
+      "line": 51,
+      "reason": "eval()",
+      "severity": "danger"
+    },
+    {
+      "disposition": "",
+      "family": "entropy",
+      "file": "tests/test_security_prose.py",
+      "line": 85,
+      "reason": "credential-shaped literal (sk_ prefix)",
+      "severity": "danger"
+    }
+  ],
+  "mass": {
+    "gray": 23,
+    "green": 22,
+    "yellow": 0
+  },
+  "page": "tests-test_security_prose_py.md",
+  "prose_sha256": "d19646743533f36823ba6bbbc7ea9d1f4cf870eb5ea47048fb22547d4100df28",
+  "version": "pcp-1",
+  "violations": [
+    {
+      "detail": "Prose describes region near 'tests/test_security_prose.py' in positive terms, contradicting finding: security risk: hardcoded service token in BACKDOOR constant",
+      "kind": "prose-contradicts-finding",
+      "where": "tests/test_security_prose.py:17"
+    },
+    {
+      "detail": "Security-relevant mark (sink) at tests/test_security_prose.py:51 has no covering claim.",
+      "kind": "mark-uncovered",
+      "where": "tests/test_security_prose.py:51"
+    },
+    {
+      "detail": "Security-relevant mark (entropy) at tests/test_security_prose.py:85 has no covering claim.",
+      "kind": "mark-uncovered",
+      "where": "tests/test_security_prose.py:85"
+    }
+  ]
+}

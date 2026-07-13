@@ -1,0 +1,26 @@
+{
+  "child_cert_hashes": {},
+  "claims": [
+    {
+      "detail": "no predicate (existence-anchored only)",
+      "ehash": "ef548ba122ce",
+      "evidence": "tests/test_langspec.py:L1",
+      "id": "c-375c73b5",
+      "oracle": "none",
+      "predicate": "",
+      "statement": "The module tests the multi-language scanner's declarative engine",
+      "verdict": "UNDECIDABLE"
+    }
+  ],
+  "graph_commit": "3f4179988e00df03aec751ce3053e147645c7381",
+  "marks": [],
+  "mass": {
+    "gray": 15,
+    "green": 0,
+    "yellow": 15
+  },
+  "page": "tests-test_langspec_py.md",
+  "prose_sha256": "9be2173891d73adee4e08c10ea0e6e06c93c4a6c112c0e91eef725d0c11ac3cc",
+  "version": "pcp-1",
+  "violations": []
+}
