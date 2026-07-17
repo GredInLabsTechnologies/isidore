@@ -5,11 +5,18 @@ catalog as quickstart.md but in TOON tables, cheaper in tokens for an agent to l
 """
 from __future__ import annotations
 
+import os
+
 from .toon import encode
 
 MARKER_START = "<!-- ISIDORE:START -->"
 MARKER_END = "<!-- ISIDORE:END -->"
-WIKI_DIRNAME = "wiki"
+# Output directory for the compiled wiki, relative to the repo root. Defaults to
+# "wiki"; override with ISIDORE_WIKI_DIR so a repo/org can keep its living docs
+# elsewhere (e.g. "doc/isidore"). Read once at import; every module imports this
+# constant, so the whole toolchain (scan, compile, certs, state, AGENTS.md block)
+# resolves to the same directory.
+WIKI_DIRNAME = os.environ.get("ISIDORE_WIKI_DIR", "wiki").strip() or "wiki"
 
 
 def render_quickstart(module_specs, flow_specs, commit: str | None) -> str:

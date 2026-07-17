@@ -49,13 +49,13 @@ from .verify import build_certificate
 from .detectors import scan as scan_marks
 from .reconcile import reconcile
 from .render import (
+    WIKI_DIRNAME,
     agents_md_block,
     render_quickstart,
     render_toon_index,
     upsert_agents_block,
 )
 
-WIKI_DIRNAME = "wiki"
 STATE_FILENAME = ".isidore-state.json"
 
 DEFAULT_MODULE_DEPTH = 2
@@ -443,6 +443,7 @@ def load_state(wiki_dir: Path) -> dict:
 
 
 def save_state(wiki_dir: Path, state: dict) -> None:
+    wiki_dir.mkdir(parents=True, exist_ok=True)  # WIKI_DIRNAME may be nested (e.g. doc/isidore)
     (wiki_dir / STATE_FILENAME).write_text(
         json.dumps(state, indent=2, sort_keys=True) + "\n", encoding="utf-8")
 
@@ -631,7 +632,7 @@ def compile_wiki(
             result.warnings.append(f"{name}: dirty but over --max-calls={max_calls} cap (pending)")
         return result
 
-    wiki_dir.mkdir(exist_ok=True)
+    wiki_dir.mkdir(parents=True, exist_ok=True)  # parents: WIKI_DIRNAME may be nested (e.g. doc/isidore)
     generate = generator if generator is not None else default_generator()
     known_files = {n["source_file"] for n in nodes if n.get("source_file")}
 
