@@ -78,9 +78,10 @@ _CONST = re.compile(
     r"(?:const|let|var|val|static)\s+(?P<name>[A-Za-z_$][\w$]*)\s*(?::[^=]+)?=\s*(?P<value>.*)$"
 )
 
-# Characters TOON uses as separators. A TypeScript union type (`a | b`) or any parameter list would
-# break the encoding, so signatures are neutralised once, here, at the point they are produced.
-_TOON_UNSAFE = {",": ";", "|": "¦", "\n": " "}
+# NOTE on signatures and TOON: they are stored VERBATIM. `toon.encode` already quotes a field that
+# contains commas, so nothing downstream needs them pre-mangled. An earlier version replaced `,`
+# with `;` here "for TOON safety", and the damage surfaced where it hurts most — in the page a
+# person reads, as `(self; conditions; records)`.
 
 
 @dataclass(frozen=True)
@@ -103,17 +104,15 @@ class SurfaceSymbol:
 
 
 def clean_sig(text: str) -> str:
-    """Collapse a declaration header into a stable, TOON-safe one-line comparison key.
+    """Collapse a declaration header into a stable one-line comparison key, readable as-is.
 
-    Whitespace is normalised so reformatting is not reported as an API change, and the trailing body
-    brace is dropped for the same reason. What survives is parameter names, defaults and types — the
-    things whose change IS the news.
+    Whitespace is normalised (so reformatting is never reported as an API change) and the trailing
+    body brace is dropped for the same reason. Everything else — parameter names, defaults, types —
+    survives VERBATIM, because this same string is what a person reads in the changelog.
     """
-    flat = " ".join((text or "").split())
+    flat = " ".join((text or "").replace("\t", " ").split())
     if flat.endswith("{"):
         flat = flat[:-1].rstrip()
-    for bad, good in _TOON_UNSAFE.items():
-        flat = flat.replace(bad, good)
     return flat[:MAX_SIG_CHARS - 1] + "…" if len(flat) > MAX_SIG_CHARS else flat
 
 

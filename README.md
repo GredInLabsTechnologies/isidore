@@ -96,10 +96,27 @@ method added to an existing type — the usual shape of a new API — is reporte
 signature and its `path:line`. Rows are grouped as `api` / `internal` / `tests` / `docs`, so the
 product's surface leads and test churn does not bury it.
 
+### One range, three readers
+
+The same delta is written out for three audiences, because they need different things:
+
+| Reader | Where | What they get |
+|---|---|---|
+| **Anyone** | `## In plain words`, at the top of the page | Whether anything they rely on broke, and what became possible — no paths, no identifiers, no jargon |
+| **Developer** | the rest of the page | Per-module bullets with `path:line` citations, then every change with its signature |
+| **Agent** | `<range>.toon` beside the page | The same rows as TOON tables — no prose to parse |
+
+The plain-words section leads with a **zero-LLM impact answer** ("2 were taken away; anything built
+on top may need updating") — derivable from the delta alone, since a removed or reshaped public
+symbol is exactly what breaks a caller. The descriptive sentences come from the model, which is told
+to write for someone who has never seen code and given an explicit list of banned words; a summary
+that comes back with jargon in it anyway is **dropped, not shown**, and counted in the run summary.
+Silence beats a "plain" summary a non-programmer still cannot read.
+
 With `--execute`, the model receives **only that structured delta** (never a raw diff) plus commit
-subjects marked explicitly as context-not-evidence, and writes bullets under the same certificate
-discipline as any page: claims anchored by content hash, verified against a deterministic oracle,
-and refuted claims kept in the certificate but never published. Two properties keep it honest:
+subjects marked explicitly as context-not-evidence, and writes under the same certificate discipline
+as any page: claims anchored by content hash, verified against a deterministic oracle, and refuted
+claims kept in the certificate but never published. Two properties keep it honest:
 
 - **Removals are never written by the model.** "X was removed" cannot be anchored to the new tree —
   there is nothing to cite — so deletions are reported by the deterministic tier only.

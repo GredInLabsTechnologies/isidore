@@ -162,12 +162,14 @@ class WhatsnewResult:
     delta: SurfaceDelta
     page_path: Path | None = None
     cert_path: Path | None = None
+    toon_path: Path | None = None
     calls: int = 0
     retries: int = 0
     claims_published: int = 0
     claims_refuted: int = 0
     claims_dropped: int = 0
     quarantined: bool = False
+    plain_rejected: int = 0          # modules whose plain-language summary came back as jargon
     warnings: list[str] = field(default_factory=list)
 
 
@@ -431,6 +433,51 @@ _KIND_LABEL = {
     FILE_ADDED: "new file", FILE_REMOVED: "deleted file", FILE_RENAMED: "renamed",
 }
 
+# Changes that can break someone who already depends on this code. Derivable with no model: a public
+# symbol that vanished, or one whose parameters moved, is exactly what an API-diff tool calls a
+# breaking change. This is the part of "what does it mean for me" that IS free.
+_BREAKING_KINDS = frozenset({SYMBOL_REMOVED, SIGNATURE_CHANGED, FILE_REMOVED})
+
+
+def impact_summary(delta: SurfaceDelta) -> list[str]:
+    """The consequence of this range, in plain words, with zero LLM calls.
+
+    A non-technical reader has one real question — *do I have to do anything?* — and it is answerable
+    from the delta alone: things taken away or reshaped may break whoever depended on them; things
+    added cannot. No identifiers, no paths, no jargon; those live further down the page.
+    """
+    public = [e for e in delta.entries if e.area == AREA_API]
+    if not public:
+        return ["Nothing changed in what this software offers to the people and programs that use it."]
+
+    breaking = [e for e in public if e.kind in _BREAKING_KINDS]
+    added = [e for e in public if e.kind == SYMBOL_ADDED]
+    new_files = [e for e in public if e.kind == FILE_ADDED]
+
+    lines: list[str] = []
+    if added or new_files:
+        what = []
+        if added:
+            what.append(f"{len(added)} new {'capability' if len(added) == 1 else 'capabilities'}")
+        if new_files:
+            what.append(f"{len(new_files)} new {'part' if len(new_files) == 1 else 'parts'}")
+        lines.append(f"**{' and '.join(what)}** were added.")
+    if breaking:
+        removed = [e for e in breaking if e.kind in (SYMBOL_REMOVED, FILE_REMOVED)]
+        reshaped = [e for e in breaking if e.kind == SIGNATURE_CHANGED]
+        detail = []
+        if removed:
+            detail.append(f"{len(removed)} {'was' if len(removed) == 1 else 'were'} taken away")
+        if reshaped:
+            detail.append(f"{len(reshaped)} now {'works' if len(reshaped) == 1 else 'work'} differently")
+        lines.append(
+            f"**{' and '.join(detail).capitalize()}.** Anything built on top of those may need "
+            "updating; everything else keeps working as before.")
+    else:
+        lines.append("**Nothing was taken away or reshaped**, so anything already built on this "
+                     "keeps working as before.")
+    return lines
+
 
 def _rows(entries: list[DeltaEntry]) -> list[dict]:
     return [{"kind": _KIND_LABEL.get(e.kind, e.kind), "symbol": e.qualname or Path(e.file).name,
@@ -471,32 +518,66 @@ def _md_section(title: str, entries: list[DeltaEntry]) -> list[str]:
     return out
 
 
-def render_whatsnew_md(delta: SurfaceDelta, prose_by_module: dict[str, str] | None = None) -> str:
-    """The page. Deterministic: no wall-clock, so re-running an unchanged range rewrites the same
-    bytes and the certificate's prose hash stays meaningful."""
+def render_whatsnew_md(delta: SurfaceDelta, prose_by_module: dict[str, str] | None = None,
+                       plain_by_module: dict[str, str] | None = None) -> str:
+    """The page, layered by READER rather than by topic.
+
+    The same range has three audiences and they want different things, so the page answers them in
+    the order of how much they need to know to get value from it: anyone can read the top and stop;
+    a developer keeps going; an agent is better served by the `.toon` sidecar. Deterministic (no
+    wall-clock), so re-running an unchanged range rewrites the same bytes.
+    """
     out = [
         f"# What's new — `{delta.since_ref}..{delta.until_ref}`",
         "",
-        f"Range `{delta.since_sha[:12]}..{delta.until_sha[:12]}` · "
-        f"{len(delta.entries)} surface change(s) across {len(delta.changed_files)} file(s).",
+        f"*Comparing `{delta.since_sha[:12]}` with `{delta.until_sha[:12]}` · "
+        f"{len(delta.entries)} change(s) across {len(delta.changed_files)} file(s).*",
+        "",
+        "## In plain words",
         "",
     ]
-    if not delta.entries:
-        out += ["No API surface changes in this range.", ""]
+    # One list, not two: the deterministic impact lines and the model's plain sentences answer the
+    # same question for the same reader, so a blank line between them would split them in Markdown.
+    out += [f"- {line}" for line in impact_summary(delta)]
+    for _module, sentence in sorted((plain_by_module or {}).items()):
+        out.append(f"- {sentence}")
+    out.append("")
     for warning in delta.warnings:
         out.append(f"> ⚠ {warning}")
     if delta.warnings:
         out.append("")
 
     if prose_by_module:
-        out += ["## Summary", ""]
+        out += ["## What changed, for developers", ""]
         for module in sorted(prose_by_module):
-            out += [f"### {module}", "", prose_by_module[module].strip(), ""]
+            body = prose_by_module[module].strip()
+            if body:
+                out += [f"### `{module}`", "", body, ""]
 
+    out += ["## Every change, in detail", ""]
     out += _md_section("Public API", delta.by_area(AREA_API))
     out += _md_section("Internal surface", delta.by_area(AREA_INTERNAL))
-    out += _md_section("Tests", delta.by_area(AREA_TESTS))
-    out += _md_section("Docs", delta.by_area(AREA_DOCS))
+
+    # Test and documentation churn is real news but it is never the headline: collapsed to a count
+    # so it cannot bury the product's surface, and still listed for whoever needs it.
+    for title, area in (("Tests", AREA_TESTS), ("Docs", AREA_DOCS)):
+        entries = delta.by_area(area)
+        if not entries:
+            continue
+        files = sorted({e.file for e in entries})
+        out += [f"<details><summary>{title} — {len(entries)} change(s) in {len(files)} file(s)"
+                "</summary>", ""]
+        out += _md_section(title, entries)
+        out += ["</details>", ""]
+
+    out += [
+        "---",
+        "",
+        "*How to trust this page: every statement under **for developers** and **in detail** is "
+        "checked against the code by machine — the file and line are cited, and any claim the code "
+        "did not support was refused before publication (see the `.cert.json` beside this file). "
+        "The plain-words summary is written from those same checked facts.*",
+    ]
     return "\n".join(out).rstrip() + "\n"
 
 
@@ -516,7 +597,29 @@ bullet or to group related changes. You must NEVER cite them, quote them as fact
 that rests on them alone. If a hint contradicts the surface rows, the rows win):
 {hints}
 
-Write 3-8 bullets, in Markdown, describing what changed for someone who USES this module. Rules:
+Produce TWO things, in this order.
+
+FIRST, a plain-language summary for a reader who does NOT program — a manager, a user, a customer.
+Put it in a fenced block exactly like this:
+
+```isidore-plain
+One or two sentences saying what this change lets someone DO, in everyday words.
+```
+
+Rules for the plain block, they matter more than anything else here. Write it for someone who has
+never seen code and never will — a manager, a customer, a colleague from another department:
+- No file paths, no line numbers, no code syntax, no CamelCase or snake_case identifiers.
+- BANNED WORDS, no exceptions: method, class, function, parameter, argument, API, endpoint,
+  payload, constant, variable, module, library, daemon, server, addon, binary, runtime, instance,
+  protocol, schema, snapshot, interface, struct, callback, async, repository, commit, refactor,
+  compile, cache, buffer, thread, lock, mutex, hash, serialise, deserialise.
+- Say what becomes POSSIBLE, or what gets safer/faster/simpler, and FOR WHOM. If a change only
+  matters to the people who build this software, say that in those words.
+- If you cannot say it without a banned word, say less. Never pad it, never invent a benefit.
+- Example of the right register: "Saving a batch of records can now be made conditional, so two
+  people editing at the same time can no longer silently overwrite each other's work."
+
+SECOND, 3-8 bullets in Markdown for a developer who uses this module. Rules:
 - Cite `path:line` from the SURFACE CHANGES rows or the excerpts. Never invent a path.
 - Say what the change means for a caller, not just that it happened.
 - Write ONLY about what was added or changed. Do NOT write about removals or absences.
@@ -538,26 +641,63 @@ Never use `signature:` or `value:` for a non-Python file; use `defines:` there i
 """
 
 
-# A bullet that ends in `... | path:line | predicate` is the model echoing the claims block inline
-# instead of (or as well as) fencing it. The claims themselves are parsed and verified from the
-# fenced block; what is left here is raw syntax leaking into the page a human reads.
-# The middle field is matched loosely (`path:line` anywhere in it) because a model wraps it in
-# backticks or quotes as often as not — the first version of this pattern anchored on the digits and
-# was defeated by a single trailing backtick.
-_INLINE_CLAIM_ROW = re.compile(r"^(?P<text>.*?)\s*\|[^|]*?[^|\s]:\d+[^|]*\|.*$")
+# A `path:line` citation, however the model chose to wrap it (backticks, quotes, parentheses).
+_CITATION = re.compile(r"[^|\s]:\d+\b")
+
+
+_PLAIN_FENCE = re.compile(r"```isidore-plain\s*\n(?P<body>.*?)```", re.DOTALL)
+# Words that betray the plain-language block slipping back into jargon. Cheap, deterministic, and it
+# fails SAFE: a summary that trips this is dropped, never shown with a warning a reader must decode.
+# NOTE: the case-insensitive flag is SCOPED to the vocabulary list on purpose. Applying `(?i)` to the
+# whole pattern turns the camelCase detector `[a-z][A-Z]` into "any two letters", which rejected every
+# sentence ever written — including the good ones. Structural detectors stay case-sensitive.
+_JARGON = re.compile(
+    r"(?i:\b(?:methods?|classe?s?|parameters?|arguments?|api|functions?|constants?|variables?|"
+    r"struct|interface|callback|async|repositor(?:y|ies)|refactor|endpoints?|payloads?|boolean|"
+    r"instantiate[ds]?|modules?|librar(?:y|ies)|daemons?|addons?|binar(?:y|ies)|runtimes?|"
+    r"protocols?|schemas?|snapshots?|mutex|serialis[ez]e|deserialis[ez]e)\b)"
+    r"|[A-Za-z]+_[a-z]"                          # snake_case identifier
+    r"|[a-z][A-Z]"                               # camelCase identifier
+    r"|[\w/]+\.(?:py|ts|js|go|rs|java|rb|md|json|toml)\b"     # a file name
+    r"|:\d+\b"                                   # a line reference
+    r"|[{}]")                                    # code braces
+
+
+def parse_plain_block(markdown: str) -> tuple[str, str]:
+    """Split the plain-language block out of a model answer -> (rest, plain text).
+
+    Returns an empty plain text when the block is absent OR when it reads like code — no summary at
+    all is strictly better for a non-technical reader than one that says "the method's parameter".
+    """
+    match = _PLAIN_FENCE.search(markdown)
+    if not match:
+        return markdown, ""
+    rest = (markdown[:match.start()] + markdown[match.end():]).strip()
+    plain = " ".join(match.group("body").split()).strip()
+    if not plain or _JARGON.search(plain):
+        return rest, ""
+    return rest, plain
 
 
 def strip_inline_claim_rows(markdown: str) -> str:
-    """Drop the trailing `| evidence | predicate` a model sometimes appends to its own bullets.
+    """Drop the pipe-separated citation a model appends to its own bullets.
 
-    Observed against a real provider: the prose stayed correct but every daemon bullet carried the
-    machine syntax after it. Removing it is presentation only — the claim keeps its verdict in the
-    certificate either way.
+    Observed against a real provider in two different shapes on two different runs: first the full
+    `text | evidence | predicate` row, then — once that was handled — a bare `text | path:line`.
+    Splitting on the pipe and dropping any trailing field that carries a citation covers both, and
+    whatever else the same instinct produces. Presentation only: the claim keeps its verdict in the
+    certificate either way. A real Markdown table row (which opens with `|`) is left alone.
     """
-    out = []
+    out: list[str] = []
     for line in markdown.splitlines():
-        match = _INLINE_CLAIM_ROW.match(line)
-        out.append(match.group("text").rstrip() if match and match.group("text").strip() else line)
+        if "|" not in line or line.lstrip().startswith("|"):
+            out.append(line)
+            continue
+        head, *rest = line.split("|")
+        if head.strip() and any(_CITATION.search(part) for part in rest):
+            out.append(head.rstrip())
+        else:
+            out.append(line)
     return "\n".join(out)
 
 
@@ -600,16 +740,18 @@ def _prompt_for_module(repo: Path, module: str, entries: list[DeltaEntry], hints
 def generate_prose(repo: Path, delta: SurfaceDelta, hints: list[str], generator,
                    *, max_calls: int = DEFAULT_MAX_CALLS,
                    max_prompt_chars: int = DEFAULT_MAX_PROMPT_CHARS,
-                   module_depth: int = DEFAULT_MODULE_DEPTH) -> tuple[dict[str, str], list[dict], dict]:
-    """One bounded call per changed module -> (prose by module, anchored claims, stats).
+                   module_depth: int = DEFAULT_MODULE_DEPTH
+                   ) -> tuple[dict[str, str], dict[str, str], list[dict], dict]:
+    """One bounded call per changed module -> (developer prose, plain-language, claims, stats).
 
     The post-processing order mirrors the page compiler exactly, because every step of it exists to
     catch a different way a model goes wrong: absence claims are unanchorable, off-range citations
     are outside what this range can prove, phantom paths get one bounded repair attempt and then a
     visible quarantine mark rather than a silent deletion.
     """
-    stats = {"calls": 0, "retries": 0, "dropped": 0, "quarantined": False}
+    stats = {"calls": 0, "retries": 0, "dropped": 0, "quarantined": False, "plain_rejected": 0}
     prose: dict[str, str] = {}
+    plain: dict[str, str] = {}
     claims: list[dict] = []
     in_range = set(delta.changed_files)
 
@@ -653,8 +795,13 @@ def generate_prose(repo: Path, delta: SurfaceDelta, hints: list[str], generator,
         anchored, dropped, _repaired = anchor_claims(repo, kept_claims, in_range)
         stats["dropped"] += dropped
         claims.extend(anchored)
+        markdown, plain_text = parse_plain_block(markdown)
+        if plain_text:
+            plain[module] = plain_text
+        else:
+            stats["plain_rejected"] += 1
         prose[module] = strip_inline_claim_rows(markdown).strip()
-    return prose, claims, stats
+    return prose, plain, claims, stats
 
 
 # ------------------------------------------------------------------ the command
@@ -667,6 +814,7 @@ def run_whatsnew(repo: Path, since: str, until: str = "HEAD", *, execute: bool =
     result = WhatsnewResult(delta=delta, warnings=list(delta.warnings))
 
     prose: dict[str, str] = {}
+    plain: dict[str, str] = {}
     claims: list[dict] = []
     if execute and delta.until_sha != resolve_ref(repo, "HEAD"):
         # Checked before anything is written, and regardless of whether the range turned out empty:
@@ -683,20 +831,26 @@ def run_whatsnew(repo: Path, since: str, until: str = "HEAD", *, execute: bool =
         if generator is None:
             from .llm import default_generator
             generator = default_generator()
-        prose, claims, stats = generate_prose(
+        prose, plain, claims, stats = generate_prose(
             repo, delta, commit_hints(repo, delta.since_sha, delta.until_sha), generator,
             max_calls=max_calls, module_depth=module_depth)
-        result.calls = stats["calls"]
-        result.retries = stats["retries"]
-        result.claims_dropped = stats["dropped"]
+        result.calls = int(stats["calls"])
+        result.retries = int(stats["retries"])
+        result.claims_dropped = int(stats["dropped"])
         result.quarantined = bool(stats["quarantined"])
+        result.plain_rejected = int(stats["plain_rejected"])
 
-    markdown = render_whatsnew_md(delta, prose or None)
+    markdown = render_whatsnew_md(delta, prose or None, plain or None)
     page_name = f"{WHATSNEW_DIRNAME}/{delta.short_range}"
     out_dir = repo / WIKI_DIRNAME / WHATSNEW_DIRNAME
     out_dir.mkdir(parents=True, exist_ok=True)
     page_path = out_dir / f"{delta.short_range}.md"
     page_path.write_text(markdown, encoding="utf-8")
+
+    # The agent-facing view of the SAME delta, persisted beside the page. An agent reading the wiki
+    # later should not have to parse Markdown prose to recover the rows the page was built from.
+    toon_path = out_dir / f"{delta.short_range}.toon"
+    toon_path.write_text(render_whatsnew_toon(delta), encoding="utf-8")
 
     ctx = surface_verify_ctx(repo, delta)
     cert = build_certificate(page_name, markdown, claims, ctx)
@@ -706,6 +860,7 @@ def run_whatsnew(repo: Path, since: str, until: str = "HEAD", *, execute: bool =
 
     result.page_path = page_path
     result.cert_path = cert_path
+    result.toon_path = toon_path
     result.claims_refuted = sum(1 for c in cert.claims if c.verdict == "FALSE")
     result.claims_published = len(cert.claims) - result.claims_refuted
     return result
@@ -727,11 +882,13 @@ def _cmd_whatsnew(args) -> int:
         print(render_whatsnew_toon(delta, public_only=args.public_only))
     for warning in result.warnings:
         print(f"[isidore] warning: {warning}")
-    print(f"[isidore] wrote {result.page_path} (+ certificate)")
+    print(f"[isidore] wrote {result.page_path} (+ certificate, + agent-facing .toon)")
     if args.execute:
         print(f"[isidore] {result.calls} call(s), {result.retries} retry(ies) · claims: "
               f"{result.claims_published} published, {result.claims_refuted} refuted, "
               f"{result.claims_dropped} dropped"
+              + (f" · {result.plain_rejected} plain summary(ies) rejected as jargon"
+                 if result.plain_rejected else "")
               + (" · QUARANTINED" if result.quarantined else ""))
     return 0
 

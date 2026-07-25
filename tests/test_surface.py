@@ -91,7 +91,8 @@ def test_python_surface_marks_visibility_including_inheritance_from_the_containe
 
 def test_python_signature_is_exact_and_survives_reformatting():
     found = _by_name(python_surface(PY_SOURCE))
-    assert found["fetch"].sig == "(url: str; *; timeout: float=1.0) -> bytes"
+    # Verbatim, commas included: this exact string is what a person reads in the changelog.
+    assert found["fetch"].sig == "(url: str, *, timeout: float=1.0) -> bytes"
 
     reflowed = python_surface(
         "async def fetch(\n    url: str,\n    *,\n    timeout: float = 1.0,\n) -> bytes:\n    return b''\n"
@@ -232,9 +233,16 @@ def test_extract_surface_returns_none_for_non_code():
     assert extract_surface("binary-ish", ".unknownext") is None
 
 
-def test_clean_sig_is_toon_safe_and_capped():
-    # Commas and pipes are TOON separators; a union type would break the encoding downstream.
-    assert "," not in clean_sig("(a: string, b: number | null)")
-    assert "|" not in clean_sig("(a: string, b: number | null)")
-    assert clean_sig("def f() {") .endswith(")")
+def test_signature_is_kept_verbatim_for_human_eyes_and_still_encodes_as_toon():
+    from isidore.toon import encode
+
+    sig = clean_sig("(a: string, b: number | null)")
+    # A signature is read by PEOPLE. Pre-mangling commas into `;` "for TOON safety" corrupted exactly
+    # the surface a reader looks at, and TOON never needed it: encode() quotes such a field itself.
+    assert sig == "(a: string, b: number | null)"
+    assert '"(a: string, b: number | null)"' in encode(("t", ["sig"], [{"sig": sig}]))
+
+
+def test_clean_sig_normalises_whitespace_and_caps_length():
+    assert clean_sig("def  f(a,\n   b) {") == "def f(a, b)"
     assert len(clean_sig("x" * (MAX_SIG_CHARS * 2))) <= MAX_SIG_CHARS

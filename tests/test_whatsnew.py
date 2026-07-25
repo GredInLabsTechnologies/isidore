@@ -17,9 +17,12 @@ from isidore.whatsnew import (
     SYMBOL_ADDED,
     WhatsnewError,
     build_delta,
+    impact_summary,
+    parse_plain_block,
     render_whatsnew_md,
     render_whatsnew_toon,
     run_whatsnew,
+    strip_inline_claim_rows,
     surface_verify_ctx,
 )
 
@@ -152,7 +155,83 @@ def test_empty_range_is_valid_and_not_an_error(repo):
     root, _base, head = repo
     delta = build_delta(root, head, head)
     assert delta.entries == []
-    assert "No API surface changes" in render_whatsnew_md(delta)
+    assert "Nothing changed" in render_whatsnew_md(delta)
+
+
+# ------------------------------------------------------------------ readable by anyone
+
+def test_impact_summary_answers_do_i_have_to_do_anything_without_jargon(repo):
+    root, base, _head = repo
+    lines = " ".join(impact_summary(build_delta(root, base)))
+
+    # The range removes `gone()` and reshapes `GICSClient.put`, so the honest answer is "yes".
+    assert "taken away" in lines or "differently" in lines
+    assert "may need updating" in lines
+    # A non-technical reader must not meet a single identifier, path or programming term here.
+    for jargon in ("()", ".py", ":", "method", "class", "parameter", "signature", "symbol"):
+        assert jargon not in lines
+
+
+def test_impact_summary_says_so_when_nothing_can_break(tmp_path):
+    if shutil.which("git") is None:
+        pytest.skip("git not available")
+    root, base = _one_file_repo(tmp_path)          # this fixture only ADDS a method
+    lines = " ".join(impact_summary(build_delta(root, base)))
+    assert "Nothing was taken away" in lines
+    assert "keeps working as before" in lines
+
+
+def test_page_is_layered_so_a_non_technical_reader_can_stop_after_the_top(repo):
+    root, base, _head = repo
+    page = render_whatsnew_md(build_delta(root, base))
+    plain_at = page.index("## In plain words")
+    detail_at = page.index("## Every change, in detail")
+
+    assert plain_at < detail_at                     # plain words lead; paths and signatures follow
+    assert ".py:" not in page[plain_at:detail_at]   # nothing technical leaks into the top section
+    assert "checked against the code by machine" in page    # how to trust it, in plain words
+
+
+def test_plain_language_block_is_dropped_when_it_comes_back_as_jargon():
+    _rest, plain = parse_plain_block(
+        "```isidore-plain\nThe method's parameter is now optional.\n```")
+    # Silence beats a "plain" summary a non-programmer still cannot read.
+    assert plain == ""
+
+    _rest, good = parse_plain_block(
+        "```isidore-plain\nSaving a batch of records can now be made conditional, so two people "
+        "editing at once no longer overwrite each other.\n```")
+    assert good.startswith("Saving a batch")
+
+
+def test_plain_language_summary_reaches_the_page_and_the_rejection_is_counted(tmp_path):
+    if shutil.which("git") is None:
+        pytest.skip("git not available")
+    root, base = _one_file_repo(tmp_path)
+    answer = (
+        "```isidore-plain\n"
+        "Records can now be saved as a group only when the data still looks as expected.\n"
+        "```\n\n- Added `put_many_conditional` — `client.py:5`.\n"
+    )
+    result = run_whatsnew(root, base, execute=True, generator=lambda p: answer)
+    page = result.page_path.read_text(encoding="utf-8")
+
+    assert "Records can now be saved as a group" in page
+    assert page.index("Records can now be saved") < page.index("## Every change, in detail")
+    assert result.plain_rejected == 0
+
+    jargon = "```isidore-plain\nThe class exposes a new method parameter.\n```\n\n- a bullet\n"
+    assert run_whatsnew(root, base, execute=True, generator=lambda p: jargon).plain_rejected == 1
+
+
+def test_agents_get_the_same_delta_as_a_toon_sidecar(repo):
+    root, base, _head = repo
+    result = run_whatsnew(root, base)
+    toon = result.toon_path.read_text(encoding="utf-8")
+
+    # Same facts, machine shape: an agent should never have to parse the prose to recover the rows.
+    assert "api[" in toon and "GICSClient.put_many_conditional" in toon
+    assert result.toon_path.suffix == ".toon"
 
 
 def test_unresolvable_ref_fails_closed(repo):
@@ -382,6 +461,17 @@ def test_machine_syntax_never_leaks_into_the_page(tmp_path):
     assert "Added `put_many_conditional` for conditional batches." in page
     assert "defines:client.py" not in page          # the predicate belongs in the certificate
     assert result.claims_published == 1             # ...where it still lives, verified
+
+
+def test_a_bare_trailing_citation_is_stripped_too():
+    # The second shape the same instinct produced on a later live run: one pipe, no predicate.
+    cleaned = strip_inline_claim_rows("- Added instance handling. | gicsd-node/src/instance.rs:1")
+    assert cleaned == "- Added instance handling."
+
+
+def test_a_real_markdown_table_is_left_alone():
+    table = "| symbol | where |\n|---|---|\n| `f` | `a.py:1` |"
+    assert strip_inline_claim_rows(table) == table
 
 
 def test_cli_smoke(repo, capsys):
