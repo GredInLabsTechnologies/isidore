@@ -193,15 +193,18 @@ def test_page_is_layered_so_a_non_technical_reader_can_stop_after_the_top(repo):
 
 
 def test_plain_language_block_is_dropped_when_it_comes_back_as_jargon():
-    _rest, plain = parse_plain_block(
+    _rest, plain, broken = parse_plain_block(
         "```isidore-plain\nThe method's parameter is now optional.\n```")
-    # Silence beats a "plain" summary a non-programmer still cannot read.
+    # Silence beats a "plain" summary a non-programmer still cannot read — and the rejection says
+    # WHICH rule caught it, so the failure can be argued with instead of just observed.
     assert plain == ""
+    assert "jargon-term" in broken
 
-    _rest, good = parse_plain_block(
+    _rest, good, none_broken = parse_plain_block(
         "```isidore-plain\nSaving a batch of records can now be made conditional, so two people "
         "editing at once no longer overwrite each other.\n```")
     assert good.startswith("Saving a batch")
+    assert none_broken == []
 
 
 def test_plain_language_summary_reaches_the_page_and_the_rejection_is_counted(tmp_path):

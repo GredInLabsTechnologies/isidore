@@ -52,6 +52,8 @@ from .claims import (
 from .graph import ISIDORE_DIR, module_of
 from .langspec import BINARY_EXTS
 from .pcp import CERT_SUFFIX, VerifyContext, write_certificate
+from .plain import check as plain_check
+from .plain import explain as plain_explain
 from .pipeline import (
     DEFAULT_MODULE_DEPTH,
     LINT_REPAIR_ADDENDUM,
@@ -646,37 +648,25 @@ _CITATION = re.compile(r"[^|\s]:\d+\b")
 
 
 _PLAIN_FENCE = re.compile(r"```isidore-plain\s*\n(?P<body>.*?)```", re.DOTALL)
-# Words that betray the plain-language block slipping back into jargon. Cheap, deterministic, and it
-# fails SAFE: a summary that trips this is dropped, never shown with a warning a reader must decode.
-# NOTE: the case-insensitive flag is SCOPED to the vocabulary list on purpose. Applying `(?i)` to the
-# whole pattern turns the camelCase detector `[a-z][A-Z]` into "any two letters", which rejected every
-# sentence ever written — including the good ones. Structural detectors stay case-sensitive.
-_JARGON = re.compile(
-    r"(?i:\b(?:methods?|classe?s?|parameters?|arguments?|api|functions?|constants?|variables?|"
-    r"struct|interface|callback|async|repositor(?:y|ies)|refactor|endpoints?|payloads?|boolean|"
-    r"instantiate[ds]?|modules?|librar(?:y|ies)|daemons?|addons?|binar(?:y|ies)|runtimes?|"
-    r"protocols?|schemas?|snapshots?|mutex|serialis[ez]e|deserialis[ez]e)\b)"
-    r"|[A-Za-z]+_[a-z]"                          # snake_case identifier
-    r"|[a-z][A-Z]"                               # camelCase identifier
-    r"|[\w/]+\.(?:py|ts|js|go|rs|java|rb|md|json|toml)\b"     # a file name
-    r"|:\d+\b"                                   # a line reference
-    r"|[{}]")                                    # code braces
 
 
-def parse_plain_block(markdown: str) -> tuple[str, str]:
-    """Split the plain-language block out of a model answer -> (rest, plain text).
+def parse_plain_block(markdown: str) -> tuple[str, str, list[str]]:
+    """Split the plain-language block out of a model answer -> (rest, plain text, broken rules).
 
-    Returns an empty plain text when the block is absent OR when it reads like code — no summary at
-    all is strictly better for a non-technical reader than one that says "the method's parameter".
+    The text comes back empty when the block is absent OR when `plain.check` disqualifies it, and
+    the rule names ride along so the run can report WHY it was dropped rather than just that it was.
+    No summary at all is strictly better for a non-technical reader than one that still says "the
+    method's parameter".
     """
     match = _PLAIN_FENCE.search(markdown)
     if not match:
-        return markdown, ""
+        return markdown, "", []
     rest = (markdown[:match.start()] + markdown[match.end():]).strip()
-    plain = " ".join(match.group("body").split()).strip()
-    if not plain or _JARGON.search(plain):
-        return rest, ""
-    return rest, plain
+    text = " ".join(match.group("body").split()).strip()
+    if not text:
+        return rest, "", []
+    broken = plain_check(text)
+    return (rest, "", broken) if broken else (rest, text, [])
 
 
 def strip_inline_claim_rows(markdown: str) -> str:
@@ -749,7 +739,9 @@ def generate_prose(repo: Path, delta: SurfaceDelta, hints: list[str], generator,
     are outside what this range can prove, phantom paths get one bounded repair attempt and then a
     visible quarantine mark rather than a silent deletion.
     """
-    stats = {"calls": 0, "retries": 0, "dropped": 0, "quarantined": False, "plain_rejected": 0}
+    stats: dict = {"calls": 0, "retries": 0, "dropped": 0, "quarantined": False,
+                   "plain_rejected": 0, "plain_rejections": []}
+    rejections: list[str] = stats["plain_rejections"]
     prose: dict[str, str] = {}
     plain: dict[str, str] = {}
     claims: list[dict] = []
@@ -795,11 +787,12 @@ def generate_prose(repo: Path, delta: SurfaceDelta, hints: list[str], generator,
         anchored, dropped, _repaired = anchor_claims(repo, kept_claims, in_range)
         stats["dropped"] += dropped
         claims.extend(anchored)
-        markdown, plain_text = parse_plain_block(markdown)
+        markdown, plain_text, broken = parse_plain_block(markdown)
         if plain_text:
             plain[module] = plain_text
-        else:
+        elif broken:
             stats["plain_rejected"] += 1
+            rejections.append(f"{module}: {plain_explain(broken)}")
         prose[module] = strip_inline_claim_rows(markdown).strip()
     return prose, plain, claims, stats
 
