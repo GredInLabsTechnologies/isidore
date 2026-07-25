@@ -1,0 +1,76 @@
+{
+  "child_cert_hashes": {},
+  "claims": [
+    {
+      "detail": "no predicate (existence-anchored only)",
+      "ehash": "8228ecfee182",
+      "evidence": "tests/test_verify.py:1",
+      "id": "c-4cde9398",
+      "oracle": "none",
+      "predicate": "",
+      "statement": "The module tests/test_verify.py verifies typed claims against a code graph and prose text",
+      "verdict": "UNDECIDABLE"
+    },
+    {
+      "detail": "tests/test_verify.py defines _ctx",
+      "ehash": "55e731282a08",
+      "evidence": "tests/test_verify.py:16",
+      "id": "c-eedd3dfb",
+      "oracle": "graph",
+      "predicate": "defines:tests/test_verify.py;_ctx",
+      "statement": "The module uses a VerifyContext to hold the repository, nodes, links, and commit",
+      "verdict": "TRUE"
+    },
+    {
+      "detail": "tests/test_verify.py defines _anchored",
+      "ehash": "bea4224f1ef8",
+      "evidence": "tests/test_verify.py:21",
+      "id": "c-395df6c3",
+      "oracle": "graph",
+      "predicate": "defines:tests/test_verify.py;_anchored",
+      "statement": "The module anchors claims by parsing a Markdown file and resolving their locations",
+      "verdict": "TRUE"
+    },
+    {
+      "detail": "tests/test_verify.py defines test_three_field_parser_captures_predicate",
+      "ehash": "1eac993fac98",
+      "evidence": "tests/test_verify.py:28",
+      "id": "c-d5c8cfe6",
+      "oracle": "graph",
+      "predicate": "defines:tests/test_verify.py;test_three_field_parser_captures_predicate",
+      "statement": "The module tests that three-field claims are parsed correctly",
+      "verdict": "TRUE"
+    },
+    {
+      "detail": "tests/test_verify.py defines test_each_predicate_kind_decides_correctly",
+      "ehash": "7b01f59cf8f4",
+      "evidence": "tests/test_verify.py:35",
+      "id": "c-255b2224",
+      "oracle": "graph",
+      "predicate": "defines:tests/test_verify.py;test_each_predicate_kind_decides_correctly",
+      "statement": "The module tests that each predicate type is verified correctly",
+      "verdict": "TRUE"
+    },
+    {
+      "detail": "tests/test_verify.py defines test_certificate_matches_golden_verdicts",
+      "ehash": "f073b2cb30eb",
+      "evidence": "tests/test_verify.py:54",
+      "id": "c-45925534",
+      "oracle": "graph",
+      "predicate": "defines:tests/test_verify.py;test_certificate_matches_golden_verdicts",
+      "statement": "The module tests that the generated certificate matches golden verdicts",
+      "verdict": "TRUE"
+    }
+  ],
+  "graph_commit": "14a96ad814d17fe89cf51e923b45d3b8a67f07e0",
+  "marks": [],
+  "mass": {
+    "gray": 12,
+    "green": 16,
+    "yellow": 0
+  },
+  "page": "tests-test_verify_py.md",
+  "prose_sha256": "6375a89da811a11154f8ca4ca573a6f11d6c3d16fda43935b7ee646e033f9198",
+  "version": "pcp-1",
+  "violations": []
+}

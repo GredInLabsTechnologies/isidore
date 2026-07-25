@@ -1,41 +1,35 @@
 > [!WARNING]
-> **SECURITY — unverified suspect(s) flagged automatically while compiling this page.**
-> Detected from the evidence, not from a security scan. Treat as review items to VERIFY, never as intended features to preserve:
+> **SECURITY — deterministic detectors flagged this code (0 LLM). Verify; never document as an intended feature.**
 >
-> - `tests/test_security_prose.py:17` — security risk: hardcoded service token in BACKDOOR constant
-
+> - `tests/test_security_prose.py:29` — eval()
+> - `tests/test_security_prose.py:51` — eval()
+> - `tests/test_security_prose.py:85` — credential-shaped literal (sk_ prefix)
 ## Purpose
-`tests/test_security_prose.py` tests the security escalation logic in the `isidore.findings` module. It verifies that security-related findings are correctly identified and that the system raises a loud, deterministic banner when such findings are detected. The module is motivated by a real-world case where a camouflaged authentication backdoor was caught in findings but the prose recommended keeping it. The tests ensure the banner is mechanical and cannot be softened into a feature.
+The `tests/test_security_prose.py` module tests the security escalation system that forces a loud, deterministic prose banner when a security suspect is detected. This system was introduced to address a live adversarial test where a camouflaged authentication backdoor was caught in findings as a bug but the prose recommended keeping it. The banner is mechanical and ensures that security suspects are no longer softened into features.
 
 ## Architecture
-The module defines a set of test functions that exercise the `is_security_finding` and `security_banner` functions from `isidore.findings`. The tests cover:
-- Detection of security-related vocabulary in findings
-- Ignoring non-security findings and wrong kinds
-- False-positive regression tests for notes that affirm safety
-- False-negative regression tests for hardcoded secrets with intervening words
-- Banner formatting and placement
+The module tests the `is_security_finding` function, which checks if a finding is a security suspect. It also tests the `security_banner` function, which generates a loud, deterministic prose banner when security suspects are detected. The tests cover various scenarios, including detecting common security vocabulary, ignoring non-security findings, and ensuring that safety-affirming notes do not escalate the banner.
 
 ## Key entry points
-- `test_detects_the_camouflaged_backdoor()`: Verifies detection of a hardcoded service token
-- `test_detects_common_security_vocabulary()`: Tests detection of security-related terms
-- `test_ignores_non_security_and_wrong_kinds()`: Ensures non-security findings are ignored
-- `test_negation_guard_does_not_escalate_safety_affirming_notes()`: Confirms safety-affirming notes do not trigger the banner
-- `test_hardcoded_with_intervening_word_is_caught()`: Tests detection of hardcoded secrets with words between "hardcoded" and "token"
-- `test_banner_is_loud_and_lists_evidence()`: Verifies the banner's formatting and content
-- `test_no_banner_without_security_suspects()`: Ensures no banner is shown for non-security findings
-- `test_banner_goes_under_the_h1()`: Confirms the banner is placed correctly in markdown
+- `test_detects_the_camouflaged_backdoor`: Tests that a camouflaged backdoor is detected as a security suspect.
+- `test_detects_common_security_vocabulary`: Tests that common security vocabulary is detected as a security suspect.
+- `test_ignores_non_security_and_wrong_kinds`: Tests that non-security findings and wrong kinds are ignored.
+- `test_negation_guard_does_not_escalate_safety_affirming_notes`: Tests that safety-affirming notes do not escalate the banner.
+- `test_hardcoded_with_intervening_word_is_caught`: Tests that hardcoded tokens with intervening words are caught as security suspects.
+- `test_banner_is_loud_and_lists_evidence`: Tests that the banner is loud and lists evidence.
+- `test_no_banner_without_security_suspects`: Tests that no banner is generated without security suspects.
+- `test_banner_goes_under_the_h1`: Tests that the banner is placed under the H1 heading.
 
 ## Dependencies
-The module depends on the `isidore.findings` module, which provides:
-- `insert_security_banner`: Inserts a security banner into markdown
-- `is_security_finding`: Determines if a finding is security-related
-- `render_findings`: Renders findings
-- `security_banner`: Generates a security banner
-- `security_suspects`: Defines security-related vocabulary
+The module depends on the `isidore.findings` module, which provides the `insert_security_banner`, `is_security_finding`, `render_findings`, `security_banner`, and `security_suspects` functions.
 
 ## How to change safely
-When modifying this module:
-1. Ensure all test cases remain valid by updating them alongside the implementation
-2. Maintain the deterministic nature of the banner and its placement
-3. Preserve the negation guard that prevents safety-affirming notes from triggering the banner
-4. Keep the test coverage comprehensive for all security-related vocabulary and edge cases
+When modifying this module, ensure that:
+1. The security escalation system continues to force a loud, deterministic prose banner when security suspects are detected.
+2. Common security vocabulary is still detected as a security suspect.
+3. Non-security findings and wrong kinds are still ignored.
+4. Safety-affirming notes do not escalate the banner.
+5. Hardcoded tokens with intervening words are still caught as security suspects.
+6. The banner is still loud and lists evidence.
+7. No banner is generated without security suspects.
+8. The banner is still placed under the H1 heading.

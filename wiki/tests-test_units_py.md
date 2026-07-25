@@ -3,32 +3,29 @@
 >
 > - `tests/test_units.py:268` — credential-shaped literal (sk- prefix)
 ## Purpose
-`tests/test_units.py` contains unit tests for core Isidore subsystems: the toon encoder, graph scanner, findings residue, QA retrieval, and LLM request helpers. It verifies that small, isolated components behave as expected under controlled inputs, ensuring that parsing, encoding, and graph-building utilities remain reliable as the codebase evolves.
+The `tests/test_units.py` module contains unit tests for core functionality of the Isidore system, focusing on four key areas: the toon encoder, graph scanner, findings residue, and QA retrieval. The tests verify that these components handle edge cases, syntax errors, and file exclusions correctly, ensuring the system's reliability when processing codebases.
 
 ## Architecture
-The file is organized into thematic test groups introduced by comments (`# ----------------------------------------------------------------------- toon`, `# ---------------------------------------------------------------------- graph`). Each test imports only the symbols it exercises, keeping dependencies explicit and tests independent. The module does not depend on other test modules and is not depended on by them, making it a leaf in the test hierarchy.
+The module is organized into four logical sections, each corresponding to a major component of Isidore:
+1. **Toon encoder tests** (`test_toon_encode_table_quoting_and_counts()`) verify the formatting of tabular data for the toon format.
+2. **Graph scanner tests** (`test_module_of_normalizes_and_buckets()`, `test_scan_repo_extracts_symbols_imports_and_docs()`, `test_scan_tolerates_syntax_errors()`, `test_write_scan_and_find_graph_roundtrip()`, `test_scan_excludes_gitignored_build_artifacts()`) ensure the scanner correctly processes Python files, handles syntax errors, and excludes ignored files.
+3. **Findings residue tests** (not shown in excerpts) would validate the extraction and rendering of findings from code.
+4. **QA retrieval tests** (not shown in excerpts) would verify the question-answering pipeline.
+
+Each test is self-contained and uses pytest fixtures like `tmp_path` to create isolated test environments.
 
 ## Key entry points
-- `test_toon_encode_table_quoting_and_counts`: validates that `encode_table` in `isidore.toon` produces correct quoted CSV lines and counts for mixed scalar and None values.
-- `test_module_of_normalizes_and_buckets`: checks that `module_of` in `isidore.graph` normalizes path separators and buckets files under the correct module path, including a sentinel for non-file inputs.
-- `test_scan_repo_extracts_symbols_imports_and_docs`: exercises `scan_repo` in `isidore.graph` to confirm it indexes Python files, classes, functions, and Markdown docs while excluding `.venv` artifacts.
-- `test_scan_tolerates_syntax_errors`: verifies that `scan_repo` still produces a node for a syntactically invalid file rather than crashing.
-- `test_write_scan_and_find_graph_roundtrip`: tests that `write_scan` and `find_graph` in `isidore.graph` produce consistent graph artifacts and that `load_graph` can read them back.
-- `test_scan_excludes_gitignored_build_artifacts`: ensures `scan_repo` respects `.gitignore` and does not index ignored build artifacts.
+The module's entry points are the test functions themselves, which are called by pytest during test execution. The most connected symbol is the module itself (`test_units.py`), which imports all dependencies and defines the test suite.
 
 ## Dependencies
-- Standard library: `json`, `pytest`
-- Internal modules:
-  - `isidore.toon.encode_table`
-  - `isidore.graph.{GraphError, find_graph, load_graph, module_of, scan_repo, write_scan}`
-  - `isidore.findings.{filter_findings, harvest_todos, orphan_file_candidates, parse_findings_block, render_findings, coverage_gap_candidates}`
-  - `isidore.llm.build_request`
-  - `isidore.pipeline.PageSpec`
-  - `isidore.qa.{ask, gather_evidence, question_terms}`
-  - `isidore.render.render_toon_index`
+The module depends on:
+- `isidore.toon.encode_table` for toon encoding tests (`tests/test_units.py:L21`)
+- `isidore.graph` for graph-related tests (`tests/test_units.py:L16`)
+- `isidore.findings` for findings-related tests (`tests/test_units.py:L8-L15`)
+- `isidore.qa` for QA-related tests (`tests/test_units.py:L19`)
 
 ## How to change safely
-- Add new tests under the appropriate section comment to keep related cases together.
-- When modifying graph-related tests, ensure they still pass after changes to `scan_repo`, `write_scan`, or `find_graph`; these functions are the primary contract for repository introspection.
-- If a test exercises a helper that is later removed, delete the test and update the imports accordingly to keep the file buildable.
-- Keep assertions focused on one behavior per test to simplify failure diagnosis and reduce merge conflicts when multiple features change.
+To modify this module safely:
+1. **Add new tests** by following the existing patterns, ensuring they are isolated and use pytest fixtures.
+2. **Update existing tests** to reflect changes in the corresponding modules, but avoid breaking existing test cases.
+3. **Maintain consistency** with the module's structure and naming conventions.

@@ -3,126 +3,66 @@
   "claims": [
     {
       "detail": "no predicate (existence-anchored only)",
-      "ehash": "906171e70802",
-      "evidence": "src/isidore/pipeline.py:3",
-      "id": "c-0e461ef1",
+      "ehash": "dccd940a0f97",
+      "evidence": "src/isidore/pipeline.py:L1",
+      "id": "c-95bd8b22",
       "oracle": "none",
       "predicate": "",
-      "statement": "The pipeline is deterministic except for a single bounded LLM call per dirty page.",
+      "statement": "The module generates documentation anchored to code structure",
       "verdict": "UNDECIDABLE"
     },
     {
-      "detail": "no predicate (existence-anchored only)",
-      "ehash": "802c051ee918",
-      "evidence": "src/isidore/graph.py:8",
-      "id": "c-709e4b57",
-      "oracle": "none",
-      "predicate": "",
-      "statement": "The graph format accepts \"edges\" or \"links\" for relationships.",
-      "verdict": "UNDECIDABLE"
-    },
-    {
-      "detail": "src/isidore/claims.py defines anchor_claims",
-      "ehash": "d5ee2ef5c05e",
-      "evidence": "src/isidore/claims.py:5",
-      "id": "c-a1cb0639",
+      "detail": "src/isidore/claims.py does not define SEARCH_RADIUS",
+      "ehash": "e7b4cb831799",
+      "evidence": "src/isidore/claims.py:L1",
+      "id": "c-ba5c7fd9",
       "oracle": "graph",
-      "predicate": "defines:src/isidore/claims.py;anchor_claims",
-      "statement": "Claims are anchored to code with a content hash of the cited lines.",
-      "verdict": "TRUE"
-    },
-    {
-      "detail": "no predicate (existence-anchored only)",
-      "ehash": "5af45019f483",
-      "evidence": "src/isidore/verify.py:9",
-      "id": "c-ea8bca6b",
-      "oracle": "none",
-      "predicate": "",
-      "statement": "A verifier returns TRUE, FALSE, or UNDECIDABLE.",
-      "verdict": "UNDECIDABLE"
-    },
-    {
-      "detail": "SEARCH_RADIUS == 40",
-      "ehash": "864eebe9fea0",
-      "evidence": "src/isidore/claims.py:26",
-      "id": "c-c577ed6e",
-      "oracle": "ast",
-      "predicate": "value:SEARCH_RADIUS;40",
-      "statement": "The SEARCH_RADIUS for claim evidence is 40 lines.",
-      "verdict": "TRUE"
-    },
-    {
-      "detail": "affected_modules has no call to git",
-      "ehash": "1ab714f1e140",
-      "evidence": "src/isidore/pipeline.py:22",
-      "id": "c-10842d3d",
-      "oracle": "ast",
-      "predicate": "calls:affected_modules;git",
-      "statement": "The module uses git as the source of truth for file changes.",
+      "predicate": "defines:src/isidore/claims.py;SEARCH_RADIUS",
+      "statement": "Claims are anchored to content hashes of cited lines",
       "verdict": "FALSE"
     },
     {
       "detail": "no predicate (existence-anchored only)",
-      "ehash": "25be119bb8c1",
-      "evidence": "src/isidore/findings.py:23",
-      "id": "c-528fb5cc",
+      "ehash": "011d5c70491b",
+      "evidence": "src/isidore/graph.py:L11",
+      "id": "c-61f4c919",
       "oracle": "none",
       "predicate": "",
-      "statement": "Findings are stored in wiki/findings.toon.",
-      "verdict": "UNDECIDABLE"
-    },
-    {
-      "detail": "caller 'preserve_line_endings' not a Python symbol in the graph",
-      "ehash": "7d8752c4c7ea",
-      "evidence": "src/isidore/pipeline.py:16",
-      "id": "c-cc4a7498",
-      "oracle": "none",
-      "predicate": "calls:preserve_line_endings;git",
-      "statement": "The pipeline preserves line-ending style of files.",
+      "statement": "The graph format is tool-agnostic and can be produced by any tool",
       "verdict": "UNDECIDABLE"
     },
     {
       "detail": "no predicate (existence-anchored only)",
-      "ehash": "d5b772e9dd54",
-      "evidence": "src/isidore/verify.py:7",
-      "id": "c-acb2b659",
+      "ehash": "906171e70802",
+      "evidence": "src/isidore/pipeline.py:L3",
+      "id": "c-a4d46e9c",
       "oracle": "none",
       "predicate": "",
-      "statement": "The verifier for `calls` may reparse the cited file's AST.",
-      "verdict": "UNDECIDABLE"
-    },
-    {
-      "detail": "caller 'defines_verifier' not a Python symbol in the graph",
-      "ehash": "b1bd38130168",
-      "evidence": "src/isidore/verify.py:4",
-      "id": "c-bfe70065",
-      "oracle": "none",
-      "predicate": "calls:defines_verifier;graph.json",
-      "statement": "The `defines` verifier uses the graph.json oracle.",
-      "verdict": "UNDECIDABLE"
-    },
-    {
-      "detail": "caller 'imports_verifier' not a Python symbol in the graph",
-      "ehash": "b1bd38130168",
-      "evidence": "src/isidore/verify.py:4",
-      "id": "c-faaa035b",
-      "oracle": "none",
-      "predicate": "calls:imports_verifier;graph.json",
-      "statement": "The `imports` verifier uses the graph.json oracle.",
+      "statement": "The pipeline is deterministic except for the single bounded LLM call per dirty page",
       "verdict": "UNDECIDABLE"
     },
     {
       "detail": "no predicate (existence-anchored only)",
-      "ehash": "d5b772e9dd54",
-      "evidence": "src/isidore/verify.py:7",
-      "id": "c-74e1849e",
+      "ehash": "0a62f13a8963",
+      "evidence": "src/isidore/pcp.py:L21",
+      "id": "c-97885691",
       "oracle": "none",
       "predicate": "",
-      "statement": "The `env` verifier uses a deterministic textual scan.",
+      "statement": "Proof-Carrying Prose uses JSON for machine-readable certificates",
+      "verdict": "UNDECIDABLE"
+    },
+    {
+      "detail": "no predicate (existence-anchored only)",
+      "ehash": "e1022c8ee33c",
+      "evidence": "src/isidore/verify.py:L3",
+      "id": "c-88e6dbbf",
+      "oracle": "none",
+      "predicate": "",
+      "statement": "The verifiers decide a Predicate's truth against two oracles",
       "verdict": "UNDECIDABLE"
     }
   ],
-  "graph_commit": "3f4179988e00df03aec751ce3053e147645c7381",
+  "graph_commit": "14a96ad814d17fe89cf51e923b45d3b8a67f07e0",
   "marks": [
     {
       "disposition": "",
@@ -427,27 +367,25 @@
       "line": 1,
       "reason": "reachable from auth/secret surface: src/isidore/detectors.py",
       "severity": "info"
+    },
+    {
+      "disposition": "",
+      "family": "topology",
+      "file": "src/isidore/whatsnew.py",
+      "line": 1,
+      "reason": "reachable from auth/secret surface: src/isidore/detectors.py",
+      "severity": "info"
     }
   ],
   "mass": {
-    "gray": 38,
-    "green": 20,
-    "yellow": 1
+    "gray": 32,
+    "green": 0,
+    "yellow": 20
   },
   "page": "src-isidore.md",
-  "prose_sha256": "476d13b003437e74272f328e5cb2318d4700482bf073e5d82e9add8eeccb06e6",
+  "prose_sha256": "8fd7acaf35fc6aa36607d88f3197663bff4109dc0c2dd2b8a18403be4456084a",
   "version": "pcp-1",
   "violations": [
-    {
-      "detail": "Prose omits mention of file 'src/isidore/pipeline.py' cited in finding.",
-      "kind": "prose-omits-finding",
-      "where": "src/isidore/pipeline.py:16"
-    },
-    {
-      "detail": "Prose omits mention of file 'src/isidore/claims.py' cited in finding.",
-      "kind": "prose-omits-finding",
-      "where": "src/isidore/claims.py:26"
-    },
     {
       "detail": "Security-relevant mark (entropy) at src/isidore/detectors.py:29 has no covering claim.",
       "kind": "mark-uncovered",

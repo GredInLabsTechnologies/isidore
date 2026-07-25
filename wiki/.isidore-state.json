@@ -1,5 +1,5 @@
 {
-  "commit": "3f4179988e00df03aec751ce3053e147645c7381",
+  "commit": "14a96ad814d17fe89cf51e923b45d3b8a67f07e0",
   "deps": [],
   "journal": [
     {
@@ -20,129 +20,92 @@
       "quarantined": 0,
       "retries": 1,
       "skipped": 1
+    },
+    {
+      "calls_saved": 1,
+      "commit": "14a96ad814d1",
+      "dirty": 10,
+      "generated": 10,
+      "generated_pages": [
+        "tests-test_units_py.md",
+        "src-isidore.md",
+        "tests-test_claims_py.md",
+        "tests-test_connectors_f1_py.md",
+        "tests-test_pcp_seams_py.md",
+        "tests-test_pipeline_py.md",
+        "tests-test_security_prose_py.md",
+        "tests-test_surface_py.md",
+        "tests-test_verify_py.md",
+        "tests-test_whatsnew_py.md"
+      ],
+      "planned": 11,
+      "quarantined": 0,
+      "retries": 0,
+      "skipped": 0
     }
   ],
   "pages": {
     "src-isidore.md": {
       "claims": [
         {
+          "ehash": "dccd940a0f97",
+          "evidence": "src/isidore/pipeline.py:L1",
+          "id": "c-95bd8b22",
+          "predicate": "",
+          "statement": "The module generates documentation anchored to code structure",
+          "verdict": "UNDECIDABLE"
+        },
+        {
+          "ehash": "011d5c70491b",
+          "evidence": "src/isidore/graph.py:L11",
+          "id": "c-61f4c919",
+          "predicate": "",
+          "statement": "The graph format is tool-agnostic and can be produced by any tool",
+          "verdict": "UNDECIDABLE"
+        },
+        {
           "ehash": "906171e70802",
-          "evidence": "src/isidore/pipeline.py:3",
-          "id": "c-0e461ef1",
+          "evidence": "src/isidore/pipeline.py:L3",
+          "id": "c-a4d46e9c",
           "predicate": "",
-          "statement": "The pipeline is deterministic except for a single bounded LLM call per dirty page.",
+          "statement": "The pipeline is deterministic except for the single bounded LLM call per dirty page",
           "verdict": "UNDECIDABLE"
         },
         {
-          "ehash": "802c051ee918",
-          "evidence": "src/isidore/graph.py:8",
-          "id": "c-709e4b57",
+          "ehash": "0a62f13a8963",
+          "evidence": "src/isidore/pcp.py:L21",
+          "id": "c-97885691",
           "predicate": "",
-          "statement": "The graph format accepts \"edges\" or \"links\" for relationships.",
+          "statement": "Proof-Carrying Prose uses JSON for machine-readable certificates",
           "verdict": "UNDECIDABLE"
         },
         {
-          "ehash": "d5ee2ef5c05e",
-          "evidence": "src/isidore/claims.py:5",
-          "id": "c-a1cb0639",
-          "predicate": "defines:src/isidore/claims.py;anchor_claims",
-          "statement": "Claims are anchored to code with a content hash of the cited lines.",
-          "verdict": "TRUE"
-        },
-        {
-          "ehash": "5af45019f483",
-          "evidence": "src/isidore/verify.py:9",
-          "id": "c-ea8bca6b",
+          "ehash": "e1022c8ee33c",
+          "evidence": "src/isidore/verify.py:L3",
+          "id": "c-88e6dbbf",
           "predicate": "",
-          "statement": "A verifier returns TRUE, FALSE, or UNDECIDABLE.",
-          "verdict": "UNDECIDABLE"
-        },
-        {
-          "ehash": "864eebe9fea0",
-          "evidence": "src/isidore/claims.py:26",
-          "id": "c-c577ed6e",
-          "predicate": "value:SEARCH_RADIUS;40",
-          "statement": "The SEARCH_RADIUS for claim evidence is 40 lines.",
-          "verdict": "TRUE"
-        },
-        {
-          "ehash": "25be119bb8c1",
-          "evidence": "src/isidore/findings.py:23",
-          "id": "c-528fb5cc",
-          "predicate": "",
-          "statement": "Findings are stored in wiki/findings.toon.",
-          "verdict": "UNDECIDABLE"
-        },
-        {
-          "ehash": "7d8752c4c7ea",
-          "evidence": "src/isidore/pipeline.py:16",
-          "id": "c-cc4a7498",
-          "predicate": "calls:preserve_line_endings;git",
-          "statement": "The pipeline preserves line-ending style of files.",
-          "verdict": "UNDECIDABLE"
-        },
-        {
-          "ehash": "d5b772e9dd54",
-          "evidence": "src/isidore/verify.py:7",
-          "id": "c-acb2b659",
-          "predicate": "",
-          "statement": "The verifier for `calls` may reparse the cited file's AST.",
-          "verdict": "UNDECIDABLE"
-        },
-        {
-          "ehash": "b1bd38130168",
-          "evidence": "src/isidore/verify.py:4",
-          "id": "c-bfe70065",
-          "predicate": "calls:defines_verifier;graph.json",
-          "statement": "The `defines` verifier uses the graph.json oracle.",
-          "verdict": "UNDECIDABLE"
-        },
-        {
-          "ehash": "b1bd38130168",
-          "evidence": "src/isidore/verify.py:4",
-          "id": "c-faaa035b",
-          "predicate": "calls:imports_verifier;graph.json",
-          "statement": "The `imports` verifier uses the graph.json oracle.",
-          "verdict": "UNDECIDABLE"
-        },
-        {
-          "ehash": "d5b772e9dd54",
-          "evidence": "src/isidore/verify.py:7",
-          "id": "c-74e1849e",
-          "predicate": "",
-          "statement": "The `env` verifier uses a deterministic textual scan.",
+          "statement": "The verifiers decide a Predicate's truth against two oracles",
           "verdict": "UNDECIDABLE"
         }
       ],
-      "compiled_at": "2026-07-13T11:28:48Z",
-      "context_hash": "4b23bc648ea493d275e2a3a79b941d753ab841988256a674bbfc38a119115f0c",
-      "findings": [
-        {
-          "id": "f-4b8cc00a",
-          "kind": "bug",
-          "note": "git subprocess output is decoded as UTF-8, not the platform default",
-          "resolved": false,
-          "where": "src/isidore/pipeline.py:16"
-        },
-        {
-          "id": "f-e4137a6a",
-          "kind": "drift",
-          "note": "SEARCH_RADIUS is 40, but the exact value is not documented",
-          "resolved": false,
-          "where": "src/isidore/claims.py:26"
-        },
-        {
-          "id": "f-c6ce35e1",
-          "kind": "question",
-          "note": "How are claims prioritized for regeneration when multiple are stale?",
-          "resolved": false,
-          "where": ""
-        }
-      ],
+      "compiled_at": "2026-07-25T21:31:54Z",
+      "context_hash": "8dfc28aa89a44b754d447aeb58593a1df00b257cbf01e56e6383571c31824db4",
+      "findings": [],
       "history": [
         {
           "commit": "3f4179988e00",
           "line_delta": -2,
+          "sections_changed": [
+            "Architecture",
+            "Dependencies",
+            "How to change safely",
+            "Key entry points",
+            "Purpose"
+          ]
+        },
+        {
+          "commit": "14a96ad814d1",
+          "line_delta": -9,
           "sections_changed": [
             "Architecture",
             "Dependencies",
@@ -169,59 +132,62 @@
         {
           "ehash": "58568a4e9cb5",
           "evidence": "tests/test_claims.py:82",
-          "id": "c-6d8eca4a",
+          "id": "c-1068b52d",
           "predicate": "calls:test_parse_claims_block_extracts_and_strips;parse_claims_block",
-          "statement": "The module verifies that claims are parsed from Markdown blocks",
+          "statement": "The module tests the extraction of claims from Markdown blocks",
           "verdict": "TRUE"
         },
         {
           "ehash": "7ec0bc809d2f",
           "evidence": "tests/test_claims.py:90",
-          "id": "c-775dd23e",
+          "id": "c-6f48da29",
           "predicate": "calls:test_evidence_hash_is_the_cited_line_content;evidence_hash",
-          "statement": "The evidence hash is computed from the cited line's content",
+          "statement": "The module tests the hashing of cited lines",
           "verdict": "TRUE"
         },
         {
           "ehash": "0951da7c38e8",
           "evidence": "tests/test_claims.py:106",
-          "id": "c-3fd44a28",
+          "id": "c-6011c9b5",
           "predicate": "calls:test_evidence_state_ignores_neighbors_whitespace_and_line_shifts;evidence_state",
-          "statement": "The evidence state ignores changes to neighboring lines",
+          "statement": "The module tests that staleness is only triggered by changes to the cited line",
           "verdict": "TRUE"
         },
         {
-          "ehash": "ef0c3b837882",
-          "evidence": "tests/test_claims.py:59",
-          "id": "c-5def4d5c",
-          "predicate": "calls:_make_repo;Path.mkdir",
-          "statement": "The module uses a synthetic repository for testing",
-          "verdict": "TRUE"
+          "ehash": "b933670c9039",
+          "evidence": "tests/test_claims.py:7",
+          "id": "c-fed705d0",
+          "predicate": "imports:tests/test_claims.py;isidore.claims",
+          "statement": "The module depends on the `isidore.claims` module",
+          "verdict": "UNDECIDABLE"
         },
         {
-          "ehash": "be436eb91143",
-          "evidence": "tests/test_claims.py:100",
-          "id": "c-660f723b",
-          "predicate": "calls:test_evidence_hash_is_the_cited_line_content;evidence_hash",
-          "statement": "The evidence hash changes when the cited line is modified",
-          "verdict": "TRUE"
-        },
-        {
-          "ehash": "ce2a3073dbe5",
-          "evidence": "tests/test_claims.py:83",
-          "id": "c-19fdb569",
-          "predicate": "calls:test_parse_claims_block_extracts_and_strips;parse_claims_block",
-          "statement": "The claims block is stripped after parsing",
-          "verdict": "TRUE"
+          "ehash": "5f8dff0b6c6b",
+          "evidence": "tests/test_claims.py:18",
+          "id": "c-33739bfa",
+          "predicate": "imports:tests/test_claims.py;isidore.pipeline",
+          "statement": "The module depends on the `isidore.pipeline` module",
+          "verdict": "UNDECIDABLE"
         }
       ],
-      "compiled_at": "2026-07-13T11:28:53Z",
-      "context_hash": "52bc10be359755662c5b041dfceeb56dc5bc574127c6860818270be82cb5021c",
+      "compiled_at": "2026-07-25T21:32:01Z",
+      "context_hash": "210b222bad643b3faea2668fb937742cc0daeca6c468546e89f2c2901a12c650",
       "findings": [],
       "history": [
         {
           "commit": "3f4179988e00",
           "line_delta": -41,
+          "sections_changed": [
+            "Architecture",
+            "Dependencies",
+            "How to change safely",
+            "Key entry points",
+            "Purpose"
+          ]
+        },
+        {
+          "commit": "14a96ad814d1",
+          "line_delta": 3,
           "sections_changed": [
             "Architecture",
             "Dependencies",
@@ -240,75 +206,62 @@
         {
           "ehash": "f3f5fe82e4b9",
           "evidence": "tests/test_connectors_f1.py:3",
-          "id": "c-8cdbe090",
+          "id": "c-fedaab0a",
           "predicate": "calls:test_connectors_f1.py;GitRepoConnector",
-          "statement": "The module tests the idempotency of the GitRepoConnector",
+          "statement": "The test suite verifies idempotency of git-repo connector",
           "verdict": "UNDECIDABLE"
         },
         {
-          "ehash": "f3f5fe82e4b9",
-          "evidence": "tests/test_connectors_f1.py:3",
-          "id": "c-9a6859fa",
-          "predicate": "calls:test_connectors_f1.py;_make_repo",
-          "statement": "The test ensures re-ingesting a git repo with no changes yields zero items",
-          "verdict": "UNDECIDABLE"
-        },
-        {
-          "ehash": "5280f716416a",
-          "evidence": "tests/test_connectors_f1.py:22",
-          "id": "c-ed2c2e3f",
-          "predicate": "calls:_make_repo;_git",
-          "statement": "The helper function _make_repo creates a git repository with a single commit",
-          "verdict": "TRUE"
-        },
-        {
-          "ehash": "5d31f74210d8",
-          "evidence": "tests/test_connectors_f1.py:40",
-          "id": "c-182ccfa4",
+          "ehash": "784420df20b4",
+          "evidence": "tests/test_connectors_f1.py:41",
+          "id": "c-9e0fb2f2",
           "predicate": "env:ISIDORE_HOME",
-          "statement": "The test verifies that the knowledge home directory can be overridden via environment variables",
-          "verdict": "TRUE"
-        },
-        {
-          "ehash": "f64063ab3ff4",
-          "evidence": "tests/test_connectors_f1.py:47",
-          "id": "c-7f94a037",
-          "predicate": "calls:test_write_items_stamps_chash_and_does_not_mutate;store.write_items",
-          "statement": "The test confirms that items are written to the store with a content hash (chash)",
+          "statement": "The knowledge home can be overridden via ISIDORE_HOME",
           "verdict": "TRUE"
         },
         {
           "ehash": "14a0cde4f176",
           "evidence": "tests/test_connectors_f1.py:50",
-          "id": "c-b0f03811",
-          "predicate": "calls:test_write_items_stamps_chash_and_does_not_mutate;store.write_items",
-          "statement": "The test ensures that the original item dictionary remains unmodified",
-          "verdict": "TRUE"
+          "id": "c-4d01fe15",
+          "predicate": "calls:test_connectors_f1.py;store.chash",
+          "statement": "Content is normalized and hashed before storage",
+          "verdict": "UNDECIDABLE"
         },
         {
-          "ehash": "f4de7bbfb9a4",
-          "evidence": "tests/test_connectors_f1.py:57",
-          "id": "c-385d77c7",
-          "predicate": "calls:test_read_state_missing_and_corrupt_return_default;store.read_state",
-          "statement": "The test validates that missing or corrupt state files return a default state structure",
-          "verdict": "TRUE"
+          "ehash": "9680a685e004",
+          "evidence": "tests/test_connectors_f1.py:60",
+          "id": "c-177ac4ac",
+          "predicate": "calls:test_connectors_f1.py;store.read_state",
+          "statement": "State files handle missing or corrupt data gracefully",
+          "verdict": "UNDECIDABLE"
         },
         {
-          "ehash": "78dd354cbd26",
-          "evidence": "tests/test_connectors_f1.py:67",
-          "id": "c-a0d82f97",
-          "predicate": "calls:test_record_run_keeps_last_20;store.record_run",
-          "statement": "The test confirms that only the last 20 runs are retained in the state",
-          "verdict": "TRUE"
+          "ehash": "a2857566d3a2",
+          "evidence": "tests/test_connectors_f1.py:70",
+          "id": "c-44a4aff8",
+          "predicate": "calls:test_connectors_f1.py;store.record_run",
+          "statement": "Run history retains only the last 20 entries",
+          "verdict": "UNDECIDABLE"
         }
       ],
-      "compiled_at": "2026-07-13T11:28:59Z",
-      "context_hash": "d086f4da4535dd8e252b2ad2650db2b8e6a2cf62be2d426a461430d0829564dd",
+      "compiled_at": "2026-07-25T21:32:07Z",
+      "context_hash": "b63e537f38d2998be0c9adf7e7526fe764c8d9efa9e1de59dccdbf1fd6e0ef4b",
       "findings": [],
       "history": [
         {
           "commit": "3f4179988e00",
           "line_delta": 2,
+          "sections_changed": [
+            "Architecture",
+            "Dependencies",
+            "How to change safely",
+            "Key entry points",
+            "Purpose"
+          ]
+        },
+        {
+          "commit": "14a96ad814d1",
+          "line_delta": 3,
           "sections_changed": [
             "Architecture",
             "Dependencies",
@@ -358,67 +311,102 @@
         {
           "ehash": "0f534ef449cd",
           "evidence": "tests/test_pcp_seams.py:1",
-          "id": "c-d2a67c87",
+          "id": "c-85c67919",
           "predicate": "",
-          "statement": "The module tests/test_pcp_seams.py exists to validate the PCP seam's public surface",
+          "statement": "The module tests/test_pcp_seams.py exists",
+          "verdict": "UNDECIDABLE"
+        },
+        {
+          "ehash": "60f58a70e5c4",
+          "evidence": "tests/test_pcp_seams.py:12",
+          "id": "c-99689e33",
+          "predicate": "",
+          "statement": "The module imports the isidore package",
           "verdict": "UNDECIDABLE"
         },
         {
           "ehash": "f2d4efdb85bc",
           "evidence": "tests/test_pcp_seams.py:36",
-          "id": "c-5f9ce12c",
-          "predicate": "calls:test_golden_graph_loads;load_graph",
-          "statement": "The test_golden_graph_loads function validates the golden graph fixture",
-          "verdict": "TRUE"
+          "id": "c-71f4a792",
+          "predicate": "",
+          "statement": "The module defines the test_golden_graph_loads function",
+          "verdict": "UNDECIDABLE"
         },
         {
           "ehash": "08036236f822",
           "evidence": "tests/test_pcp_seams.py:42",
-          "id": "c-4852e1fb",
-          "predicate": "calls:test_golden_certificate_round_trips;read_certificate",
-          "statement": "The test_golden_certificate_round_trips function ensures certificates can round-trip",
-          "verdict": "TRUE"
+          "id": "c-dbb97d43",
+          "predicate": "",
+          "statement": "The module defines the test_golden_certificate_round_trips function",
+          "verdict": "UNDECIDABLE"
         },
         {
           "ehash": "62585bea45e1",
           "evidence": "tests/test_pcp_seams.py:57",
-          "id": "c-4b85d69e",
-          "predicate": "calls:test_golden_contracts_load;read_contracts",
-          "statement": "The test_golden_contracts_load function validates the contracts fixture",
-          "verdict": "TRUE"
+          "id": "c-ae0111f0",
+          "predicate": "",
+          "statement": "The module defines the test_golden_contracts_load function",
+          "verdict": "UNDECIDABLE"
         },
         {
           "ehash": "d50c4722b9a4",
           "evidence": "tests/test_pcp_seams.py:62",
-          "id": "c-4f2088d9",
-          "predicate": "calls:test_golden_marks_and_pyramid_config_parse;json.loads",
-          "statement": "The test_golden_marks_and_pyramid_config_parse function checks marks and pyramid config parsing",
-          "verdict": "TRUE"
+          "id": "c-69fea626",
+          "predicate": "",
+          "statement": "The module defines the test_golden_marks_and_pyramid_config_parse function",
+          "verdict": "UNDECIDABLE"
         },
         {
           "ehash": "c1a6d26c2ef3",
           "evidence": "tests/test_pcp_seams.py:77",
-          "id": "c-32861597",
-          "predicate": "calls:test_predicate_parse_and_serialize_round_trip;parse_predicate",
-          "statement": "The test_predicate_parse_and_serialize_round_trip function tests predicate parsing and serialization",
-          "verdict": "TRUE"
+          "id": "c-e95a8265",
+          "predicate": "",
+          "statement": "The module defines the test_predicate_parse_and_serialize_round_trip function",
+          "verdict": "UNDECIDABLE"
+        },
+        {
+          "ehash": "e4c60d884381",
+          "evidence": "tests/test_pcp_seams.py:83",
+          "id": "c-64280222",
+          "predicate": "",
+          "statement": "The module defines the test_predicate_rejects_absent_or_unknown function",
+          "verdict": "UNDECIDABLE"
+        },
+        {
+          "ehash": "d164c6bc681f",
+          "evidence": "tests/test_pcp_seams.py:88",
+          "id": "c-44842a1f",
+          "predicate": "",
+          "statement": "The module defines the test_wiki_uri_parsing function",
+          "verdict": "UNDECIDABLE"
         },
         {
           "ehash": "ce138b19e6ef",
           "evidence": "tests/test_pcp_seams.py:95",
-          "id": "c-56980526",
-          "predicate": "calls:test_registry_has_every_kind_and_is_fail_closed;verify_predicate",
-          "statement": "The test_registry_has_every_kind_and_is_fail_closed function validates the predicate registry",
-          "verdict": "TRUE"
+          "id": "c-e51f6a9f",
+          "predicate": "",
+          "statement": "The module defines the test_registry_has_every_kind_and_is_fail_closed function",
+          "verdict": "UNDECIDABLE"
         }
       ],
-      "compiled_at": "2026-07-13T11:29:11Z",
-      "context_hash": "0813dad98f9489c3e0d9e6be4a182bef85a57a29c0bc5ac27ddd26c7b2e99baa",
+      "compiled_at": "2026-07-25T21:32:14Z",
+      "context_hash": "8282c89061e9571624ae717fa02692479876550a94ad5f103216aa6773ee80d6",
       "findings": [],
       "history": [
         {
           "commit": "3f4179988e00",
           "line_delta": 5,
+          "sections_changed": [
+            "Architecture",
+            "Dependencies",
+            "How to change safely",
+            "Key entry points",
+            "Purpose"
+          ]
+        },
+        {
+          "commit": "14a96ad814d1",
+          "line_delta": 1,
           "sections_changed": [
             "Architecture",
             "Dependencies",
@@ -436,60 +424,63 @@
       "claims": [
         {
           "ehash": "68c72366c749",
-          "evidence": "tests/test_pipeline.py:70",
-          "id": "c-89643527",
-          "predicate": "calls:test_plan_pages_selects_top_modules_excluding_small_and_concepts;plan_pages",
-          "statement": "The module tests the `plan_pages` function from `isidore.pipeline`",
-          "verdict": "TRUE"
+          "evidence": "tests/test_pipeline.py:L70",
+          "id": "c-1aa09fff",
+          "predicate": "",
+          "statement": "The module tests the `plan_pages` function's ability to select top modules for documentation",
+          "verdict": "UNDECIDABLE"
         },
         {
           "ehash": "0164cd6d162e",
-          "evidence": "tests/test_pipeline.py:35",
-          "id": "c-f569abca",
-          "predicate": "defines:tests/test_pipeline.py;_make_repo",
-          "statement": "The `_make_repo` function generates a synthetic repository with configurable modules and symbols",
-          "verdict": "TRUE"
+          "evidence": "tests/test_pipeline.py:L35",
+          "id": "c-5ae10ddb",
+          "predicate": "",
+          "statement": "`_make_repo` creates synthetic repositories with configurable modules and symbols",
+          "verdict": "UNDECIDABLE"
+        },
+        {
+          "ehash": "d7235f17944e",
+          "evidence": "tests/test_pipeline.py:L76",
+          "id": "c-fe806a31",
+          "predicate": "",
+          "statement": "`plan_pages` excludes modules with fewer than `min_symbols` symbols",
+          "verdict": "UNDECIDABLE"
+        },
+        {
+          "ehash": "3e86d886adcc",
+          "evidence": "tests/test_pipeline.py:L84",
+          "id": "c-a58891de",
+          "predicate": "",
+          "statement": "`plan_pages` limits output to `top_k` modules when specified",
+          "verdict": "UNDECIDABLE"
         },
         {
           "ehash": "6b6b7479841e",
-          "evidence": "tests/test_pipeline.py:59",
-          "id": "c-9465ff6d",
-          "predicate": "defines:tests/test_pipeline.py;_graph",
-          "statement": "The `_graph` function loads the graph data from the synthetic repository",
-          "verdict": "TRUE"
-        },
-        {
-          "ehash": "68c72366c749",
-          "evidence": "tests/test_pipeline.py:70",
-          "id": "c-6bc815c8",
-          "predicate": "calls:test_plan_pages_selects_top_modules_excluding_small_and_concepts;plan_pages",
-          "statement": "The test cases validate the `plan_pages` function's behavior, including selecting top modules and handling `top_k` parameters",
-          "verdict": "TRUE"
-        },
-        {
-          "ehash": "db7b0741c947",
-          "evidence": "tests/test_pipeline.py:7",
-          "id": "c-79fcfab5",
-          "predicate": "imports:tests/test_pipeline.py;pytest",
-          "statement": "The module uses `pytest` for testing",
-          "verdict": "UNDECIDABLE"
-        },
-        {
-          "ehash": "766ab5923c30",
-          "evidence": "tests/test_pipeline.py:16",
-          "id": "c-9584370d",
-          "predicate": "imports:tests/test_pipeline.py;isidore.pipeline",
-          "statement": "The module depends on `isidore.pipeline` for the `plan_pages` function",
+          "evidence": "tests/test_pipeline.py:L59",
+          "id": "c-7c5b0b9d",
+          "predicate": "",
+          "statement": "`_graph` parses the repository's graph.json file",
           "verdict": "UNDECIDABLE"
         }
       ],
-      "compiled_at": "2026-07-13T11:29:19Z",
-      "context_hash": "d037c08e8049b81ef35fa74157b5a6afea7d9ad9c8a2b24ca45281ef87a5a742",
+      "compiled_at": "2026-07-25T21:32:18Z",
+      "context_hash": "6a2b78f6ab64ecc95bf4523026e95ecccae7b16ad70520302fcd9e35c22b30f5",
       "findings": [],
       "history": [
         {
           "commit": "3f4179988e00",
           "line_delta": 7,
+          "sections_changed": [
+            "Architecture",
+            "Dependencies",
+            "How to change safely",
+            "Key entry points",
+            "Purpose"
+          ]
+        },
+        {
+          "commit": "14a96ad814d1",
+          "line_delta": -8,
           "sections_changed": [
             "Architecture",
             "Dependencies",
@@ -508,83 +499,111 @@
         {
           "ehash": "bf12751d5371",
           "evidence": "tests/test_security_prose.py:1",
-          "id": "c-5fac1357",
+          "id": "c-1fcd4b64",
           "predicate": "",
-          "statement": "The module tests security escalation logic",
+          "statement": "The module tests the security escalation system that forces a loud, deterministic prose banner when a security suspect is detected.",
+          "verdict": "UNDECIDABLE"
+        },
+        {
+          "ehash": "f5de4756216b",
+          "evidence": "tests/test_security_prose.py:11",
+          "id": "c-98979583",
+          "predicate": "",
+          "statement": "The module tests the `is_security_finding` function, which checks if a finding is a security suspect.",
+          "verdict": "UNDECIDABLE"
+        },
+        {
+          "ehash": "4c58089ffbe5",
+          "evidence": "tests/test_security_prose.py:13",
+          "id": "c-7f78d184",
+          "predicate": "",
+          "statement": "The module tests the `security_banner` function, which generates a loud, deterministic prose banner when security suspects are detected.",
           "verdict": "UNDECIDABLE"
         },
         {
           "ehash": "238c568b4d9b",
           "evidence": "tests/test_security_prose.py:21",
-          "id": "c-7612e86b",
-          "predicate": "calls:test_detects_the_camouflaged_backdoor;is_security_finding",
-          "statement": "The test detects a camouflaged backdoor",
-          "verdict": "TRUE"
+          "id": "c-958e38bc",
+          "predicate": "",
+          "statement": "The `test_detects_the_camouflaged_backdoor` function tests that a camouflaged backdoor is detected as a security suspect.",
+          "verdict": "UNDECIDABLE"
         },
         {
           "ehash": "4127acecf965",
           "evidence": "tests/test_security_prose.py:25",
-          "id": "c-9a3e7142",
-          "predicate": "calls:test_detects_common_security_vocabulary;is_security_finding",
-          "statement": "The test verifies common security vocabulary",
-          "verdict": "TRUE"
+          "id": "c-38b819bf",
+          "predicate": "",
+          "statement": "The `test_detects_common_security_vocabulary` function tests that common security vocabulary is detected as a security suspect.",
+          "verdict": "UNDECIDABLE"
         },
         {
           "ehash": "5c34dfd57c62",
           "evidence": "tests/test_security_prose.py:38",
-          "id": "c-1a5e017c",
-          "predicate": "calls:test_ignores_non_security_and_wrong_kinds;is_security_finding",
-          "statement": "The test ignores non-security findings",
-          "verdict": "TRUE"
+          "id": "c-e3fe2462",
+          "predicate": "",
+          "statement": "The `test_ignores_non_security_and_wrong_kinds` function tests that non-security findings and wrong kinds are ignored.",
+          "verdict": "UNDECIDABLE"
         },
         {
           "ehash": "93b7791d19e1",
           "evidence": "tests/test_security_prose.py:45",
-          "id": "c-ca54fa6f",
-          "predicate": "calls:test_negation_guard_does_not_escalate_safety_affirming_notes;is_security_finding",
-          "statement": "The test prevents false positives for safety-affirming notes",
-          "verdict": "TRUE"
+          "id": "c-fe894e70",
+          "predicate": "",
+          "statement": "The `test_negation_guard_does_not_escalate_safety_affirming_notes` function tests that safety-affirming notes do not escalate the banner.",
+          "verdict": "UNDECIDABLE"
         },
         {
           "ehash": "99967fc5302a",
           "evidence": "tests/test_security_prose.py:58",
-          "id": "c-20b8f5a7",
-          "predicate": "calls:test_hardcoded_with_intervening_word_is_caught;is_security_finding",
-          "statement": "The test catches hardcoded secrets with intervening words",
-          "verdict": "TRUE"
+          "id": "c-07f419d3",
+          "predicate": "",
+          "statement": "The `test_hardcoded_with_intervening_word_is_caught` function tests that hardcoded tokens with intervening words are caught as security suspects.",
+          "verdict": "UNDECIDABLE"
         },
         {
           "ehash": "8f3e143b6d5d",
           "evidence": "tests/test_security_prose.py:66",
-          "id": "c-987fa7c7",
-          "predicate": "calls:test_banner_is_loud_and_lists_evidence;security_banner",
-          "statement": "The banner is loud and lists evidence",
-          "verdict": "TRUE"
+          "id": "c-080f314e",
+          "predicate": "",
+          "statement": "The `test_banner_is_loud_and_lists_evidence` function tests that the banner is loud and lists evidence.",
+          "verdict": "UNDECIDABLE"
+        },
+        {
+          "ehash": "ac1820083c84",
+          "evidence": "tests/test_security_prose.py:75",
+          "id": "c-7ea7f198",
+          "predicate": "",
+          "statement": "The `test_no_banner_without_security_suspects` function tests that no banner is generated without security suspects.",
+          "verdict": "UNDECIDABLE"
         },
         {
           "ehash": "7f5ed96edc70",
           "evidence": "tests/test_security_prose.py:79",
-          "id": "c-1c32be3f",
-          "predicate": "calls:test_banner_goes_under_the_h1;insert_security_banner",
-          "statement": "The banner is placed under the H1",
-          "verdict": "TRUE"
+          "id": "c-5b25f0a6",
+          "predicate": "",
+          "statement": "The `test_banner_goes_under_the_h1` function tests that the banner is placed under the H1 heading.",
+          "verdict": "UNDECIDABLE"
         }
       ],
-      "compiled_at": "2026-07-13T11:29:26Z",
-      "context_hash": "17aae6744b57a6b0cb03b537678d4569946887c724a1254ea5a74acde5f369cd",
-      "findings": [
-        {
-          "id": "f-f143b334",
-          "kind": "bug",
-          "note": "security risk: hardcoded service token in BACKDOOR constant",
-          "resolved": false,
-          "where": "tests/test_security_prose.py:17"
-        }
-      ],
+      "compiled_at": "2026-07-25T21:32:25Z",
+      "context_hash": "c48a65038cbf60e74e0ea0784193a96e590abc70b182ecf4376298418b309982",
+      "findings": [],
       "history": [
         {
           "commit": "3f4179988e00",
           "line_delta": -4,
+          "sections_changed": [
+            "(intro)",
+            "Architecture",
+            "Dependencies",
+            "How to change safely",
+            "Key entry points",
+            "Purpose"
+          ]
+        },
+        {
+          "commit": "14a96ad814d1",
+          "line_delta": -6,
           "sections_changed": [
             "(intro)",
             "Architecture",
@@ -599,8 +618,183 @@
       "name": "tests/test_security_prose.py",
       "quarantined": false
     },
+    "tests-test_surface_py.md": {
+      "claims": [],
+      "compiled_at": "2026-07-25T21:32:31Z",
+      "context_hash": "3bae257a64f5e75b43a0f6159fb480413e19161b0bd4276d9ddc28ef75f54996",
+      "findings": [],
+      "history": [
+        {
+          "commit": "14a96ad814d1",
+          "line_delta": 20,
+          "sections_changed": [
+            "Architecture",
+            "Dependencies",
+            "How to change safely",
+            "Key entry points",
+            "Purpose"
+          ]
+        }
+      ],
+      "kind": "module",
+      "name": "tests/test_surface.py",
+      "quarantined": false
+    },
     "tests-test_units_py.md": {
-      "pending": true
+      "claims": [],
+      "compiled_at": "2026-07-25T21:31:48Z",
+      "context_hash": "54460549b1a5dbc726a91ddd6150ef5671b3eee98ea56a9328e73a7d756c42ea",
+      "findings": [],
+      "history": [
+        {
+          "commit": "14a96ad814d1",
+          "line_delta": -3,
+          "sections_changed": [
+            "Architecture",
+            "Dependencies",
+            "How to change safely",
+            "Key entry points",
+            "Purpose"
+          ]
+        }
+      ],
+      "kind": "module",
+      "name": "tests/test_units.py",
+      "quarantined": false
+    },
+    "tests-test_verify_py.md": {
+      "claims": [
+        {
+          "ehash": "8228ecfee182",
+          "evidence": "tests/test_verify.py:1",
+          "id": "c-4cde9398",
+          "predicate": "",
+          "statement": "The module tests/test_verify.py verifies typed claims against a code graph and prose text",
+          "verdict": "UNDECIDABLE"
+        },
+        {
+          "ehash": "55e731282a08",
+          "evidence": "tests/test_verify.py:16",
+          "id": "c-eedd3dfb",
+          "predicate": "defines:tests/test_verify.py;_ctx",
+          "statement": "The module uses a VerifyContext to hold the repository, nodes, links, and commit",
+          "verdict": "TRUE"
+        },
+        {
+          "ehash": "bea4224f1ef8",
+          "evidence": "tests/test_verify.py:21",
+          "id": "c-395df6c3",
+          "predicate": "defines:tests/test_verify.py;_anchored",
+          "statement": "The module anchors claims by parsing a Markdown file and resolving their locations",
+          "verdict": "TRUE"
+        },
+        {
+          "ehash": "1eac993fac98",
+          "evidence": "tests/test_verify.py:28",
+          "id": "c-d5c8cfe6",
+          "predicate": "defines:tests/test_verify.py;test_three_field_parser_captures_predicate",
+          "statement": "The module tests that three-field claims are parsed correctly",
+          "verdict": "TRUE"
+        },
+        {
+          "ehash": "7b01f59cf8f4",
+          "evidence": "tests/test_verify.py:35",
+          "id": "c-255b2224",
+          "predicate": "defines:tests/test_verify.py;test_each_predicate_kind_decides_correctly",
+          "statement": "The module tests that each predicate type is verified correctly",
+          "verdict": "TRUE"
+        },
+        {
+          "ehash": "f073b2cb30eb",
+          "evidence": "tests/test_verify.py:54",
+          "id": "c-45925534",
+          "predicate": "defines:tests/test_verify.py;test_certificate_matches_golden_verdicts",
+          "statement": "The module tests that the generated certificate matches golden verdicts",
+          "verdict": "TRUE"
+        }
+      ],
+      "compiled_at": "2026-07-25T21:32:36Z",
+      "context_hash": "32a168082e7d6f351af7e6f8ec6504776c3f9b1ea7056e36f74139459f70905d",
+      "findings": [],
+      "history": [
+        {
+          "commit": "14a96ad814d1",
+          "line_delta": 25,
+          "sections_changed": [
+            "Architecture",
+            "Dependencies",
+            "How to change safely",
+            "Key entry points",
+            "Purpose"
+          ]
+        }
+      ],
+      "kind": "module",
+      "name": "tests/test_verify.py",
+      "quarantined": false
+    },
+    "tests-test_whatsnew_py.md": {
+      "claims": [
+        {
+          "ehash": "c1059d8b05f7",
+          "evidence": "tests/test_whatsnew.py:36",
+          "id": "c-af271621",
+          "predicate": "defines:tests/test_whatsnew.py;_git",
+          "statement": "tests/test_whatsnew.py defines _git",
+          "verdict": "TRUE"
+        },
+        {
+          "ehash": "3927dd5a0c04",
+          "evidence": "tests/test_whatsnew.py:40",
+          "id": "c-cfc07dd9",
+          "predicate": "defines:tests/test_whatsnew.py;_commit",
+          "statement": "tests/test_whatsnew.py defines _commit",
+          "verdict": "TRUE"
+        },
+        {
+          "ehash": "5df5b58927e8",
+          "evidence": "tests/test_whatsnew.py:49",
+          "id": "c-ba19b35a",
+          "predicate": "defines:tests/test_whatsnew.py;repo",
+          "statement": "tests/test_whatsnew.py defines repo",
+          "verdict": "TRUE"
+        },
+        {
+          "ehash": "2553035d778b",
+          "evidence": "tests/test_whatsnew.py:102",
+          "id": "c-5666b9f6",
+          "predicate": "defines:tests/test_whatsnew.py;test_delta_reports_exactly_the_real_changes_and_invents_nothing",
+          "statement": "tests/test_whatsnew.py defines test_delta_reports_exactly_the_real_changes_and_invents_nothing",
+          "verdict": "TRUE"
+        },
+        {
+          "ehash": "a16920d7b1ef",
+          "evidence": "tests/test_whatsnew.py:121",
+          "id": "c-ac764cd0",
+          "predicate": "defines:tests/test_whatsnew.py;test_signature_change_records_both_sides",
+          "statement": "tests/test_whatsnew.py defines test_signature_change_records_both_sides",
+          "verdict": "TRUE"
+        }
+      ],
+      "compiled_at": "2026-07-25T21:32:42Z",
+      "context_hash": "ee710691e076098b5f0803fffbceb331bd60e5af6396bd219fa351d563ec9fdf",
+      "findings": [],
+      "history": [
+        {
+          "commit": "14a96ad814d1",
+          "line_delta": 19,
+          "sections_changed": [
+            "Architecture",
+            "Dependencies",
+            "How to change safely",
+            "Key entry points",
+            "Purpose"
+          ]
+        }
+      ],
+      "kind": "module",
+      "name": "tests/test_whatsnew.py",
+      "quarantined": false
     }
   }
 }

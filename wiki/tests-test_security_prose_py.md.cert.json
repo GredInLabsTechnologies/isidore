@@ -5,84 +5,114 @@
       "detail": "no predicate (existence-anchored only)",
       "ehash": "bf12751d5371",
       "evidence": "tests/test_security_prose.py:1",
-      "id": "c-5fac1357",
+      "id": "c-1fcd4b64",
       "oracle": "none",
       "predicate": "",
-      "statement": "The module tests security escalation logic",
+      "statement": "The module tests the security escalation system that forces a loud, deterministic prose banner when a security suspect is detected.",
       "verdict": "UNDECIDABLE"
     },
     {
-      "detail": "test_detects_the_camouflaged_backdoor calls is_security_finding",
+      "detail": "no predicate (existence-anchored only)",
+      "ehash": "f5de4756216b",
+      "evidence": "tests/test_security_prose.py:11",
+      "id": "c-98979583",
+      "oracle": "none",
+      "predicate": "",
+      "statement": "The module tests the `is_security_finding` function, which checks if a finding is a security suspect.",
+      "verdict": "UNDECIDABLE"
+    },
+    {
+      "detail": "no predicate (existence-anchored only)",
+      "ehash": "4c58089ffbe5",
+      "evidence": "tests/test_security_prose.py:13",
+      "id": "c-7f78d184",
+      "oracle": "none",
+      "predicate": "",
+      "statement": "The module tests the `security_banner` function, which generates a loud, deterministic prose banner when security suspects are detected.",
+      "verdict": "UNDECIDABLE"
+    },
+    {
+      "detail": "no predicate (existence-anchored only)",
       "ehash": "238c568b4d9b",
       "evidence": "tests/test_security_prose.py:21",
-      "id": "c-7612e86b",
-      "oracle": "ast",
-      "predicate": "calls:test_detects_the_camouflaged_backdoor;is_security_finding",
-      "statement": "The test detects a camouflaged backdoor",
-      "verdict": "TRUE"
+      "id": "c-958e38bc",
+      "oracle": "none",
+      "predicate": "",
+      "statement": "The `test_detects_the_camouflaged_backdoor` function tests that a camouflaged backdoor is detected as a security suspect.",
+      "verdict": "UNDECIDABLE"
     },
     {
-      "detail": "test_detects_common_security_vocabulary calls is_security_finding",
+      "detail": "no predicate (existence-anchored only)",
       "ehash": "4127acecf965",
       "evidence": "tests/test_security_prose.py:25",
-      "id": "c-9a3e7142",
-      "oracle": "ast",
-      "predicate": "calls:test_detects_common_security_vocabulary;is_security_finding",
-      "statement": "The test verifies common security vocabulary",
-      "verdict": "TRUE"
+      "id": "c-38b819bf",
+      "oracle": "none",
+      "predicate": "",
+      "statement": "The `test_detects_common_security_vocabulary` function tests that common security vocabulary is detected as a security suspect.",
+      "verdict": "UNDECIDABLE"
     },
     {
-      "detail": "test_ignores_non_security_and_wrong_kinds calls is_security_finding",
+      "detail": "no predicate (existence-anchored only)",
       "ehash": "5c34dfd57c62",
       "evidence": "tests/test_security_prose.py:38",
-      "id": "c-1a5e017c",
-      "oracle": "ast",
-      "predicate": "calls:test_ignores_non_security_and_wrong_kinds;is_security_finding",
-      "statement": "The test ignores non-security findings",
-      "verdict": "TRUE"
+      "id": "c-e3fe2462",
+      "oracle": "none",
+      "predicate": "",
+      "statement": "The `test_ignores_non_security_and_wrong_kinds` function tests that non-security findings and wrong kinds are ignored.",
+      "verdict": "UNDECIDABLE"
     },
     {
-      "detail": "test_negation_guard_does_not_escalate_safety_affirming_notes calls is_security_finding",
+      "detail": "no predicate (existence-anchored only)",
       "ehash": "93b7791d19e1",
       "evidence": "tests/test_security_prose.py:45",
-      "id": "c-ca54fa6f",
-      "oracle": "ast",
-      "predicate": "calls:test_negation_guard_does_not_escalate_safety_affirming_notes;is_security_finding",
-      "statement": "The test prevents false positives for safety-affirming notes",
-      "verdict": "TRUE"
+      "id": "c-fe894e70",
+      "oracle": "none",
+      "predicate": "",
+      "statement": "The `test_negation_guard_does_not_escalate_safety_affirming_notes` function tests that safety-affirming notes do not escalate the banner.",
+      "verdict": "UNDECIDABLE"
     },
     {
-      "detail": "test_hardcoded_with_intervening_word_is_caught calls is_security_finding",
+      "detail": "no predicate (existence-anchored only)",
       "ehash": "99967fc5302a",
       "evidence": "tests/test_security_prose.py:58",
-      "id": "c-20b8f5a7",
-      "oracle": "ast",
-      "predicate": "calls:test_hardcoded_with_intervening_word_is_caught;is_security_finding",
-      "statement": "The test catches hardcoded secrets with intervening words",
-      "verdict": "TRUE"
+      "id": "c-07f419d3",
+      "oracle": "none",
+      "predicate": "",
+      "statement": "The `test_hardcoded_with_intervening_word_is_caught` function tests that hardcoded tokens with intervening words are caught as security suspects.",
+      "verdict": "UNDECIDABLE"
     },
     {
-      "detail": "test_banner_is_loud_and_lists_evidence calls security_banner",
+      "detail": "no predicate (existence-anchored only)",
       "ehash": "8f3e143b6d5d",
       "evidence": "tests/test_security_prose.py:66",
-      "id": "c-987fa7c7",
-      "oracle": "ast",
-      "predicate": "calls:test_banner_is_loud_and_lists_evidence;security_banner",
-      "statement": "The banner is loud and lists evidence",
-      "verdict": "TRUE"
+      "id": "c-080f314e",
+      "oracle": "none",
+      "predicate": "",
+      "statement": "The `test_banner_is_loud_and_lists_evidence` function tests that the banner is loud and lists evidence.",
+      "verdict": "UNDECIDABLE"
     },
     {
-      "detail": "test_banner_goes_under_the_h1 calls insert_security_banner",
+      "detail": "no predicate (existence-anchored only)",
+      "ehash": "ac1820083c84",
+      "evidence": "tests/test_security_prose.py:75",
+      "id": "c-7ea7f198",
+      "oracle": "none",
+      "predicate": "",
+      "statement": "The `test_no_banner_without_security_suspects` function tests that no banner is generated without security suspects.",
+      "verdict": "UNDECIDABLE"
+    },
+    {
+      "detail": "no predicate (existence-anchored only)",
       "ehash": "7f5ed96edc70",
       "evidence": "tests/test_security_prose.py:79",
-      "id": "c-1c32be3f",
-      "oracle": "ast",
-      "predicate": "calls:test_banner_goes_under_the_h1;insert_security_banner",
-      "statement": "The banner is placed under the H1",
-      "verdict": "TRUE"
+      "id": "c-5b25f0a6",
+      "oracle": "none",
+      "predicate": "",
+      "statement": "The `test_banner_goes_under_the_h1` function tests that the banner is placed under the H1 heading.",
+      "verdict": "UNDECIDABLE"
     }
   ],
-  "graph_commit": "3f4179988e00df03aec751ce3053e147645c7381",
+  "graph_commit": "14a96ad814d17fe89cf51e923b45d3b8a67f07e0",
   "marks": [
     {
       "disposition": "",
@@ -110,19 +140,14 @@
     }
   ],
   "mass": {
-    "gray": 23,
-    "green": 22,
-    "yellow": 0
+    "gray": 25,
+    "green": 0,
+    "yellow": 19
   },
   "page": "tests-test_security_prose_py.md",
-  "prose_sha256": "d19646743533f36823ba6bbbc7ea9d1f4cf870eb5ea47048fb22547d4100df28",
+  "prose_sha256": "ed7c71dc9a8595301b024fc5ded9c2588652c380e78aaee11228462ffb47a208",
   "version": "pcp-1",
   "violations": [
-    {
-      "detail": "Prose describes region near 'tests/test_security_prose.py' in positive terms, contradicting finding: security risk: hardcoded service token in BACKDOOR constant",
-      "kind": "prose-contradicts-finding",
-      "where": "tests/test_security_prose.py:17"
-    },
     {
       "detail": "Security-relevant mark (sink) at tests/test_security_prose.py:51 has no covering claim.",
       "kind": "mark-uncovered",

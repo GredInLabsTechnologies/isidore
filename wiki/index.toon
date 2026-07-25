@@ -1,28 +1,37 @@
-# isidore wiki index · commit 3f4179988e00df03aec751ce3053e147645c7381
+# isidore wiki index · commit 14a96ad814d17fe89cf51e923b45d3b8a67f07e0
 # same catalog as quickstart.md, in TOON tables (cheap for agents to load)
-modules[8]{module,files,symbols,page}:
-  src/isidore,29,293,src-isidore.md
+modules[11]{module,files,symbols,page}:
+  src/isidore,31,333,src-isidore.md
   tests/test_pipeline.py,1,35,tests-test_pipeline_py.md
+  tests/test_whatsnew.py,1,28,tests-test_whatsnew_py.md
   tests/test_units.py,1,24,tests-test_units_py.md
   tests/test_claims.py,1,17,tests-test_claims_py.md
   tests/test_connectors_f1.py,1,16,tests-test_connectors_f1_py.md
+  tests/test_surface.py,1,16,tests-test_surface_py.md
   tests/test_langspec.py,1,14,tests-test_langspec_py.md
   tests/test_pcp_seams.py,1,11,tests-test_pcp_seams_py.md
   tests/test_security_prose.py,1,11,tests-test_security_prose_py.md
+  tests/test_verify.py,1,10,tests-test_verify_py.md
 flows[0]{flow,modules,page}:
-hot_symbols[48]{module,symbol,file,line,degree}:
+hot_symbols[66]{module,symbol,file,line,degree}:
+  src/isidore,whatsnew.py,src/isidore/whatsnew.py,1,36
   src/isidore,pipeline.py,src/isidore/pipeline.py,1,32
   src/isidore,verify.py,src/isidore/verify.py,1,30
   src/isidore,pcp.py,src/isidore/pcp.py,1,23
   src/isidore,graph.py,src/isidore/graph.py,1,19
   src/isidore,claims.py,src/isidore/claims.py,1,18
-  src/isidore,findings.py,src/isidore/findings.py,1,17
   tests/test_pipeline.py,test_pipeline.py,tests/test_pipeline.py,1,34
   tests/test_pipeline.py,_node(),tests/test_pipeline.py,26-L28,0
   tests/test_pipeline.py,_link(),tests/test_pipeline.py,31-L32,0
   tests/test_pipeline.py,_make_repo(),tests/test_pipeline.py,35-L56,0
   tests/test_pipeline.py,_graph(),tests/test_pipeline.py,59-L61,0
   tests/test_pipeline.py,_gp(),tests/test_pipeline.py,64-L65,0
+  tests/test_whatsnew.py,test_whatsnew.py,tests/test_whatsnew.py,1,27
+  tests/test_whatsnew.py,_git(),tests/test_whatsnew.py,36-L37,0
+  tests/test_whatsnew.py,_commit(),tests/test_whatsnew.py,40-L45,0
+  tests/test_whatsnew.py,repo(),tests/test_whatsnew.py,49-L97,0
+  tests/test_whatsnew.py,test_delta_reports_exactly_the_real_changes_and_invents_nothing(),tests/test_whatsnew.py,102-L118,0
+  tests/test_whatsnew.py,test_signature_change_records_both_sides(),tests/test_whatsnew.py,121-L126,0
   tests/test_units.py,test_units.py,tests/test_units.py,1,23
   tests/test_units.py,test_toon_encode_table_quoting_and_counts(),tests/test_units.py,26-L28,0
   tests/test_units.py,test_module_of_normalizes_and_buckets(),tests/test_units.py,33-L36,0
@@ -41,6 +50,12 @@ hot_symbols[48]{module,symbol,file,line,degree}:
   tests/test_connectors_f1.py,_head(),tests/test_connectors_f1.py,33-L35,0
   tests/test_connectors_f1.py,test_home_env_override(),tests/test_connectors_f1.py,40-L44,0
   tests/test_connectors_f1.py,test_write_items_stamps_chash_and_does_not_mutate(),tests/test_connectors_f1.py,47-L54,0
+  tests/test_surface.py,test_surface.py,tests/test_surface.py,1,15
+  tests/test_surface.py,_by_name(),tests/test_surface.py,18-L19,0
+  tests/test_surface.py,test_python_surface_covers_functions_methods_nested_and_constants(),tests/test_surface.py,64-L76,0
+  tests/test_surface.py,test_python_surface_marks_visibility_including_inheritance_from_the_container(),tests/test_surface.py,79-L89,0
+  tests/test_surface.py,test_python_signature_is_exact_and_survives_reformatting(),tests/test_surface.py,92-L100,0
+  tests/test_surface.py,test_python_signature_moves_when_a_default_or_parameter_changes(),tests/test_surface.py,103-L108,0
   tests/test_langspec.py,test_langspec.py,tests/test_langspec.py,1,13
   tests/test_langspec.py,_names(),tests/test_langspec.py,13-L15,0
   tests/test_langspec.py,test_sanitize_blanks_comments_and_strings_preserving_lines(),tests/test_langspec.py,20-L28,0
@@ -59,4 +74,10 @@ hot_symbols[48]{module,symbol,file,line,degree}:
   tests/test_security_prose.py,test_ignores_non_security_and_wrong_kinds(),tests/test_security_prose.py,38-L42,0
   tests/test_security_prose.py,test_negation_guard_does_not_escalate_safety_affirming_notes(),tests/test_security_prose.py,45-L55,0
   tests/test_security_prose.py,test_hardcoded_with_intervening_word_is_caught(),tests/test_security_prose.py,58-L63,0
+  tests/test_verify.py,test_verify.py,tests/test_verify.py,1,9
+  tests/test_verify.py,_ctx(),tests/test_verify.py,16-L18,0
+  tests/test_verify.py,_anchored(),tests/test_verify.py,21-L25,0
+  tests/test_verify.py,test_three_field_parser_captures_predicate(),tests/test_verify.py,28-L32,0
+  tests/test_verify.py,test_each_predicate_kind_decides_correctly(),tests/test_verify.py,35-L51,0
+  tests/test_verify.py,test_certificate_matches_golden_verdicts(),tests/test_verify.py,54-L65,0
 module_deps[0]{from,to,links}:

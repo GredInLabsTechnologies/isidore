@@ -1,0 +1,76 @@
+{
+  "child_cert_hashes": {},
+  "claims": [
+    {
+      "detail": "tests/test_whatsnew.py does not define py",
+      "ehash": "baa2e40efa53",
+      "evidence": "tests/test_whatsnew.py:1",
+      "id": "c-ffad00d4",
+      "oracle": "graph",
+      "predicate": "defines:tests/test_whatsnew.py;test_whatsnew.py",
+      "statement": "tests/test_whatsnew.py defines test_whatsnew.py",
+      "verdict": "FALSE"
+    },
+    {
+      "detail": "tests/test_whatsnew.py defines _git",
+      "ehash": "c1059d8b05f7",
+      "evidence": "tests/test_whatsnew.py:36",
+      "id": "c-af271621",
+      "oracle": "graph",
+      "predicate": "defines:tests/test_whatsnew.py;_git",
+      "statement": "tests/test_whatsnew.py defines _git",
+      "verdict": "TRUE"
+    },
+    {
+      "detail": "tests/test_whatsnew.py defines _commit",
+      "ehash": "3927dd5a0c04",
+      "evidence": "tests/test_whatsnew.py:40",
+      "id": "c-cfc07dd9",
+      "oracle": "graph",
+      "predicate": "defines:tests/test_whatsnew.py;_commit",
+      "statement": "tests/test_whatsnew.py defines _commit",
+      "verdict": "TRUE"
+    },
+    {
+      "detail": "tests/test_whatsnew.py defines repo",
+      "ehash": "5df5b58927e8",
+      "evidence": "tests/test_whatsnew.py:49",
+      "id": "c-ba19b35a",
+      "oracle": "graph",
+      "predicate": "defines:tests/test_whatsnew.py;repo",
+      "statement": "tests/test_whatsnew.py defines repo",
+      "verdict": "TRUE"
+    },
+    {
+      "detail": "tests/test_whatsnew.py defines test_delta_reports_exactly_the_real_changes_and_invents_nothing",
+      "ehash": "2553035d778b",
+      "evidence": "tests/test_whatsnew.py:102",
+      "id": "c-5666b9f6",
+      "oracle": "graph",
+      "predicate": "defines:tests/test_whatsnew.py;test_delta_reports_exactly_the_real_changes_and_invents_nothing",
+      "statement": "tests/test_whatsnew.py defines test_delta_reports_exactly_the_real_changes_and_invents_nothing",
+      "verdict": "TRUE"
+    },
+    {
+      "detail": "tests/test_whatsnew.py defines test_signature_change_records_both_sides",
+      "ehash": "a16920d7b1ef",
+      "evidence": "tests/test_whatsnew.py:121",
+      "id": "c-ac764cd0",
+      "oracle": "graph",
+      "predicate": "defines:tests/test_whatsnew.py;test_signature_change_records_both_sides",
+      "statement": "tests/test_whatsnew.py defines test_signature_change_records_both_sides",
+      "verdict": "TRUE"
+    }
+  ],
+  "graph_commit": "14a96ad814d17fe89cf51e923b45d3b8a67f07e0",
+  "marks": [],
+  "mass": {
+    "gray": 18,
+    "green": 6,
+    "yellow": 0
+  },
+  "page": "tests-test_whatsnew_py.md",
+  "prose_sha256": "89eca38bd335a79806438aa10c14d1fc5f2ae3ba0b8f392aabe31b73e5c963c9",
+  "version": "pcp-1",
+  "violations": []
+}

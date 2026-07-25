@@ -1,53 +1,59 @@
-# isidore claims · commit 3f4179988e00df03aec751ce3053e147645c7381
+# isidore claims · commit 14a96ad814d17fe89cf51e923b45d3b8a67f07e0
 # each claim is anchored to its evidence by a content hash; state is re-checked
 # mechanically on every compile (zero LLM calls). stale/orphan => page regenerates.
-# summary: 48 claims, 0 stale/orphan
-claims[48]{page,id,statement,evidence,state}:
-  src-isidore.md,c-0e461ef1,The pipeline is deterministic except for a single bounded LLM call per dirty page.,src/isidore/pipeline.py:3,ok
-  src-isidore.md,c-709e4b57,"The graph format accepts \"edges\" or \"links\" for relationships.",src/isidore/graph.py:8,ok
-  src-isidore.md,c-a1cb0639,Claims are anchored to code with a content hash of the cited lines.,src/isidore/claims.py:5,ok
-  src-isidore.md,c-ea8bca6b,"A verifier returns TRUE, FALSE, or UNDECIDABLE.",src/isidore/verify.py:9,ok
-  src-isidore.md,c-c577ed6e,The SEARCH_RADIUS for claim evidence is 40 lines.,src/isidore/claims.py:26,ok
-  src-isidore.md,c-528fb5cc,Findings are stored in wiki/findings.toon.,src/isidore/findings.py:23,ok
-  src-isidore.md,c-cc4a7498,The pipeline preserves line-ending style of files.,src/isidore/pipeline.py:16,ok
-  src-isidore.md,c-acb2b659,The verifier for `calls` may reparse the cited file's AST.,src/isidore/verify.py:7,ok
-  src-isidore.md,c-bfe70065,The `defines` verifier uses the graph.json oracle.,src/isidore/verify.py:4,ok
-  src-isidore.md,c-faaa035b,The `imports` verifier uses the graph.json oracle.,src/isidore/verify.py:4,ok
-  src-isidore.md,c-74e1849e,The `env` verifier uses a deterministic textual scan.,src/isidore/verify.py:7,ok
+# summary: 54 claims, 0 stale/orphan
+claims[54]{page,id,statement,evidence,state}:
+  src-isidore.md,c-95bd8b22,The module generates documentation anchored to code structure,src/isidore/pipeline.py:L1,ok
+  src-isidore.md,c-61f4c919,The graph format is tool-agnostic and can be produced by any tool,src/isidore/graph.py:L11,ok
+  src-isidore.md,c-a4d46e9c,The pipeline is deterministic except for the single bounded LLM call per dirty page,src/isidore/pipeline.py:L3,ok
+  src-isidore.md,c-97885691,Proof-Carrying Prose uses JSON for machine-readable certificates,src/isidore/pcp.py:L21,ok
+  src-isidore.md,c-88e6dbbf,The verifiers decide a Predicate's truth against two oracles,src/isidore/verify.py:L3,ok
   tests-test_claims_py.md,c-bc3cb03c,The module tests the classification of existential vs. behavioral claims,tests/test_claims.py:21,ok
-  tests-test_claims_py.md,c-6d8eca4a,The module verifies that claims are parsed from Markdown blocks,tests/test_claims.py:82,ok
-  tests-test_claims_py.md,c-775dd23e,The evidence hash is computed from the cited line's content,tests/test_claims.py:90,ok
-  tests-test_claims_py.md,c-3fd44a28,The evidence state ignores changes to neighboring lines,tests/test_claims.py:106,ok
-  tests-test_claims_py.md,c-5def4d5c,The module uses a synthetic repository for testing,tests/test_claims.py:59,ok
-  tests-test_claims_py.md,c-660f723b,The evidence hash changes when the cited line is modified,tests/test_claims.py:100,ok
-  tests-test_claims_py.md,c-19fdb569,The claims block is stripped after parsing,tests/test_claims.py:83,ok
-  tests-test_connectors_f1_py.md,c-8cdbe090,The module tests the idempotency of the GitRepoConnector,tests/test_connectors_f1.py:3,ok
-  tests-test_connectors_f1_py.md,c-9a6859fa,The test ensures re-ingesting a git repo with no changes yields zero items,tests/test_connectors_f1.py:3,ok
-  tests-test_connectors_f1_py.md,c-ed2c2e3f,The helper function _make_repo creates a git repository with a single commit,tests/test_connectors_f1.py:22,ok
-  tests-test_connectors_f1_py.md,c-182ccfa4,The test verifies that the knowledge home directory can be overridden via environment variables,tests/test_connectors_f1.py:40,ok
-  tests-test_connectors_f1_py.md,c-7f94a037,The test confirms that items are written to the store with a content hash (chash),tests/test_connectors_f1.py:47,ok
-  tests-test_connectors_f1_py.md,c-b0f03811,The test ensures that the original item dictionary remains unmodified,tests/test_connectors_f1.py:50,ok
-  tests-test_connectors_f1_py.md,c-385d77c7,The test validates that missing or corrupt state files return a default state structure,tests/test_connectors_f1.py:57,ok
-  tests-test_connectors_f1_py.md,c-a0d82f97,The test confirms that only the last 20 runs are retained in the state,tests/test_connectors_f1.py:67,ok
+  tests-test_claims_py.md,c-1068b52d,The module tests the extraction of claims from Markdown blocks,tests/test_claims.py:82,ok
+  tests-test_claims_py.md,c-6f48da29,The module tests the hashing of cited lines,tests/test_claims.py:90,ok
+  tests-test_claims_py.md,c-6011c9b5,The module tests that staleness is only triggered by changes to the cited line,tests/test_claims.py:106,ok
+  tests-test_claims_py.md,c-fed705d0,The module depends on the `isidore.claims` module,tests/test_claims.py:7,ok
+  tests-test_claims_py.md,c-33739bfa,The module depends on the `isidore.pipeline` module,tests/test_claims.py:18,ok
+  tests-test_connectors_f1_py.md,c-fedaab0a,The test suite verifies idempotency of git-repo connector,tests/test_connectors_f1.py:3,ok
+  tests-test_connectors_f1_py.md,c-9e0fb2f2,The knowledge home can be overridden via ISIDORE_HOME,tests/test_connectors_f1.py:41,ok
+  tests-test_connectors_f1_py.md,c-4d01fe15,Content is normalized and hashed before storage,tests/test_connectors_f1.py:50,ok
+  tests-test_connectors_f1_py.md,c-177ac4ac,State files handle missing or corrupt data gracefully,tests/test_connectors_f1.py:60,ok
+  tests-test_connectors_f1_py.md,c-44a4aff8,Run history retains only the last 20 entries,tests/test_connectors_f1.py:70,ok
   tests-test_langspec_py.md,c-375c73b5,The module tests the multi-language scanner's declarative engine,tests/test_langspec.py:L1,ok
-  tests-test_pcp_seams_py.md,c-d2a67c87,The module tests/test_pcp_seams.py exists to validate the PCP seam's public surface,tests/test_pcp_seams.py:1,ok
-  tests-test_pcp_seams_py.md,c-5f9ce12c,The test_golden_graph_loads function validates the golden graph fixture,tests/test_pcp_seams.py:36,ok
-  tests-test_pcp_seams_py.md,c-4852e1fb,The test_golden_certificate_round_trips function ensures certificates can round-trip,tests/test_pcp_seams.py:42,ok
-  tests-test_pcp_seams_py.md,c-4b85d69e,The test_golden_contracts_load function validates the contracts fixture,tests/test_pcp_seams.py:57,ok
-  tests-test_pcp_seams_py.md,c-4f2088d9,The test_golden_marks_and_pyramid_config_parse function checks marks and pyramid config parsing,tests/test_pcp_seams.py:62,ok
-  tests-test_pcp_seams_py.md,c-32861597,The test_predicate_parse_and_serialize_round_trip function tests predicate parsing and serialization,tests/test_pcp_seams.py:77,ok
-  tests-test_pcp_seams_py.md,c-56980526,The test_registry_has_every_kind_and_is_fail_closed function validates the predicate registry,tests/test_pcp_seams.py:95,ok
-  tests-test_pipeline_py.md,c-89643527,The module tests the `plan_pages` function from `isidore.pipeline`,tests/test_pipeline.py:70,ok
-  tests-test_pipeline_py.md,c-f569abca,The `_make_repo` function generates a synthetic repository with configurable modules and symbols,tests/test_pipeline.py:35,ok
-  tests-test_pipeline_py.md,c-9465ff6d,The `_graph` function loads the graph data from the synthetic repository,tests/test_pipeline.py:59,ok
-  tests-test_pipeline_py.md,c-6bc815c8,"The test cases validate the `plan_pages` function's behavior, including selecting top modules and handling `top_k` parameters",tests/test_pipeline.py:70,ok
-  tests-test_pipeline_py.md,c-79fcfab5,The module uses `pytest` for testing,tests/test_pipeline.py:7,ok
-  tests-test_pipeline_py.md,c-9584370d,The module depends on `isidore.pipeline` for the `plan_pages` function,tests/test_pipeline.py:16,ok
-  tests-test_security_prose_py.md,c-5fac1357,The module tests security escalation logic,tests/test_security_prose.py:1,ok
-  tests-test_security_prose_py.md,c-7612e86b,The test detects a camouflaged backdoor,tests/test_security_prose.py:21,ok
-  tests-test_security_prose_py.md,c-9a3e7142,The test verifies common security vocabulary,tests/test_security_prose.py:25,ok
-  tests-test_security_prose_py.md,c-1a5e017c,The test ignores non-security findings,tests/test_security_prose.py:38,ok
-  tests-test_security_prose_py.md,c-ca54fa6f,The test prevents false positives for safety-affirming notes,tests/test_security_prose.py:45,ok
-  tests-test_security_prose_py.md,c-20b8f5a7,The test catches hardcoded secrets with intervening words,tests/test_security_prose.py:58,ok
-  tests-test_security_prose_py.md,c-987fa7c7,The banner is loud and lists evidence,tests/test_security_prose.py:66,ok
-  tests-test_security_prose_py.md,c-1c32be3f,The banner is placed under the H1,tests/test_security_prose.py:79,ok
+  tests-test_pcp_seams_py.md,c-85c67919,The module tests/test_pcp_seams.py exists,tests/test_pcp_seams.py:1,ok
+  tests-test_pcp_seams_py.md,c-99689e33,The module imports the isidore package,tests/test_pcp_seams.py:12,ok
+  tests-test_pcp_seams_py.md,c-71f4a792,The module defines the test_golden_graph_loads function,tests/test_pcp_seams.py:36,ok
+  tests-test_pcp_seams_py.md,c-dbb97d43,The module defines the test_golden_certificate_round_trips function,tests/test_pcp_seams.py:42,ok
+  tests-test_pcp_seams_py.md,c-ae0111f0,The module defines the test_golden_contracts_load function,tests/test_pcp_seams.py:57,ok
+  tests-test_pcp_seams_py.md,c-69fea626,The module defines the test_golden_marks_and_pyramid_config_parse function,tests/test_pcp_seams.py:62,ok
+  tests-test_pcp_seams_py.md,c-e95a8265,The module defines the test_predicate_parse_and_serialize_round_trip function,tests/test_pcp_seams.py:77,ok
+  tests-test_pcp_seams_py.md,c-64280222,The module defines the test_predicate_rejects_absent_or_unknown function,tests/test_pcp_seams.py:83,ok
+  tests-test_pcp_seams_py.md,c-44842a1f,The module defines the test_wiki_uri_parsing function,tests/test_pcp_seams.py:88,ok
+  tests-test_pcp_seams_py.md,c-e51f6a9f,The module defines the test_registry_has_every_kind_and_is_fail_closed function,tests/test_pcp_seams.py:95,ok
+  tests-test_pipeline_py.md,c-1aa09fff,The module tests the `plan_pages` function's ability to select top modules for documentation,tests/test_pipeline.py:L70,ok
+  tests-test_pipeline_py.md,c-5ae10ddb,`_make_repo` creates synthetic repositories with configurable modules and symbols,tests/test_pipeline.py:L35,ok
+  tests-test_pipeline_py.md,c-fe806a31,`plan_pages` excludes modules with fewer than `min_symbols` symbols,tests/test_pipeline.py:L76,ok
+  tests-test_pipeline_py.md,c-a58891de,`plan_pages` limits output to `top_k` modules when specified,tests/test_pipeline.py:L84,ok
+  tests-test_pipeline_py.md,c-7c5b0b9d,`_graph` parses the repository's graph.json file,tests/test_pipeline.py:L59,ok
+  tests-test_security_prose_py.md,c-1fcd4b64,"The module tests the security escalation system that forces a loud, deterministic prose banner when a security suspect is detected.",tests/test_security_prose.py:1,ok
+  tests-test_security_prose_py.md,c-98979583,"The module tests the `is_security_finding` function, which checks if a finding is a security suspect.",tests/test_security_prose.py:11,ok
+  tests-test_security_prose_py.md,c-7f78d184,"The module tests the `security_banner` function, which generates a loud, deterministic prose banner when security suspects are detected.",tests/test_security_prose.py:13,ok
+  tests-test_security_prose_py.md,c-958e38bc,The `test_detects_the_camouflaged_backdoor` function tests that a camouflaged backdoor is detected as a security suspect.,tests/test_security_prose.py:21,ok
+  tests-test_security_prose_py.md,c-38b819bf,The `test_detects_common_security_vocabulary` function tests that common security vocabulary is detected as a security suspect.,tests/test_security_prose.py:25,ok
+  tests-test_security_prose_py.md,c-e3fe2462,The `test_ignores_non_security_and_wrong_kinds` function tests that non-security findings and wrong kinds are ignored.,tests/test_security_prose.py:38,ok
+  tests-test_security_prose_py.md,c-fe894e70,The `test_negation_guard_does_not_escalate_safety_affirming_notes` function tests that safety-affirming notes do not escalate the banner.,tests/test_security_prose.py:45,ok
+  tests-test_security_prose_py.md,c-07f419d3,The `test_hardcoded_with_intervening_word_is_caught` function tests that hardcoded tokens with intervening words are caught as security suspects.,tests/test_security_prose.py:58,ok
+  tests-test_security_prose_py.md,c-080f314e,The `test_banner_is_loud_and_lists_evidence` function tests that the banner is loud and lists evidence.,tests/test_security_prose.py:66,ok
+  tests-test_security_prose_py.md,c-7ea7f198,The `test_no_banner_without_security_suspects` function tests that no banner is generated without security suspects.,tests/test_security_prose.py:75,ok
+  tests-test_security_prose_py.md,c-5b25f0a6,The `test_banner_goes_under_the_h1` function tests that the banner is placed under the H1 heading.,tests/test_security_prose.py:79,ok
+  tests-test_verify_py.md,c-4cde9398,The module tests/test_verify.py verifies typed claims against a code graph and prose text,tests/test_verify.py:1,ok
+  tests-test_verify_py.md,c-eedd3dfb,"The module uses a VerifyContext to hold the repository, nodes, links, and commit",tests/test_verify.py:16,ok
+  tests-test_verify_py.md,c-395df6c3,The module anchors claims by parsing a Markdown file and resolving their locations,tests/test_verify.py:21,ok
+  tests-test_verify_py.md,c-d5c8cfe6,The module tests that three-field claims are parsed correctly,tests/test_verify.py:28,ok
+  tests-test_verify_py.md,c-255b2224,The module tests that each predicate type is verified correctly,tests/test_verify.py:35,ok
+  tests-test_verify_py.md,c-45925534,The module tests that the generated certificate matches golden verdicts,tests/test_verify.py:54,ok
+  tests-test_whatsnew_py.md,c-af271621,tests/test_whatsnew.py defines _git,tests/test_whatsnew.py:36,ok
+  tests-test_whatsnew_py.md,c-cfc07dd9,tests/test_whatsnew.py defines _commit,tests/test_whatsnew.py:40,ok
+  tests-test_whatsnew_py.md,c-ba19b35a,tests/test_whatsnew.py defines repo,tests/test_whatsnew.py:49,ok
+  tests-test_whatsnew_py.md,c-5666b9f6,tests/test_whatsnew.py defines test_delta_reports_exactly_the_real_changes_and_invents_nothing,tests/test_whatsnew.py:102,ok
+  tests-test_whatsnew_py.md,c-ac764cd0,tests/test_whatsnew.py defines test_signature_change_records_both_sides,tests/test_whatsnew.py:121,ok

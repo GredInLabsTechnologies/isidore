@@ -20,33 +20,24 @@
 > - `src/isidore/reconcile.py:110` — high-entropy literal (>=24 chars, >=3.5 bits/char)
 > - `src/isidore/reconcile.py:119` — high-entropy literal (>=24 chars, >=3.5 bits/char)
 ## Purpose
-The `src/isidore` module is a compiler pipeline for generating and verifying structured documentation from code. It treats documentation as a derived artifact, not a primary source, and focuses on **deterministic, evidence-anchored claims** that can be automatically verified. The pipeline ensures that documentation remains accurate by tracking changes in code and flagging stale claims, reducing the need for manual review.
+`src/isidore` is a tool for generating and verifying documentation that is anchored to the codebase's structure and content. It addresses the gap between hand-written changelogs and the need for machine-verifiable documentation. The module provides a two-tier approach: a deterministic delta analysis (0 LLM) and a prose generation tier (one LLM call per changed module). The core property is claim-level staleness detection, where each claim is anchored to a content hash of the cited lines, enabling zero-LLM verification of documentation freshness (`src/isidore/whatsnew.py:L1`).
 
 ## Architecture
-The module follows a **frozen seam** design (ADR-0033), where the core types and predicate grammar are defined in `pcp.py` and shared across five lanes (A–E). The pipeline consists of four stages:
-1. **Plan**: Determine which pages need updating based on code changes.
-2. **Assemble**: Gather context for each page from the codebase.
-3. **Generate**: Use an LLM to produce prose and structured claims.
-4. **Cache**: Store the results and track staleness.
-
-Key invariants:
-- **Fail-closed**: A claim is never marked as true if its verifier returns `UNDECIDABLE`.
-- **Monotonic escalation**: Once a mark (e.g., a claim or finding) is created, it is never removed by the model.
-- **Zero-LLM verification**: Certificates can be re-verified offline with no LLM calls.
+The module follows a pipeline architecture (`src/isidore/pipeline.py:L1`) where the graph of the codebase is first analyzed (`src/isidore/graph.py:L1`), then used to plan and generate documentation. The pipeline is deterministic except for the single bounded LLM call per dirty page. The graph is loaded from a JSON file (`src/isidore/graph.py:L5`) and can be generated automatically with zero dependencies for any language (`src/isidore/graph.py:L17`). The documentation is generated in a Proof-Carrying Prose (PCP) format (`src/isidore/pcp.py:L1`), where each claim is verified against the code (`src/isidore/verify.py:L1`).
 
 ## Key entry points
-- `pipeline.py`: Orchestrates the compilation pipeline (`plan`, `assemble`, `generate`, `cache`).
-- `verify.py`: Implements verifiers for typed claims (e.g., `defines`, `calls`, `imports`).
-- `pcp.py`: Defines the core types, predicate grammar, and verifier registry.
-- `graph.py`: Loads and scans the codebase into a structure graph.
-- `claims.py`: Manages evidence-anchored claims with content hashing.
-- `findings.py`: Harvests side observations (e.g., bugs, drift) during compilation.
+- `whatsnew.py`: Generates changelogs with a focus on the delta between git revisions (`src/isidore/whatsnew.py:L1`).
+- `pipeline.py`: Orchestrates the documentation generation pipeline (`src/isidore/pipeline.py:L1`).
+- `verify.py`: Verifies claims against the codebase (`src/isidore/verify.py:L1`).
+- `pcp.py`: Defines the Proof-Carrying Prose framework and predicate grammar (`src/isidore/pcp.py:L1`).
+- `graph.py`: Handles the structure graph and multi-language scanning (`src/isidore/graph.py:L1`).
+- `claims.py`: Manages the atomic, evidence-anchored claims (`src/isidore/claims.py:L1`).
 
 ## Dependencies
-The module has **no cross-module dependencies** and relies only on the Python standard library (`ast`, `hashlib`, `subprocess`, etc.). It uses `git` as the source of truth for file changes and `graph.json` as the structure graph.
+The module has no cross-module dependencies (`depends on (cross-module, link count): (none)`). It relies on the Python standard library (`src/isidore/graph.py:L26`) and git for source of truth (`src/isidore/pipeline.py:L23`).
 
 ## How to change safely
-- **Claims and verifiers**: New claim types must be added to `pcp.py` and implemented in `verify.py`. Ensure verifiers are fail-closed (return `UNDECIDABLE` for undecidable cases).
-- **Pipeline stages**: Changes to `pipeline.py` must preserve the deterministic nature of the pipeline. LLM calls are bounded by `--max-calls` and a per-prompt character budget.
-- **Graph and scanning**: Modifications to `graph.py` or `langspec.py` must ensure the graph remains tool-agnostic and compatible with external producers.
-- **Staleness detection**: Changes to `claims.py` must maintain the content-hash anchor for claim-level staleness detection.
+1. **Deterministic changes**: For changes that do not involve the LLM, ensure they are anchored to specific lines of code and do not introduce new behavior without evidence.
+2. **LLM changes**: When modifying the LLM prompts or behavior, ensure the changes are bounded and do not increase the number of LLM calls per page.
+3. **Claim verification**: When adding or modifying claims, ensure they are anchored to specific lines of code and can be verified against the codebase (`src/isidore/claims.py:L1`).
+4. **Graph updates**: If the graph format is changed, ensure backward compatibility with existing graph producers (`src/isidore/graph.py:L11`).
