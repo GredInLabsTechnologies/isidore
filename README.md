@@ -45,6 +45,8 @@ isidore compile --execute         # compiles wiki/ (quickstart.md, module pages,
 
 isidore ask "how does the auth flow handle expired tokens?"   # one call, cited answer
 isidore claims --check            # CI gate: exit 1 if any claim's evidence went stale (0 LLM calls)
+
+isidore whatsnew --since v1.2.0   # verifiable changelog of the API-surface delta (0 LLM calls)
 ```
 
 Provider: any OpenAI-compatible endpoint via `ISIDORE_BASE_URL`, `ISIDORE_MODEL`, optional
@@ -73,6 +75,39 @@ already contains verified facts, so the model only writes prose.
   links, and risk hotspots (connection degree × git churn).
 - A delimited, idempotent reference block in `AGENTS.md` pointing agents at the wiki.
 - `wiki/<page>.md.cert.json` — a **re-verifiable certificate** for each page (see below).
+- `wiki/whatsnew/<since>..<until>.md` — a **changelog you can re-verify**, from `isidore whatsnew`
+  (see below).
+
+## What's new — novelty, not just topology
+
+A module page tells you what something *is*. It cannot tell you what just *changed*: a new method is
+one more symbol in a module that already has dozens, so nothing in the page prompt has reason to
+mention it. `isidore whatsnew` closes that gap, and its first tier is free:
+
+```bash
+isidore whatsnew --since v1.5.1                 # 0 LLM calls: the typed API-surface delta
+isidore whatsnew --since v1.5.1 --execute       # + prose, one call per changed module
+```
+
+The delta is computed by extracting the API surface of every changed file **from both git blobs**
+(no checkout, no worktree) and diffing them symbol by symbol: `symbol_added`, `symbol_removed`,
+`signature_changed`, `file_added`, `file_removed`, `file_renamed`. It descends into classes, so a
+method added to an existing type — the usual shape of a new API — is reported by name, with its
+signature and its `path:line`. Rows are grouped as `api` / `internal` / `tests` / `docs`, so the
+product's surface leads and test churn does not bury it.
+
+With `--execute`, the model receives **only that structured delta** (never a raw diff) plus commit
+subjects marked explicitly as context-not-evidence, and writes bullets under the same certificate
+discipline as any page: claims anchored by content hash, verified against a deterministic oracle,
+and refuted claims kept in the certificate but never published. Two properties keep it honest:
+
+- **Removals are never written by the model.** "X was removed" cannot be anchored to the new tree —
+  there is nothing to cite — so deletions are reported by the deterministic tier only.
+- **Commit messages are never evidence.** They are a human's prose about the change; the code delta
+  is the ground truth. If a hint contradicts the surface rows, the rows win.
+
+`--execute` requires `--until` to be HEAD, because claims anchor to the working tree. The artifact
+is a photograph of a range, so it stays out of the staleness loop that governs living pages.
 
 ## Proof-carrying prose — how to read a certified page
 
