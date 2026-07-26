@@ -79,6 +79,57 @@ already contains verified facts, so the model only writes prose.
 - `wiki/whatsnew/<since>..<until>.md` — a **changelog you can re-verify**, from `isidore whatsnew`
   (see below).
 
+## Knowledge — the same contract, applied to what is NOT in your repo
+
+Everything above is about your code. Most of what a team needs to know is not in the code: it is in
+release notes, in a discussion someone linked once, in the repository next door, in a mailbox.
+
+Isidore ingests those into a **knowledge home** (`~/.isidore`, or `$ISIDORE_HOME`) and compiles topic
+pages from them under exactly the rules the code pages follow — every statement cites its source, and
+the citation is a `src://` URI that resolves to the stored item.
+
+```bash
+isidore connect --list                       # what can be read, and whether it is ready
+isidore connect rss --configure --set feeds=https://blog.rust-lang.org/feed.xml
+isidore ingest                               # 0 LLM calls; the ONLY step that touches the network
+isidore sync --execute                       # recompile the topics whose sources moved
+isidore claims --check                       # what has gone stale, orphaned, or superseded (0 LLM)
+```
+
+Built in: **git-repo** (local repositories), **rss** (RSS/Atom), **hackernews**, **websearch** (any
+Tavily-compatible endpoint), and **mcp** — a read-only MCP client, which is how Gmail and Slack are
+read without a line of OAuth code here (recipes in [docs/connectors/](docs/connectors/)). Third-party
+connectors register through the `isidore.connectors` entry-point group, so a private source can plug
+in without this repository ever knowing it exists.
+
+### The rules that make external evidence safe to read
+
+- **The network is touched in `ingest` and nowhere else.** `compile` is pure local computation, so a
+  page can always be rebuilt offline from what was stored.
+- **Ingested text is DATA, never instructions.** Anyone can publish into a feed or send you mail.
+  Items enter a prompt fenced with a per-run nonce they cannot predict, any text imitating a fence is
+  visibly marked and reported, and the prompt states that excerpts may be phrased as commands and are
+  to be reported, attributed, and never obeyed.
+- **Caps live in code, and a cap that bit says so.** Truncation is reported with the original size;
+  a window that cannot be expressed applies no filter rather than silently matching nothing.
+- **A missing credential fails closed.** A connector without its environment is *skipped* with the
+  variable names, never run — and a search nobody ran is reported as not run, not as zero results.
+- **Config holds the NAME of an environment variable, never its value.** A value that looks like a
+  credential is refused rather than written.
+- **A knowledge claim is anchored, never "proven".** A predicate is decided by a deterministic oracle
+  against source code; no oracle can decide whether an article said something. So these claims carry
+  no predicate — their evidence is hashed, and they go stale by themselves when the item changes or
+  is purged.
+- **Ingesting a source does not authorise sending it anywhere.** An item classified as anything but
+  `public` — by its connector or by its own `classification:` front matter — is **withheld from the
+  prompt**, and the run says how many and why. Set `ISIDORE_PROMPT_TRUSTS_PROVIDER=yes` only if the
+  configured provider may receive them; when you do, the run records that restricted material was
+  sent. A private notebook is evidence for you, not training input for a third party.
+- **No facts, no page.** A topic left with nothing to cite is not compiled and costs no call. Prose
+  invented from a topic's *name* is exactly what this design exists to prevent.
+
+The knowledge home is **per-user and local-only**. It never travels with the repository.
+
 ## What's new — novelty, not just topology
 
 A module page tells you what something *is*. It cannot tell you what just *changed*: a new method is

@@ -1,31 +1,36 @@
 ## Purpose
-The `pipeline.py` module implements the core compiler pipeline for generating documentation pages from code. It defines a deterministic process that transforms static analysis results into structured documentation, with the only non-deterministic step being a single bounded LLM call per dirty page. The pipeline ensures that all documentation is grounded in the actual code structure, with strict limits on LLM interactions (e.g., `--max-calls` and character budgets) to prevent unbounded generation.
+The `pipeline.py` module implements the core compiler pipeline for Isidore, a system that generates documentation from code. Its purpose is to transform a codebase's structure graph into a set of Markdown pages, each describing a module or workflow. The pipeline ensures that documentation is deterministic, with only bounded LLM calls used for prose generation, while the rest of the process is handled by deterministic code. Key constraints include hard limits on LLM calls per run, character budgets per prompt, and a single model with fixed timeout settings (`src/isidore/pipeline.py:1-10`).
 
 ## Architecture
-The pipeline consists of four main phases:
-1. **Planning**: Determines which modules and flows to document based on the code graph.
-2. **Assembly**: Gathers context for each page (e.g., hot symbols, dependencies).
-3. **Generation**: Delegates prose generation to an LLM, with built-in lints to validate citations.
-4. **Linting**: Validates citations and repairs hallucinations (e.g., phantom paths).
+The pipeline follows a four-stage process:
+1. **Planning**: Determines which modules or workflows to document (`plan_pages`, `src/isidore/pipeline.py:202-255`).
+2. **Assembly**: Gathers context for each page (e.g., dependencies, hot symbols).
+3. **Generation**: Uses an LLM to produce prose for each page (`src/isidore/pipeline.py:133-148`).
+4. **Linting**: Validates citations and claims to ensure accuracy (`degenerate_certificate`, `src/isidore/pipeline.py:177-185`).
 
-The `PageSpec` class centralizes metadata for each page, including its kind (module or flow), dependencies, and hot symbols. The pipeline relies on the code graph (`nodes` and `links`) to answer "what exists and where" — everything else is deterministic.
+The pipeline relies on the structure graph to identify what exists and where, delegating only prose generation to the LLM. This separation ensures that the documentation process is repeatable and verifiable.
 
 ## Key entry points
-- `plan_pages()`: Selects top-K modules to document, filtering by symbol count and excluding trivial modules.
-- `plan_flows()`: Generates cross-cutting flow pages by BFS from user-declared seeds.
-- `module_dep_edges()`: Computes cross-module dependency edges, shared with the impact fingerprint for consistency.
+- `plan_pages`: Selects modules or workflows to document based on the graph (`src/isidore/pipeline.py:202-255`).
+- `PageSpec`: A dataclass representing a page's metadata, including dependencies and hot symbols (`src/isidore/pipeline.py:133-148`).
+- `module_dep_edges`: Computes cross-module dependency edges for impact analysis (`src/isidore/pipeline.py:153-167`).
+- `degenerate_certificate`: Identifies certificates that are too large or have too many violations (`src/isidore/pipeline.py:177-185`).
+- `drop_wiki_output`: Filters out nodes that belong to the wiki output directory (`src/isidore/pipeline.py:188-199`).
 
 ## Dependencies
-The module depends on:
-- `changeset.py`: For tracking changed lines and symbols.
-- `journal.py`: For recording page changes and run telemetry.
-- `claims.py`: For managing claims and linting citations.
-- `graph.py`: For the code structure graph.
-- `llm.py`: For prose generation.
-- `pcp.py`: For tamper-evident certificates.
-- `verify.py`: For validating claims.
+The module depends on several other Isidore modules:
+- `changeset.py`: For tracking changes between versions (`src/isidore/changeset.py`).
+- `journal.py`: For recording telemetry and run history (`src/isidore/journal.py`).
+- `claims.py`: For managing claims and their validation (`src/isidore/claims.py`).
+- `findings.py`: For handling findings and linting results (`src/isidore/findings.py`).
+- `graph.py`: For working with the structure graph (`src/isidore/graph.py`).
+- `llm.py`: For interacting with the LLM (`src/isidore/llm.py`).
+- `pcp.py`: For Proof-Carrying Prose certificates (`src/isidore/pcp.py`).
+- `verify.py`: For verifying claims and citations (`src/isidore/verify.py`).
 
 ## How to change safely
-- **Planning logic**: Modify `plan_pages()` or `plan_flows()` to adjust page selection criteria, but ensure the graph remains the sole source of truth for "what exists".
-- **Linting**: Update `LINT_REPAIR_ADDENDUM` to refine citation validation, but preserve the requirement that all citations must appear in the `FACTS` block.
-- **Dependencies**: Avoid introducing new dependencies unless they are explicitly required for the pipeline's deterministic phases.
+To modify `pipeline.py`, follow these guidelines:
+1. **Preserve determinism**: Ensure that all steps except the LLM call are deterministic.
+2. **Respect hard limits**: Do not exceed the maximum number of LLM calls or character budget per prompt.
+3. **Update documentation**: If adding new functionality, update the module's docstring and any relevant comments.
+4. **Test thoroughly**: Changes to the pipeline can significantly impact documentation quality, so test with a representative codebase.

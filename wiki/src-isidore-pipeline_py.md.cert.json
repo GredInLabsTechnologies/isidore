@@ -2,67 +2,67 @@
   "child_cert_hashes": {},
   "claims": [
     {
-      "detail": "no predicate (existence-anchored only)",
+      "detail": "plan_pages has no call to py",
       "ehash": "906171e70802",
       "evidence": "src/isidore/pipeline.py:3",
-      "id": "c-311d303f",
+      "id": "c-fafe1189",
+      "oracle": "ast",
+      "predicate": "calls:plan_pages;llm.py",
+      "statement": "The pipeline uses a bounded LLM call per dirty page",
+      "verdict": "FALSE"
+    },
+    {
+      "detail": "file 'pipeline.py' not in the graph",
+      "ehash": "c4762e57a622",
+      "evidence": "src/isidore/pipeline.py:133",
+      "id": "c-dc288f54",
       "oracle": "none",
-      "predicate": "",
-      "statement": "The pipeline is deterministic except for one bounded LLM call per dirty page",
+      "predicate": "defines:pipeline.py;PageSpec",
+      "statement": "The PageSpec class represents a page's metadata",
       "verdict": "UNDECIDABLE"
     },
     {
-      "detail": "module_dep_edges calls module_of",
+      "detail": "file 'pipeline.py' not in the graph",
       "ehash": "5dac3ee6a72f",
-      "evidence": "src/isidore/pipeline.py:152",
-      "id": "c-21778a50",
-      "oracle": "ast",
-      "predicate": "calls:module_dep_edges;module_of",
-      "statement": "The module_dep_edges function computes cross-module dependency edges",
-      "verdict": "TRUE"
+      "evidence": "src/isidore/pipeline.py:153",
+      "id": "c-a75265c4",
+      "oracle": "none",
+      "predicate": "defines:pipeline.py;module_dep_edges",
+      "statement": "The module_dep_edges function computes cross-module dependencies",
+      "verdict": "UNDECIDABLE"
     },
     {
-      "detail": "plan_pages calls module_of",
+      "detail": "file 'pipeline.py' not in the graph",
+      "ehash": "39de4826fe9b",
+      "evidence": "src/isidore/pipeline.py:177",
+      "id": "c-dccc4f86",
+      "oracle": "none",
+      "predicate": "defines:pipeline.py;degenerate_certificate",
+      "statement": "The degenerate_certificate function checks for oversized certificates",
+      "verdict": "UNDECIDABLE"
+    },
+    {
+      "detail": "file 'pipeline.py' not in the graph",
+      "ehash": "e95f445b5d3b",
+      "evidence": "src/isidore/pipeline.py:188",
+      "id": "c-3fb04307",
+      "oracle": "none",
+      "predicate": "defines:pipeline.py;drop_wiki_output",
+      "statement": "The drop_wiki_output function filters out wiki output nodes",
+      "verdict": "UNDECIDABLE"
+    },
+    {
+      "detail": "file 'pipeline.py' not in the graph",
       "ehash": "94fdab5fe0e4",
-      "evidence": "src/isidore/pipeline.py:168",
-      "id": "c-dc96a877",
-      "oracle": "ast",
-      "predicate": "calls:plan_pages;module_of",
-      "statement": "The plan_pages function selects top-K modules to document",
-      "verdict": "TRUE"
-    },
-    {
-      "detail": "plan_flows calls _match_seed",
-      "ehash": "36cf84432b5e",
-      "evidence": "src/isidore/pipeline.py:225",
-      "id": "c-1785f81c",
-      "oracle": "ast",
-      "predicate": "calls:plan_flows;_match_seed",
-      "statement": "The plan_flows function generates cross-cutting flow pages",
-      "verdict": "TRUE"
-    },
-    {
-      "detail": "src/isidore/pipeline.py defines PageSpec",
-      "ehash": "c4762e57a622",
-      "evidence": "src/isidore/pipeline.py:132",
-      "id": "c-b44c07c9",
-      "oracle": "graph",
-      "predicate": "defines:src/isidore/pipeline.py;PageSpec",
-      "statement": "The PageSpec class centralizes metadata for each page",
-      "verdict": "TRUE"
-    },
-    {
-      "detail": "LINT_REPAIR_ADDENDUM is assigned a literal, but not \"\"\"CORRECTION REQUIRED...\"\"\"",
-      "ehash": "bc375ccd4bfc",
-      "evidence": "src/isidore/pipeline.py:122",
-      "id": "c-16f5116e",
-      "oracle": "ast",
-      "predicate": "value:LINT_REPAIR_ADDENDUM;\"\"\"CORRECTION REQUIRED...\"\"\"",
-      "statement": "The LINT_REPAIR_ADDENDUM is used to repair hallucinated citations",
-      "verdict": "FALSE"
+      "evidence": "src/isidore/pipeline.py:202",
+      "id": "c-aec4f7c0",
+      "oracle": "none",
+      "predicate": "defines:pipeline.py;plan_pages",
+      "statement": "The plan_pages function selects modules or workflows to document",
+      "verdict": "UNDECIDABLE"
     }
   ],
-  "graph_commit": "036487e2137938f623d7cb8688fb7327ef809179",
+  "graph_commit": "d5d1a1f33219a3171cc701884ca77e794db897e2",
   "marks": [
     {
       "disposition": "",
@@ -74,12 +74,12 @@
     }
   ],
   "mass": {
-    "gray": 18,
-    "green": 15,
-    "yellow": 0
+    "gray": 24,
+    "green": 0,
+    "yellow": 19
   },
   "page": "src-isidore-pipeline_py.md",
-  "prose_sha256": "85bf363cbaf6a41b9f478b2ed3dc578b0e2064ae59a497c0573fae647ce80ec0",
+  "prose_sha256": "05a2153da6bdfbb6a7be4a8d24a0484744d5c7bb48adbf3205bdd0cf96aacb78",
   "version": "pcp-1",
   "violations": []
 }

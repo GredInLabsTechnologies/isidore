@@ -1,7 +1,7 @@
-# isidore findings · commit 3abce5854dca7f707ac84a52cbffebf0c2bd0b36
+# isidore findings · commit d5d1a1f33219a3171cc701884ca77e794db897e2
 # suspects/drift/questions: UNVERIFIED model observations (triage queue).
 # todos/orphans/test_gaps/hotspots: mechanical facts from graph+git, no LLM.
-# summary: 2 SECURITY, 2 bug suspects, 1 drift, 1 questions, 10 todos, 40 orphan files, 19 test gaps
+# summary: 2 SECURITY, 2 bug suspects, 1 drift, 1 questions, 10 todos, 34 orphan files, 19 test gaps
 security[2]{kind,where,note}:
   bug,tests/fixtures/pcp/repo/svc/auth.py:23,security risk: hardcoded credential literal in auth path
   bug,tests/test_detectors.py:22,security risk: hardcoded secret (sk_live_) is flagged as dangerous
@@ -23,40 +23,11 @@ todos[10]{marker,file,line,note}:
   TODO,tests/test_units.py,169,"ignored\\n\" + (\"x = 1\\n\" * (MAX_TODO_FILE_BYTES // 5)), encoding=\"utf-8\")"
   TODO,tests/test_units.py,170,"real\\n\", encoding=\"utf-8\")"
   TODO,tests/test_units.py,212,"\", \"file\": \"a/b.py\", \"line\": 2, \"note\": \"x\"}],"
-orphan_files[40]{file}:
+orphan_files[34]{file}:
   .gitignore
   isidore.json
   LICENSE
   pyproject.toml
-  wiki/.isidore-state.json
-  wiki/claims.toon
-  wiki/findings.toon
-  wiki/overview.md.cert.json
-  wiki/src-isidore-changeset_py.md.cert.json
-  wiki/src-isidore-claims_py.md.cert.json
-  wiki/src-isidore-connect_py.md.cert.json
-  wiki/src-isidore-connectors.md.cert.json
-  wiki/src-isidore-detectors_py.md.cert.json
-  wiki/src-isidore-findings_py.md.cert.json
-  wiki/src-isidore-graph_py.md.cert.json
-  wiki/src-isidore-home_py.md.cert.json
-  wiki/src-isidore-humanpack_py.md.cert.json
-  wiki/src-isidore-knowledge_py.md.cert.json
-  wiki/src-isidore-langspec_py.md.cert.json
-  wiki/src-isidore-pcp_py.md.cert.json
-  wiki/src-isidore-pipeline_py.md.cert.json
-  wiki/src-isidore-pyramid_py.md.cert.json
-  wiki/src-isidore-qa_py.md.cert.json
-  wiki/src-isidore-recertify_py.md.cert.json
-  wiki/src-isidore-render_py.md.cert.json
-  wiki/src-isidore-surface_py.md.cert.json
-  wiki/src-isidore-verify_py.md.cert.json
-  wiki/src-isidore-whatsnew_py.md.cert.json
-  wiki/src-isidore.md.cert.json
-  wiki/subsystem-src.md.cert.json
-  wiki/subsystem-tests.md.cert.json
-  wiki/whatsnew/14a96ad..8540eaf.md.cert.json
-  wiki/whatsnew/14a96ad..8540eaf.toon
   tests/fixtures/pcp/contracts.json
   tests/fixtures/pcp/graph.json
   tests/fixtures/pcp/marks.json
@@ -64,39 +35,62 @@ orphan_files[40]{file}:
   tests/fixtures/pcp/repo/wiki/svc.md.cert.json
   tests/fixtures/pcp/repo/svc/auth.py
   tests/fixtures/pcp/repo/svc/tokens.py
+  src/isidore/connect.py
+  src/isidore/contracts.py
+  src/isidore/export.py
+  src/isidore/humanpack.py
+  src/isidore/impact.py
+  src/isidore/knowledge.py
+  src/isidore/pyramid.py
+  src/isidore/recertify.py
+  src/isidore/whatsnew.py
+  src/isidore/connectors/git_repo.py
+  src/isidore/connectors/hackernews.py
+  src/isidore/connectors/mcp.py
+  src/isidore/connectors/rss.py
+  src/isidore/connectors/websearch.py
+  graphify-out/.graphify_labels.json
+  graphify-out/.graphify_python
+  graphify-out/.graphify_root
+  graphify-out/graph.html
+  graphify-out/graph.json
+  graphify-out/manifest.json
+  graphify-out/2026-07-26/.graphify_labels.json
+  graphify-out/2026-07-26/graph.json
+  graphify-out/2026-07-26/manifest.json
 test_gaps[19]{module,symbols}:
   src/isidore/connectors,67
   src/isidore/verify.py,37
   src/isidore/whatsnew.py,30
   src/isidore/pcp.py,25
   src/isidore/pyramid.py,25
-  src/isidore/pipeline.py,22
-  src/isidore/graph.py,19
+  src/isidore/pipeline.py,24
+  src/isidore/graph.py,21
   src/isidore/claims.py,18
   src/isidore/findings.py,17
   src/isidore/surface.py,16
   src/isidore/humanpack.py,15
+  src/isidore/knowledge.py,14
   src/isidore/cli.py,13
-  src/isidore/knowledge.py,12
   src/isidore/langspec.py,12
+  src/isidore/render.py,11
   src/isidore/qa.py,10
-  src/isidore/render.py,10
   src/isidore/connect.py,9
   src/isidore/home.py,9
   src/isidore/recertify.py,9
 hotspots[15]{module,symbol,file,line,degree,churn,risk}:
-  src/isidore/pipeline.py,pipeline.py,src/isidore/pipeline.py,1,32,11,352
+  src/isidore/pipeline.py,pipeline.py,src/isidore/pipeline.py,1,34,11,374
   src/isidore/verify.py,verify.py,src/isidore/verify.py,1,38,5,190
   src/isidore/cli.py,cli.py,src/isidore/cli.py,1,16,11,176
   tests/test_pipeline.py,test_pipeline.py,tests/test_pipeline.py,1,34,5,170
+  src/isidore/graph.py,graph.py,src/isidore/graph.py,1,21,6,126
   src/isidore/pyramid.py,pyramid.py,src/isidore/pyramid.py,1,25,5,125
   src/isidore/whatsnew.py,whatsnew.py,src/isidore/whatsnew.py,1,40,3,120
-  src/isidore/graph.py,graph.py,src/isidore/graph.py,1,19,6,114
   tests/test_whatsnew.py,test_whatsnew.py,tests/test_whatsnew.py,1,35,3,105
   src/isidore/claims.py,claims.py,src/isidore/claims.py,1,18,5,90
   src/isidore/findings.py,findings.py,src/isidore/findings.py,1,17,5,85
   tests/test_claims.py,test_claims.py,tests/test_claims.py,1,16,5,80
   tests/test_units.py,test_units.py,tests/test_units.py,1,23,3,69
+  src/isidore/connectors,store.py,src/isidore/connectors/store.py,1,17,4,68
   tests/test_overview.py,test_overview.py,tests/test_overview.py,1,17,4,68
-  src/isidore/connectors,store.py,src/isidore/connectors/store.py,1,17,3,51
-  src/isidore/pcp.py,pcp.py,src/isidore/pcp.py,1,24,2,48
+  src/isidore/knowledge.py,knowledge.py,src/isidore/knowledge.py,1,17,3,51

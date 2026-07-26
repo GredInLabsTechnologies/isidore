@@ -2,87 +2,37 @@
   "child_cert_hashes": {},
   "claims": [
     {
-      "detail": "no predicate (existence-anchored only)",
-      "ehash": "0396be2ae9eb",
-      "evidence": "src/isidore/render.py:1",
-      "id": "c-d33414e2",
-      "oracle": "none",
-      "predicate": "",
-      "statement": "The module generates four deterministic outputs: quickstart.md, index.toon, llms.txt, and the AGENTS.md reference block",
-      "verdict": "UNDECIDABLE"
-    },
-    {
       "detail": "ISIDORE_WIKI_DIR read in src/isidore/render.py",
       "ehash": "8a35caa15e3f",
-      "evidence": "src/isidore/render.py:22",
-      "id": "c-6f7bd5c3",
+      "evidence": "src/isidore/render.py:L22",
+      "id": "c-2c60b580",
       "oracle": "grep",
       "predicate": "env:ISIDORE_WIKI_DIR",
-      "statement": "The output directory is configurable via the ISIDORE_WIKI_DIR environment variable",
-      "verdict": "TRUE"
-    },
-    {
-      "detail": "no declaration of 'WIKI_DIRNAME' this oracle can read",
-      "ehash": "8a35caa15e3f",
-      "evidence": "src/isidore/render.py:22",
-      "id": "c-d4c415fc",
-      "oracle": "none",
-      "predicate": "value:WIKI_DIRNAME;wiki",
-      "statement": "The default output directory is \"wiki\"",
-      "verdict": "UNDECIDABLE"
-    },
-    {
-      "detail": "src/isidore/render.py defines render_quickstart",
-      "ehash": "85917968f609",
-      "evidence": "src/isidore/render.py:25",
-      "id": "c-7ee3746a",
-      "oracle": "graph",
-      "predicate": "defines:src/isidore/render.py;render_quickstart",
-      "statement": "render_quickstart() generates a human-readable Markdown catalog",
-      "verdict": "TRUE"
-    },
-    {
-      "detail": "src/isidore/render.py defines render_toon_index",
-      "ehash": "a0efbfd4f8e5",
-      "evidence": "src/isidore/render.py:52",
-      "id": "c-e268044d",
-      "oracle": "graph",
-      "predicate": "defines:src/isidore/render.py;render_toon_index",
-      "statement": "render_toon_index() produces a TOON-formatted table",
-      "verdict": "TRUE"
-    },
-    {
-      "detail": "src/isidore/render.py defines agents_md_block",
-      "ehash": "885ddd13a50b",
-      "evidence": "src/isidore/render.py:77",
-      "id": "c-bfd06bf5",
-      "oracle": "graph",
-      "predicate": "defines:src/isidore/render.py;agents_md_block",
-      "statement": "agents_md_block() creates a delimited block for embedding in AGENTS.md",
-      "verdict": "TRUE"
-    },
-    {
-      "detail": "src/isidore/render.py defines upsert_agents_block",
-      "ehash": "882ee173d042",
-      "evidence": "src/isidore/render.py:91",
-      "id": "c-4198d91b",
-      "oracle": "graph",
-      "predicate": "defines:src/isidore/render.py;upsert_agents_block",
-      "statement": "upsert_agents_block() handles insertion or replacement of the AGENTS.md block",
+      "statement": "The output directory is configurable via ISIDORE_WIKI_DIR",
       "verdict": "TRUE"
     },
     {
       "detail": "src/isidore/render.py imports src/isidore/toon.py",
       "ehash": "2c7ee6ca1137",
-      "evidence": "src/isidore/render.py:13",
-      "id": "c-f3b8d6fc",
+      "evidence": "src/isidore/render.py:L13",
+      "id": "c-bcc8ef1f",
       "oracle": "graph",
       "predicate": "imports:src/isidore/render.py;src/isidore/toon.py",
-      "statement": "The module depends on src/isidore/toon.py for encoding data in TOON format",
+      "statement": "The module uses src/isidore/toon.py for TOON encoding",
+      "verdict": "TRUE"
+    },
+    {
+      "detail": "src/isidore/render.py defines knowledge_summary",
+      "ehash": "56ee158aed41",
+      "evidence": "src/isidore/render.py:L105",
+      "id": "c-bf4896a4",
+      "oracle": "graph",
+      "predicate": "defines:src/isidore/render.py;knowledge_summary",
+      "statement": "The knowledge home is optional and never travels with the repository",
       "verdict": "TRUE"
     }
   ],
-  "graph_commit": "5782a431e6dc22ba8b21583e6f89d91001ef4093",
+  "graph_commit": "d5d1a1f33219a3171cc701884ca77e794db897e2",
   "marks": [
     {
       "disposition": "",
@@ -94,12 +44,12 @@
     }
   ],
   "mass": {
-    "gray": 14,
-    "green": 20,
+    "gray": 21,
+    "green": 17,
     "yellow": 0
   },
   "page": "src-isidore-render_py.md",
-  "prose_sha256": "16c7b22236b4b14a8e37e1772dad64e59556ca0713e41e29648da996fc068d3a",
+  "prose_sha256": "23f7e735b397b38e2a0af2cf36c7f286b1ee1ebb5331257518496eb47698093f",
   "version": "pcp-1",
   "violations": []
 }

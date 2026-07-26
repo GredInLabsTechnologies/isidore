@@ -1,6 +1,6 @@
 # Wiki (isidore)
 
-Compiled from the repository structure graph at commit `3abce5854dca7f707ac84a52cbffebf0c2bd0b36`.
+Compiled from the repository structure graph at commit `d5d1a1f33219a3171cc701884ca77e794db897e2`.
 Pages are generated from exact structural facts; cited `path:line` references are
 mechanically lint-checked against the repository.
 
@@ -21,10 +21,10 @@ Side observations harvested during compilation live in [findings.toon](findings.
 | src/isidore/pcp.py | 1 | 25 | [src-isidore-pcp_py.md](src-isidore-pcp_py.md) |
 | src/isidore/pyramid.py | 1 | 25 | [src-isidore-pyramid_py.md](src-isidore-pyramid_py.md) |
 | tests/test_units.py | 1 | 24 | [tests-test_units_py.md](tests-test_units_py.md) |
+| src/isidore/pipeline.py | 1 | 24 | [src-isidore-pipeline_py.md](src-isidore-pipeline_py.md) |
 | tests/test_connect_cli.py | 1 | 23 | [tests-test_connect_cli_py.md](tests-test_connect_cli_py.md) |
-| src/isidore/pipeline.py | 1 | 22 | [src-isidore-pipeline_py.md](src-isidore-pipeline_py.md) |
+| src/isidore/graph.py | 1 | 21 | [src-isidore-graph_py.md](src-isidore-graph_py.md) |
 | tests/test_recertify.py | 1 | 19 | [tests-test_recertify_py.md](tests-test_recertify_py.md) |
-| src/isidore/graph.py | 1 | 19 | [src-isidore-graph_py.md](src-isidore-graph_py.md) |
 | tests/test_overview.py | 1 | 18 | [tests-test_overview_py.md](tests-test_overview_py.md) |
 | src/isidore/claims.py | 1 | 18 | [src-isidore-claims_py.md](src-isidore-claims_py.md) |
 | tests/test_claims.py | 1 | 17 | [tests-test_claims_py.md](tests-test_claims_py.md) |
@@ -35,20 +35,20 @@ Side observations harvested during compilation live in [findings.toon](findings.
 | src/isidore/surface.py | 1 | 16 | [src-isidore-surface_py.md](src-isidore-surface_py.md) |
 | src/isidore/humanpack.py | 1 | 15 | [src-isidore-humanpack_py.md](src-isidore-humanpack_py.md) |
 | tests/test_langspec.py | 1 | 14 | [tests-test_langspec_py.md](tests-test_langspec_py.md) |
+| src/isidore/knowledge.py | 1 | 14 | [src-isidore-knowledge_py.md](src-isidore-knowledge_py.md) |
+| tests/test_hostile_f6.py | 1 | 13 | [tests-test_hostile_f6_py.md](tests-test_hostile_f6_py.md) |
 | src/isidore/cli.py | 1 | 13 | [src-isidore-cli_py.md](src-isidore-cli_py.md) |
 | tests/test_connectors_f5.py | 1 | 12 | [tests-test_connectors_f5_py.md](tests-test_connectors_f5_py.md) |
-| src/isidore/knowledge.py | 1 | 12 | [src-isidore-knowledge_py.md](src-isidore-knowledge_py.md) |
 | src/isidore/langspec.py | 1 | 12 | [src-isidore-langspec_py.md](src-isidore-langspec_py.md) |
+| tests/test_classification_gate.py | 1 | 11 | [tests-test_classification_gate_py.md](tests-test_classification_gate_py.md) |
 | tests/test_pcp_seams.py | 1 | 11 | [tests-test_pcp_seams_py.md](tests-test_pcp_seams_py.md) |
 | tests/test_security_prose.py | 1 | 11 | [tests-test_security_prose_py.md](tests-test_security_prose_py.md) |
+| src/isidore/render.py | 1 | 11 | [src-isidore-render_py.md](src-isidore-render_py.md) |
 | tests/test_verify.py | 1 | 10 | [tests-test_verify_py.md](tests-test_verify_py.md) |
+| tests/test_wiki_not_input.py | 1 | 10 | [tests-test_wiki_not_input_py.md](tests-test_wiki_not_input_py.md) |
 | src/isidore/qa.py | 1 | 10 | [src-isidore-qa_py.md](src-isidore-qa_py.md) |
-| src/isidore/render.py | 1 | 10 | [src-isidore-render_py.md](src-isidore-render_py.md) |
 | tests/test_pcp_pipeline.py | 1 | 9 | [tests-test_pcp_pipeline_py.md](tests-test_pcp_pipeline_py.md) |
 | tests/fixtures/pcp | 8 | 9 | [tests-fixtures-pcp.md](tests-fixtures-pcp.md) |
 | src/isidore/connect.py | 1 | 9 | [src-isidore-connect_py.md](src-isidore-connect_py.md) |
 | src/isidore/home.py | 1 | 9 | [src-isidore-home_py.md](src-isidore-home_py.md) |
 | src/isidore/recertify.py | 1 | 9 | [src-isidore-recertify_py.md](src-isidore-recertify_py.md) |
-| tests/test_detectors.py | 1 | 8 | [tests-test_detectors_py.md](tests-test_detectors_py.md) |
-| tests/test_llms_txt.py | 1 | 8 | [tests-test_llms_txt_py.md](tests-test_llms_txt_py.md) |
-| tests/test_mcp_barrier.py | 1 | 8 | [tests-test_mcp_barrier_py.md](tests-test_mcp_barrier_py.md) |

@@ -74,8 +74,15 @@ def render_toon_index(module_specs, flow_specs, commit: str | None) -> str:
     return header + encode(*tables) + "\n"
 
 
-def agents_md_block(wiki_dir: str = WIKI_DIRNAME) -> str:
-    return "\n".join([
+def agents_md_block(wiki_dir: str = WIKI_DIRNAME, knowledge: dict | None = None) -> str:
+    """The self-reference an agent reads before touching the repo. 0 LLM, idempotent.
+
+    `knowledge` describes the local knowledge home when one has been compiled: `{path, pages,
+    streams}`. It is mentioned only when it exists and is NOT a link — the knowledge home is
+    per-user and local-only, so a path in a committed file would point at a directory the next
+    reader does not have.
+    """
+    lines = [
         MARKER_START,
         "## Wiki (isidore)",
         "",
@@ -84,8 +91,40 @@ def agents_md_block(wiki_dir: str = WIKI_DIRNAME) -> str:
         f" [{wiki_dir}/index.toon]({wiki_dir}/index.toon) (same catalog, fewer tokens).",
         "Module and flow pages explain purpose, architecture, entry points and how to change each",
         "area safely, with `path:line` citations.",
-        MARKER_END,
-    ])
+    ]
+    if knowledge and knowledge.get("pages"):
+        lines += [
+            "",
+            "### Knowledge home (local, not in this repo)",
+            "",
+            f"This machine also has a compiled knowledge home with {knowledge['pages']} topic page(s)"
+            f" over {knowledge.get('streams', 0)} ingested stream(s): external evidence — repositories,"
+            " feeds, discussions, mail — each claim citing a `src://` URI that resolves to the stored"
+            " item.",
+            "Run `isidore sync` to refresh it and `isidore claims --check` to see what has gone stale.",
+            "It is per-user and never travels with the repository, so no path is linked here.",
+        ]
+    lines.append(MARKER_END)
+    return "\n".join(lines)
+
+
+def knowledge_summary() -> dict:
+    """`{path, pages, streams}` for the local knowledge home, or {} if there is none. Never raises."""
+    try:
+        from .home import home
+        from .knowledge import load_knowledge_state
+        root = home()
+        pages = len(load_knowledge_state().get("pages", {}))
+        conn = root / "connectors"
+        streams = 0
+        if conn.is_dir():
+            from .connectors.store import read_state
+            for cdir in conn.iterdir():
+                if cdir.is_dir():
+                    streams += len(read_state(cdir.name, "").get("cursors", {}))
+        return {"path": str(root), "pages": pages, "streams": streams} if pages else {}
+    except Exception:                      # a knowledge home is optional; never break a compile
+        return {}
 
 
 def upsert_agents_block(existing: str, block: str) -> str:

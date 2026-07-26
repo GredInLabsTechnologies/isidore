@@ -1,0 +1,66 @@
+{
+  "child_cert_hashes": {},
+  "claims": [
+    {
+      "detail": "test_the_label_comes_from_meta_first_then_the_document_itself calls item_classification",
+      "ehash": "d0ed692fe9bf",
+      "evidence": "tests/test_classification_gate.py:54",
+      "id": "c-4adf9590",
+      "oracle": "ast",
+      "predicate": "calls:test_the_label_comes_from_meta_first_then_the_document_itself;item_classification",
+      "statement": "The module tests classification precedence, with metadata labels taking priority over document content",
+      "verdict": "TRUE"
+    },
+    {
+      "detail": "test_the_trust_declaration_takes_an_exact_word calls provider_is_trusted",
+      "ehash": "774536098da6",
+      "evidence": "tests/test_classification_gate.py:65",
+      "id": "c-6290f861",
+      "oracle": "ast",
+      "predicate": "calls:test_the_trust_declaration_takes_an_exact_word;provider_is_trusted",
+      "statement": "The module verifies trust is only granted for the exact string \"yes\" (case-insensitive, trimmed)",
+      "verdict": "TRUE"
+    },
+    {
+      "detail": "test_restricted_items_never_reach_the_prompt_by_default calls assemble_topic_context",
+      "ehash": "cf4afffc7edd",
+      "evidence": "tests/test_classification_gate.py:78",
+      "id": "c-7cca089e",
+      "oracle": "ast",
+      "predicate": "calls:test_restricted_items_never_reach_the_prompt_by_default;assemble_topic_context",
+      "statement": "The module confirms restricted items are filtered out of prompts by default",
+      "verdict": "TRUE"
+    },
+    {
+      "detail": "no import edge tests/test_classification_gate.py->isidore.connectors.store in the graph; imports are partially resolved, so absence is not decidable",
+      "ehash": "c9738d2d8698",
+      "evidence": "tests/test_classification_gate.py:13",
+      "id": "c-e09ab23d",
+      "oracle": "none",
+      "predicate": "imports:tests/test_classification_gate.py;isidore.connectors.store",
+      "statement": "The module depends on isidore.connectors.store for storage operations",
+      "verdict": "UNDECIDABLE"
+    },
+    {
+      "detail": "no import edge tests/test_classification_gate.py->isidore.knowledge in the graph; imports are partially resolved, so absence is not decidable",
+      "ehash": "b72b63ed5f30",
+      "evidence": "tests/test_classification_gate.py:21",
+      "id": "c-cca1faa7",
+      "oracle": "none",
+      "predicate": "imports:tests/test_classification_gate.py;isidore.knowledge",
+      "statement": "The module depends on isidore.knowledge for classification and trust logic",
+      "verdict": "UNDECIDABLE"
+    }
+  ],
+  "graph_commit": "d5d1a1f33219a3171cc701884ca77e794db897e2",
+  "marks": [],
+  "mass": {
+    "gray": 14,
+    "green": 15,
+    "yellow": 1
+  },
+  "page": "tests-test_classification_gate_py.md",
+  "prose_sha256": "a530a745f6762d50b4e4ac2b16817393dace00cdd45c9fd7fe433f29a2bedb59",
+  "version": "pcp-1",
+  "violations": []
+}

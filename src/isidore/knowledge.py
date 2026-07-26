@@ -245,12 +245,42 @@ def seal_content(content: str) -> tuple[str, int]:
     return _FENCE_RE.sub(lambda m: _QUOTED_MARK + m.group(0).lstrip(), content), forged
 
 
+PUBLIC = "public"
+_SENSITIVE_ENV = "ISIDORE_PROMPT_TRUSTS_PROVIDER"
+
+
+def item_classification(item: dict) -> str:
+    """An item's confidentiality: `meta.classification`, else `classification:` in its own front
+    matter, else `public`. Lowercased; anything that is not `public` is treated as restricted."""
+    meta = item.get("meta") or {}
+    declared = str(meta.get("classification") or "").strip().lower()
+    if declared:
+        return declared
+    match = re.search(r"^classification:\s*(\S+)", str(item.get("content") or ""), re.MULTILINE)
+    return match.group(1).strip().lower() if match else PUBLIC
+
+
+def provider_is_trusted() -> bool:
+    """Whether the operator has declared the configured LLM provider fit to receive restricted items.
+
+    Opt-in, per machine, and never the default. The variable must be set to the exact word `yes` — a
+    truthy-looking value is not a decision, and this one deserves to be made deliberately.
+    """
+    return os.environ.get(_SENSITIVE_ENV, "").strip().lower() == "yes"
+
+
 def assemble_topic_context(topic: dict) -> tuple[str, list[str]]:
     """Assemble items matching streams and filters into citable facts.
 
     External content enters as DATA, never as instruction (invariant I8): each item is fenced with a
     nonce it cannot predict, and the prompt tells the model the fenced regions may contain text that
     looks like instructions and is to be treated as quoted material.
+
+    And it runs the other way too. Ingesting a source does NOT authorise sending it to a third party:
+    an item classified as anything but public is WITHHELD from the prompt unless the operator has
+    declared the provider trusted. Found the hard way — a topic over the collective's own notebook put
+    25 cards marked `classification: internal`, plus its private messages and task history, into a
+    prompt bound for a hosted API. Nothing in the pipeline objected, because nothing was looking.
     """
     from .connectors.store import iter_items
     cid_inst_pairs = []
@@ -289,7 +319,26 @@ def assemble_topic_context(topic: dict) -> tuple[str, list[str]]:
     facts = []
     warnings = []
     fence = data_fence()
-    for cid, inst, item in matched_items[:top_k]:
+    trusted = provider_is_trusted()
+    withheld: dict[str, int] = {}
+    kept = []
+    for cid, inst, item in matched_items:
+        level = item_classification(item)
+        if level != PUBLIC and not trusted:
+            withheld[level] = withheld.get(level, 0) + 1
+            continue
+        kept.append((cid, inst, item))
+    if withheld:
+        detail = ", ".join(f"{n} {level}" for level, n in sorted(withheld.items()))
+        warnings.append(
+            f"withheld {sum(withheld.values())} item(s) from the prompt ({detail}): ingesting a "
+            f"source does not authorise sending it to a third party. Set "
+            f"{_SENSITIVE_ENV}=yes only if the configured provider may receive them.")
+    if trusted and any(item_classification(i) != PUBLIC for _c, _i, i in kept):
+        warnings.append(f"{_SENSITIVE_ENV}=yes — restricted items WERE sent to the configured "
+                        f"provider, by explicit operator declaration")
+
+    for cid, inst, item in kept[:top_k]:
         inst_part = f"/{inst}" if inst else ""
         uri = f"src://{cid}{inst_part}/{item.get('id')}"
         content, forged = seal_content(item.get("content", ""))
@@ -332,7 +381,18 @@ def compile_topics(
         filename = f"{name}.md"
         context, warns = assemble_topic_context(t)
         result.warnings.extend(warns)
-        
+
+        if not context.strip():
+            # No facts, no page. Asking the model to write about a topic with zero evidence spends a
+            # call and gets prose invented from the topic's NAME — which is the one thing this whole
+            # design exists to prevent. Seen the moment the classification gate started withholding
+            # items: three topics with nothing left to say still compiled three confident pages.
+            result.warnings.append(
+                f"{filename}: no facts available for this topic — not compiled, no call made. "
+                f"Either nothing has been ingested for its streams, or every matching item was "
+                f"withheld from the prompt.")
+            continue
+
         prompt = TOPIC_PROMPT.format(name=name, facts=context)
         prompt += KNOWLEDGE_CLAIMS_ADDENDUM + FINDINGS_PROMPT_ADDENDUM
         

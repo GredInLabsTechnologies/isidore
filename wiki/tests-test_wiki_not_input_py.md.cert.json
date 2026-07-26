@@ -1,0 +1,66 @@
+{
+  "child_cert_hashes": {},
+  "claims": [
+    {
+      "detail": "no predicate (existence-anchored only)",
+      "ehash": "896fef7aa0e7",
+      "evidence": "tests/test_wiki_not_input.py:1",
+      "id": "c-94ebb297",
+      "oracle": "none",
+      "predicate": "",
+      "statement": "The module enforces that the wiki is never treated as input",
+      "verdict": "UNDECIDABLE"
+    },
+    {
+      "detail": "no declaration of 'WIKI_DIRNAME' this oracle can read",
+      "ehash": "08e49e465989",
+      "evidence": "tests/test_wiki_not_input.py:32",
+      "id": "c-d6ac2e9a",
+      "oracle": "none",
+      "predicate": "value:WIKI_DIRNAME;doc/isidore",
+      "statement": "The wiki directory is set to 'doc/isidore'",
+      "verdict": "UNDECIDABLE"
+    },
+    {
+      "detail": "scan_repo has no call to repo_with_nested_wiki",
+      "ehash": "7072225e3f3f",
+      "evidence": "tests/test_wiki_not_input.py:69",
+      "id": "c-22f468a7",
+      "oracle": "ast",
+      "predicate": "calls:scan_repo;repo_with_nested_wiki",
+      "statement": "The scanner does not index the wiki as input",
+      "verdict": "FALSE"
+    },
+    {
+      "detail": "drop_wiki_output has no call to foreign",
+      "ehash": "ca2c06d2bfe1",
+      "evidence": "tests/test_wiki_not_input.py:90",
+      "id": "c-1fd2a1a9",
+      "oracle": "ast",
+      "predicate": "calls:drop_wiki_output;foreign",
+      "statement": "The wiki is excluded from page planning",
+      "verdict": "FALSE"
+    },
+    {
+      "detail": "no declaration of 'wiki_output_prefix' this oracle can read",
+      "ehash": "71afa20f02c1",
+      "evidence": "tests/test_wiki_not_input.py:58",
+      "id": "c-f06bd6fa",
+      "oracle": "none",
+      "predicate": "value:wiki_output_prefix;doc/isidore",
+      "statement": "The wiki output prefix is verified as 'doc/isidore'",
+      "verdict": "UNDECIDABLE"
+    }
+  ],
+  "graph_commit": "d5d1a1f33219a3171cc701884ca77e794db897e2",
+  "marks": [],
+  "mass": {
+    "gray": 6,
+    "green": 0,
+    "yellow": 19
+  },
+  "page": "tests-test_wiki_not_input_py.md",
+  "prose_sha256": "b4bb36175fc285cf1778d6832c46d638e74cb88611edbb08c875745a9cdf9337",
+  "version": "pcp-1",
+  "violations": []
+}

@@ -1,46 +1,15 @@
 {
   "child_cert_hashes": {},
-  "claims": [
-    {
-      "detail": "src/isidore/knowledge.py imports src/isidore/home.py",
-      "ehash": "43a21a0807a6",
-      "evidence": "src/isidore/knowledge.py:17",
-      "id": "c-791119fa",
-      "oracle": "graph",
-      "predicate": "imports:src/isidore/knowledge.py;src/isidore/home.py",
-      "statement": "The module depends on src/isidore/home.py for home directory management",
-      "verdict": "TRUE"
-    },
-    {
-      "detail": "src/isidore/knowledge.py imports src/isidore/llm.py",
-      "ehash": "7db0615e56a0",
-      "evidence": "src/isidore/knowledge.py:18",
-      "id": "c-7abfee82",
-      "oracle": "graph",
-      "predicate": "imports:src/isidore/knowledge.py;src/isidore/llm.py",
-      "statement": "The module depends on src/isidore/llm.py for LLM interactions",
-      "verdict": "TRUE"
-    },
-    {
-      "detail": "src/isidore/knowledge.py imports src/isidore/findings.py",
-      "ehash": "4b9bdb080ad7",
-      "evidence": "src/isidore/knowledge.py:25",
-      "id": "c-50e6a8cb",
-      "oracle": "graph",
-      "predicate": "imports:src/isidore/knowledge.py;src/isidore/findings.py",
-      "statement": "The module depends on src/isidore/findings.py for findings handling",
-      "verdict": "TRUE"
-    }
-  ],
-  "graph_commit": "3abce5854dca7f707ac84a52cbffebf0c2bd0b36",
+  "claims": [],
+  "graph_commit": "d5d1a1f33219a3171cc701884ca77e794db897e2",
   "marks": [],
   "mass": {
-    "gray": 15,
-    "green": 16,
+    "gray": 31,
+    "green": 0,
     "yellow": 0
   },
   "page": "src-isidore-knowledge_py.md",
-  "prose_sha256": "5877c9466461a29447fdf985ae1d3f0588063702f6595f48d3a1ac5602994626",
+  "prose_sha256": "2719efa338140814ed32507842a87204f3d1e17e55709e58eccc78bac816af57",
   "version": "pcp-1",
   "violations": []
 }

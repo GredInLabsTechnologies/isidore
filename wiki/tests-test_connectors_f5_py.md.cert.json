@@ -5,64 +5,64 @@
       "detail": "no predicate (existence-anchored only)",
       "ehash": "e997d341d5f9",
       "evidence": "tests/test_connectors_f5.py:1",
-      "id": "c-cdf010ce",
+      "id": "c-06abccc3",
       "oracle": "none",
       "predicate": "",
-      "statement": "The module tests the McpConnector's interaction with a stub F5 server",
+      "statement": "The module tests the F5 connector's integration with MCP",
       "verdict": "UNDECIDABLE"
     },
     {
-      "detail": "tests/test_connectors_f5.py defines server",
+      "detail": "server has no call to reply",
       "ehash": "a666a3a83cdc",
       "evidence": "tests/test_connectors_f5.py:85",
-      "id": "c-950b351a",
-      "oracle": "graph",
-      "predicate": "defines:tests/test_connectors_f5.py;server",
-      "statement": "The server fixture sets up a stub server environment",
-      "verdict": "TRUE"
-    },
-    {
-      "detail": "tests/test_connectors_f5.py defines _config",
-      "ehash": "e14836361180",
-      "evidence": "tests/test_connectors_f5.py:92",
-      "id": "c-b9b5ba9b",
-      "oracle": "graph",
-      "predicate": "defines:tests/test_connectors_f5.py;_config",
-      "statement": "The _config function generates a connector configuration",
-      "verdict": "TRUE"
-    },
-    {
-      "detail": "test_the_arguments_actually_reach_the_server calls ingest",
-      "ehash": "7a88ca5ba557",
-      "evidence": "tests/test_connectors_f5.py:116",
-      "id": "c-c6fa7941",
+      "id": "c-ef3d6576",
       "oracle": "ast",
-      "predicate": "calls:test_the_arguments_actually_reach_the_server;McpConnector.ingest",
-      "statement": "The test validates tool arguments reach the server",
-      "verdict": "TRUE"
+      "predicate": "calls:server;reply",
+      "statement": "The stub server simulates a Gmail server over stdio",
+      "verdict": "FALSE"
     },
     {
-      "detail": "test_a_write_tool_is_refused_even_when_the_recipe_asks_for_it calls ingest",
+      "detail": "no declaration of 'FAIL_AUTH' this oracle can read",
+      "ehash": "196ae2b710d1",
+      "evidence": "tests/test_connectors_f5.py:73",
+      "id": "c-bb921664",
+      "oracle": "none",
+      "predicate": "value:FAIL_AUTH;1",
+      "statement": "The server handles authentication failures",
+      "verdict": "UNDECIDABLE"
+    },
+    {
+      "detail": "caller 'McpConnector.ingest' not a Python symbol in the graph",
       "ehash": "e8d1f03326b9",
       "evidence": "tests/test_connectors_f5.py:127",
-      "id": "c-c31b3d45",
-      "oracle": "ast",
-      "predicate": "calls:test_a_write_tool_is_refused_even_when_the_recipe_asks_for_it;McpConnector.ingest",
-      "statement": "Write tools are rejected even if requested",
-      "verdict": "TRUE"
+      "id": "c-053ead73",
+      "oracle": "none",
+      "predicate": "calls:McpConnector.ingest;_config",
+      "statement": "The connector enforces read-only operations",
+      "verdict": "UNDECIDABLE"
     },
     {
-      "detail": "test_a_revoked_token_fails_closed_and_writes_nothing calls ingest",
+      "detail": "caller 'McpConnector.ingest' not a Python symbol in the graph",
+      "ehash": "7a88ca5ba557",
+      "evidence": "tests/test_connectors_f5.py:116",
+      "id": "c-e8e527f4",
+      "oracle": "none",
+      "predicate": "calls:McpConnector.ingest;_config",
+      "statement": "Arguments are passed to tools correctly",
+      "verdict": "UNDECIDABLE"
+    },
+    {
+      "detail": "STUB_FAIL_AUTH read in tests/test_connectors_f5.py",
       "ehash": "be358c9acd8c",
       "evidence": "tests/test_connectors_f5.py:136",
-      "id": "c-a87d90c1",
-      "oracle": "ast",
-      "predicate": "calls:test_a_revoked_token_fails_closed_and_writes_nothing;McpConnector.ingest",
-      "statement": "Authentication failures are handled securely",
+      "id": "c-745c0ce7",
+      "oracle": "grep",
+      "predicate": "env:STUB_FAIL_AUTH",
+      "statement": "A revoked token results in a closed failure",
       "verdict": "TRUE"
     }
   ],
-  "graph_commit": "3abce5854dca7f707ac84a52cbffebf0c2bd0b36",
+  "graph_commit": "d5d1a1f33219a3171cc701884ca77e794db897e2",
   "marks": [
     {
       "disposition": "",
@@ -74,12 +74,12 @@
     }
   ],
   "mass": {
-    "gray": 11,
-    "green": 18,
-    "yellow": 0
+    "gray": 9,
+    "green": 0,
+    "yellow": 15
   },
   "page": "tests-test_connectors_f5_py.md",
-  "prose_sha256": "e1818e0593defb036f790fae7cb7d0365c505c77f8a19dcebb0763e68019b044",
+  "prose_sha256": "dd3d6ecf9401685db550340bd20d5406f4e8358067a54a13fff5cf97d853011c",
   "version": "pcp-1",
   "violations": []
 }

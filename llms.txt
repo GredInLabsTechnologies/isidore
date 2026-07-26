@@ -39,11 +39,13 @@ Documentation compiled by isidore from this repository's structure. Every page s
 - [tests-fixtures-pcp.md](wiki/tests-fixtures-pcp.md)
 - [tests-test_changeset_py.md](wiki/tests-test_changeset_py.md)
 - [tests-test_claims_py.md](wiki/tests-test_claims_py.md)
+- [tests-test_classification_gate_py.md](wiki/tests-test_classification_gate_py.md)
 - [tests-test_connect_cli_py.md](wiki/tests-test_connect_cli_py.md)
 - [tests-test_connectors_f1_py.md](wiki/tests-test_connectors_f1_py.md)
 - [tests-test_connectors_f4_py.md](wiki/tests-test_connectors_f4_py.md)
 - [tests-test_connectors_f5_py.md](wiki/tests-test_connectors_f5_py.md)
 - [tests-test_detectors_py.md](wiki/tests-test_detectors_py.md)
+- [tests-test_hostile_f6_py.md](wiki/tests-test_hostile_f6_py.md)
 - [tests-test_impact_py.md](wiki/tests-test_impact_py.md)
 - [tests-test_langspec_oracle_py.md](wiki/tests-test_langspec_oracle_py.md)
 - [tests-test_langspec_py.md](wiki/tests-test_langspec_py.md)
@@ -64,6 +66,7 @@ Documentation compiled by isidore from this repository's structure. Every page s
 - [tests-test_verify_py.md](wiki/tests-test_verify_py.md)
 - [tests-test_whatsnew_py.md](wiki/tests-test_whatsnew_py.md)
 - [tests-test_wiki_dir_env_py.md](wiki/tests-test_wiki_dir_env_py.md)
+- [tests-test_wiki_not_input_py.md](wiki/tests-test_wiki_not_input_py.md)
 
 ## Optional
 

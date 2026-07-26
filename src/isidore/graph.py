@@ -168,13 +168,38 @@ def _is_binary(path: Path, sniff: int = 4096) -> bool:
 _KNOWN_TEXT_EXTS = frozenset(LANGUAGES) | BARE_CODE_EXTS | {".py"}
 
 
+def wiki_output_prefix() -> str:
+    """The repo-relative posix path of the wiki OUTPUT directory, normalised for prefix matching.
+
+    Compared as a PATH, not a name: `ISIDORE_WIKI_DIR` may be nested (`doc/isidore`), and a
+    name-based skip never sees it.
+    """
+    from .render import WIKI_DIRNAME
+    return WIKI_DIRNAME.replace("\\", "/").strip("/")
+
+
+def _is_wiki_output(rel_posix: str, prefix: str) -> bool:
+    return bool(prefix) and (rel_posix == prefix or rel_posix.startswith(prefix + "/"))
+
+
 def _iter_source_files(repo: Path) -> list[Path]:
     listed = git_listed_files(repo)
     found: list[Path] = []
+    # The wiki is OUTPUT, and output must never round-trip into input. Without this, every compile
+    # documents the previous compile: `plan_pages` sees the wiki as just another module and writes a
+    # page about the documentation, whose certificate has no stable ground truth to check prose
+    # against. Measured in GIMO at isidore d5d1a1f, where `doc/isidore` produced a 13 MB certificate
+    # — 405,704 lines, 2 claims, 31,202 reconciler violations, 26% of every line in the repository.
+    # isidore's own repo escaped the page only because `wiki/` splits per-file under its module depth;
+    # the 113 output nodes were in its graph all the same.
+    wiki_prefix = wiki_output_prefix()
     stack = [repo]
     while stack:
         current = stack.pop()
         for entry in sorted(current.iterdir()):
+            rel = entry.relative_to(repo).as_posix()
+            if _is_wiki_output(rel, wiki_prefix):
+                continue
             if entry.is_dir():
                 if entry.name not in SKIP_DIRS and not entry.name.startswith("."):
                     stack.append(entry)

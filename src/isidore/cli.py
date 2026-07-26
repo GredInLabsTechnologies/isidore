@@ -255,7 +255,10 @@ def _cmd_sync(args) -> int:
     print("[isidore] running ingestion connectors...")
     for conn in all_connectors():
         if missing_env(conn):
-            print(f"[isidore] connector '{conn.id}' skipped: missing required env vars: {conn.required_env}", file=sys.stderr)
+            # stdout, not stderr: a connector without its credentials is the DESIGNED behaviour, not
+            # a failure. On stderr it made every unattended runner treat a healthy cycle as broken —
+            # the first real run of the scheduled task died on exactly this line.
+            print(f"  {conn.id}: skipped (missing env: {', '.join(missing_env(conn))})")
             continue
         try:
             options = IngestOptions(limit=args.limit)

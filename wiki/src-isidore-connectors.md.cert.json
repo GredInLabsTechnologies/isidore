@@ -4,93 +4,73 @@
     {
       "detail": "no predicate (existence-anchored only)",
       "ehash": "a556f415f250",
-      "evidence": "src/isidore/connectors/store.py:L3",
-      "id": "c-5134017e",
+      "evidence": "src/isidore/connectors/store.py:3",
+      "id": "c-eb966636",
       "oracle": "none",
       "predicate": "",
-      "statement": "The raw store's item structure is `{id, stream, ts, content, meta, chash}`",
+      "statement": "The `store.py` module defines a raw item format with `id`, `stream`, `ts`, `content`, `meta`, and `chash`",
       "verdict": "UNDECIDABLE"
-    },
-    {
-      "detail": "_hash has no call to _normalize",
-      "ehash": "a556f415f250",
-      "evidence": "src/isidore/connectors/store.py:L3",
-      "id": "c-25107104",
-      "oracle": "ast",
-      "predicate": "calls:_hash;_normalize",
-      "statement": "The `chash` is derived from `_hash(_normalize(content))`",
-      "verdict": "FALSE"
-    },
-    {
-      "detail": "src/isidore/connectors/base.py defines IngestResult",
-      "ehash": "e14f90dd3ff8",
-      "evidence": "src/isidore/connectors/base.py:L20",
-      "id": "c-0c70a90b",
-      "oracle": "graph",
-      "predicate": "defines:src/isidore/connectors/base.py;IngestResult",
-      "statement": "The `IngestResult` dataclass includes `connector_id`, `status`, and `raw_files`",
-      "verdict": "TRUE"
     },
     {
       "detail": "no predicate (existence-anchored only)",
       "ehash": "732fc24382f0",
-      "evidence": "src/isidore/connectors/hackernews.py:L3",
-      "id": "c-58e60cfd",
+      "evidence": "src/isidore/connectors/hackernews.py:3",
+      "id": "c-eddbf2a1",
       "oracle": "none",
       "predicate": "",
-      "statement": "The `hackernews.py` connector uses Algolia's public API",
+      "statement": "The `hackernews.py` connector uses Algolia's public API to fetch items",
       "verdict": "UNDECIDABLE"
     },
     {
-      "detail": "no environment read of ISIDORE_WEBSEARCH_KEY found",
-      "ehash": "a1a3b44377ab",
-      "evidence": "src/isidore/connectors/websearch.py:L4",
-      "id": "c-8340b0f9",
-      "oracle": "grep",
-      "predicate": "env:ISIDORE_WEBSEARCH_KEY",
-      "statement": "The `websearch.py` connector reads `ISIDORE_WEBSEARCH_KEY` from the environment",
-      "verdict": "FALSE"
+      "detail": "no predicate (existence-anchored only)",
+      "ehash": "83c3d1cf1b68",
+      "evidence": "src/isidore/connectors/rss.py:3",
+      "id": "c-6fd307c6",
+      "oracle": "none",
+      "predicate": "",
+      "statement": "The `rss.py` connector generates item IDs from `guid`, `link`, or a hash of `title` and `date`",
+      "verdict": "UNDECIDABLE"
     },
     {
       "detail": "no predicate (existence-anchored only)",
-      "ehash": "71b626786c0e",
-      "evidence": "src/isidore/connectors/mcp.py:L1",
-      "id": "c-4650b793",
+      "ehash": "e14f90dd3ff8",
+      "evidence": "src/isidore/connectors/base.py:20",
+      "id": "c-f39b31c8",
+      "oracle": "none",
+      "predicate": "",
+      "statement": "The `base.py` module defines the `IngestResult` dataclass with fields `connector_id`, `status`, `raw_files`, and `warnings`",
+      "verdict": "UNDECIDABLE"
+    },
+    {
+      "detail": "no predicate (existence-anchored only)",
+      "ehash": "168fac87a30e",
+      "evidence": "src/isidore/connectors/mcp.py:3",
+      "id": "c-95b3570b",
       "oracle": "none",
       "predicate": "",
       "statement": "The `mcp.py` connector speaks JSON-RPC 2.0 directly",
       "verdict": "UNDECIDABLE"
     },
     {
-      "detail": "no predicate (existence-anchored only)",
-      "ehash": "925185a804f4",
-      "evidence": "src/isidore/connectors/rss.py:L15",
-      "id": "c-0020d3a8",
+      "detail": "env expects (NAME)",
+      "ehash": "b33b3236e451",
+      "evidence": "src/isidore/connectors/websearch.py:3",
+      "id": "c-0bf3d44b",
       "oracle": "none",
-      "predicate": "",
-      "statement": "The `rss.py` connector uses `xml.etree.ElementTree` for parsing",
+      "predicate": "env:ISIDORE_WEBSEARCH_URL;env:ISIDORE_WEBSEARCH_KEY",
+      "statement": "The `websearch.py` connector reads credentials from `ISIDORE_WEBSEARCH_URL` and `ISIDORE_WEBSEARCH_KEY`",
       "verdict": "UNDECIDABLE"
-    },
-    {
-      "detail": "src/isidore/connectors/store.py defines create_run_id",
-      "ehash": "27b1a261a063",
-      "evidence": "src/isidore/connectors/store.py:L24",
-      "id": "c-0701bf8a",
-      "oracle": "graph",
-      "predicate": "defines:src/isidore/connectors/store.py;create_run_id",
-      "statement": "The `store.py` functions `create_run_id` and `write_items` are called by connectors",
-      "verdict": "TRUE"
     }
   ],
-  "graph_commit": "3abce5854dca7f707ac84a52cbffebf0c2bd0b36",
+  "graph_commit": "d5d1a1f33219a3171cc701884ca77e794db897e2",
   "marks": [],
   "mass": {
-    "gray": 13,
-    "green": 14,
-    "yellow": 2
+    "gray": 16,
+    "green": 0,
+    "yellow": 15
   },
   "page": "src-isidore-connectors.md",
-  "prose_sha256": "38c23f32265385a1ae8ac342728cf24be91c7cdfcfa4416af542d117a97d99ee",
+  "prose_sha256": "4961c9b90be150872af134e01a205b2da1cea0c9a0f4ede2eb70316e2120feb9",
   "version": "pcp-1",
   "violations": []
 }

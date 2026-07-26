@@ -1,26 +1,27 @@
 ## Purpose
-The `src/isidore/knowledge.py` module manages the compilation and storage of user-defined topics in Isidore. It serves as the core for processing external knowledge streams, storing them in the knowledge home directory (`~/.isidore/knowledge`), and tracking their state. The module enforces strict rules for claim validation, ensuring that all knowledge claims are anchored to specific source excerpts and are never invented or summarized. This design supports a deterministic, auditable knowledge base where claims are tied to their original sources.
+The `src/isidore/knowledge.py` module implements Isidore's knowledge compilation system, which manages user-defined topics and their compilation into a structured knowledge base. It enforces strict rules for claim validation and state management, ensuring that knowledge is derived from verifiable sources. The module's core functionality includes compiling topics, tracking compilation results, and persisting state to disk.
 
 ## Architecture
-The module defines a `TopicCompileResult` dataclass to track the outcomes of topic compilation, including metrics for dropped claims, generated content, and warnings. It also provides utility functions to manage the knowledge directory and state file, ensuring atomic writes for state persistence. The core functionality depends on other Isidore modules for home directory management (`home.py`), LLM interactions (`llm.py`), claim processing (`claims.py`), and findings handling (`findings.py`).
+The module defines a `TopicCompileResult` dataclass to track compilation metrics, such as the number of claims processed, dropped, or repaired. It also provides utility functions for managing the knowledge directory, loading and writing state, and loading topic configurations. The state is stored in a JSON file (`~/.isidore/knowledge/.state.json [⚠ isidore: path not found]`) and topics are defined in `~/.isidore/topics.json [⚠ isidore: path not found]`.
 
 ## Key entry points
-- `TopicCompileResult`: A dataclass that aggregates compilation metrics, such as the number of claims dropped or findings kept.
+- `TopicCompileResult`: A dataclass that aggregates compilation statistics, including counts of claims, findings, and warnings.
 - `knowledge_dir()`: Returns the path to the knowledge directory (`~/.isidore/knowledge`), creating it if necessary.
 - `state_path()`: Returns the path to the state file (`~/.isidore/knowledge/.state.json [⚠ isidore: path not found]`).
-- `load_knowledge_state()`: Loads the knowledge state from the state file, defaulting to a new state if the file is missing or invalid.
-- `write_knowledge_state()`: Writes the knowledge state to the state file atomically, using a temporary file and atomic replacement.
+- `load_knowledge_state()`: Loads the knowledge state from disk, defaulting to an empty state if the file is missing or invalid.
+- `write_knowledge_state()`: Writes the knowledge state to disk atomically, using a temporary file and atomic replacement.
+- `load_topics()`: Loads topic configurations from `~/.isidore/topics.json [⚠ isidore: path not found]`, supporting both list and dictionary formats.
 
 ## Dependencies
 The module depends on:
-- `src/isidore/home.py`: For home directory management and file operations.
-- `src/isidore/llm.py`: For LLM interactions, though the exact usage is not detailed in the excerpts.
-- `src/isidore/claims.py`: For claim processing and validation.
-- `src/isidore/findings.py`: For handling findings and warnings.
+- `src/isidore/home.py`: For accessing the user's home directory and file operations.
+- `src/isidore/llm.py`: For default LLM interactions (though not directly used in the excerpted code).
+- `src/isidore/claims.py`: For claim parsing and validation.
+- `src/isidore/findings.py`: For handling findings (though not directly used in the excerpted code).
 
 ## How to change safely
-When modifying `knowledge.py`, ensure that:
-1. All state file operations use atomic writes via temporary files, as shown in `write_knowledge_state()`.
-2. Claims and findings are strictly anchored to source excerpts, following the rules in the docstring.
-3. The `TopicCompileResult` dataclass is updated only when new metrics are needed, as it is used by other modules.
-4. File paths are constructed using the provided utility functions (`knowledge_dir()`, `state_path()`) to maintain consistency.
+When modifying this module:
+1. Ensure all state changes are written atomically using `write_knowledge_state()` to avoid corruption.
+2. Validate all claims and findings strictly according to the rules in the docstring (`src/isidore/knowledge.py:92-L110`).
+3. Maintain backward compatibility with the state file format (`version: 1`).
+4. Test changes with both list and dictionary formats in `topics.json`.

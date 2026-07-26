@@ -51,6 +51,7 @@ from .reconcile import reconcile
 from .render import (
     WIKI_DIRNAME,
     agents_md_block,
+    knowledge_summary,
     render_quickstart,
     render_toon_index,
     upsert_agents_block,
@@ -165,6 +166,39 @@ def module_dep_edges(nodes: list[dict], links: list[dict],
             dep[(ms, mt)] += 1
     return dep
 
+# A page carries a handful of claims and, at worst, a few dozen findings. Orders of magnitude past
+# that is not a thorough page — it is a page with nothing solid to check itself against, and the
+# reconciler flagging every sentence. Both numbers are far above anything a healthy compile produces
+# (isidore's own busiest page: 20 claims, 0 violations).
+MAX_CERT_VIOLATIONS = 500
+MAX_CERT_MARKS = 500
+
+
+def degenerate_certificate(cert) -> str | None:
+    """A short reason when a certificate is a symptom rather than a certificate, else None."""
+    claims = len(cert.claims)
+    for label, count, cap in (("violations", len(cert.violations), MAX_CERT_VIOLATIONS),
+                              ("security marks", len(cert.marks), MAX_CERT_MARKS)):
+        if count > cap and count > claims * 20:
+            return (f"degenerate certificate: {count} {label} against {claims} claim(s) "
+                    f"(cap {cap})")
+    return None
+
+
+def drop_wiki_output(nodes: list[dict]) -> list[dict]:
+    """Nodes that do not live inside the wiki output directory.
+
+    The second barrier. `scan` excludes the directory at walk time, which is the clean place; this
+    catches a graph produced by anything else, and costs one string comparison per node.
+    """
+    from .graph import _is_wiki_output, wiki_output_prefix
+    prefix = wiki_output_prefix()
+    if not prefix:
+        return nodes
+    return [n for n in nodes
+            if not _is_wiki_output(str(n.get("source_file") or "").replace("\\", "/"), prefix)]
+
+
 def plan_pages(
     nodes: list[dict],
     links: list[dict],
@@ -177,7 +211,13 @@ def plan_pages(
 
     top_k=None returns ALL eligible modules — pruning must compare against the full universe
     so a later run with a smaller --top-k never deletes valid pages.
+
+    Nodes inside the wiki output directory are dropped first. `scan` already excludes them, but a
+    graph can arrive from anywhere (`--graph`, Graphify), and a producer that walks the filesystem
+    has no reason to know which directory is ours. Documenting our own output is a loop with no
+    ground truth: the page describes the previous compile and the reconciler flags everything.
     """
+    nodes = drop_wiki_output(nodes)
     out_degree: Counter[str] = Counter()
     for link in links:
         src = link.get("source")
@@ -756,7 +796,18 @@ def compile_wiki(
         # graph/AST, classify prose mass, hash the prose (tamper anchor). Written next to the page.
         cert = build_certificate(name, markdown, claims, verify_ctx, marks=page_marks,
                                  violations=violations)
-        write_certificate(cert, wiki_dir / (name + CERT_SUFFIX))
+        degenerate = degenerate_certificate(cert)
+        if degenerate:
+            # A certificate with thousands of violations and a handful of claims is not a
+            # certificate, it is a symptom — and writing it silently is how one reached 13 MB and
+            # 405,704 lines in GIMO before anyone read the number. Refuse it, keep the page
+            # quarantined, and say what is wrong.
+            result.warnings.append(f"{name}: {degenerate} — certificate NOT written; the page is "
+                                   f"quarantined. This usually means the page has no stable ground "
+                                   f"truth to check its prose against.")
+            result.quarantined.append(name)
+        else:
+            write_certificate(cert, wiki_dir / (name + CERT_SUFFIX))
         result.certificates.append(name)
         result.marks_raised += len(page_marks)
         result.reconcile_violations += len(violations)
@@ -819,14 +870,22 @@ def compile_wiki(
     # AGENTS.md is the one PRE-EXISTING file we touch — preserve its line-ending style so we don't
     # rewrite every line (CRLF->LF) and turn a 6-line insert into a whole-file diff. Read raw bytes
     # to detect CRLF before universal-newline translation hides it.
-    agents_md = repo / "AGENTS.md"
-    raw = agents_md.read_bytes() if agents_md.is_file() else b""
-    uses_crlf = b"\r\n" in raw
-    existing = raw.decode("utf-8", errors="replace").replace("\r\n", "\n")
-    merged = upsert_agents_block(existing, agents_md_block())
-    if uses_crlf:
-        merged = merged.replace("\n", "\r\n")
-    agents_md.write_bytes(merged.encode("utf-8"))
+    # Both files, because a repo may carry either: AGENTS.md is the cross-vendor convention and
+    # CLAUDE.md is Claude Code's. An absent CLAUDE.md is NOT created — writing a config file into
+    # someone's repository because they compiled a wiki would be presumptuous.
+    block = agents_md_block(knowledge=knowledge_summary())
+    for name in ("AGENTS.md", "CLAUDE.md"):
+        target = repo / name
+        if name != "AGENTS.md" and not target.is_file():
+            continue
+        raw = target.read_bytes() if target.is_file() else b""
+        uses_crlf = b"\r\n" in raw
+        existing = raw.decode("utf-8", errors="replace").replace("\r\n", "\n")
+        merged = upsert_agents_block(existing, block).encode("utf-8")
+        if uses_crlf:
+            merged = merged.replace(b"\n", b"\r\n")
+        if merged != raw:              # idempotent: identical content leaves the file untouched
+            target.write_bytes(merged)
 
     (wiki_dir / CLAIMS_FILENAME).write_text(
         render_claims(repo, pages_state, commit), encoding="utf-8", newline="\n")

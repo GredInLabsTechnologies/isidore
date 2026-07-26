@@ -1,4 +1,4 @@
-# isidore wiki index · commit 3abce5854dca7f707ac84a52cbffebf0c2bd0b36
+# isidore wiki index · commit d5d1a1f33219a3171cc701884ca77e794db897e2
 # same catalog as quickstart.md, in TOON tables (cheap for agents to load)
 modules[40]{module,files,symbols,page}:
   src/isidore/connectors,9,67,src-isidore-connectors.md
@@ -10,10 +10,10 @@ modules[40]{module,files,symbols,page}:
   src/isidore/pcp.py,1,25,src-isidore-pcp_py.md
   src/isidore/pyramid.py,1,25,src-isidore-pyramid_py.md
   tests/test_units.py,1,24,tests-test_units_py.md
+  src/isidore/pipeline.py,1,24,src-isidore-pipeline_py.md
   tests/test_connect_cli.py,1,23,tests-test_connect_cli_py.md
-  src/isidore/pipeline.py,1,22,src-isidore-pipeline_py.md
+  src/isidore/graph.py,1,21,src-isidore-graph_py.md
   tests/test_recertify.py,1,19,tests-test_recertify_py.md
-  src/isidore/graph.py,1,19,src-isidore-graph_py.md
   tests/test_overview.py,1,18,tests-test_overview_py.md
   src/isidore/claims.py,1,18,src-isidore-claims_py.md
   tests/test_claims.py,1,17,tests-test_claims_py.md
@@ -24,23 +24,23 @@ modules[40]{module,files,symbols,page}:
   src/isidore/surface.py,1,16,src-isidore-surface_py.md
   src/isidore/humanpack.py,1,15,src-isidore-humanpack_py.md
   tests/test_langspec.py,1,14,tests-test_langspec_py.md
+  src/isidore/knowledge.py,1,14,src-isidore-knowledge_py.md
+  tests/test_hostile_f6.py,1,13,tests-test_hostile_f6_py.md
   src/isidore/cli.py,1,13,src-isidore-cli_py.md
   tests/test_connectors_f5.py,1,12,tests-test_connectors_f5_py.md
-  src/isidore/knowledge.py,1,12,src-isidore-knowledge_py.md
   src/isidore/langspec.py,1,12,src-isidore-langspec_py.md
+  tests/test_classification_gate.py,1,11,tests-test_classification_gate_py.md
   tests/test_pcp_seams.py,1,11,tests-test_pcp_seams_py.md
   tests/test_security_prose.py,1,11,tests-test_security_prose_py.md
+  src/isidore/render.py,1,11,src-isidore-render_py.md
   tests/test_verify.py,1,10,tests-test_verify_py.md
+  tests/test_wiki_not_input.py,1,10,tests-test_wiki_not_input_py.md
   src/isidore/qa.py,1,10,src-isidore-qa_py.md
-  src/isidore/render.py,1,10,src-isidore-render_py.md
   tests/test_pcp_pipeline.py,1,9,tests-test_pcp_pipeline_py.md
   tests/fixtures/pcp,8,9,tests-fixtures-pcp.md
   src/isidore/connect.py,1,9,src-isidore-connect_py.md
   src/isidore/home.py,1,9,src-isidore-home_py.md
   src/isidore/recertify.py,1,9,src-isidore-recertify_py.md
-  tests/test_detectors.py,1,8,tests-test_detectors_py.md
-  tests/test_llms_txt.py,1,8,tests-test_llms_txt_py.md
-  tests/test_mcp_barrier.py,1,8,tests-test_mcp_barrier_py.md
 flows[0]{flow,modules,page}:
 hot_symbols[240]{module,symbol,file,line,degree}:
   src/isidore/connectors,store.py,src/isidore/connectors/store.py,1,17
@@ -97,30 +97,30 @@ hot_symbols[240]{module,symbol,file,line,degree}:
   tests/test_units.py,test_scan_repo_extracts_symbols_imports_and_docs(),tests/test_units.py,39-L55,0
   tests/test_units.py,test_scan_tolerates_syntax_errors(),tests/test_units.py,58-L61,0
   tests/test_units.py,test_write_scan_and_find_graph_roundtrip(),tests/test_units.py,64-L69,0
+  src/isidore/pipeline.py,pipeline.py,src/isidore/pipeline.py,1,34
+  src/isidore/pipeline.py,PageSpec,src/isidore/pipeline.py,133-L148,0
+  src/isidore/pipeline.py,module_dep_edges(),src/isidore/pipeline.py,153-L167,0
+  src/isidore/pipeline.py,degenerate_certificate(),src/isidore/pipeline.py,177-L185,0
+  src/isidore/pipeline.py,drop_wiki_output(),src/isidore/pipeline.py,188-L199,0
+  src/isidore/pipeline.py,plan_pages(),src/isidore/pipeline.py,202-L255,0
   tests/test_connect_cli.py,test_connect_cli.py,tests/test_connect_cli.py,1,22
   tests/test_connect_cli.py,_git(),tests/test_connect_cli.py,20-L21,0
   tests/test_connect_cli.py,_make_repo(),tests/test_connect_cli.py,24-L32,0
   tests/test_connect_cli.py,isolated_home(),tests/test_connect_cli.py,36-L38,0
   tests/test_connect_cli.py,test_a_json_shaped_value_keeps_its_type(),tests/test_connect_cli.py,43-L48,0
   tests/test_connect_cli.py,test_a_setting_without_an_equals_is_rejected(),tests/test_connect_cli.py,51-L53,0
-  src/isidore/pipeline.py,pipeline.py,src/isidore/pipeline.py,1,32
-  src/isidore/pipeline.py,PageSpec,src/isidore/pipeline.py,132-L147,0
-  src/isidore/pipeline.py,module_dep_edges(),src/isidore/pipeline.py,152-L166,0
-  src/isidore/pipeline.py,plan_pages(),src/isidore/pipeline.py,168-L215,0
-  src/isidore/pipeline.py,_match_seed(),src/isidore/pipeline.py,218-L222,0
-  src/isidore/pipeline.py,plan_flows(),src/isidore/pipeline.py,225-L279,0
+  src/isidore/graph.py,graph.py,src/isidore/graph.py,1,21
+  src/isidore/graph.py,GraphError,src/isidore/graph.py,42-L43,0
+  src/isidore/graph.py,load_graph(),src/isidore/graph.py,46-L58,0
+  src/isidore/graph.py,find_graph(),src/isidore/graph.py,61-L75,0
+  src/isidore/graph.py,module_of(),src/isidore/graph.py,78-L84,0
+  src/isidore/graph.py,git_listed_files(),src/isidore/graph.py,89-L109,0
   tests/test_recertify.py,test_recertify.py,tests/test_recertify.py,1,18
   tests/test_recertify.py,_repo(),tests/test_recertify.py,18-L28,0
   tests/test_recertify.py,_cert(),tests/test_recertify.py,31-L36,0
   tests/test_recertify.py,_claim(),tests/test_recertify.py,39-L41,0
   tests/test_recertify.py,test_a_certificate_the_code_outgrew_is_repaired_without_a_model_call(),tests/test_recertify.py,46-L57,0
   tests/test_recertify.py,test_the_prose_is_not_touched(),tests/test_recertify.py,60-L65,0
-  src/isidore/graph.py,graph.py,src/isidore/graph.py,1,19
-  src/isidore/graph.py,GraphError,src/isidore/graph.py,42-L43,0
-  src/isidore/graph.py,load_graph(),src/isidore/graph.py,46-L58,0
-  src/isidore/graph.py,find_graph(),src/isidore/graph.py,61-L75,0
-  src/isidore/graph.py,module_of(),src/isidore/graph.py,78-L84,0
-  src/isidore/graph.py,git_listed_files(),src/isidore/graph.py,89-L109,0
   tests/test_overview.py,test_overview.py,tests/test_overview.py,1,17
   tests/test_overview.py,repo(),tests/test_overview.py,34-L50,0
   tests/test_overview.py,test_only_proven_claims_become_citable_facts(),tests/test_overview.py,53-L56,0
@@ -181,6 +181,18 @@ hot_symbols[240]{module,symbol,file,line,degree}:
   tests/test_langspec.py,test_sanitize_handles_escaped_quote(),tests/test_langspec.py,31-L33,0
   tests/test_langspec.py,test_rust_functions_types_and_spans(),tests/test_langspec.py,38-L53,0
   tests/test_langspec.py,test_typescript_class_and_arrow_and_imports(),tests/test_langspec.py,56-L67,0
+  src/isidore/knowledge.py,knowledge.py,src/isidore/knowledge.py,1,17
+  src/isidore/knowledge.py,TopicCompileResult,src/isidore/knowledge.py,92-L110,0
+  src/isidore/knowledge.py,knowledge_dir(),src/isidore/knowledge.py,113-L116,0
+  src/isidore/knowledge.py,state_path(),src/isidore/knowledge.py,119-L120,0
+  src/isidore/knowledge.py,load_knowledge_state(),src/isidore/knowledge.py,123-L134,0
+  src/isidore/knowledge.py,write_knowledge_state(),src/isidore/knowledge.py,137-L143,0
+  tests/test_hostile_f6.py,test_hostile_f6.py,tests/test_hostile_f6.py,1,12
+  tests/test_hostile_f6.py,home(),tests/test_hostile_f6.py,30-L32,0
+  tests/test_hostile_f6.py,_store(),tests/test_hostile_f6.py,35-L42,0
+  tests/test_hostile_f6.py,_item(),tests/test_hostile_f6.py,45-L47,0
+  tests/test_hostile_f6.py,test_a_purged_item_makes_its_claim_an_orphan_not_a_lie(),tests/test_hostile_f6.py,53-L68,0
+  tests/test_hostile_f6.py,test_a_half_written_jsonl_line_costs_only_that_line(),tests/test_hostile_f6.py,72-L83,0
   src/isidore/cli.py,cli.py,src/isidore/cli.py,1,16
   src/isidore/cli.py,_setting(),src/isidore/cli.py,32-L36,0
   src/isidore/cli.py,_cmd_scan(),src/isidore/cli.py,39-L43,0
@@ -193,18 +205,18 @@ hot_symbols[240]{module,symbol,file,line,degree}:
   tests/test_connectors_f5.py,test_an_allowlist_entry_can_carry_the_arguments_a_real_tool_needs(),tests/test_connectors_f5.py,100-L113,0
   tests/test_connectors_f5.py,test_the_arguments_actually_reach_the_server(),tests/test_connectors_f5.py,116-L122,0
   tests/test_connectors_f5.py,test_a_write_tool_is_refused_even_when_the_recipe_asks_for_it(),tests/test_connectors_f5.py,127-L133,0
-  src/isidore/knowledge.py,knowledge.py,src/isidore/knowledge.py,1,15
-  src/isidore/knowledge.py,TopicCompileResult,src/isidore/knowledge.py,92-L110,0
-  src/isidore/knowledge.py,knowledge_dir(),src/isidore/knowledge.py,113-L116,0
-  src/isidore/knowledge.py,state_path(),src/isidore/knowledge.py,119-L120,0
-  src/isidore/knowledge.py,load_knowledge_state(),src/isidore/knowledge.py,123-L134,0
-  src/isidore/knowledge.py,write_knowledge_state(),src/isidore/knowledge.py,137-L143,0
   src/isidore/langspec.py,langspec.py,src/isidore/langspec.py,1,11
   src/isidore/langspec.py,SymbolRule,src/isidore/langspec.py,35-L38,0
   src/isidore/langspec.py,LanguageSpec,src/isidore/langspec.py,42-L51,0
   src/isidore/langspec.py,sanitize(),src/isidore/langspec.py,56-L120,0
   src/isidore/langspec.py,_Pending,src/isidore/langspec.py,124-L127,0
   src/isidore/langspec.py,extract(),src/isidore/langspec.py,130-L195,0
+  tests/test_classification_gate.py,test_classification_gate.py,tests/test_classification_gate.py,1,10
+  tests/test_classification_gate.py,home(),tests/test_classification_gate.py,31-L34,0
+  tests/test_classification_gate.py,_store(),tests/test_classification_gate.py,37-L43,0
+  tests/test_classification_gate.py,_item(),tests/test_classification_gate.py,46-L49,0
+  tests/test_classification_gate.py,test_the_label_comes_from_meta_first_then_the_document_itself(),tests/test_classification_gate.py,54-L62,0
+  tests/test_classification_gate.py,test_the_trust_declaration_takes_an_exact_word(),tests/test_classification_gate.py,65-L72,0
   tests/test_pcp_seams.py,test_pcp_seams.py,tests/test_pcp_seams.py,1,10
   tests/test_pcp_seams.py,test_golden_graph_loads(),tests/test_pcp_seams.py,36-L39,0
   tests/test_pcp_seams.py,test_golden_certificate_round_trips(),tests/test_pcp_seams.py,42-L54,0
@@ -217,24 +229,30 @@ hot_symbols[240]{module,symbol,file,line,degree}:
   tests/test_security_prose.py,test_ignores_non_security_and_wrong_kinds(),tests/test_security_prose.py,38-L42,0
   tests/test_security_prose.py,test_negation_guard_does_not_escalate_safety_affirming_notes(),tests/test_security_prose.py,45-L55,0
   tests/test_security_prose.py,test_hardcoded_with_intervening_word_is_caught(),tests/test_security_prose.py,58-L63,0
+  src/isidore/render.py,render.py,src/isidore/render.py,1,11
+  src/isidore/render.py,render_quickstart(),src/isidore/render.py,25-L49,0
+  src/isidore/render.py,render_toon_index(),src/isidore/render.py,52-L74,0
+  src/isidore/render.py,agents_md_block(),src/isidore/render.py,77-L108,0
+  src/isidore/render.py,knowledge_summary(),src/isidore/render.py,111-L127,0
+  src/isidore/render.py,upsert_agents_block(),src/isidore/render.py,130-L137,0
   tests/test_verify.py,test_verify.py,tests/test_verify.py,1,9
   tests/test_verify.py,_ctx(),tests/test_verify.py,16-L18,0
   tests/test_verify.py,_anchored(),tests/test_verify.py,21-L25,0
   tests/test_verify.py,test_three_field_parser_captures_predicate(),tests/test_verify.py,28-L32,0
   tests/test_verify.py,test_each_predicate_kind_decides_correctly(),tests/test_verify.py,35-L51,0
   tests/test_verify.py,test_certificate_matches_golden_verdicts(),tests/test_verify.py,54-L65,0
+  tests/test_wiki_not_input.py,test_wiki_not_input.py,tests/test_wiki_not_input.py,1,9
+  tests/test_wiki_not_input.py,nested_wiki_dir(),tests/test_wiki_not_input.py,28-L33,0
+  tests/test_wiki_not_input.py,repo_with_nested_wiki(),tests/test_wiki_not_input.py,37-L53,0
+  tests/test_wiki_not_input.py,test_the_prefix_is_a_path_not_a_name(),tests/test_wiki_not_input.py,57-L65,0
+  tests/test_wiki_not_input.py,test_the_scanner_does_not_index_its_own_output(),tests/test_wiki_not_input.py,68-L73,0
+  tests/test_wiki_not_input.py,test_no_page_is_planned_for_the_wiki_itself(),tests/test_wiki_not_input.py,77-L92,0
   src/isidore/qa.py,qa.py,src/isidore/qa.py,1,11
   src/isidore/qa.py,question_terms(),src/isidore/qa.py,52-L53,0
   src/isidore/qa.py,score_text(),src/isidore/qa.py,56-L58,0
   src/isidore/qa.py,gather_claims(),src/isidore/qa.py,61-L82,0
   src/isidore/qa.py,gather_evidence(),src/isidore/qa.py,85-L150,0
   src/isidore/qa.py,answer_offline(),src/isidore/qa.py,156-L167,0
-  src/isidore/render.py,render.py,src/isidore/render.py,1,10
-  src/isidore/render.py,render_quickstart(),src/isidore/render.py,25-L49,0
-  src/isidore/render.py,render_toon_index(),src/isidore/render.py,52-L74,0
-  src/isidore/render.py,agents_md_block(),src/isidore/render.py,77-L88,0
-  src/isidore/render.py,upsert_agents_block(),src/isidore/render.py,91-L98,0
-  src/isidore/render.py,_first_sentence(),src/isidore/render.py,109-L114,0
   tests/test_pcp_pipeline.py,test_pcp_pipeline.py,tests/test_pcp_pipeline.py,1,8
   tests/test_pcp_pipeline.py,_fake_generator(),tests/test_pcp_pipeline.py,17-L28,0
   tests/test_pcp_pipeline.py,_compile(),tests/test_pcp_pipeline.py,31-L40,0
@@ -265,24 +283,6 @@ hot_symbols[240]{module,symbol,file,line,degree}:
   src/isidore/recertify.py,_level(),src/isidore/recertify.py,68-L77,0
   src/isidore/recertify.py,_child_digest(),src/isidore/recertify.py,80-L92,0
   src/isidore/recertify.py,rebuild_certificate(),src/isidore/recertify.py,95-L134,0
-  tests/test_detectors.py,test_detectors.py,tests/test_detectors.py,1,7
-  tests/test_detectors.py,_ctx(),tests/test_detectors.py,14-L16,0
-  tests/test_detectors.py,test_entropy_flags_the_backdoor_token(),tests/test_detectors.py,19-L22,0
-  tests/test_detectors.py,test_specificity_no_false_positive_on_ordinary_strings(),tests/test_detectors.py,25-L29,0
-  tests/test_detectors.py,test_topology_reaches_tokens_from_auth(),tests/test_detectors.py,32-L34,0
-  tests/test_detectors.py,test_determinism(),tests/test_detectors.py,37-L38,0
-  tests/test_llms_txt.py,test_llms_txt.py,tests/test_llms_txt.py,1,7
-  tests/test_llms_txt.py,_wiki(),tests/test_llms_txt.py,7-L19,0
-  tests/test_llms_txt.py,test_the_required_shape_of_the_format(),tests/test_llms_txt.py,22-L29,0
-  tests/test_llms_txt.py,test_the_summary_is_the_plain_language_sentence_already_written(),tests/test_llms_txt.py,32-L35,0
-  tests/test_llms_txt.py,test_pages_are_layered_and_areas_come_before_modules(),tests/test_llms_txt.py,38-L44,0
-  tests/test_llms_txt.py,test_skippable_material_sits_under_the_reserved_optional_heading(),tests/test_llms_txt.py,47-L52,0
-  tests/test_mcp_barrier.py,test_mcp_barrier.py,tests/test_mcp_barrier.py,1,7
-  tests/test_mcp_barrier.py,test_readonly_hint_true_allows(),tests/test_mcp_barrier.py,14-L16,0
-  tests/test_mcp_barrier.py,test_readonly_hint_false_rejects_even_innocent_name(),tests/test_mcp_barrier.py,19-L21,0
-  tests/test_mcp_barrier.py,test_destructive_hint_rejects(),tests/test_mcp_barrier.py,24-L25,0
-  tests/test_mcp_barrier.py,test_mutating_names_are_rejected_without_annotation(),tests/test_mcp_barrier.py,37-L39,0
-  tests/test_mcp_barrier.py,test_read_names_pass_without_annotation(),tests/test_mcp_barrier.py,43-L45,0
 module_deps[43]{from,to,links}:
   src/isidore/connectors,src/isidore/home.py,2
   src/isidore/connectors,src/isidore/claims.py,1
@@ -311,17 +311,17 @@ module_deps[43]{from,to,links}:
   src/isidore/surface.py,src/isidore/langspec.py,1
   src/isidore/humanpack.py,src/isidore/graph.py,1
   src/isidore/humanpack.py,src/isidore/pcp.py,1
-  src/isidore/cli.py,src/isidore/graph.py,1
-  src/isidore/cli.py,src/isidore/llm.py,1
-  src/isidore/cli.py,src/isidore/pipeline.py,1
-  src/isidore/cli.py,src/isidore/qa.py,1
   src/isidore/knowledge.py,src/isidore/home.py,1
   src/isidore/knowledge.py,src/isidore/llm.py,1
   src/isidore/knowledge.py,src/isidore/claims.py,1
   src/isidore/knowledge.py,src/isidore/findings.py,1
+  src/isidore/cli.py,src/isidore/graph.py,1
+  src/isidore/cli.py,src/isidore/llm.py,1
+  src/isidore/cli.py,src/isidore/pipeline.py,1
+  src/isidore/cli.py,src/isidore/qa.py,1
+  src/isidore/render.py,src/isidore/toon.py,1
   src/isidore/qa.py,src/isidore/graph.py,1
   src/isidore/qa.py,src/isidore/pipeline.py,1
-  src/isidore/render.py,src/isidore/toon.py,1
   src/isidore/connect.py,src/isidore/connectors,2
   src/isidore/connect.py,src/isidore/home.py,1
   src/isidore/connect.py,src/isidore/toon.py,1

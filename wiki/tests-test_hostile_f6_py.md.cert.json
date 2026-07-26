@@ -1,0 +1,86 @@
+{
+  "child_cert_hashes": {},
+  "claims": [
+    {
+      "detail": "no predicate (existence-anchored only)",
+      "ehash": "399841f53738",
+      "evidence": "tests/test_hostile_f6.py:1",
+      "id": "c-b502a72c",
+      "oracle": "none",
+      "predicate": "",
+      "statement": "The module tests the knowledge home's resilience to corrupted data",
+      "verdict": "UNDECIDABLE"
+    },
+    {
+      "detail": "no predicate (existence-anchored only)",
+      "ehash": "8c8e744e2a42",
+      "evidence": "tests/test_hostile_f6.py:30",
+      "id": "c-32c9b7eb",
+      "oracle": "none",
+      "predicate": "",
+      "statement": "The `home` fixture sets up a temporary environment for testing",
+      "verdict": "UNDECIDABLE"
+    },
+    {
+      "detail": "no predicate (existence-anchored only)",
+      "ehash": "4d31a4f5e0e4",
+      "evidence": "tests/test_hostile_f6.py:35",
+      "id": "c-c2ab3e49",
+      "oracle": "none",
+      "predicate": "",
+      "statement": "The `_store` function writes test items to the knowledge home and records the run",
+      "verdict": "UNDECIDABLE"
+    },
+    {
+      "detail": "no predicate (existence-anchored only)",
+      "ehash": "1093a56fb0f2",
+      "evidence": "tests/test_hostile_f6.py:45",
+      "id": "c-d992d422",
+      "oracle": "none",
+      "predicate": "",
+      "statement": "The `_item` function creates a test item with a given ID and content",
+      "verdict": "UNDECIDABLE"
+    },
+    {
+      "detail": "no predicate (existence-anchored only)",
+      "ehash": "d71d0ebc101c",
+      "evidence": "tests/test_hostile_f6.py:53",
+      "id": "c-4bb015ed",
+      "oracle": "none",
+      "predicate": "",
+      "statement": "The test `test_a_purged_item_makes_its_claim_an_orphan_not_a_lie` verifies that a claim is marked as \"orphan\" when its evidence is deleted",
+      "verdict": "UNDECIDABLE"
+    },
+    {
+      "detail": "no predicate (existence-anchored only)",
+      "ehash": "76f7b7b7876c",
+      "evidence": "tests/test_hostile_f6.py:72",
+      "id": "c-9df9cfc7",
+      "oracle": "none",
+      "predicate": "",
+      "statement": "The test `test_a_half_written_jsonl_line_costs_only_that_line` verifies that a truncated JSONL line does not invalidate the rest of the data",
+      "verdict": "UNDECIDABLE"
+    },
+    {
+      "detail": "no predicate (existence-anchored only)",
+      "ehash": "aafa655febe4",
+      "evidence": "tests/test_hostile_f6.py:86",
+      "id": "c-9a6f3621",
+      "oracle": "none",
+      "predicate": "",
+      "statement": "The test `test_a_corrupt_state_re_ingests_from_scratch_instead_of_crashing` verifies that a corrupt state file is recovered and the data is still accessible",
+      "verdict": "UNDECIDABLE"
+    }
+  ],
+  "graph_commit": "d5d1a1f33219a3171cc701884ca77e794db897e2",
+  "marks": [],
+  "mass": {
+    "gray": 19,
+    "green": 0,
+    "yellow": 19
+  },
+  "page": "tests-test_hostile_f6_py.md",
+  "prose_sha256": "a494b023e5cf0d696445146e784284923efa1df4c86365e8451b6c4c127a29a6",
+  "version": "pcp-1",
+  "violations": []
+}

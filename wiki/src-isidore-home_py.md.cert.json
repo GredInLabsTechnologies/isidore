@@ -2,105 +2,105 @@
   "child_cert_hashes": {},
   "claims": [
     {
-      "detail": "no predicate (existence-anchored only)",
-      "ehash": "f82f9d8315d0",
-      "evidence": "src/isidore/home.py:1",
-      "id": "c-1ca885db",
-      "oracle": "none",
-      "predicate": "",
-      "statement": "The module defines the knowledge home directory structure",
-      "verdict": "UNDECIDABLE"
-    },
-    {
-      "detail": "home()",
+      "detail": "src/isidore/home.py defines home",
       "ehash": "ef20de3efaaf",
       "evidence": "src/isidore/home.py:13",
-      "id": "c-c4ff2a12",
+      "id": "c-348916ba",
+      "oracle": "graph",
+      "predicate": "defines:src/isidore/home.py;home",
+      "statement": "The module defines the base knowledge home directory as `~/.isidore` or `$ISIDORE_HOME`",
+      "verdict": "TRUE"
+    },
+    {
+      "detail": "home params are (tmp_path, monkeypatch)",
+      "ehash": "ef20de3efaaf",
+      "evidence": "src/isidore/home.py:13",
+      "id": "c-74984f74",
       "oracle": "ast",
       "predicate": "signature:home",
-      "statement": "The `home()` function resolves to `~/.isidore` by default",
-      "verdict": "TRUE"
+      "statement": "The `home()` function returns a `Path` object for the knowledge home directory",
+      "verdict": "FALSE"
     },
     {
-      "detail": "ISIDORE_HOME read in src/isidore/home.py",
-      "ehash": "38904d9668e7",
-      "evidence": "src/isidore/home.py:15",
-      "id": "c-c0112b06",
-      "oracle": "grep",
-      "predicate": "env:ISIDORE_HOME",
-      "statement": "The `home()` function respects the `ISIDORE_HOME` environment variable",
-      "verdict": "TRUE"
-    },
-    {
-      "detail": "connector_dir calls home",
+      "detail": "src/isidore/home.py defines connector_dir",
       "ehash": "25c8c09518a0",
       "evidence": "src/isidore/home.py:19",
-      "id": "c-0fad90d1",
-      "oracle": "ast",
-      "predicate": "calls:connector_dir;home",
-      "statement": "The `connector_dir()` function constructs paths under `home() / \"connectors\" / cid`",
+      "id": "c-839d2ad8",
+      "oracle": "graph",
+      "predicate": "defines:src/isidore/home.py;connector_dir",
+      "statement": "The `connector_dir()` function constructs paths under `~/.isidore/connectors/<cid>`",
       "verdict": "TRUE"
     },
     {
-      "detail": "raw_dir calls connector_dir",
+      "detail": "src/isidore/home.py defines raw_dir",
       "ehash": "2c10bd230e15",
       "evidence": "src/isidore/home.py:24",
-      "id": "c-716539ef",
-      "oracle": "ast",
-      "predicate": "calls:raw_dir;connector_dir",
-      "statement": "The `raw_dir()` function appends `raw/run_id` to the connector directory",
+      "id": "c-aa9e20cc",
+      "oracle": "graph",
+      "predicate": "defines:src/isidore/home.py;raw_dir",
+      "statement": "The `raw_dir()` function appends `/raw/<run_id>` to a connector's directory",
       "verdict": "TRUE"
     },
     {
-      "detail": "config_path calls connector_dir",
+      "detail": "src/isidore/home.py defines config_path",
       "ehash": "40dfab982593",
       "evidence": "src/isidore/home.py:28",
-      "id": "c-64edf16c",
-      "oracle": "ast",
-      "predicate": "calls:config_path;connector_dir",
-      "statement": "The `config_path()` function returns `config.json` in the connector directory",
+      "id": "c-fc4b7b3e",
+      "oracle": "graph",
+      "predicate": "defines:src/isidore/home.py;config_path",
+      "statement": "The `config_path()` function returns the path to `config.json` in a connector's directory",
       "verdict": "TRUE"
     },
     {
-      "detail": "state_path calls connector_dir",
+      "detail": "src/isidore/home.py defines state_path",
       "ehash": "af6e123271d3",
       "evidence": "src/isidore/home.py:32",
-      "id": "c-3c17c329",
-      "oracle": "ast",
-      "predicate": "calls:state_path;connector_dir",
-      "statement": "The `state_path()` function returns `state.json` in the connector directory",
+      "id": "c-0da326e0",
+      "oracle": "graph",
+      "predicate": "defines:src/isidore/home.py;state_path",
+      "statement": "The `state_path()` function returns the path to `state.json` in a connector's directory",
       "verdict": "TRUE"
     },
     {
-      "detail": "no declaration of 'os.name' this oracle can read",
-      "ehash": "2cfa9cad049d",
-      "evidence": "src/isidore/home.py:40",
-      "id": "c-315bbac6",
-      "oracle": "none",
-      "predicate": "value:os.name;nt",
-      "statement": "The `safe_chmod()` function is a no-op on Windows",
-      "verdict": "UNDECIDABLE"
+      "detail": "src/isidore/home.py defines knowledge_dir",
+      "ehash": "f42dee566103",
+      "evidence": "src/isidore/home.py:36",
+      "id": "c-b136761c",
+      "oracle": "graph",
+      "predicate": "defines:src/isidore/home.py;knowledge_dir",
+      "statement": "The `knowledge_dir()` function returns the path to `~/.isidore/knowledge`",
+      "verdict": "TRUE"
     },
     {
-      "detail": "no declaration of 'parents' this oracle can read",
+      "detail": "safe_chmod has no call to name",
+      "ehash": "2cfa9cad049d",
+      "evidence": "src/isidore/home.py:40",
+      "id": "c-f0bf5fcc",
+      "oracle": "ast",
+      "predicate": "calls:safe_chmod;os.name",
+      "statement": "The `safe_chmod()` function skips operations on Windows",
+      "verdict": "FALSE"
+    },
+    {
+      "detail": "safe_mkdir calls safe_chmod",
       "ehash": "c541e3c67777",
       "evidence": "src/isidore/home.py:50",
-      "id": "c-5df899f1",
-      "oracle": "none",
-      "predicate": "value:parents;True",
-      "statement": "The `safe_mkdir()` function creates directories recursively",
-      "verdict": "UNDECIDABLE"
+      "id": "c-aeba801e",
+      "oracle": "ast",
+      "predicate": "calls:safe_mkdir;safe_chmod",
+      "statement": "The `safe_mkdir()` function creates directories with restrictive permissions",
+      "verdict": "TRUE"
     }
   ],
-  "graph_commit": "b78c836100f72c8de8a10a0def794b104ab4f424",
+  "graph_commit": "d5d1a1f33219a3171cc701884ca77e794db897e2",
   "marks": [],
   "mass": {
-    "gray": 10,
-    "green": 16,
-    "yellow": 3
+    "gray": 8,
+    "green": 20,
+    "yellow": 1
   },
   "page": "src-isidore-home_py.md",
-  "prose_sha256": "18cff44621ca6531d8684d2122c8736ac3257dd4a38d3ba657fb44b9c0a470b2",
+  "prose_sha256": "c48959a8e09a89caa31b80903eabc0dc96fdff4a56e6a760c15bdf0a40af438c",
   "version": "pcp-1",
   "violations": []
 }
