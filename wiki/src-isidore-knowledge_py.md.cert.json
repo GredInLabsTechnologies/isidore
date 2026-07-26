@@ -2,105 +2,45 @@
   "child_cert_hashes": {},
   "claims": [
     {
-      "detail": "src/isidore/knowledge.py defines TopicCompileResult",
-      "ehash": "35ec918b4efd",
-      "evidence": "src/isidore/knowledge.py:92",
-      "id": "c-7db2ee47",
-      "oracle": "graph",
-      "predicate": "defines:src/isidore/knowledge.py;TopicCompileResult",
-      "statement": "The module defines a TopicCompileResult dataclass to track compilation metrics",
-      "verdict": "TRUE"
-    },
-    {
-      "detail": "src/isidore/knowledge.py defines knowledge_dir",
-      "ehash": "f42dee566103",
-      "evidence": "src/isidore/knowledge.py:113",
-      "id": "c-0729776c",
-      "oracle": "graph",
-      "predicate": "defines:src/isidore/knowledge.py;knowledge_dir",
-      "statement": "The knowledge_dir() function returns the path to the knowledge directory",
-      "verdict": "TRUE"
-    },
-    {
-      "detail": "src/isidore/knowledge.py defines state_path",
-      "ehash": "a9d633aec870",
-      "evidence": "src/isidore/knowledge.py:119",
-      "id": "c-3c862519",
-      "oracle": "graph",
-      "predicate": "defines:src/isidore/knowledge.py;state_path",
-      "statement": "The state_path() function returns the path to the state file",
-      "verdict": "TRUE"
-    },
-    {
-      "detail": "src/isidore/knowledge.py defines load_knowledge_state",
-      "ehash": "43d9e4ebf853",
-      "evidence": "src/isidore/knowledge.py:123",
-      "id": "c-0b5d32db",
-      "oracle": "graph",
-      "predicate": "defines:src/isidore/knowledge.py;load_knowledge_state",
-      "statement": "The load_knowledge_state() function loads the knowledge state from disk",
-      "verdict": "TRUE"
-    },
-    {
-      "detail": "src/isidore/knowledge.py defines write_knowledge_state",
-      "ehash": "1b3f1b6d4138",
-      "evidence": "src/isidore/knowledge.py:137",
-      "id": "c-2248c0b6",
-      "oracle": "graph",
-      "predicate": "defines:src/isidore/knowledge.py;write_knowledge_state",
-      "statement": "The write_knowledge_state() function safely writes the knowledge state to disk",
-      "verdict": "TRUE"
-    },
-    {
       "detail": "src/isidore/knowledge.py imports src/isidore/home.py",
       "ehash": "43a21a0807a6",
       "evidence": "src/isidore/knowledge.py:17",
-      "id": "c-e0b4fedd",
+      "id": "c-791119fa",
       "oracle": "graph",
       "predicate": "imports:src/isidore/knowledge.py;src/isidore/home.py",
-      "statement": "The module imports home.py for home directory utilities",
+      "statement": "The module depends on src/isidore/home.py for home directory management",
       "verdict": "TRUE"
     },
     {
       "detail": "src/isidore/knowledge.py imports src/isidore/llm.py",
       "ehash": "7db0615e56a0",
       "evidence": "src/isidore/knowledge.py:18",
-      "id": "c-9b18e0f9",
+      "id": "c-7abfee82",
       "oracle": "graph",
       "predicate": "imports:src/isidore/knowledge.py;src/isidore/llm.py",
-      "statement": "The module imports llm.py for default LLM generators",
-      "verdict": "TRUE"
-    },
-    {
-      "detail": "src/isidore/knowledge.py imports src/isidore/claims.py",
-      "ehash": "893f5abc8b34",
-      "evidence": "src/isidore/knowledge.py:19",
-      "id": "c-37820293",
-      "oracle": "graph",
-      "predicate": "imports:src/isidore/knowledge.py;src/isidore/claims.py",
-      "statement": "The module imports claims.py for claim parsing and validation",
+      "statement": "The module depends on src/isidore/llm.py for LLM interactions",
       "verdict": "TRUE"
     },
     {
       "detail": "src/isidore/knowledge.py imports src/isidore/findings.py",
       "ehash": "4b9bdb080ad7",
       "evidence": "src/isidore/knowledge.py:25",
-      "id": "c-52ea69f4",
+      "id": "c-50e6a8cb",
       "oracle": "graph",
       "predicate": "imports:src/isidore/knowledge.py;src/isidore/findings.py",
-      "statement": "The module imports findings.py for findings-related constants",
+      "statement": "The module depends on src/isidore/findings.py for findings handling",
       "verdict": "TRUE"
     }
   ],
-  "graph_commit": "b78c836100f72c8de8a10a0def794b104ab4f424",
+  "graph_commit": "3abce5854dca7f707ac84a52cbffebf0c2bd0b36",
   "marks": [],
   "mass": {
     "gray": 15,
-    "green": 15,
+    "green": 16,
     "yellow": 0
   },
   "page": "src-isidore-knowledge_py.md",
-  "prose_sha256": "49d0827ca0b6989a491212040ecb8dedb0dcc02ddb681296c14d1974bc89056f",
+  "prose_sha256": "5877c9466461a29447fdf985ae1d3f0588063702f6595f48d3a1ac5602994626",
   "version": "pcp-1",
   "violations": []
 }

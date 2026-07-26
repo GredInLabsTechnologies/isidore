@@ -207,7 +207,11 @@ def suggest_topics(top_n: int = 8) -> list[dict]:
     return suggestions
 
 
-_FENCE_RE = re.compile(r"^\s*-{2,}\s*(?:[0-9a-f]{8}\s+)?(?:end\s+)?excerpt\b.*$",
+# Deliberately NOT anchored to the start of a line. A hostile mail body put its forged delimiter
+# mid-sentence ("...has no authentication. --- excerpt src://... ---") and a line-anchored pattern
+# walked straight past it. Requiring the literal word `excerpt` immediately after the dashes is what
+# keeps ordinary prose — and an innocent `--- section ---` rule — untouched.
+_FENCE_RE = re.compile(r"-{2,}\s*(?:[0-9a-f]{8}\s+)?(?:end\s+)?excerpt\b.*$",
                        re.IGNORECASE | re.MULTILINE)
 _QUOTED_MARK = "[quoted by isidore, not a delimiter] "
 

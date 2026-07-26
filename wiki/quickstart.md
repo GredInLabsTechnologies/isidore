@@ -1,6 +1,6 @@
 # Wiki (isidore)
 
-Compiled from the repository structure graph at commit `b78c836100f72c8de8a10a0def794b104ab4f424`.
+Compiled from the repository structure graph at commit `3abce5854dca7f707ac84a52cbffebf0c2bd0b36`.
 Pages are generated from exact structural facts; cited `path:line` references are
 mechanically lint-checked against the repository.
 
@@ -12,7 +12,7 @@ Side observations harvested during compilation live in [findings.toon](findings.
 
 | module | files | symbols | page |
 |---|---|---|---|
-| src/isidore/connectors | 9 | 66 | [src-isidore-connectors.md](src-isidore-connectors.md) |
+| src/isidore/connectors | 9 | 67 | [src-isidore-connectors.md](src-isidore-connectors.md) |
 | src/isidore/verify.py | 1 | 37 | [src-isidore-verify_py.md](src-isidore-verify_py.md) |
 | tests/test_whatsnew.py | 1 | 36 | [tests-test_whatsnew_py.md](tests-test_whatsnew_py.md) |
 | tests/test_pipeline.py | 1 | 35 | [tests-test_pipeline_py.md](tests-test_pipeline_py.md) |
@@ -36,6 +36,7 @@ Side observations harvested during compilation live in [findings.toon](findings.
 | src/isidore/humanpack.py | 1 | 15 | [src-isidore-humanpack_py.md](src-isidore-humanpack_py.md) |
 | tests/test_langspec.py | 1 | 14 | [tests-test_langspec_py.md](tests-test_langspec_py.md) |
 | src/isidore/cli.py | 1 | 13 | [src-isidore-cli_py.md](src-isidore-cli_py.md) |
+| tests/test_connectors_f5.py | 1 | 12 | [tests-test_connectors_f5_py.md](tests-test_connectors_f5_py.md) |
 | src/isidore/knowledge.py | 1 | 12 | [src-isidore-knowledge_py.md](src-isidore-knowledge_py.md) |
 | src/isidore/langspec.py | 1 | 12 | [src-isidore-langspec_py.md](src-isidore-langspec_py.md) |
 | tests/test_pcp_seams.py | 1 | 11 | [tests-test_pcp_seams_py.md](tests-test_pcp_seams_py.md) |
@@ -51,4 +52,3 @@ Side observations harvested during compilation live in [findings.toon](findings.
 | tests/test_detectors.py | 1 | 8 | [tests-test_detectors_py.md](tests-test_detectors_py.md) |
 | tests/test_llms_txt.py | 1 | 8 | [tests-test_llms_txt_py.md](tests-test_llms_txt_py.md) |
 | tests/test_mcp_barrier.py | 1 | 8 | [tests-test_mcp_barrier_py.md](tests-test_mcp_barrier_py.md) |
-| tests/test_plain.py | 1 | 8 | [tests-test_plain_py.md](tests-test_plain_py.md) |

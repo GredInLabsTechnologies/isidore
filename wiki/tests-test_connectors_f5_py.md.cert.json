@@ -1,0 +1,85 @@
+{
+  "child_cert_hashes": {},
+  "claims": [
+    {
+      "detail": "no predicate (existence-anchored only)",
+      "ehash": "e997d341d5f9",
+      "evidence": "tests/test_connectors_f5.py:1",
+      "id": "c-cdf010ce",
+      "oracle": "none",
+      "predicate": "",
+      "statement": "The module tests the McpConnector's interaction with a stub F5 server",
+      "verdict": "UNDECIDABLE"
+    },
+    {
+      "detail": "tests/test_connectors_f5.py defines server",
+      "ehash": "a666a3a83cdc",
+      "evidence": "tests/test_connectors_f5.py:85",
+      "id": "c-950b351a",
+      "oracle": "graph",
+      "predicate": "defines:tests/test_connectors_f5.py;server",
+      "statement": "The server fixture sets up a stub server environment",
+      "verdict": "TRUE"
+    },
+    {
+      "detail": "tests/test_connectors_f5.py defines _config",
+      "ehash": "e14836361180",
+      "evidence": "tests/test_connectors_f5.py:92",
+      "id": "c-b9b5ba9b",
+      "oracle": "graph",
+      "predicate": "defines:tests/test_connectors_f5.py;_config",
+      "statement": "The _config function generates a connector configuration",
+      "verdict": "TRUE"
+    },
+    {
+      "detail": "test_the_arguments_actually_reach_the_server calls ingest",
+      "ehash": "7a88ca5ba557",
+      "evidence": "tests/test_connectors_f5.py:116",
+      "id": "c-c6fa7941",
+      "oracle": "ast",
+      "predicate": "calls:test_the_arguments_actually_reach_the_server;McpConnector.ingest",
+      "statement": "The test validates tool arguments reach the server",
+      "verdict": "TRUE"
+    },
+    {
+      "detail": "test_a_write_tool_is_refused_even_when_the_recipe_asks_for_it calls ingest",
+      "ehash": "e8d1f03326b9",
+      "evidence": "tests/test_connectors_f5.py:127",
+      "id": "c-c31b3d45",
+      "oracle": "ast",
+      "predicate": "calls:test_a_write_tool_is_refused_even_when_the_recipe_asks_for_it;McpConnector.ingest",
+      "statement": "Write tools are rejected even if requested",
+      "verdict": "TRUE"
+    },
+    {
+      "detail": "test_a_revoked_token_fails_closed_and_writes_nothing calls ingest",
+      "ehash": "be358c9acd8c",
+      "evidence": "tests/test_connectors_f5.py:136",
+      "id": "c-a87d90c1",
+      "oracle": "ast",
+      "predicate": "calls:test_a_revoked_token_fails_closed_and_writes_nothing;McpConnector.ingest",
+      "statement": "Authentication failures are handled securely",
+      "verdict": "TRUE"
+    }
+  ],
+  "graph_commit": "3abce5854dca7f707ac84a52cbffebf0c2bd0b36",
+  "marks": [
+    {
+      "disposition": "",
+      "family": "topology",
+      "file": "tests/test_connectors_f5.py",
+      "line": 1,
+      "reason": "auth/secret/crypto surface (direct)",
+      "severity": "info"
+    }
+  ],
+  "mass": {
+    "gray": 11,
+    "green": 18,
+    "yellow": 0
+  },
+  "page": "tests-test_connectors_f5_py.md",
+  "prose_sha256": "e1818e0593defb036f790fae7cb7d0365c505c77f8a19dcebb0763e68019b044",
+  "version": "pcp-1",
+  "violations": []
+}

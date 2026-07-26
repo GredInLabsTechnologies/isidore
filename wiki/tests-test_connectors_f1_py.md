@@ -1,35 +1,35 @@
 ## Purpose
-The module `tests/test_connectors_f1.py` tests the idempotency of the git-repo connector in Isidore's knowledge home system. Its core assertion is that re-ingesting a git repository with no changes should yield zero new items, ensuring the connector properly tracks and persists its cursor state. This is critical for the system's reliability, as the first draft failed to persist the cursor, leading to duplicate items on re-ingestion.
+The module `tests/test_connectors_f1.py` tests the idempotency of the Isidore 1.1 Knowledge system's git-repo connector. Its core assertion is that re-ingesting a git repository with no changes should produce zero new items, ensuring the system correctly tracks and persists ingestion state. This is critical for the system's reliability, as the initial implementation failed to persist cursor state, leading to duplicate items on re-ingestion.
 
 ## Architecture
-The test suite uses helper functions to manage git repositories and interact with Isidore's storage system. Key components include:
-- `_make_repo`: Creates a test git repository with a single commit.
-- `_git`: Wraps git commands for repository operations.
-- `_head`: Retrieves the current git commit hash.
-- `store`: The raw storage system that persists items and state.
+The test suite uses a combination of helper functions and pytest fixtures to simulate a git repository and verify the connector's behavior. Key components include:
+- `_make_repo`: Creates a temporary git repository with a single commit.
+- `_git`: Wraps git commands for repository manipulation.
+- `_head`: Retrieves the current HEAD commit hash.
+- `store` module: Handles item storage, state management, and content hashing.
 
-The tests verify:
-1. Environment variable overrides for the knowledge home directory.
-2. Content hashing (`chash`) and normalization of stored items.
-3. State management, including handling missing or corrupt state files.
-4. Run history retention, ensuring only the last 20 runs are kept.
+The tests focus on two main areas:
+1. **Knowledge home and store functionality**: Verifying environment variable overrides and item storage behavior.
+2. **Idempotency**: Ensuring re-ingestion of an unchanged repository produces no new items.
 
 ## Key entry points
-- `test_home_env_override`: Tests environment variable configuration for the knowledge home.
-- `test_write_items_stamps_chash_and_does_not_mutate`: Validates content hashing and immutability of input items.
-- `test_read_state_missing_and_corrupt_return_default`: Ensures graceful handling of missing or corrupt state files.
-- `test_record_run_keeps_last_20`: Verifies run history retention limits.
+- `test_home_env_override`: Tests that the `ISIDORE_HOME` environment variable correctly overrides the knowledge home directory.
+- `test_write_items_stamps_chash_and_does_not_mutate`: Verifies that items are stored with a content hash (`chash`) and that the original item dictionary remains unmodified.
+- `test_read_state_missing_and_corrupt_return_default`: Ensures the system returns a default state when the state file is missing or corrupted.
+- `test_record_run_keeps_last_20`: Tests that the system retains only the last 20 runs in the state.
 
 ## Dependencies
 The module depends on:
-- `isidore.connectors.base.IngestOptions`: For ingestion configuration.
-- `isidore.connectors.git_repo.GitRepoConnector`: The git-repo connector under test.
-- `isidore.connectors.store`: The raw storage system.
-- `isidore.home`: For knowledge home and state path management.
+- `pytest` for test execution.
+- `subprocess` for git command execution.
+- `isidore.connectors.base.IngestOptions` for ingestion configuration.
+- `isidore.connectors.git_repo.GitRepoConnector` for the git-repo connector implementation.
+- `isidore.connectors.store` for item storage and state management.
+- `isidore.home` for knowledge home directory resolution.
 
 ## How to change safely
-When modifying this module:
-1. Preserve the idempotency assertion as the load-bearing test.
-2. Maintain the helper functions (`_make_repo`, `_git`, `_head`) to ensure consistent test setup.
-3. Do not alter the state file structure or run history retention logic, as these are critical for the system's reliability.
-4. When adding new tests, ensure they do not interfere with the existing idempotency guarantees.
+When modifying this module, follow these guidelines:
+1. **Preserve idempotency**: Ensure any changes do not break the core assertion that re-ingestion of an unchanged repository produces zero items.
+2. **Maintain helper functions**: The `_make_repo`, `_git`, and `_head` functions are critical for test setup. Avoid changing their behavior unless necessary.
+3. **Test state management**: Any changes to state handling (e.g., `store.read_state`, `store.record_run`) must be thoroughly tested to ensure they do not introduce regressions.
+4. **Document changes**: Update the module's docstring and comments to reflect any changes in behavior or assumptions.

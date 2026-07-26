@@ -2,87 +2,67 @@
   "child_cert_hashes": {},
   "claims": [
     {
-      "detail": "no predicate (existence-anchored only)",
-      "ehash": "a734da906fad",
-      "evidence": "tests/test_connectors_f4.py:1",
-      "id": "c-11185f2f",
-      "oracle": "none",
-      "predicate": "",
-      "statement": "The module tests the RSS, Hacker News, and web-search connectors without live network requests",
-      "verdict": "UNDECIDABLE"
-    },
-    {
-      "detail": "no predicate (existence-anchored only)",
-      "ehash": "b8fdb9658191",
-      "evidence": "tests/test_connectors_f4.py:43",
-      "id": "c-fce49696",
-      "oracle": "none",
-      "predicate": "",
-      "statement": "The module uses pytest fixtures and mocks to simulate network responses",
-      "verdict": "UNDECIDABLE"
-    },
-    {
-      "detail": "no predicate (existence-anchored only)",
-      "ehash": "8de70b2d9c4f",
-      "evidence": "tests/test_connectors_f4.py:19",
-      "id": "c-5237f83d",
-      "oracle": "none",
-      "predicate": "",
-      "statement": "The module includes sample XML feeds for testing",
-      "verdict": "UNDECIDABLE"
-    },
-    {
-      "detail": "no predicate (existence-anchored only)",
-      "ehash": "b115562af28c",
-      "evidence": "tests/test_connectors_f4.py:50",
-      "id": "c-cb2cfbdb",
-      "oracle": "none",
-      "predicate": "",
-      "statement": "The module validates URL restrictions",
-      "verdict": "UNDECIDABLE"
-    },
-    {
-      "detail": "no predicate (existence-anchored only)",
-      "ehash": "2fa7c72129a0",
-      "evidence": "tests/test_connectors_f4.py:62",
-      "id": "c-8901870a",
-      "oracle": "none",
-      "predicate": "",
-      "statement": "The module ensures incomplete JSON responses are rejected",
-      "verdict": "UNDECIDABLE"
-    },
-    {
-      "detail": "no predicate (existence-anchored only)",
+      "detail": "rss.parse_feed has no call to RSS_XML",
       "ehash": "17350d3353e2",
-      "evidence": "tests/test_connectors_f4.py:71",
-      "id": "c-dbe8ff4a",
-      "oracle": "none",
-      "predicate": "",
-      "statement": "The module confirms RSS and Atom feeds are parsed consistently",
-      "verdict": "UNDECIDABLE"
+      "evidence": "tests/test_connectors_f4.py:L71",
+      "id": "c-1b4a279d",
+      "oracle": "ast",
+      "predicate": "calls:rss.parse_feed;RSS_XML",
+      "statement": "The module tests RSS and Atom feed parsing",
+      "verdict": "FALSE"
     },
     {
-      "detail": "no predicate (existence-anchored only)",
-      "ehash": "b7cd306a8843",
-      "evidence": "tests/test_connectors_f4.py:85",
-      "id": "c-0c7ba683",
-      "oracle": "none",
-      "predicate": "",
-      "statement": "The module ensures malformed XML raises an error",
-      "verdict": "UNDECIDABLE"
+      "detail": "_check_url calls FetchError",
+      "ehash": "b115562af28c",
+      "evidence": "tests/test_connectors_f4.py:L50",
+      "id": "c-b0469e05",
+      "oracle": "ast",
+      "predicate": "calls:_check_url;FetchError",
+      "statement": "The module validates URL safety",
+      "verdict": "TRUE"
     },
     {
-      "detail": "no predicate (existence-anchored only)",
+      "detail": "caller 'rss.RssConnector.ingest' not a Python symbol in the graph",
       "ehash": "ae24efceb797",
-      "evidence": "tests/test_connectors_f4.py:103",
-      "id": "c-8873d49a",
+      "evidence": "tests/test_connectors_f4.py:L103",
+      "id": "c-1b314930",
       "oracle": "none",
-      "predicate": "",
-      "statement": "The module verifies idempotent RSS feed ingestion",
+      "predicate": "calls:rss.RssConnector.ingest;IngestOptions",
+      "statement": "The module ensures idempotent RSS ingestion",
       "verdict": "UNDECIDABLE"
+    },
+    {
+      "detail": "tests/test_connectors_f4.py defines RSS_XML",
+      "ehash": "8de70b2d9c4f",
+      "evidence": "tests/test_connectors_f4.py:L19",
+      "id": "c-f0209d00",
+      "oracle": "ast",
+      "predicate": "defines:tests/test_connectors_f4.py;RSS_XML",
+      "statement": "The module defines RSS_XML and ATOM_XML constants",
+      "verdict": "TRUE"
+    },
+    {
+      "detail": "tests/test_connectors_f4.py defines isolated_home",
+      "ehash": "b8fdb9658191",
+      "evidence": "tests/test_connectors_f4.py:L43",
+      "id": "c-87057e6c",
+      "oracle": "graph",
+      "predicate": "defines:tests/test_connectors_f4.py;isolated_home",
+      "statement": "The module uses the isolated_home fixture",
+      "verdict": "TRUE"
+    },
+    {
+      "detail": "http.fetch_json calls FetchError",
+      "ehash": "2fa7c72129a0",
+      "evidence": "tests/test_connectors_f4.py:L62",
+      "id": "c-ee12bb53",
+      "oracle": "ast",
+      "predicate": "calls:http.fetch_json;FetchError",
+      "statement": "The module tests JSON parsing safety",
+      "verdict": "TRUE"
     }
   ],
-  "graph_commit": "b78c836100f72c8de8a10a0def794b104ab4f424",
+  "graph_commit": "3abce5854dca7f707ac84a52cbffebf0c2bd0b36",
   "marks": [
     {
       "disposition": "",
@@ -102,12 +82,12 @@
     }
   ],
   "mass": {
-    "gray": 29,
-    "green": 0,
-    "yellow": 9
+    "gray": 28,
+    "green": 11,
+    "yellow": 4
   },
   "page": "tests-test_connectors_f4_py.md",
-  "prose_sha256": "5608b2024e3811ae18f0eef0737e92d6af21b4fd36173a88ba5f541ce4539338",
+  "prose_sha256": "98681fd52005d22dee82ca37c35c90a0b11c1be72b71cb2e4272ede31f15e813",
   "version": "pcp-1",
   "violations": [
     {

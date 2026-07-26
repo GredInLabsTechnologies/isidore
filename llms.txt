@@ -42,6 +42,7 @@ Documentation compiled by isidore from this repository's structure. Every page s
 - [tests-test_connect_cli_py.md](wiki/tests-test_connect_cli_py.md)
 - [tests-test_connectors_f1_py.md](wiki/tests-test_connectors_f1_py.md)
 - [tests-test_connectors_f4_py.md](wiki/tests-test_connectors_f4_py.md)
+- [tests-test_connectors_f5_py.md](wiki/tests-test_connectors_f5_py.md)
 - [tests-test_detectors_py.md](wiki/tests-test_detectors_py.md)
 - [tests-test_impact_py.md](wiki/tests-test_impact_py.md)
 - [tests-test_langspec_oracle_py.md](wiki/tests-test_langspec_oracle_py.md)

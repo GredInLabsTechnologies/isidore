@@ -27,8 +27,32 @@ from .store import (
 )
 
 
-def _allowed(config: dict) -> set[str]:
-    return {str(x).strip() for x in config.get("allowed", []) if str(x).strip()}
+MCP_PROTOCOL_VERSION = "2025-06-18"
+
+
+def _allowed(config: dict) -> list[dict]:
+    """Normalise the allowlist into `{entry, arguments}` records, sorted for determinism.
+
+    An entry may be the plain string `tools/<name>` / `resources/<uri>`, or an object carrying the
+    ARGUMENTS to call it with. The string form calls with no arguments, which was the only form there
+    was — and it is why F5's real sources could not be expressed: `search_threads` without a query and
+    `conversations_history` without a channel return nothing useful, so the whole MCP path was limited
+    to servers whose tools happen to take no parameters. The caps for these sources live in those
+    arguments (a Gmail query with `newer_than:`, a Slack `limit`), declared per entry in config because
+    every server names them differently — guessing a mapping would be a cap that silently does nothing.
+    """
+    out: dict[str, dict] = {}
+    for raw in config.get("allowed", []):
+        if isinstance(raw, dict):
+            entry = str(raw.get("entry") or raw.get("tool") or raw.get("resource") or "").strip()
+            if entry and "/" not in entry:
+                entry = f"tools/{entry}" if raw.get("tool") else f"resources/{entry}"
+            args = raw.get("arguments") if isinstance(raw.get("arguments"), dict) else {}
+        else:
+            entry, args = str(raw).strip(), {}
+        if entry:
+            out[entry] = {"entry": entry, "arguments": args}
+    return [out[k] for k in sorted(out)]
 
 
 # The AUTHORITATIVE read-only barrier is the MCP protocol's own tool annotation `readOnlyHint`
@@ -45,6 +69,25 @@ _MUTATING_VERBS = (
     "kill", "stop", "start", "enable", "disable", "approve", "reject", "cancel", "pay", "transfer",
     "purchase", "register", "unregister", "clear", "flush", "import",
 )
+
+
+def _result_text(result: Any) -> str:
+    """The readable text of an MCP tool result, falling back to compact JSON.
+
+    MCP returns `{"content": [{"type": "text", "text": ...}, ...]}`. Storing the whole envelope made
+    the evidence a one-line JSON blob with every newline escaped — unreadable to the human who has to
+    judge a citation, and, because the text was no longer on lines of its own, invisible to the
+    line-anchored check that defuses forged excerpt delimiters. A mail body has to be stored as a mail
+    body. Anything that is not text blocks (a resource read, a structured result) still round-trips as
+    JSON: losing it would be worse than it being ugly.
+    """
+    if isinstance(result, dict) and isinstance(result.get("content"), list):
+        parts = [block.get("text", "") for block in result["content"]
+                 if isinstance(block, dict) and block.get("type") == "text"]
+        text = "\n".join(p for p in parts if p)
+        if text.strip():
+            return text
+    return json.dumps(result, ensure_ascii=False, sort_keys=True)
 
 
 def _name_looks_mutating(name: str) -> bool:
@@ -84,12 +127,13 @@ class McpConnector:
             return IngestResult(self.id, "skipped", warnings=["MCP allowlist is empty"], run_id=run_id)
         try:
             client = _JsonRpcClient(transport)
-            client.request("initialize", {"protocolVersion": "2025-03-26", "capabilities": {},
+            client.request("initialize", {"protocolVersion": MCP_PROTOCOL_VERSION, "capabilities": {},
                                            "clientInfo": {"name": "isidore", "version": "1"}})
             client.notify("notifications/initialized", {})
             tool_annotations = self._tool_annotations(client)
             items: list[dict] = []
-            for entry in sorted(allowed):
+            for spec in allowed:
+                entry, arguments = spec["entry"], spec["arguments"]
                 kind, _, name = entry.partition("/")
                 if kind not in {"tools", "resources"} or not name:
                     warnings.append(f"invalid MCP allowlist entry skipped: {entry}")
@@ -102,9 +146,10 @@ class McpConnector:
                         warnings.append(f"write-capable MCP tool rejected ({reason}): {entry}")
                         continue
                 method = "tools/call" if kind == "tools" else "resources/read"
-                params = {"name": name, "arguments": {}} if kind == "tools" else {"uri": name}
+                params = ({"name": name, "arguments": arguments} if kind == "tools"
+                          else {"uri": name})
                 result = client.request(method, params)
-                content = json.dumps(result, ensure_ascii=False, sort_keys=True)
+                content = _result_text(result)
                 # `f"{kind}/{name}"` was unaddressable: a '/' in an id breaks src:// (the store now
                 # refuses it outright, which is how this was found).
                 items.append({"id": safe_item_id(f"mcp-{kind}", name),
@@ -205,38 +250,46 @@ class _JsonRpcClient:
             for key, env_name in (self.transport.get("env") or {}).items():
                 if str(env_name) in os.environ:
                     headers[str(key)] = os.environ[str(env_name)]
-            req = urllib.request.Request(self.transport["url"],
-                                         data=(json.dumps(payload) + "\n").encode(),
-                                         headers={"Content-Type": "application/json", **headers}, method="POST")
+            # Streamable HTTP: the client MUST send an Accept listing BOTH content types, because the
+            # server chooses between one JSON object and an SSE stream (spec 2025-06-18). Sending
+            # neither is how a request gets rejected by a compliant server for no visible reason.
+            req = urllib.request.Request(
+                self.transport["url"], data=(json.dumps(payload) + "\n").encode(),
+                headers={"Content-Type": "application/json",
+                         "Accept": "application/json, text/event-stream",
+                         "MCP-Protocol-Version": MCP_PROTOCOL_VERSION, **headers},
+                method="POST")
             try:
                 with urllib.request.urlopen(req, timeout=30) as response:
                     body = response.read().decode("utf-8")
             except (OSError, urllib.error.URLError) as exc:
                 raise RuntimeError(str(exc)) from exc
             return {} if notification or not body.strip() else json.loads(body)
+        # MCP stdio is NEWLINE-delimited JSON, not LSP's `Content-Length` framing: "Messages are
+        # delimited by newlines, and MUST NOT contain embedded newlines" (spec 2025-06-18,
+        # basic/transports#stdio). This spoke LSP, so it could not have exchanged a single message
+        # with a real MCP server — and the only stub it was ever tested against spoke LSP too, so the
+        # suite was green over an interoperability failure. Found by pointing it at a server written
+        # from the spec rather than from this file.
         assert self.proc.stdin and self.proc.stdout
-        body = json.dumps(payload, ensure_ascii=False).encode("utf-8")
-        self.proc.stdin.write(f"Content-Length: {len(body)}\r\n\r\n{body.decode('utf-8')}")
+        self.proc.stdin.write(json.dumps(payload, ensure_ascii=False) + "\n")
         self.proc.stdin.flush()
         if notification:
             return {}
-        headers = {}
         while True:
             line = self.proc.stdout.readline()
             if not line:
                 raise RuntimeError("stdio MCP server closed the connection")
-            if line in ("\r\n", "\n"):
-                break
-            key, sep, value = line.partition(":")
-            if sep:
-                headers[key.lower().strip()] = value.strip()
-        length = headers.get("content-length")
-        if not length or not length.isdigit():
-            raise RuntimeError("stdio MCP response missing Content-Length")
-        body = self.proc.stdout.read(int(length))
-        if len(body) != int(length):
-            raise RuntimeError("stdio MCP server closed the connection")
-        return json.loads(body)
+            line = line.strip()
+            if not line:
+                continue                    # blank keep-alive line: not a message, not an error
+            try:
+                return json.loads(line)
+            except ValueError as exc:
+                # A server that writes anything but MCP messages to stdout is out of spec. Say which
+                # line, because "invalid JSON" with no sample is unactionable.
+                raise RuntimeError(
+                    f"stdio MCP server wrote a non-message line to stdout: {line[:120]!r}") from exc
 
 
 register(McpConnector())

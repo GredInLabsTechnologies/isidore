@@ -112,5 +112,15 @@
   "110": "tests-test_llms_txt_py.md",
   "111": "literal_value",
   "112": "tests-test_recertify_py.md",
-  "113": "strip_inline_claim_rows"
+  "113": "strip_inline_claim_rows",
+  "114": "verify_predicate",
+  "115": "SurfaceSymbol",
+  "116": "test_pcp_pipeline.py",
+  "117": "main",
+  "118": "apply_settings",
+  "119": "ClaimVerdict",
+  "120": "GitRepoConnector",
+  "121": "src-isidore-connect_py.md",
+  "122": "tests-test_connect_cli_py.md",
+  "123": "CertStatus"
 }

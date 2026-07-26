@@ -1,5 +1,5 @@
 {
-  "commit": "b78c836100f72c8de8a10a0def794b104ab4f424",
+  "commit": "3abce5854dca7f707ac84a52cbffebf0c2bd0b36",
   "deps": [
     [
       "src/isidore/__init__.py",
@@ -466,6 +466,23 @@
       "quarantined": 0,
       "retries": 0,
       "skipped": 0
+    },
+    {
+      "calls_saved": 35,
+      "commit": "3abce5854dca",
+      "dirty": 5,
+      "generated": 5,
+      "generated_pages": [
+        "src-isidore-connectors.md",
+        "src-isidore-knowledge_py.md",
+        "tests-test_connectors_f1_py.md",
+        "tests-test_connectors_f4_py.md",
+        "tests-test_connectors_f5_py.md"
+      ],
+      "planned": 40,
+      "quarantined": 1,
+      "retries": 1,
+      "skipped": 0
     }
   ],
   "pages": {
@@ -832,88 +849,56 @@
     "src-isidore-connectors.md": {
       "claims": [
         {
-          "ehash": "87e26addd5e1",
-          "evidence": "src/isidore/connectors/store.py:1",
-          "id": "c-4f3f0995",
+          "ehash": "a556f415f250",
+          "evidence": "src/isidore/connectors/store.py:L3",
+          "id": "c-5134017e",
           "predicate": "",
-          "statement": "The `store.py` module defines a raw store for immutable ingested items and connector state",
+          "statement": "The raw store's item structure is `{id, stream, ts, content, meta, chash}`",
           "verdict": "UNDECIDABLE"
         },
         {
-          "ehash": "119033fcaa9c",
-          "evidence": "src/isidore/connectors/hackernews.py:1",
-          "id": "c-f3ac5a1f",
-          "predicate": "",
-          "statement": "The `hackernews.py` connector fetches stories and searches from Algolia's public API",
-          "verdict": "UNDECIDABLE"
+          "ehash": "e14f90dd3ff8",
+          "evidence": "src/isidore/connectors/base.py:L20",
+          "id": "c-0c70a90b",
+          "predicate": "defines:src/isidore/connectors/base.py;IngestResult",
+          "statement": "The `IngestResult` dataclass includes `connector_id`, `status`, and `raw_files`",
+          "verdict": "TRUE"
         },
         {
-          "ehash": "8dbe8d3f0488",
-          "evidence": "src/isidore/connectors/rss.py:1",
-          "id": "c-9f56b88d",
+          "ehash": "732fc24382f0",
+          "evidence": "src/isidore/connectors/hackernews.py:L3",
+          "id": "c-58e60cfd",
           "predicate": "",
-          "statement": "The `rss.py` connector parses RSS/Atom feeds and stores entries in the raw store",
-          "verdict": "UNDECIDABLE"
-        },
-        {
-          "ehash": "ef8cbfa19f5e",
-          "evidence": "src/isidore/connectors/base.py:1",
-          "id": "c-6eccd71d",
-          "predicate": "",
-          "statement": "The `base.py` module defines the connector protocol and registry",
+          "statement": "The `hackernews.py` connector uses Algolia's public API",
           "verdict": "UNDECIDABLE"
         },
         {
           "ehash": "71b626786c0e",
-          "evidence": "src/isidore/connectors/mcp.py:1",
-          "id": "c-2c139f83",
+          "evidence": "src/isidore/connectors/mcp.py:L1",
+          "id": "c-4650b793",
           "predicate": "",
-          "statement": "The `mcp.py` connector interacts with a JSON-RPC 2.0 endpoint to fetch data",
+          "statement": "The `mcp.py` connector speaks JSON-RPC 2.0 directly",
           "verdict": "UNDECIDABLE"
         },
         {
-          "ehash": "ebbc8c55b75c",
-          "evidence": "src/isidore/connectors/websearch.py:1",
-          "id": "c-b14949cd",
+          "ehash": "925185a804f4",
+          "evidence": "src/isidore/connectors/rss.py:L15",
+          "id": "c-0020d3a8",
           "predicate": "",
-          "statement": "The `websearch.py` connector queries a Tavily-compatible endpoint for search results",
+          "statement": "The `rss.py` connector uses `xml.etree.ElementTree` for parsing",
           "verdict": "UNDECIDABLE"
         },
         {
           "ehash": "27b1a261a063",
-          "evidence": "src/isidore/connectors/store.py:24",
-          "id": "c-86a7ceaf",
+          "evidence": "src/isidore/connectors/store.py:L24",
+          "id": "c-0701bf8a",
           "predicate": "defines:src/isidore/connectors/store.py;create_run_id",
-          "statement": "The `create_run_id` function generates unique identifiers for each ingest run",
-          "verdict": "TRUE"
-        },
-        {
-          "ehash": "e14f90dd3ff8",
-          "evidence": "src/isidore/connectors/base.py:20",
-          "id": "c-457f2b25",
-          "predicate": "defines:src/isidore/connectors/base.py;IngestResult",
-          "statement": "The `IngestResult` class standardizes the outcome of ingest runs",
-          "verdict": "TRUE"
-        },
-        {
-          "ehash": "3d578d20f0b4",
-          "evidence": "src/isidore/connectors/base.py:14",
-          "id": "c-810da653",
-          "predicate": "defines:src/isidore/connectors/base.py;register",
-          "statement": "The `register` decorator is used to register connectors",
-          "verdict": "TRUE"
-        },
-        {
-          "ehash": "bf66e1178c7f",
-          "evidence": "src/isidore/connectors/store.py:19",
-          "id": "c-6fdfa354",
-          "predicate": "imports:src/isidore/connectors/store.py;src/isidore/home.py",
-          "statement": "The `store.py` module imports `connector_dir`, `raw_dir`, and `state_path` from `src/isidore/home.py`",
+          "statement": "The `store.py` functions `create_run_id` and `write_items` are called by connectors",
           "verdict": "TRUE"
         }
       ],
-      "compiled_at": "2026-07-26T15:54:31Z",
-      "context_hash": "cb8a7a4597e05772f8e987f40b505d83579cd4c78bb2af13582cf45e12d7ca80",
+      "compiled_at": "2026-07-26T16:08:28Z",
+      "context_hash": "b2c30404bfa961166d88727bdb0c8b69c638de4784167582f7dbd390514d0d63",
       "findings": [],
       "history": [
         {
@@ -941,6 +926,17 @@
         {
           "commit": "b78c836100f7",
           "line_delta": 1,
+          "sections_changed": [
+            "Architecture",
+            "Dependencies",
+            "How to change safely",
+            "Key entry points",
+            "Purpose"
+          ]
+        },
+        {
+          "commit": "3abce5854dca",
+          "line_delta": -4,
           "sections_changed": [
             "Architecture",
             "Dependencies",
@@ -1351,80 +1347,32 @@
     "src-isidore-knowledge_py.md": {
       "claims": [
         {
-          "ehash": "35ec918b4efd",
-          "evidence": "src/isidore/knowledge.py:92",
-          "id": "c-7db2ee47",
-          "predicate": "defines:src/isidore/knowledge.py;TopicCompileResult",
-          "statement": "The module defines a TopicCompileResult dataclass to track compilation metrics",
-          "verdict": "TRUE"
-        },
-        {
-          "ehash": "f42dee566103",
-          "evidence": "src/isidore/knowledge.py:113",
-          "id": "c-0729776c",
-          "predicate": "defines:src/isidore/knowledge.py;knowledge_dir",
-          "statement": "The knowledge_dir() function returns the path to the knowledge directory",
-          "verdict": "TRUE"
-        },
-        {
-          "ehash": "a9d633aec870",
-          "evidence": "src/isidore/knowledge.py:119",
-          "id": "c-3c862519",
-          "predicate": "defines:src/isidore/knowledge.py;state_path",
-          "statement": "The state_path() function returns the path to the state file",
-          "verdict": "TRUE"
-        },
-        {
-          "ehash": "43d9e4ebf853",
-          "evidence": "src/isidore/knowledge.py:123",
-          "id": "c-0b5d32db",
-          "predicate": "defines:src/isidore/knowledge.py;load_knowledge_state",
-          "statement": "The load_knowledge_state() function loads the knowledge state from disk",
-          "verdict": "TRUE"
-        },
-        {
-          "ehash": "1b3f1b6d4138",
-          "evidence": "src/isidore/knowledge.py:137",
-          "id": "c-2248c0b6",
-          "predicate": "defines:src/isidore/knowledge.py;write_knowledge_state",
-          "statement": "The write_knowledge_state() function safely writes the knowledge state to disk",
-          "verdict": "TRUE"
-        },
-        {
           "ehash": "43a21a0807a6",
           "evidence": "src/isidore/knowledge.py:17",
-          "id": "c-e0b4fedd",
+          "id": "c-791119fa",
           "predicate": "imports:src/isidore/knowledge.py;src/isidore/home.py",
-          "statement": "The module imports home.py for home directory utilities",
+          "statement": "The module depends on src/isidore/home.py for home directory management",
           "verdict": "TRUE"
         },
         {
           "ehash": "7db0615e56a0",
           "evidence": "src/isidore/knowledge.py:18",
-          "id": "c-9b18e0f9",
+          "id": "c-7abfee82",
           "predicate": "imports:src/isidore/knowledge.py;src/isidore/llm.py",
-          "statement": "The module imports llm.py for default LLM generators",
-          "verdict": "TRUE"
-        },
-        {
-          "ehash": "893f5abc8b34",
-          "evidence": "src/isidore/knowledge.py:19",
-          "id": "c-37820293",
-          "predicate": "imports:src/isidore/knowledge.py;src/isidore/claims.py",
-          "statement": "The module imports claims.py for claim parsing and validation",
+          "statement": "The module depends on src/isidore/llm.py for LLM interactions",
           "verdict": "TRUE"
         },
         {
           "ehash": "4b9bdb080ad7",
           "evidence": "src/isidore/knowledge.py:25",
-          "id": "c-52ea69f4",
+          "id": "c-50e6a8cb",
           "predicate": "imports:src/isidore/knowledge.py;src/isidore/findings.py",
-          "statement": "The module imports findings.py for findings-related constants",
+          "statement": "The module depends on src/isidore/findings.py for findings handling",
           "verdict": "TRUE"
         }
       ],
-      "compiled_at": "2026-07-26T15:54:48Z",
-      "context_hash": "9b7cd8edb9c250ac27b4fd194de51459aa5ac9a2dfb0a0328d0ac565f8345b83",
+      "compiled_at": "2026-07-26T16:08:46Z",
+      "context_hash": "0e5bcb364eea985b8d1b7ba8526f98dba47891818a80cf9fe0eab10ff475ade1",
       "findings": [],
       "history": [
         {
@@ -1448,11 +1396,22 @@
             "Key entry points",
             "Purpose"
           ]
+        },
+        {
+          "commit": "3abce5854dca",
+          "line_delta": 0,
+          "sections_changed": [
+            "Architecture",
+            "Dependencies",
+            "How to change safely",
+            "Key entry points",
+            "Purpose"
+          ]
         }
       ],
       "kind": "module",
       "name": "src/isidore/knowledge.py",
-      "quarantined": false
+      "quarantined": true
     },
     "src-isidore-langspec_py.md": {
       "claims": [
@@ -2610,48 +2569,80 @@
     "tests-test_connectors_f1_py.md": {
       "claims": [
         {
-          "ehash": "f3f5fe82e4b9",
-          "evidence": "tests/test_connectors_f1.py:3",
-          "id": "c-fedaab0a",
-          "predicate": "calls:test_connectors_f1.py;GitRepoConnector",
-          "statement": "The test suite verifies idempotency of git-repo connector",
+          "ehash": "b611ed236258",
+          "evidence": "tests/test_connectors_f1.py:1",
+          "id": "c-69ff94f1",
+          "predicate": "",
+          "statement": "The module tests the idempotency of the git-repo connector",
           "verdict": "UNDECIDABLE"
         },
         {
-          "ehash": "784420df20b4",
-          "evidence": "tests/test_connectors_f1.py:41",
-          "id": "c-9e0fb2f2",
-          "predicate": "env:ISIDORE_HOME",
-          "statement": "The knowledge home can be overridden via ISIDORE_HOME",
+          "ehash": "a54fda902c9b",
+          "evidence": "tests/test_connectors_f1.py:18",
+          "id": "c-2d264587",
+          "predicate": "",
+          "statement": "The test suite uses helper functions to simulate a git repository",
+          "verdict": "UNDECIDABLE"
+        },
+        {
+          "ehash": "5280f716416a",
+          "evidence": "tests/test_connectors_f1.py:22",
+          "id": "c-42b9926a",
+          "predicate": "",
+          "statement": "The `_make_repo` function creates a temporary git repository with a single commit",
+          "verdict": "UNDECIDABLE"
+        },
+        {
+          "ehash": "a54fda902c9b",
+          "evidence": "tests/test_connectors_f1.py:18",
+          "id": "c-4ac56054",
+          "predicate": "calls:_git;subprocess.run",
+          "statement": "The `_git` function wraps git commands for repository manipulation",
           "verdict": "TRUE"
         },
         {
-          "ehash": "14a0cde4f176",
-          "evidence": "tests/test_connectors_f1.py:50",
-          "id": "c-4d01fe15",
-          "predicate": "calls:test_connectors_f1.py;store.chash",
-          "statement": "Content is normalized and hashed before storage",
-          "verdict": "UNDECIDABLE"
+          "ehash": "f9ef2c76d909",
+          "evidence": "tests/test_connectors_f1.py:33",
+          "id": "c-8d25cb1a",
+          "predicate": "calls:_head;subprocess.run",
+          "statement": "The `_head` function retrieves the current HEAD commit hash",
+          "verdict": "TRUE"
         },
         {
-          "ehash": "9680a685e004",
-          "evidence": "tests/test_connectors_f1.py:60",
-          "id": "c-177ac4ac",
-          "predicate": "calls:test_connectors_f1.py;store.read_state",
-          "statement": "State files handle missing or corrupt data gracefully",
-          "verdict": "UNDECIDABLE"
+          "ehash": "5d31f74210d8",
+          "evidence": "tests/test_connectors_f1.py:40",
+          "id": "c-40708cdc",
+          "predicate": "calls:test_home_env_override;monkeypatch.setenv",
+          "statement": "The `test_home_env_override` function verifies environment variable overrides",
+          "verdict": "TRUE"
         },
         {
-          "ehash": "a2857566d3a2",
-          "evidence": "tests/test_connectors_f1.py:70",
-          "id": "c-44a4aff8",
-          "predicate": "calls:test_connectors_f1.py;store.record_run",
-          "statement": "Run history retains only the last 20 entries",
-          "verdict": "UNDECIDABLE"
+          "ehash": "f64063ab3ff4",
+          "evidence": "tests/test_connectors_f1.py:47",
+          "id": "c-eb56045c",
+          "predicate": "calls:test_write_items_stamps_chash_and_does_not_mutate;store.write_items",
+          "statement": "The `test_write_items_stamps_chash_and_does_not_mutate` function ensures items are stored with a content hash",
+          "verdict": "TRUE"
+        },
+        {
+          "ehash": "f4de7bbfb9a4",
+          "evidence": "tests/test_connectors_f1.py:57",
+          "id": "c-a5052f43",
+          "predicate": "calls:test_read_state_missing_and_corrupt_return_default;store.read_state",
+          "statement": "The `test_read_state_missing_and_corrupt_return_default` function tests state handling for missing or corrupt files",
+          "verdict": "TRUE"
+        },
+        {
+          "ehash": "78dd354cbd26",
+          "evidence": "tests/test_connectors_f1.py:67",
+          "id": "c-a337ce23",
+          "predicate": "calls:test_record_run_keeps_last_20;store.record_run",
+          "statement": "The `test_record_run_keeps_last_20` function verifies the system retains only the last 20 runs",
+          "verdict": "TRUE"
         }
       ],
-      "compiled_at": "2026-07-25T21:32:07Z",
-      "context_hash": "b63e537f38d2998be0c9adf7e7526fe764c8d9efa9e1de59dccdbf1fd6e0ef4b",
+      "compiled_at": "2026-07-26T16:08:54Z",
+      "context_hash": "f43994f24f58b2681934ca0ccbf13951c3df0f6246201607b0388c437b41891f",
       "findings": [],
       "history": [
         {
@@ -2675,6 +2666,17 @@
             "Key entry points",
             "Purpose"
           ]
+        },
+        {
+          "commit": "3abce5854dca",
+          "line_delta": 0,
+          "sections_changed": [
+            "Architecture",
+            "Dependencies",
+            "How to change safely",
+            "Key entry points",
+            "Purpose"
+          ]
         }
       ],
       "kind": "module",
@@ -2684,72 +2686,48 @@
     "tests-test_connectors_f4_py.md": {
       "claims": [
         {
-          "ehash": "a734da906fad",
-          "evidence": "tests/test_connectors_f4.py:1",
-          "id": "c-11185f2f",
-          "predicate": "",
-          "statement": "The module tests the RSS, Hacker News, and web-search connectors without live network requests",
-          "verdict": "UNDECIDABLE"
+          "ehash": "b115562af28c",
+          "evidence": "tests/test_connectors_f4.py:L50",
+          "id": "c-b0469e05",
+          "predicate": "calls:_check_url;FetchError",
+          "statement": "The module validates URL safety",
+          "verdict": "TRUE"
         },
         {
-          "ehash": "b8fdb9658191",
-          "evidence": "tests/test_connectors_f4.py:43",
-          "id": "c-fce49696",
-          "predicate": "",
-          "statement": "The module uses pytest fixtures and mocks to simulate network responses",
+          "ehash": "ae24efceb797",
+          "evidence": "tests/test_connectors_f4.py:L103",
+          "id": "c-1b314930",
+          "predicate": "calls:rss.RssConnector.ingest;IngestOptions",
+          "statement": "The module ensures idempotent RSS ingestion",
           "verdict": "UNDECIDABLE"
         },
         {
           "ehash": "8de70b2d9c4f",
-          "evidence": "tests/test_connectors_f4.py:19",
-          "id": "c-5237f83d",
-          "predicate": "",
-          "statement": "The module includes sample XML feeds for testing",
-          "verdict": "UNDECIDABLE"
+          "evidence": "tests/test_connectors_f4.py:L19",
+          "id": "c-f0209d00",
+          "predicate": "defines:tests/test_connectors_f4.py;RSS_XML",
+          "statement": "The module defines RSS_XML and ATOM_XML constants",
+          "verdict": "TRUE"
         },
         {
-          "ehash": "b115562af28c",
-          "evidence": "tests/test_connectors_f4.py:50",
-          "id": "c-cb2cfbdb",
-          "predicate": "",
-          "statement": "The module validates URL restrictions",
-          "verdict": "UNDECIDABLE"
+          "ehash": "b8fdb9658191",
+          "evidence": "tests/test_connectors_f4.py:L43",
+          "id": "c-87057e6c",
+          "predicate": "defines:tests/test_connectors_f4.py;isolated_home",
+          "statement": "The module uses the isolated_home fixture",
+          "verdict": "TRUE"
         },
         {
           "ehash": "2fa7c72129a0",
-          "evidence": "tests/test_connectors_f4.py:62",
-          "id": "c-8901870a",
-          "predicate": "",
-          "statement": "The module ensures incomplete JSON responses are rejected",
-          "verdict": "UNDECIDABLE"
-        },
-        {
-          "ehash": "17350d3353e2",
-          "evidence": "tests/test_connectors_f4.py:71",
-          "id": "c-dbe8ff4a",
-          "predicate": "",
-          "statement": "The module confirms RSS and Atom feeds are parsed consistently",
-          "verdict": "UNDECIDABLE"
-        },
-        {
-          "ehash": "b7cd306a8843",
-          "evidence": "tests/test_connectors_f4.py:85",
-          "id": "c-0c7ba683",
-          "predicate": "",
-          "statement": "The module ensures malformed XML raises an error",
-          "verdict": "UNDECIDABLE"
-        },
-        {
-          "ehash": "ae24efceb797",
-          "evidence": "tests/test_connectors_f4.py:103",
-          "id": "c-8873d49a",
-          "predicate": "",
-          "statement": "The module verifies idempotent RSS feed ingestion",
-          "verdict": "UNDECIDABLE"
+          "evidence": "tests/test_connectors_f4.py:L62",
+          "id": "c-ee12bb53",
+          "predicate": "calls:http.fetch_json;FetchError",
+          "statement": "The module tests JSON parsing safety",
+          "verdict": "TRUE"
         }
       ],
-      "compiled_at": "2026-07-26T15:55:04Z",
-      "context_hash": "ef83bdeb50233428f7fcaa3faf55ae4bcc9b3f351f3862510a1be593022f0acf",
+      "compiled_at": "2026-07-26T16:09:00Z",
+      "context_hash": "df59f3ec7a00bf2f58cebb725bec761de64a5a9572365ea80d39b9acf4c86715",
       "findings": [],
       "history": [
         {
@@ -2763,10 +2741,92 @@
             "Key entry points",
             "Purpose"
           ]
+        },
+        {
+          "commit": "3abce5854dca",
+          "line_delta": 4,
+          "sections_changed": [
+            "Architecture",
+            "Dependencies",
+            "How to change safely",
+            "Key entry points",
+            "Purpose"
+          ]
         }
       ],
       "kind": "module",
       "name": "tests/test_connectors_f4.py",
+      "quarantined": false
+    },
+    "tests-test_connectors_f5_py.md": {
+      "claims": [
+        {
+          "ehash": "e997d341d5f9",
+          "evidence": "tests/test_connectors_f5.py:1",
+          "id": "c-cdf010ce",
+          "predicate": "",
+          "statement": "The module tests the McpConnector's interaction with a stub F5 server",
+          "verdict": "UNDECIDABLE"
+        },
+        {
+          "ehash": "a666a3a83cdc",
+          "evidence": "tests/test_connectors_f5.py:85",
+          "id": "c-950b351a",
+          "predicate": "defines:tests/test_connectors_f5.py;server",
+          "statement": "The server fixture sets up a stub server environment",
+          "verdict": "TRUE"
+        },
+        {
+          "ehash": "e14836361180",
+          "evidence": "tests/test_connectors_f5.py:92",
+          "id": "c-b9b5ba9b",
+          "predicate": "defines:tests/test_connectors_f5.py;_config",
+          "statement": "The _config function generates a connector configuration",
+          "verdict": "TRUE"
+        },
+        {
+          "ehash": "7a88ca5ba557",
+          "evidence": "tests/test_connectors_f5.py:116",
+          "id": "c-c6fa7941",
+          "predicate": "calls:test_the_arguments_actually_reach_the_server;McpConnector.ingest",
+          "statement": "The test validates tool arguments reach the server",
+          "verdict": "TRUE"
+        },
+        {
+          "ehash": "e8d1f03326b9",
+          "evidence": "tests/test_connectors_f5.py:127",
+          "id": "c-c31b3d45",
+          "predicate": "calls:test_a_write_tool_is_refused_even_when_the_recipe_asks_for_it;McpConnector.ingest",
+          "statement": "Write tools are rejected even if requested",
+          "verdict": "TRUE"
+        },
+        {
+          "ehash": "be358c9acd8c",
+          "evidence": "tests/test_connectors_f5.py:136",
+          "id": "c-a87d90c1",
+          "predicate": "calls:test_a_revoked_token_fails_closed_and_writes_nothing;McpConnector.ingest",
+          "statement": "Authentication failures are handled securely",
+          "verdict": "TRUE"
+        }
+      ],
+      "compiled_at": "2026-07-26T16:09:06Z",
+      "context_hash": "72abdebce1c4517be43b68d31f093e01ef203472b6cdf509028c764b199b8f02",
+      "findings": [],
+      "history": [
+        {
+          "commit": "3abce5854dca",
+          "line_delta": 23,
+          "sections_changed": [
+            "Architecture",
+            "Dependencies",
+            "How to change safely",
+            "Key entry points",
+            "Purpose"
+          ]
+        }
+      ],
+      "kind": "module",
+      "name": "tests/test_connectors_f5.py",
       "quarantined": false
     },
     "tests-test_detectors_py.md": {

@@ -1,8 +1,8 @@
-# isidore claims · commit b78c836100f72c8de8a10a0def794b104ab4f424
+# isidore claims · commit 3abce5854dca7f707ac84a52cbffebf0c2bd0b36
 # each claim is anchored to its evidence by a content hash; state is re-checked
 # mechanically on every compile (zero LLM calls). stale/orphan => page regenerates.
-# summary: 303 claims, 0 stale/orphan
-claims[303]{page,id,statement,evidence,state}:
+# summary: 300 claims, 0 stale/orphan
+claims[300]{page,id,statement,evidence,state}:
   src-isidore-changeset_py.md,c-1ea2e1cc,The module processes git diffs to identify changed lines,src/isidore/changeset.py:36,ok
   src-isidore-changeset_py.md,c-90be0b37,changed_lines() maps files to sets of changed line numbers,src/isidore/changeset.py:36,ok
   src-isidore-changeset_py.md,c-6b86763d,symbol_spans() converts graph nodes to line ranges,src/isidore/changeset.py:68,ok
@@ -31,16 +31,12 @@ claims[303]{page,id,statement,evidence,state}:
   src-isidore-connect_py.md,c-26b49a52,Credentials are never stored in configs,src/isidore/connect.py:71,ok
   src-isidore-connect_py.md,c-69cf56b8,Connector summaries include readiness status,src/isidore/connect.py:96,ok
   src-isidore-connect_py.md,c-5bb8b0a4,The CLI is registered in a subparser,src/isidore/connect.py:110,ok
-  src-isidore-connectors.md,c-4f3f0995,The `store.py` module defines a raw store for immutable ingested items and connector state,src/isidore/connectors/store.py:1,ok
-  src-isidore-connectors.md,c-f3ac5a1f,The `hackernews.py` connector fetches stories and searches from Algolia's public API,src/isidore/connectors/hackernews.py:1,ok
-  src-isidore-connectors.md,c-9f56b88d,The `rss.py` connector parses RSS/Atom feeds and stores entries in the raw store,src/isidore/connectors/rss.py:1,ok
-  src-isidore-connectors.md,c-6eccd71d,The `base.py` module defines the connector protocol and registry,src/isidore/connectors/base.py:1,ok
-  src-isidore-connectors.md,c-2c139f83,The `mcp.py` connector interacts with a JSON-RPC 2.0 endpoint to fetch data,src/isidore/connectors/mcp.py:1,ok
-  src-isidore-connectors.md,c-b14949cd,The `websearch.py` connector queries a Tavily-compatible endpoint for search results,src/isidore/connectors/websearch.py:1,ok
-  src-isidore-connectors.md,c-86a7ceaf,The `create_run_id` function generates unique identifiers for each ingest run,src/isidore/connectors/store.py:24,ok
-  src-isidore-connectors.md,c-457f2b25,The `IngestResult` class standardizes the outcome of ingest runs,src/isidore/connectors/base.py:20,ok
-  src-isidore-connectors.md,c-810da653,The `register` decorator is used to register connectors,src/isidore/connectors/base.py:14,ok
-  src-isidore-connectors.md,c-6fdfa354,"The `store.py` module imports `connector_dir`, `raw_dir`, and `state_path` from `src/isidore/home.py`",src/isidore/connectors/store.py:19,ok
+  src-isidore-connectors.md,c-5134017e,"The raw store's item structure is `{id, stream, ts, content, meta, chash}`",src/isidore/connectors/store.py:L3,ok
+  src-isidore-connectors.md,c-0c70a90b,"The `IngestResult` dataclass includes `connector_id`, `status`, and `raw_files`",src/isidore/connectors/base.py:L20,ok
+  src-isidore-connectors.md,c-58e60cfd,The `hackernews.py` connector uses Algolia's public API,src/isidore/connectors/hackernews.py:L3,ok
+  src-isidore-connectors.md,c-4650b793,The `mcp.py` connector speaks JSON-RPC 2.0 directly,src/isidore/connectors/mcp.py:L1,ok
+  src-isidore-connectors.md,c-0020d3a8,The `rss.py` connector uses `xml.etree.ElementTree` for parsing,src/isidore/connectors/rss.py:L15,ok
+  src-isidore-connectors.md,c-0701bf8a,The `store.py` functions `create_run_id` and `write_items` are called by connectors,src/isidore/connectors/store.py:L24,ok
   src-isidore-detectors_py.md,c-88adfab5,The module defines a SINKS table for Python and JavaScript/TypeScript files,src/isidore/detectors.py:34,ok
   src-isidore-detectors_py.md,c-2c5f9fb3,The ROOTS set contains security-sensitive file patterns,src/isidore/detectors.py:25,ok
   src-isidore-detectors_py.md,c-e9c3c73d,The entropy detector uses Shannon entropy with a threshold of 3.5 bits/character,src/isidore/detectors.py:75,ok
@@ -73,15 +69,9 @@ claims[303]{page,id,statement,evidence,state}:
   src-isidore-humanpack_py.md,c-a18b42c0,The module generates a self-contained HTML/PDF onboarding pack,src/isidore/humanpack.py:1,ok
   src-isidore-humanpack_py.md,c-f3f98252,The module avoids LLM dependencies,src/isidore/humanpack.py:10,ok
   src-isidore-humanpack_py.md,c-2529691a,The module uses `load_graph` from `src/isidore/graph.py`,src/isidore/humanpack.py:20,ok
-  src-isidore-knowledge_py.md,c-7db2ee47,The module defines a TopicCompileResult dataclass to track compilation metrics,src/isidore/knowledge.py:92,ok
-  src-isidore-knowledge_py.md,c-0729776c,The knowledge_dir() function returns the path to the knowledge directory,src/isidore/knowledge.py:113,ok
-  src-isidore-knowledge_py.md,c-3c862519,The state_path() function returns the path to the state file,src/isidore/knowledge.py:119,ok
-  src-isidore-knowledge_py.md,c-0b5d32db,The load_knowledge_state() function loads the knowledge state from disk,src/isidore/knowledge.py:123,ok
-  src-isidore-knowledge_py.md,c-2248c0b6,The write_knowledge_state() function safely writes the knowledge state to disk,src/isidore/knowledge.py:137,ok
-  src-isidore-knowledge_py.md,c-e0b4fedd,The module imports home.py for home directory utilities,src/isidore/knowledge.py:17,ok
-  src-isidore-knowledge_py.md,c-9b18e0f9,The module imports llm.py for default LLM generators,src/isidore/knowledge.py:18,ok
-  src-isidore-knowledge_py.md,c-37820293,The module imports claims.py for claim parsing and validation,src/isidore/knowledge.py:19,ok
-  src-isidore-knowledge_py.md,c-52ea69f4,The module imports findings.py for findings-related constants,src/isidore/knowledge.py:25,ok
+  src-isidore-knowledge_py.md,c-791119fa,The module depends on src/isidore/home.py for home directory management,src/isidore/knowledge.py:17,ok
+  src-isidore-knowledge_py.md,c-7abfee82,The module depends on src/isidore/llm.py for LLM interactions,src/isidore/knowledge.py:18,ok
+  src-isidore-knowledge_py.md,c-50e6a8cb,The module depends on src/isidore/findings.py for findings handling,src/isidore/knowledge.py:25,ok
   src-isidore-langspec_py.md,c-b2799216,The module uses a declarative approach to define language rules,src/isidore/langspec.py:11,ok
   src-isidore-langspec_py.md,c-2829013d,The engine sanitizes comments and strings to avoid false positives,src/isidore/langspec.py:56,ok
   src-isidore-langspec_py.md,c-b6b5c7b3,The `extract()` function returns symbols and imports,src/isidore/langspec.py:130,ok
@@ -170,19 +160,26 @@ claims[303]{page,id,statement,evidence,state}:
   tests-test_claims_py.md,c-fed705d0,The module depends on the `isidore.claims` module,tests/test_claims.py:7,ok
   tests-test_claims_py.md,c-33739bfa,The module depends on the `isidore.pipeline` module,tests/test_claims.py:18,ok
   tests-test_connect_cli_py.md,c-05832663,The module tests the CLI functionality for F1's missing commands,tests/test_connect_cli.py:L1,ok
-  tests-test_connectors_f1_py.md,c-fedaab0a,The test suite verifies idempotency of git-repo connector,tests/test_connectors_f1.py:3,ok
-  tests-test_connectors_f1_py.md,c-9e0fb2f2,The knowledge home can be overridden via ISIDORE_HOME,tests/test_connectors_f1.py:41,ok
-  tests-test_connectors_f1_py.md,c-4d01fe15,Content is normalized and hashed before storage,tests/test_connectors_f1.py:50,ok
-  tests-test_connectors_f1_py.md,c-177ac4ac,State files handle missing or corrupt data gracefully,tests/test_connectors_f1.py:60,ok
-  tests-test_connectors_f1_py.md,c-44a4aff8,Run history retains only the last 20 entries,tests/test_connectors_f1.py:70,ok
-  tests-test_connectors_f4_py.md,c-11185f2f,"The module tests the RSS, Hacker News, and web-search connectors without live network requests",tests/test_connectors_f4.py:1,ok
-  tests-test_connectors_f4_py.md,c-fce49696,The module uses pytest fixtures and mocks to simulate network responses,tests/test_connectors_f4.py:43,ok
-  tests-test_connectors_f4_py.md,c-5237f83d,The module includes sample XML feeds for testing,tests/test_connectors_f4.py:19,ok
-  tests-test_connectors_f4_py.md,c-cb2cfbdb,The module validates URL restrictions,tests/test_connectors_f4.py:50,ok
-  tests-test_connectors_f4_py.md,c-8901870a,The module ensures incomplete JSON responses are rejected,tests/test_connectors_f4.py:62,ok
-  tests-test_connectors_f4_py.md,c-dbe8ff4a,The module confirms RSS and Atom feeds are parsed consistently,tests/test_connectors_f4.py:71,ok
-  tests-test_connectors_f4_py.md,c-0c7ba683,The module ensures malformed XML raises an error,tests/test_connectors_f4.py:85,ok
-  tests-test_connectors_f4_py.md,c-8873d49a,The module verifies idempotent RSS feed ingestion,tests/test_connectors_f4.py:103,ok
+  tests-test_connectors_f1_py.md,c-69ff94f1,The module tests the idempotency of the git-repo connector,tests/test_connectors_f1.py:1,ok
+  tests-test_connectors_f1_py.md,c-2d264587,The test suite uses helper functions to simulate a git repository,tests/test_connectors_f1.py:18,ok
+  tests-test_connectors_f1_py.md,c-42b9926a,The `_make_repo` function creates a temporary git repository with a single commit,tests/test_connectors_f1.py:22,ok
+  tests-test_connectors_f1_py.md,c-4ac56054,The `_git` function wraps git commands for repository manipulation,tests/test_connectors_f1.py:18,ok
+  tests-test_connectors_f1_py.md,c-8d25cb1a,The `_head` function retrieves the current HEAD commit hash,tests/test_connectors_f1.py:33,ok
+  tests-test_connectors_f1_py.md,c-40708cdc,The `test_home_env_override` function verifies environment variable overrides,tests/test_connectors_f1.py:40,ok
+  tests-test_connectors_f1_py.md,c-eb56045c,The `test_write_items_stamps_chash_and_does_not_mutate` function ensures items are stored with a content hash,tests/test_connectors_f1.py:47,ok
+  tests-test_connectors_f1_py.md,c-a5052f43,The `test_read_state_missing_and_corrupt_return_default` function tests state handling for missing or corrupt files,tests/test_connectors_f1.py:57,ok
+  tests-test_connectors_f1_py.md,c-a337ce23,The `test_record_run_keeps_last_20` function verifies the system retains only the last 20 runs,tests/test_connectors_f1.py:67,ok
+  tests-test_connectors_f4_py.md,c-b0469e05,The module validates URL safety,tests/test_connectors_f4.py:L50,ok
+  tests-test_connectors_f4_py.md,c-1b314930,The module ensures idempotent RSS ingestion,tests/test_connectors_f4.py:L103,ok
+  tests-test_connectors_f4_py.md,c-f0209d00,The module defines RSS_XML and ATOM_XML constants,tests/test_connectors_f4.py:L19,ok
+  tests-test_connectors_f4_py.md,c-87057e6c,The module uses the isolated_home fixture,tests/test_connectors_f4.py:L43,ok
+  tests-test_connectors_f4_py.md,c-ee12bb53,The module tests JSON parsing safety,tests/test_connectors_f4.py:L62,ok
+  tests-test_connectors_f5_py.md,c-cdf010ce,The module tests the McpConnector's interaction with a stub F5 server,tests/test_connectors_f5.py:1,ok
+  tests-test_connectors_f5_py.md,c-950b351a,The server fixture sets up a stub server environment,tests/test_connectors_f5.py:85,ok
+  tests-test_connectors_f5_py.md,c-b9b5ba9b,The _config function generates a connector configuration,tests/test_connectors_f5.py:92,ok
+  tests-test_connectors_f5_py.md,c-c6fa7941,The test validates tool arguments reach the server,tests/test_connectors_f5.py:116,ok
+  tests-test_connectors_f5_py.md,c-c31b3d45,Write tools are rejected even if requested,tests/test_connectors_f5.py:127,ok
+  tests-test_connectors_f5_py.md,c-a87d90c1,Authentication failures are handled securely,tests/test_connectors_f5.py:136,ok
   tests-test_detectors_py.md,c-95c08869,The module tests the `isidore.detectors` subsystem,tests/test_detectors.py:1,ok
   tests-test_detectors_py.md,c-41ac1643,The test context loads graph data from `graph.json`,tests/test_detectors.py:14,ok
   tests-test_detectors_py.md,c-3cf95c4b,"The entropy detector flags the backdoor token with \"danger\" severity",tests/test_detectors.py:22,ok

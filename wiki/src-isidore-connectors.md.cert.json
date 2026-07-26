@@ -3,114 +3,94 @@
   "claims": [
     {
       "detail": "no predicate (existence-anchored only)",
-      "ehash": "87e26addd5e1",
-      "evidence": "src/isidore/connectors/store.py:1",
-      "id": "c-4f3f0995",
+      "ehash": "a556f415f250",
+      "evidence": "src/isidore/connectors/store.py:L3",
+      "id": "c-5134017e",
       "oracle": "none",
       "predicate": "",
-      "statement": "The `store.py` module defines a raw store for immutable ingested items and connector state",
+      "statement": "The raw store's item structure is `{id, stream, ts, content, meta, chash}`",
       "verdict": "UNDECIDABLE"
     },
     {
-      "detail": "no predicate (existence-anchored only)",
-      "ehash": "119033fcaa9c",
-      "evidence": "src/isidore/connectors/hackernews.py:1",
-      "id": "c-f3ac5a1f",
-      "oracle": "none",
-      "predicate": "",
-      "statement": "The `hackernews.py` connector fetches stories and searches from Algolia's public API",
-      "verdict": "UNDECIDABLE"
+      "detail": "_hash has no call to _normalize",
+      "ehash": "a556f415f250",
+      "evidence": "src/isidore/connectors/store.py:L3",
+      "id": "c-25107104",
+      "oracle": "ast",
+      "predicate": "calls:_hash;_normalize",
+      "statement": "The `chash` is derived from `_hash(_normalize(content))`",
+      "verdict": "FALSE"
+    },
+    {
+      "detail": "src/isidore/connectors/base.py defines IngestResult",
+      "ehash": "e14f90dd3ff8",
+      "evidence": "src/isidore/connectors/base.py:L20",
+      "id": "c-0c70a90b",
+      "oracle": "graph",
+      "predicate": "defines:src/isidore/connectors/base.py;IngestResult",
+      "statement": "The `IngestResult` dataclass includes `connector_id`, `status`, and `raw_files`",
+      "verdict": "TRUE"
     },
     {
       "detail": "no predicate (existence-anchored only)",
-      "ehash": "8dbe8d3f0488",
-      "evidence": "src/isidore/connectors/rss.py:1",
-      "id": "c-9f56b88d",
+      "ehash": "732fc24382f0",
+      "evidence": "src/isidore/connectors/hackernews.py:L3",
+      "id": "c-58e60cfd",
       "oracle": "none",
       "predicate": "",
-      "statement": "The `rss.py` connector parses RSS/Atom feeds and stores entries in the raw store",
+      "statement": "The `hackernews.py` connector uses Algolia's public API",
       "verdict": "UNDECIDABLE"
     },
     {
-      "detail": "no predicate (existence-anchored only)",
-      "ehash": "ef8cbfa19f5e",
-      "evidence": "src/isidore/connectors/base.py:1",
-      "id": "c-6eccd71d",
-      "oracle": "none",
-      "predicate": "",
-      "statement": "The `base.py` module defines the connector protocol and registry",
-      "verdict": "UNDECIDABLE"
+      "detail": "no environment read of ISIDORE_WEBSEARCH_KEY found",
+      "ehash": "a1a3b44377ab",
+      "evidence": "src/isidore/connectors/websearch.py:L4",
+      "id": "c-8340b0f9",
+      "oracle": "grep",
+      "predicate": "env:ISIDORE_WEBSEARCH_KEY",
+      "statement": "The `websearch.py` connector reads `ISIDORE_WEBSEARCH_KEY` from the environment",
+      "verdict": "FALSE"
     },
     {
       "detail": "no predicate (existence-anchored only)",
       "ehash": "71b626786c0e",
-      "evidence": "src/isidore/connectors/mcp.py:1",
-      "id": "c-2c139f83",
+      "evidence": "src/isidore/connectors/mcp.py:L1",
+      "id": "c-4650b793",
       "oracle": "none",
       "predicate": "",
-      "statement": "The `mcp.py` connector interacts with a JSON-RPC 2.0 endpoint to fetch data",
+      "statement": "The `mcp.py` connector speaks JSON-RPC 2.0 directly",
       "verdict": "UNDECIDABLE"
     },
     {
       "detail": "no predicate (existence-anchored only)",
-      "ehash": "ebbc8c55b75c",
-      "evidence": "src/isidore/connectors/websearch.py:1",
-      "id": "c-b14949cd",
+      "ehash": "925185a804f4",
+      "evidence": "src/isidore/connectors/rss.py:L15",
+      "id": "c-0020d3a8",
       "oracle": "none",
       "predicate": "",
-      "statement": "The `websearch.py` connector queries a Tavily-compatible endpoint for search results",
+      "statement": "The `rss.py` connector uses `xml.etree.ElementTree` for parsing",
       "verdict": "UNDECIDABLE"
     },
     {
       "detail": "src/isidore/connectors/store.py defines create_run_id",
       "ehash": "27b1a261a063",
-      "evidence": "src/isidore/connectors/store.py:24",
-      "id": "c-86a7ceaf",
+      "evidence": "src/isidore/connectors/store.py:L24",
+      "id": "c-0701bf8a",
       "oracle": "graph",
       "predicate": "defines:src/isidore/connectors/store.py;create_run_id",
-      "statement": "The `create_run_id` function generates unique identifiers for each ingest run",
-      "verdict": "TRUE"
-    },
-    {
-      "detail": "src/isidore/connectors/base.py defines IngestResult",
-      "ehash": "e14f90dd3ff8",
-      "evidence": "src/isidore/connectors/base.py:20",
-      "id": "c-457f2b25",
-      "oracle": "graph",
-      "predicate": "defines:src/isidore/connectors/base.py;IngestResult",
-      "statement": "The `IngestResult` class standardizes the outcome of ingest runs",
-      "verdict": "TRUE"
-    },
-    {
-      "detail": "src/isidore/connectors/base.py defines register",
-      "ehash": "3d578d20f0b4",
-      "evidence": "src/isidore/connectors/base.py:14",
-      "id": "c-810da653",
-      "oracle": "graph",
-      "predicate": "defines:src/isidore/connectors/base.py;register",
-      "statement": "The `register` decorator is used to register connectors",
-      "verdict": "TRUE"
-    },
-    {
-      "detail": "src/isidore/connectors/store.py imports src/isidore/home.py",
-      "ehash": "bf66e1178c7f",
-      "evidence": "src/isidore/connectors/store.py:19",
-      "id": "c-6fdfa354",
-      "oracle": "graph",
-      "predicate": "imports:src/isidore/connectors/store.py;src/isidore/home.py",
-      "statement": "The `store.py` module imports `connector_dir`, `raw_dir`, and `state_path` from `src/isidore/home.py`",
+      "statement": "The `store.py` functions `create_run_id` and `write_items` are called by connectors",
       "verdict": "TRUE"
     }
   ],
-  "graph_commit": "b78c836100f72c8de8a10a0def794b104ab4f424",
+  "graph_commit": "3abce5854dca7f707ac84a52cbffebf0c2bd0b36",
   "marks": [],
   "mass": {
     "gray": 13,
-    "green": 26,
-    "yellow": 0
+    "green": 14,
+    "yellow": 2
   },
   "page": "src-isidore-connectors.md",
-  "prose_sha256": "09698cd83c5969c4fa34df1a16820aeee24ed881e598330ff9a0c6086d8684f6",
+  "prose_sha256": "38c23f32265385a1ae8ac342728cf24be91c7cdfcfa4416af542d117a97d99ee",
   "version": "pcp-1",
   "violations": []
 }

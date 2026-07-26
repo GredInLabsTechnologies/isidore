@@ -1,7 +1,7 @@
-# isidore wiki index · commit b78c836100f72c8de8a10a0def794b104ab4f424
+# isidore wiki index · commit 3abce5854dca7f707ac84a52cbffebf0c2bd0b36
 # same catalog as quickstart.md, in TOON tables (cheap for agents to load)
 modules[40]{module,files,symbols,page}:
-  src/isidore/connectors,9,66,src-isidore-connectors.md
+  src/isidore/connectors,9,67,src-isidore-connectors.md
   src/isidore/verify.py,1,37,src-isidore-verify_py.md
   tests/test_whatsnew.py,1,36,tests-test_whatsnew_py.md
   tests/test_pipeline.py,1,35,tests-test_pipeline_py.md
@@ -25,6 +25,7 @@ modules[40]{module,files,symbols,page}:
   src/isidore/humanpack.py,1,15,src-isidore-humanpack_py.md
   tests/test_langspec.py,1,14,tests-test_langspec_py.md
   src/isidore/cli.py,1,13,src-isidore-cli_py.md
+  tests/test_connectors_f5.py,1,12,tests-test_connectors_f5_py.md
   src/isidore/knowledge.py,1,12,src-isidore-knowledge_py.md
   src/isidore/langspec.py,1,12,src-isidore-langspec_py.md
   tests/test_pcp_seams.py,1,11,tests-test_pcp_seams_py.md
@@ -40,14 +41,13 @@ modules[40]{module,files,symbols,page}:
   tests/test_detectors.py,1,8,tests-test_detectors_py.md
   tests/test_llms_txt.py,1,8,tests-test_llms_txt_py.md
   tests/test_mcp_barrier.py,1,8,tests-test_mcp_barrier_py.md
-  tests/test_plain.py,1,8,tests-test_plain_py.md
 flows[0]{flow,modules,page}:
 hot_symbols[240]{module,symbol,file,line,degree}:
   src/isidore/connectors,store.py,src/isidore/connectors/store.py,1,17
   src/isidore/connectors,hackernews.py,src/isidore/connectors/hackernews.py,1,11
   src/isidore/connectors,rss.py,src/isidore/connectors/rss.py,1,11
   src/isidore/connectors,base.py,src/isidore/connectors/base.py,1,9
-  src/isidore/connectors,mcp.py,src/isidore/connectors/mcp.py,1,8
+  src/isidore/connectors,mcp.py,src/isidore/connectors/mcp.py,1,9
   src/isidore/connectors,websearch.py,src/isidore/connectors/websearch.py,1,8
   src/isidore/verify.py,verify.py,src/isidore/verify.py,1,38
   src/isidore/verify.py,_norm(),src/isidore/verify.py,47-L48,0
@@ -187,6 +187,12 @@ hot_symbols[240]{module,symbol,file,line,degree}:
   src/isidore/cli.py,_cmd_compile(),src/isidore/cli.py,46-L107,0
   src/isidore/cli.py,_cmd_ask(),src/isidore/cli.py,110-L126,0
   src/isidore/cli.py,_cmd_suggest_flows(),src/isidore/cli.py,129-L141,0
+  tests/test_connectors_f5.py,test_connectors_f5.py,tests/test_connectors_f5.py,1,11
+  tests/test_connectors_f5.py,server(),tests/test_connectors_f5.py,85-L89,0
+  tests/test_connectors_f5.py,_config(),tests/test_connectors_f5.py,92-L95,0
+  tests/test_connectors_f5.py,test_an_allowlist_entry_can_carry_the_arguments_a_real_tool_needs(),tests/test_connectors_f5.py,100-L113,0
+  tests/test_connectors_f5.py,test_the_arguments_actually_reach_the_server(),tests/test_connectors_f5.py,116-L122,0
+  tests/test_connectors_f5.py,test_a_write_tool_is_refused_even_when_the_recipe_asks_for_it(),tests/test_connectors_f5.py,127-L133,0
   src/isidore/knowledge.py,knowledge.py,src/isidore/knowledge.py,1,15
   src/isidore/knowledge.py,TopicCompileResult,src/isidore/knowledge.py,92-L110,0
   src/isidore/knowledge.py,knowledge_dir(),src/isidore/knowledge.py,113-L116,0
@@ -277,12 +283,6 @@ hot_symbols[240]{module,symbol,file,line,degree}:
   tests/test_mcp_barrier.py,test_destructive_hint_rejects(),tests/test_mcp_barrier.py,24-L25,0
   tests/test_mcp_barrier.py,test_mutating_names_are_rejected_without_annotation(),tests/test_mcp_barrier.py,37-L39,0
   tests/test_mcp_barrier.py,test_read_names_pass_without_annotation(),tests/test_mcp_barrier.py,43-L45,0
-  tests/test_plain.py,test_plain.py,tests/test_plain.py,1,7
-  tests/test_plain.py,test_a_sentence_written_for_a_person_passes(),tests/test_plain.py,7-L11,0
-  tests/test_plain.py,test_each_rule_names_the_reason_it_fired(),tests/test_plain.py,14-L20,0
-  tests/test_plain.py,test_a_rejection_can_be_explained_to_whoever_wrote_it(),tests/test_plain.py,23-L26,0
-  tests/test_plain.py,test_case_insensitivity_is_scoped_to_the_vocabulary_rule(),tests/test_plain.py,29-L33,0
-  tests/test_plain.py,test_the_gate_is_one_sided_and_carries_no_readability_score(),tests/test_plain.py,36-L43,0
 module_deps[43]{from,to,links}:
   src/isidore/connectors,src/isidore/home.py,2
   src/isidore/connectors,src/isidore/claims.py,1
