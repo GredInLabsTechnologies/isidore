@@ -1,0 +1,111 @@
+{
+  "child_cert_hashes": {},
+  "claims": [
+    {
+      "detail": "parse_setting has no call to parse_setting",
+      "ehash": "91f3b95dda7d",
+      "evidence": "tests/test_connect_cli.py:44",
+      "id": "c-b4c9fba8",
+      "oracle": "ast",
+      "predicate": "calls:parse_setting;parse_setting",
+      "statement": "The module tests the parsing of JSON-shaped configuration values",
+      "verdict": "FALSE"
+    },
+    {
+      "detail": "parse_setting has no call to parse_setting",
+      "ehash": "b9a131a48d3d",
+      "evidence": "tests/test_connect_cli.py:52",
+      "id": "c-0057b1ce",
+      "oracle": "ast",
+      "predicate": "calls:parse_setting;parse_setting",
+      "statement": "The module verifies that invalid settings are rejected",
+      "verdict": "FALSE"
+    },
+    {
+      "detail": "apply_settings has no call to apply_settings",
+      "ehash": "edca80cf84bb",
+      "evidence": "tests/test_connect_cli.py:58",
+      "id": "c-94f81871",
+      "oracle": "ast",
+      "predicate": "calls:apply_settings;apply_settings",
+      "statement": "The module ensures repeated keys are aggregated into lists",
+      "verdict": "FALSE"
+    },
+    {
+      "detail": "apply_settings has no call to apply_settings",
+      "ehash": "dc921c07afc9",
+      "evidence": "tests/test_connect_cli.py:66",
+      "id": "c-69631bc7",
+      "oracle": "ast",
+      "predicate": "calls:apply_settings;apply_settings",
+      "statement": "The module refuses and never stores sensitive values like tokens",
+      "verdict": "FALSE"
+    },
+    {
+      "detail": "load_config has no call to load_config",
+      "ehash": "ff0fc53c509d",
+      "evidence": "tests/test_connect_cli.py:74",
+      "id": "c-68975ad9",
+      "oracle": "ast",
+      "predicate": "calls:load_config;load_config",
+      "statement": "The module handles corrupt configs gracefully",
+      "verdict": "FALSE"
+    },
+    {
+      "detail": "tests/test_connect_cli.py defines _make_repo",
+      "ehash": "6c258071862c",
+      "evidence": "tests/test_connect_cli.py:24",
+      "id": "c-620529c9",
+      "oracle": "graph",
+      "predicate": "defines:tests/test_connect_cli.py;_make_repo",
+      "statement": "The module uses a helper function to create a Git repository",
+      "verdict": "TRUE"
+    },
+    {
+      "detail": "tests/test_connect_cli.py defines isolated_home",
+      "ehash": "b8fdb9658191",
+      "evidence": "tests/test_connect_cli.py:36",
+      "id": "c-c794ec08",
+      "oracle": "graph",
+      "predicate": "defines:tests/test_connect_cli.py;isolated_home",
+      "statement": "The module isolates the ISIDORE_HOME environment variable for testing",
+      "verdict": "TRUE"
+    }
+  ],
+  "graph_commit": "036487e2137938f623d7cb8688fb7327ef809179",
+  "marks": [
+    {
+      "disposition": "",
+      "family": "topology",
+      "file": "tests/test_connect_cli.py",
+      "line": 1,
+      "reason": "auth/secret/crypto surface (direct)",
+      "severity": "info"
+    },
+    {
+      "disposition": "",
+      "family": "entropy",
+      "file": "tests/test_connect_cli.py",
+      "line": 66,
+      "reason": "high-entropy literal (>=24 chars, >=3.5 bits/char)",
+      "severity": "danger"
+    },
+    {
+      "disposition": "",
+      "family": "entropy",
+      "file": "tests/test_connect_cli.py",
+      "line": 70,
+      "reason": "credential-shaped literal (ghp_ prefix)",
+      "severity": "danger"
+    }
+  ],
+  "mass": {
+    "gray": 29,
+    "green": 12,
+    "yellow": 1
+  },
+  "page": "tests-test_connect_cli_py.md",
+  "prose_sha256": "ac556c3eff902d5b9acd069c2ad88c8e62be729bb150081e62c295e89cedf53a",
+  "version": "pcp-1",
+  "violations": []
+}

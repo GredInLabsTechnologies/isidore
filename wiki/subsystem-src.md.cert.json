@@ -1,49 +1,60 @@
 {
   "child_cert_hashes": {
     "src-isidore-changeset_py.md": "d09f6b81a54c6bd37ae2ce0dc73d5b1cf5eea1892ca598885cb85f7b9d6afc43",
-    "src-isidore-cli_py.md": "ca42c45e6cefa74f764b7c74f8321eeca4b32214f8aa37131eba941618a8ee6b"
+    "src-isidore-claims_py.md": "7779ebd4c02b8bb1e5a4455aa78df5eff65695c5ac2c55405e34a72048d9dac1",
+    "src-isidore-detectors_py.md": "60d6374f007123678544e4df2133f4688b64ff0da4f70251f3113d068e685d3d"
   },
   "claims": [
     {
       "detail": "cited claim proved TRUE",
       "ehash": "d09f6b81a54c",
       "evidence": "wiki://src-isidore-changeset_py.md#c-1ea2e1cc",
-      "id": "c-2c0135ee",
+      "id": "c-dadfcc3c",
       "oracle": "wiki",
       "predicate": "wikichain:wiki://src-isidore-changeset_py.md#c-1ea2e1cc",
-      "statement": "The `src` area implements Isidore's core documentation pipeline, transforming a codebase into a verified, agent-oriented wiki.",
+      "statement": "The `src` area bridges Git diffs to Isidore's graph model",
+      "verdict": "TRUE"
+    },
+    {
+      "detail": "cited claim proved TRUE",
+      "ehash": "7779ebd4c02b",
+      "evidence": "wiki://src-isidore-claims_py.md#c-8ea600ba",
+      "id": "c-df631b86",
+      "oracle": "wiki",
+      "predicate": "wikichain:wiki://src-isidore-claims_py.md#c-8ea600ba",
+      "statement": "The area splits responsibilities between changeset handling, staleness detection, and documentation generation",
+      "verdict": "TRUE"
+    },
+    {
+      "detail": "cited claim proved TRUE",
+      "ehash": "60d6374f0071",
+      "evidence": "wiki://src-isidore-detectors_py.md#c-88adfab5",
+      "id": "c-12cfea4c",
+      "oracle": "wiki",
+      "predicate": "wikichain:wiki://src-isidore-detectors_py.md#c-88adfab5",
+      "statement": "Security analysis is performed by `detectors.py`",
       "verdict": "TRUE"
     },
     {
       "detail": "cited claim proved TRUE",
       "ehash": "d09f6b81a54c",
-      "evidence": "wiki://src-isidore-changeset_py.md#c-90be0b37",
-      "id": "c-0d2bb2bd",
+      "evidence": "wiki://src-isidore-changeset_py.md#c-1ea2e1cc",
+      "id": "c-58282a9f",
       "oracle": "wiki",
-      "predicate": "wikichain:wiki://src-isidore-changeset_py.md#c-90be0b37",
-      "statement": "The area splits responsibilities along the pipeline's logical stages: from raw diffs to verified documentation.",
-      "verdict": "TRUE"
-    },
-    {
-      "detail": "cited claim proved TRUE",
-      "ehash": "ca42c45e6cef",
-      "evidence": "wiki://src-isidore-cli_py.md#c-0891f889",
-      "id": "c-3dc2e52c",
-      "oracle": "wiki",
-      "predicate": "wikichain:wiki://src-isidore-cli_py.md#c-0891f889",
-      "statement": "This area has no external dependencies but provides the foundation for Isidore's user-facing features.",
+      "predicate": "wikichain:wiki://src-isidore-changeset_py.md#c-1ea2e1cc",
+      "statement": "The area depends on Git for version control",
       "verdict": "TRUE"
     }
   ],
   "graph_commit": null,
   "marks": [],
   "mass": {
-    "gray": 6,
-    "green": 16,
+    "gray": 8,
+    "green": 13,
     "yellow": 0
   },
   "page": "subsystem-src.md",
-  "prose_sha256": "a251835cc0f5452a9aea5fe2206089b06a951e9869766c2f962d22ebded4c830",
+  "prose_sha256": "36ad738a69a019ac706e94a5fc4b65474e6d67c83340f9a679d85d2a961143d4",
   "version": "pcp-1",
   "violations": []
 }

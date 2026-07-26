@@ -3,16 +3,16 @@ Here’s a rewritten front page for *isidore* that adheres to all the rules and 
 ---
 
 ## What this is
-*isidore* helps teams understand their software by automatically creating a structured guide from their code. Instead of manually writing or updating documentation, it scans the code and generates clear, verified explanations—one at a time—so you always have up-to-date information.
+*isidore* helps teams understand their software by automatically creating a guide from the code. Instead of manually writing or updating documentation, it reads the code and writes it for you. This saves time and keeps the guide up to date.
 
 ## What you can do with it
-- **Get clear explanations** of how the software works, without reading the code.
-- **Find answers quickly** by searching the guide instead of digging through files.
-- **Keep documentation current** automatically, so it matches the latest code.
-- **Share knowledge easily** with teammates or customers by providing a reliable reference.
+- **Get a clear overview** of how the software works by reading the guide.
+- **Find answers quickly** without searching through files or asking others.
+- **Stay updated** as the guide refreshes when the code changes.
+- **Share knowledge** with others by giving them a reliable, always-current guide.
 
 ## How the pieces fit together
-*isidore* starts by analyzing the code to understand its structure. Then, it pulls out key details—like what each part does and how it connects—to create a guide. The guide is checked against the code to make sure it’s accurate, so you can trust what you read.
+*isidore* looks at the code, picks the most important parts, and writes a guide. It checks the code to make sure the guide is correct, and only updates the guide when the code changes. This way, the guide stays useful without extra work.
 
 
 

@@ -5,92 +5,102 @@
       "detail": "no predicate (existence-anchored only)",
       "ehash": "e2ca60c588de",
       "evidence": "tests/test_recertify.py:1",
-      "id": "c-d028b061",
+      "id": "c-2032dcb2",
       "oracle": "none",
       "predicate": "",
-      "statement": "The module tests the recertification of certificates for wiki pages",
+      "statement": "The module tests certificate repair functionality",
       "verdict": "UNDECIDABLE"
     },
     {
       "detail": "tests/test_recertify.py defines _repo",
       "ehash": "c7d6b88eb0b0",
       "evidence": "tests/test_recertify.py:18",
-      "id": "c-81a2d2ce",
+      "id": "c-d2330e0b",
       "oracle": "graph",
       "predicate": "defines:tests/test_recertify.py;_repo",
-      "statement": "The test creates a synthetic repository with a Python module and wiki page",
+      "statement": "The test creates synthetic repositories with code and certificates",
       "verdict": "TRUE"
     },
     {
-      "detail": "tests/test_recertify.py defines _cert",
-      "ehash": "1683882d438b",
-      "evidence": "tests/test_recertify.py:31",
-      "id": "c-b9f65fb9",
-      "oracle": "graph",
-      "predicate": "defines:tests/test_recertify.py;_cert",
-      "statement": "The test generates a certificate for a wiki page with specified claims",
-      "verdict": "TRUE"
-    },
-    {
-      "detail": "tests/test_recertify.py defines _claim",
-      "ehash": "8c48e90ca22d",
-      "evidence": "tests/test_recertify.py:39",
-      "id": "c-b2d37a31",
-      "oracle": "graph",
-      "predicate": "defines:tests/test_recertify.py;_claim",
-      "statement": "The test creates a claim verdict with configurable predicate and verdict",
-      "verdict": "TRUE"
-    },
-    {
-      "detail": "caller 'tests/test_recertify.py' not a Python symbol in the graph",
+      "detail": "test_a_certificate_the_code_outgrew_is_repaired_without_a_model_call calls recertify",
       "ehash": "0952f0ae609d",
       "evidence": "tests/test_recertify.py:46",
-      "id": "c-c80942e1",
-      "oracle": "none",
-      "predicate": "calls:tests/test_recertify.py;recertify",
-      "statement": "The test verifies that a certificate for a page with a module-level constant is repaired",
-      "verdict": "UNDECIDABLE"
+      "id": "c-43cf0681",
+      "oracle": "ast",
+      "predicate": "calls:test_a_certificate_the_code_outgrew_is_repaired_without_a_model_call;recertify",
+      "statement": "The test verifies that outdated certificates are repaired",
+      "verdict": "TRUE"
     },
     {
-      "detail": "caller 'tests/test_recertify.py' not a Python symbol in the graph",
+      "detail": "test_the_prose_is_not_touched calls recertify",
       "ehash": "dd386c33ee9c",
       "evidence": "tests/test_recertify.py:60",
-      "id": "c-86eca9c0",
-      "oracle": "none",
-      "predicate": "calls:tests/test_recertify.py;recertify",
-      "statement": "The test ensures that the prose content of a wiki page remains unchanged during recertification",
-      "verdict": "UNDECIDABLE"
+      "id": "c-5811b331",
+      "oracle": "ast",
+      "predicate": "calls:test_the_prose_is_not_touched;recertify",
+      "statement": "The test ensures prose content remains unchanged",
+      "verdict": "TRUE"
     },
     {
-      "detail": "caller 'tests/test_recertify.py' not a Python symbol in the graph",
+      "detail": "test_a_dry_run_reports_but_writes_nothing calls recertify",
       "ehash": "6eac7000a1bd",
       "evidence": "tests/test_recertify.py:68",
-      "id": "c-ffb5922c",
+      "id": "c-07923bf6",
+      "oracle": "ast",
+      "predicate": "calls:test_a_dry_run_reports_but_writes_nothing;recertify",
+      "statement": "The test verifies dry runs report changes without writing them",
+      "verdict": "TRUE"
+    },
+    {
+      "detail": "test_the_verified_mass_is_recomputed_not_carried_over calls recertify",
+      "ehash": "452110425e88",
+      "evidence": "tests/test_recertify.py:78",
+      "id": "c-fb1c4b50",
+      "oracle": "ast",
+      "predicate": "calls:test_the_verified_mass_is_recomputed_not_carried_over;recertify",
+      "statement": "The test checks verified mass is recomputed",
+      "verdict": "TRUE"
+    },
+    {
+      "detail": "no import edge tests/test_recertify.py->pytest in the graph; imports are partially resolved, so absence is not decidable",
+      "ehash": "db7b0741c947",
+      "evidence": "tests/test_recertify.py:9",
+      "id": "c-5e1bb3e2",
       "oracle": "none",
-      "predicate": "calls:tests/test_recertify.py;recertify",
-      "statement": "The test confirms that a dry run of recertification reports changes but does not write them to disk",
+      "predicate": "imports:tests/test_recertify.py;pytest",
+      "statement": "The module uses pytest for testing",
       "verdict": "UNDECIDABLE"
     },
     {
-      "detail": "caller 'tests/test_recertify.py' not a Python symbol in the graph",
-      "ehash": "452110425e88",
-      "evidence": "tests/test_recertify.py:78",
-      "id": "c-d8ed88f8",
+      "detail": "no import edge tests/test_recertify.py->isidore.pcp in the graph; imports are partially resolved, so absence is not decidable",
+      "ehash": "6d1712c7e658",
+      "evidence": "tests/test_recertify.py:11",
+      "id": "c-6b3bfc1d",
       "oracle": "none",
-      "predicate": "calls:tests/test_recertify.py;recertify",
-      "statement": "The test verifies that the verified mass is recomputed rather than carried over",
+      "predicate": "imports:tests/test_recertify.py;isidore.pcp",
+      "statement": "The module depends on isidore.pcp for certificate handling",
+      "verdict": "UNDECIDABLE"
+    },
+    {
+      "detail": "no import edge tests/test_recertify.py->isidore.recertify in the graph; imports are partially resolved, so absence is not decidable",
+      "ehash": "bb77c768dd8c",
+      "evidence": "tests/test_recertify.py:12",
+      "id": "c-4a3221c6",
+      "oracle": "none",
+      "predicate": "imports:tests/test_recertify.py;isidore.recertify",
+      "statement": "The module depends on isidore.recertify for core functionality",
       "verdict": "UNDECIDABLE"
     }
   ],
-  "graph_commit": "5782a431e6dc22ba8b21583e6f89d91001ef4093",
+  "graph_commit": "036487e2137938f623d7cb8688fb7327ef809179",
   "marks": [],
   "mass": {
-    "gray": 17,
-    "green": 17,
-    "yellow": 0
+    "gray": 16,
+    "green": 18,
+    "yellow": 2
   },
   "page": "tests-test_recertify_py.md",
-  "prose_sha256": "984a7afa13cdc82f0634f27269774da7ac6a8a9c48063f074f23ffe957c56c30",
+  "prose_sha256": "2dee5b6497115bd58a3020fad87de733ead3e9e5c1d56ba0ef68e6de0c505c1c",
   "version": "pcp-1",
   "violations": []
 }

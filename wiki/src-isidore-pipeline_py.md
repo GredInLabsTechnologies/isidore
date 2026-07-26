@@ -1,31 +1,31 @@
 ## Purpose
-The `pipeline.py` module implements the core compiler pipeline for generating documentation pages from code. It transforms the static structure graph (nodes and links) into dynamic `PageSpec` objects that define what pages to generate, their content, and their relationships. The pipeline is deterministic except for a single bounded LLM call per dirty page, ensuring reproducibility while delegating prose generation to the model. Key constraints are hardcoded: a maximum of `--max-calls` per run, a per-prompt character budget, a single model, and a fixed timeout per call.
+The `pipeline.py` module implements the core compiler pipeline for generating documentation pages from code. It defines a deterministic process that transforms static analysis results into structured documentation, with the only non-deterministic step being a single bounded LLM call per dirty page. The pipeline ensures that all documentation is grounded in the actual code structure, with strict limits on LLM interactions (e.g., `--max-calls` and character budgets) to prevent unbounded generation.
 
 ## Architecture
-The pipeline consists of three main phases:
-1. **Planning**: Determines which pages to generate (`plan_pages` and `plan_flows`).
-2. **Assembly**: Prepares the content for each page (not shown in the excerpts).
-3. **Generation**: Delegates prose generation to the LLM (not shown in the excerpts).
+The pipeline consists of four main phases:
+1. **Planning**: Determines which modules and flows to document based on the code graph.
+2. **Assembly**: Gathers context for each page (e.g., hot symbols, dependencies).
+3. **Generation**: Delegates prose generation to an LLM, with built-in lints to validate citations.
+4. **Linting**: Validates citations and repairs hallucinations (e.g., phantom paths).
 
-The `PageSpec` dataclass centralizes all page metadata, including dependencies, hot symbols, and flow edges. The pipeline shares the `module_dep_edges` function with the impact fingerprint to ensure consistency in the coupling graph.
+The `PageSpec` class centralizes metadata for each page, including its kind (module or flow), dependencies, and hot symbols. The pipeline relies on the code graph (`nodes` and `links`) to answer "what exists and where" — everything else is deterministic.
 
 ## Key entry points
-- `plan_pages`: Selects top-K modules with the most code symbols, excluding those below a minimum threshold.
-- `plan_flows`: Generates cross-cutting flow pages by BFS from user-declared seeds in `isidore.json`.
-- `module_dep_edges`: Computes cross-module dependency edges for both page planning and impact analysis.
+- `plan_pages()`: Selects top-K modules to document, filtering by symbol count and excluding trivial modules.
+- `plan_flows()`: Generates cross-cutting flow pages by BFS from user-declared seeds.
+- `module_dep_edges()`: Computes cross-module dependency edges, shared with the impact fingerprint for consistency.
 
 ## Dependencies
 The module depends on:
-- `changeset.py`: For affected modules and changed symbols.
-- `journal.py`: For telemetry and run recording.
-- `claims.py`: For claim anchoring and linting.
-- `graph.py`: For the structure graph (nodes and links).
+- `changeset.py`: For tracking changed lines and symbols.
+- `journal.py`: For recording page changes and run telemetry.
+- `claims.py`: For managing claims and linting citations.
+- `graph.py`: For the code structure graph.
 - `llm.py`: For prose generation.
 - `pcp.py`: For tamper-evident certificates.
-- `verify.py`: For claim verification.
+- `verify.py`: For validating claims.
 
 ## How to change safely
-1. **Add a new page type**: Extend `PageSpec` with new fields and update the planning logic.
-2. **Modify page selection**: Adjust `plan_pages` or `plan_flows` parameters (e.g., `top_k`, `min_symbols`).
-3. **Change dependency logic**: Update `module_dep_edges` to alter the coupling graph.
-4. **Add a new flow**: Declare seeds in `isidore.json` and ensure they match nodes in the graph.
+- **Planning logic**: Modify `plan_pages()` or `plan_flows()` to adjust page selection criteria, but ensure the graph remains the sole source of truth for "what exists".
+- **Linting**: Update `LINT_REPAIR_ADDENDUM` to refine citation validation, but preserve the requirement that all citations must appear in the `FACTS` block.
+- **Dependencies**: Avoid introducing new dependencies unless they are explicitly required for the pipeline's deterministic phases.

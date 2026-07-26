@@ -1,0 +1,46 @@
+{
+  "child_cert_hashes": {},
+  "claims": [
+    {
+      "detail": "no predicate (existence-anchored only)",
+      "ehash": "9a265d75edcb",
+      "evidence": "src/isidore/connect.py:1",
+      "id": "c-6e3f9561",
+      "oracle": "none",
+      "predicate": "",
+      "statement": "The module provides CLI commands for connector management without involving the LLM",
+      "verdict": "UNDECIDABLE"
+    },
+    {
+      "detail": "save_config calls safe_chmod",
+      "ehash": "b42f76ea37c4",
+      "evidence": "src/isidore/connect.py:40",
+      "id": "c-9a9ae418",
+      "oracle": "ast",
+      "predicate": "calls:save_config;safe_chmod",
+      "statement": "Connector configurations are stored with restrictive permissions (0o600)",
+      "verdict": "TRUE"
+    },
+    {
+      "detail": "connector_summary calls missing_env",
+      "ehash": "dde44124f1ee",
+      "evidence": "src/isidore/connect.py:93",
+      "id": "c-8a85c2a5",
+      "oracle": "ast",
+      "predicate": "calls:connector_summary;missing_env",
+      "statement": "The `connector_summary()` function checks for missing environment variables",
+      "verdict": "TRUE"
+    }
+  ],
+  "graph_commit": "036487e2137938f623d7cb8688fb7327ef809179",
+  "marks": [],
+  "mass": {
+    "gray": 11,
+    "green": 13,
+    "yellow": 0
+  },
+  "page": "src-isidore-connect_py.md",
+  "prose_sha256": "b7df11ddc815f9393498c7135cd362ad63f63ee7b432f9c1abb0b5b7e7400047",
+  "version": "pcp-1",
+  "violations": []
+}

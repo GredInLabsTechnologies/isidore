@@ -2,87 +2,77 @@
   "child_cert_hashes": {},
   "claims": [
     {
-      "detail": "no predicate (existence-anchored only)",
-      "ehash": "bed5c8829077",
-      "evidence": "src/isidore/recertify.py:1",
-      "id": "c-5422721b",
-      "oracle": "none",
-      "predicate": "",
-      "statement": "The module recertifies certificates without modifying prose",
-      "verdict": "UNDECIDABLE"
-    },
-    {
       "detail": "src/isidore/recertify.py defines PageRecert",
       "ehash": "00437b771a7f",
       "evidence": "src/isidore/recertify.py:47",
-      "id": "c-c95ad9bf",
+      "id": "c-91f13db1",
       "oracle": "graph",
       "predicate": "defines:src/isidore/recertify.py;PageRecert",
-      "statement": "The `PageRecert` class tracks actions and drift details",
-      "verdict": "TRUE"
-    },
-    {
-      "detail": "src/isidore/recertify.py defines RecertifyResult",
-      "ehash": "236629372315",
-      "evidence": "src/isidore/recertify.py:59",
-      "id": "c-dcdb25bd",
-      "oracle": "graph",
-      "predicate": "defines:src/isidore/recertify.py;RecertifyResult",
-      "statement": "The `RecertifyResult` class aggregates results across pages",
-      "verdict": "TRUE"
-    },
-    {
-      "detail": "src/isidore/recertify.py defines _level",
-      "ehash": "5124db9f4ea8",
-      "evidence": "src/isidore/recertify.py:68",
-      "id": "c-ce561f2e",
-      "oracle": "graph",
-      "predicate": "defines:src/isidore/recertify.py;_level",
-      "statement": "The `_level()` function assigns pyramid levels to pages",
-      "verdict": "TRUE"
-    },
-    {
-      "detail": "src/isidore/recertify.py defines _child_digest",
-      "ehash": "e5751cfc9f4e",
-      "evidence": "src/isidore/recertify.py:80",
-      "id": "c-858a118c",
-      "oracle": "graph",
-      "predicate": "defines:src/isidore/recertify.py;_child_digest",
-      "statement": "The `_child_digest()` function computes the SHA-256 hash of a child's certificate",
-      "verdict": "TRUE"
-    },
-    {
-      "detail": "src/isidore/recertify.py defines rebuild_certificate",
-      "ehash": "5e4169394d9b",
-      "evidence": "src/isidore/recertify.py:95",
-      "id": "c-018d79a5",
-      "oracle": "graph",
-      "predicate": "defines:src/isidore/recertify.py;rebuild_certificate",
-      "statement": "The `rebuild_certificate()` function recomputes verdicts for a certificate",
+      "statement": "The module defines a PageRecert dataclass to track recertification actions",
       "verdict": "TRUE"
     },
     {
       "detail": "src/isidore/recertify.py imports src/isidore/pcp.py",
       "ehash": "b7fdffaa55e6",
       "evidence": "src/isidore/recertify.py:24",
-      "id": "c-eb5f30e5",
+      "id": "c-0331a8d4",
       "oracle": "graph",
       "predicate": "imports:src/isidore/recertify.py;src/isidore/pcp.py",
-      "statement": "The module depends on `src/isidore/pcp.py` for certificate handling",
+      "statement": "The module imports CERT_SUFFIX from pcp.py",
       "verdict": "TRUE"
     },
     {
       "detail": "src/isidore/recertify.py imports src/isidore/verify.py",
-      "ehash": "a9371fae540f",
-      "evidence": "src/isidore/recertify.py:25",
-      "id": "c-f83104ba",
+      "ehash": "63358539aceb",
+      "evidence": "src/isidore/recertify.py:26",
+      "id": "c-ba39d806",
       "oracle": "graph",
       "predicate": "imports:src/isidore/recertify.py;src/isidore/verify.py",
-      "statement": "The module depends on `src/isidore/verify.py` for certificate status checks",
+      "statement": "The module imports CERT_DRIFTED from verify.py",
+      "verdict": "TRUE"
+    },
+    {
+      "detail": "src/isidore/recertify.py defines ACT_OK",
+      "ehash": "43b4d60396e4",
+      "evidence": "src/isidore/recertify.py:39",
+      "id": "c-d04bc675",
+      "oracle": "ast",
+      "predicate": "defines:src/isidore/recertify.py;ACT_OK",
+      "statement": "The module defines ACT_OK, ACT_RECERTIFY, ACT_REFUTED, ACT_TAMPERED, and ACT_NO_CERT constants",
+      "verdict": "TRUE"
+    },
+    {
+      "detail": "src/isidore/recertify.py defines _level",
+      "ehash": "5124db9f4ea8",
+      "evidence": "src/isidore/recertify.py:68",
+      "id": "c-9b117055",
+      "oracle": "graph",
+      "predicate": "defines:src/isidore/recertify.py;_level",
+      "statement": "The module defines _level to determine pyramid levels for recertification order",
+      "verdict": "TRUE"
+    },
+    {
+      "detail": "src/isidore/recertify.py defines _child_digest",
+      "ehash": "e5751cfc9f4e",
+      "evidence": "src/isidore/recertify.py:80",
+      "id": "c-36fc78a0",
+      "oracle": "graph",
+      "predicate": "defines:src/isidore/recertify.py;_child_digest",
+      "statement": "The module defines _child_digest to compute child certificate hashes",
+      "verdict": "TRUE"
+    },
+    {
+      "detail": "src/isidore/recertify.py defines rebuild_certificate",
+      "ehash": "5e4169394d9b",
+      "evidence": "src/isidore/recertify.py:95",
+      "id": "c-42eae30c",
+      "oracle": "graph",
+      "predicate": "defines:src/isidore/recertify.py;rebuild_certificate",
+      "statement": "The module defines rebuild_certificate to recompute certificates",
       "verdict": "TRUE"
     }
   ],
-  "graph_commit": "5782a431e6dc22ba8b21583e6f89d91001ef4093",
+  "graph_commit": "036487e2137938f623d7cb8688fb7327ef809179",
   "marks": [
     {
       "disposition": "",
@@ -95,11 +85,17 @@
   ],
   "mass": {
     "gray": 16,
-    "green": 17,
+    "green": 13,
     "yellow": 0
   },
   "page": "src-isidore-recertify_py.md",
-  "prose_sha256": "7c5a838f07bb8fcce5963f6ff7b41669eab77ef7b46d0c49cacda2305b8e6894",
+  "prose_sha256": "37a33bedd7d26d751faea5b7043d93a672a0c5eac51baffa33f0bcc95a23b8ec",
   "version": "pcp-1",
-  "violations": []
+  "violations": [
+    {
+      "detail": "Prose omits mention of file 'src/isidore/recertify.py' cited in finding.",
+      "kind": "prose-omits-finding",
+      "where": "src/isidore/recertify.py:1"
+    }
+  ]
 }

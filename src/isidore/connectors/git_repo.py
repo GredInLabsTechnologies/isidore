@@ -19,6 +19,50 @@ from .store import create_run_id, iso_now, read_state, record_run, write_items, 
 
 _INSTANCE = ""  # git-repo is a single-instance connector
 _GIT_TIMEOUT = 30
+_TRUNCATION_MARK = "\n[truncated by --max-bytes]"
+
+
+def _window_floor(window_hours: int | None) -> tuple[int | None, str | None]:
+    """Epoch second a commit must reach to be inside the window, or (None, note) if unbounded.
+
+    The window is applied to git's OUTPUT, not handed to `git log --since`, for two measured reasons:
+      - `--since=<N> hours ago` collapses silently. On git 2.53 a window of 999999 hours returns ZERO
+        commits with exit status 0 (approxidate gives up), so "the last 114 years" is
+        indistinguishable from "this repo has no commits".
+      - `--since` is a revision-LIMITING option: it prunes the walk at the first commit older than the
+        cutoff. A history whose dates run out of order — a rebase, a cherry-pick keeping its date,
+        imported history — therefore loses every commit BEHIND the old one, silently. Measured: a repo
+        whose HEAD is back-dated returns nothing at all for a 24h window, including the commit made
+        seconds ago.
+    Filtering the (already count-capped) output has neither failure mode.
+    """
+    if window_hours is None:
+        return None, None
+    if window_hours <= 0:
+        return None, (f"window_hours={window_hours} is not a window; ignored, "
+                      f"the full commit list was read")
+    floor = time.time() - window_hours * 3600
+    if floor <= 0:
+        return None, (f"window_hours={window_hours} reaches before the epoch; ignored, "
+                      f"the full commit list was read")
+    return int(floor), None
+
+
+def _cap_content(item: dict, max_bytes: int) -> tuple[dict, str | None]:
+    """Cap an item's content to `max_bytes` UTF-8 bytes, cutting on a character boundary.
+
+    Returns (item, note). The note is the caller's warning: a reader who asked for a cap must be told
+    it bit, or a manifest that lost its last commits reads exactly like a repo that has none. The
+    item's `meta` records the original size so the loss is measurable, not just mentioned.
+    """
+    raw = item.get("content", "").encode("utf-8")
+    if len(raw) <= max_bytes:
+        return item, None
+    kept = raw[:max_bytes].decode("utf-8", errors="ignore")
+    capped = {**item, "content": kept + _TRUNCATION_MARK,
+              "meta": {**item.get("meta", {}), "truncated": True, "content_bytes": len(raw)}}
+    return capped, (f"{item.get('stream', '?')}: content truncated to {max_bytes} of "
+                    f"{len(raw)} bytes (--max-bytes)")
 
 
 class GitRepoConnector:
@@ -40,16 +84,26 @@ class GitRepoConnector:
         warnings: list[str] = []
         processed = ok = 0
 
+        floor, floor_note = _window_floor(options.window_hours)
+        if floor_note:
+            warnings.append(floor_note)
+        wanted = set(options.streams or ())
         for repo in repos:
             if options.limit is not None and processed >= options.limit:
                 break
+            if wanted and (Path(repo).name or repo) not in wanted:
+                continue                      # out of the requested streams: not read, not touched
             processed += 1
-            item, warning = self._manifest(repo, cursors)
+            item, warning = self._manifest(repo, cursors, floor, options.window_hours)
             if warning:
                 warnings.append(warning)
                 continue
             ok += 1
             if item is not None:  # None == HEAD unchanged since cursor
+                if options.max_bytes is not None:
+                    item, note = _cap_content(item, options.max_bytes)
+                    if note:
+                        warnings.append(note)   # truncation is REPORTED, never silent
                 new_items.append(item)
                 cursors[item["stream"]] = item["meta"]["head_sha"]
 
@@ -73,7 +127,8 @@ class GitRepoConnector:
         except (OSError, ValueError):
             return {}
 
-    def _manifest(self, repo: str, cursors: dict) -> tuple[dict | None, str | None]:
+    def _manifest(self, repo: str, cursors: dict, floor: int | None = None,
+                  window_hours: int | None = None) -> tuple[dict | None, str | None]:
         """(item, None) for a changed repo, (None, None) if HEAD is unchanged, (None, warning) on
         any git error. One bad path never aborts the run."""
         name = Path(repo).name or repo
@@ -86,10 +141,15 @@ class GitRepoConnector:
         branch = self._git(repo, "rev-parse", "--abbrev-ref", "HEAD") or "unknown"
         status = self._git(repo, "status", "--porcelain") or ""
         dirty = [ln for ln in status.splitlines() if ln.strip()]
-        commits = self._commits(repo)
+        commits = self._commits(repo, floor)
 
         lines = [f"Repository: {name}", f"Branch: {branch}", f"HEAD: {head}",
-                 f"Dirty files: {len(dirty)}", "Recent commits:"]
+                 f"Dirty files: {len(dirty)}"]
+        if floor is not None:
+            # Say the window out loud. Without it, "Recent commits:" followed by nothing reads as a
+            # repo with no history rather than one with nothing inside the window asked for.
+            lines.append(f"Commit window: last {window_hours} hour(s)")
+        lines.append("Recent commits:" if commits else "Recent commits: (none in range)")
         lines += [f"  {c['sha'][:8]} {c['ts']} {c['author']}: {c['subject']}" for c in commits]
         content = "\n".join(lines)
 
@@ -99,11 +159,14 @@ class GitRepoConnector:
             "ts": iso_now(),
             "content": content,
             "meta": {"repo": repo, "branch": branch, "head_sha": head,
-                     "dirty": len(dirty), "commits": len(commits)},
+                     "dirty": len(dirty), "commits": len(commits),
+                     **({"window_hours": window_hours} if floor is not None else {})},
         }
         return item, None
 
-    def _commits(self, repo: str) -> list[dict]:
+    def _commits(self, repo: str, floor: int | None = None) -> list[dict]:
+        # Bounded by COUNT here and by TIME below, on git's output rather than through `--since`
+        # (see _window_floor for the two ways that option loses commits without saying so).
         out = self._git(repo, "log", "-n", "20", "--pretty=%H%x1f%an%x1f%at%x1f%s")
         if not out:
             return []
@@ -113,9 +176,13 @@ class GitRepoConnector:
             if len(parts) != 4:
                 continue
             try:
-                ts = time.strftime("%Y-%m-%d", time.gmtime(int(parts[2])))
+                epoch = int(parts[2])
             except ValueError:
                 ts = "?"
+            else:
+                if floor is not None and epoch < floor:
+                    continue                     # outside the requested window
+                ts = time.strftime("%Y-%m-%d", time.gmtime(epoch))
             commits.append({"sha": parts[0], "author": parts[1], "ts": ts, "subject": parts[3]})
         return commits
 

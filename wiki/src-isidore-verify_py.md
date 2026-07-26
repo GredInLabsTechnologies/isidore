@@ -1,28 +1,14 @@
 ## Purpose
-The `src/isidore/verify.py` module implements verifiers for typed claims in the Isidore system, ensuring that predicates (e.g., "function X is called in file Y") are validated against the codebase. It acts as the decision engine for the system's Proof-Carrying Prose (PCP) framework, where claims are verified using multiple oracles (graph.json, AST parsing, and textual scans) to produce tamper-evident certificates. The module enforces a fail-closed policy: any claim that cannot be decided definitively is marked as `UNDECIDABLE`, never defaulting to `TRUE`.
+`src/isidore/verify.py` implements the "Lane A" verifiers for the Proof-Carrying Prose (PCP) system, which checks typed claims against the codebase. The module's core function is to validate `Predicate` objects by consulting two oracles: the `graph.json` (for structural facts like imports/exports) and the re-parsed AST of the cited file (for runtime behavior like calls/values/signatures). The verifiers are fail-closed: they return `TRUE`, `FALSE`, or `UNDECIDABLE`, with `UNDECIDABLE` never masquerading as `TRUE`. This ensures certificates can be re-verified offline without LLM dependency (`isidore verify`).
 
 ## Architecture
-The module is structured around verifiers that consult different oracles:
-1. **Graph Oracle**: Uses `graph.json` to check structural claims (e.g., symbol definitions, imports).
-2. **AST Oracle**: Parses source files to verify claims about function signatures, calls, or values.
-3. **Grep Oracle**: Scans source files for environment variables or other textual patterns.
-4. **Language-Specific Oracle**: Reserved for framework-specific rules (currently `UNDECIDABLE`).
-
-Each verifier returns a `Verdict` (`TRUE`, `FALSE`, or `UNDECIDABLE`) and records its oracle. The module includes helper functions to normalize paths, extract symbols, and parse ASTs, which are used by the verifiers.
+The module is organized around oracle helpers and verifiers. The oracle helpers (`_norm`, `_symbol_base`, `_symbol_nodes`, `_file_nodes`, `_read_source`, `_ast_of`, `_find_funcdef`) provide low-level access to the codebase and its graph representation. These helpers are used by the verifiers to gather evidence for deciding predicate truth. The verifiers themselves are registered via `register_verifier` and operate on a `VerifyContext` containing the repository path and graph nodes.
 
 ## Key entry points
-- **`_symbol_nodes`**: Finds graph nodes matching a symbol name (e.g., `authenticate`).
-- **`_file_nodes`**: Retrieves graph nodes associated with a file path.
-- **`_ast_of`**: Parses a Python file into an AST for signature/value verification.
-- **`_find_funcdef`**: Locates a function definition in an AST by name.
-
-These helpers are used by verifiers to resolve claims against the oracles.
+The most connected symbol is the module itself (`verify.py`), which is imported by `src/isidore/pipeline.py`, `src/isidore/recertify.py`, and `src/isidore/whatsnew.py`. The module exposes the `register_verifier` decorator and `undecidable` function for verifier registration and handling undecidable verdicts, respectively.
 
 ## Dependencies
-- **`src/isidore/graph.py`**: Provides `load_graph` and `find_graph` for graph operations.
-- **`src/isidore/pcp.py`**: Defines constants (`TRUE`, `FALSE`, `UNDECIDABLE`) and types (`Predicate`, `Verdict`).
+The module depends on `src/isidore/graph.py` (for graph loading) and `src/isidore/pcp.py` (for PCP constants and types). It imports `ast`, `re`, and `dataclasses` from the standard library, and `Path` from `pathlib`.
 
 ## How to change safely
-1. **Add a new verifier**: Use `register_verifier` to add a new claim type. Ensure it consults the appropriate oracle and returns a `Verdict`.
-2. **Modify oracles**: Extend the AST or grep logic in `_ast_of` or `_read_source` if new claim types require additional parsing.
-3. **Update helpers**: Add new helper functions (e.g., for class verification) but avoid breaking existing ones, as they are used by multiple verifiers.
+When modifying `verify.py`, focus on the oracle helpers and verifiers. The oracle helpers should be updated carefully, as they are used by all verifiers. New verifiers should be registered using `register_verifier`. When adding or modifying verifiers, ensure they follow the fail-closed principle and handle `UNDECIDABLE` cases appropriately. The module's design allows for adding new verifiers without changing existing ones, as long as they adhere to the `VerifyContext` interface.

@@ -1,13 +1,13 @@
 ## What this area is responsible for
-The `tests` area ensures the correctness and reliability of Isidore's core functionality through unit, integration, and regression tests. It validates everything from individual components like the `changeset` and `claims` modules to the entire Proof-Carrying Prose (PCP) pipeline, guaranteeing that the system behaves as expected and maintains its security guarantees.
+The `tests` area ensures the correctness, robustness, and security of the Isidore system by validating its core functionality through unit, integration, and regression tests. It verifies that claims, connectors, detectors, and pipelines behave as expected, enforcing integrity constraints and tamper-evident certificates.
 
 ## How the work is divided
-The tests are split by subsystem: `test_changeset.py` verifies change detection, `test_claims.py` checks claim parsing and anchoring, and `test_pcp_pipeline.py` ensures the PCP pipeline generates valid certificates. This division mirrors the system's architecture, with each test module focusing on a specific part of Isidore's workflow. The `fixtures` module provides shared test data, like the PCP test fixture, to avoid duplication.
+The tests are split by subsystem: claims parsing, change detection, connector behavior, security enforcement, and pipeline validation. This division mirrors the system's architecture, ensuring that each test module focuses on a specific component's correctness. For example, `tests/test_claims.py` validates claim handling, while `tests/test_pcp_pipeline.py` ensures the PCP pipeline generates valid certificates.
 
 ## What it depends on, and what depends on it
-The `tests` area depends on the core Isidore modules it validates but has no external dependencies. It promises to the rest of the system that all critical functionality is thoroughly tested, providing confidence in the system's correctness and security.
+This area depends on the core system's modules but makes no assumptions about external dependencies. It is the final gatekeeper for correctness, as it verifies the system's behavior before deployment. No other area depends on it directly, but its results inform confidence in the system's reliability.
 
 ## Where to start reading
-- `tests-test_pcp_pipeline_py.md` for understanding the end-to-end PCP workflow.
-- `tests-test_claims_py.md` for details on claim validation and anchoring.
-- `tests-test_changeset_py.md` to see how change detection works.
+- `tests/test_claims.py.md` for understanding how claims are parsed and verified.
+- `tests/test_pcp_pipeline.py.md` to see how tamper-evident certificates are generated.
+- `tests/test_detectors.py.md` for security detector validation.

@@ -5,54 +5,54 @@
       "detail": "no predicate (existence-anchored only)",
       "ehash": "f62eb76cad8c",
       "evidence": "src/isidore/cli.py:1",
-      "id": "c-cdc21e1d",
+      "id": "c-42318408",
       "oracle": "none",
       "predicate": "",
-      "statement": "The module provides a command-line interface for the Isidore system",
+      "statement": "The module defines subcommands for scanning, compiling, and querying the wiki",
       "verdict": "UNDECIDABLE"
     },
     {
-      "detail": "src/isidore/cli.py imports src/isidore/graph.py",
-      "ehash": "07796ddd52c8",
-      "evidence": "src/isidore/cli.py:17",
-      "id": "c-0891f889",
-      "oracle": "graph",
-      "predicate": "imports:src/isidore/cli.py;src/isidore/graph.py",
-      "statement": "The module depends on the `src/isidore/graph.py` module",
-      "verdict": "TRUE"
+      "detail": "calls expects (caller, callee)",
+      "ehash": "18dfc2eb6252",
+      "evidence": "src/isidore/cli.py:40",
+      "id": "c-6b8bc485",
+      "oracle": "none",
+      "predicate": "calls:write_scan",
+      "statement": "The `_cmd_scan()` function writes a structure graph to disk",
+      "verdict": "UNDECIDABLE"
     },
     {
-      "detail": "src/isidore/cli.py imports src/isidore/llm.py",
-      "ehash": "6ccadcf108b5",
-      "evidence": "src/isidore/cli.py:18",
-      "id": "c-2aeb53bd",
-      "oracle": "graph",
-      "predicate": "imports:src/isidore/cli.py;src/isidore/llm.py",
-      "statement": "The module depends on the `src/isidore/llm.py` module",
-      "verdict": "TRUE"
+      "detail": "calls expects (caller, callee)",
+      "ehash": "33795a532a5b",
+      "evidence": "src/isidore/cli.py:50",
+      "id": "c-1def12cf",
+      "oracle": "none",
+      "predicate": "calls:compile_wiki",
+      "statement": "The `_cmd_compile()` function uses `compile_wiki()` with configurable parameters",
+      "verdict": "UNDECIDABLE"
     },
     {
-      "detail": "src/isidore/cli.py imports src/isidore/pipeline.py",
-      "ehash": "2dcf74273b0e",
-      "evidence": "src/isidore/cli.py:19",
-      "id": "c-7c29c1a1",
-      "oracle": "graph",
-      "predicate": "imports:src/isidore/cli.py;src/isidore/pipeline.py",
-      "statement": "The module depends on the `src/isidore/pipeline.py` module",
-      "verdict": "TRUE"
+      "detail": "calls expects (caller, callee)",
+      "ehash": "49904d276003",
+      "evidence": "src/isidore/cli.py:111",
+      "id": "c-477e98d1",
+      "oracle": "none",
+      "predicate": "calls:ask",
+      "statement": "The `_cmd_ask()` function supports offline mode using verified claims",
+      "verdict": "UNDECIDABLE"
     },
     {
-      "detail": "src/isidore/cli.py imports src/isidore/qa.py",
-      "ehash": "67c08eece514",
-      "evidence": "src/isidore/cli.py:29",
-      "id": "c-34b1007f",
-      "oracle": "graph",
-      "predicate": "imports:src/isidore/cli.py;src/isidore/qa.py",
-      "statement": "The module depends on the `src/isidore/qa.py` module",
-      "verdict": "TRUE"
+      "detail": "calls expects (caller, callee)",
+      "ehash": "978ef32176e0",
+      "evidence": "src/isidore/cli.py:135",
+      "id": "c-7483116a",
+      "oracle": "none",
+      "predicate": "calls:suggest_flows",
+      "statement": "The `_cmd_suggest_flows()` function identifies cross-module bridges",
+      "verdict": "UNDECIDABLE"
     }
   ],
-  "graph_commit": "5782a431e6dc22ba8b21583e6f89d91001ef4093",
+  "graph_commit": "036487e2137938f623d7cb8688fb7327ef809179",
   "marks": [
     {
       "disposition": "",
@@ -64,12 +64,12 @@
     }
   ],
   "mass": {
-    "gray": 13,
-    "green": 19,
-    "yellow": 3
+    "gray": 15,
+    "green": 0,
+    "yellow": 15
   },
   "page": "src-isidore-cli_py.md",
-  "prose_sha256": "863636b55c1eb74577b4fc92c0ddad2f0bbeed0992c5739904357c6beb94cb7b",
+  "prose_sha256": "cdeb7cf374392f0a7d82c25a7d0655aaf33f9247ce28fef1b59f460291940cad",
   "version": "pcp-1",
   "violations": []
 }

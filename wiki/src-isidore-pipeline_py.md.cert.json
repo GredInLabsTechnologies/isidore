@@ -2,67 +2,67 @@
   "child_cert_hashes": {},
   "claims": [
     {
-      "detail": "src/isidore/pipeline.py defines plan_pages",
-      "ehash": "dccd940a0f97",
-      "evidence": "src/isidore/pipeline.py:1",
-      "id": "c-f07ccd8b",
-      "oracle": "graph",
-      "predicate": "defines:src/isidore/pipeline.py;plan_pages",
-      "statement": "The pipeline generates pages from the structure graph",
-      "verdict": "TRUE"
+      "detail": "no predicate (existence-anchored only)",
+      "ehash": "906171e70802",
+      "evidence": "src/isidore/pipeline.py:3",
+      "id": "c-311d303f",
+      "oracle": "none",
+      "predicate": "",
+      "statement": "The pipeline is deterministic except for one bounded LLM call per dirty page",
+      "verdict": "UNDECIDABLE"
     },
     {
-      "detail": "src/isidore/pipeline.py defines PageSpec",
-      "ehash": "c4762e57a622",
-      "evidence": "src/isidore/pipeline.py:132",
-      "id": "c-27e14cc7",
-      "oracle": "graph",
-      "predicate": "defines:src/isidore/pipeline.py;PageSpec",
-      "statement": "PageSpec captures module metadata including dependencies and hot symbols",
-      "verdict": "TRUE"
-    },
-    {
-      "detail": "src/isidore/pipeline.py defines module_dep_edges",
+      "detail": "module_dep_edges calls module_of",
       "ehash": "5dac3ee6a72f",
       "evidence": "src/isidore/pipeline.py:152",
-      "id": "c-66ca1122",
-      "oracle": "graph",
-      "predicate": "defines:src/isidore/pipeline.py;module_dep_edges",
-      "statement": "module_dep_edges computes cross-module dependencies",
+      "id": "c-21778a50",
+      "oracle": "ast",
+      "predicate": "calls:module_dep_edges;module_of",
+      "statement": "The module_dep_edges function computes cross-module dependency edges",
       "verdict": "TRUE"
     },
     {
-      "detail": "plan_pages calls module_dep_edges",
+      "detail": "plan_pages calls module_of",
       "ehash": "94fdab5fe0e4",
       "evidence": "src/isidore/pipeline.py:168",
-      "id": "c-93fe5345",
+      "id": "c-dc96a877",
       "oracle": "ast",
-      "predicate": "calls:plan_pages;module_dep_edges",
-      "statement": "plan_pages selects top-K modules with the most symbols",
+      "predicate": "calls:plan_pages;module_of",
+      "statement": "The plan_pages function selects top-K modules to document",
       "verdict": "TRUE"
     },
     {
       "detail": "plan_flows calls _match_seed",
       "ehash": "36cf84432b5e",
       "evidence": "src/isidore/pipeline.py:225",
-      "id": "c-bf86587a",
+      "id": "c-1785f81c",
       "oracle": "ast",
       "predicate": "calls:plan_flows;_match_seed",
-      "statement": "plan_flows generates cross-cutting flow pages from seeds",
+      "statement": "The plan_flows function generates cross-cutting flow pages",
       "verdict": "TRUE"
     },
     {
-      "detail": "no comparable literal assignment to MAX_CALLS found",
-      "ehash": "906171e70802",
-      "evidence": "src/isidore/pipeline.py:3",
-      "id": "c-0da4f89a",
-      "oracle": "none",
-      "predicate": "value:MAX_CALLS;1",
-      "statement": "The pipeline is deterministic except for a single LLM call per page",
-      "verdict": "UNDECIDABLE"
+      "detail": "src/isidore/pipeline.py defines PageSpec",
+      "ehash": "c4762e57a622",
+      "evidence": "src/isidore/pipeline.py:132",
+      "id": "c-b44c07c9",
+      "oracle": "graph",
+      "predicate": "defines:src/isidore/pipeline.py;PageSpec",
+      "statement": "The PageSpec class centralizes metadata for each page",
+      "verdict": "TRUE"
+    },
+    {
+      "detail": "LINT_REPAIR_ADDENDUM is assigned a literal, but not \"\"\"CORRECTION REQUIRED...\"\"\"",
+      "ehash": "bc375ccd4bfc",
+      "evidence": "src/isidore/pipeline.py:122",
+      "id": "c-16f5116e",
+      "oracle": "ast",
+      "predicate": "value:LINT_REPAIR_ADDENDUM;\"\"\"CORRECTION REQUIRED...\"\"\"",
+      "statement": "The LINT_REPAIR_ADDENDUM is used to repair hallucinated citations",
+      "verdict": "FALSE"
     }
   ],
-  "graph_commit": "1a34c13ecf2ef7ce206f1ceeaeb1987fea5f8272",
+  "graph_commit": "036487e2137938f623d7cb8688fb7327ef809179",
   "marks": [
     {
       "disposition": "",
@@ -74,12 +74,12 @@
     }
   ],
   "mass": {
-    "gray": 19,
-    "green": 18,
+    "gray": 18,
+    "green": 15,
     "yellow": 0
   },
   "page": "src-isidore-pipeline_py.md",
-  "prose_sha256": "ce782a3c98b651a71fef6f28fe4a2be81581c8a3fcaf27f94ac28e19fc1e6413",
+  "prose_sha256": "85bf363cbaf6a41b9f478b2ed3dc578b0e2064ae59a497c0573fae647ce80ec0",
   "version": "pcp-1",
   "violations": []
 }

@@ -2,95 +2,55 @@
   "child_cert_hashes": {},
   "claims": [
     {
-      "detail": "create_run_id()",
-      "ehash": "27b1a261a063",
-      "evidence": "src/isidore/connectors/store.py:23",
-      "id": "c-af79e99f",
-      "oracle": "ast",
-      "predicate": "signature:create_run_id",
-      "statement": "The `store.py` module defines a function `create_run_id` that generates a sortable, collision-resistant run ID.",
-      "verdict": "TRUE"
-    },
-    {
       "detail": "no predicate (existence-anchored only)",
-      "ehash": "cea4dd1938a6",
-      "evidence": "src/isidore/connectors/git_repo.py:24",
-      "id": "c-86472f18",
+      "ehash": "87e26addd5e1",
+      "evidence": "src/isidore/connectors/store.py:L1",
+      "id": "c-63602c05",
       "oracle": "none",
       "predicate": "",
-      "statement": "The `git-repo` connector emits items with IDs of the form `<repo-name>@<head-sha>`.",
+      "statement": "The `store.py` module defines a raw store for immutable ingested items",
+      "verdict": "UNDECIDABLE"
+    },
+    {
+      "detail": "caller 'src/isidore/connectors/store.py' not a Python symbol in the graph",
+      "ehash": "cd5cfdabd103",
+      "evidence": "src/isidore/connectors/store.py:L17",
+      "id": "c-27c535ef",
+      "oracle": "none",
+      "predicate": "calls:src/isidore/connectors/store.py;_hash",
+      "statement": "The `store.py` module uses `_hash` and `_normalize` from `src/isidore/claims.py`",
+      "verdict": "UNDECIDABLE"
+    },
+    {
+      "detail": "value expects (name, literal)",
+      "ehash": "71509ed4aa03",
+      "evidence": "src/isidore/connectors/git_repo.py:L20",
+      "id": "c-27834485",
+      "oracle": "none",
+      "predicate": "value:_INSTANCE",
+      "statement": "The `git_repo` connector is a single-instance connector",
       "verdict": "UNDECIDABLE"
     },
     {
       "detail": "no predicate (existence-anchored only)",
       "ehash": "af99863cb756",
-      "evidence": "src/isidore/connectors/mcp.py:26",
-      "id": "c-52b404a1",
+      "evidence": "src/isidore/connectors/mcp.py:L26",
+      "id": "c-dba7c17f",
       "oracle": "none",
       "predicate": "",
-      "statement": "The `mcp.py` connector enforces read-only operations by checking the `readOnlyHint` annotation.",
-      "verdict": "UNDECIDABLE"
-    },
-    {
-      "detail": "src/isidore/connectors/base.py defines IngestResult",
-      "ehash": "2b34f02a03f5",
-      "evidence": "src/isidore/connectors/base.py:21",
-      "id": "c-ed177ea8",
-      "oracle": "graph",
-      "predicate": "defines:src/isidore/connectors/base.py;IngestResult",
-      "statement": "The `base.py` module defines the `IngestResult` dataclass with fields for `connector_id`, `status`, and `raw_files`.",
-      "verdict": "TRUE"
-    },
-    {
-      "detail": "src/isidore/connectors/store.py imports src/isidore/home.py",
-      "ehash": "bf66e1178c7f",
-      "evidence": "src/isidore/connectors/store.py:18",
-      "id": "c-6d703e9b",
-      "oracle": "graph",
-      "predicate": "imports:src/isidore/connectors/store.py;src/isidore/home.py",
-      "statement": "The `store.py` module imports `safe_mkdir` and `state_path` from `src/isidore/home.py`.",
-      "verdict": "TRUE"
-    },
-    {
-      "detail": "caller 'src/isidore/connectors/git_repo.py' not a Python symbol in the graph",
-      "ehash": "7d390781487f",
-      "evidence": "src/isidore/connectors/git_repo.py:18",
-      "id": "c-6a3be8cb",
-      "oracle": "none",
-      "predicate": "calls:src/isidore/connectors/git_repo.py;read_state",
-      "statement": "The `git-repo` connector uses the `store.py` functions `read_state`, `record_run`, and `write_items`.",
-      "verdict": "UNDECIDABLE"
-    },
-    {
-      "detail": "src/isidore/connectors/mcp.py imports src/isidore/connectors/base.py",
-      "ehash": "ce700810711d",
-      "evidence": "src/isidore/connectors/mcp.py:17",
-      "id": "c-764e8bbe",
-      "oracle": "graph",
-      "predicate": "imports:src/isidore/connectors/mcp.py;src/isidore/connectors/base.py",
-      "statement": "The `mcp.py` connector imports `IngestOptions` and `IngestResult` from `base.py`.",
-      "verdict": "TRUE"
-    },
-    {
-      "detail": "no comparable literal assignment to _DEFAULT_STATE found",
-      "ehash": "d9308040565d",
-      "evidence": "src/isidore/connectors/store.py:20",
-      "id": "c-f230442f",
-      "oracle": "none",
-      "predicate": "value:_DEFAULT_STATE;{\"version\": 1, \"cursors\": {}, \"runs\": []}",
-      "statement": "The `store.py` module defines `_DEFAULT_STATE` as a dictionary with keys `version`, `cursors`, and `runs`.",
+      "statement": "The `mcp` connector checks for `readOnlyHint` in tool annotations",
       "verdict": "UNDECIDABLE"
     }
   ],
-  "graph_commit": "1a34c13ecf2ef7ce206f1ceeaeb1987fea5f8272",
+  "graph_commit": "036487e2137938f623d7cb8688fb7327ef809179",
   "marks": [],
   "mass": {
-    "gray": 14,
-    "green": 14,
-    "yellow": 1
+    "gray": 11,
+    "green": 0,
+    "yellow": 13
   },
   "page": "src-isidore-connectors.md",
-  "prose_sha256": "f47a9d7c0405022d2f0e6a103ff732ca6e8468975be6ae063b5c4c5c572c7dcd",
+  "prose_sha256": "6ca51a9549e2e02ff4a72c03b5b070ec15ee3b68ac8702e00d315bbdd5dfd1b8",
   "version": "pcp-1",
   "violations": []
 }

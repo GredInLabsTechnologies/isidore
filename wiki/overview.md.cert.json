@@ -1,48 +1,59 @@
 {
   "child_cert_hashes": {
-    "subsystem-src.md": "59adbfd76b37c26849508ee46a175d6ba299d1cc7b0be1999513264d911a1fbe"
+    "subsystem-src.md": "3f54589f07c544da06fe98c4d6ab9f650736a613f28ba848657bb99fa5da1294",
+    "subsystem-tests.md": "2490788750ecf374b653e4bf0f9a444570e48c6686ba88c1c8440fb3ff3af57b"
   },
   "claims": [
     {
       "detail": "cited claim proved TRUE",
-      "ehash": "59adbfd76b37",
-      "evidence": "wiki://subsystem-src.md#c-2c0135ee",
-      "id": "c-3422ab8a",
+      "ehash": "3f54589f07c5",
+      "evidence": "wiki://subsystem-src.md#c-dadfcc3c",
+      "id": "c-1db9bb9d",
       "oracle": "wiki",
-      "predicate": "wikichain:wiki://subsystem-src.md#c-2c0135ee",
-      "statement": "*isidore* helps teams understand their software by automatically creating a structured guide from their code.",
+      "predicate": "wikichain:wiki://subsystem-src.md#c-dadfcc3c",
+      "statement": "*isidore* helps teams understand their software by automatically creating a guide from the code.",
       "verdict": "TRUE"
     },
     {
       "detail": "cited claim proved TRUE",
-      "ehash": "59adbfd76b37",
-      "evidence": "wiki://subsystem-src.md#c-0d2bb2bd",
-      "id": "c-20a76ce1",
+      "ehash": "3f54589f07c5",
+      "evidence": "wiki://subsystem-src.md#c-df631b86",
+      "id": "c-9edbd087",
       "oracle": "wiki",
-      "predicate": "wikichain:wiki://subsystem-src.md#c-0d2bb2bd",
-      "statement": "*isidore* scans the code and generates clear, verified explanations\u2014one at a time\u2014so you always have up-to-date information.",
+      "predicate": "wikichain:wiki://subsystem-src.md#c-df631b86",
+      "statement": "The guide stays up to date as the code changes.",
       "verdict": "TRUE"
     },
     {
       "detail": "cited claim proved TRUE",
-      "ehash": "59adbfd76b37",
-      "evidence": "wiki://subsystem-src.md#c-3dc2e52c",
-      "id": "c-5f88966e",
+      "ehash": "3f54589f07c5",
+      "evidence": "wiki://subsystem-src.md#c-12cfea4c",
+      "id": "c-7a4456d7",
       "oracle": "wiki",
-      "predicate": "wikichain:wiki://subsystem-src.md#c-3dc2e52c",
-      "statement": "The guide is checked against the code to make sure it\u2019s accurate, so you can trust what you read.",
+      "predicate": "wikichain:wiki://subsystem-src.md#c-12cfea4c",
+      "statement": "*isidore* checks the code to make sure the guide is correct.",
+      "verdict": "TRUE"
+    },
+    {
+      "detail": "cited claim proved TRUE",
+      "ehash": "2490788750ec",
+      "evidence": "wiki://subsystem-tests.md#c-aa72aa4e",
+      "id": "c-54e11540",
+      "oracle": "wiki",
+      "predicate": "wikichain:wiki://subsystem-tests.md#c-aa72aa4e",
+      "statement": "The guide is written in a way that is easy to read and understand.",
       "verdict": "TRUE"
     }
   ],
   "graph_commit": null,
   "marks": [],
   "mass": {
-    "gray": 7,
-    "green": 8,
+    "gray": 6,
+    "green": 10,
     "yellow": 0
   },
   "page": "overview.md",
-  "prose_sha256": "6c42a8548849eda30d76d387b52523a5626e4c8088e2eba165eebb7978dd558b",
+  "prose_sha256": "77f8174c9a698b9412a23775c61ccb2e9f08426acda3f69083f93f402c82f1b5",
   "version": "pcp-1",
   "violations": []
 }

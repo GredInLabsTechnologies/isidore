@@ -1,50 +1,50 @@
 {
   "child_cert_hashes": {
-    "tests-test_changeset_py.md": "343eaaa3e3fac4664a6a1774b2be763e8d50cddaadb270d9e329e6af94cad2c6",
     "tests-test_claims_py.md": "9b9da050c8aafbba2d2c3bd8fbacc1be5baa62b55aef5db8401f58642afc2c2a",
+    "tests-test_detectors_py.md": "4996de71d08149880a56659f0c2b58aa17cb8ba1950ab73df53f64cdd1b1165e",
     "tests-test_pcp_pipeline_py.md": "3bb798608291c506ef1f00109e5d415e3fa9f5c7d374c5c1cb0063c2c991477e"
   },
   "claims": [
     {
       "detail": "cited claim proved TRUE",
-      "ehash": "343eaaa3e3fa",
-      "evidence": "wiki://tests-test_changeset_py.md#c-e036b149",
-      "id": "c-7a0d0c19",
+      "ehash": "9b9da050c8aa",
+      "evidence": "wiki://tests-test_claims_py.md#c-bc3cb03c",
+      "id": "c-aa72aa4e",
       "oracle": "wiki",
-      "predicate": "wikichain:wiki://tests-test_changeset_py.md#c-e036b149",
-      "statement": "The tests area ensures the correctness and reliability of Isidore's core functionality through unit, integration, and regression tests.",
+      "predicate": "wikichain:wiki://tests-test_claims_py.md#c-bc3cb03c",
+      "statement": "The tests area ensures the correctness, robustness, and security of the Isidore system by validating its core functionality through unit, integration, and regression tests.",
       "verdict": "TRUE"
     },
     {
       "detail": "cited claim not found: tests-test_pcp_pipeline_py.md#c-43d8deee",
       "ehash": "3bb798608291",
       "evidence": "wiki://tests-test_pcp_pipeline_py.md#c-43d8deee",
-      "id": "c-6c843157",
+      "id": "c-bc869e85",
       "oracle": "wiki",
       "predicate": "wikichain:wiki://tests-test_pcp_pipeline_py.md#c-43d8deee",
-      "statement": "The tests are split by subsystem: test_changeset.py verifies change detection, test_claims.py checks claim parsing and anchoring, and test_pcp_pipeline.py ensures the PCP pipeline generates valid certificates.",
+      "statement": "The tests are split by subsystem: claims parsing, change detection, connector behavior, security enforcement, and pipeline validation.",
       "verdict": "FALSE"
     },
     {
       "detail": "cited claim proved TRUE",
-      "ehash": "9b9da050c8aa",
-      "evidence": "wiki://tests-test_claims_py.md#c-bc3cb03c",
-      "id": "c-2b594725",
+      "ehash": "4996de71d081",
+      "evidence": "wiki://tests-test_detectors_py.md#c-7a6a0657",
+      "id": "c-224c6ccc",
       "oracle": "wiki",
-      "predicate": "wikichain:wiki://tests-test_claims_py.md#c-bc3cb03c",
-      "statement": "The tests area depends on the core Isidore modules it validates but has no external dependencies.",
+      "predicate": "wikichain:wiki://tests-test_detectors_py.md#c-7a6a0657",
+      "statement": "This area depends on the core system's modules but makes no assumptions about external dependencies.",
       "verdict": "TRUE"
     }
   ],
   "graph_commit": null,
   "marks": [],
   "mass": {
-    "gray": 5,
+    "gray": 6,
     "green": 9,
     "yellow": 0
   },
   "page": "subsystem-tests.md",
-  "prose_sha256": "479fa7090f5feeaaf8c663e4a165de4d442bf27ec5595346613f6684167810f4",
+  "prose_sha256": "edda75ecc670bda5f241bafe200fcbb506dfcc12232b09291d66cf528f4e63a7",
   "version": "pcp-1",
   "violations": []
 }

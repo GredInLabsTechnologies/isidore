@@ -1,21 +1,21 @@
 ## What this area is responsible for
-The `src` area implements Isidore's core documentation pipeline, transforming a codebase into a verified, agent-oriented wiki. It bridges the gap between raw source code and human-readable documentation by extracting structure, detecting security patterns, and compiling verifiable knowledge artifacts. The area's responsibility is to ensure that documentation is always up-to-date, tamper-evident, and aligned with the codebase's actual state.
+The `src` area implements Isidore's core functionality for compiling and verifying documentation from a codebase. It bridges Git's version control with Isidore's graph model, detects security patterns, and generates verifiable documentation artifacts. The area's responsibility is to transform raw code and changes into structured knowledge while ensuring the documentation remains tamper-evident and up-to-date.
 
 ## How the work is divided
-The area splits responsibilities along the pipeline's logical stages:
-- **Changeset analysis** (`changeset.py`) maps Git diffs to code symbols, enabling incremental updates.
-- **Security detection** (`detectors.py`) identifies sensitive patterns (entropy, sinks, topology) before they reach the wiki.
-- **Knowledge compilation** (`knowledge.py`, `pipeline.py`) generates the wiki's prose and verifiable claims.
-- **Verification** (`pcp.py`, `verify.py`) ensures claims are cryptographically tied to the code.
-- **Output generation** (`render.py`, `humanpack.py`) produces deterministic artifacts (HTML, PDF, changelogs).
+The modules split responsibilities along logical boundaries:
+- **Changeset handling** (`changeset.py`) bridges Git diffs to Isidore's graph model.
+- **Staleness detection** (`claims.py`) tracks documentation freshness by hashing evidence.
+- **Security analysis** (`detectors.py`) identifies sensitive patterns in code.
+- **Documentation generation** (`knowledge.py`, `pipeline.py`, `render.py`) compiles structured content.
+- **Verification** (`pcp.py`, `verify.py`) ensures claims hold true against the codebase.
 
-The split reflects the pipeline's stages: from raw diffs to verified documentation. Modules are grouped by function, with dependencies flowing linearly through the pipeline.
+The split reflects Isidore's architecture: changesets feed into security analysis and documentation, while verification operates on the compiled graph. This separation keeps concerns distinct while allowing cross-module dependencies where needed.
 
 ## What it depends on, and what depends on it
-This area has no external dependencies but provides the foundation for Isidore's user-facing features. It depends on Git for diffs and Python's standard library for parsing. Other areas (e.g., connectors) rely on its verified documentation outputs, while the CLI (`cli.py`) exposes its functionality to users.
+This area has no external dependencies but relies on Git for version control and Python's standard library for file operations. It promises to other areas a complete pipeline from code to verified documentation, with artifacts like `quickstart.md` and `AGENTS.md` serving as entry points for users.
 
 ## Where to start reading
-- For understanding how changes propagate to the wiki, start with `changeset.py`.
-- To see how claims are verified, read `pcp.py` and `verify.py`.
-- For the core compilation logic, begin with `pipeline.py` and `knowledge.py`.
-- To explore the security detectors, open `detectors.py`.
+- `changeset.py` for understanding how Git diffs map to Isidore's graph model.
+- `claims.py` to see how staleness is detected in documentation.
+- `detectors.py` for security pattern analysis in code.
+- `knowledge.py` to understand how documentation is compiled from the graph.

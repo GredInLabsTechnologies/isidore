@@ -108,5 +108,9 @@
   "106": "render_whatsnew_md",
   "107": "encode",
   "108": "write_scan",
-  "111": "literal_value"
+  "109": "tests-test_langspec_oracle_py.md",
+  "110": "tests-test_llms_txt_py.md",
+  "111": "literal_value",
+  "112": "tests-test_recertify_py.md",
+  "113": "strip_inline_claim_rows"
 }

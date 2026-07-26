@@ -1,14 +1,15 @@
-# isidore wiki index · commit 5782a431e6dc22ba8b21583e6f89d91001ef4093
+# isidore wiki index · commit 036487e2137938f623d7cb8688fb7327ef809179
 # same catalog as quickstart.md, in TOON tables (cheap for agents to load)
 modules[40]{module,files,symbols,page}:
   src/isidore/verify.py,1,37,src-isidore-verify_py.md
   tests/test_whatsnew.py,1,36,tests-test_whatsnew_py.md
   tests/test_pipeline.py,1,35,tests-test_pipeline_py.md
-  src/isidore/connectors,5,31,src-isidore-connectors.md
+  src/isidore/connectors,5,33,src-isidore-connectors.md
   src/isidore/whatsnew.py,1,30,src-isidore-whatsnew_py.md
   src/isidore/pcp.py,1,25,src-isidore-pcp_py.md
   src/isidore/pyramid.py,1,25,src-isidore-pyramid_py.md
   tests/test_units.py,1,24,tests-test_units_py.md
+  tests/test_connect_cli.py,1,23,tests-test_connect_cli_py.md
   src/isidore/pipeline.py,1,22,src-isidore-pipeline_py.md
   tests/test_recertify.py,1,19,tests-test_recertify_py.md
   src/isidore/graph.py,1,19,src-isidore-graph_py.md
@@ -32,6 +33,7 @@ modules[40]{module,files,symbols,page}:
   src/isidore/render.py,1,10,src-isidore-render_py.md
   tests/test_pcp_pipeline.py,1,9,tests-test_pcp_pipeline_py.md
   tests/fixtures/pcp,8,9,tests-fixtures-pcp.md
+  src/isidore/connect.py,1,9,src-isidore-connect_py.md
   src/isidore/home.py,1,9,src-isidore-home_py.md
   src/isidore/recertify.py,1,9,src-isidore-recertify_py.md
   tests/test_detectors.py,1,8,tests-test_detectors_py.md
@@ -39,8 +41,6 @@ modules[40]{module,files,symbols,page}:
   tests/test_mcp_barrier.py,1,8,tests-test_mcp_barrier_py.md
   tests/test_plain.py,1,8,tests-test_plain_py.md
   tests/test_residue.py,1,8,tests-test_residue_py.md
-  src/isidore/changeset.py,1,8,src-isidore-changeset_py.md
-  tests/test_changeset.py,1,7,tests-test_changeset_py.md
 flows[0]{flow,modules,page}:
 hot_symbols[240]{module,symbol,file,line,degree}:
   src/isidore/verify.py,verify.py,src/isidore/verify.py,1,38
@@ -64,7 +64,7 @@ hot_symbols[240]{module,symbol,file,line,degree}:
   src/isidore/connectors,store.py,src/isidore/connectors/store.py,1,14
   src/isidore/connectors,base.py,src/isidore/connectors/base.py,1,8
   src/isidore/connectors,mcp.py,src/isidore/connectors/mcp.py,1,8
-  src/isidore/connectors,git_repo.py,src/isidore/connectors/git_repo.py,1,4
+  src/isidore/connectors,git_repo.py,src/isidore/connectors/git_repo.py,1,6
   src/isidore/connectors,__init__.py,src/isidore/connectors/__init__.py,1,1
   src/isidore/connectors,IngestResult,src/isidore/connectors/base.py,21-L28,0
   src/isidore/whatsnew.py,whatsnew.py,src/isidore/whatsnew.py,1,40
@@ -91,6 +91,12 @@ hot_symbols[240]{module,symbol,file,line,degree}:
   tests/test_units.py,test_scan_repo_extracts_symbols_imports_and_docs(),tests/test_units.py,39-L55,0
   tests/test_units.py,test_scan_tolerates_syntax_errors(),tests/test_units.py,58-L61,0
   tests/test_units.py,test_write_scan_and_find_graph_roundtrip(),tests/test_units.py,64-L69,0
+  tests/test_connect_cli.py,test_connect_cli.py,tests/test_connect_cli.py,1,22
+  tests/test_connect_cli.py,_git(),tests/test_connect_cli.py,20-L21,0
+  tests/test_connect_cli.py,_make_repo(),tests/test_connect_cli.py,24-L32,0
+  tests/test_connect_cli.py,isolated_home(),tests/test_connect_cli.py,36-L38,0
+  tests/test_connect_cli.py,test_a_json_shaped_value_keeps_its_type(),tests/test_connect_cli.py,43-L48,0
+  tests/test_connect_cli.py,test_a_setting_without_an_equals_is_rejected(),tests/test_connect_cli.py,51-L53,0
   src/isidore/pipeline.py,pipeline.py,src/isidore/pipeline.py,1,32
   src/isidore/pipeline.py,PageSpec,src/isidore/pipeline.py,132-L147,0
   src/isidore/pipeline.py,module_dep_edges(),src/isidore/pipeline.py,152-L166,0
@@ -229,6 +235,12 @@ hot_symbols[240]{module,symbol,file,line,degree}:
   tests/fixtures/pcp,graph.json,tests/fixtures/pcp/graph.json,1,0
   tests/fixtures/pcp,marks.json,tests/fixtures/pcp/marks.json,1,0
   tests/fixtures/pcp,pyramid_config.json,tests/fixtures/pcp/pyramid_config.json,1,0
+  src/isidore/connect.py,connect.py,src/isidore/connect.py,1,12
+  src/isidore/connect.py,load_config(),src/isidore/connect.py,23-L32,0
+  src/isidore/connect.py,save_config(),src/isidore/connect.py,35-L42,0
+  src/isidore/connect.py,parse_setting(),src/isidore/connect.py,45-L57,0
+  src/isidore/connect.py,apply_settings(),src/isidore/connect.py,60-L84,0
+  src/isidore/connect.py,connector_summary(),src/isidore/connect.py,87-L102,0
   src/isidore/home.py,home.py,src/isidore/home.py,1,8
   src/isidore/home.py,home(),src/isidore/home.py,13-L16,0
   src/isidore/home.py,connector_dir(),src/isidore/home.py,19-L21,0
@@ -271,19 +283,7 @@ hot_symbols[240]{module,symbol,file,line,degree}:
   tests/test_residue.py,test_section_diff_reports_changed_headings_and_line_delta(),tests/test_residue.py,38-L43,0
   tests/test_residue.py,test_journal_and_stats_track_calls_saved_and_unstable(),tests/test_residue.py,46-L55,0
   tests/test_residue.py,test_page_history_records_section_changes(),tests/test_residue.py,58-L70,0
-  src/isidore/changeset.py,changeset.py,src/isidore/changeset.py,1,8
-  src/isidore/changeset.py,_git_diff(),src/isidore/changeset.py,25-L33,0
-  src/isidore/changeset.py,changed_lines(),src/isidore/changeset.py,36-L65,0
-  src/isidore/changeset.py,symbol_spans(),src/isidore/changeset.py,68-L92,0
-  src/isidore/changeset.py,changed_symbols(),src/isidore/changeset.py,95-L111,0
-  src/isidore/changeset.py,_module_fan_in(),src/isidore/changeset.py,114-L127,0
-  tests/test_changeset.py,test_changeset.py,tests/test_changeset.py,1,6
-  tests/test_changeset.py,_code(),tests/test_changeset.py,19-L21,0
-  tests/test_changeset.py,test_symbol_spans_accepts_span_and_start_only_forms(),tests/test_changeset.py,24-L35,0
-  tests/test_changeset.py,test_changed_symbols_maps_lines_and_whole_file(),tests/test_changeset.py,38-L44,0
-  tests/test_changeset.py,test_affected_modules_is_changed_plus_fan_in_dependents(),tests/test_changeset.py,47-L55,0
-  tests/test_changeset.py,_git(),tests/test_changeset.py,58-L59,0
-module_deps[41]{from,to,links}:
+module_deps[43]{from,to,links}:
   src/isidore/verify.py,src/isidore/graph.py,1
   src/isidore/verify.py,src/isidore/pcp.py,1
   src/isidore/connectors,src/isidore/home.py,3
@@ -322,6 +322,8 @@ module_deps[41]{from,to,links}:
   src/isidore/qa.py,src/isidore/graph.py,1
   src/isidore/qa.py,src/isidore/pipeline.py,1
   src/isidore/render.py,src/isidore/toon.py,1
+  src/isidore/connect.py,src/isidore/connectors,2
+  src/isidore/connect.py,src/isidore/home.py,1
+  src/isidore/connect.py,src/isidore/toon.py,1
   src/isidore/recertify.py,src/isidore/pcp.py,1
   src/isidore/recertify.py,src/isidore/verify.py,1
-  src/isidore/changeset.py,src/isidore/graph.py,1
