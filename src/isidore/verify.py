@@ -333,11 +333,21 @@ def v_value(pred: Predicate, ctx: VerifyContext) -> Verdict:
 
 
 def v_signature(pred: Predicate, ctx: VerifyContext) -> Verdict:
-    """signature(fn, a1, a2, ...): fn's positional parameter names, in order. Oracles: AST, langspec."""
+    """signature(fn, a1, a2, ...): fn's positional parameter names, in order. Oracles: AST, langspec.
+
+    A predicate names a function, not a file, and a name is not unique in a repository: test helpers
+    especially repeat (`_make_repo` is defined in five test modules here). Deciding on the FIRST
+    candidate refutes a true claim whenever some homonym is visited first — measured on this repo,
+    `signature:_make_repo;tmp_path;n_modules` came back FALSE against tests/test_handoff.py because
+    tests/test_pipeline.py declares a third parameter. Every candidate is therefore examined, and
+    FALSE is only asserted once none of them matches, which is how `v_calls` and `v_value` already
+    treat exhaustion. A verifier may fail to prove a claim; it may never invent a refutation.
+    """
     if len(pred.args) < 1:
         return undecidable("signature expects (fn, *args)")
     fn_name, expected = pred.args[0], list(pred.args[1:])
     nodes = [n for n in _symbol_nodes(ctx, fn_name) if n.get("source_file", "").endswith(".py")]
+    found: list[str] = []
     for node in nodes:
         tree = _ast_of(ctx, _norm(node["source_file"]))
         fn = _find_funcdef(tree, fn_name) if tree else None
@@ -346,7 +356,10 @@ def v_signature(pred: Predicate, ctx: VerifyContext) -> Verdict:
         params = [a.arg for a in fn.args.args]
         if params == expected:
             return Verdict(TRUE, ORACLE_AST, f"{fn_name}({', '.join(params)})")
-        return Verdict(FALSE, ORACLE_AST, f"{fn_name} params are ({', '.join(params)})")
+        found.append(f"{_norm(node['source_file'])}: ({', '.join(params)})")
+    if found:
+        return Verdict(FALSE, ORACLE_AST,
+                       f"no {fn_name} has those params — found {'; '.join(sorted(set(found)))}")
     return _signature_via_langspec(fn_name, expected, ctx)
 
 

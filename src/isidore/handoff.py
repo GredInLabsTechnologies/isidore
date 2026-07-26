@@ -32,6 +32,7 @@ from .pipeline import (
     DEFAULT_MIN_SYMBOLS,
     DEFAULT_MODULE_DEPTH,
     DEFAULT_TOP_K_PAGES,
+    LINT_REPAIR_ADDENDUM,
     WIKI_DIRNAME,
     compile_wiki,
     load_config,
@@ -41,6 +42,10 @@ HANDOFF_DIRNAME = ".handoff"
 MANIFEST = "manifest.json"
 PROMPT_SUFFIX = ".prompt.md"
 RESPONSE_SUFFIX = ".response.md"
+
+# Derived, never retyped: the one line that tells a repair round apart from a changed prompt. If the
+# gate's wording moves in pipeline.py, this moves with it instead of silently ceasing to match.
+REPAIR_MARKER = LINT_REPAIR_ADDENDUM.strip().splitlines()[0]
 
 
 def handoff_dir(repo: Path) -> Path:
@@ -98,9 +103,37 @@ def response_generator(repo: Path):
         raise GenerationError(
             f"no handoff manifest at {out} — run `isidore handoff emit` first") from exc
 
+    def _lookup(prompt: str) -> str | None:
+        """The emitted prompt this call is asking about, if any.
+
+        Exact hash first. Failing that, the lint gate's repair round: it appends its correction
+        addendum to the ORIGINAL prompt and calls again, so the text no longer hashes to anything.
+        There is nobody to ask for a repair here — the answer was written before `apply` ran — so
+        the same answer is served back, the gate re-lints it, and the page lands in quarantine with
+        its bad citation annotated. Aborting instead would blame the repository for changing and
+        take every other page down with it.
+
+        The tail must be the repair addendum and nothing else. A bare prefix match would be a hole:
+        facts appended to a page's context produce a longer prompt that still STARTS with the one
+        that was answered, and a stale answer would be certified by the very check meant to catch it.
+        """
+        name = manifest.get(prompt_id(prompt))
+        if name is not None:
+            return name
+        for key, candidate in manifest.items():
+            original = out / f"{candidate}{PROMPT_SUFFIX}"
+            try:
+                text = original.read_text(encoding="utf-8")
+            except OSError:
+                continue
+            if prompt_id(text) != key or not prompt.startswith(text):
+                continue
+            if prompt[len(text):].lstrip().startswith(REPAIR_MARKER):
+                return candidate
+        return None
+
     def _generate(prompt: str) -> str:
-        key = prompt_id(prompt)
-        name = manifest.get(key)
+        name = _lookup(prompt)
         if name is None:
             # The prompt changed since emit: the facts moved under the answer. Refusing beats
             # certifying prose written against a repository that no longer looks like this.

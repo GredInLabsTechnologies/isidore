@@ -1,4 +1,4 @@
-# isidore wiki index · commit fb2e3e9792b7fbffea1dcf2d24bd9764aae1dcdd
+# isidore wiki index · commit f92c64149ed85261aab4389441ceab868b67e5e6
 # same catalog as quickstart.md, in TOON tables (cheap for agents to load)
 modules[40]{module,files,symbols,page}:
   src/isidore/connectors,9,67,src-isidore-connectors.md
@@ -12,6 +12,7 @@ modules[40]{module,files,symbols,page}:
   tests/test_units.py,1,24,tests-test_units_py.md
   src/isidore/pipeline.py,1,24,src-isidore-pipeline_py.md
   tests/test_connect_cli.py,1,23,tests-test_connect_cli_py.md
+  tests/test_handoff.py,1,23,tests-test_handoff_py.md
   src/isidore/graph.py,1,21,src-isidore-graph_py.md
   tests/test_recertify.py,1,19,tests-test_recertify_py.md
   tests/test_overview.py,1,18,tests-test_overview_py.md
@@ -40,7 +41,6 @@ modules[40]{module,files,symbols,page}:
   tests/fixtures/pcp,8,9,tests-fixtures-pcp.md
   src/isidore/connect.py,1,9,src-isidore-connect_py.md
   src/isidore/handoff.py,1,9,src-isidore-handoff_py.md
-  src/isidore/home.py,1,9,src-isidore-home_py.md
 flows[0]{flow,modules,page}:
 hot_symbols[240]{module,symbol,file,line,degree}:
   src/isidore/connectors,store.py,src/isidore/connectors/store.py,1,17
@@ -109,6 +109,12 @@ hot_symbols[240]{module,symbol,file,line,degree}:
   tests/test_connect_cli.py,isolated_home(),tests/test_connect_cli.py,36-L38,0
   tests/test_connect_cli.py,test_a_json_shaped_value_keeps_its_type(),tests/test_connect_cli.py,43-L48,0
   tests/test_connect_cli.py,test_a_setting_without_an_equals_is_rejected(),tests/test_connect_cli.py,51-L53,0
+  tests/test_handoff.py,test_handoff.py,tests/test_handoff.py,1,22
+  tests/test_handoff.py,_Args,tests/test_handoff.py,33-L39,0
+  tests/test_handoff.py,_make_repo(),tests/test_handoff.py,42-L59,0
+  tests/test_handoff.py,repo(),tests/test_handoff.py,63-L67,0
+  tests/test_handoff.py,_answer_all(),tests/test_handoff.py,70-L78,0
+  tests/test_handoff.py,test_emit_writes_one_prompt_per_dirty_page_and_calls_nothing(),tests/test_handoff.py,83-L92,0
   src/isidore/graph.py,graph.py,src/isidore/graph.py,1,21
   src/isidore/graph.py,GraphError,src/isidore/graph.py,42-L43,0
   src/isidore/graph.py,load_graph(),src/isidore/graph.py,46-L58,0
@@ -272,17 +278,11 @@ hot_symbols[240]{module,symbol,file,line,degree}:
   src/isidore/connect.py,apply_settings(),src/isidore/connect.py,60-L84,0
   src/isidore/connect.py,connector_summary(),src/isidore/connect.py,87-L102,0
   src/isidore/handoff.py,handoff.py,src/isidore/handoff.py,1,11
-  src/isidore/handoff.py,handoff_dir(),src/isidore/handoff.py,46-L47,0
-  src/isidore/handoff.py,prompt_id(),src/isidore/handoff.py,50-L53,0
-  src/isidore/handoff.py,_plan(),src/isidore/handoff.py,56-L69,0
-  src/isidore/handoff.py,emit(),src/isidore/handoff.py,72-L89,0
-  src/isidore/handoff.py,response_generator(),src/isidore/handoff.py,92-L118,0
-  src/isidore/home.py,home.py,src/isidore/home.py,1,8
-  src/isidore/home.py,home(),src/isidore/home.py,13-L16,0
-  src/isidore/home.py,connector_dir(),src/isidore/home.py,19-L21,0
-  src/isidore/home.py,raw_dir(),src/isidore/home.py,24-L25,0
-  src/isidore/home.py,config_path(),src/isidore/home.py,28-L29,0
-  src/isidore/home.py,state_path(),src/isidore/home.py,32-L33,0
+  src/isidore/handoff.py,handoff_dir(),src/isidore/handoff.py,51-L52,0
+  src/isidore/handoff.py,prompt_id(),src/isidore/handoff.py,55-L58,0
+  src/isidore/handoff.py,_plan(),src/isidore/handoff.py,61-L74,0
+  src/isidore/handoff.py,emit(),src/isidore/handoff.py,77-L94,0
+  src/isidore/handoff.py,response_generator(),src/isidore/handoff.py,97-L151,0
 module_deps[44]{from,to,links}:
   src/isidore/connectors,src/isidore/home.py,2
   src/isidore/connectors,src/isidore/claims.py,1

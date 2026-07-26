@@ -2,57 +2,87 @@
   "child_cert_hashes": {},
   "claims": [
     {
+      "detail": "prompt_id calls sha256",
+      "ehash": "6822630b5132",
+      "evidence": "src/isidore/handoff.py:58",
+      "id": "c-6d704832",
+      "oracle": "ast",
+      "predicate": "calls:prompt_id;sha256",
+      "statement": "prompt_id derives a prompt's pairing key from its SHA-256 digest",
+      "verdict": "TRUE"
+    },
+    {
+      "detail": "prompt_id(prompt)",
+      "ehash": "22c05a4f0235",
+      "evidence": "src/isidore/handoff.py:55",
+      "id": "c-922e9f53",
+      "oracle": "ast",
+      "predicate": "signature:prompt_id;prompt",
+      "statement": "prompt_id takes the prompt text as its only parameter",
+      "verdict": "TRUE"
+    },
+    {
       "detail": "src/isidore/handoff.py defines emit",
       "ehash": "27ca25fe9c12",
-      "evidence": "src/isidore/handoff.py:72",
-      "id": "c-5e669126",
+      "evidence": "src/isidore/handoff.py:77",
+      "id": "c-723ad279",
       "oracle": "graph",
       "predicate": "defines:src/isidore/handoff.py;emit",
-      "statement": "The module writes one prompt file per dirty page and a manifest.",
+      "statement": "handoff.py defines emit, which writes one prompt file per dirty page",
       "verdict": "TRUE"
     },
     {
-      "detail": "src/isidore/handoff.py defines prompt_id",
-      "ehash": "22c05a4f0235",
-      "evidence": "src/isidore/handoff.py:50",
-      "id": "c-bd78cb4f",
+      "detail": "src/isidore/handoff.py imports src/isidore/pipeline.py",
+      "ehash": "2dcf74273b0e",
+      "evidence": "src/isidore/handoff.py:28",
+      "id": "c-2d05a25b",
       "oracle": "graph",
-      "predicate": "defines:src/isidore/handoff.py;prompt_id",
-      "statement": "Responses are paired to pages by a content hash of the prompt.",
+      "predicate": "imports:src/isidore/handoff.py;src/isidore/pipeline.py",
+      "statement": "handoff.py imports the compiler pipeline it delegates to",
       "verdict": "TRUE"
     },
     {
-      "detail": "src/isidore/handoff.py defines response_generator",
-      "ehash": "eb5f453e5823",
-      "evidence": "src/isidore/handoff.py:92",
-      "id": "c-8e22cdba",
-      "oracle": "graph",
-      "predicate": "defines:src/isidore/handoff.py;response_generator",
-      "statement": "The generator that answers from disk is built by response_generator.",
-      "verdict": "TRUE"
+      "detail": "no predicate (existence-anchored only)",
+      "ehash": "ae4b571d6959",
+      "evidence": "src/isidore/handoff.py:66",
+      "id": "c-e095926b",
+      "oracle": "none",
+      "predicate": "",
+      "statement": "_plan asks the pipeline for a dry run, so planning a round reaches no model",
+      "verdict": "UNDECIDABLE"
     },
     {
-      "detail": "src/isidore/handoff.py defines handoff_dir",
-      "ehash": "a598e90046cf",
-      "evidence": "src/isidore/handoff.py:46",
-      "id": "c-a7a743d6",
-      "oracle": "graph",
-      "predicate": "defines:src/isidore/handoff.py;handoff_dir",
-      "statement": "Both halves resolve the handoff location through a single function.",
-      "verdict": "TRUE"
+      "detail": "no predicate (existence-anchored only)",
+      "ehash": "37f084a5f203",
+      "evidence": "src/isidore/handoff.py:70",
+      "id": "c-ef1b0332",
+      "oracle": "none",
+      "predicate": "",
+      "statement": "_plan plans every dirty page uncapped, leaving the cap to whoever answers",
+      "verdict": "UNDECIDABLE"
     },
     {
-      "detail": "src/isidore/handoff.py defines _plan",
-      "ehash": "670ad485be41",
-      "evidence": "src/isidore/handoff.py:56",
-      "id": "c-f7a26efa",
-      "oracle": "graph",
-      "predicate": "defines:src/isidore/handoff.py;_plan",
-      "statement": "The plan is produced by a dry run of the compiler.",
-      "verdict": "TRUE"
+      "detail": "no predicate (existence-anchored only)",
+      "ehash": "15b1bbefe28a",
+      "evidence": "src/isidore/handoff.py:86",
+      "id": "c-feb6cb44",
+      "oracle": "none",
+      "predicate": "",
+      "statement": "emit clears the previous round's prompts and responses before writing a new one",
+      "verdict": "UNDECIDABLE"
+    },
+    {
+      "detail": "no predicate (existence-anchored only)",
+      "ehash": "3987b3a1e84c",
+      "evidence": "src/isidore/handoff.py:48",
+      "id": "c-b3e357ec",
+      "oracle": "none",
+      "predicate": "",
+      "statement": "REPAIR_MARKER is derived from the lint gate's addendum instead of being retyped",
+      "verdict": "UNDECIDABLE"
     }
   ],
-  "graph_commit": "fb2e3e9792b7fbffea1dcf2d24bd9764aae1dcdd",
+  "graph_commit": "f92c64149ed85261aab4389441ceab868b67e5e6",
   "marks": [
     {
       "disposition": "",
@@ -64,12 +94,12 @@
     }
   ],
   "mass": {
-    "gray": 27,
-    "green": 38,
-    "yellow": 0
+    "gray": 53,
+    "green": 11,
+    "yellow": 2
   },
   "page": "src-isidore-handoff_py.md",
-  "prose_sha256": "c68bc355ecb15cef1bf50e8881e8234b461d927e0000c9422ee93b6514264482",
+  "prose_sha256": "3f8913683c0d96239e6d8ecc6d06f6d669a39db8ea1b9cef06c67426fec27c21",
   "version": "pcp-1",
   "violations": []
 }

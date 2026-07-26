@@ -20,8 +20,8 @@
     "semantic_hash": ""
   },
   "src/isidore/cli.py": {
-    "mtime": 1785089644.9707263,
-    "ast_hash": "963e0196c6b1b5375ed51c7e05a92863",
+    "mtime": 1785106919.4605608,
+    "ast_hash": "c28192325b9b3b5573b2be7cad7ea9f1",
     "semantic_hash": ""
   },
   "src/isidore/connectors/__init__.py": {
@@ -105,9 +105,9 @@
     "semantic_hash": "26401eb2889d7ae989e236fead93f20e"
   },
   "src/isidore/llm.py": {
-    "mtime": 1783589423.1607904,
-    "ast_hash": "e04ba4908cd7b605ae36b7a9f4e984f0",
-    "semantic_hash": "e04ba4908cd7b605ae36b7a9f4e984f0"
+    "mtime": 1785106545.973387,
+    "ast_hash": "44c0db13aa1527b348ecb55c98638e09",
+    "semantic_hash": ""
   },
   "src/isidore/pcp.py": {
     "mtime": 1785030106.2061963,
@@ -115,8 +115,8 @@
     "semantic_hash": ""
   },
   "src/isidore/pipeline.py": {
-    "mtime": 1785090699.178434,
-    "ast_hash": "53addc3e3313bffc0c33d7e348e44ed3",
+    "mtime": 1785106871.3296914,
+    "ast_hash": "c2ab4a7b39322c7ca36c11f87ee64ae0",
     "semantic_hash": ""
   },
   "src/isidore/pyramid.py": {
@@ -145,8 +145,8 @@
     "semantic_hash": "4b23f65b30ef457e4f4d90ed192c621d"
   },
   "src/isidore/verify.py": {
-    "mtime": 1785031558.0133235,
-    "ast_hash": "a48915a3d2cc2f798fa4083f6d85d696",
+    "mtime": 1785108716.0943341,
+    "ast_hash": "f2d35c555d6fec87aa8e7afb79e11ac4",
     "semantic_hash": ""
   },
   "tests/fixtures/pcp/contracts.json": {
@@ -285,13 +285,13 @@
     "semantic_hash": "fa6b6946a9320e92bfec24a455d1a91d"
   },
   "tests/test_verify.py": {
-    "mtime": 1783893916.3100133,
-    "ast_hash": "0ddf51f6765c8c57d129e712a379b8d2",
-    "semantic_hash": "0ddf51f6765c8c57d129e712a379b8d2"
+    "mtime": 1785108736.9572785,
+    "ast_hash": "a45bc4bff719ad81cbffcee84e13cb6b",
+    "semantic_hash": ""
   },
   "wiki/.isidore-state.json": {
-    "mtime": 1785090413.0400746,
-    "ast_hash": "6305d8a087549eba662ba2b3b88ae074",
+    "mtime": 1785108619.5453346,
+    "ast_hash": "6e3df8183c1add85032b2d89219f36b8",
     "semantic_hash": ""
   },
   "wiki/src-isidore.md.cert.json": {
@@ -365,8 +365,8 @@
     "semantic_hash": "b92ed42051c0476f23ed2bbfc869e6c4"
   },
   "wiki/quickstart.md": {
-    "mtime": 1785090408.7334683,
-    "ast_hash": "4b3173d623044abdac721ae931f6132c",
+    "mtime": 1785108616.6964135,
+    "ast_hash": "3dded16d5d8e87e49821de4cb619f6e1",
     "semantic_hash": ""
   },
   "wiki/tests-test_claims_py.md": {
@@ -545,13 +545,13 @@
     "semantic_hash": ""
   },
   "wiki/src-isidore-graph_py.md.cert.json": {
-    "mtime": 1785027628.7227924,
-    "ast_hash": "9096d25e9b92c4d4b21e7b7695ac151a",
+    "mtime": 1785091314.90522,
+    "ast_hash": "c7c7c3bcacb8235d38c6a668f72f0349",
     "semantic_hash": ""
   },
   "wiki/src-isidore-home_py.md.cert.json": {
-    "mtime": 1785090380.1967459,
-    "ast_hash": "4db5763b80e235884e192bbe17fc261c",
+    "mtime": 1785108750.7327473,
+    "ast_hash": "34a21cc3ff2975f32b8509a43aac33f6",
     "semantic_hash": ""
   },
   "wiki/src-isidore-humanpack_py.md.cert.json": {
@@ -560,8 +560,8 @@
     "semantic_hash": ""
   },
   "wiki/src-isidore-knowledge_py.md.cert.json": {
-    "mtime": 1785090397.3616078,
-    "ast_hash": "35838b60082e63a1e35370794232281c",
+    "mtime": 1785091332.662468,
+    "ast_hash": "44ccdc140c4b8ce6e6c4b5147620956f",
     "semantic_hash": ""
   },
   "wiki/src-isidore-langspec_py.md.cert.json": {
@@ -575,8 +575,8 @@
     "semantic_hash": ""
   },
   "wiki/src-isidore-pipeline_py.md.cert.json": {
-    "mtime": 1785090374.4842548,
-    "ast_hash": "8d40ca15db80e8109ee076ba69caf4f3",
+    "mtime": 1785091321.5761416,
+    "ast_hash": "1485c13b289aefce4fa558936877f10c",
     "semantic_hash": ""
   },
   "wiki/src-isidore-pyramid_py.md.cert.json": {
@@ -700,8 +700,8 @@
     "semantic_hash": ""
   },
   "wiki/src-isidore-graph_py.md": {
-    "mtime": 1785027628.6707418,
-    "ast_hash": "b2cd3a3c61cb9f7b691bbe25809a80fe",
+    "mtime": 1785091314.885543,
+    "ast_hash": "a84f7e9e22c29722c53a05964f833955",
     "semantic_hash": ""
   },
   "wiki/src-isidore-home_py.md": {
@@ -715,8 +715,8 @@
     "semantic_hash": ""
   },
   "wiki/src-isidore-knowledge_py.md": {
-    "mtime": 1785090397.3616078,
-    "ast_hash": "07830786bcfd072733af9933c1c0e09d",
+    "mtime": 1785091332.662468,
+    "ast_hash": "a088276adb3d2664268056749ebe60c1",
     "semantic_hash": ""
   },
   "wiki/src-isidore-langspec_py.md": {
@@ -730,8 +730,8 @@
     "semantic_hash": ""
   },
   "wiki/src-isidore-pipeline_py.md": {
-    "mtime": 1785090374.133999,
-    "ast_hash": "5a7a39b8f12d66e129f959af92234669",
+    "mtime": 1785091321.5523813,
+    "ast_hash": "5907748ff20258d54b740ab8c81a00f8",
     "semantic_hash": ""
   },
   "wiki/src-isidore-pyramid_py.md": {
@@ -830,8 +830,8 @@
     "semantic_hash": ""
   },
   "llms.txt": {
-    "mtime": 1785082166.5670013,
-    "ast_hash": "52dbe45b4970349b8649d5a6ad225faa",
+    "mtime": 1785108893.84226,
+    "ast_hash": "17c37f4b5ad0f9d9a66f9f6900385b58",
     "semantic_hash": ""
   },
   "tests/test_langspec_oracle.py": {
@@ -1017,6 +1017,56 @@
   "wiki/tests-test_hostile_f6_py.md": {
     "mtime": 1785090408.7314615,
     "ast_hash": "2ea0ef9baaf26efb4132c6730ef77016",
+    "semantic_hash": ""
+  },
+  "src/isidore/handoff.py": {
+    "mtime": 1785108240.4414601,
+    "ast_hash": "e817bb347c820fd8373d45d504d5583c",
+    "semantic_hash": ""
+  },
+  "tests/test_handoff.py": {
+    "mtime": 1785108284.3493786,
+    "ast_hash": "aa4360ae4d1d0717efc646783173b57f",
+    "semantic_hash": ""
+  },
+  "wiki/src-isidore-handoff_py.md.cert.json": {
+    "mtime": 1785108616.6781597,
+    "ast_hash": "4de71f1043a55bb552dd32e5a3757d1c",
+    "semantic_hash": ""
+  },
+  "wiki/tests-test_classification_gate_py.md.cert.json": {
+    "mtime": 1785091336.8750505,
+    "ast_hash": "0a97e95016bdb49f280233ca576e419d",
+    "semantic_hash": ""
+  },
+  "wiki/tests-test_handoff_py.md.cert.json": {
+    "mtime": 1785108755.4601004,
+    "ast_hash": "6696f056bfee4d9e1b1a73bb7ef1835f",
+    "semantic_hash": ""
+  },
+  "wiki/tests-test_wiki_not_input_py.md.cert.json": {
+    "mtime": 1785091341.2345266,
+    "ast_hash": "88380c5d5de82e2c53426c0c838300ef",
+    "semantic_hash": ""
+  },
+  "wiki/src-isidore-handoff_py.md": {
+    "mtime": 1785108616.6716492,
+    "ast_hash": "56b9ab1406937035ba2c6f620fa14574",
+    "semantic_hash": ""
+  },
+  "wiki/tests-test_classification_gate_py.md": {
+    "mtime": 1785091336.8523622,
+    "ast_hash": "891c43d53f03496303a35d7f1db32a72",
+    "semantic_hash": ""
+  },
+  "wiki/tests-test_handoff_py.md": {
+    "mtime": 1785108616.68587,
+    "ast_hash": "cdea19132e9335a190c34e3f10d97acd",
+    "semantic_hash": ""
+  },
+  "wiki/tests-test_wiki_not_input_py.md": {
+    "mtime": 1785091340.848933,
+    "ast_hash": "ad00448bb24ae403a530dfdfef341652",
     "semantic_hash": ""
   }
 }

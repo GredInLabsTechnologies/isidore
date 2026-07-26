@@ -1,66 +1,64 @@
 ## Purpose
 
-`src/isidore/handoff.py:1` exists to answer a question every other provider answers badly: whose
-machine does your source code end up on. A hosted endpoint means someone else's, and a free hosted
-endpoint usually means someone else's training set. This module removes the question instead of
-managing it — the caller becomes the model, so the prompt never leaves the machine that already has
-the code open.
+`src/isidore/handoff.py` answers one question the rest of the compiler cannot: *whose machine does
+your source code end up on?* Every hosted provider is an answer you may not like, and a free hosted
+provider is usually the worst one — the module's own header records the measurement that motivated it,
+87 prompts of private source sent to a free tier that trains by default (`src/isidore/handoff.py:5`).
 
-The trade it makes explicit: prose written here gets **no more trust** for having been written
-locally. It re-enters through the ordinary pipeline and faces the same claim parsing, the same
-quarantine and the same certificate as any provider's reply.
+The module removes the question instead of managing it. `emit` writes the exact prompts to disk and
+calls nothing; whoever is already reading the repository writes the answers next to them; `apply`
+feeds those answers back through the ordinary pipeline (`src/isidore/handoff.py:7`). The prose earns
+no privilege for having been written locally: it goes through the same claim parsing, quarantine,
+certificate and verification as any provider's reply (`src/isidore/handoff.py:9`).
 
 ## Architecture
 
-Two halves that never run at once, joined by a directory.
+Three small pieces sit between the caller and `compile_wiki`.
 
-**Emit** plans the compile with `execute=False` and writes what the run *would* have sent.
-`_plan()` at `src/isidore/handoff.py:56` is that dry run; `emit()` at `src/isidore/handoff.py:72`
-writes one prompt file per dirty page and a manifest. `handoff_dir()` at
-`src/isidore/handoff.py:46` is the single place the location is decided, so the two halves cannot
-disagree about where to look.
+`_plan` is the dry run. It calls `compile_wiki` with `execute=False`, so working out which pages are
+dirty and what each would ask never reaches a model (`src/isidore/handoff.py:66`). It also passes
+`max_calls=0` deliberately: a call cap exists to bound spend, and there is no spend here, so the cap
+belongs to whoever answers rather than to the planner (`src/isidore/handoff.py:70`).
 
-**Apply** replaces the network with the filesystem. `response_generator()` at
-`src/isidore/handoff.py:92` returns a callable with the same shape the pipeline expects from any
-provider, so nothing downstream needs to know the answers came from disk.
+`emit` turns that plan into files. Before writing a round it deletes the previous prompts *and*
+responses, so a page that is no longer dirty cannot leave an answerable prompt behind for the next
+`apply` to certify (`src/isidore/handoff.py:86`). Each prompt is written out and recorded in a
+manifest keyed by `prompt_id` — the pairing is by content, never by filename order
+(`src/isidore/handoff.py:92`).
 
-The pairing between the two is a **content hash of the prompt**, not a filename and not call order.
-`prompt_id()` at `src/isidore/handoff.py:50` computes it. That choice is what makes a stale answer
-detectable: if the repository moved between emit and apply, the prompt changes, its hash changes, and
-the answer written against the old facts no longer matches anything.
+`response_generator` is the seam that makes the whole thing safe. It reads the manifest, failing
+closed with an instruction to run `emit` first if it cannot (`src/isidore/handoff.py:104`), and
+returns a function shaped exactly like a provider call. Its `_lookup` tries the exact prompt hash
+first (`src/isidore/handoff.py:120`). The fallback exists because the lint gate appends a correction
+addendum to the original prompt and asks again — a round nobody can answer here, since the answer was
+written before `apply` ran. Serving the same answer lets the gate re-lint it and quarantine the page
+with its bad citation annotated, instead of aborting and taking every other page down
+(`src/isidore/handoff.py:111`). The tail is required to be that addendum and nothing else: a bare
+prefix match would silently certify a stale answer whenever new facts were appended to a page's
+context (`src/isidore/handoff.py:116`).
 
 ## Key entry points
 
-- `emit()` — `src/isidore/handoff.py:72`. Writes the prompts and the manifest. Also clears prompts
-  and responses left by a previous run, so a page that is no longer dirty cannot leave an answerable
-  prompt behind for the next apply to pick up.
-- `response_generator()` — `src/isidore/handoff.py:92`. The generator handed to the pipeline. It
-  raises rather than improvises: no manifest, an unknown prompt, a missing answer and an empty answer
-  are four distinct refusals.
-- `prompt_id()` — `src/isidore/handoff.py:50`. The pairing key.
-- `handoff_dir()` — `src/isidore/handoff.py:46`. Where both halves meet.
+- `handoff_dir(repo)` — where a round lives, under the wiki directory (`src/isidore/handoff.py:51`).
+- `prompt_id(prompt)` — the pairing key, a truncated SHA-256 of the prompt text
+  (`src/isidore/handoff.py:58`).
+- `emit(repo, config, args)` — one prompt file per dirty page, plus the manifest
+  (`src/isidore/handoff.py:77`).
+- `response_generator(repo)` — a generator that answers from disk (`src/isidore/handoff.py:97`).
 
 ## Dependencies
 
-Three, all internal: `src/isidore/pipeline.py` for the compile itself, `src/isidore/graph.py` for
-locating the structure graph, and `src/isidore/llm.py` for `GenerationError` — the module reports a
-missing or mismatched answer with the same error type a failing provider would raise, so callers
-handle one failure mode rather than two.
-
-Nothing depends on this module, which is what a leaf that adds an entry point should look like.
+`src/isidore/pipeline.py` supplies `compile_wiki`, the defaults, `WIKI_DIRNAME` and the lint gate's
+addendum (`src/isidore/handoff.py:28`). `REPAIR_MARKER` is derived from that addendum rather than
+retyped, so a change to the gate's wording moves the marker with it instead of quietly ceasing to
+match (`src/isidore/handoff.py:48`). `src/isidore/graph.py` resolves the structure graph and
+`src/isidore/llm.py` supplies `GenerationError`, the one failure type the loop speaks
+(`src/isidore/handoff.py:26`).
 
 ## How to change safely
 
-The load-bearing decision is the hash pairing at `src/isidore/handoff.py:50`. Anything that makes an
-answer resolvable without matching the exact prompt it was written for — pairing by filename, by
-position, by page name alone — reintroduces the failure this design exists to prevent: certifying
-prose against facts that have since changed. Certificates would still be produced and would still
-verify, because the pipeline has no way to know the answer describes an older repository.
-
-The cleanup in `emit()` at `src/isidore/handoff.py:72` is the other one. It looks like housekeeping
-and is not: a leftover prompt is an answerable prompt, and an answered leftover becomes a published
-page nobody planned.
-
-If you extend this to more page kinds, extend `_plan()` at `src/isidore/handoff.py:56` rather than
-duplicating the compile call — the point of routing through the real planner is that emit and a
-normal compile can never disagree about which pages are dirty.
+Treat `prompt_id` as a wire format: it is what a written answer is bound to, so changing how it is
+computed invalidates every unanswered round on disk (`src/isidore/handoff.py:58`). Keep refusals
+loud — the module's stance is that refusing beats certifying prose written against a repository that
+has moved. And keep `_lookup`'s tail check exact; loosening it is the difference between tolerating a
+repair round and accepting a stale answer.

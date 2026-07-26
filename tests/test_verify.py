@@ -129,3 +129,25 @@ def test_verify_page_tamper_evidence(tmp_path):
     page.write_text(md + "\n\nThis line was injected after compile.\n", encoding="utf-8")
     ok2, _c2 = verify_page(tmp_path, page)
     assert ok2 is False
+
+
+def test_a_homonym_in_another_file_does_not_refute_a_true_signature(tmp_path):
+    """A predicate names a function, not a file, and helpers repeat across test modules. Deciding on
+    the first candidate refuted `signature:_make_repo;tmp_path;n_modules` against test_handoff.py
+    because test_pipeline.py declares a third parameter — a false refutation, which is worse than no
+    verdict: it records a true statement as contradicted by the code."""
+    for rel, params in (("a/helpers.py", "tmp_path, n_modules=3, extra=1"),
+                        ("b/helpers.py", "tmp_path, n_modules=3")):
+        (tmp_path / rel).parent.mkdir(parents=True, exist_ok=True)
+        (tmp_path / rel).write_text(f"def _make_repo({params}):\n    return 1\n", encoding="utf-8")
+    nodes = [{"id": rel, "source_file": rel, "file_type": "code", "label": "_make_repo()",
+              "source_location": "L1"} for rel in ("a/helpers.py", "b/helpers.py")]
+    ctx = VerifyContext(repo=tmp_path, nodes=nodes, links=[], commit="deadbee")
+
+    good = verify_predicate(parse_predicate_field("signature:_make_repo;tmp_path;n_modules"), ctx)
+    assert good.value == TRUE, good.detail
+
+    # exhaustion still refutes: no candidate has those params, and the verdict names what was found
+    bad = verify_predicate(parse_predicate_field("signature:_make_repo;request"), ctx)
+    assert bad.value == FALSE
+    assert "a/helpers.py" in bad.detail and "b/helpers.py" in bad.detail

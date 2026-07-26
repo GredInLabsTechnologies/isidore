@@ -1,8 +1,8 @@
-# isidore claims · commit fb2e3e9792b7fbffea1dcf2d24bd9764aae1dcdd
+# isidore claims · commit f92c64149ed85261aab4389441ceab868b67e5e6
 # each claim is anchored to its evidence by a content hash; state is re-checked
 # mechanically on every compile (zero LLM calls). stale/orphan => page regenerates.
-# summary: 307 claims, 0 stale/orphan
-claims[307]{page,id,statement,evidence,state}:
+# summary: 316 claims, 0 stale/orphan
+claims[316]{page,id,statement,evidence,state}:
   src-isidore-changeset_py.md,c-1ea2e1cc,The module processes git diffs to identify changed lines,src/isidore/changeset.py:36,ok
   src-isidore-changeset_py.md,c-90be0b37,changed_lines() maps files to sets of changed line numbers,src/isidore/changeset.py:36,ok
   src-isidore-changeset_py.md,c-6b86763d,symbol_spans() converts graph nodes to line ranges,src/isidore/changeset.py:68,ok
@@ -55,11 +55,14 @@ claims[307]{page,id,statement,evidence,state}:
   src-isidore-graph_py.md,c-a496259d,Git-ignored files are excluded from scanning,src/isidore/graph.py:94,ok
   src-isidore-graph_py.md,c-6b9deb15,Files are grouped into modules by directory structure,src/isidore/graph.py:84,ok
   src-isidore-graph_py.md,c-623faedc,The scanner uses Python's ast module for Python files,src/isidore/graph.py:17,ok
-  src-isidore-handoff_py.md,c-5e669126,The module writes one prompt file per dirty page and a manifest.,src/isidore/handoff.py:72,ok
-  src-isidore-handoff_py.md,c-bd78cb4f,Responses are paired to pages by a content hash of the prompt.,src/isidore/handoff.py:50,ok
-  src-isidore-handoff_py.md,c-8e22cdba,The generator that answers from disk is built by response_generator.,src/isidore/handoff.py:92,ok
-  src-isidore-handoff_py.md,c-a7a743d6,Both halves resolve the handoff location through a single function.,src/isidore/handoff.py:46,ok
-  src-isidore-handoff_py.md,c-f7a26efa,The plan is produced by a dry run of the compiler.,src/isidore/handoff.py:56,ok
+  src-isidore-handoff_py.md,c-6d704832,prompt_id derives a prompt's pairing key from its SHA-256 digest,src/isidore/handoff.py:58,ok
+  src-isidore-handoff_py.md,c-922e9f53,prompt_id takes the prompt text as its only parameter,src/isidore/handoff.py:55,ok
+  src-isidore-handoff_py.md,c-723ad279,"handoff.py defines emit, which writes one prompt file per dirty page",src/isidore/handoff.py:77,ok
+  src-isidore-handoff_py.md,c-2d05a25b,handoff.py imports the compiler pipeline it delegates to,src/isidore/handoff.py:28,ok
+  src-isidore-handoff_py.md,c-e095926b,"_plan asks the pipeline for a dry run, so planning a round reaches no model",src/isidore/handoff.py:66,ok
+  src-isidore-handoff_py.md,c-ef1b0332,"_plan plans every dirty page uncapped, leaving the cap to whoever answers",src/isidore/handoff.py:70,ok
+  src-isidore-handoff_py.md,c-feb6cb44,emit clears the previous round's prompts and responses before writing a new one,src/isidore/handoff.py:86,ok
+  src-isidore-handoff_py.md,c-b3e357ec,REPAIR_MARKER is derived from the lint gate's addendum instead of being retyped,src/isidore/handoff.py:48,ok
   src-isidore-home_py.md,c-348916ba,The module defines the base knowledge home directory as `~/.isidore` or `$ISIDORE_HOME`,src/isidore/home.py:13,ok
   src-isidore-home_py.md,c-839d2ad8,The `connector_dir()` function constructs paths under `~/.isidore/connectors/<cid>`,src/isidore/home.py:19,ok
   src-isidore-home_py.md,c-aa9e20cc,The `raw_dir()` function appends `/raw/<run_id>` to a connector's directory,src/isidore/home.py:24,ok
@@ -185,6 +188,12 @@ claims[307]{page,id,statement,evidence,state}:
   tests-test_detectors_py.md,c-7a6a0657,The detector output is deterministic,tests/test_detectors.py:38,ok
   tests-test_detectors_py.md,c-577b78b3,The system handles missing files gracefully,tests/test_detectors.py:45,ok
   tests-test_detectors_py.md,c-3ebfecaa,The entropy function returns 0.0 for empty strings,tests/test_detectors.py:49,ok
+  tests-test_handoff_py.md,c-a28813ea,the fixture deletes the provider environment before every test,tests/test_handoff.py:65,ok
+  tests-test_handoff_py.md,c-72f61900,_answer_all writes one response per emitted prompt and returns the pages answered,tests/test_handoff.py:70,ok
+  tests-test_handoff_py.md,c-40ac4043,the suite defines _answer_all to stand in for the model,tests/test_handoff.py:70,ok
+  tests-test_handoff_py.md,c-0a4f833c,_answer_all derives each page name by stripping the prompt suffix from the filename,tests/test_handoff.py:75,ok
+  tests-test_handoff_py.md,c-5f070dc2,the tests import REPAIR_MARKER from the module instead of retyping the gate's wording,tests/test_handoff.py:20,ok
+  tests-test_handoff_py.md,c-dd7ab8ed,GenerationError is the failure type the suite expects from the loop,tests/test_handoff.py:28,ok
   tests-test_hostile_f6_py.md,c-b502a72c,The module tests the knowledge home's resilience to corrupted data,tests/test_hostile_f6.py:1,ok
   tests-test_hostile_f6_py.md,c-32c9b7eb,The `home` fixture sets up a temporary environment for testing,tests/test_hostile_f6.py:30,ok
   tests-test_hostile_f6_py.md,c-c2ab3e49,The `_store` function writes test items to the knowledge home and records the run,tests/test_hostile_f6.py:35,ok

@@ -1,6 +1,6 @@
 # Wiki (isidore)
 
-Compiled from the repository structure graph at commit `fb2e3e9792b7fbffea1dcf2d24bd9764aae1dcdd`.
+Compiled from the repository structure graph at commit `f92c64149ed85261aab4389441ceab868b67e5e6`.
 Pages are generated from exact structural facts; cited `path:line` references are
 mechanically lint-checked against the repository.
 
@@ -23,6 +23,7 @@ Side observations harvested during compilation live in [findings.toon](findings.
 | tests/test_units.py | 1 | 24 | [tests-test_units_py.md](tests-test_units_py.md) |
 | src/isidore/pipeline.py | 1 | 24 | [src-isidore-pipeline_py.md](src-isidore-pipeline_py.md) |
 | tests/test_connect_cli.py | 1 | 23 | [tests-test_connect_cli_py.md](tests-test_connect_cli_py.md) |
+| tests/test_handoff.py | 1 | 23 | [tests-test_handoff_py.md](tests-test_handoff_py.md) |
 | src/isidore/graph.py | 1 | 21 | [src-isidore-graph_py.md](src-isidore-graph_py.md) |
 | tests/test_recertify.py | 1 | 19 | [tests-test_recertify_py.md](tests-test_recertify_py.md) |
 | tests/test_overview.py | 1 | 18 | [tests-test_overview_py.md](tests-test_overview_py.md) |
@@ -51,4 +52,3 @@ Side observations harvested during compilation live in [findings.toon](findings.
 | tests/fixtures/pcp | 8 | 9 | [tests-fixtures-pcp.md](tests-fixtures-pcp.md) |
 | src/isidore/connect.py | 1 | 9 | [src-isidore-connect_py.md](src-isidore-connect_py.md) |
 | src/isidore/handoff.py | 1 | 9 | [src-isidore-handoff_py.md](src-isidore-handoff_py.md) |
-| src/isidore/home.py | 1 | 9 | [src-isidore-home_py.md](src-isidore-home_py.md) |

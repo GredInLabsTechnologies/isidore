@@ -12,14 +12,14 @@
       "verdict": "TRUE"
     },
     {
-      "detail": "home params are (tmp_path, monkeypatch)",
+      "detail": "home()",
       "ehash": "ef20de3efaaf",
       "evidence": "src/isidore/home.py:13",
       "id": "c-74984f74",
       "oracle": "ast",
       "predicate": "signature:home",
       "statement": "The `home()` function returns a `Path` object for the knowledge home directory",
-      "verdict": "FALSE"
+      "verdict": "TRUE"
     },
     {
       "detail": "src/isidore/home.py defines connector_dir",
@@ -92,7 +92,7 @@
       "verdict": "TRUE"
     }
   ],
-  "graph_commit": "d5d1a1f33219a3171cc701884ca77e794db897e2",
+  "graph_commit": "f92c64149ed85261aab4389441ceab868b67e5e6",
   "marks": [],
   "mass": {
     "gray": 8,

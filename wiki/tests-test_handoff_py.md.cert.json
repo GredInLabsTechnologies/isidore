@@ -1,0 +1,86 @@
+{
+  "child_cert_hashes": {},
+  "claims": [
+    {
+      "detail": "repo calls delenv",
+      "ehash": "c1beb0900688",
+      "evidence": "tests/test_handoff.py:65",
+      "id": "c-a28813ea",
+      "oracle": "ast",
+      "predicate": "calls:repo;delenv",
+      "statement": "the fixture deletes the provider environment before every test",
+      "verdict": "TRUE"
+    },
+    {
+      "detail": "_make_repo(tmp_path, n_modules)",
+      "ehash": "d2327ab9445f",
+      "evidence": "tests/test_handoff.py:42",
+      "id": "c-c7da32b6",
+      "oracle": "ast",
+      "predicate": "signature:_make_repo;tmp_path;n_modules",
+      "statement": "_make_repo builds the fixture repository and takes the module count as a parameter",
+      "verdict": "TRUE"
+    },
+    {
+      "detail": "_answer_all(repo, body)",
+      "ehash": "bc51e6b95bec",
+      "evidence": "tests/test_handoff.py:70",
+      "id": "c-72f61900",
+      "oracle": "ast",
+      "predicate": "signature:_answer_all;repo;body",
+      "statement": "_answer_all writes one response per emitted prompt and returns the pages answered",
+      "verdict": "TRUE"
+    },
+    {
+      "detail": "tests/test_handoff.py defines _answer_all",
+      "ehash": "bc51e6b95bec",
+      "evidence": "tests/test_handoff.py:70",
+      "id": "c-40ac4043",
+      "oracle": "graph",
+      "predicate": "defines:tests/test_handoff.py;_answer_all",
+      "statement": "the suite defines _answer_all to stand in for the model",
+      "verdict": "TRUE"
+    },
+    {
+      "detail": "no predicate (existence-anchored only)",
+      "ehash": "e2b765d33ae1",
+      "evidence": "tests/test_handoff.py:75",
+      "id": "c-0a4f833c",
+      "oracle": "none",
+      "predicate": "",
+      "statement": "_answer_all derives each page name by stripping the prompt suffix from the filename",
+      "verdict": "UNDECIDABLE"
+    },
+    {
+      "detail": "no predicate (existence-anchored only)",
+      "ehash": "b05d68b710e7",
+      "evidence": "tests/test_handoff.py:20",
+      "id": "c-5f070dc2",
+      "oracle": "none",
+      "predicate": "",
+      "statement": "the tests import REPAIR_MARKER from the module instead of retyping the gate's wording",
+      "verdict": "UNDECIDABLE"
+    },
+    {
+      "detail": "no predicate (existence-anchored only)",
+      "ehash": "1cc71821b224",
+      "evidence": "tests/test_handoff.py:28",
+      "id": "c-dd7ab8ed",
+      "oracle": "none",
+      "predicate": "",
+      "statement": "GenerationError is the failure type the suite expects from the loop",
+      "verdict": "UNDECIDABLE"
+    }
+  ],
+  "graph_commit": "f92c64149ed85261aab4389441ceab868b67e5e6",
+  "marks": [],
+  "mass": {
+    "gray": 47,
+    "green": 8,
+    "yellow": 3
+  },
+  "page": "tests-test_handoff_py.md",
+  "prose_sha256": "11d92859b2e4baec726b72a01758a894dab9f5fc5ddd4f5821c59f9918f1189b",
+  "version": "pcp-1",
+  "violations": []
+}
