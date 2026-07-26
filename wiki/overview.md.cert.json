@@ -1,0 +1,70 @@
+{
+  "child_cert_hashes": {
+    "tests-test_claims_py.md": "9b9da050c8aafbba2d2c3bd8fbacc1be5baa62b55aef5db8401f58642afc2c2a",
+    "tests-test_verify_py.md": "467c61c602722b07be7ab383dc8ff77e7f67e23ebf60fb52b088e42783b2bccd",
+    "tests-test_whatsnew_py.md": "80c753ec1033afec3830973d45ca488d2ac2d0bc41e8e483a45f354dfc0d5abf"
+  },
+  "claims": [
+    {
+      "detail": "cited claim proved TRUE",
+      "ehash": "9b9da050c8aa",
+      "evidence": "wiki://tests-test_claims_py.md#c-1068b52d",
+      "id": "c-cb5d48bd",
+      "oracle": "wiki",
+      "predicate": "wikichain:wiki://tests-test_claims_py.md#c-1068b52d",
+      "statement": "isidore creates a structured guide to your project by analyzing its structure and content",
+      "verdict": "TRUE"
+    },
+    {
+      "detail": "cited claim proved TRUE",
+      "ehash": "9b9da050c8aa",
+      "evidence": "wiki://tests-test_claims_py.md#c-6f48da29",
+      "id": "c-c2b98906",
+      "oracle": "wiki",
+      "predicate": "wikichain:wiki://tests-test_claims_py.md#c-6f48da29",
+      "statement": "isidore helps people understand what the project does and how it works without needing to read the code",
+      "verdict": "TRUE"
+    },
+    {
+      "detail": "cited claim proved TRUE",
+      "ehash": "467c61c60272",
+      "evidence": "wiki://tests-test_verify_py.md#c-395df6c3",
+      "id": "c-e1dee24e",
+      "oracle": "wiki",
+      "predicate": "wikichain:wiki://tests-test_verify_py.md#c-395df6c3",
+      "statement": "isidore checks every fact in the guide against the actual code to make sure it is accurate",
+      "verdict": "TRUE"
+    },
+    {
+      "detail": "cited claim proved TRUE",
+      "ehash": "80c753ec1033",
+      "evidence": "wiki://tests-test_whatsnew_py.md#c-5666b9f6",
+      "id": "c-813e4385",
+      "oracle": "wiki",
+      "predicate": "wikichain:wiki://tests-test_whatsnew_py.md#c-5666b9f6",
+      "statement": "isidore updates the guide only when the code changes, so it stays accurate",
+      "verdict": "TRUE"
+    },
+    {
+      "detail": "cited claim proved TRUE",
+      "ehash": "467c61c60272",
+      "evidence": "wiki://tests-test_verify_py.md#c-d5c8cfe6",
+      "id": "c-c9b7797a",
+      "oracle": "wiki",
+      "predicate": "wikichain:wiki://tests-test_verify_py.md#c-d5c8cfe6",
+      "statement": "isidore allows you to cite specific parts of the guide to support discussions or decisions",
+      "verdict": "TRUE"
+    }
+  ],
+  "graph_commit": null,
+  "marks": [],
+  "mass": {
+    "gray": 23,
+    "green": 0,
+    "yellow": 0
+  },
+  "page": "overview.md",
+  "prose_sha256": "b64012d0e1e539a3daa6ffc2d611e195f3dbb07e4d6d49f8213f34808adefccc",
+  "version": "pcp-1",
+  "violations": []
+}

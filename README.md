@@ -126,6 +126,36 @@ claims kept in the certificate but never published. Two properties keep it hones
 `--execute` requires `--until` to be HEAD, because claims anchor to the working tree. The artifact
 is a photograph of a range, so it stays out of the staleness loop that governs living pages.
 
+## The product page — documentation for people who will never read the code
+
+Module pages are written for whoever is about to change the code; that is what they are for, and it
+is why a manager, a customer or a new colleague cannot use them. `isidore overview` compiles the one
+page they can:
+
+```bash
+isidore overview                  # 0 LLM: what it would be built from
+isidore overview --execute        # one call, plus at most one plain-language repair
+```
+
+It is built from the claims the module pages already **proved**, and its own sentences cite them as
+`wiki://<page>#<claim-id>`. The verdict comes from the child page's certificate, so the overview
+inherits its truth instead of asserting anything new, and each cited certificate is hashed into
+`child_cert_hashes` — edit a module page and the composition breaks, with no model call needed to
+notice.
+
+Two refusals guard it, and both publish nothing rather than something misleading:
+
+- **It must be readable.** The prose is checked against named plain-language rules (`plain.py`); the
+  model gets one rewrite naming the rules it broke, and if it still writes for engineers the page is
+  refused. Silence beats a "plain" page a non-programmer cannot use.
+- **It must be provable.** A page whose statements cannot be traced to a proven fact is refused —
+  fluent, plausible and unverifiable is exactly the artifact this tool exists to replace.
+
+The gate deliberately carries **no readability score**. [ISO 24495-1:2023](https://www.iso.org/standard/78907.html)
+judges plain language by whether the reader can find, understand and use the document, not by
+mechanical formulas — and the formulas would mislead here: *"the daemon instantiates a mutex"* scores
+as easy, while a longer, genuinely clearer sentence scores as hard.
+
 ## Proof-carrying prose — how to read a certified page
 
 A model writes the prose, but it cannot *hide* a claim that the code contradicts. Each page ships a

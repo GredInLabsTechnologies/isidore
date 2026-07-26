@@ -52,15 +52,5 @@
   "50": "svc.md",
   "51": "Claims (TOON)",
   "52": "Findings (TOON)",
-  "53": "Index (TOON)",
-  "54": "verify_page",
-  "55": "load_state",
-  "56": "render_whatsnew_md",
-  "57": "test_changeset.py",
-  "58": "What's new — `HEAD~2..HEAD`",
-  "59": "harvest_todos",
-  "60": "tests-test_surface_py.md",
-  "61": "tests-test_verify_py.md",
-  "62": "tests-test_whatsnew_py.md",
-  "63": "isidore"
+  "53": "Index (TOON)"
 }

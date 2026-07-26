@@ -42,6 +42,12 @@ JARGON_TERMS = (
     "interfaces", "struct", "callback", "callbacks", "async", "repository", "repositories",
     "refactor", "mutex", "boolean", "instantiate", "instantiates", "instantiated",
     "serialise", "serialize", "deserialise", "deserialize",
+    # Added after a live overview passed the gate and still opened with "isidore compiles a
+    # structured wiki from your codebase, so agents can understand it" — every one of these reads as
+    # plain English to whoever wrote it and means nothing to the reader it was written for.
+    "llm", "llms", "codebase", "codebases", "repo", "repos", "agent", "agents", "token", "tokens",
+    "graph", "parse", "parses", "parsing", "compile", "compiles", "compiler", "crawl", "crawls",
+    "crawling", "syntax", "metadata", "backend", "frontend", "middleware", "config",
 )
 
 
