@@ -102,13 +102,9 @@
   "100": "tests-test_wiki_dir_env_py.md",
   "101": "create_run_id",
   "102": "subsystem-src.md",
-  "103": "check_claims",
   "104": "clean_sig",
   "105": "build_delta",
-  "106": "scan_repo",
   "107": "encode",
   "108": "write_scan",
-  "109": "test_vigil.py",
-  "110": "parse_findings_block",
   "111": "literal_value"
 }

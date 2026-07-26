@@ -32,6 +32,7 @@ from .pcp import (
     VerifiedMass,
     VerifyContext,
     Verdict,
+    parse_stored_predicate,
     prose_hash,
     read_certificate,
     register_verifier,
@@ -503,7 +504,7 @@ def verify_page(repo: Path, page_path: Path) -> tuple[bool, Certificate | None]:
         cert = read_certificate(cert_path)
     except ValueError:
         return False, None
-    from .claims import parse_claims_block, parse_predicate_field
+    from .claims import parse_claims_block
     clean, _rows = parse_claims_block(page_path.read_text(encoding="utf-8"))
     if prose_hash(clean) != cert.prose_sha256:
         return False, cert          # tamper: prose changed since compile
@@ -512,7 +513,9 @@ def verify_page(repo: Path, page_path: Path) -> tuple[bool, Certificate | None]:
         return False, cert
     ok = True
     for cv in cert.claims:
-        pred = parse_predicate_field(cv.predicate)
+        # Stored predicates, not model output: a certificate may carry a chain (`wikichain`) that no
+        # model is allowed to write, and reading it with the model-facing parser skipped it silently.
+        pred = parse_stored_predicate(cv.predicate)
         if pred is None:
             continue                # existence-anchored: staleness is claims --check's job
         current = verify_predicate_ctx(pred, ctx).value

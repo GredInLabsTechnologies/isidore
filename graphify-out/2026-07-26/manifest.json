@@ -145,8 +145,8 @@
     "semantic_hash": "4b23f65b30ef457e4f4d90ed192c621d"
   },
   "src/isidore/verify.py": {
-    "mtime": 1785027499.179704,
-    "ast_hash": "4866e8de2623ebd035fdb9dc21f2a647",
+    "mtime": 1785029413.4122598,
+    "ast_hash": "898f32e9435ad2a6246ba44201b23943",
     "semantic_hash": ""
   },
   "tests/fixtures/pcp/contracts.json": {
@@ -340,8 +340,8 @@
     "semantic_hash": "601fcb0d11354041e44a67d49bb4c904"
   },
   "README.md": {
-    "mtime": 1785026848.7267306,
-    "ast_hash": "848bed75539501c46de17e1d2aaf1187",
+    "mtime": 1785028658.0139956,
+    "ast_hash": "c05243da161fc6b0bddf3fcf9948c1c8",
     "semantic_hash": ""
   },
   "design/INCREMENTAL_V1.md": {
@@ -405,8 +405,8 @@
     "semantic_hash": ""
   },
   "src/isidore/surface.py": {
-    "mtime": 1785015880.376693,
-    "ast_hash": "64285b201fd18a6c6eb1bef8112ad14f",
+    "mtime": 1785029716.4858625,
+    "ast_hash": "276583e1f05249ea025614726d6ffce0",
     "semantic_hash": ""
   },
   "src/isidore/whatsnew.py": {
@@ -830,8 +830,13 @@
     "semantic_hash": ""
   },
   "llms.txt": {
-    "mtime": 1785028618.105004,
+    "mtime": 1785029822.0338302,
     "ast_hash": "543059b8da8f45b5c01d4b64fca88c4a",
+    "semantic_hash": ""
+  },
+  "tests/test_langspec_oracle.py": {
+    "mtime": 1785029627.456102,
+    "ast_hash": "9ce73a32281ed04bd1ac3f9a4f7f9237",
     "semantic_hash": ""
   }
 }

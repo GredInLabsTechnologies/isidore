@@ -100,6 +100,32 @@ def parse_predicate(raw: str | None) -> Predicate | None:
     return Predicate(kind=kind, args=args)
 
 
+def parse_stored_predicate(raw: str | None) -> Predicate | None:
+    """Parse a predicate read back from a CERTIFICATE rather than from model output.
+
+    The two directions are not the same grammar, and conflating them cost a whole invariant. What a
+    MODEL may write is `PREDICATE_KINDS`, deliberately narrow: `wikichain` is excluded so no model
+    can assert that a chain holds. But a certificate's predicate was written by the machine, and what
+    it may contain is whatever the verifier registry can decide.
+
+    Reading stored chains with the model-facing parser returned None, and `verify_page` skips a claim
+    whose predicate does not parse — so every `wiki://` chain in every subsystem and product page was
+    silently NOT re-checked, while `isidore verify` reported those pages as OK. The composed
+    integrity they advertise was never actually being tested.
+    """
+    parsed = parse_predicate(raw)
+    if parsed is not None:
+        return parsed
+    if not raw or _PRED_SEP not in raw:
+        return None
+    kind, _sep, payload = raw.strip().partition(_PRED_SEP)
+    kind = kind.strip().lower()
+    if kind not in VERIFIERS:
+        return None
+    args = tuple(a.strip() for a in payload.split(_ARG_SEP) if a.strip())
+    return Predicate(kind=kind, args=args) if args else None
+
+
 @dataclass
 class Verdict:
     """The result of checking one predicate against an oracle. `value` is TRUE|FALSE|UNDECIDABLE."""

@@ -200,6 +200,32 @@ def test_a_section_dropped_by_the_repair_pass_is_reported(repo):
     assert result["missing_sections"] == ["How the pieces fit together"]
 
 
+def test_a_chained_claim_is_actually_re_verified_and_not_silently_skipped(repo):
+    """The invariant the pyramid advertises: break a page below, and the page above stops verifying.
+
+    It was not being tested at all. `wikichain` is kept out of the model-facing grammar on purpose,
+    and reading a STORED chain with that same parser returned None — which `verify_page` treats as
+    "existence-anchored, skip". Every chain in every subsystem and product page was passing
+    verification by never being looked at.
+    """
+    from isidore.verify import verify_page
+
+    (repo / ".isidore").mkdir(exist_ok=True)      # verify_page needs a graph to build its context
+    (repo / ".isidore" / "graph.json").write_text('{"nodes": [], "links": []}', encoding="utf-8")
+    compile_overview(repo, [], [], {}, execute=True, generator=lambda p: PAGE)
+    page = repo / "wiki" / "overview.md"
+    ok, cert = verify_page(repo, page)
+    assert ok and cert.claims[0].verdict == "TRUE"
+
+    # Now refute the child claim the product page rests on, touching nothing above it.
+    child = repo / "wiki" / f"mod.md{CERT_SUFFIX}"
+    child.write_text(child.read_text(encoding="utf-8").replace('"verdict": "TRUE"',
+                                                               '"verdict": "FALSE"', 1),
+                     encoding="utf-8")
+    broken, _cert = verify_page(repo, page)
+    assert broken is False
+
+
 def test_the_product_page_prefers_the_layer_directly_below_it(repo_with_module_page):
     root = repo_with_module_page
     assert [c["level"] for c in verified_claims(root, prefer_level=2)] == [1]   # no areas yet
