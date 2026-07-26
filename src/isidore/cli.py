@@ -411,9 +411,10 @@ def main(argv: list[str] | None = None) -> int:
     # is written ONCE (P0) so no lane ever edits cli.py again — verify (A), contracts (B),
     # pyramid (D), render (E). Lane C has no CLI (its marks flow through the pipeline).
     from . import contracts as _contracts, humanpack as _humanpack, pyramid as _pyramid, verify as _verify
+    from . import recertify as _recertify
     from . import render as _render
     from . import whatsnew as _whatsnew
-    for _mod in (_verify, _contracts, _pyramid, _humanpack, _whatsnew, _render):
+    for _mod in (_verify, _contracts, _pyramid, _humanpack, _whatsnew, _render, _recertify):
         _mod.register_cli(sub)
 
     args = parser.parse_args(argv)

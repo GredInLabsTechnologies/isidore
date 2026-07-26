@@ -2,77 +2,87 @@
   "child_cert_hashes": {},
   "claims": [
     {
-      "detail": "no predicate (existence-anchored only)",
-      "ehash": "8e1e911e3d03",
-      "evidence": "src/isidore/pcp.py:1",
-      "id": "c-6df0b9eb",
-      "oracle": "none",
-      "predicate": "",
-      "statement": "The module defines a frozen seam for PCP",
-      "verdict": "UNDECIDABLE"
-    },
-    {
-      "detail": "no comparable literal assignment to PREDICATE_KINDS found",
-      "ehash": "0dd68e58fa2e",
-      "evidence": "src/isidore/pcp.py:64",
-      "id": "c-a3d25328",
-      "oracle": "none",
-      "predicate": "value:PREDICATE_KINDS;{\"calls\", \"defines\", \"exports\", \"imports\", \"value\", \"signature\", \"route\", \"env\"}",
-      "statement": "The predicate grammar includes 'calls', 'defines', 'imports', and 'value'",
-      "verdict": "UNDECIDABLE"
-    },
-    {
-      "detail": "no predicate (existence-anchored only)",
-      "ehash": "df35830970c5",
-      "evidence": "src/isidore/pcp.py:88",
-      "id": "c-5d1cbc7c",
-      "oracle": "none",
-      "predicate": "",
-      "statement": "A malformed predicate degrades a claim to existence-anchored",
-      "verdict": "UNDECIDABLE"
-    },
-    {
-      "detail": "src/isidore/pcp.py defines Verdict",
-      "ehash": "ee4c74d5ac48",
-      "evidence": "src/isidore/pcp.py:107",
-      "id": "c-b621f1b4",
+      "detail": "src/isidore/pcp.py defines Predicate",
+      "ehash": "140f60d47e23",
+      "evidence": "src/isidore/pcp.py:76",
+      "id": "c-7e336a57",
       "oracle": "graph",
-      "predicate": "defines:src/isidore/pcp.py;Verdict",
-      "statement": "The `Verdict` class records the oracle that decided it",
+      "predicate": "defines:src/isidore/pcp.py;Predicate",
+      "statement": "The module defines the `Predicate` class with `kind` and `args` fields",
       "verdict": "TRUE"
     },
     {
-      "detail": "src/isidore/pcp.py defines VerifyContext",
-      "ehash": "59d51c715eda",
-      "evidence": "src/isidore/pcp.py:119",
-      "id": "c-8b733e17",
+      "detail": "no declaration of 'Predicate.__dataclass_params__.frozen' this oracle can read",
+      "ehash": "b738989fe73a",
+      "evidence": "src/isidore/pcp.py:77",
+      "id": "c-e33fd50b",
+      "oracle": "none",
+      "predicate": "value:Predicate.__dataclass_params__.frozen;True",
+      "statement": "The `Predicate` class is frozen to ensure immutability",
+      "verdict": "UNDECIDABLE"
+    },
+    {
+      "detail": "parse_predicate has no call to return",
+      "ehash": "aece80b1c7ce",
+      "evidence": "src/isidore/pcp.py:91",
+      "id": "c-25f4bfc3",
+      "oracle": "ast",
+      "predicate": "calls:parse_predicate;return",
+      "statement": "The `parse_predicate` function returns `None` for malformed predicates",
+      "verdict": "FALSE"
+    },
+    {
+      "detail": "parse_stored_predicate calls parse_predicate",
+      "ehash": "97412e22f52a",
+      "evidence": "src/isidore/pcp.py:117",
+      "id": "c-7b684eaf",
+      "oracle": "ast",
+      "predicate": "calls:parse_stored_predicate;parse_predicate",
+      "statement": "The `parse_stored_predicate` function falls back to `parse_predicate` for model-facing predicates",
+      "verdict": "TRUE"
+    },
+    {
+      "detail": "src/isidore/pcp.py defines Verdict",
+      "ehash": "d33132fe508c",
+      "evidence": "src/isidore/pcp.py:130",
+      "id": "c-7822b526",
       "oracle": "graph",
-      "predicate": "defines:src/isidore/pcp.py;VerifyContext",
-      "statement": "The `VerifyContext` provides read-only access to the repo state",
+      "predicate": "defines:src/isidore/pcp.py;Verdict",
+      "statement": "The `Verdict` class includes `value`, `oracle`, and `detail` fields",
+      "verdict": "TRUE"
+    },
+    {
+      "detail": "undecidable calls Verdict",
+      "ehash": "3d3517d16a98",
+      "evidence": "src/isidore/pcp.py:138",
+      "id": "c-4ba85a8e",
+      "oracle": "ast",
+      "predicate": "calls:undecidable;Verdict",
+      "statement": "The `undecidable` function returns a `Verdict` with `UNDECIDABLE` and no oracle",
       "verdict": "TRUE"
     },
     {
       "detail": "src/isidore/pcp.py defines Verifier",
       "ehash": "851f5dc632df",
-      "evidence": "src/isidore/pcp.py:127",
-      "id": "c-7e1e8036",
+      "evidence": "src/isidore/pcp.py:153",
+      "id": "c-5a20f323",
       "oracle": "graph",
       "predicate": "defines:src/isidore/pcp.py;Verifier",
-      "statement": "The `Verifier` protocol requires deterministic, LLM-free implementations",
+      "statement": "The `Verifier` protocol requires deterministic, 0-LLM implementations",
       "verdict": "TRUE"
     },
     {
-      "detail": "src/isidore/pcp.py defines VERIFIERS",
+      "detail": "no declaration of 'VERIFIERS' this oracle can read",
       "ehash": "43ef942000fa",
-      "evidence": "src/isidore/pcp.py:135",
-      "id": "c-0e550a32",
-      "oracle": "ast",
-      "predicate": "defines:src/isidore/pcp.py;VERIFIERS",
-      "statement": "The `VERIFIERS` registry is global and shared across lanes",
-      "verdict": "TRUE"
+      "evidence": "src/isidore/pcp.py:161",
+      "id": "c-54b5ed57",
+      "oracle": "none",
+      "predicate": "value:VERIFIERS;{}",
+      "statement": "The `VERIFIERS` registry is initialized as an empty dictionary",
+      "verdict": "UNDECIDABLE"
     }
   ],
-  "graph_commit": "1a34c13ecf2ef7ce206f1ceeaeb1987fea5f8272",
+  "graph_commit": "5782a431e6dc22ba8b21583e6f89d91001ef4093",
   "marks": [
     {
       "disposition": "",
@@ -86,24 +96,24 @@
       "disposition": "",
       "family": "entropy",
       "file": "src/isidore/pcp.py",
-      "line": 207,
+      "line": 233,
       "reason": "high-entropy literal (>=24 chars, >=3.5 bits/char)",
       "severity": "danger"
     }
   ],
   "mass": {
-    "gray": 13,
+    "gray": 10,
     "green": 16,
-    "yellow": 0
+    "yellow": 1
   },
   "page": "src-isidore-pcp_py.md",
-  "prose_sha256": "1000b6f6f0ad89a6c442fc4ef11c11c17f08d9896ef261955a61b63b234bc0db",
+  "prose_sha256": "618aaf89b6358b4533d7a760ea473d07188f31a085afc16dc4b2a4593b89d147",
   "version": "pcp-1",
   "violations": [
     {
-      "detail": "Security-relevant mark (entropy) at src/isidore/pcp.py:207 has no covering claim.",
+      "detail": "Security-relevant mark (entropy) at src/isidore/pcp.py:233 has no covering claim.",
       "kind": "mark-uncovered",
-      "where": "src/isidore/pcp.py:207"
+      "where": "src/isidore/pcp.py:233"
     }
   ]
 }

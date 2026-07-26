@@ -1,22 +1,24 @@
 ## Purpose
-`tests/test_overview.py` verifies the correctness of the product overview generation logic. It ensures that the overview page is built from verified claims, that claims are properly chained and validated, and that the page is only published when it can be proven. The module tests the `compile_overview` function and its dependencies, including `verified_claims`, to confirm that only TRUE claims are included and that the overview page reflects the project's actual state.
+`tests/test_overview.py` verifies the behavior of the product overview generator, ensuring it correctly processes verified claims, handles dry runs, and enforces integrity constraints. The tests focus on three key aspects: claim verification, dry-run behavior, and composed integrity. The module exists to validate that the overview page is built from verified claims and that the system correctly handles dependencies between pages.
 
 ## Architecture
-The module uses pytest fixtures to create a test repository with a module page (`mod.md`) that contains verified claims. The test cases then exercise the overview compilation logic, checking that claims are filtered correctly, that the overview page is only written when it can be proven, and that child certificates are properly referenced. The test data includes a TRUE claim (`c-1111`) and a FALSE claim (`c-2222`), allowing the tests to verify the filtering behavior.
+The test module uses pytest fixtures to create a mock repository with a module page (`mod.md`) that contains verified claims. The tests then exercise the `compile_overview` function, which generates the overview page, with different configurations to verify its behavior. The key components are:
+- A `repo` fixture that sets up a temporary repository with a module page and its certificate.
+- Test functions that verify specific behaviors of the overview compilation process.
 
 ## Key entry points
-- `repo`: A pytest fixture that creates a test repository with a module page and certificates for verified claims.
-- `test_only_proven_claims_become_citable_facts`: Verifies that only TRUE claims are included in the overview facts.
-- `test_dry_run_makes_no_call_and_reports_the_material`: Ensures that a dry run does not call the LLM and reports the available material.
-- `test_a_wiki_claim_is_chained_and_verified_instead_of_being_dropped`: Confirms that claims from the wiki are properly chained and verified.
-- `test_a_page_that_can_prove_nothing_is_refused`: Checks that the overview page is not published if it cannot be proven.
+The primary entry points are the test functions:
+- `test_only_proven_claims_become_citable_facts`: Verifies that only claims with a `TRUE` verdict are included in the overview.
+- `test_dry_run_makes_no_call_and_reports_the_material`: Ensures that a dry run does not call the LLM and correctly reports the material.
+- `test_a_wiki_claim_is_chained_and_verified_instead_of_being_dropped`: Validates that wiki claims are correctly chained and verified.
+- `test_a_page_that_can_prove_nothing_is_refused`: Confirms that pages with no verifiable claims are refused.
 
 ## Dependencies
-The module depends on the `isidore.pcp` and `isidore.pyramid` modules, which provide the `Certificate`, `ClaimVerdict`, and overview compilation functions. It also uses pytest for testing.
+The module depends on the `isidore.pyramid` module, which provides functions like `compile_overview`, `verified_claims`, and `write_certificate`. These functions are used to generate the overview page, retrieve verified claims, and write certificates, respectively.
 
 ## How to change safely
 When modifying `tests/test_overview.py`, ensure that:
-1. The test repository structure remains consistent with the fixture.
-2. The test cases continue to verify the correct behavior of the overview compilation logic.
-3. The claims and certificates are updated to reflect any changes in the overview generation logic.
-4. The test cases are updated to reflect any changes in the expected behavior of the overview page.
+- The `repo` fixture correctly sets up the test environment with the necessary files and certificates.
+- Test functions accurately reflect the expected behavior of the overview compilation process.
+- Changes do not introduce new dependencies or break existing ones.
+- The test coverage remains comprehensive, including edge cases like dry runs and unverifiable claims.

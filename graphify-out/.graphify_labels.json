@@ -102,8 +102,10 @@
   "100": "tests-test_wiki_dir_env_py.md",
   "101": "create_run_id",
   "102": "subsystem-src.md",
+  "103": "v_calls",
   "104": "clean_sig",
   "105": "build_delta",
+  "106": "render_whatsnew_md",
   "107": "encode",
   "108": "write_scan",
   "111": "literal_value"

@@ -1,0 +1,96 @@
+{
+  "child_cert_hashes": {},
+  "claims": [
+    {
+      "detail": "no predicate (existence-anchored only)",
+      "ehash": "994efd7625f5",
+      "evidence": "tests/test_llms_txt.py:L1",
+      "id": "c-45b89295",
+      "oracle": "none",
+      "predicate": "",
+      "statement": "The module tests the `llms.txt` file generation",
+      "verdict": "UNDECIDABLE"
+    },
+    {
+      "detail": "no predicate (existence-anchored only)",
+      "ehash": "cf75a50ff3a5",
+      "evidence": "tests/test_llms_txt.py:L26",
+      "id": "c-da8be650",
+      "oracle": "none",
+      "predicate": "",
+      "statement": "The file must start with an H1 project name, followed by a blockquote summary, and then H2 file lists",
+      "verdict": "UNDECIDABLE"
+    },
+    {
+      "detail": "no predicate (existence-anchored only)",
+      "ehash": "4fc3fd245ea7",
+      "evidence": "tests/test_llms_txt.py:L33",
+      "id": "c-4e89bbe8",
+      "oracle": "none",
+      "predicate": "",
+      "statement": "The summary is reused from the product page",
+      "verdict": "UNDECIDABLE"
+    },
+    {
+      "detail": "no predicate (existence-anchored only)",
+      "ehash": "15d828799084",
+      "evidence": "tests/test_llms_txt.py:L40",
+      "id": "c-a3142ae8",
+      "oracle": "none",
+      "predicate": "",
+      "statement": "The sections must appear in the order: `## Start here`, `## Areas`, `## Modules`",
+      "verdict": "UNDECIDABLE"
+    },
+    {
+      "detail": "no predicate (existence-anchored only)",
+      "ehash": "fcc0b98c1f9a",
+      "evidence": "tests/test_llms_txt.py:L50",
+      "id": "c-5e29c4bd",
+      "oracle": "none",
+      "predicate": "",
+      "statement": "Optional content is marked under `## Optional`",
+      "verdict": "UNDECIDABLE"
+    },
+    {
+      "detail": "tests/test_llms_txt.py defines test_it_is_written_where_a_fetcher_looks_and_is_deterministic",
+      "ehash": "1f17452b5e42",
+      "evidence": "tests/test_llms_txt.py:L58",
+      "id": "c-2caef6a9",
+      "oracle": "graph",
+      "predicate": "defines:tests/test_llms_txt.py;test_it_is_written_where_a_fetcher_looks_and_is_deterministic",
+      "statement": "The file is written to the repository root as `LLMS_FILENAME`",
+      "verdict": "TRUE"
+    },
+    {
+      "detail": "no predicate (existence-anchored only)",
+      "ehash": "24ced265d83d",
+      "evidence": "tests/test_llms_txt.py:L59",
+      "id": "c-ac882c69",
+      "oracle": "none",
+      "predicate": "",
+      "statement": "The file generation is deterministic",
+      "verdict": "UNDECIDABLE"
+    },
+    {
+      "detail": "no import edge tests/test_llms_txt.py->isidore.render in the graph; imports are partially resolved, so absence is not decidable",
+      "ehash": "0caf93f50476",
+      "evidence": "tests/test_llms_txt.py:L4",
+      "id": "c-1eb7e9d5",
+      "oracle": "none",
+      "predicate": "imports:tests/test_llms_txt.py;isidore.render",
+      "statement": "The module depends on `isidore.render`",
+      "verdict": "UNDECIDABLE"
+    }
+  ],
+  "graph_commit": "5782a431e6dc22ba8b21583e6f89d91001ef4093",
+  "marks": [],
+  "mass": {
+    "gray": 7,
+    "green": 17,
+    "yellow": 1
+  },
+  "page": "tests-test_llms_txt_py.md",
+  "prose_sha256": "ec306a98eed0a50fa694218c518d991ee52513152af803fce16501d26e79f788",
+  "version": "pcp-1",
+  "violations": []
+}

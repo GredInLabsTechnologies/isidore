@@ -1,21 +1,24 @@
 ## Purpose
-`src/isidore/surface.py` extracts the API surface of a file's text, representing it as a set of `SurfaceSymbol` objects. Each symbol captures its qualified name, kind (e.g., function, class), visibility (public/private), line range, and signature. The module exists to compare API surfaces across revisions, enabling `isidore whatsnew` to detect changes like added/removed symbols or modified signatures. It operates on raw text rather than file paths, avoiding the need for a working tree or checkout, and handles multi-line signatures and brace-bearing parameters that other tools miss.
+`src/isidore/surface.py` extracts the API surface of a file's text, capturing declared symbols and their signatures. It serves as the foundation for `isidore whatsnew`, comparing file revisions to detect API changes. Unlike `graph.py`, which identifies symbols in a working tree, this module works on raw text and includes signatures, which are critical for detecting changes like parameter list modifications. The module handles multi-line headers and brace-bearing parameter defaults, which are missed by simpler line-based scanners.
 
 ## Architecture
-The module uses regex patterns to identify callable declarations (`_HEADER`) and value bindings (`_CONST`). For Python, it leverages `ast` to parse signatures exactly, ensuring formatting differences don't register as API changes. Key functions:
-- `_declaration_tail()` determines if a line's parentheses close, distinguishing declarations from calls.
-- `_is_declaration()` filters out test-framework blocks by rejecting lines with `=>` in the tail.
-- `_is_public()` enforces the underscore convention for visibility.
-- `clean_sig()` normalizes whitespace and truncates long signatures for comparison.
+The module defines a `SurfaceSymbol` dataclass to represent symbols with fields like `qualname`, `kind`, and `sig`. Key functions include:
+- `_HEADER` and `_CONST` regex patterns to match callable and value declarations.
+- `clean_sig()` to normalize signatures for comparison, removing whitespace and trailing braces.
+- `_declaration_tail()` and `_is_declaration()` to distinguish declarations from calls.
+- `_is_public()` to determine symbol visibility using the underscore convention.
+- Language-specific handlers (e.g., `_py_signature()` for Python) to extract signatures from ASTs.
 
 ## Key entry points
-- `SurfaceSymbol`: The dataclass representing a symbol's API surface.
-- `clean_sig()`: Converts a declaration header into a stable comparison key.
+- `SurfaceSymbol`: The core data structure representing a symbol's API surface.
+- `clean_sig()`: Normalizes signatures for stable comparison.
+- `_is_declaration()`: Determines if a line is a declaration rather than a call.
 
 ## Dependencies
-- `src/isidore/langspec.py`: Reuses its comment/string sanitizer and declaration keyword table.
+The module depends on `src/isidore/langspec.py` for language-specific rules, such as comment/string sanitization and declaration keywords. It is used by `src/isidore/whatsnew.py` to generate changelogs.
 
 ## How to change safely
-- **Signatures**: Modify `clean_sig()` to handle new formatting cases, but ensure the output remains stable for comparison.
-- **Visibility**: Adjust `_is_public()` if the underscore convention changes.
-- **Language Support**: Add new patterns for unsupported languages, following the existing structure.
+When modifying `surface.py`, focus on:
+1. **Signature handling**: Ensure `clean_sig()` preserves the exact signature text for readability in changelogs.
+2. **Declaration detection**: Adjust `_is_declaration()` to avoid false positives for test-framework blocks.
+3. **Language support**: Add new handlers (e.g., `_js_signature()`) following the pattern of `_py_signature()`.

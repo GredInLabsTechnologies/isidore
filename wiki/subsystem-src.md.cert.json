@@ -1,83 +1,49 @@
 {
   "child_cert_hashes": {
     "src-isidore-changeset_py.md": "d09f6b81a54c6bd37ae2ce0dc73d5b1cf5eea1892ca598885cb85f7b9d6afc43",
-    "src-isidore-claims_py.md": "7779ebd4c02b8bb1e5a4455aa78df5eff65695c5ac2c55405e34a72048d9dac1",
-    "src-isidore-cli_py.md": "9a6ad1c5491158edf35bc24e8bbcb98fca360888508f0a72e4d08125920ae358",
-    "src-isidore-connectors.md": "41e09d555660bb735fa85764baf8e30a16ee5d92481242e07913ea52d76ea485",
-    "src-isidore-detectors_py.md": "60d6374f007123678544e4df2133f4688b64ff0da4f70251f3113d068e685d3d",
-    "src-isidore-graph_py.md": "3ba85c706cc547f1758f61b3e28bd77011481149e2fd7688442979bb42087fa4"
+    "src-isidore-cli_py.md": "ca42c45e6cefa74f764b7c74f8321eeca4b32214f8aa37131eba941618a8ee6b"
   },
   "claims": [
     {
       "detail": "cited claim proved TRUE",
       "ehash": "d09f6b81a54c",
       "evidence": "wiki://src-isidore-changeset_py.md#c-1ea2e1cc",
-      "id": "c-7295187e",
+      "id": "c-2c0135ee",
       "oracle": "wiki",
       "predicate": "wikichain:wiki://src-isidore-changeset_py.md#c-1ea2e1cc",
-      "statement": "The module processes git diffs to identify changed lines",
+      "statement": "The `src` area implements Isidore's core documentation pipeline, transforming a codebase into a verified, agent-oriented wiki.",
       "verdict": "TRUE"
     },
     {
       "detail": "cited claim proved TRUE",
-      "ehash": "7779ebd4c02b",
-      "evidence": "wiki://src-isidore-claims_py.md#c-85cc085c",
-      "id": "c-958a4be3",
+      "ehash": "d09f6b81a54c",
+      "evidence": "wiki://src-isidore-changeset_py.md#c-90be0b37",
+      "id": "c-0d2bb2bd",
       "oracle": "wiki",
-      "predicate": "wikichain:wiki://src-isidore-claims_py.md#c-85cc085c",
-      "statement": "The evidence hash is generated from the cited line's normalized content",
+      "predicate": "wikichain:wiki://src-isidore-changeset_py.md#c-90be0b37",
+      "statement": "The area splits responsibilities along the pipeline's logical stages: from raw diffs to verified documentation.",
       "verdict": "TRUE"
     },
     {
       "detail": "cited claim proved TRUE",
-      "ehash": "9a6ad1c54911",
-      "evidence": "wiki://src-isidore-cli_py.md#c-e075992e",
-      "id": "c-676623f6",
+      "ehash": "ca42c45e6cef",
+      "evidence": "wiki://src-isidore-cli_py.md#c-0891f889",
+      "id": "c-3dc2e52c",
       "oracle": "wiki",
-      "predicate": "wikichain:wiki://src-isidore-cli_py.md#c-e075992e",
-      "statement": "The module imports `write_scan` from `graph.py`",
-      "verdict": "TRUE"
-    },
-    {
-      "detail": "cited claim proved TRUE",
-      "ehash": "41e09d555660",
-      "evidence": "wiki://src-isidore-connectors.md#c-af79e99f",
-      "id": "c-1c2be135",
-      "oracle": "wiki",
-      "predicate": "wikichain:wiki://src-isidore-connectors.md#c-af79e99f",
-      "statement": "The `store.py` module defines a function `create_run_id` that generates a sortable, collision-resistant run ID.",
-      "verdict": "TRUE"
-    },
-    {
-      "detail": "cited claim proved TRUE",
-      "ehash": "60d6374f0071",
-      "evidence": "wiki://src-isidore-detectors_py.md#c-88adfab5",
-      "id": "c-68f7fb34",
-      "oracle": "wiki",
-      "predicate": "wikichain:wiki://src-isidore-detectors_py.md#c-88adfab5",
-      "statement": "The module defines a SINKS table for Python and JavaScript/TypeScript files",
-      "verdict": "TRUE"
-    },
-    {
-      "detail": "cited claim proved TRUE",
-      "ehash": "3ba85c706cc5",
-      "evidence": "wiki://src-isidore-graph_py.md#c-dfca30af",
-      "id": "c-5884fecc",
-      "oracle": "wiki",
-      "predicate": "wikichain:wiki://src-isidore-graph_py.md#c-dfca30af",
-      "statement": "The graph format requires nodes to be a list",
+      "predicate": "wikichain:wiki://src-isidore-cli_py.md#c-0891f889",
+      "statement": "This area has no external dependencies but provides the foundation for Isidore's user-facing features.",
       "verdict": "TRUE"
     }
   ],
   "graph_commit": null,
   "marks": [],
   "mass": {
-    "gray": 14,
-    "green": 11,
+    "gray": 6,
+    "green": 16,
     "yellow": 0
   },
   "page": "subsystem-src.md",
-  "prose_sha256": "b2be0afae78bed7d79bcde40096a534b281280bb57ddb7815b3216f468726949",
+  "prose_sha256": "a251835cc0f5452a9aea5fe2206089b06a951e9869766c2f962d22ebded4c830",
   "version": "pcp-1",
   "violations": []
 }

@@ -5,82 +5,82 @@
       "detail": "no predicate (existence-anchored only)",
       "ehash": "9d4920c93459",
       "evidence": "src/isidore/surface.py:1",
-      "id": "c-c8b7c052",
+      "id": "c-7acd8a27",
       "oracle": "none",
       "predicate": "",
-      "statement": "The module extracts API surfaces from text, not file paths",
+      "statement": "The module extracts API surfaces from text, not paths",
       "verdict": "UNDECIDABLE"
     },
     {
-      "detail": "src/isidore/surface.py defines SurfaceSymbol",
+      "detail": "no predicate (existence-anchored only)",
       "ehash": "eeb0efde5e8f",
       "evidence": "src/isidore/surface.py:88",
-      "id": "c-20b6b927",
-      "oracle": "graph",
-      "predicate": "defines:src/isidore/surface.py;SurfaceSymbol",
-      "statement": "SurfaceSymbol captures qualified names, kinds, visibility, and signatures",
-      "verdict": "TRUE"
+      "id": "c-ccec6a56",
+      "oracle": "none",
+      "predicate": "",
+      "statement": "SurfaceSymbol represents a declared symbol with qualname, kind, and sig",
+      "verdict": "UNDECIDABLE"
     },
     {
-      "detail": "src/isidore/surface.py defines clean_sig",
+      "detail": "no predicate (existence-anchored only)",
       "ehash": "6e7d9b3f76ef",
       "evidence": "src/isidore/surface.py:106",
-      "id": "c-9a088c15",
-      "oracle": "graph",
-      "predicate": "defines:src/isidore/surface.py;clean_sig",
-      "statement": "clean_sig normalizes whitespace and truncates long signatures",
-      "verdict": "TRUE"
+      "id": "c-10c60224",
+      "oracle": "none",
+      "predicate": "",
+      "statement": "clean_sig normalizes whitespace and drops trailing braces",
+      "verdict": "UNDECIDABLE"
     },
     {
-      "detail": "src/isidore/surface.py defines _declaration_tail",
-      "ehash": "1a210a90de99",
-      "evidence": "src/isidore/surface.py:119",
-      "id": "c-b5bc7b0c",
-      "oracle": "graph",
-      "predicate": "defines:src/isidore/surface.py;_declaration_tail",
-      "statement": "_declaration_tail checks if parentheses close on a line",
-      "verdict": "TRUE"
-    },
-    {
-      "detail": "src/isidore/surface.py defines _is_declaration",
+      "detail": "no predicate (existence-anchored only)",
       "ehash": "7264bac51424",
       "evidence": "src/isidore/surface.py:140",
-      "id": "c-109388d4",
-      "oracle": "graph",
-      "predicate": "defines:src/isidore/surface.py;_is_declaration",
-      "statement": "_is_declaration filters out test-framework blocks",
-      "verdict": "TRUE"
+      "id": "c-536baa00",
+      "oracle": "none",
+      "predicate": "",
+      "statement": "_is_declaration distinguishes declarations from calls",
+      "verdict": "UNDECIDABLE"
     },
     {
-      "detail": "src/isidore/surface.py defines _is_public",
+      "detail": "no predicate (existence-anchored only)",
       "ehash": "32e4d3d695bd",
-      "evidence": "src/isidore/surface.py:145",
-      "id": "c-ac7fc498",
-      "oracle": "graph",
-      "predicate": "defines:src/isidore/surface.py;_is_public",
-      "statement": "_is_public enforces the underscore convention for visibility",
-      "verdict": "TRUE"
+      "evidence": "src/isidore/surface.py:152",
+      "id": "c-20249c78",
+      "oracle": "none",
+      "predicate": "",
+      "statement": "_is_public uses the underscore convention for visibility",
+      "verdict": "UNDECIDABLE"
     },
     {
-      "detail": "src/isidore/surface.py defines _py_signature",
-      "ehash": "7ab1e1a15729",
-      "evidence": "src/isidore/surface.py:153",
-      "id": "c-41cb7c0d",
-      "oracle": "graph",
-      "predicate": "defines:src/isidore/surface.py;_py_signature",
-      "statement": "Python signatures are parsed via ast for exactness",
-      "verdict": "TRUE"
+      "detail": "no predicate (existence-anchored only)",
+      "ehash": "e6d6aebec5d9",
+      "evidence": "src/isidore/surface.py:17",
+      "id": "c-fb465f47",
+      "oracle": "none",
+      "predicate": "",
+      "statement": "The module depends on langspec for language-specific rules",
+      "verdict": "UNDECIDABLE"
+    },
+    {
+      "detail": "no predicate (existence-anchored only)",
+      "ehash": "8d601f16147f",
+      "evidence": "src/isidore/whatsnew.py:1",
+      "id": "c-aa3ada51",
+      "oracle": "none",
+      "predicate": "",
+      "statement": "whatsnew uses this module to generate changelogs",
+      "verdict": "UNDECIDABLE"
     }
   ],
-  "graph_commit": "1a34c13ecf2ef7ce206f1ceeaeb1987fea5f8272",
+  "graph_commit": "5782a431e6dc22ba8b21583e6f89d91001ef4093",
   "marks": [],
   "mass": {
-    "gray": 8,
-    "green": 10,
-    "yellow": 4
+    "gray": 14,
+    "green": 0,
+    "yellow": 14
   },
   "page": "src-isidore-surface_py.md",
-  "prose_sha256": "df2a647fdc58d463366969afdfcd820e876c1ee3701a6756628da2dc55530c15",
+  "prose_sha256": "415b05c61e2f63d5f68086ee0eb8493837651bfc20367463eea9e58bb0f46d4b",
   "version": "pcp-1",
   "violations": []
 }

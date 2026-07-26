@@ -13,10 +13,12 @@ from __future__ import annotations
 
 import ast
 import re
+from dataclasses import dataclass
 from pathlib import Path
 
 from .graph import find_graph, load_graph
 from .pcp import (
+    CERT_SUFFIX,
     FALSE,
     GRAY,
     GREEN,
@@ -490,28 +492,69 @@ def _ctx_for(repo: Path) -> VerifyContext | None:
     return VerifyContext(repo=repo, nodes=nodes, links=links, commit=commit)
 
 
-def verify_page(repo: Path, page_path: Path) -> tuple[bool, Certificate | None]:
-    """Re-verify a page against its sidecar certificate, offline, 0 LLM (invariant I11).
+# A certificate stops matching its page for reasons that are NOT interchangeable, and collapsing
+# them into one boolean is what left the living doc red with no supported way out (T-e46b): a page
+# whose oracles now prove MORE than the recorded run is repaired by re-running them (0 LLM), while a
+# page whose published sentence is now refuted needs new prose. `verify` only ever needed the
+# boolean; `recertify` and `compile` need the reason, so the reason is what this computes.
+CERT_OK = "ok"
+CERT_MISSING = "missing"            # no sidecar: the page never went through the claim pipeline
+CERT_UNREADABLE = "unreadable"      # sidecar present but not parseable as a certificate
+CERT_TAMPERED = "tampered"          # the prose changed since compile — the cert describes other text
+CERT_NO_GRAPH = "no-graph"          # nothing to verify against
+CERT_DRIFTED = "drifted"            # at least one claim no longer verifies to its recorded verdict
 
-    Checks: (1) the cert exists and parses; (2) the prose still hashes to prose_sha256 (tamper);
-    (3) every typed claim re-verifies to its recorded verdict against the current graph.
-    Returns (ok, cert). ok is False on any tamper/mismatch/missing-graph.
+
+@dataclass(frozen=True)
+class CertStatus:
+    """Why a page's certificate does or does not still describe the page. 0 LLM."""
+
+    status: str
+    cert: Certificate | None = None
+    # (claim id, recorded verdict, current verdict) for every claim that moved
+    drift: tuple[tuple[str, str, str], ...] = ()
+    # child pages whose certificate no longer hashes to what this page recorded (composed integrity)
+    children_moved: tuple[str, ...] = ()
+
+    @property
+    def ok(self) -> bool:
+        return self.status == CERT_OK
+
+    @property
+    def refuted(self) -> tuple[tuple[str, str, str], ...]:
+        """Drift that re-running the oracles CANNOT repair: the page states it, the code denies it.
+
+        A claim only reaches the published prose when it verified TRUE, so TRUE -> FALSE is the one
+        direction where the sentence a reader sees is now wrong. Every other move (a constant an
+        older extractor could not see, an oracle that lost sight of a renamed file) is a change in
+        what can be PROVED, not a false sentence — re-certifying records it honestly.
+        """
+        return tuple(d for d in self.drift if d[1] == TRUE and d[2] == FALSE)
+
+
+def certificate_status(repo: Path, page_path: Path,
+                       ctx: VerifyContext | None = None) -> CertStatus:
+    """Check a page against its sidecar certificate, offline, 0 LLM (invariant I11).
+
+    Checks, in order: the cert exists and parses; the prose still hashes to `prose_sha256`; every
+    typed claim re-verifies to its recorded verdict against the current graph. Pass `ctx` to reuse
+    one loaded graph across many pages.
     """
-    cert_path = page_path.parent / (page_path.name + ".cert.json")
+    cert_path = page_path.parent / (page_path.name + CERT_SUFFIX)
     if not cert_path.is_file() or not page_path.is_file():
-        return False, None
+        return CertStatus(CERT_MISSING)
     try:
         cert = read_certificate(cert_path)
     except ValueError:
-        return False, None
+        return CertStatus(CERT_UNREADABLE)
     from .claims import parse_claims_block
     clean, _rows = parse_claims_block(page_path.read_text(encoding="utf-8"))
     if prose_hash(clean) != cert.prose_sha256:
-        return False, cert          # tamper: prose changed since compile
-    ctx = _ctx_for(repo)
+        return CertStatus(CERT_TAMPERED, cert)
+    ctx = ctx if ctx is not None else _ctx_for(repo)
     if ctx is None:
-        return False, cert
-    ok = True
+        return CertStatus(CERT_NO_GRAPH, cert)
+    drift: list[tuple[str, str, str]] = []
     for cv in cert.claims:
         # Stored predicates, not model output: a certificate may carry a chain (`wikichain`) that no
         # model is allowed to write, and reading it with the model-facing parser skipped it silently.
@@ -520,8 +563,31 @@ def verify_page(repo: Path, page_path: Path) -> tuple[bool, Certificate | None]:
             continue                # existence-anchored: staleness is claims --check's job
         current = verify_predicate_ctx(pred, ctx).value
         if current != cv.verdict:
-            ok = False
-    return ok, cert
+            drift.append((cv.id, cv.verdict, current))
+    # A recorded child hash is itself an assertion — "this page rests on exactly that certificate".
+    # The pyramid's whole claim is that editing a page below shows up above with no model call; that
+    # only holds if someone checks. Cheap: one file hash per child.
+    moved = tuple(sorted(page for page, digest in cert.child_cert_hashes.items()
+                         if _cert_digest(repo, page) != digest))
+    if drift or moved:
+        return CertStatus(CERT_DRIFTED, cert, tuple(drift), moved)
+    return CertStatus(CERT_OK, cert)
+
+
+def _cert_digest(repo: Path, page: str) -> str:
+    """sha256 of a page's certificate file, "" if it is gone."""
+    import hashlib
+
+    from .pipeline import WIKI_DIRNAME
+    child = repo / WIKI_DIRNAME / f"{page}{CERT_SUFFIX}"
+    return hashlib.sha256(child.read_bytes()).hexdigest() if child.is_file() else ""
+
+
+def verify_page(repo: Path, page_path: Path,
+                ctx: VerifyContext | None = None) -> tuple[bool, Certificate | None]:
+    """(ok, cert) for one page. ok is False on any tamper/mismatch/missing-graph."""
+    st = certificate_status(repo, page_path, ctx)
+    return st.ok, st.cert
 
 
 # ---------------------------------------------------------------- CLI
@@ -551,8 +617,9 @@ def _cmd_verify(args) -> int:
     bad = []
     green = yellow = gray = 0
     danger_pages: list[str] = []
+    shared_ctx = _ctx_for(args.repo)      # one graph load for the whole wiki, not one per page
     for page in pages:
-        ok, cert = verify_page(args.repo, page)
+        ok, cert = verify_page(args.repo, page, shared_ctx)
         if cert is None:
             continue
         tag = "OK  " if ok else "FAIL"

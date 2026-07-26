@@ -1,24 +1,27 @@
 ## Purpose
-`src/isidore/cli.py` implements the command-line interface for Isidore, a tool that compiles an agent-oriented wiki from a codebase's structure graph. The module provides subcommands to scan repositories, compile the wiki, answer questions, suggest module flows, and audit claims. It bridges the gap between code analysis and documentation by exposing Isidore's core functionality through a user-friendly CLI.
+The `src/isidore/cli.py` module provides a command-line interface for the Isidore system, which compiles an agent-oriented wiki from a codebase's structure graph. It exposes five subcommands: `scan`, `compile`, `ask`, `suggest-flows`, and `claims`. The `scan` subcommand builds a structure graph for a repository in any language, the `compile` subcommand generates or refreshes the wiki, the `ask` subcommand answers questions using the compiled wiki, the `suggest-flows` subcommand identifies cross-module bridges for configuration, and the `claims` subcommand audits the staleness of claims in the wiki.
 
 ## Architecture
-The module follows a command-driven architecture with a main entry point (`cli.py`) that delegates to specialized subcommands. Each subcommand (`_cmd_scan`, `_cmd_compile`, etc.) handles a specific workflow, while `_setting()` manages configuration precedence (CLI args > `isidore.json` > defaults). The design separates concerns: graph operations are delegated to `graph.py`, LLM interactions to `llm.py`, and wiki compilation to `pipeline.py`.
+The module is structured around five private functions, each corresponding to a subcommand: `_cmd_scan`, `_cmd_compile`, `_cmd_ask`, `_cmd_suggest_flows`, and `_cmd_impact`. These functions are called by the main `cli.py` entry point, which parses command-line arguments and delegates to the appropriate subcommand function. The module also includes a helper function `_setting` to resolve configuration values with precedence: explicit CLI arguments > `isidore.json` > built-in defaults.
 
 ## Key entry points
-- `_cmd_scan`: Scans a repository and writes a structure graph to disk (`write_scan` from `graph.py`).
-- `_cmd_compile`: Compiles the wiki, respecting configuration precedence and handling dry-run/execute modes (`compile_wiki` from `pipeline.py`).
-- `_cmd_ask`: Answers questions using either verified claims (offline) or the LLM (`ask` from `qa.py`).
-- `_cmd_suggest_flows`: Identifies cross-module bridges to suggest for `isidore.json` (`suggest_flows` from `pipeline.py`).
+The key entry points are the subcommand functions:
+- `_cmd_scan`: Builds a structure graph for a repository.
+- `_cmd_compile`: Generates or refreshes the wiki.
+- `_cmd_ask`: Answers questions using the compiled wiki.
+- `_cmd_suggest_flows`: Identifies cross-module bridges for configuration.
+- `_cmd_impact`: Builds an impact report for changes in the repository.
 
 ## Dependencies
-The module depends on:
-- `src/isidore/graph.py`: For graph operations (e.g., `write_scan`, `load_graph`).
-- `src/isidore/llm.py`: For LLM interactions (e.g., `default_generator`).
-- `src/isidore/pipeline.py`: For wiki compilation and flow suggestions.
-- `src/isidore/qa.py`: For answering questions.
+The module depends on four other modules in the `src/isidore` package:
+- `src/isidore/graph.py`: Provides functions for working with structure graphs.
+- `src/isidore/llm.py`: Provides functions for interacting with language models.
+- `src/isidore/pipeline.py`: Provides functions for compiling the wiki.
+- `src/isidore/qa.py`: Provides functions for answering questions.
 
 ## How to change safely
-1. **Configuration**: Modify `_setting()` to adjust precedence rules or add new settings.
-2. **Subcommands**: Add new subcommands by following the pattern of existing ones (e.g., `_cmd_*` functions).
-3. **Error handling**: Extend exception handling in `_cmd_compile` or `_cmd_ask` to cover new edge cases.
-4. **Dependencies**: Add new imports only if they are explicitly listed in the FACTS.
+To modify the module safely, follow these guidelines:
+1. **Preserve the subcommand structure**: Each subcommand function should remain private and called by the main entry point. Do not change the function signatures or remove existing subcommands.
+2. **Maintain configuration precedence**: The `_setting` function ensures that configuration values are resolved in the correct order. Do not change the logic of this function.
+3. **Handle errors consistently**: Each subcommand function should handle errors consistently and return appropriate exit codes. Do not change the error handling logic.
+4. **Preserve dependencies**: The module depends on specific functions from other modules. Do not remove or change these dependencies without ensuring that the changes are compatible with the dependent modules.

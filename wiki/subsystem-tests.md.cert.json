@@ -9,42 +9,42 @@
       "detail": "cited claim proved TRUE",
       "ehash": "343eaaa3e3fa",
       "evidence": "wiki://tests-test_changeset_py.md#c-e036b149",
-      "id": "c-77d09fa9",
+      "id": "c-7a0d0c19",
       "oracle": "wiki",
       "predicate": "wikichain:wiki://tests-test_changeset_py.md#c-e036b149",
-      "statement": "The tests area ensures the correctness and reliability of the Isidore system by verifying its core functionality through unit, integration, and regression tests.",
+      "statement": "The tests area ensures the correctness and reliability of Isidore's core functionality through unit, integration, and regression tests.",
       "verdict": "TRUE"
     },
     {
-      "detail": "cited claim proved TRUE",
+      "detail": "cited claim not found: tests-test_pcp_pipeline_py.md#c-43d8deee",
       "ehash": "3bb798608291",
-      "evidence": "wiki://tests-test_pcp_pipeline_py.md#c-3e899ad1",
-      "id": "c-7c63b31c",
+      "evidence": "wiki://tests-test_pcp_pipeline_py.md#c-43d8deee",
+      "id": "c-6c843157",
       "oracle": "wiki",
-      "predicate": "wikichain:wiki://tests-test_pcp_pipeline_py.md#c-3e899ad1",
-      "statement": "The tests are split into specialized modules, each targeting a distinct subsystem or feature.",
-      "verdict": "TRUE"
+      "predicate": "wikichain:wiki://tests-test_pcp_pipeline_py.md#c-43d8deee",
+      "statement": "The tests are split by subsystem: test_changeset.py verifies change detection, test_claims.py checks claim parsing and anchoring, and test_pcp_pipeline.py ensures the PCP pipeline generates valid certificates.",
+      "verdict": "FALSE"
     },
     {
       "detail": "cited claim proved TRUE",
       "ehash": "9b9da050c8aa",
       "evidence": "wiki://tests-test_claims_py.md#c-bc3cb03c",
-      "id": "c-f328a26d",
+      "id": "c-2b594725",
       "oracle": "wiki",
       "predicate": "wikichain:wiki://tests-test_claims_py.md#c-bc3cb03c",
-      "statement": "This area depends on the core modules it tests but has no external dependencies.",
+      "statement": "The tests area depends on the core Isidore modules it validates but has no external dependencies.",
       "verdict": "TRUE"
     }
   ],
   "graph_commit": null,
   "marks": [],
   "mass": {
-    "gray": 6,
-    "green": 11,
+    "gray": 5,
+    "green": 9,
     "yellow": 0
   },
   "page": "subsystem-tests.md",
-  "prose_sha256": "50d10df08e0f884773ec6cae64f67c1496f0813332d5b77678ad3d29baab9256",
+  "prose_sha256": "479fa7090f5feeaaf8c663e4a165de4d442bf27ec5595346613f6684167810f4",
   "version": "pcp-1",
   "violations": []
 }

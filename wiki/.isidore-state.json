@@ -1,5 +1,5 @@
 {
-  "commit": "1a34c13ecf2ef7ce206f1ceeaeb1987fea5f8272",
+  "commit": "5782a431e6dc22ba8b21583e6f89d91001ef4093",
   "deps": [
     [
       "src/isidore/__init__.py",
@@ -217,6 +217,16 @@
       1
     ],
     [
+      "src/isidore/recertify.py",
+      "src/isidore/pcp.py",
+      1
+    ],
+    [
+      "src/isidore/recertify.py",
+      "src/isidore/verify.py",
+      1
+    ],
+    [
       "src/isidore/reconcile.py",
       "src/isidore/pcp.py",
       1
@@ -377,6 +387,30 @@
       "quarantined": 2,
       "retries": 4,
       "skipped": 0
+    },
+    {
+      "calls_saved": 28,
+      "commit": "5782a431e6dc",
+      "dirty": 12,
+      "generated": 12,
+      "generated_pages": [
+        "src-isidore-pcp_py.md",
+        "src-isidore-verify_py.md",
+        "src-isidore-render_py.md",
+        "src-isidore-surface_py.md",
+        "src-isidore-cli_py.md",
+        "src-isidore-pyramid_py.md",
+        "src-isidore-recertify_py.md",
+        "tests-test_langspec_oracle_py.md",
+        "tests-test_llms_txt_py.md",
+        "tests-test_overview_py.md",
+        "tests-test_plain_py.md",
+        "tests-test_recertify_py.md"
+      ],
+      "planned": 40,
+      "quarantined": 0,
+      "retries": 0,
+      "skipped": 0
     }
   ],
   "pages": {
@@ -525,69 +559,64 @@
     "src-isidore-cli_py.md": {
       "claims": [
         {
-          "ehash": "18dfc2eb6252",
-          "evidence": "src/isidore/cli.py:40",
-          "id": "c-27d3e192",
-          "predicate": "calls:write_scan",
-          "statement": "The `scan` subcommand writes a structure graph to disk",
-          "verdict": "UNDECIDABLE"
-        },
-        {
-          "ehash": "a55e1d0f8b61",
-          "evidence": "src/isidore/cli.py:54",
-          "id": "c-7d66d28d",
-          "predicate": "calls:_setting",
-          "statement": "The `compile` subcommand respects configuration precedence (CLI args > isidore.json > defaults)",
-          "verdict": "UNDECIDABLE"
-        },
-        {
-          "ehash": "49904d276003",
-          "evidence": "src/isidore/cli.py:111",
-          "id": "c-a29e70a6",
-          "predicate": "calls:ask",
-          "statement": "The `ask` subcommand supports offline mode using verified claims",
-          "verdict": "UNDECIDABLE"
-        },
-        {
-          "ehash": "b4bbedafa324",
-          "evidence": "src/isidore/cli.py:139",
-          "id": "c-9bfd1064",
-          "predicate": "calls:suggest_flows",
-          "statement": "The `suggest-flows` subcommand outputs candidates for isidore.json",
+          "ehash": "f62eb76cad8c",
+          "evidence": "src/isidore/cli.py:1",
+          "id": "c-cdc21e1d",
+          "predicate": "",
+          "statement": "The module provides a command-line interface for the Isidore system",
           "verdict": "UNDECIDABLE"
         },
         {
           "ehash": "07796ddd52c8",
           "evidence": "src/isidore/cli.py:17",
-          "id": "c-e075992e",
+          "id": "c-0891f889",
           "predicate": "imports:src/isidore/cli.py;src/isidore/graph.py",
-          "statement": "The module imports `write_scan` from `graph.py`",
+          "statement": "The module depends on the `src/isidore/graph.py` module",
           "verdict": "TRUE"
         },
         {
-          "ehash": "7fd5b120789a",
-          "evidence": "src/isidore/cli.py:25",
-          "id": "c-9cc959e1",
+          "ehash": "6ccadcf108b5",
+          "evidence": "src/isidore/cli.py:18",
+          "id": "c-2aeb53bd",
+          "predicate": "imports:src/isidore/cli.py;src/isidore/llm.py",
+          "statement": "The module depends on the `src/isidore/llm.py` module",
+          "verdict": "TRUE"
+        },
+        {
+          "ehash": "2dcf74273b0e",
+          "evidence": "src/isidore/cli.py:19",
+          "id": "c-7c29c1a1",
           "predicate": "imports:src/isidore/cli.py;src/isidore/pipeline.py",
-          "statement": "The module imports `compile_wiki` from `pipeline.py`",
+          "statement": "The module depends on the `src/isidore/pipeline.py` module",
           "verdict": "TRUE"
         },
         {
           "ehash": "67c08eece514",
           "evidence": "src/isidore/cli.py:29",
-          "id": "c-981e8e24",
+          "id": "c-34b1007f",
           "predicate": "imports:src/isidore/cli.py;src/isidore/qa.py",
-          "statement": "The module imports `ask` from `qa.py`",
+          "statement": "The module depends on the `src/isidore/qa.py` module",
           "verdict": "TRUE"
         }
       ],
-      "compiled_at": "2026-07-26T01:02:04Z",
-      "context_hash": "201dcefa3045522eee685d52ec40ea68eca656e9c7e393e8a32a7f3f85548a64",
+      "compiled_at": "2026-07-26T02:19:56Z",
+      "context_hash": "726370087e9bcf4f322381122bff0b9fb64a94e824526ca27df40d5a142324fd",
       "findings": [],
       "history": [
         {
           "commit": "1a34c13ecf2e",
           "line_delta": 24,
+          "sections_changed": [
+            "Architecture",
+            "Dependencies",
+            "How to change safely",
+            "Key entry points",
+            "Purpose"
+          ]
+        },
+        {
+          "commit": "5782a431e6dc",
+          "line_delta": 3,
           "sections_changed": [
             "Architecture",
             "Dependencies",
@@ -1197,69 +1226,81 @@
     "src-isidore-pcp_py.md": {
       "claims": [
         {
-          "ehash": "8e1e911e3d03",
-          "evidence": "src/isidore/pcp.py:1",
-          "id": "c-6df0b9eb",
-          "predicate": "",
-          "statement": "The module defines a frozen seam for PCP",
-          "verdict": "UNDECIDABLE"
-        },
-        {
-          "ehash": "0dd68e58fa2e",
-          "evidence": "src/isidore/pcp.py:64",
-          "id": "c-a3d25328",
-          "predicate": "value:PREDICATE_KINDS;{\"calls\", \"defines\", \"exports\", \"imports\", \"value\", \"signature\", \"route\", \"env\"}",
-          "statement": "The predicate grammar includes 'calls', 'defines', 'imports', and 'value'",
-          "verdict": "UNDECIDABLE"
-        },
-        {
-          "ehash": "df35830970c5",
-          "evidence": "src/isidore/pcp.py:88",
-          "id": "c-5d1cbc7c",
-          "predicate": "",
-          "statement": "A malformed predicate degrades a claim to existence-anchored",
-          "verdict": "UNDECIDABLE"
-        },
-        {
-          "ehash": "ee4c74d5ac48",
-          "evidence": "src/isidore/pcp.py:107",
-          "id": "c-b621f1b4",
-          "predicate": "defines:src/isidore/pcp.py;Verdict",
-          "statement": "The `Verdict` class records the oracle that decided it",
+          "ehash": "140f60d47e23",
+          "evidence": "src/isidore/pcp.py:76",
+          "id": "c-7e336a57",
+          "predicate": "defines:src/isidore/pcp.py;Predicate",
+          "statement": "The module defines the `Predicate` class with `kind` and `args` fields",
           "verdict": "TRUE"
         },
         {
-          "ehash": "59d51c715eda",
-          "evidence": "src/isidore/pcp.py:119",
-          "id": "c-8b733e17",
-          "predicate": "defines:src/isidore/pcp.py;VerifyContext",
-          "statement": "The `VerifyContext` provides read-only access to the repo state",
+          "ehash": "b738989fe73a",
+          "evidence": "src/isidore/pcp.py:77",
+          "id": "c-e33fd50b",
+          "predicate": "value:Predicate.__dataclass_params__.frozen;True",
+          "statement": "The `Predicate` class is frozen to ensure immutability",
+          "verdict": "UNDECIDABLE"
+        },
+        {
+          "ehash": "97412e22f52a",
+          "evidence": "src/isidore/pcp.py:117",
+          "id": "c-7b684eaf",
+          "predicate": "calls:parse_stored_predicate;parse_predicate",
+          "statement": "The `parse_stored_predicate` function falls back to `parse_predicate` for model-facing predicates",
+          "verdict": "TRUE"
+        },
+        {
+          "ehash": "d33132fe508c",
+          "evidence": "src/isidore/pcp.py:130",
+          "id": "c-7822b526",
+          "predicate": "defines:src/isidore/pcp.py;Verdict",
+          "statement": "The `Verdict` class includes `value`, `oracle`, and `detail` fields",
+          "verdict": "TRUE"
+        },
+        {
+          "ehash": "3d3517d16a98",
+          "evidence": "src/isidore/pcp.py:138",
+          "id": "c-4ba85a8e",
+          "predicate": "calls:undecidable;Verdict",
+          "statement": "The `undecidable` function returns a `Verdict` with `UNDECIDABLE` and no oracle",
           "verdict": "TRUE"
         },
         {
           "ehash": "851f5dc632df",
-          "evidence": "src/isidore/pcp.py:127",
-          "id": "c-7e1e8036",
+          "evidence": "src/isidore/pcp.py:153",
+          "id": "c-5a20f323",
           "predicate": "defines:src/isidore/pcp.py;Verifier",
-          "statement": "The `Verifier` protocol requires deterministic, LLM-free implementations",
+          "statement": "The `Verifier` protocol requires deterministic, 0-LLM implementations",
           "verdict": "TRUE"
         },
         {
           "ehash": "43ef942000fa",
-          "evidence": "src/isidore/pcp.py:135",
-          "id": "c-0e550a32",
-          "predicate": "defines:src/isidore/pcp.py;VERIFIERS",
-          "statement": "The `VERIFIERS` registry is global and shared across lanes",
-          "verdict": "TRUE"
+          "evidence": "src/isidore/pcp.py:161",
+          "id": "c-54b5ed57",
+          "predicate": "value:VERIFIERS;{}",
+          "statement": "The `VERIFIERS` registry is initialized as an empty dictionary",
+          "verdict": "UNDECIDABLE"
         }
       ],
-      "compiled_at": "2026-07-26T01:00:35Z",
-      "context_hash": "a66391b6a5a5be1c31e4fdb38a3a92406eb8bfa5ed8002ca8a86fcd9d858964d",
+      "compiled_at": "2026-07-26T02:19:28Z",
+      "context_hash": "35a5a0d9fdbdd217ce0e0f73eb694868a9c70b800aa3bc290807d0b4ef38d7ac",
       "findings": [],
       "history": [
         {
           "commit": "1a34c13ecf2e",
           "line_delta": 28,
+          "sections_changed": [
+            "(intro)",
+            "Architecture",
+            "Dependencies",
+            "How to change safely",
+            "Key entry points",
+            "Purpose"
+          ]
+        },
+        {
+          "commit": "5782a431e6dc",
+          "line_delta": -1,
           "sections_changed": [
             "(intro)",
             "Architecture",
@@ -1348,61 +1389,80 @@
     "src-isidore-pyramid_py.md": {
       "claims": [
         {
-          "ehash": "ea21456ca50a",
-          "evidence": "src/isidore/pyramid.py:42",
-          "id": "c-a4194d1a",
-          "predicate": "defines:src/isidore/pyramid.py;_claim_verdict",
-          "statement": "The module verifies wiki:// claims by first checking certificates",
+          "ehash": "78a0a6cc47ed",
+          "evidence": "src/isidore/pyramid.py:69",
+          "id": "c-73630108",
+          "predicate": "defines:src/isidore/pyramid.py;_wikichain_verifier",
+          "statement": "The module implements a wiki:// chain verifier",
           "verdict": "TRUE"
         },
         {
-          "ehash": "00ddf930c3e5",
-          "evidence": "src/isidore/pyramid.py:56",
-          "id": "c-e299eba8",
-          "predicate": "calls:_claim_verdict;pages_state.get",
-          "statement": "The verifier falls back to pages_state if the certificate check fails",
+          "ehash": "b9fc5de6dbaf",
+          "evidence": "src/isidore/pyramid.py:43",
+          "id": "c-045d6d7a",
+          "predicate": "calls:_claim_verdict;read_certificate",
+          "statement": "The verifier checks certificates first for claim resolution",
           "verdict": "TRUE"
         },
         {
           "ehash": "1a5425c87358",
           "evidence": "src/isidore/pyramid.py:109",
-          "id": "c-43f174fe",
+          "id": "c-b64c89a5",
           "predicate": "calls:_seed_subsystems;_top_dir",
-          "statement": "Subsystems are initially grouped by top directory",
+          "statement": "The subsystem suggester groups files by top directory",
+          "verdict": "TRUE"
+        },
+        {
+          "ehash": "8c7a694d5c45",
+          "evidence": "src/isidore/pyramid.py:140",
+          "id": "c-d61bcf38",
+          "predicate": "value:level;2",
+          "statement": "The pyramid planner generates N2 subsystem specifications",
+          "verdict": "UNDECIDABLE"
+        },
+        {
+          "ehash": "c6d57b910390",
+          "evidence": "src/isidore/pyramid.py:21",
+          "id": "c-fc046086",
+          "predicate": "imports:src/isidore/pyramid.py;src/isidore/pcp.py",
+          "statement": "The module depends on pcp.py for verification infrastructure",
+          "verdict": "TRUE"
+        },
+        {
+          "ehash": "4afee3a7d326",
+          "evidence": "src/isidore/pyramid.py:87",
+          "id": "c-e56b724c",
+          "predicate": "calls:_wikichain_verifier;undecidable",
+          "statement": "The verifier returns undecidable for claims without a TRUE verdict",
           "verdict": "TRUE"
         },
         {
           "ehash": "cad316eed4bb",
           "evidence": "src/isidore/pyramid.py:116",
-          "id": "c-91508b69",
+          "id": "c-0a0ab635",
           "predicate": "value:relation;imports",
-          "statement": "Inter-subsystem dependencies are recorded from imports edges",
+          "statement": "The subsystem planner uses import relationships for dependencies",
           "verdict": "UNDECIDABLE"
-        },
-        {
-          "ehash": "f09921055c7d",
-          "evidence": "src/isidore/pyramid.py:138",
-          "id": "c-38f8626d",
-          "predicate": "calls:plan_pyramid;pyramid.get",
-          "statement": "The pyramid planner supports explicit subsystem configuration",
-          "verdict": "TRUE"
-        },
-        {
-          "ehash": "78bd40561252",
-          "evidence": "src/isidore/pyramid.py:147",
-          "id": "c-93b4038f",
-          "predicate": "defines:src/isidore/pyramid.py;plan_pyramid",
-          "statement": "Product pages reference subsystems by name",
-          "verdict": "TRUE"
         }
       ],
-      "compiled_at": "2026-07-26T01:02:44Z",
-      "context_hash": "d83e39019952a691555184a7c120331f8ce90c5dde49d7868063092299fff18b",
+      "compiled_at": "2026-07-26T02:20:03Z",
+      "context_hash": "287f3dc18f7691a46f04c3c8ec84d3e273eb8c8acd4df776389c908ba662aaab",
       "findings": [],
       "history": [
         {
           "commit": "1a34c13ecf2e",
           "line_delta": 37,
+          "sections_changed": [
+            "Architecture",
+            "Dependencies",
+            "How to change safely",
+            "Key entry points",
+            "Purpose"
+          ]
+        },
+        {
+          "commit": "5782a431e6dc",
+          "line_delta": -1,
           "sections_changed": [
             "Architecture",
             "Dependencies",
@@ -1503,72 +1563,257 @@
       "name": "src/isidore/qa.py",
       "quarantined": false
     },
+    "src-isidore-recertify_py.md": {
+      "claims": [
+        {
+          "ehash": "bed5c8829077",
+          "evidence": "src/isidore/recertify.py:1",
+          "id": "c-5422721b",
+          "predicate": "",
+          "statement": "The module recertifies certificates without modifying prose",
+          "verdict": "UNDECIDABLE"
+        },
+        {
+          "ehash": "00437b771a7f",
+          "evidence": "src/isidore/recertify.py:47",
+          "id": "c-c95ad9bf",
+          "predicate": "defines:src/isidore/recertify.py;PageRecert",
+          "statement": "The `PageRecert` class tracks actions and drift details",
+          "verdict": "TRUE"
+        },
+        {
+          "ehash": "236629372315",
+          "evidence": "src/isidore/recertify.py:59",
+          "id": "c-dcdb25bd",
+          "predicate": "defines:src/isidore/recertify.py;RecertifyResult",
+          "statement": "The `RecertifyResult` class aggregates results across pages",
+          "verdict": "TRUE"
+        },
+        {
+          "ehash": "5124db9f4ea8",
+          "evidence": "src/isidore/recertify.py:68",
+          "id": "c-ce561f2e",
+          "predicate": "defines:src/isidore/recertify.py;_level",
+          "statement": "The `_level()` function assigns pyramid levels to pages",
+          "verdict": "TRUE"
+        },
+        {
+          "ehash": "e5751cfc9f4e",
+          "evidence": "src/isidore/recertify.py:80",
+          "id": "c-858a118c",
+          "predicate": "defines:src/isidore/recertify.py;_child_digest",
+          "statement": "The `_child_digest()` function computes the SHA-256 hash of a child's certificate",
+          "verdict": "TRUE"
+        },
+        {
+          "ehash": "5e4169394d9b",
+          "evidence": "src/isidore/recertify.py:95",
+          "id": "c-018d79a5",
+          "predicate": "defines:src/isidore/recertify.py;rebuild_certificate",
+          "statement": "The `rebuild_certificate()` function recomputes verdicts for a certificate",
+          "verdict": "TRUE"
+        },
+        {
+          "ehash": "b7fdffaa55e6",
+          "evidence": "src/isidore/recertify.py:24",
+          "id": "c-eb5f30e5",
+          "predicate": "imports:src/isidore/recertify.py;src/isidore/pcp.py",
+          "statement": "The module depends on `src/isidore/pcp.py` for certificate handling",
+          "verdict": "TRUE"
+        },
+        {
+          "ehash": "a9371fae540f",
+          "evidence": "src/isidore/recertify.py:25",
+          "id": "c-f83104ba",
+          "predicate": "imports:src/isidore/recertify.py;src/isidore/verify.py",
+          "statement": "The module depends on `src/isidore/verify.py` for certificate status checks",
+          "verdict": "TRUE"
+        }
+      ],
+      "compiled_at": "2026-07-26T02:20:12Z",
+      "context_hash": "b6960ff2383946afd31eb3a3594615b6ce625ba49ab6e0d29360d9903187244f",
+      "findings": [],
+      "history": [
+        {
+          "commit": "5782a431e6dc",
+          "line_delta": 26,
+          "sections_changed": [
+            "Architecture",
+            "Dependencies",
+            "How to change safely",
+            "Key entry points",
+            "Purpose"
+          ]
+        }
+      ],
+      "kind": "module",
+      "name": "src/isidore/recertify.py",
+      "quarantined": false
+    },
+    "src-isidore-render_py.md": {
+      "claims": [
+        {
+          "ehash": "0396be2ae9eb",
+          "evidence": "src/isidore/render.py:1",
+          "id": "c-d33414e2",
+          "predicate": "",
+          "statement": "The module generates four deterministic outputs: quickstart.md, index.toon, llms.txt, and the AGENTS.md reference block",
+          "verdict": "UNDECIDABLE"
+        },
+        {
+          "ehash": "8a35caa15e3f",
+          "evidence": "src/isidore/render.py:22",
+          "id": "c-6f7bd5c3",
+          "predicate": "env:ISIDORE_WIKI_DIR",
+          "statement": "The output directory is configurable via the ISIDORE_WIKI_DIR environment variable",
+          "verdict": "TRUE"
+        },
+        {
+          "ehash": "8a35caa15e3f",
+          "evidence": "src/isidore/render.py:22",
+          "id": "c-d4c415fc",
+          "predicate": "value:WIKI_DIRNAME;wiki",
+          "statement": "The default output directory is \"wiki\"",
+          "verdict": "UNDECIDABLE"
+        },
+        {
+          "ehash": "85917968f609",
+          "evidence": "src/isidore/render.py:25",
+          "id": "c-7ee3746a",
+          "predicate": "defines:src/isidore/render.py;render_quickstart",
+          "statement": "render_quickstart() generates a human-readable Markdown catalog",
+          "verdict": "TRUE"
+        },
+        {
+          "ehash": "a0efbfd4f8e5",
+          "evidence": "src/isidore/render.py:52",
+          "id": "c-e268044d",
+          "predicate": "defines:src/isidore/render.py;render_toon_index",
+          "statement": "render_toon_index() produces a TOON-formatted table",
+          "verdict": "TRUE"
+        },
+        {
+          "ehash": "885ddd13a50b",
+          "evidence": "src/isidore/render.py:77",
+          "id": "c-bfd06bf5",
+          "predicate": "defines:src/isidore/render.py;agents_md_block",
+          "statement": "agents_md_block() creates a delimited block for embedding in AGENTS.md",
+          "verdict": "TRUE"
+        },
+        {
+          "ehash": "882ee173d042",
+          "evidence": "src/isidore/render.py:91",
+          "id": "c-4198d91b",
+          "predicate": "defines:src/isidore/render.py;upsert_agents_block",
+          "statement": "upsert_agents_block() handles insertion or replacement of the AGENTS.md block",
+          "verdict": "TRUE"
+        },
+        {
+          "ehash": "2c7ee6ca1137",
+          "evidence": "src/isidore/render.py:13",
+          "id": "c-f3b8d6fc",
+          "predicate": "imports:src/isidore/render.py;src/isidore/toon.py",
+          "statement": "The module depends on src/isidore/toon.py for encoding data in TOON format",
+          "verdict": "TRUE"
+        }
+      ],
+      "compiled_at": "2026-07-26T02:19:43Z",
+      "context_hash": "9d291a5716e613ebb344e61e4385e40149cf110576cc85f9241bf9c66dc556d0",
+      "findings": [],
+      "history": [
+        {
+          "commit": "5782a431e6dc",
+          "line_delta": 27,
+          "sections_changed": [
+            "Architecture",
+            "Dependencies",
+            "How to change safely",
+            "Key entry points",
+            "Purpose"
+          ]
+        }
+      ],
+      "kind": "module",
+      "name": "src/isidore/render.py",
+      "quarantined": false
+    },
     "src-isidore-surface_py.md": {
       "claims": [
         {
           "ehash": "9d4920c93459",
           "evidence": "src/isidore/surface.py:1",
-          "id": "c-c8b7c052",
+          "id": "c-7acd8a27",
           "predicate": "",
-          "statement": "The module extracts API surfaces from text, not file paths",
+          "statement": "The module extracts API surfaces from text, not paths",
           "verdict": "UNDECIDABLE"
         },
         {
           "ehash": "eeb0efde5e8f",
           "evidence": "src/isidore/surface.py:88",
-          "id": "c-20b6b927",
-          "predicate": "defines:src/isidore/surface.py;SurfaceSymbol",
-          "statement": "SurfaceSymbol captures qualified names, kinds, visibility, and signatures",
-          "verdict": "TRUE"
+          "id": "c-ccec6a56",
+          "predicate": "",
+          "statement": "SurfaceSymbol represents a declared symbol with qualname, kind, and sig",
+          "verdict": "UNDECIDABLE"
         },
         {
           "ehash": "6e7d9b3f76ef",
           "evidence": "src/isidore/surface.py:106",
-          "id": "c-9a088c15",
-          "predicate": "defines:src/isidore/surface.py;clean_sig",
-          "statement": "clean_sig normalizes whitespace and truncates long signatures",
-          "verdict": "TRUE"
-        },
-        {
-          "ehash": "1a210a90de99",
-          "evidence": "src/isidore/surface.py:119",
-          "id": "c-b5bc7b0c",
-          "predicate": "defines:src/isidore/surface.py;_declaration_tail",
-          "statement": "_declaration_tail checks if parentheses close on a line",
-          "verdict": "TRUE"
+          "id": "c-10c60224",
+          "predicate": "",
+          "statement": "clean_sig normalizes whitespace and drops trailing braces",
+          "verdict": "UNDECIDABLE"
         },
         {
           "ehash": "7264bac51424",
           "evidence": "src/isidore/surface.py:140",
-          "id": "c-109388d4",
-          "predicate": "defines:src/isidore/surface.py;_is_declaration",
-          "statement": "_is_declaration filters out test-framework blocks",
-          "verdict": "TRUE"
+          "id": "c-536baa00",
+          "predicate": "",
+          "statement": "_is_declaration distinguishes declarations from calls",
+          "verdict": "UNDECIDABLE"
         },
         {
           "ehash": "32e4d3d695bd",
-          "evidence": "src/isidore/surface.py:145",
-          "id": "c-ac7fc498",
-          "predicate": "defines:src/isidore/surface.py;_is_public",
-          "statement": "_is_public enforces the underscore convention for visibility",
-          "verdict": "TRUE"
+          "evidence": "src/isidore/surface.py:152",
+          "id": "c-20249c78",
+          "predicate": "",
+          "statement": "_is_public uses the underscore convention for visibility",
+          "verdict": "UNDECIDABLE"
         },
         {
-          "ehash": "7ab1e1a15729",
-          "evidence": "src/isidore/surface.py:153",
-          "id": "c-41cb7c0d",
-          "predicate": "defines:src/isidore/surface.py;_py_signature",
-          "statement": "Python signatures are parsed via ast for exactness",
-          "verdict": "TRUE"
+          "ehash": "e6d6aebec5d9",
+          "evidence": "src/isidore/surface.py:17",
+          "id": "c-fb465f47",
+          "predicate": "",
+          "statement": "The module depends on langspec for language-specific rules",
+          "verdict": "UNDECIDABLE"
+        },
+        {
+          "ehash": "8d601f16147f",
+          "evidence": "src/isidore/whatsnew.py:1",
+          "id": "c-aa3ada51",
+          "predicate": "",
+          "statement": "whatsnew uses this module to generate changelogs",
+          "verdict": "UNDECIDABLE"
         }
       ],
-      "compiled_at": "2026-07-26T01:01:48Z",
-      "context_hash": "6a9e0dcfad5d8d1b9803e2ef2cb53a843865ec68c266b03e80f898027701f004",
+      "compiled_at": "2026-07-26T02:19:49Z",
+      "context_hash": "9daa1cc8c5c5a64b50e069742b204af3aacef9f184a7c1abed5130a7eb4b6819",
       "findings": [],
       "history": [
         {
           "commit": "1a34c13ecf2e",
           "line_delta": 21,
+          "sections_changed": [
+            "Architecture",
+            "Dependencies",
+            "How to change safely",
+            "Key entry points",
+            "Purpose"
+          ]
+        },
+        {
+          "commit": "5782a431e6dc",
+          "line_delta": 3,
           "sections_changed": [
             "Architecture",
             "Dependencies",
@@ -1585,61 +1830,88 @@
     "src-isidore-verify_py.md": {
       "claims": [
         {
-          "ehash": "b1bd38130168",
-          "evidence": "src/isidore/verify.py:4",
-          "id": "c-de1e10e2",
-          "predicate": "calls:verify;graph.json;ORACLE_GRAPH",
-          "statement": "The verifiers use graph.json and AST reparsing as oracles",
+          "ehash": "bcf33fd7c55e",
+          "evidence": "src/isidore/verify.py:1",
+          "id": "c-658ccd34",
+          "predicate": "",
+          "statement": "The module verifies claims against graph.json, AST parsing, and textual scans",
           "verdict": "UNDECIDABLE"
         },
         {
-          "ehash": "d1c7e7e71afb",
-          "evidence": "src/isidore/verify.py:43",
-          "id": "c-261da67e",
-          "predicate": "defines:src/isidore/verify.py;_norm",
-          "statement": "The module normalizes paths with _norm",
+          "ehash": "5af45019f483",
+          "evidence": "src/isidore/verify.py:9",
+          "id": "c-acc3a928",
+          "predicate": "",
+          "statement": "Verifiers return TRUE, FALSE, or UNDECIDABLE, never defaulting to TRUE",
+          "verdict": "UNDECIDABLE"
+        },
+        {
+          "ehash": "806d23263325",
+          "evidence": "src/isidore/verify.py:5",
+          "id": "c-56213da1",
+          "predicate": "",
+          "statement": "The internal graph has no `calls` edges, so verifiers must parse the AST",
+          "verdict": "UNDECIDABLE"
+        },
+        {
+          "ehash": "8c574de33796",
+          "evidence": "src/isidore/verify.py:48",
+          "id": "c-e36a3059",
+          "predicate": "calls:_norm;path.replace",
+          "statement": "`_norm` normalizes paths by replacing backslashes and stripping leading `./`",
           "verdict": "TRUE"
         },
         {
-          "ehash": "0ee4bb929a85",
-          "evidence": "src/isidore/verify.py:47",
-          "id": "c-a6f746a5",
-          "predicate": "defines:src/isidore/verify.py;_symbol_base",
-          "statement": "The module extracts symbol bases with _symbol_base",
+          "ehash": "bdc145f9a722",
+          "evidence": "src/isidore/verify.py:53",
+          "id": "c-03524000",
+          "predicate": "calls:_symbol_base;label.split",
+          "statement": "`_symbol_base` strips parentheses and arguments from symbol labels",
           "verdict": "TRUE"
         },
         {
-          "ehash": "1df10183faa2",
-          "evidence": "src/isidore/verify.py:63",
-          "id": "c-9a05079e",
-          "predicate": "defines:src/isidore/verify.py;_read_source",
-          "statement": "The module reads source files with _read_source",
+          "ehash": "892ad248d5e4",
+          "evidence": "src/isidore/verify.py:59",
+          "id": "c-356e8c39",
+          "predicate": "calls:_symbol_nodes;_symbol_base",
+          "statement": "`_symbol_nodes` filters graph nodes by symbol name",
           "verdict": "TRUE"
         },
         {
-          "ehash": "e300e682cd5e",
-          "evidence": "src/isidore/verify.py:70",
-          "id": "c-25a70eb0",
-          "predicate": "defines:src/isidore/verify.py;_ast_of",
-          "statement": "The module parses ASTs with _ast_of",
+          "ehash": "8a4bf8dc6fb1",
+          "evidence": "src/isidore/verify.py:64",
+          "id": "c-2f44e920",
+          "predicate": "calls:_file_nodes;_norm",
+          "statement": "`_file_nodes` filters graph nodes by normalized file path",
           "verdict": "TRUE"
         },
         {
-          "ehash": "6322ff26b35e",
-          "evidence": "src/isidore/verify.py:82",
-          "id": "c-9a25a17f",
-          "predicate": "defines:src/isidore/verify.py;_find_funcdef",
-          "statement": "The module finds function definitions with _find_funcdef",
+          "ehash": "14aed87007ab",
+          "evidence": "src/isidore/verify.py:81",
+          "id": "c-f7a5a0e0",
+          "predicate": "calls:_ast_of;ast.parse",
+          "statement": "`_ast_of` parses Python files into ASTs",
           "verdict": "TRUE"
         }
       ],
-      "compiled_at": "2026-07-26T01:01:35Z",
-      "context_hash": "d3faae6d7e25c4e4c1d169a6b23bbffe5768aa999d7239f4f158cd6a0b7119d8",
+      "compiled_at": "2026-07-26T02:19:36Z",
+      "context_hash": "5d79ad3b5bbb6eed4bc4e729f2adec7db271cd72067cc4b001fb729e50526847",
       "findings": [],
       "history": [
         {
           "commit": "1a34c13ecf2e",
           "line_delta": 21,
+          "sections_changed": [
+            "Architecture",
+            "Dependencies",
+            "How to change safely",
+            "Key entry points",
+            "Purpose"
+          ]
+        },
+        {
+          "commit": "5782a431e6dc",
+          "line_delta": 7,
           "sections_changed": [
             "Architecture",
             "Dependencies",
@@ -2214,6 +2486,77 @@
       "name": "tests/test_impact.py",
       "quarantined": false
     },
+    "tests-test_langspec_oracle_py.md": {
+      "claims": [
+        {
+          "ehash": "e203312e61de",
+          "evidence": "tests/test_langspec_oracle.py:45",
+          "id": "c-a298063a",
+          "predicate": "calls:test_parameter_names_are_read_where_the_name_comes_first;parameter_names",
+          "statement": "The module tests the `parameter_names()` function",
+          "verdict": "TRUE"
+        },
+        {
+          "ehash": "7dfd64092440",
+          "evidence": "tests/test_langspec_oracle.py:70",
+          "id": "c-b600997a",
+          "predicate": "calls:test_literal_value_reads_only_comparable_literals;literal_value",
+          "statement": "The module tests the `literal_value()` function",
+          "verdict": "TRUE"
+        },
+        {
+          "ehash": "dfd5748ce78b",
+          "evidence": "tests/test_langspec_oracle.py:81",
+          "id": "c-43d8deee",
+          "predicate": "calls:test_value_now_decides_for_a_typescript_constant;v_value",
+          "statement": "The module verifies the oracle's ability to decide value claims",
+          "verdict": "TRUE"
+        },
+        {
+          "ehash": "a32b9661b2b2",
+          "evidence": "tests/test_langspec_oracle.py:53",
+          "id": "c-a6b8d13d",
+          "predicate": "calls:test_a_language_whose_parameter_order_is_not_modelled_refuses_to_answer;parameter_names",
+          "statement": "The module refuses to answer for unsupported languages",
+          "verdict": "TRUE"
+        },
+        {
+          "ehash": "bf3a17d62edd",
+          "evidence": "tests/test_langspec_oracle.py:59",
+          "id": "c-1c2f6c25",
+          "predicate": "calls:test_a_truncated_declaration_refuses_to_answer;parameter_names",
+          "statement": "The module refuses to answer for malformed signatures",
+          "verdict": "TRUE"
+        },
+        {
+          "ehash": "153c2b203142",
+          "evidence": "tests/test_langspec_oracle.py:66",
+          "id": "c-b097005d",
+          "predicate": "calls:test_a_parameter_that_is_not_a_plain_name_refuses_to_answer;parameter_names",
+          "statement": "The module refuses to answer for complex parameters",
+          "verdict": "TRUE"
+        }
+      ],
+      "compiled_at": "2026-07-26T02:20:19Z",
+      "context_hash": "a2432d7fbd5d7af53ea218b5138bd586062fc2cc7d27f7504567960adb5c1fdf",
+      "findings": [],
+      "history": [
+        {
+          "commit": "5782a431e6dc",
+          "line_delta": 31,
+          "sections_changed": [
+            "Architecture",
+            "Dependencies",
+            "How to change safely",
+            "Key entry points",
+            "Purpose"
+          ]
+        }
+      ],
+      "kind": "module",
+      "name": "tests/test_langspec_oracle.py",
+      "quarantined": false
+    },
     "tests-test_langspec_py.md": {
       "claims": [
         {
@@ -2243,6 +2586,93 @@
       ],
       "kind": "module",
       "name": "tests/test_langspec.py",
+      "quarantined": false
+    },
+    "tests-test_llms_txt_py.md": {
+      "claims": [
+        {
+          "ehash": "994efd7625f5",
+          "evidence": "tests/test_llms_txt.py:L1",
+          "id": "c-45b89295",
+          "predicate": "",
+          "statement": "The module tests the `llms.txt` file generation",
+          "verdict": "UNDECIDABLE"
+        },
+        {
+          "ehash": "cf75a50ff3a5",
+          "evidence": "tests/test_llms_txt.py:L26",
+          "id": "c-da8be650",
+          "predicate": "",
+          "statement": "The file must start with an H1 project name, followed by a blockquote summary, and then H2 file lists",
+          "verdict": "UNDECIDABLE"
+        },
+        {
+          "ehash": "4fc3fd245ea7",
+          "evidence": "tests/test_llms_txt.py:L33",
+          "id": "c-4e89bbe8",
+          "predicate": "",
+          "statement": "The summary is reused from the product page",
+          "verdict": "UNDECIDABLE"
+        },
+        {
+          "ehash": "15d828799084",
+          "evidence": "tests/test_llms_txt.py:L40",
+          "id": "c-a3142ae8",
+          "predicate": "",
+          "statement": "The sections must appear in the order: `## Start here`, `## Areas`, `## Modules`",
+          "verdict": "UNDECIDABLE"
+        },
+        {
+          "ehash": "fcc0b98c1f9a",
+          "evidence": "tests/test_llms_txt.py:L50",
+          "id": "c-5e29c4bd",
+          "predicate": "",
+          "statement": "Optional content is marked under `## Optional`",
+          "verdict": "UNDECIDABLE"
+        },
+        {
+          "ehash": "1f17452b5e42",
+          "evidence": "tests/test_llms_txt.py:L58",
+          "id": "c-2caef6a9",
+          "predicate": "defines:tests/test_llms_txt.py;test_it_is_written_where_a_fetcher_looks_and_is_deterministic",
+          "statement": "The file is written to the repository root as `LLMS_FILENAME`",
+          "verdict": "TRUE"
+        },
+        {
+          "ehash": "24ced265d83d",
+          "evidence": "tests/test_llms_txt.py:L59",
+          "id": "c-ac882c69",
+          "predicate": "",
+          "statement": "The file generation is deterministic",
+          "verdict": "UNDECIDABLE"
+        },
+        {
+          "ehash": "0caf93f50476",
+          "evidence": "tests/test_llms_txt.py:L4",
+          "id": "c-1eb7e9d5",
+          "predicate": "imports:tests/test_llms_txt.py;isidore.render",
+          "statement": "The module depends on `isidore.render`",
+          "verdict": "UNDECIDABLE"
+        }
+      ],
+      "compiled_at": "2026-07-26T02:20:26Z",
+      "context_hash": "af875acff05dd3af921bf5679af04abbaa09d970506841d837c6257ea76fca4e",
+      "findings": [],
+      "history": [
+        {
+          "commit": "5782a431e6dc",
+          "line_delta": 20,
+          "sections_changed": [
+            "Architecture",
+            "Dependencies",
+            "How to change safely",
+            "Key entry points",
+            "Purpose"
+          ]
+        }
+      ],
+      "kind": "module",
+      "name": "tests/test_llms_txt.py",
       "quarantined": false
     },
     "tests-test_mcp_barrier_py.md": {
@@ -2297,51 +2727,94 @@
         {
           "ehash": "3c779363b8e8",
           "evidence": "tests/test_overview.py:1",
-          "id": "c-52042481",
+          "id": "c-66096a06",
           "predicate": "",
-          "statement": "The module tests the overview compilation logic.",
+          "statement": "The test module verifies the behavior of the product overview generator.",
           "verdict": "UNDECIDABLE"
         },
         {
-          "ehash": "1119603b9942",
-          "evidence": "tests/test_overview.py:38",
-          "id": "c-284278d9",
+          "ehash": "5df5b58927e8",
+          "evidence": "tests/test_overview.py:34",
+          "id": "c-a62ac875",
           "predicate": "defines:tests/test_overview.py;repo",
-          "statement": "The test repository includes a module page with verified claims.",
+          "statement": "The module uses pytest fixtures to create a mock repository.",
           "verdict": "TRUE"
         },
         {
-          "ehash": "0ac4ddd35177",
-          "evidence": "tests/test_overview.py:55",
-          "id": "c-f607829c",
+          "ehash": "9d5092f1da05",
+          "evidence": "tests/test_overview.py:53",
+          "id": "c-7e5b010e",
+          "predicate": "defines:tests/test_overview.py;test_only_proven_claims_become_citable_facts",
+          "statement": "The test functions verify specific behaviors of the overview compilation process.",
+          "verdict": "TRUE"
+        },
+        {
+          "ehash": "da4730dd1614",
+          "evidence": "tests/test_overview.py:8",
+          "id": "c-f9d1def0",
+          "predicate": "imports:tests/test_overview.py;isidore.pyramid",
+          "statement": "The module depends on the `isidore.pyramid` module.",
+          "verdict": "UNDECIDABLE"
+        },
+        {
+          "ehash": "f6d0b1d37c2c",
+          "evidence": "tests/test_overview.py:36",
+          "id": "c-7f98039d",
+          "predicate": "calls:tests/test_overview.py;write_certificate",
+          "statement": "The `repo` fixture sets up a temporary repository with a module page and its certificate.",
+          "verdict": "UNDECIDABLE"
+        },
+        {
+          "ehash": "f05b3031686e",
+          "evidence": "tests/test_overview.py:54",
+          "id": "c-d6fe8e39",
           "predicate": "calls:tests/test_overview.py;verified_claims",
-          "statement": "Only TRUE claims are included in the overview facts.",
+          "statement": "The test functions ensure that only claims with a `TRUE` verdict are included in the overview.",
           "verdict": "UNDECIDABLE"
         },
         {
-          "ehash": "aa5b3896a181",
-          "evidence": "tests/test_overview.py:61",
-          "id": "c-740f311c",
+          "ehash": "a51c438555a8",
+          "evidence": "tests/test_overview.py:60",
+          "id": "c-71e349ce",
           "predicate": "calls:tests/test_overview.py;compile_overview",
-          "statement": "A dry run does not call the LLM.",
+          "statement": "A dry run does not call the LLM and correctly reports the material.",
           "verdict": "UNDECIDABLE"
         },
         {
-          "ehash": "18656feb9a3d",
-          "evidence": "tests/test_overview.py:86",
-          "id": "c-c6717782",
+          "ehash": "d2204ae8723a",
+          "evidence": "tests/test_overview.py:69",
+          "id": "c-d1c90130",
           "predicate": "calls:tests/test_overview.py;compile_overview",
-          "statement": "The overview page is only published when it can be proven.",
+          "statement": "Wiki claims are correctly chained and verified.",
+          "verdict": "UNDECIDABLE"
+        },
+        {
+          "ehash": "9ce3eccf25b0",
+          "evidence": "tests/test_overview.py:83",
+          "id": "c-559281c6",
+          "predicate": "calls:tests/test_overview.py;compile_overview",
+          "statement": "Pages with no verifiable claims are refused.",
           "verdict": "UNDECIDABLE"
         }
       ],
-      "compiled_at": "2026-07-26T01:03:48Z",
-      "context_hash": "a16e32813cd409aed06bd765f9cd4675744ba747ebd1573a9e784d04e9bd13dc",
+      "compiled_at": "2026-07-26T02:20:33Z",
+      "context_hash": "f424f2cbefb394e8bdf1e417866fea846d0b5f8e7bea6fab9a19f0956929c226",
       "findings": [],
       "history": [
         {
           "commit": "1a34c13ecf2e",
           "line_delta": 22,
+          "sections_changed": [
+            "Architecture",
+            "Dependencies",
+            "How to change safely",
+            "Key entry points",
+            "Purpose"
+          ]
+        },
+        {
+          "commit": "5782a431e6dc",
+          "line_delta": 2,
           "sections_changed": [
             "Architecture",
             "Dependencies",
@@ -2603,27 +3076,38 @@
         {
           "ehash": "644dd1c70598",
           "evidence": "tests/test_plain.py:L1",
-          "id": "c-378e1474",
+          "id": "c-b05f53e7",
           "predicate": "",
-          "statement": "The plain-language gate is tested for named rules, one-sided verdicts, and the absence of readability scores",
+          "statement": "The plain-language gate enforces ISO 24495-1 compliance",
           "verdict": "UNDECIDABLE"
         },
         {
-          "ehash": "a02838836e1c",
-          "evidence": "tests/test_plain.py:L4",
-          "id": "c-b7e0fe1f",
-          "predicate": "imports:tests/test_plain.py;isidore.plain",
-          "statement": "The module imports RULES, check, explain, and is_plain from isidore.plain",
+          "ehash": "478802916540",
+          "evidence": "tests/test_plain.py:L39",
+          "id": "c-c998a651",
+          "predicate": "calls:is_plain",
+          "statement": "The gate rejects short jargon sentences",
           "verdict": "UNDECIDABLE"
         }
       ],
-      "compiled_at": "2026-07-26T01:04:03Z",
-      "context_hash": "f42134557971c552125ed0f621381f1dd3c3e8b15a7170b203a57d27806f68db",
+      "compiled_at": "2026-07-26T02:20:42Z",
+      "context_hash": "4936ed2d77dcfe892dd25a3b1ee9292e257a05a67ac74842b1444307c96bc1e8",
       "findings": [],
       "history": [
         {
           "commit": "1a34c13ecf2e",
           "line_delta": 24,
+          "sections_changed": [
+            "Architecture",
+            "Dependencies",
+            "How to change safely",
+            "Key entry points",
+            "Purpose"
+          ]
+        },
+        {
+          "commit": "5782a431e6dc",
+          "line_delta": 5,
           "sections_changed": [
             "Architecture",
             "Dependencies",
@@ -2714,6 +3198,93 @@
       ],
       "kind": "module",
       "name": "tests/test_pyramid.py",
+      "quarantined": false
+    },
+    "tests-test_recertify_py.md": {
+      "claims": [
+        {
+          "ehash": "e2ca60c588de",
+          "evidence": "tests/test_recertify.py:1",
+          "id": "c-d028b061",
+          "predicate": "",
+          "statement": "The module tests the recertification of certificates for wiki pages",
+          "verdict": "UNDECIDABLE"
+        },
+        {
+          "ehash": "c7d6b88eb0b0",
+          "evidence": "tests/test_recertify.py:18",
+          "id": "c-81a2d2ce",
+          "predicate": "defines:tests/test_recertify.py;_repo",
+          "statement": "The test creates a synthetic repository with a Python module and wiki page",
+          "verdict": "TRUE"
+        },
+        {
+          "ehash": "1683882d438b",
+          "evidence": "tests/test_recertify.py:31",
+          "id": "c-b9f65fb9",
+          "predicate": "defines:tests/test_recertify.py;_cert",
+          "statement": "The test generates a certificate for a wiki page with specified claims",
+          "verdict": "TRUE"
+        },
+        {
+          "ehash": "8c48e90ca22d",
+          "evidence": "tests/test_recertify.py:39",
+          "id": "c-b2d37a31",
+          "predicate": "defines:tests/test_recertify.py;_claim",
+          "statement": "The test creates a claim verdict with configurable predicate and verdict",
+          "verdict": "TRUE"
+        },
+        {
+          "ehash": "0952f0ae609d",
+          "evidence": "tests/test_recertify.py:46",
+          "id": "c-c80942e1",
+          "predicate": "calls:tests/test_recertify.py;recertify",
+          "statement": "The test verifies that a certificate for a page with a module-level constant is repaired",
+          "verdict": "UNDECIDABLE"
+        },
+        {
+          "ehash": "dd386c33ee9c",
+          "evidence": "tests/test_recertify.py:60",
+          "id": "c-86eca9c0",
+          "predicate": "calls:tests/test_recertify.py;recertify",
+          "statement": "The test ensures that the prose content of a wiki page remains unchanged during recertification",
+          "verdict": "UNDECIDABLE"
+        },
+        {
+          "ehash": "6eac7000a1bd",
+          "evidence": "tests/test_recertify.py:68",
+          "id": "c-ffb5922c",
+          "predicate": "calls:tests/test_recertify.py;recertify",
+          "statement": "The test confirms that a dry run of recertification reports changes but does not write them to disk",
+          "verdict": "UNDECIDABLE"
+        },
+        {
+          "ehash": "452110425e88",
+          "evidence": "tests/test_recertify.py:78",
+          "id": "c-d8ed88f8",
+          "predicate": "calls:tests/test_recertify.py;recertify",
+          "statement": "The test verifies that the verified mass is recomputed rather than carried over",
+          "verdict": "UNDECIDABLE"
+        }
+      ],
+      "compiled_at": "2026-07-26T02:20:49Z",
+      "context_hash": "2cb25ec1fcdfac99657f52767f7abdb434c922628312cc6d04fc3833c9447c89",
+      "findings": [],
+      "history": [
+        {
+          "commit": "5782a431e6dc",
+          "line_delta": 30,
+          "sections_changed": [
+            "Architecture",
+            "Dependencies",
+            "How to change safely",
+            "Key entry points",
+            "Purpose"
+          ]
+        }
+      ],
+      "kind": "module",
+      "name": "tests/test_recertify.py",
       "quarantined": false
     },
     "tests-test_reconcile_py.md": {

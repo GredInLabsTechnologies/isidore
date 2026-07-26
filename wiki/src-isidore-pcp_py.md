@@ -1,28 +1,27 @@
 > [!WARNING]
 > **SECURITY — deterministic detectors flagged this code (0 LLM). Verify; never document as an intended feature.**
 >
-> - `src/isidore/pcp.py:207` — high-entropy literal (>=24 chars, >=3.5 bits/char)
+> - `src/isidore/pcp.py:233` — high-entropy literal (>=24 chars, >=3.5 bits/char)
 ## Purpose
-`src/isidore/pcp.py` is the frozen seam for Proof-Carrying Prose (PCP), a system where claims about code are verified against the code itself. It defines the shared types, predicate grammar, and verifier registry that all PCP lanes (A–E) import. The module ensures consistency across lanes by enforcing a strict contract (ADR-0033) and providing a fail-closed design where undecidable predicates default to `UNDECIDABLE`.
+`src/isidore/pcp.py` is the frozen seam for Proof-Carrying Prose (PCP), a system that verifies typed claims about code. It defines the shared types, predicate grammar, and certificate structure that five lanes (A–E) import and extend. The module enforces invariants like fail-closed verification (never returning `TRUE` for an unregistered language) and monotonic escalation (marks are never removed by the model). It serves as the single point of coupling for ADR-0033, ensuring consistency across lanes.
 
 ## Architecture
 The module consists of:
-- A `Predicate` class for parsing and serializing decidable assertions (e.g., `calls`, `defines`, `imports`).
-- A `Verdict` class to record the result of checking a predicate against an oracle.
-- A `VerifyContext` dataclass providing read-only access to the repository state, graph data, and commit hash.
-- A `Verifier` protocol for implementing deterministic, LLM-free predicate checkers.
-- A global `VERIFIERS` registry to map predicate kinds to their verifiers.
+- `Predicate`: A frozen dataclass representing a decidable assertion with a `kind` and `args`.
+- `Verdict`: A dataclass for the result of checking a predicate, with `value` (TRUE/FALSE/UNDECIDABLE), `oracle`, and `detail`.
+- `VerifyContext`: A read-only dataclass providing verifiers with the repo path, graph data, and commit hash.
+- `Verifier`: A protocol for deterministic, 0-LLM verifiers that return `UNDECIDABLE` for unsupported predicates.
+- `VERIFIERS`: A registry of verifiers, filled by lanes A–D and used by lane A to verify claims.
 
 ## Key entry points
-- `parse_predicate()`: Parses a string into a `Predicate` or returns `None` for malformed/unknown kinds.
-- `undecidable()`: Returns a `Verdict` with `UNDECIDABLE` as the safe default.
-- `register_verifier()`: Adds a verifier to the registry for a given predicate kind.
-- `get_verifier()`: Retrieves a verifier by kind (returns `None` if unregistered).
+- `parse_predicate()`: Parses a predicate from model output, returning `None` for malformed or unsupported kinds.
+- `parse_stored_predicate()`: Parses a predicate from a certificate, allowing kinds registered in `VERIFIERS`.
+- `undecidable()`: Returns a `Verdict` with `UNDECIDABLE` and no oracle.
 
 ## Dependencies
-The module has no cross-module dependencies but is imported by all PCP lanes (A–E) to share the frozen types and registry.
+The module has no cross-module dependencies but is imported by seven other modules (`contracts.py`, `detectors.py`, etc.).
 
 ## How to change safely
-- **Adding a new predicate kind**: Register a verifier for it in the `VERIFIERS` dict. Ensure the verifier is deterministic and LLM-free.
-- **Modifying the predicate grammar**: Avoid changes that break existing serialized predicates. New kinds should be added, not removed.
-- **Updating the `VerifyContext`**: Add new fields only if all lanes can safely ignore them (backward compatibility is critical).
+- **Adding a predicate kind**: Extend `PREDICATE_KINDS` and implement a verifier in the relevant lane.
+- **Modifying the grammar**: Ensure backward compatibility with existing certificates by keeping `parse_stored_predicate()` permissive.
+- **Adding a verifier**: Register it in `VERIFIERS` using the lane's reserved kind.

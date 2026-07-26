@@ -2,67 +2,77 @@
   "child_cert_hashes": {},
   "claims": [
     {
-      "detail": "src/isidore/pyramid.py defines _claim_verdict",
-      "ehash": "ea21456ca50a",
-      "evidence": "src/isidore/pyramid.py:42",
-      "id": "c-a4194d1a",
+      "detail": "src/isidore/pyramid.py defines _wikichain_verifier",
+      "ehash": "78a0a6cc47ed",
+      "evidence": "src/isidore/pyramid.py:69",
+      "id": "c-73630108",
       "oracle": "graph",
-      "predicate": "defines:src/isidore/pyramid.py;_claim_verdict",
-      "statement": "The module verifies wiki:// claims by first checking certificates",
+      "predicate": "defines:src/isidore/pyramid.py;_wikichain_verifier",
+      "statement": "The module implements a wiki:// chain verifier",
       "verdict": "TRUE"
     },
     {
-      "detail": "_claim_verdict calls get",
-      "ehash": "00ddf930c3e5",
-      "evidence": "src/isidore/pyramid.py:56",
-      "id": "c-e299eba8",
+      "detail": "_claim_verdict calls read_certificate",
+      "ehash": "b9fc5de6dbaf",
+      "evidence": "src/isidore/pyramid.py:43",
+      "id": "c-045d6d7a",
       "oracle": "ast",
-      "predicate": "calls:_claim_verdict;pages_state.get",
-      "statement": "The verifier falls back to pages_state if the certificate check fails",
+      "predicate": "calls:_claim_verdict;read_certificate",
+      "statement": "The verifier checks certificates first for claim resolution",
       "verdict": "TRUE"
     },
     {
       "detail": "_seed_subsystems calls _top_dir",
       "ehash": "1a5425c87358",
       "evidence": "src/isidore/pyramid.py:109",
-      "id": "c-43f174fe",
+      "id": "c-b64c89a5",
       "oracle": "ast",
       "predicate": "calls:_seed_subsystems;_top_dir",
-      "statement": "Subsystems are initially grouped by top directory",
+      "statement": "The subsystem suggester groups files by top directory",
       "verdict": "TRUE"
     },
     {
-      "detail": "no comparable literal assignment to relation found",
-      "ehash": "cad316eed4bb",
-      "evidence": "src/isidore/pyramid.py:116",
-      "id": "c-91508b69",
+      "detail": "no declaration of 'level' this oracle can read",
+      "ehash": "8c7a694d5c45",
+      "evidence": "src/isidore/pyramid.py:140",
+      "id": "c-d61bcf38",
       "oracle": "none",
-      "predicate": "value:relation;imports",
-      "statement": "Inter-subsystem dependencies are recorded from imports edges",
+      "predicate": "value:level;2",
+      "statement": "The pyramid planner generates N2 subsystem specifications",
       "verdict": "UNDECIDABLE"
     },
     {
-      "detail": "plan_pyramid calls get",
-      "ehash": "f09921055c7d",
-      "evidence": "src/isidore/pyramid.py:138",
-      "id": "c-38f8626d",
-      "oracle": "ast",
-      "predicate": "calls:plan_pyramid;pyramid.get",
-      "statement": "The pyramid planner supports explicit subsystem configuration",
+      "detail": "src/isidore/pyramid.py imports src/isidore/pcp.py",
+      "ehash": "c6d57b910390",
+      "evidence": "src/isidore/pyramid.py:21",
+      "id": "c-fc046086",
+      "oracle": "graph",
+      "predicate": "imports:src/isidore/pyramid.py;src/isidore/pcp.py",
+      "statement": "The module depends on pcp.py for verification infrastructure",
       "verdict": "TRUE"
     },
     {
-      "detail": "src/isidore/pyramid.py defines plan_pyramid",
-      "ehash": "78bd40561252",
-      "evidence": "src/isidore/pyramid.py:147",
-      "id": "c-93b4038f",
-      "oracle": "graph",
-      "predicate": "defines:src/isidore/pyramid.py;plan_pyramid",
-      "statement": "Product pages reference subsystems by name",
+      "detail": "_wikichain_verifier calls undecidable",
+      "ehash": "4afee3a7d326",
+      "evidence": "src/isidore/pyramid.py:87",
+      "id": "c-e56b724c",
+      "oracle": "ast",
+      "predicate": "calls:_wikichain_verifier;undecidable",
+      "statement": "The verifier returns undecidable for claims without a TRUE verdict",
       "verdict": "TRUE"
+    },
+    {
+      "detail": "no declaration of 'relation' this oracle can read",
+      "ehash": "cad316eed4bb",
+      "evidence": "src/isidore/pyramid.py:116",
+      "id": "c-0a0ab635",
+      "oracle": "none",
+      "predicate": "value:relation;imports",
+      "statement": "The subsystem planner uses import relationships for dependencies",
+      "verdict": "UNDECIDABLE"
     }
   ],
-  "graph_commit": "1a34c13ecf2ef7ce206f1ceeaeb1987fea5f8272",
+  "graph_commit": "5782a431e6dc22ba8b21583e6f89d91001ef4093",
   "marks": [
     {
       "disposition": "",
@@ -74,12 +84,12 @@
     }
   ],
   "mass": {
-    "gray": 17,
-    "green": 22,
+    "gray": 18,
+    "green": 19,
     "yellow": 1
   },
   "page": "src-isidore-pyramid_py.md",
-  "prose_sha256": "4faf09117673e740e66db74e0bc12969f1e706edd969a758aa53d448948883a6",
+  "prose_sha256": "c76f9bcf49ff0ddc7620a1f9763e8d2262f9d27257c3493a1a7599fd60d7addb",
   "version": "pcp-1",
   "violations": []
 }

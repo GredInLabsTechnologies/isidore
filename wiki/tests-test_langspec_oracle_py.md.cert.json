@@ -1,0 +1,76 @@
+{
+  "child_cert_hashes": {},
+  "claims": [
+    {
+      "detail": "test_parameter_names_are_read_where_the_name_comes_first calls parameter_names",
+      "ehash": "e203312e61de",
+      "evidence": "tests/test_langspec_oracle.py:45",
+      "id": "c-a298063a",
+      "oracle": "ast",
+      "predicate": "calls:test_parameter_names_are_read_where_the_name_comes_first;parameter_names",
+      "statement": "The module tests the `parameter_names()` function",
+      "verdict": "TRUE"
+    },
+    {
+      "detail": "test_literal_value_reads_only_comparable_literals calls literal_value",
+      "ehash": "7dfd64092440",
+      "evidence": "tests/test_langspec_oracle.py:70",
+      "id": "c-b600997a",
+      "oracle": "ast",
+      "predicate": "calls:test_literal_value_reads_only_comparable_literals;literal_value",
+      "statement": "The module tests the `literal_value()` function",
+      "verdict": "TRUE"
+    },
+    {
+      "detail": "test_value_now_decides_for_a_typescript_constant calls v_value",
+      "ehash": "dfd5748ce78b",
+      "evidence": "tests/test_langspec_oracle.py:81",
+      "id": "c-43d8deee",
+      "oracle": "ast",
+      "predicate": "calls:test_value_now_decides_for_a_typescript_constant;v_value",
+      "statement": "The module verifies the oracle's ability to decide value claims",
+      "verdict": "TRUE"
+    },
+    {
+      "detail": "test_a_language_whose_parameter_order_is_not_modelled_refuses_to_answer calls parameter_names",
+      "ehash": "a32b9661b2b2",
+      "evidence": "tests/test_langspec_oracle.py:53",
+      "id": "c-a6b8d13d",
+      "oracle": "ast",
+      "predicate": "calls:test_a_language_whose_parameter_order_is_not_modelled_refuses_to_answer;parameter_names",
+      "statement": "The module refuses to answer for unsupported languages",
+      "verdict": "TRUE"
+    },
+    {
+      "detail": "test_a_truncated_declaration_refuses_to_answer calls parameter_names",
+      "ehash": "bf3a17d62edd",
+      "evidence": "tests/test_langspec_oracle.py:59",
+      "id": "c-1c2f6c25",
+      "oracle": "ast",
+      "predicate": "calls:test_a_truncated_declaration_refuses_to_answer;parameter_names",
+      "statement": "The module refuses to answer for malformed signatures",
+      "verdict": "TRUE"
+    },
+    {
+      "detail": "test_a_parameter_that_is_not_a_plain_name_refuses_to_answer calls parameter_names",
+      "ehash": "153c2b203142",
+      "evidence": "tests/test_langspec_oracle.py:66",
+      "id": "c-b097005d",
+      "oracle": "ast",
+      "predicate": "calls:test_a_parameter_that_is_not_a_plain_name_refuses_to_answer;parameter_names",
+      "statement": "The module refuses to answer for complex parameters",
+      "verdict": "TRUE"
+    }
+  ],
+  "graph_commit": "5782a431e6dc22ba8b21583e6f89d91001ef4093",
+  "marks": [],
+  "mass": {
+    "gray": 17,
+    "green": 20,
+    "yellow": 0
+  },
+  "page": "tests-test_langspec_oracle_py.md",
+  "prose_sha256": "0b2ba72d06b3dc2ef40096b80edbef41b7604bda16e8928cd463177dad8eb878",
+  "version": "pcp-1",
+  "violations": []
+}

@@ -1,0 +1,96 @@
+{
+  "child_cert_hashes": {},
+  "claims": [
+    {
+      "detail": "no predicate (existence-anchored only)",
+      "ehash": "e2ca60c588de",
+      "evidence": "tests/test_recertify.py:1",
+      "id": "c-d028b061",
+      "oracle": "none",
+      "predicate": "",
+      "statement": "The module tests the recertification of certificates for wiki pages",
+      "verdict": "UNDECIDABLE"
+    },
+    {
+      "detail": "tests/test_recertify.py defines _repo",
+      "ehash": "c7d6b88eb0b0",
+      "evidence": "tests/test_recertify.py:18",
+      "id": "c-81a2d2ce",
+      "oracle": "graph",
+      "predicate": "defines:tests/test_recertify.py;_repo",
+      "statement": "The test creates a synthetic repository with a Python module and wiki page",
+      "verdict": "TRUE"
+    },
+    {
+      "detail": "tests/test_recertify.py defines _cert",
+      "ehash": "1683882d438b",
+      "evidence": "tests/test_recertify.py:31",
+      "id": "c-b9f65fb9",
+      "oracle": "graph",
+      "predicate": "defines:tests/test_recertify.py;_cert",
+      "statement": "The test generates a certificate for a wiki page with specified claims",
+      "verdict": "TRUE"
+    },
+    {
+      "detail": "tests/test_recertify.py defines _claim",
+      "ehash": "8c48e90ca22d",
+      "evidence": "tests/test_recertify.py:39",
+      "id": "c-b2d37a31",
+      "oracle": "graph",
+      "predicate": "defines:tests/test_recertify.py;_claim",
+      "statement": "The test creates a claim verdict with configurable predicate and verdict",
+      "verdict": "TRUE"
+    },
+    {
+      "detail": "caller 'tests/test_recertify.py' not a Python symbol in the graph",
+      "ehash": "0952f0ae609d",
+      "evidence": "tests/test_recertify.py:46",
+      "id": "c-c80942e1",
+      "oracle": "none",
+      "predicate": "calls:tests/test_recertify.py;recertify",
+      "statement": "The test verifies that a certificate for a page with a module-level constant is repaired",
+      "verdict": "UNDECIDABLE"
+    },
+    {
+      "detail": "caller 'tests/test_recertify.py' not a Python symbol in the graph",
+      "ehash": "dd386c33ee9c",
+      "evidence": "tests/test_recertify.py:60",
+      "id": "c-86eca9c0",
+      "oracle": "none",
+      "predicate": "calls:tests/test_recertify.py;recertify",
+      "statement": "The test ensures that the prose content of a wiki page remains unchanged during recertification",
+      "verdict": "UNDECIDABLE"
+    },
+    {
+      "detail": "caller 'tests/test_recertify.py' not a Python symbol in the graph",
+      "ehash": "6eac7000a1bd",
+      "evidence": "tests/test_recertify.py:68",
+      "id": "c-ffb5922c",
+      "oracle": "none",
+      "predicate": "calls:tests/test_recertify.py;recertify",
+      "statement": "The test confirms that a dry run of recertification reports changes but does not write them to disk",
+      "verdict": "UNDECIDABLE"
+    },
+    {
+      "detail": "caller 'tests/test_recertify.py' not a Python symbol in the graph",
+      "ehash": "452110425e88",
+      "evidence": "tests/test_recertify.py:78",
+      "id": "c-d8ed88f8",
+      "oracle": "none",
+      "predicate": "calls:tests/test_recertify.py;recertify",
+      "statement": "The test verifies that the verified mass is recomputed rather than carried over",
+      "verdict": "UNDECIDABLE"
+    }
+  ],
+  "graph_commit": "5782a431e6dc22ba8b21583e6f89d91001ef4093",
+  "marks": [],
+  "mass": {
+    "gray": 17,
+    "green": 17,
+    "yellow": 0
+  },
+  "page": "tests-test_recertify_py.md",
+  "prose_sha256": "984a7afa13cdc82f0634f27269774da7ac6a8a9c48063f074f23ffe957c56c30",
+  "version": "pcp-1",
+  "violations": []
+}

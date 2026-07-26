@@ -2,77 +2,87 @@
   "child_cert_hashes": {},
   "claims": [
     {
-      "detail": "calls expects (caller, callee)",
-      "ehash": "b1bd38130168",
-      "evidence": "src/isidore/verify.py:4",
-      "id": "c-de1e10e2",
+      "detail": "no predicate (existence-anchored only)",
+      "ehash": "bcf33fd7c55e",
+      "evidence": "src/isidore/verify.py:1",
+      "id": "c-658ccd34",
       "oracle": "none",
-      "predicate": "calls:verify;graph.json;ORACLE_GRAPH",
-      "statement": "The verifiers use graph.json and AST reparsing as oracles",
+      "predicate": "",
+      "statement": "The module verifies claims against graph.json, AST parsing, and textual scans",
       "verdict": "UNDECIDABLE"
     },
     {
-      "detail": "src/isidore/verify.py does not define Verdict",
+      "detail": "no predicate (existence-anchored only)",
       "ehash": "5af45019f483",
       "evidence": "src/isidore/verify.py:9",
-      "id": "c-6befe377",
+      "id": "c-acc3a928",
+      "oracle": "none",
+      "predicate": "",
+      "statement": "Verifiers return TRUE, FALSE, or UNDECIDABLE, never defaulting to TRUE",
+      "verdict": "UNDECIDABLE"
+    },
+    {
+      "detail": "no predicate (existence-anchored only)",
+      "ehash": "806d23263325",
+      "evidence": "src/isidore/verify.py:5",
+      "id": "c-56213da1",
+      "oracle": "none",
+      "predicate": "",
+      "statement": "The internal graph has no `calls` edges, so verifiers must parse the AST",
+      "verdict": "UNDECIDABLE"
+    },
+    {
+      "detail": "_norm calls replace",
+      "ehash": "8c574de33796",
+      "evidence": "src/isidore/verify.py:48",
+      "id": "c-e36a3059",
       "oracle": "ast",
-      "predicate": "defines:src/isidore/verify.py;Verdict",
-      "statement": "The verifiers return TRUE, FALSE, or UNDECIDABLE",
-      "verdict": "FALSE"
-    },
-    {
-      "detail": "src/isidore/verify.py defines _norm",
-      "ehash": "d1c7e7e71afb",
-      "evidence": "src/isidore/verify.py:43",
-      "id": "c-261da67e",
-      "oracle": "graph",
-      "predicate": "defines:src/isidore/verify.py;_norm",
-      "statement": "The module normalizes paths with _norm",
+      "predicate": "calls:_norm;path.replace",
+      "statement": "`_norm` normalizes paths by replacing backslashes and stripping leading `./`",
       "verdict": "TRUE"
     },
     {
-      "detail": "src/isidore/verify.py defines _symbol_base",
-      "ehash": "0ee4bb929a85",
-      "evidence": "src/isidore/verify.py:47",
-      "id": "c-a6f746a5",
-      "oracle": "graph",
-      "predicate": "defines:src/isidore/verify.py;_symbol_base",
-      "statement": "The module extracts symbol bases with _symbol_base",
+      "detail": "_symbol_base calls split",
+      "ehash": "bdc145f9a722",
+      "evidence": "src/isidore/verify.py:53",
+      "id": "c-03524000",
+      "oracle": "ast",
+      "predicate": "calls:_symbol_base;label.split",
+      "statement": "`_symbol_base` strips parentheses and arguments from symbol labels",
       "verdict": "TRUE"
     },
     {
-      "detail": "src/isidore/verify.py defines _read_source",
-      "ehash": "1df10183faa2",
-      "evidence": "src/isidore/verify.py:63",
-      "id": "c-9a05079e",
-      "oracle": "graph",
-      "predicate": "defines:src/isidore/verify.py;_read_source",
-      "statement": "The module reads source files with _read_source",
+      "detail": "_symbol_nodes calls _symbol_base",
+      "ehash": "892ad248d5e4",
+      "evidence": "src/isidore/verify.py:59",
+      "id": "c-356e8c39",
+      "oracle": "ast",
+      "predicate": "calls:_symbol_nodes;_symbol_base",
+      "statement": "`_symbol_nodes` filters graph nodes by symbol name",
       "verdict": "TRUE"
     },
     {
-      "detail": "src/isidore/verify.py defines _ast_of",
-      "ehash": "e300e682cd5e",
-      "evidence": "src/isidore/verify.py:70",
-      "id": "c-25a70eb0",
-      "oracle": "graph",
-      "predicate": "defines:src/isidore/verify.py;_ast_of",
-      "statement": "The module parses ASTs with _ast_of",
+      "detail": "_file_nodes calls _norm",
+      "ehash": "8a4bf8dc6fb1",
+      "evidence": "src/isidore/verify.py:64",
+      "id": "c-2f44e920",
+      "oracle": "ast",
+      "predicate": "calls:_file_nodes;_norm",
+      "statement": "`_file_nodes` filters graph nodes by normalized file path",
       "verdict": "TRUE"
     },
     {
-      "detail": "src/isidore/verify.py defines _find_funcdef",
-      "ehash": "6322ff26b35e",
-      "evidence": "src/isidore/verify.py:82",
-      "id": "c-9a25a17f",
-      "oracle": "graph",
-      "predicate": "defines:src/isidore/verify.py;_find_funcdef",
-      "statement": "The module finds function definitions with _find_funcdef",
+      "detail": "_ast_of calls parse",
+      "ehash": "14aed87007ab",
+      "evidence": "src/isidore/verify.py:81",
+      "id": "c-f7a5a0e0",
+      "oracle": "ast",
+      "predicate": "calls:_ast_of;ast.parse",
+      "statement": "`_ast_of` parses Python files into ASTs",
       "verdict": "TRUE"
     }
   ],
-  "graph_commit": "1a34c13ecf2ef7ce206f1ceeaeb1987fea5f8272",
+  "graph_commit": "5782a431e6dc22ba8b21583e6f89d91001ef4093",
   "marks": [
     {
       "disposition": "",
@@ -84,12 +94,12 @@
     }
   ],
   "mass": {
-    "gray": 11,
-    "green": 12,
-    "yellow": 8
+    "gray": 21,
+    "green": 5,
+    "yellow": 7
   },
   "page": "src-isidore-verify_py.md",
-  "prose_sha256": "c866331f8ed3f73574619a7b3c20d50e0b592779f1b7367014891ed9b47cf21b",
+  "prose_sha256": "c2a9ee24fca200a1f8ba9fa0112ab2378927fa5399c351eeda40a24518cb055e",
   "version": "pcp-1",
   "violations": []
 }

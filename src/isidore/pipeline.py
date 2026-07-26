@@ -45,7 +45,7 @@ from .findings import (
 from .graph import CONCEPTS_BUCKET, load_graph, module_of, restrict_to_tracked
 from .llm import GenerationError, default_generator
 from .pcp import CERT_SUFFIX, VerifyContext, write_certificate
-from .verify import build_certificate
+from .verify import CERT_DRIFTED, build_certificate, certificate_status
 from .detectors import scan as scan_marks
 from .reconcile import reconcile
 from .render import (
@@ -531,6 +531,12 @@ class CompileResult:
     marks_raised: int = 0
     reconcile_violations: int = 0
     claims_refuted: int = 0   # typed claims the verifier proved FALSE -> archived, never published
+    # Certificate drift (T-e46b). A page can pass every staleness check and still have a certificate
+    # that no longer describes it. Split by who can fix it: `certs_refuted` states something the code
+    # now denies and needs new prose (so it is DIRTY); `certs_repairable` only needs the oracles
+    # re-run, which `isidore recertify` does for nothing — compile must not burn a call on it.
+    certs_refuted: list[str] = field(default_factory=list)
+    certs_repairable: list[str] = field(default_factory=list)
 
 
 def compile_wiki(
@@ -596,6 +602,10 @@ def compile_wiki(
                                  since=since, affected_depth=affected_depth, result=result)
     scoped = scope_pages is not None
 
+    # PCP wiring (ADR-0033): the verify context is built once, before dirtiness is decided — the
+    # certificate check below needs it, and the generation loop reuses it.
+    verify_ctx = VerifyContext(repo=repo, nodes=nodes, links=links, commit=commit)
+
     contexts: dict[str, tuple[PageSpec, str, str]] = {}
     for spec in specs:
         if scoped and spec.filename not in scope_pages:
@@ -606,10 +616,24 @@ def compile_wiki(
         digest = context_hash(prompt)
         contexts[spec.filename] = (spec, prompt, digest)
         prev = pages_state.get(spec.filename, {})
+        # A drifted certificate is not one condition but two, and only one of them is worth an LLM
+        # call. `verify` used to fail both with no way out (T-e46b).
+        cert_state = certificate_status(repo, wiki_dir / spec.filename, verify_ctx)
+        if cert_state.refuted:
+            result.certs_refuted.append(spec.filename)
+        elif cert_state.status == CERT_DRIFTED:
+            result.certs_repairable.append(spec.filename)
         if (prev.get("context_hash") != digest
                 or spec.filename in claim_stale
+                or bool(cert_state.refuted)
                 or not (wiki_dir / spec.filename).is_file()):
             result.dirty.append(spec.filename)
+    if result.certs_repairable:
+        result.warnings.append(
+            f"{len(result.certs_repairable)} page(s) have a stale certificate that re-running the "
+            f"oracles repairs at 0 LLM — run `isidore recertify --write` "
+            f"({', '.join(result.certs_repairable[:3])}"
+            + (" ..." if len(result.certs_repairable) > 3 else "") + ")")
 
     # Deterministic dirty ordering so the --max-calls cap bites the LEAST important pages: pages a
     # previous run left pending (skipped by its cap) drain FIRST — never re-skip the same page
@@ -636,10 +660,9 @@ def compile_wiki(
     generate = generator if generator is not None else default_generator()
     known_files = {n["source_file"] for n in nodes if n.get("source_file")}
 
-    # PCP wiring (ADR-0033): compute the verify context + deterministic security marks ONCE (0 LLM,
-    # before any generation). Per dirty page we then build a re-verifiable certificate, reconcile the
-    # model's own outputs, and let danger marks force the banner (monotonic escalation, invariant I10).
-    verify_ctx = VerifyContext(repo=repo, nodes=nodes, links=links, commit=commit)
+    # Deterministic security marks, computed ONCE (0 LLM, before any generation). Per dirty page we
+    # then build a re-verifiable certificate, reconcile the model's own outputs, and let danger marks
+    # force the banner (monotonic escalation, invariant I10).
     all_marks = scan_marks(repo, verify_ctx)
 
     calls_made = 0

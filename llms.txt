@@ -1,6 +1,6 @@
 # isidore
 
-> isidore creates a detailed guide for your project by analyzing its structure and content.
+> Here’s a rewritten front page for *isidore* that adheres to all the rules and avoids jargon:.
 
 Documentation compiled by isidore from this repository's structure. Every page ships a `.cert.json` recording which of its statements were mechanically verified against the code.
 
@@ -30,6 +30,8 @@ Documentation compiled by isidore from this repository's structure. Every page s
 - [src-isidore-pipeline_py.md](wiki/src-isidore-pipeline_py.md)
 - [src-isidore-pyramid_py.md](wiki/src-isidore-pyramid_py.md)
 - [src-isidore-qa_py.md](wiki/src-isidore-qa_py.md)
+- [src-isidore-recertify_py.md](wiki/src-isidore-recertify_py.md)
+- [src-isidore-render_py.md](wiki/src-isidore-render_py.md)
 - [src-isidore-surface_py.md](wiki/src-isidore-surface_py.md)
 - [src-isidore-verify_py.md](wiki/src-isidore-verify_py.md)
 - [src-isidore-whatsnew_py.md](wiki/src-isidore-whatsnew_py.md)
@@ -39,7 +41,9 @@ Documentation compiled by isidore from this repository's structure. Every page s
 - [tests-test_connectors_f1_py.md](wiki/tests-test_connectors_f1_py.md)
 - [tests-test_detectors_py.md](wiki/tests-test_detectors_py.md)
 - [tests-test_impact_py.md](wiki/tests-test_impact_py.md)
+- [tests-test_langspec_oracle_py.md](wiki/tests-test_langspec_oracle_py.md)
 - [tests-test_langspec_py.md](wiki/tests-test_langspec_py.md)
+- [tests-test_llms_txt_py.md](wiki/tests-test_llms_txt_py.md)
 - [tests-test_mcp_barrier_py.md](wiki/tests-test_mcp_barrier_py.md)
 - [tests-test_overview_py.md](wiki/tests-test_overview_py.md)
 - [tests-test_pcp_pipeline_py.md](wiki/tests-test_pcp_pipeline_py.md)
@@ -47,6 +51,7 @@ Documentation compiled by isidore from this repository's structure. Every page s
 - [tests-test_pipeline_py.md](wiki/tests-test_pipeline_py.md)
 - [tests-test_plain_py.md](wiki/tests-test_plain_py.md)
 - [tests-test_pyramid_py.md](wiki/tests-test_pyramid_py.md)
+- [tests-test_recertify_py.md](wiki/tests-test_recertify_py.md)
 - [tests-test_reconcile_py.md](wiki/tests-test_reconcile_py.md)
 - [tests-test_residue_py.md](wiki/tests-test_residue_py.md)
 - [tests-test_security_prose_py.md](wiki/tests-test_security_prose_py.md)

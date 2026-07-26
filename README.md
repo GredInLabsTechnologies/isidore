@@ -45,6 +45,7 @@ isidore compile --execute         # compiles wiki/ (quickstart.md, module pages,
 
 isidore ask "how does the auth flow handle expired tokens?"   # one call, cited answer
 isidore claims --check            # CI gate: exit 1 if any claim's evidence went stale (0 LLM calls)
+isidore recertify --write         # re-run the oracles over unchanged prose (0 LLM calls)
 
 isidore whatsnew --since v1.2.0   # verifiable changelog of the API-surface delta (0 LLM calls)
 ```
@@ -204,6 +205,27 @@ isidore verify --fail-on-marks          # CI gate: fail on any unresolved danger
 isidore verify --contracts              # CI gate: fail if a promoted claim->contract is now FALSE
 isidore contracts --promote <claim-id>  # graduate a proved claim to a CI-enforced invariant
 ```
+
+### When a certificate falls behind the code
+
+A page can be *more* right than its certificate. Improve an extractor and a claim it once recorded
+FALSE now verifies TRUE: nothing the model wrote is wrong, only the record of what could be proved —
+but `verify` fails the page all the same. That repair costs nothing, so it should never cost a call:
+
+```bash
+isidore recertify           # report which certificates the oracles can restate (0 LLM)
+isidore recertify --write   # re-run them and rewrite the certificates; the prose is never touched
+```
+
+It refuses two cases on purpose, and both are honest refusals rather than silent repairs:
+
+- **A published claim that is now FALSE.** A claim only reaches the prose once it verified TRUE, so
+  this means a sentence a reader can see is contradicted by the code. Re-certifying would turn a
+  wrong page green. `compile` treats exactly this as dirty — the page needs new prose, one call.
+- **A page edited after compile.** The certificate describes different text; recertifying it would
+  certify an edit no verifier ever read.
+
+So every `verify` failure has an owner: free if the oracles moved, one call if the page is wrong.
 
 The gates are **opt-in** (off by default). A ready-to-copy pre-commit / CI step:
 
