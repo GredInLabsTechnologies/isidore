@@ -10,6 +10,7 @@ from __future__ import annotations
 
 import json
 import os
+import re
 import shutil
 import time
 from collections.abc import Iterable, Iterator
@@ -34,9 +35,51 @@ def chash(content: str) -> str:
     return _hash(_normalize(content))
 
 
+# An item's id becomes part of its address, `src://<cid>[/<instance>]/<item-id>`, so the id has to
+# survive that round trip. Two characters break it, and both broke it in production:
+#   `/`  splits the URI into more parts than the scheme has  (RSS ids are guids, i.e. URLs)
+#   `:`  a trailing `:<digits>` is read as a line number      (HN object ids are numbers)
+# Every claim citing such an item was dropped as unresolvable — the page kept its inline citation and
+# the claims block silently came out empty. Enforced at write time so the failure is loud at ingest
+# instead of invisible at citation, and so the next connector cannot reintroduce it.
+_SAFE_ITEM_ID = re.compile(r"^[A-Za-z0-9][A-Za-z0-9._@=-]*$")
+
+
+def check_item_id(item_id: str) -> None:
+    """Raise ValueError if `item_id` cannot be addressed by a `src://` URI."""
+    if not item_id or not _SAFE_ITEM_ID.match(item_id):
+        raise ValueError(
+            f"unusable item id {item_id!r}: an id must be non-empty and may contain only letters, "
+            f"digits and . _ @ = - (no '/' or ':', which break src:// addressing). "
+            f"Use store.safe_item_id() to derive one.")
+
+
+def safe_item_id(stream: str, native: str) -> str:
+    """A stable, addressable id from a stream name and whatever native id the source gave.
+
+    Readable where it can be (a slug of both) and unique where it cannot: the trailing digest is over
+    the FULL inputs, so two ids that truncate to the same prefix still differ, and the same source item
+    always yields the same id — which is what makes re-ingest a no-op.
+    """
+    slug = _slug(stream)[:40]
+    tail = _slug(native)[:40]
+    digest = _hash(f"{stream}|{native}")[:10]
+    return "-".join(part for part in (slug, tail, digest) if part)
+
+
+def _slug(text: str) -> str:
+    return re.sub(r"[^a-z0-9]+", "-", text.lower()).strip("-")
+
+
 def write_items(cid: str, instance: str | None, run_id: str, items: Iterable[dict]) -> str:
     """Append items as JSONL to `raw/<run_id>/items.jsonl`; stamp each with its `chash`. Does NOT
-    mutate the caller's dicts. Returns the file path."""
+    mutate the caller's dicts. Returns the file path.
+
+    Raises ValueError on an id that a `src://` URI could not address (see check_item_id).
+    """
+    items = list(items)
+    for item in items:
+        check_item_id(str(item.get("id", "")))
     out_dir = raw_dir(cid, instance, run_id)
     safe_mkdir(out_dir)
     out_file = out_dir / "items.jsonl"

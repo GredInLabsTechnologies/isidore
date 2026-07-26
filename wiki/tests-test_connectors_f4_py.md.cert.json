@@ -1,0 +1,124 @@
+{
+  "child_cert_hashes": {},
+  "claims": [
+    {
+      "detail": "no predicate (existence-anchored only)",
+      "ehash": "a734da906fad",
+      "evidence": "tests/test_connectors_f4.py:1",
+      "id": "c-11185f2f",
+      "oracle": "none",
+      "predicate": "",
+      "statement": "The module tests the RSS, Hacker News, and web-search connectors without live network requests",
+      "verdict": "UNDECIDABLE"
+    },
+    {
+      "detail": "no predicate (existence-anchored only)",
+      "ehash": "b8fdb9658191",
+      "evidence": "tests/test_connectors_f4.py:43",
+      "id": "c-fce49696",
+      "oracle": "none",
+      "predicate": "",
+      "statement": "The module uses pytest fixtures and mocks to simulate network responses",
+      "verdict": "UNDECIDABLE"
+    },
+    {
+      "detail": "no predicate (existence-anchored only)",
+      "ehash": "8de70b2d9c4f",
+      "evidence": "tests/test_connectors_f4.py:19",
+      "id": "c-5237f83d",
+      "oracle": "none",
+      "predicate": "",
+      "statement": "The module includes sample XML feeds for testing",
+      "verdict": "UNDECIDABLE"
+    },
+    {
+      "detail": "no predicate (existence-anchored only)",
+      "ehash": "b115562af28c",
+      "evidence": "tests/test_connectors_f4.py:50",
+      "id": "c-cb2cfbdb",
+      "oracle": "none",
+      "predicate": "",
+      "statement": "The module validates URL restrictions",
+      "verdict": "UNDECIDABLE"
+    },
+    {
+      "detail": "no predicate (existence-anchored only)",
+      "ehash": "2fa7c72129a0",
+      "evidence": "tests/test_connectors_f4.py:62",
+      "id": "c-8901870a",
+      "oracle": "none",
+      "predicate": "",
+      "statement": "The module ensures incomplete JSON responses are rejected",
+      "verdict": "UNDECIDABLE"
+    },
+    {
+      "detail": "no predicate (existence-anchored only)",
+      "ehash": "17350d3353e2",
+      "evidence": "tests/test_connectors_f4.py:71",
+      "id": "c-dbe8ff4a",
+      "oracle": "none",
+      "predicate": "",
+      "statement": "The module confirms RSS and Atom feeds are parsed consistently",
+      "verdict": "UNDECIDABLE"
+    },
+    {
+      "detail": "no predicate (existence-anchored only)",
+      "ehash": "b7cd306a8843",
+      "evidence": "tests/test_connectors_f4.py:85",
+      "id": "c-0c7ba683",
+      "oracle": "none",
+      "predicate": "",
+      "statement": "The module ensures malformed XML raises an error",
+      "verdict": "UNDECIDABLE"
+    },
+    {
+      "detail": "no predicate (existence-anchored only)",
+      "ehash": "ae24efceb797",
+      "evidence": "tests/test_connectors_f4.py:103",
+      "id": "c-8873d49a",
+      "oracle": "none",
+      "predicate": "",
+      "statement": "The module verifies idempotent RSS feed ingestion",
+      "verdict": "UNDECIDABLE"
+    }
+  ],
+  "graph_commit": "b78c836100f72c8de8a10a0def794b104ab4f424",
+  "marks": [
+    {
+      "disposition": "",
+      "family": "entropy",
+      "file": "tests/test_connectors_f4.py",
+      "line": 291,
+      "reason": "high-entropy literal (>=24 chars, >=3.5 bits/char)",
+      "severity": "danger"
+    },
+    {
+      "disposition": "",
+      "family": "entropy",
+      "file": "tests/test_connectors_f4.py",
+      "line": 291,
+      "reason": "high-entropy literal (>=24 chars, >=3.5 bits/char)",
+      "severity": "danger"
+    }
+  ],
+  "mass": {
+    "gray": 29,
+    "green": 0,
+    "yellow": 9
+  },
+  "page": "tests-test_connectors_f4_py.md",
+  "prose_sha256": "5608b2024e3811ae18f0eef0737e92d6af21b4fd36173a88ba5f541ce4539338",
+  "version": "pcp-1",
+  "violations": [
+    {
+      "detail": "Security-relevant mark (entropy) at tests/test_connectors_f4.py:291 has no covering claim.",
+      "kind": "mark-uncovered",
+      "where": "tests/test_connectors_f4.py:291"
+    },
+    {
+      "detail": "Security-relevant mark (entropy) at tests/test_connectors_f4.py:291 has no covering claim.",
+      "kind": "mark-uncovered",
+      "where": "tests/test_connectors_f4.py:291"
+    }
+  ]
+}

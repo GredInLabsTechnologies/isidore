@@ -1,25 +1,26 @@
 ## Purpose
-The `src/isidore/connectors` module provides a framework for ingesting raw external evidence into Isidore's knowledge home. It defines a protocol for connectors, which are responsible for deterministically fetching data from external sources (e.g., Git repositories, MCP tools) and storing it in the raw store without using LLMs. The module supports built-in connectors (like `git_repo` and `mcp`) and third-party plugins via the `isidore.connectors` entry-point group, enabling extensibility without modifying the core repository.
+The `src/isidore/connectors` module ingests raw data from external sources into Isidore's knowledge home. It implements a connector protocol (defined in `base.py`) that standardizes how different data sources are processed. Each connector is responsible for fetching data from its source, normalizing it, and storing it in the raw store (`store.py`). The module supports multiple data sources, including Hacker News, RSS feeds, web searches, and read-only MCP (Minimal Code Protocol) endpoints. The connectors are designed to be deterministic and avoid LLM calls, ensuring consistent and reliable data ingestion.
 
 ## Architecture
-The module consists of:
-- A **store** (`store.py`) that manages immutable ingested items and cursor state, where each item is uniquely identified by a content hash derived from its normalized content (`src/isidore/connectors/store.py:L3-L7`).
-- A **protocol** (`base.py`) defining the `Connector` interface, `IngestResult` dataclass, and `IngestOptions` for scoping runs (`src/isidore/connectors/base.py:L21-L46`).
-- Built-in connectors:
-  - `git_repo.py`: Ingests Git repository manifests, emitting one item per repo with a unique ID based on the HEAD commit (`src/isidore/connectors/git_repo.py:L1-L8`).
-  - `mcp.py`: A read-only connector for MCP tools, enforcing a strict allowlist for operations (`src/isidore/connectors/mcp.py:L1-L8`).
+The module follows a pluggable architecture where connectors are registered via the `base.py` registry. The registry is populated by built-in connectors and can be extended by third-party plugins. Each connector implements the same protocol, defined by the `IngestOptions` and `IngestResult` classes in `base.py`. The raw store (`store.py`) manages the persistent storage of ingested items and connector state. Connectors use shared utilities from `http.py` for HTTP requests and `store.py` for state management. The module is designed to be modular, with each connector handling a specific data source independently.
 
 ## Key entry points
-- `base.py`: The protocol and registry for connectors, including the `register` function and `IngestResult` class (`src/isidore/connectors/base.py:L21-L46`).
-- `store.py`: Core storage operations like `write_items`, `update_cursor`, and `record_run` (`src/isidore/connectors/store.py:L23-L26`).
-- `__init__.py`: Initializes built-in connectors and exposes the public API (`src/isidore/connectors/__init__.py:L1-L26`).
+- `base.py`: Defines the connector protocol and registry. The `register` decorator is used to register connectors, and the `IngestResult` class standardizes the outcome of ingest runs.
+- `store.py`: Manages the raw store, including writing items, updating cursor state, and recording run metadata. The `create_run_id` function generates unique identifiers for each ingest run.
+- `hackernews.py`: Implements the Hacker News connector, which fetches stories and searches from Algolia's public API.
+- `rss.py`: Implements the RSS/Atom connector, which parses feed entries and stores them in the raw store.
+- `websearch.py`: Implements the web search connector, which queries a Tavily-compatible endpoint for search results.
+- `mcp.py`: Implements the read-only MCP connector, which interacts with a JSON-RPC 2.0 endpoint to fetch data.
 
 ## Dependencies
-- `src/isidore/home.py`: Used for file paths and directory management (`src/isidore/connectors/store.py:L18`).
-- `src/isidore/claims.py`: Provides `_hash` and `_normalize` for content fingerprinting (`src/isidore/connectors/store.py:L17`).
-- `src/isidore/connect.py`: Depends on this module for connector execution (`src/isidore/connect.py` is not shown but is referenced).
+- `src/isidore/home.py`: Used for directory and file path management, such as `connector_dir`, `raw_dir`, and `state_path`.
+- `src/isidore/claims.py`: Provides the `_hash` and `_normalize` functions for content fingerprinting.
+- `src/isidore/connect.py`: Depends on the connectors module to execute ingest runs.
 
 ## How to change safely
-- **Adding a new connector**: Create a new file in the module, implement the `Connector` protocol, and register it via `register` (`src/isidore/connectors/base.py:L41-L46`). Ensure it adheres to the zero-LLM requirement.
-- **Modifying the store**: The raw store is append-only, so changes must preserve immutability and cursor state integrity (`src/isidore/connectors/store.py:L3-L8`).
-- **Updating the protocol**: Extend `IngestOptions` or `IngestResult` carefully, as connectors rely on these interfaces (`src/isidore/connectors/base.py:L31-L39`).
+When modifying the connectors module, follow these guidelines:
+1. **Preserve the connector protocol**: Ensure that any changes to the protocol in `base.py` are backward-compatible to avoid breaking existing connectors.
+2. **Maintain idempotency**: Connectors should be idempotent, meaning running them multiple times with the same input should produce the same output. This is critical for the raw store's stability.
+3. **Update documentation**: If you change how a connector works, update its docstring to reflect the new behavior.
+4. **Test thoroughly**: Since connectors interact with external systems, test them with real data to ensure they handle edge cases correctly.
+5. **Avoid hardcoding secrets**: Ensure that any credentials or secrets are read from environment variables or configuration files, not hardcoded in the source.

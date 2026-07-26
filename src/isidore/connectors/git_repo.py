@@ -8,14 +8,20 @@ the first draft omitted.
 """
 from __future__ import annotations
 
-import json
 import subprocess
 import time
 from pathlib import Path
 
-from ..home import config_path
-from .base import IngestOptions, IngestResult, register
-from .store import create_run_id, iso_now, read_state, record_run, write_items, write_state
+from .base import IngestOptions, IngestResult, register, stored_config
+from .store import (
+    create_run_id,
+    iso_now,
+    read_state,
+    record_run,
+    safe_item_id,
+    write_items,
+    write_state,
+)
 
 _INSTANCE = ""  # git-repo is a single-instance connector
 _GIT_TIMEOUT = 30
@@ -71,7 +77,7 @@ class GitRepoConnector:
     required_env: list[str] = []
 
     def ingest(self, options: IngestOptions) -> IngestResult:
-        config = options.config or self._load_config()
+        config = options.config or stored_config(self.id, _INSTANCE)
         repos = config.get("repos") or []
         run_id = create_run_id()
         if not repos:
@@ -118,15 +124,6 @@ class GitRepoConnector:
         return IngestResult(self.id, status, raw_files, warnings,
                             {"repos": ok, "items": len(new_items)}, run_id)
 
-    def _load_config(self) -> dict:
-        path = config_path(self.id, _INSTANCE)
-        if not path.is_file():
-            return {}
-        try:
-            return json.loads(path.read_text(encoding="utf-8"))
-        except (OSError, ValueError):
-            return {}
-
     def _manifest(self, repo: str, cursors: dict, floor: int | None = None,
                   window_hours: int | None = None) -> tuple[dict | None, str | None]:
         """(item, None) for a changed repo, (None, None) if HEAD is unchanged, (None, warning) on
@@ -154,7 +151,7 @@ class GitRepoConnector:
         content = "\n".join(lines)
 
         item = {
-            "id": f"{name}@{head}",
+            "id": safe_item_id(name, head),
             "stream": name,
             "ts": iso_now(),
             "content": content,

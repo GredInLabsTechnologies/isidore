@@ -1,6 +1,6 @@
 # Wiki (isidore)
 
-Compiled from the repository structure graph at commit `036487e2137938f623d7cb8688fb7327ef809179`.
+Compiled from the repository structure graph at commit `b78c836100f72c8de8a10a0def794b104ab4f424`.
 Pages are generated from exact structural facts; cited `path:line` references are
 mechanically lint-checked against the repository.
 
@@ -12,10 +12,11 @@ Side observations harvested during compilation live in [findings.toon](findings.
 
 | module | files | symbols | page |
 |---|---|---|---|
+| src/isidore/connectors | 9 | 66 | [src-isidore-connectors.md](src-isidore-connectors.md) |
 | src/isidore/verify.py | 1 | 37 | [src-isidore-verify_py.md](src-isidore-verify_py.md) |
 | tests/test_whatsnew.py | 1 | 36 | [tests-test_whatsnew_py.md](tests-test_whatsnew_py.md) |
 | tests/test_pipeline.py | 1 | 35 | [tests-test_pipeline_py.md](tests-test_pipeline_py.md) |
-| src/isidore/connectors | 5 | 33 | [src-isidore-connectors.md](src-isidore-connectors.md) |
+| tests/test_connectors_f4.py | 1 | 32 | [tests-test_connectors_f4_py.md](tests-test_connectors_f4_py.md) |
 | src/isidore/whatsnew.py | 1 | 30 | [src-isidore-whatsnew_py.md](src-isidore-whatsnew_py.md) |
 | src/isidore/pcp.py | 1 | 25 | [src-isidore-pcp_py.md](src-isidore-pcp_py.md) |
 | src/isidore/pyramid.py | 1 | 25 | [src-isidore-pyramid_py.md](src-isidore-pyramid_py.md) |
@@ -35,11 +36,11 @@ Side observations harvested during compilation live in [findings.toon](findings.
 | src/isidore/humanpack.py | 1 | 15 | [src-isidore-humanpack_py.md](src-isidore-humanpack_py.md) |
 | tests/test_langspec.py | 1 | 14 | [tests-test_langspec_py.md](tests-test_langspec_py.md) |
 | src/isidore/cli.py | 1 | 13 | [src-isidore-cli_py.md](src-isidore-cli_py.md) |
+| src/isidore/knowledge.py | 1 | 12 | [src-isidore-knowledge_py.md](src-isidore-knowledge_py.md) |
 | src/isidore/langspec.py | 1 | 12 | [src-isidore-langspec_py.md](src-isidore-langspec_py.md) |
 | tests/test_pcp_seams.py | 1 | 11 | [tests-test_pcp_seams_py.md](tests-test_pcp_seams_py.md) |
 | tests/test_security_prose.py | 1 | 11 | [tests-test_security_prose_py.md](tests-test_security_prose_py.md) |
 | tests/test_verify.py | 1 | 10 | [tests-test_verify_py.md](tests-test_verify_py.md) |
-| src/isidore/knowledge.py | 1 | 10 | [src-isidore-knowledge_py.md](src-isidore-knowledge_py.md) |
 | src/isidore/qa.py | 1 | 10 | [src-isidore-qa_py.md](src-isidore-qa_py.md) |
 | src/isidore/render.py | 1 | 10 | [src-isidore-render_py.md](src-isidore-render_py.md) |
 | tests/test_pcp_pipeline.py | 1 | 9 | [tests-test_pcp_pipeline_py.md](tests-test_pcp_pipeline_py.md) |
@@ -51,4 +52,3 @@ Side observations harvested during compilation live in [findings.toon](findings.
 | tests/test_llms_txt.py | 1 | 8 | [tests-test_llms_txt_py.md](tests-test_llms_txt_py.md) |
 | tests/test_mcp_barrier.py | 1 | 8 | [tests-test_mcp_barrier_py.md](tests-test_mcp_barrier_py.md) |
 | tests/test_plain.py | 1 | 8 | [tests-test_plain_py.md](tests-test_plain_py.md) |
-| tests/test_residue.py | 1 | 8 | [tests-test_residue_py.md](tests-test_residue_py.md) |

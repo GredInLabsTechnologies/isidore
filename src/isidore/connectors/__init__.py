@@ -6,7 +6,10 @@ Importing this package registers the built-in connectors. Third-party connectors
 from __future__ import annotations
 
 from . import git_repo  # noqa: F401  (import for its self-registration side effect)
-from . import mcp  # noqa: F401  (import for its self-registration side effect)
+from . import hackernews  # noqa: F401
+from . import mcp  # noqa: F401
+from . import rss  # noqa: F401
+from . import websearch  # noqa: F401
 from .base import (
     Connector,
     IngestOptions,

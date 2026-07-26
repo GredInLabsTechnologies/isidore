@@ -1,8 +1,8 @@
-# isidore claims · commit 036487e2137938f623d7cb8688fb7327ef809179
+# isidore claims · commit b78c836100f72c8de8a10a0def794b104ab4f424
 # each claim is anchored to its evidence by a content hash; state is re-checked
 # mechanically on every compile (zero LLM calls). stale/orphan => page regenerates.
-# summary: 277 claims, 0 stale/orphan
-claims[277]{page,id,statement,evidence,state}:
+# summary: 303 claims, 0 stale/orphan
+claims[303]{page,id,statement,evidence,state}:
   src-isidore-changeset_py.md,c-1ea2e1cc,The module processes git diffs to identify changed lines,src/isidore/changeset.py:36,ok
   src-isidore-changeset_py.md,c-90be0b37,changed_lines() maps files to sets of changed line numbers,src/isidore/changeset.py:36,ok
   src-isidore-changeset_py.md,c-6b86763d,symbol_spans() converts graph nodes to line ranges,src/isidore/changeset.py:68,ok
@@ -15,18 +15,32 @@ claims[277]{page,id,statement,evidence,state}:
   src-isidore-claims_py.md,c-5687a2c5,The module uses a 40-line search radius for evidence,src/isidore/claims.py:25,ok
   src-isidore-claims_py.md,c-42643aa8,Claims are stored in a 'claims.toon' file,src/isidore/claims.py:25,ok
   src-isidore-claims_py.md,c-36709047,The evidence hash is truncated to 12 hex characters,src/isidore/claims.py:157,ok
-  src-isidore-cli_py.md,c-42318408,"The module defines subcommands for scanning, compiling, and querying the wiki",src/isidore/cli.py:1,ok
-  src-isidore-cli_py.md,c-6b8bc485,The `_cmd_scan()` function writes a structure graph to disk,src/isidore/cli.py:40,ok
-  src-isidore-cli_py.md,c-1def12cf,The `_cmd_compile()` function uses `compile_wiki()` with configurable parameters,src/isidore/cli.py:50,ok
-  src-isidore-cli_py.md,c-477e98d1,The `_cmd_ask()` function supports offline mode using verified claims,src/isidore/cli.py:111,ok
-  src-isidore-cli_py.md,c-7483116a,The `_cmd_suggest_flows()` function identifies cross-module bridges,src/isidore/cli.py:135,ok
-  src-isidore-connect_py.md,c-6e3f9561,The module provides CLI commands for connector management without involving the LLM,src/isidore/connect.py:1,ok
-  src-isidore-connect_py.md,c-9a9ae418,Connector configurations are stored with restrictive permissions (0o600),src/isidore/connect.py:40,ok
-  src-isidore-connect_py.md,c-8a85c2a5,The `connector_summary()` function checks for missing environment variables,src/isidore/connect.py:93,ok
-  src-isidore-connectors.md,c-63602c05,The `store.py` module defines a raw store for immutable ingested items,src/isidore/connectors/store.py:L1,ok
-  src-isidore-connectors.md,c-27c535ef,The `store.py` module uses `_hash` and `_normalize` from `src/isidore/claims.py`,src/isidore/connectors/store.py:L17,ok
-  src-isidore-connectors.md,c-27834485,The `git_repo` connector is a single-instance connector,src/isidore/connectors/git_repo.py:L20,ok
-  src-isidore-connectors.md,c-dba7c17f,The `mcp` connector checks for `readOnlyHint` in tool annotations,src/isidore/connectors/mcp.py:L26,ok
+  src-isidore-cli_py.md,c-7fd6b071,"The module defines five subcommands: scan, compile, ask, suggest-flows, and claims",src/isidore/cli.py:1,ok
+  src-isidore-cli_py.md,c-a5cfe99f,The _cmd_scan function writes a structure graph to disk,src/isidore/cli.py:40,ok
+  src-isidore-cli_py.md,c-e9131176,The _cmd_compile function uses _setting to resolve configuration values,src/isidore/cli.py:54,ok
+  src-isidore-cli_py.md,c-17279e8a,The _cmd_ask function supports an offline mode that uses verified claims,src/isidore/cli.py:111,ok
+  src-isidore-cli_py.md,c-4d7666bd,The _cmd_suggest_flows function identifies cross-module bridges,src/isidore/cli.py:135,ok
+  src-isidore-cli_py.md,c-6ee4a9c0,The _cmd_impact function analyzes changes and their impact,src/isidore/cli.py:151,ok
+  src-isidore-connect_py.md,c-6c2aef5b,The module provides CLI commands for connector management,src/isidore/connect.py:1,ok
+  src-isidore-connect_py.md,c-248091fa,Connector configurations are stored as JSON files,src/isidore/connect.py:23,ok
+  src-isidore-connect_py.md,c-012e9e18,The config file path is determined by config_path(),src/isidore/connect.py:25,ok
+  src-isidore-connect_py.md,c-435e77f9,Missing or corrupt configs return an empty dict,src/isidore/connect.py:26,ok
+  src-isidore-connect_py.md,c-5ab9b47c,Config files are written with restrictive permissions,src/isidore/connect.py:41,ok
+  src-isidore-connect_py.md,c-2013d555,Settings are parsed as key=value pairs,src/isidore/connect.py:50,ok
+  src-isidore-connect_py.md,c-f0fd8d3b,Repeated settings are accumulated into lists,src/isidore/connect.py:76,ok
+  src-isidore-connect_py.md,c-26b49a52,Credentials are never stored in configs,src/isidore/connect.py:71,ok
+  src-isidore-connect_py.md,c-69cf56b8,Connector summaries include readiness status,src/isidore/connect.py:96,ok
+  src-isidore-connect_py.md,c-5bb8b0a4,The CLI is registered in a subparser,src/isidore/connect.py:110,ok
+  src-isidore-connectors.md,c-4f3f0995,The `store.py` module defines a raw store for immutable ingested items and connector state,src/isidore/connectors/store.py:1,ok
+  src-isidore-connectors.md,c-f3ac5a1f,The `hackernews.py` connector fetches stories and searches from Algolia's public API,src/isidore/connectors/hackernews.py:1,ok
+  src-isidore-connectors.md,c-9f56b88d,The `rss.py` connector parses RSS/Atom feeds and stores entries in the raw store,src/isidore/connectors/rss.py:1,ok
+  src-isidore-connectors.md,c-6eccd71d,The `base.py` module defines the connector protocol and registry,src/isidore/connectors/base.py:1,ok
+  src-isidore-connectors.md,c-2c139f83,The `mcp.py` connector interacts with a JSON-RPC 2.0 endpoint to fetch data,src/isidore/connectors/mcp.py:1,ok
+  src-isidore-connectors.md,c-b14949cd,The `websearch.py` connector queries a Tavily-compatible endpoint for search results,src/isidore/connectors/websearch.py:1,ok
+  src-isidore-connectors.md,c-86a7ceaf,The `create_run_id` function generates unique identifiers for each ingest run,src/isidore/connectors/store.py:24,ok
+  src-isidore-connectors.md,c-457f2b25,The `IngestResult` class standardizes the outcome of ingest runs,src/isidore/connectors/base.py:20,ok
+  src-isidore-connectors.md,c-810da653,The `register` decorator is used to register connectors,src/isidore/connectors/base.py:14,ok
+  src-isidore-connectors.md,c-6fdfa354,"The `store.py` module imports `connector_dir`, `raw_dir`, and `state_path` from `src/isidore/home.py`",src/isidore/connectors/store.py:19,ok
   src-isidore-detectors_py.md,c-88adfab5,The module defines a SINKS table for Python and JavaScript/TypeScript files,src/isidore/detectors.py:34,ok
   src-isidore-detectors_py.md,c-2c5f9fb3,The ROOTS set contains security-sensitive file patterns,src/isidore/detectors.py:25,ok
   src-isidore-detectors_py.md,c-e9c3c73d,The entropy detector uses Shannon entropy with a threshold of 3.5 bits/character,src/isidore/detectors.py:75,ok
@@ -47,22 +61,27 @@ claims[277]{page,id,statement,evidence,state}:
   src-isidore-graph_py.md,c-b3552b66,The module uses UTF-8 encoding for file operations,src/isidore/graph.py:47,ok
   src-isidore-graph_py.md,c-0b91488c,The module normalizes paths to POSIX format,src/isidore/graph.py:81,ok
   src-isidore-graph_py.md,c-4032b74c,The module defines a concepts bucket for files without sources,src/isidore/graph.py:33,ok
-  src-isidore-home_py.md,c-cdb13f2c,The module defines the root of the knowledge home as `~/.isidore` or `$ISIDORE_HOME`,src/isidore/home.py:16,ok
-  src-isidore-home_py.md,c-04ffe70d,The `connector_dir` function constructs paths under `~/.isidore/connectors/<cid>`,src/isidore/home.py:20,ok
-  src-isidore-home_py.md,c-d68c543e,The `raw_dir` function appends `/raw/<run_id>` to the connector directory,src/isidore/home.py:25,ok
-  src-isidore-home_py.md,c-5e3e8ad5,The `config_path` function returns `<connector_dir>/config.json`,src/isidore/home.py:29,ok
-  src-isidore-home_py.md,c-dc50837d,The `state_path` function returns `<connector_dir>/state.json`,src/isidore/home.py:33,ok
-  src-isidore-home_py.md,c-a934e1ac,The `knowledge_dir` function returns `~/.isidore/knowledge`,src/isidore/home.py:37,ok
-  src-isidore-home_py.md,c-57e2ad9b,The `safe_mkdir` function creates directories with mode 0o700,src/isidore/home.py:53,ok
+  src-isidore-home_py.md,c-1ca885db,The module defines the knowledge home directory structure,src/isidore/home.py:1,ok
+  src-isidore-home_py.md,c-c4ff2a12,The `home()` function resolves to `~/.isidore` by default,src/isidore/home.py:13,ok
+  src-isidore-home_py.md,c-c0112b06,The `home()` function respects the `ISIDORE_HOME` environment variable,src/isidore/home.py:15,ok
+  src-isidore-home_py.md,c-0fad90d1,"The `connector_dir()` function constructs paths under `home() / \"connectors\" / cid`",src/isidore/home.py:19,ok
+  src-isidore-home_py.md,c-716539ef,The `raw_dir()` function appends `raw/run_id` to the connector directory,src/isidore/home.py:24,ok
+  src-isidore-home_py.md,c-64edf16c,The `config_path()` function returns `config.json` in the connector directory,src/isidore/home.py:28,ok
+  src-isidore-home_py.md,c-3c17c329,The `state_path()` function returns `state.json` in the connector directory,src/isidore/home.py:32,ok
+  src-isidore-home_py.md,c-315bbac6,The `safe_chmod()` function is a no-op on Windows,src/isidore/home.py:40,ok
+  src-isidore-home_py.md,c-5df899f1,The `safe_mkdir()` function creates directories recursively,src/isidore/home.py:50,ok
   src-isidore-humanpack_py.md,c-a18b42c0,The module generates a self-contained HTML/PDF onboarding pack,src/isidore/humanpack.py:1,ok
   src-isidore-humanpack_py.md,c-f3f98252,The module avoids LLM dependencies,src/isidore/humanpack.py:10,ok
   src-isidore-humanpack_py.md,c-2529691a,The module uses `load_graph` from `src/isidore/graph.py`,src/isidore/humanpack.py:20,ok
-  src-isidore-knowledge_py.md,c-547c45df,The module defines a TopicCompileResult dataclass to track compilation metrics,src/isidore/knowledge.py:52,ok
-  src-isidore-knowledge_py.md,c-7ed6a2b2,The knowledge_dir() function returns the path to the knowledge directory,src/isidore/knowledge.py:73,ok
-  src-isidore-knowledge_py.md,c-d31de57f,The state_path() function returns the path to the state file,src/isidore/knowledge.py:79,ok
-  src-isidore-knowledge_py.md,c-503e35b4,The load_knowledge_state() function loads the state from the state file,src/isidore/knowledge.py:83,ok
-  src-isidore-knowledge_py.md,c-4872e9bb,The write_knowledge_state() function writes the state to the state file,src/isidore/knowledge.py:97,ok
-  src-isidore-knowledge_py.md,c-853e782f,The load_topics() function loads topics from the topics.json file,src/isidore/knowledge.py:106,ok
+  src-isidore-knowledge_py.md,c-7db2ee47,The module defines a TopicCompileResult dataclass to track compilation metrics,src/isidore/knowledge.py:92,ok
+  src-isidore-knowledge_py.md,c-0729776c,The knowledge_dir() function returns the path to the knowledge directory,src/isidore/knowledge.py:113,ok
+  src-isidore-knowledge_py.md,c-3c862519,The state_path() function returns the path to the state file,src/isidore/knowledge.py:119,ok
+  src-isidore-knowledge_py.md,c-0b5d32db,The load_knowledge_state() function loads the knowledge state from disk,src/isidore/knowledge.py:123,ok
+  src-isidore-knowledge_py.md,c-2248c0b6,The write_knowledge_state() function safely writes the knowledge state to disk,src/isidore/knowledge.py:137,ok
+  src-isidore-knowledge_py.md,c-e0b4fedd,The module imports home.py for home directory utilities,src/isidore/knowledge.py:17,ok
+  src-isidore-knowledge_py.md,c-9b18e0f9,The module imports llm.py for default LLM generators,src/isidore/knowledge.py:18,ok
+  src-isidore-knowledge_py.md,c-37820293,The module imports claims.py for claim parsing and validation,src/isidore/knowledge.py:19,ok
+  src-isidore-knowledge_py.md,c-52ea69f4,The module imports findings.py for findings-related constants,src/isidore/knowledge.py:25,ok
   src-isidore-langspec_py.md,c-b2799216,The module uses a declarative approach to define language rules,src/isidore/langspec.py:11,ok
   src-isidore-langspec_py.md,c-2829013d,The engine sanitizes comments and strings to avoid false positives,src/isidore/langspec.py:56,ok
   src-isidore-langspec_py.md,c-b6b5c7b3,The `extract()` function returns symbols and imports,src/isidore/langspec.py:130,ok
@@ -150,13 +169,20 @@ claims[277]{page,id,statement,evidence,state}:
   tests-test_claims_py.md,c-6011c9b5,The module tests that staleness is only triggered by changes to the cited line,tests/test_claims.py:106,ok
   tests-test_claims_py.md,c-fed705d0,The module depends on the `isidore.claims` module,tests/test_claims.py:7,ok
   tests-test_claims_py.md,c-33739bfa,The module depends on the `isidore.pipeline` module,tests/test_claims.py:18,ok
-  tests-test_connect_cli_py.md,c-620529c9,The module uses a helper function to create a Git repository,tests/test_connect_cli.py:24,ok
-  tests-test_connect_cli_py.md,c-c794ec08,The module isolates the ISIDORE_HOME environment variable for testing,tests/test_connect_cli.py:36,ok
+  tests-test_connect_cli_py.md,c-05832663,The module tests the CLI functionality for F1's missing commands,tests/test_connect_cli.py:L1,ok
   tests-test_connectors_f1_py.md,c-fedaab0a,The test suite verifies idempotency of git-repo connector,tests/test_connectors_f1.py:3,ok
   tests-test_connectors_f1_py.md,c-9e0fb2f2,The knowledge home can be overridden via ISIDORE_HOME,tests/test_connectors_f1.py:41,ok
   tests-test_connectors_f1_py.md,c-4d01fe15,Content is normalized and hashed before storage,tests/test_connectors_f1.py:50,ok
   tests-test_connectors_f1_py.md,c-177ac4ac,State files handle missing or corrupt data gracefully,tests/test_connectors_f1.py:60,ok
   tests-test_connectors_f1_py.md,c-44a4aff8,Run history retains only the last 20 entries,tests/test_connectors_f1.py:70,ok
+  tests-test_connectors_f4_py.md,c-11185f2f,"The module tests the RSS, Hacker News, and web-search connectors without live network requests",tests/test_connectors_f4.py:1,ok
+  tests-test_connectors_f4_py.md,c-fce49696,The module uses pytest fixtures and mocks to simulate network responses,tests/test_connectors_f4.py:43,ok
+  tests-test_connectors_f4_py.md,c-5237f83d,The module includes sample XML feeds for testing,tests/test_connectors_f4.py:19,ok
+  tests-test_connectors_f4_py.md,c-cb2cfbdb,The module validates URL restrictions,tests/test_connectors_f4.py:50,ok
+  tests-test_connectors_f4_py.md,c-8901870a,The module ensures incomplete JSON responses are rejected,tests/test_connectors_f4.py:62,ok
+  tests-test_connectors_f4_py.md,c-dbe8ff4a,The module confirms RSS and Atom feeds are parsed consistently,tests/test_connectors_f4.py:71,ok
+  tests-test_connectors_f4_py.md,c-0c7ba683,The module ensures malformed XML raises an error,tests/test_connectors_f4.py:85,ok
+  tests-test_connectors_f4_py.md,c-8873d49a,The module verifies idempotent RSS feed ingestion,tests/test_connectors_f4.py:103,ok
   tests-test_detectors_py.md,c-95c08869,The module tests the `isidore.detectors` subsystem,tests/test_detectors.py:1,ok
   tests-test_detectors_py.md,c-41ac1643,The test context loads graph data from `graph.json`,tests/test_detectors.py:14,ok
   tests-test_detectors_py.md,c-3cf95c4b,"The entropy detector flags the backdoor token with \"danger\" severity",tests/test_detectors.py:22,ok

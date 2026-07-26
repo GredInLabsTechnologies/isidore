@@ -15,7 +15,16 @@ from typing import Any
 
 from ..home import config_path
 from .base import IngestOptions, IngestResult, register
-from .store import create_run_id, iso_now, read_state, record_run, update_cursor, write_items, write_state
+from .store import (
+    create_run_id,
+    iso_now,
+    read_state,
+    record_run,
+    safe_item_id,
+    update_cursor,
+    write_items,
+    write_state,
+)
 
 
 def _allowed(config: dict) -> set[str]:
@@ -96,7 +105,10 @@ class McpConnector:
                 params = {"name": name, "arguments": {}} if kind == "tools" else {"uri": name}
                 result = client.request(method, params)
                 content = json.dumps(result, ensure_ascii=False, sort_keys=True)
-                items.append({"id": f"{kind}/{name}", "stream": f"mcp/{kind}/{name}",
+                # `f"{kind}/{name}"` was unaddressable: a '/' in an id breaks src:// (the store now
+                # refuses it outright, which is how this was found).
+                items.append({"id": safe_item_id(f"mcp-{kind}", name),
+                              "stream": f"mcp/{kind}/{name}",
                               "ts": iso_now(), "content": content,
                               "meta": {"instance": config.get("instance", ""), "method": method}})
                 if options.limit is not None and len(items) >= options.limit:

@@ -108,7 +108,10 @@ def test_git_repo_ingest_persists_and_is_idempotent(tmp_path, monkeypatch):
     _git(repo, "commit", "-qm", "second")
     r3 = conn.ingest(IngestOptions(config={"repos": [str(repo)]}))
     assert r3.counts["items"] == 1
-    assert store.resolve_uri(f"src://git-repo/r1@{_head(repo)}")["stream"] == "r1"
+    # The id is derived rather than literal (a `/` or a trailing `:digits` in an id breaks
+    # src:// addressing), so what matters is that the item is REACHABLE by its URI.
+    ident = store.safe_item_id("r1", _head(repo))
+    assert store.resolve_uri(f"src://git-repo/{ident}")["stream"] == "r1"
 
 
 def test_git_repo_handles_non_ascii_commit_messages(tmp_path, monkeypatch):

@@ -1,5 +1,5 @@
 {
-  "commit": "036487e2137938f623d7cb8688fb7327ef809179",
+  "commit": "b78c836100f72c8de8a10a0def794b104ab4f424",
   "deps": [
     [
       "src/isidore/__init__.py",
@@ -64,7 +64,7 @@
     [
       "src/isidore/connectors",
       "src/isidore/home.py",
-      3
+      2
     ],
     [
       "src/isidore/contracts.py",
@@ -447,6 +447,25 @@
       "quarantined": 0,
       "retries": 1,
       "skipped": 0
+    },
+    {
+      "calls_saved": 33,
+      "commit": "b78c836100f7",
+      "dirty": 7,
+      "generated": 7,
+      "generated_pages": [
+        "src-isidore-home_py.md",
+        "src-isidore-connectors.md",
+        "src-isidore-cli_py.md",
+        "src-isidore-connect_py.md",
+        "src-isidore-knowledge_py.md",
+        "tests-test_connect_cli_py.md",
+        "tests-test_connectors_f4_py.md"
+      ],
+      "planned": 40,
+      "quarantined": 0,
+      "retries": 0,
+      "skipped": 0
     }
   ],
   "pages": {
@@ -597,46 +616,54 @@
         {
           "ehash": "f62eb76cad8c",
           "evidence": "src/isidore/cli.py:1",
-          "id": "c-42318408",
-          "predicate": "",
-          "statement": "The module defines subcommands for scanning, compiling, and querying the wiki",
-          "verdict": "UNDECIDABLE"
+          "id": "c-7fd6b071",
+          "predicate": "defines:src/isidore/cli.py;_cmd_scan",
+          "statement": "The module defines five subcommands: scan, compile, ask, suggest-flows, and claims",
+          "verdict": "TRUE"
         },
         {
           "ehash": "18dfc2eb6252",
           "evidence": "src/isidore/cli.py:40",
-          "id": "c-6b8bc485",
-          "predicate": "calls:write_scan",
-          "statement": "The `_cmd_scan()` function writes a structure graph to disk",
-          "verdict": "UNDECIDABLE"
+          "id": "c-a5cfe99f",
+          "predicate": "calls:_cmd_scan;write_scan",
+          "statement": "The _cmd_scan function writes a structure graph to disk",
+          "verdict": "TRUE"
         },
         {
-          "ehash": "33795a532a5b",
-          "evidence": "src/isidore/cli.py:50",
-          "id": "c-1def12cf",
-          "predicate": "calls:compile_wiki",
-          "statement": "The `_cmd_compile()` function uses `compile_wiki()` with configurable parameters",
-          "verdict": "UNDECIDABLE"
+          "ehash": "a55e1d0f8b61",
+          "evidence": "src/isidore/cli.py:54",
+          "id": "c-e9131176",
+          "predicate": "calls:_cmd_compile;_setting",
+          "statement": "The _cmd_compile function uses _setting to resolve configuration values",
+          "verdict": "TRUE"
         },
         {
           "ehash": "49904d276003",
           "evidence": "src/isidore/cli.py:111",
-          "id": "c-477e98d1",
-          "predicate": "calls:ask",
-          "statement": "The `_cmd_ask()` function supports offline mode using verified claims",
-          "verdict": "UNDECIDABLE"
+          "id": "c-17279e8a",
+          "predicate": "calls:_cmd_ask;ask",
+          "statement": "The _cmd_ask function supports an offline mode that uses verified claims",
+          "verdict": "TRUE"
         },
         {
           "ehash": "978ef32176e0",
           "evidence": "src/isidore/cli.py:135",
-          "id": "c-7483116a",
-          "predicate": "calls:suggest_flows",
-          "statement": "The `_cmd_suggest_flows()` function identifies cross-module bridges",
-          "verdict": "UNDECIDABLE"
+          "id": "c-4d7666bd",
+          "predicate": "calls:_cmd_suggest_flows;suggest_flows",
+          "statement": "The _cmd_suggest_flows function identifies cross-module bridges",
+          "verdict": "TRUE"
+        },
+        {
+          "ehash": "ccf65ffb626c",
+          "evidence": "src/isidore/cli.py:151",
+          "id": "c-6ee4a9c0",
+          "predicate": "calls:_cmd_impact;build_impact",
+          "statement": "The _cmd_impact function analyzes changes and their impact",
+          "verdict": "TRUE"
         }
       ],
-      "compiled_at": "2026-07-26T15:29:05Z",
-      "context_hash": "cfacbc9c3adcd715016ababe3b9ab27bd7cecb6bbede3a4c1ed6409d9e2ec422",
+      "compiled_at": "2026-07-26T15:54:37Z",
+      "context_hash": "cce728e2dfa6cfc896f320f5912d7b743c5c55e9b8e952733f26dacd29447ec4",
       "findings": [],
       "history": [
         {
@@ -671,6 +698,17 @@
             "Key entry points",
             "Purpose"
           ]
+        },
+        {
+          "commit": "b78c836100f7",
+          "line_delta": 2,
+          "sections_changed": [
+            "Architecture",
+            "Dependencies",
+            "How to change safely",
+            "Key entry points",
+            "Purpose"
+          ]
         }
       ],
       "kind": "module",
@@ -682,35 +720,102 @@
         {
           "ehash": "9a265d75edcb",
           "evidence": "src/isidore/connect.py:1",
-          "id": "c-6e3f9561",
+          "id": "c-6c2aef5b",
           "predicate": "",
-          "statement": "The module provides CLI commands for connector management without involving the LLM",
+          "statement": "The module provides CLI commands for connector management",
           "verdict": "UNDECIDABLE"
         },
         {
-          "ehash": "b42f76ea37c4",
-          "evidence": "src/isidore/connect.py:40",
-          "id": "c-9a9ae418",
-          "predicate": "calls:save_config;safe_chmod",
-          "statement": "Connector configurations are stored with restrictive permissions (0o600)",
+          "ehash": "47eee08e2b1d",
+          "evidence": "src/isidore/connect.py:23",
+          "id": "c-248091fa",
+          "predicate": "defines:src/isidore/connect.py;load_config",
+          "statement": "Connector configurations are stored as JSON files",
           "verdict": "TRUE"
         },
         {
-          "ehash": "dde44124f1ee",
-          "evidence": "src/isidore/connect.py:93",
-          "id": "c-8a85c2a5",
-          "predicate": "calls:connector_summary;missing_env",
-          "statement": "The `connector_summary()` function checks for missing environment variables",
+          "ehash": "6b1c5c22dd28",
+          "evidence": "src/isidore/connect.py:25",
+          "id": "c-012e9e18",
+          "predicate": "calls:load_config;config_path",
+          "statement": "The config file path is determined by config_path()",
+          "verdict": "TRUE"
+        },
+        {
+          "ehash": "15bddf3df133",
+          "evidence": "src/isidore/connect.py:26",
+          "id": "c-435e77f9",
+          "predicate": "signature:load_config;cid;instance",
+          "statement": "Missing or corrupt configs return an empty dict",
+          "verdict": "TRUE"
+        },
+        {
+          "ehash": "7a16fa92f988",
+          "evidence": "src/isidore/connect.py:41",
+          "id": "c-5ab9b47c",
+          "predicate": "calls:save_config;safe_chmod",
+          "statement": "Config files are written with restrictive permissions",
+          "verdict": "TRUE"
+        },
+        {
+          "ehash": "78b7540b860c",
+          "evidence": "src/isidore/connect.py:50",
+          "id": "c-2013d555",
+          "predicate": "calls:parse_setting;partition",
+          "statement": "Settings are parsed as key=value pairs",
+          "verdict": "TRUE"
+        },
+        {
+          "ehash": "c7ac6a298a36",
+          "evidence": "src/isidore/connect.py:76",
+          "id": "c-f0fd8d3b",
+          "predicate": "signature:apply_settings;config;settings",
+          "statement": "Repeated settings are accumulated into lists",
+          "verdict": "TRUE"
+        },
+        {
+          "ehash": "4b204e80be45",
+          "evidence": "src/isidore/connect.py:71",
+          "id": "c-26b49a52",
+          "predicate": "calls:apply_settings;_looks_like_secret",
+          "statement": "Credentials are never stored in configs",
+          "verdict": "TRUE"
+        },
+        {
+          "ehash": "71ac0087f120",
+          "evidence": "src/isidore/connect.py:96",
+          "id": "c-69cf56b8",
+          "predicate": "defines:src/isidore/connect.py;connector_summary",
+          "statement": "Connector summaries include readiness status",
+          "verdict": "TRUE"
+        },
+        {
+          "ehash": "70aaa7323036",
+          "evidence": "src/isidore/connect.py:110",
+          "id": "c-5bb8b0a4",
+          "predicate": "calls:register_cli;add_parser",
+          "statement": "The CLI is registered in a subparser",
           "verdict": "TRUE"
         }
       ],
-      "compiled_at": "2026-07-26T15:29:11Z",
-      "context_hash": "e0b39f1c959f4bfb7773b144e584696f7e6c445bc6fb6bc02899058ebb9dbb25",
+      "compiled_at": "2026-07-26T15:54:42Z",
+      "context_hash": "1400e0b4f8ca2abeaaae48a4c07567a6920344eb6a6a6fa8919181bbfc9b9c63",
       "findings": [],
       "history": [
         {
           "commit": "036487e21379",
           "line_delta": 24,
+          "sections_changed": [
+            "Architecture",
+            "Dependencies",
+            "How to change safely",
+            "Key entry points",
+            "Purpose"
+          ]
+        },
+        {
+          "commit": "b78c836100f7",
+          "line_delta": 3,
           "sections_changed": [
             "Architecture",
             "Dependencies",
@@ -728,39 +833,87 @@
       "claims": [
         {
           "ehash": "87e26addd5e1",
-          "evidence": "src/isidore/connectors/store.py:L1",
-          "id": "c-63602c05",
+          "evidence": "src/isidore/connectors/store.py:1",
+          "id": "c-4f3f0995",
           "predicate": "",
-          "statement": "The `store.py` module defines a raw store for immutable ingested items",
+          "statement": "The `store.py` module defines a raw store for immutable ingested items and connector state",
           "verdict": "UNDECIDABLE"
         },
         {
-          "ehash": "cd5cfdabd103",
-          "evidence": "src/isidore/connectors/store.py:L17",
-          "id": "c-27c535ef",
-          "predicate": "calls:src/isidore/connectors/store.py;_hash",
-          "statement": "The `store.py` module uses `_hash` and `_normalize` from `src/isidore/claims.py`",
-          "verdict": "UNDECIDABLE"
-        },
-        {
-          "ehash": "71509ed4aa03",
-          "evidence": "src/isidore/connectors/git_repo.py:L20",
-          "id": "c-27834485",
-          "predicate": "value:_INSTANCE",
-          "statement": "The `git_repo` connector is a single-instance connector",
-          "verdict": "UNDECIDABLE"
-        },
-        {
-          "ehash": "af99863cb756",
-          "evidence": "src/isidore/connectors/mcp.py:L26",
-          "id": "c-dba7c17f",
+          "ehash": "119033fcaa9c",
+          "evidence": "src/isidore/connectors/hackernews.py:1",
+          "id": "c-f3ac5a1f",
           "predicate": "",
-          "statement": "The `mcp` connector checks for `readOnlyHint` in tool annotations",
+          "statement": "The `hackernews.py` connector fetches stories and searches from Algolia's public API",
           "verdict": "UNDECIDABLE"
+        },
+        {
+          "ehash": "8dbe8d3f0488",
+          "evidence": "src/isidore/connectors/rss.py:1",
+          "id": "c-9f56b88d",
+          "predicate": "",
+          "statement": "The `rss.py` connector parses RSS/Atom feeds and stores entries in the raw store",
+          "verdict": "UNDECIDABLE"
+        },
+        {
+          "ehash": "ef8cbfa19f5e",
+          "evidence": "src/isidore/connectors/base.py:1",
+          "id": "c-6eccd71d",
+          "predicate": "",
+          "statement": "The `base.py` module defines the connector protocol and registry",
+          "verdict": "UNDECIDABLE"
+        },
+        {
+          "ehash": "71b626786c0e",
+          "evidence": "src/isidore/connectors/mcp.py:1",
+          "id": "c-2c139f83",
+          "predicate": "",
+          "statement": "The `mcp.py` connector interacts with a JSON-RPC 2.0 endpoint to fetch data",
+          "verdict": "UNDECIDABLE"
+        },
+        {
+          "ehash": "ebbc8c55b75c",
+          "evidence": "src/isidore/connectors/websearch.py:1",
+          "id": "c-b14949cd",
+          "predicate": "",
+          "statement": "The `websearch.py` connector queries a Tavily-compatible endpoint for search results",
+          "verdict": "UNDECIDABLE"
+        },
+        {
+          "ehash": "27b1a261a063",
+          "evidence": "src/isidore/connectors/store.py:24",
+          "id": "c-86a7ceaf",
+          "predicate": "defines:src/isidore/connectors/store.py;create_run_id",
+          "statement": "The `create_run_id` function generates unique identifiers for each ingest run",
+          "verdict": "TRUE"
+        },
+        {
+          "ehash": "e14f90dd3ff8",
+          "evidence": "src/isidore/connectors/base.py:20",
+          "id": "c-457f2b25",
+          "predicate": "defines:src/isidore/connectors/base.py;IngestResult",
+          "statement": "The `IngestResult` class standardizes the outcome of ingest runs",
+          "verdict": "TRUE"
+        },
+        {
+          "ehash": "3d578d20f0b4",
+          "evidence": "src/isidore/connectors/base.py:14",
+          "id": "c-810da653",
+          "predicate": "defines:src/isidore/connectors/base.py;register",
+          "statement": "The `register` decorator is used to register connectors",
+          "verdict": "TRUE"
+        },
+        {
+          "ehash": "bf66e1178c7f",
+          "evidence": "src/isidore/connectors/store.py:19",
+          "id": "c-6fdfa354",
+          "predicate": "imports:src/isidore/connectors/store.py;src/isidore/home.py",
+          "statement": "The `store.py` module imports `connector_dir`, `raw_dir`, and `state_path` from `src/isidore/home.py`",
+          "verdict": "TRUE"
         }
       ],
-      "compiled_at": "2026-07-26T15:28:26Z",
-      "context_hash": "482beeb53fdabaea5ab23f992d7a40cb3e9cc27efb3d61745208feddde33ee32",
+      "compiled_at": "2026-07-26T15:54:31Z",
+      "context_hash": "cb8a7a4597e05772f8e987f40b505d83579cd4c78bb2af13582cf45e12d7ca80",
       "findings": [],
       "history": [
         {
@@ -777,6 +930,17 @@
         {
           "commit": "036487e21379",
           "line_delta": 2,
+          "sections_changed": [
+            "Architecture",
+            "Dependencies",
+            "How to change safely",
+            "Key entry points",
+            "Purpose"
+          ]
+        },
+        {
+          "commit": "b78c836100f7",
+          "line_delta": 1,
           "sections_changed": [
             "Architecture",
             "Dependencies",
@@ -1023,64 +1187,80 @@
     "src-isidore-home_py.md": {
       "claims": [
         {
-          "ehash": "cae2ee2c6921",
-          "evidence": "src/isidore/home.py:16",
-          "id": "c-cdb13f2c",
-          "predicate": "calls:home;Path.home",
-          "statement": "The module defines the root of the knowledge home as `~/.isidore` or `$ISIDORE_HOME`",
+          "ehash": "f82f9d8315d0",
+          "evidence": "src/isidore/home.py:1",
+          "id": "c-1ca885db",
+          "predicate": "",
+          "statement": "The module defines the knowledge home directory structure",
+          "verdict": "UNDECIDABLE"
+        },
+        {
+          "ehash": "ef20de3efaaf",
+          "evidence": "src/isidore/home.py:13",
+          "id": "c-c4ff2a12",
+          "predicate": "signature:home",
+          "statement": "The `home()` function resolves to `~/.isidore` by default",
           "verdict": "TRUE"
         },
         {
-          "ehash": "80694f635c81",
-          "evidence": "src/isidore/home.py:20",
-          "id": "c-04ffe70d",
+          "ehash": "38904d9668e7",
+          "evidence": "src/isidore/home.py:15",
+          "id": "c-c0112b06",
+          "predicate": "env:ISIDORE_HOME",
+          "statement": "The `home()` function respects the `ISIDORE_HOME` environment variable",
+          "verdict": "TRUE"
+        },
+        {
+          "ehash": "25c8c09518a0",
+          "evidence": "src/isidore/home.py:19",
+          "id": "c-0fad90d1",
           "predicate": "calls:connector_dir;home",
-          "statement": "The `connector_dir` function constructs paths under `~/.isidore/connectors/<cid>`",
+          "statement": "The `connector_dir()` function constructs paths under `home() / \"connectors\" / cid`",
           "verdict": "TRUE"
         },
         {
-          "ehash": "43fe62d20f47",
-          "evidence": "src/isidore/home.py:25",
-          "id": "c-d68c543e",
+          "ehash": "2c10bd230e15",
+          "evidence": "src/isidore/home.py:24",
+          "id": "c-716539ef",
           "predicate": "calls:raw_dir;connector_dir",
-          "statement": "The `raw_dir` function appends `/raw/<run_id>` to the connector directory",
+          "statement": "The `raw_dir()` function appends `raw/run_id` to the connector directory",
           "verdict": "TRUE"
         },
         {
-          "ehash": "388ba642bb3e",
-          "evidence": "src/isidore/home.py:29",
-          "id": "c-5e3e8ad5",
+          "ehash": "40dfab982593",
+          "evidence": "src/isidore/home.py:28",
+          "id": "c-64edf16c",
           "predicate": "calls:config_path;connector_dir",
-          "statement": "The `config_path` function returns `<connector_dir>/config.json`",
+          "statement": "The `config_path()` function returns `config.json` in the connector directory",
           "verdict": "TRUE"
         },
         {
-          "ehash": "332a684d54ef",
-          "evidence": "src/isidore/home.py:33",
-          "id": "c-dc50837d",
+          "ehash": "af6e123271d3",
+          "evidence": "src/isidore/home.py:32",
+          "id": "c-3c17c329",
           "predicate": "calls:state_path;connector_dir",
-          "statement": "The `state_path` function returns `<connector_dir>/state.json`",
+          "statement": "The `state_path()` function returns `state.json` in the connector directory",
           "verdict": "TRUE"
         },
         {
-          "ehash": "4dc17f82c08f",
-          "evidence": "src/isidore/home.py:37",
-          "id": "c-a934e1ac",
-          "predicate": "calls:knowledge_dir;home",
-          "statement": "The `knowledge_dir` function returns `~/.isidore/knowledge`",
-          "verdict": "TRUE"
+          "ehash": "2cfa9cad049d",
+          "evidence": "src/isidore/home.py:40",
+          "id": "c-315bbac6",
+          "predicate": "value:os.name;nt",
+          "statement": "The `safe_chmod()` function is a no-op on Windows",
+          "verdict": "UNDECIDABLE"
         },
         {
-          "ehash": "4db677f5431a",
-          "evidence": "src/isidore/home.py:53",
-          "id": "c-57e2ad9b",
-          "predicate": "calls:safe_mkdir;Path.mkdir",
-          "statement": "The `safe_mkdir` function creates directories with mode 0o700",
-          "verdict": "TRUE"
+          "ehash": "c541e3c67777",
+          "evidence": "src/isidore/home.py:50",
+          "id": "c-5df899f1",
+          "predicate": "value:parents;True",
+          "statement": "The `safe_mkdir()` function creates directories recursively",
+          "verdict": "UNDECIDABLE"
         }
       ],
-      "compiled_at": "2026-07-26T15:28:43Z",
-      "context_hash": "5bb82571c00cd14bfde937dae4cf33ecd72fe195f95979055accf7ad667328a5",
+      "compiled_at": "2026-07-26T15:54:23Z",
+      "context_hash": "2fff1fbf002b27c25ac51fc8a33091a9a1796247e3e4da9966b8bc31864a95f9",
       "findings": [],
       "history": [
         {
@@ -1097,6 +1277,17 @@
         {
           "commit": "036487e21379",
           "line_delta": -2,
+          "sections_changed": [
+            "Architecture",
+            "Dependencies",
+            "How to change safely",
+            "Key entry points",
+            "Purpose"
+          ]
+        },
+        {
+          "commit": "b78c836100f7",
+          "line_delta": 3,
           "sections_changed": [
             "Architecture",
             "Dependencies",
@@ -1161,55 +1352,79 @@
       "claims": [
         {
           "ehash": "35ec918b4efd",
-          "evidence": "src/isidore/knowledge.py:52",
-          "id": "c-547c45df",
+          "evidence": "src/isidore/knowledge.py:92",
+          "id": "c-7db2ee47",
           "predicate": "defines:src/isidore/knowledge.py;TopicCompileResult",
           "statement": "The module defines a TopicCompileResult dataclass to track compilation metrics",
           "verdict": "TRUE"
         },
         {
           "ehash": "f42dee566103",
-          "evidence": "src/isidore/knowledge.py:73",
-          "id": "c-7ed6a2b2",
+          "evidence": "src/isidore/knowledge.py:113",
+          "id": "c-0729776c",
           "predicate": "defines:src/isidore/knowledge.py;knowledge_dir",
           "statement": "The knowledge_dir() function returns the path to the knowledge directory",
           "verdict": "TRUE"
         },
         {
           "ehash": "a9d633aec870",
-          "evidence": "src/isidore/knowledge.py:79",
-          "id": "c-d31de57f",
+          "evidence": "src/isidore/knowledge.py:119",
+          "id": "c-3c862519",
           "predicate": "defines:src/isidore/knowledge.py;state_path",
           "statement": "The state_path() function returns the path to the state file",
           "verdict": "TRUE"
         },
         {
           "ehash": "43d9e4ebf853",
-          "evidence": "src/isidore/knowledge.py:83",
-          "id": "c-503e35b4",
+          "evidence": "src/isidore/knowledge.py:123",
+          "id": "c-0b5d32db",
           "predicate": "defines:src/isidore/knowledge.py;load_knowledge_state",
-          "statement": "The load_knowledge_state() function loads the state from the state file",
+          "statement": "The load_knowledge_state() function loads the knowledge state from disk",
           "verdict": "TRUE"
         },
         {
           "ehash": "1b3f1b6d4138",
-          "evidence": "src/isidore/knowledge.py:97",
-          "id": "c-4872e9bb",
+          "evidence": "src/isidore/knowledge.py:137",
+          "id": "c-2248c0b6",
           "predicate": "defines:src/isidore/knowledge.py;write_knowledge_state",
-          "statement": "The write_knowledge_state() function writes the state to the state file",
+          "statement": "The write_knowledge_state() function safely writes the knowledge state to disk",
           "verdict": "TRUE"
         },
         {
-          "ehash": "f07be74381ff",
-          "evidence": "src/isidore/knowledge.py:106",
-          "id": "c-853e782f",
-          "predicate": "defines:src/isidore/knowledge.py;load_topics",
-          "statement": "The load_topics() function loads topics from the topics.json file",
+          "ehash": "43a21a0807a6",
+          "evidence": "src/isidore/knowledge.py:17",
+          "id": "c-e0b4fedd",
+          "predicate": "imports:src/isidore/knowledge.py;src/isidore/home.py",
+          "statement": "The module imports home.py for home directory utilities",
+          "verdict": "TRUE"
+        },
+        {
+          "ehash": "7db0615e56a0",
+          "evidence": "src/isidore/knowledge.py:18",
+          "id": "c-9b18e0f9",
+          "predicate": "imports:src/isidore/knowledge.py;src/isidore/llm.py",
+          "statement": "The module imports llm.py for default LLM generators",
+          "verdict": "TRUE"
+        },
+        {
+          "ehash": "893f5abc8b34",
+          "evidence": "src/isidore/knowledge.py:19",
+          "id": "c-37820293",
+          "predicate": "imports:src/isidore/knowledge.py;src/isidore/claims.py",
+          "statement": "The module imports claims.py for claim parsing and validation",
+          "verdict": "TRUE"
+        },
+        {
+          "ehash": "4b9bdb080ad7",
+          "evidence": "src/isidore/knowledge.py:25",
+          "id": "c-52ea69f4",
+          "predicate": "imports:src/isidore/knowledge.py;src/isidore/findings.py",
+          "statement": "The module imports findings.py for findings-related constants",
           "verdict": "TRUE"
         }
       ],
-      "compiled_at": "2026-07-26T01:02:39Z",
-      "context_hash": "5379c8a68d7564ab4fe76abaf917821ff0346fb382f532627e957988b6a44046",
+      "compiled_at": "2026-07-26T15:54:48Z",
+      "context_hash": "9b7cd8edb9c250ac27b4fd194de51459aa5ac9a2dfb0a0328d0ac565f8345b83",
       "findings": [],
       "history": [
         {
@@ -1222,11 +1437,22 @@
             "Key entry points",
             "Purpose"
           ]
+        },
+        {
+          "commit": "b78c836100f7",
+          "line_delta": -3,
+          "sections_changed": [
+            "Architecture",
+            "Dependencies",
+            "How to change safely",
+            "Key entry points",
+            "Purpose"
+          ]
         }
       ],
       "kind": "module",
       "name": "src/isidore/knowledge.py",
-      "quarantined": true
+      "quarantined": false
     },
     "src-isidore-langspec_py.md": {
       "claims": [
@@ -2341,24 +2567,16 @@
     "tests-test_connect_cli_py.md": {
       "claims": [
         {
-          "ehash": "6c258071862c",
-          "evidence": "tests/test_connect_cli.py:24",
-          "id": "c-620529c9",
-          "predicate": "defines:tests/test_connect_cli.py;_make_repo",
-          "statement": "The module uses a helper function to create a Git repository",
-          "verdict": "TRUE"
-        },
-        {
-          "ehash": "b8fdb9658191",
-          "evidence": "tests/test_connect_cli.py:36",
-          "id": "c-c794ec08",
-          "predicate": "defines:tests/test_connect_cli.py;isolated_home",
-          "statement": "The module isolates the ISIDORE_HOME environment variable for testing",
-          "verdict": "TRUE"
+          "ehash": "39c89c1379ef",
+          "evidence": "tests/test_connect_cli.py:L1",
+          "id": "c-05832663",
+          "predicate": "",
+          "statement": "The module tests the CLI functionality for F1's missing commands",
+          "verdict": "UNDECIDABLE"
         }
       ],
-      "compiled_at": "2026-07-26T15:29:28Z",
-      "context_hash": "0b154ec24cac72d921b69a378147449c0ec53b0793b130066e89e05efc19a7da",
+      "compiled_at": "2026-07-26T15:55:00Z",
+      "context_hash": "69edc683407441aa51088ef579e3ddc9587aca62f8c85db99a25c0b805deaf7e",
       "findings": [],
       "history": [
         {
@@ -2366,6 +2584,17 @@
           "line_delta": 40,
           "sections_changed": [
             "(intro)",
+            "Architecture",
+            "Dependencies",
+            "How to change safely",
+            "Key entry points",
+            "Purpose"
+          ]
+        },
+        {
+          "commit": "b78c836100f7",
+          "line_delta": -7,
+          "sections_changed": [
             "Architecture",
             "Dependencies",
             "How to change safely",
@@ -2450,6 +2679,94 @@
       ],
       "kind": "module",
       "name": "tests/test_connectors_f1.py",
+      "quarantined": false
+    },
+    "tests-test_connectors_f4_py.md": {
+      "claims": [
+        {
+          "ehash": "a734da906fad",
+          "evidence": "tests/test_connectors_f4.py:1",
+          "id": "c-11185f2f",
+          "predicate": "",
+          "statement": "The module tests the RSS, Hacker News, and web-search connectors without live network requests",
+          "verdict": "UNDECIDABLE"
+        },
+        {
+          "ehash": "b8fdb9658191",
+          "evidence": "tests/test_connectors_f4.py:43",
+          "id": "c-fce49696",
+          "predicate": "",
+          "statement": "The module uses pytest fixtures and mocks to simulate network responses",
+          "verdict": "UNDECIDABLE"
+        },
+        {
+          "ehash": "8de70b2d9c4f",
+          "evidence": "tests/test_connectors_f4.py:19",
+          "id": "c-5237f83d",
+          "predicate": "",
+          "statement": "The module includes sample XML feeds for testing",
+          "verdict": "UNDECIDABLE"
+        },
+        {
+          "ehash": "b115562af28c",
+          "evidence": "tests/test_connectors_f4.py:50",
+          "id": "c-cb2cfbdb",
+          "predicate": "",
+          "statement": "The module validates URL restrictions",
+          "verdict": "UNDECIDABLE"
+        },
+        {
+          "ehash": "2fa7c72129a0",
+          "evidence": "tests/test_connectors_f4.py:62",
+          "id": "c-8901870a",
+          "predicate": "",
+          "statement": "The module ensures incomplete JSON responses are rejected",
+          "verdict": "UNDECIDABLE"
+        },
+        {
+          "ehash": "17350d3353e2",
+          "evidence": "tests/test_connectors_f4.py:71",
+          "id": "c-dbe8ff4a",
+          "predicate": "",
+          "statement": "The module confirms RSS and Atom feeds are parsed consistently",
+          "verdict": "UNDECIDABLE"
+        },
+        {
+          "ehash": "b7cd306a8843",
+          "evidence": "tests/test_connectors_f4.py:85",
+          "id": "c-0c7ba683",
+          "predicate": "",
+          "statement": "The module ensures malformed XML raises an error",
+          "verdict": "UNDECIDABLE"
+        },
+        {
+          "ehash": "ae24efceb797",
+          "evidence": "tests/test_connectors_f4.py:103",
+          "id": "c-8873d49a",
+          "predicate": "",
+          "statement": "The module verifies idempotent RSS feed ingestion",
+          "verdict": "UNDECIDABLE"
+        }
+      ],
+      "compiled_at": "2026-07-26T15:55:04Z",
+      "context_hash": "ef83bdeb50233428f7fcaa3faf55ae4bcc9b3f351f3862510a1be593022f0acf",
+      "findings": [],
+      "history": [
+        {
+          "commit": "b78c836100f7",
+          "line_delta": 33,
+          "sections_changed": [
+            "(intro)",
+            "Architecture",
+            "Dependencies",
+            "How to change safely",
+            "Key entry points",
+            "Purpose"
+          ]
+        }
+      ],
+      "kind": "module",
+      "name": "tests/test_connectors_f4.py",
       "quarantined": false
     },
     "tests-test_detectors_py.md": {

@@ -4,53 +4,113 @@
     {
       "detail": "no predicate (existence-anchored only)",
       "ehash": "87e26addd5e1",
-      "evidence": "src/isidore/connectors/store.py:L1",
-      "id": "c-63602c05",
+      "evidence": "src/isidore/connectors/store.py:1",
+      "id": "c-4f3f0995",
       "oracle": "none",
       "predicate": "",
-      "statement": "The `store.py` module defines a raw store for immutable ingested items",
-      "verdict": "UNDECIDABLE"
-    },
-    {
-      "detail": "caller 'src/isidore/connectors/store.py' not a Python symbol in the graph",
-      "ehash": "cd5cfdabd103",
-      "evidence": "src/isidore/connectors/store.py:L17",
-      "id": "c-27c535ef",
-      "oracle": "none",
-      "predicate": "calls:src/isidore/connectors/store.py;_hash",
-      "statement": "The `store.py` module uses `_hash` and `_normalize` from `src/isidore/claims.py`",
-      "verdict": "UNDECIDABLE"
-    },
-    {
-      "detail": "value expects (name, literal)",
-      "ehash": "71509ed4aa03",
-      "evidence": "src/isidore/connectors/git_repo.py:L20",
-      "id": "c-27834485",
-      "oracle": "none",
-      "predicate": "value:_INSTANCE",
-      "statement": "The `git_repo` connector is a single-instance connector",
+      "statement": "The `store.py` module defines a raw store for immutable ingested items and connector state",
       "verdict": "UNDECIDABLE"
     },
     {
       "detail": "no predicate (existence-anchored only)",
-      "ehash": "af99863cb756",
-      "evidence": "src/isidore/connectors/mcp.py:L26",
-      "id": "c-dba7c17f",
+      "ehash": "119033fcaa9c",
+      "evidence": "src/isidore/connectors/hackernews.py:1",
+      "id": "c-f3ac5a1f",
       "oracle": "none",
       "predicate": "",
-      "statement": "The `mcp` connector checks for `readOnlyHint` in tool annotations",
+      "statement": "The `hackernews.py` connector fetches stories and searches from Algolia's public API",
       "verdict": "UNDECIDABLE"
+    },
+    {
+      "detail": "no predicate (existence-anchored only)",
+      "ehash": "8dbe8d3f0488",
+      "evidence": "src/isidore/connectors/rss.py:1",
+      "id": "c-9f56b88d",
+      "oracle": "none",
+      "predicate": "",
+      "statement": "The `rss.py` connector parses RSS/Atom feeds and stores entries in the raw store",
+      "verdict": "UNDECIDABLE"
+    },
+    {
+      "detail": "no predicate (existence-anchored only)",
+      "ehash": "ef8cbfa19f5e",
+      "evidence": "src/isidore/connectors/base.py:1",
+      "id": "c-6eccd71d",
+      "oracle": "none",
+      "predicate": "",
+      "statement": "The `base.py` module defines the connector protocol and registry",
+      "verdict": "UNDECIDABLE"
+    },
+    {
+      "detail": "no predicate (existence-anchored only)",
+      "ehash": "71b626786c0e",
+      "evidence": "src/isidore/connectors/mcp.py:1",
+      "id": "c-2c139f83",
+      "oracle": "none",
+      "predicate": "",
+      "statement": "The `mcp.py` connector interacts with a JSON-RPC 2.0 endpoint to fetch data",
+      "verdict": "UNDECIDABLE"
+    },
+    {
+      "detail": "no predicate (existence-anchored only)",
+      "ehash": "ebbc8c55b75c",
+      "evidence": "src/isidore/connectors/websearch.py:1",
+      "id": "c-b14949cd",
+      "oracle": "none",
+      "predicate": "",
+      "statement": "The `websearch.py` connector queries a Tavily-compatible endpoint for search results",
+      "verdict": "UNDECIDABLE"
+    },
+    {
+      "detail": "src/isidore/connectors/store.py defines create_run_id",
+      "ehash": "27b1a261a063",
+      "evidence": "src/isidore/connectors/store.py:24",
+      "id": "c-86a7ceaf",
+      "oracle": "graph",
+      "predicate": "defines:src/isidore/connectors/store.py;create_run_id",
+      "statement": "The `create_run_id` function generates unique identifiers for each ingest run",
+      "verdict": "TRUE"
+    },
+    {
+      "detail": "src/isidore/connectors/base.py defines IngestResult",
+      "ehash": "e14f90dd3ff8",
+      "evidence": "src/isidore/connectors/base.py:20",
+      "id": "c-457f2b25",
+      "oracle": "graph",
+      "predicate": "defines:src/isidore/connectors/base.py;IngestResult",
+      "statement": "The `IngestResult` class standardizes the outcome of ingest runs",
+      "verdict": "TRUE"
+    },
+    {
+      "detail": "src/isidore/connectors/base.py defines register",
+      "ehash": "3d578d20f0b4",
+      "evidence": "src/isidore/connectors/base.py:14",
+      "id": "c-810da653",
+      "oracle": "graph",
+      "predicate": "defines:src/isidore/connectors/base.py;register",
+      "statement": "The `register` decorator is used to register connectors",
+      "verdict": "TRUE"
+    },
+    {
+      "detail": "src/isidore/connectors/store.py imports src/isidore/home.py",
+      "ehash": "bf66e1178c7f",
+      "evidence": "src/isidore/connectors/store.py:19",
+      "id": "c-6fdfa354",
+      "oracle": "graph",
+      "predicate": "imports:src/isidore/connectors/store.py;src/isidore/home.py",
+      "statement": "The `store.py` module imports `connector_dir`, `raw_dir`, and `state_path` from `src/isidore/home.py`",
+      "verdict": "TRUE"
     }
   ],
-  "graph_commit": "036487e2137938f623d7cb8688fb7327ef809179",
+  "graph_commit": "b78c836100f72c8de8a10a0def794b104ab4f424",
   "marks": [],
   "mass": {
-    "gray": 11,
-    "green": 0,
-    "yellow": 13
+    "gray": 13,
+    "green": 26,
+    "yellow": 0
   },
   "page": "src-isidore-connectors.md",
-  "prose_sha256": "6ca51a9549e2e02ff4a72c03b5b070ec15ee3b68ac8702e00d315bbdd5dfd1b8",
+  "prose_sha256": "09698cd83c5969c4fa34df1a16820aeee24ed881e598330ff9a0c6086d8684f6",
   "version": "pcp-1",
   "violations": []
 }

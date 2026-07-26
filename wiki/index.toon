@@ -1,10 +1,11 @@
-# isidore wiki index · commit 036487e2137938f623d7cb8688fb7327ef809179
+# isidore wiki index · commit b78c836100f72c8de8a10a0def794b104ab4f424
 # same catalog as quickstart.md, in TOON tables (cheap for agents to load)
 modules[40]{module,files,symbols,page}:
+  src/isidore/connectors,9,66,src-isidore-connectors.md
   src/isidore/verify.py,1,37,src-isidore-verify_py.md
   tests/test_whatsnew.py,1,36,tests-test_whatsnew_py.md
   tests/test_pipeline.py,1,35,tests-test_pipeline_py.md
-  src/isidore/connectors,5,33,src-isidore-connectors.md
+  tests/test_connectors_f4.py,1,32,tests-test_connectors_f4_py.md
   src/isidore/whatsnew.py,1,30,src-isidore-whatsnew_py.md
   src/isidore/pcp.py,1,25,src-isidore-pcp_py.md
   src/isidore/pyramid.py,1,25,src-isidore-pyramid_py.md
@@ -24,11 +25,11 @@ modules[40]{module,files,symbols,page}:
   src/isidore/humanpack.py,1,15,src-isidore-humanpack_py.md
   tests/test_langspec.py,1,14,tests-test_langspec_py.md
   src/isidore/cli.py,1,13,src-isidore-cli_py.md
+  src/isidore/knowledge.py,1,12,src-isidore-knowledge_py.md
   src/isidore/langspec.py,1,12,src-isidore-langspec_py.md
   tests/test_pcp_seams.py,1,11,tests-test_pcp_seams_py.md
   tests/test_security_prose.py,1,11,tests-test_security_prose_py.md
   tests/test_verify.py,1,10,tests-test_verify_py.md
-  src/isidore/knowledge.py,1,10,src-isidore-knowledge_py.md
   src/isidore/qa.py,1,10,src-isidore-qa_py.md
   src/isidore/render.py,1,10,src-isidore-render_py.md
   tests/test_pcp_pipeline.py,1,9,tests-test_pcp_pipeline_py.md
@@ -40,9 +41,14 @@ modules[40]{module,files,symbols,page}:
   tests/test_llms_txt.py,1,8,tests-test_llms_txt_py.md
   tests/test_mcp_barrier.py,1,8,tests-test_mcp_barrier_py.md
   tests/test_plain.py,1,8,tests-test_plain_py.md
-  tests/test_residue.py,1,8,tests-test_residue_py.md
 flows[0]{flow,modules,page}:
 hot_symbols[240]{module,symbol,file,line,degree}:
+  src/isidore/connectors,store.py,src/isidore/connectors/store.py,1,17
+  src/isidore/connectors,hackernews.py,src/isidore/connectors/hackernews.py,1,11
+  src/isidore/connectors,rss.py,src/isidore/connectors/rss.py,1,11
+  src/isidore/connectors,base.py,src/isidore/connectors/base.py,1,9
+  src/isidore/connectors,mcp.py,src/isidore/connectors/mcp.py,1,8
+  src/isidore/connectors,websearch.py,src/isidore/connectors/websearch.py,1,8
   src/isidore/verify.py,verify.py,src/isidore/verify.py,1,38
   src/isidore/verify.py,_norm(),src/isidore/verify.py,47-L48,0
   src/isidore/verify.py,_symbol_base(),src/isidore/verify.py,51-L53,0
@@ -61,12 +67,12 @@ hot_symbols[240]{module,symbol,file,line,degree}:
   tests/test_pipeline.py,_make_repo(),tests/test_pipeline.py,35-L56,0
   tests/test_pipeline.py,_graph(),tests/test_pipeline.py,59-L61,0
   tests/test_pipeline.py,_gp(),tests/test_pipeline.py,64-L65,0
-  src/isidore/connectors,store.py,src/isidore/connectors/store.py,1,14
-  src/isidore/connectors,base.py,src/isidore/connectors/base.py,1,8
-  src/isidore/connectors,mcp.py,src/isidore/connectors/mcp.py,1,8
-  src/isidore/connectors,git_repo.py,src/isidore/connectors/git_repo.py,1,6
-  src/isidore/connectors,__init__.py,src/isidore/connectors/__init__.py,1,1
-  src/isidore/connectors,IngestResult,src/isidore/connectors/base.py,21-L28,0
+  tests/test_connectors_f4.py,test_connectors_f4.py,tests/test_connectors_f4.py,1,31
+  tests/test_connectors_f4.py,isolated_home(),tests/test_connectors_f4.py,43-L45,0
+  tests/test_connectors_f4.py,test_only_http_and_https_are_openable(),tests/test_connectors_f4.py,50-L59,0
+  tests/test_connectors_f4.py,test_a_partial_json_body_is_never_parsed(),tests/test_connectors_f4.py,62-L66,0
+  tests/test_connectors_f4.py,test_rss_and_atom_go_through_one_parser(),tests/test_connectors_f4.py,71-L82,0
+  tests/test_connectors_f4.py,test_unparseable_xml_is_an_error_not_an_empty_feed(),tests/test_connectors_f4.py,85-L87,0
   src/isidore/whatsnew.py,whatsnew.py,src/isidore/whatsnew.py,1,40
   src/isidore/whatsnew.py,WhatsnewError,src/isidore/whatsnew.py,108-L109,0
   src/isidore/whatsnew.py,DeltaEntry,src/isidore/whatsnew.py,113-L138,0
@@ -181,6 +187,12 @@ hot_symbols[240]{module,symbol,file,line,degree}:
   src/isidore/cli.py,_cmd_compile(),src/isidore/cli.py,46-L107,0
   src/isidore/cli.py,_cmd_ask(),src/isidore/cli.py,110-L126,0
   src/isidore/cli.py,_cmd_suggest_flows(),src/isidore/cli.py,129-L141,0
+  src/isidore/knowledge.py,knowledge.py,src/isidore/knowledge.py,1,15
+  src/isidore/knowledge.py,TopicCompileResult,src/isidore/knowledge.py,92-L110,0
+  src/isidore/knowledge.py,knowledge_dir(),src/isidore/knowledge.py,113-L116,0
+  src/isidore/knowledge.py,state_path(),src/isidore/knowledge.py,119-L120,0
+  src/isidore/knowledge.py,load_knowledge_state(),src/isidore/knowledge.py,123-L134,0
+  src/isidore/knowledge.py,write_knowledge_state(),src/isidore/knowledge.py,137-L143,0
   src/isidore/langspec.py,langspec.py,src/isidore/langspec.py,1,11
   src/isidore/langspec.py,SymbolRule,src/isidore/langspec.py,35-L38,0
   src/isidore/langspec.py,LanguageSpec,src/isidore/langspec.py,42-L51,0
@@ -205,12 +217,6 @@ hot_symbols[240]{module,symbol,file,line,degree}:
   tests/test_verify.py,test_three_field_parser_captures_predicate(),tests/test_verify.py,28-L32,0
   tests/test_verify.py,test_each_predicate_kind_decides_correctly(),tests/test_verify.py,35-L51,0
   tests/test_verify.py,test_certificate_matches_golden_verdicts(),tests/test_verify.py,54-L65,0
-  src/isidore/knowledge.py,knowledge.py,src/isidore/knowledge.py,1,13
-  src/isidore/knowledge.py,TopicCompileResult,src/isidore/knowledge.py,52-L70,0
-  src/isidore/knowledge.py,knowledge_dir(),src/isidore/knowledge.py,73-L76,0
-  src/isidore/knowledge.py,state_path(),src/isidore/knowledge.py,79-L80,0
-  src/isidore/knowledge.py,load_knowledge_state(),src/isidore/knowledge.py,83-L94,0
-  src/isidore/knowledge.py,write_knowledge_state(),src/isidore/knowledge.py,97-L103,0
   src/isidore/qa.py,qa.py,src/isidore/qa.py,1,11
   src/isidore/qa.py,question_terms(),src/isidore/qa.py,52-L53,0
   src/isidore/qa.py,score_text(),src/isidore/qa.py,56-L58,0
@@ -277,17 +283,11 @@ hot_symbols[240]{module,symbol,file,line,degree}:
   tests/test_plain.py,test_a_rejection_can_be_explained_to_whoever_wrote_it(),tests/test_plain.py,23-L26,0
   tests/test_plain.py,test_case_insensitivity_is_scoped_to_the_vocabulary_rule(),tests/test_plain.py,29-L33,0
   tests/test_plain.py,test_the_gate_is_one_sided_and_carries_no_readability_score(),tests/test_plain.py,36-L43,0
-  tests/test_residue.py,test_residue.py,tests/test_residue.py,1,7
-  tests/test_residue.py,_git(),tests/test_residue.py,18-L19,0
-  tests/test_residue.py,_repo(),tests/test_residue.py,22-L35,0
-  tests/test_residue.py,test_section_diff_reports_changed_headings_and_line_delta(),tests/test_residue.py,38-L43,0
-  tests/test_residue.py,test_journal_and_stats_track_calls_saved_and_unstable(),tests/test_residue.py,46-L55,0
-  tests/test_residue.py,test_page_history_records_section_changes(),tests/test_residue.py,58-L70,0
 module_deps[43]{from,to,links}:
+  src/isidore/connectors,src/isidore/home.py,2
+  src/isidore/connectors,src/isidore/claims.py,1
   src/isidore/verify.py,src/isidore/graph.py,1
   src/isidore/verify.py,src/isidore/pcp.py,1
-  src/isidore/connectors,src/isidore/home.py,3
-  src/isidore/connectors,src/isidore/claims.py,1
   src/isidore/whatsnew.py,src/isidore/plain.py,2
   src/isidore/whatsnew.py,src/isidore/claims.py,1
   src/isidore/whatsnew.py,src/isidore/graph.py,1

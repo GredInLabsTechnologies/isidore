@@ -88,3 +88,23 @@ def missing_env(conn: Connector) -> list[str]:
     """Names of required env vars that are absent — for failing closed. Returns NAMES only; never
     reads a secret's value."""
     return [name for name in conn.required_env if name not in os.environ]
+
+
+def stored_config(cid: str, instance: str | None = None) -> dict:
+    """A connector's persisted config, or {} if absent or corrupt. Never raises.
+
+    Lives here so `ingest(IngestOptions())` works with nothing passed in: a connector that only reads
+    config handed to it by the CLI looks configured and silently ingests nothing from any other caller.
+    Measured — `isidore sync` reported rss and hackernews as "skipped" for exactly that reason.
+    """
+    import json
+
+    from ..home import config_path
+    path = config_path(cid, instance)
+    if not path.is_file():
+        return {}
+    try:
+        data = json.loads(path.read_text(encoding="utf-8"))
+    except (OSError, ValueError):
+        return {}
+    return data if isinstance(data, dict) else {}
