@@ -43,6 +43,15 @@ def test_the_gate_is_one_sided_and_carries_no_readability_score():
         "noticing it happened.")                                    # long, scores "hard", passes
 
 
+def test_ordinary_proper_nouns_are_not_mistaken_for_identifiers():
+    # `[a-z][A-Z]` catches putManyConditional and would equally catch these, which are ordinary
+    # words to a general reader. An accept list is the necessary counterweight to a structural rule.
+    assert is_plain("The guide is published on GitHub for anyone to read.")
+    assert is_plain("It runs anywhere JavaScript runs, including on an iPhone.")
+    # ...and the rule still does its job on a real identifier.
+    assert check("Call putManyConditional to save a group at once.") == ["camel-case"]
+
+
 def test_every_rule_declares_a_kind_and_a_reason():
     for rule in RULES:
         assert rule.kind in ("vocabulary", "structure")

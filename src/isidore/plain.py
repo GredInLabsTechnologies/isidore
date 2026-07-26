@@ -51,6 +51,17 @@ JARGON_TERMS = (
 )
 
 
+# Accepted terms — Vale calls this a Vocab, and it is the necessary counterweight to a structural
+# rule. `[a-z][A-Z]` catches `putManyConditional`, and it equally catches GitHub, JavaScript and
+# iPhone, which are ordinary words to a general reader and not identifiers at all. Anything listed
+# here is removed before the structural rules look at the text.
+ACCEPTED_TERMS = (
+    "GitHub", "GitLab", "JavaScript", "TypeScript", "PostgreSQL", "MySQL", "SQLite", "PowerShell",
+    "YouTube", "iPhone", "iPad", "iOS", "macOS", "OpenAI", "DevOps", "NumPy", "PyPI", "OAuth",
+)
+_ACCEPTED = re.compile("|".join(re.escape(term) for term in ACCEPTED_TERMS))
+
+
 @dataclass(frozen=True)
 class PlainRule:
     """One named check. `kind` mirrors Vale's rule taxonomy so the intent of each is declared."""
@@ -90,7 +101,8 @@ def check(text: str) -> list[str]:
     One-sided by design: an empty list does NOT certify the text is plain, it only means this gate
     found nothing wrong. The prompt is what makes prose plain; this stops the worst from shipping.
     """
-    return [rule.name for rule in RULES if rule.pattern.search(text or "")]
+    body = _ACCEPTED.sub("", text or "")
+    return [rule.name for rule in RULES if rule.pattern.search(body)]
 
 
 def is_plain(text: str) -> bool:

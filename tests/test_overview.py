@@ -9,6 +9,7 @@ from isidore.pcp import CERT_SUFFIX, Certificate, ClaimVerdict, write_certificat
 from isidore.pyramid import (
     compile_overview,
     compile_subsystems,
+    missing_sections,
     relink_wiki_uris,
     subsystem_page_name,
     verified_claims,
@@ -185,6 +186,18 @@ def test_the_machine_scheme_never_reaches_a_reader_facing_link(repo_with_module_
 def test_relink_leaves_a_working_link_in_both_shapes_a_model_writes():
     assert relink_wiki_uris("see [x](wiki://x.md)") == "see [x](x.md)"
     assert relink_wiki_uris("checking (wiki://x.md) runs") == "checking (x.md) runs"
+
+
+def test_a_section_dropped_by_the_repair_pass_is_reported(repo):
+    # Observed on GICS: the plain-language rewrite removed a whole heading instead of rewording it,
+    # leaving a page that reads fine and quietly answers less than it promises.
+    assert missing_sections("## What this is\nx\n") == ["What you can do with it",
+                                                        "How the pieces fit together"]
+    assert missing_sections(PAGE) == []
+
+    result = compile_overview(repo, [], [], {}, execute=True,
+                              generator=lambda p: PAGE.replace("## How the pieces fit together", "## Other"))
+    assert result["missing_sections"] == ["How the pieces fit together"]
 
 
 def test_the_product_page_prefers_the_layer_directly_below_it(repo_with_module_page):

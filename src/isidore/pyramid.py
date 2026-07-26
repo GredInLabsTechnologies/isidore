@@ -448,9 +448,21 @@ OVERVIEW_REPAIR = """
 
 Your previous answer used wording a non-technical reader cannot follow. These rules were broken:
 {broken}
-Rewrite it saying the same thing without those words or shapes. If a sentence cannot survive the
-rewrite, drop that sentence entirely rather than keeping a technical one.
+Rewrite it saying the same thing without those words or shapes. If a SENTENCE cannot survive the
+rewrite, drop that sentence. Keep ALL THREE headings and the claims block: dropping a whole section
+is not a fix, it is a smaller page with the same problem.
 """
+
+# The headings the product page promises its reader. Checked deterministically, because a repair pass
+# that drops a whole section rather than rewording it produces a page that reads fine and quietly
+# answers less — observed on the first GICS run, where "How the pieces fit together" simply vanished.
+OVERVIEW_SECTIONS = ("What this is", "What you can do with it", "How the pieces fit together")
+
+
+def missing_sections(markdown: str, expected: tuple[str, ...] = OVERVIEW_SECTIONS) -> list[str]:
+    """Required headings the page does not have. 0 LLM."""
+    present = {line[3:].strip().lower() for line in markdown.splitlines() if line.startswith("## ")}
+    return [name for name in expected if name.lower() not in present]
 
 
 def relink_wiki_uris(markdown: str) -> str:
@@ -540,6 +552,7 @@ def compile_overview(repo: Path, nodes: list[dict], links: list[dict], config: d
     proved = [c for c in cert.claims if c.verdict == TRUE]
     result["claims"] = len(cert.claims)
     result["proved"] = len(proved)
+    result["missing_sections"] = missing_sections(markdown) if not refusal else []
     if not proved and not refusal:
         # A product page resting on nothing is precisely the artifact this tool exists to replace:
         # fluent, plausible, unverifiable. Refuse it rather than publish it.
@@ -673,6 +686,9 @@ def _cmd_overview(args) -> int:
         return 1
     print(f"[isidore] wrote {args.repo / 'wiki' / OVERVIEW_PAGE} · {result['claims']} claim(s) "
           f"chained to module certificates · {result['calls']} call(s)")
+    if result["missing_sections"]:
+        print(f"[isidore] warning: the page is missing {', '.join(result['missing_sections'])} — "
+              "it answers less than it promises")
     return 0
 
 
