@@ -6,7 +6,13 @@ import json
 import pytest
 
 from isidore.pcp import CERT_SUFFIX, Certificate, ClaimVerdict, write_certificate
-from isidore.pyramid import compile_overview, verified_claims
+from isidore.pyramid import (
+    compile_overview,
+    compile_subsystems,
+    relink_wiki_uris,
+    subsystem_page_name,
+    verified_claims,
+)
 
 PAGE = """## What this is
 This tool writes and keeps up to date the guide to a software project.
@@ -110,3 +116,84 @@ def test_the_fenced_block_is_not_judged_as_prose(repo):
     # every well-formed page fail the plain-language gate.
     result = compile_overview(repo, [], [], {}, execute=True, generator=lambda p: PAGE)
     assert result["plain_broken"] == []
+
+
+# ------------------------------------------------------------------ N2: the area pages
+
+AREA_PAGE = """## What this area is responsible for
+It keeps the guide honest.
+
+## How the work is divided
+Checking lives in [mod.md](wiki://mod.md), which runs on every build.
+
+## What it depends on, and what depends on it
+Nothing else depends on it yet.
+
+## Where to start reading
+- Start with mod.md.
+
+```isidore-claims
+The checking runs on every build. | wiki://mod.md#c-1111 |
+```
+"""
+
+
+@pytest.fixture()
+def repo_with_module_page(repo):
+    """The module page above, registered in the wiki state so an area can find it."""
+    state = {"pages": {"mod.md": {"kind": "module", "name": "src/mod", "claims": []}}}
+    (repo / "wiki" / ".isidore-state.json").write_text(json.dumps(state), encoding="utf-8")
+    return repo
+
+
+def _nodes():
+    return [{"id": "n1", "source_file": "src/mod.py", "file_type": "code", "label": "check()",
+             "source_location": "L1"}]
+
+
+def test_an_area_page_is_chained_to_the_module_pages_below_it(repo_with_module_page):
+    root = repo_with_module_page
+    results = compile_subsystems(root, _nodes(), [], {}, execute=True,
+                                 generator=lambda p: AREA_PAGE)
+    area = next(r for r in results if r["name"] == "src")
+
+    assert area["written"] is True
+    assert area["proved"] == 1
+    cert = json.loads((root / "wiki" / f"{area['page']}{CERT_SUFFIX}").read_text(encoding="utf-8"))
+    assert cert["claims"][0]["oracle"] == "wiki"
+    assert cert["child_cert_hashes"]["mod.md"]
+
+
+def test_an_area_with_nothing_proven_under_it_is_skipped_not_invented(repo):
+    # `repo` has no wiki state, so no module pages belong to any area: there is nothing to write a
+    # page FROM, and paraphrasing the file list would add nothing a reader could not already see.
+    results = compile_subsystems(repo, _nodes(), [], {}, execute=True,
+                                 generator=lambda p: pytest.fail("must not call the LLM"))
+    assert all(not r["written"] for r in results)
+
+
+def test_the_machine_scheme_never_reaches_a_reader_facing_link(repo_with_module_page):
+    root = repo_with_module_page
+    compile_subsystems(root, _nodes(), [], {}, execute=True, generator=lambda p: AREA_PAGE)
+    page = (root / "wiki" / subsystem_page_name("src")).read_text(encoding="utf-8")
+
+    # `wiki://` is how a claim names its evidence. In prose it is a link that opens nothing.
+    assert "wiki://" not in page
+    assert "[mod.md](mod.md)" in page
+
+
+def test_relink_leaves_a_working_link_in_both_shapes_a_model_writes():
+    assert relink_wiki_uris("see [x](wiki://x.md)") == "see [x](x.md)"
+    assert relink_wiki_uris("checking (wiki://x.md) runs") == "checking (x.md) runs"
+
+
+def test_the_product_page_prefers_the_layer_directly_below_it(repo_with_module_page):
+    root = repo_with_module_page
+    assert [c["level"] for c in verified_claims(root, prefer_level=2)] == [1]   # no areas yet
+
+    compile_subsystems(root, _nodes(), [], {}, execute=True, generator=lambda p: AREA_PAGE)
+    preferred = verified_claims(root, prefer_level=2)
+    # Once an area page exists, the product page cites IT rather than reaching past it to a module —
+    # a shorter, more defensible step than "the product is trustworthy because a test module says so".
+    assert preferred and all(c["level"] == 2 for c in preferred)
+    assert all(c["page"].startswith("subsystem-") for c in preferred)

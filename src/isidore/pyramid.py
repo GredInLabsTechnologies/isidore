@@ -150,6 +150,169 @@ def plan_pyramid(nodes: list[dict], links: list[dict], config: dict) -> list[dic
     return specs
 
 
+# ---------------------------------------------------------------- N2: subsystem pages
+
+SUBSYSTEM_PREFIX = "subsystem-"
+
+# A subsystem page is a page about an AREA, so it is bounded by how much of an area a reader can hold
+# at once, not by how much material exists.
+_MAX_SUBSYSTEM_CLAIMS = 24
+_MAX_SUBSYSTEM_PAGES = 20
+
+
+def subsystem_page_name(name: str) -> str:
+    slug = name.replace("/", "-").replace("\\", "-").replace(".", "_").replace(" ", "-")
+    return f"{SUBSYSTEM_PREFIX}{slug}.md"
+
+
+def _module_pages_of(repo: Path, subsystem: str) -> dict[str, dict]:
+    """The compiled module pages that belong to one subsystem, keyed by page file name."""
+    from .pipeline import load_state
+    from .render import WIKI_DIRNAME
+
+    state = load_state(repo / WIKI_DIRNAME)
+    return {page: entry for page, entry in (state.get("pages") or {}).items()
+            if isinstance(entry, dict) and entry.get("kind") == "module"
+            and _top_dir(entry.get("name", "")) == subsystem}
+
+
+def subsystem_facts(repo: Path, spec: dict) -> dict:
+    """What one subsystem page is written from: its module pages and the claims they PROVED. 0 LLM."""
+    pages = _module_pages_of(repo, spec["name"])
+    claims = [c for c in verified_claims(repo) if c["page"] in pages][:_MAX_SUBSYSTEM_CLAIMS]
+    return {
+        "name": spec["name"],
+        "pages": [{"page": page, "module": entry.get("name", page)}
+                  for page, entry in sorted(pages.items())],
+        "depends_on": list(spec.get("depends_on", [])),
+        "claims": claims,
+    }
+
+
+SUBSYSTEM_PROMPT = """You are writing the page for ONE AREA of a codebase: the level between a
+single module and the whole product. Your reader knows how to program but does not know THIS area —
+a developer joining it, a reviewer touching it for the first time, an agent orienting itself.
+
+AREA: {name}
+
+THE MODULES IN IT (each already has its own page):
+{pages}
+
+AREAS THIS ONE DEPENDS ON: {depends_on}
+
+PROVEN FACTS about these modules. Each was verified against the code by machine. To use one, cite
+its URI exactly as given:
+{claims}
+
+Write Markdown with EXACTLY these headings:
+
+## What this area is responsible for
+Two or three sentences. The job this area does for the rest of the system — its responsibility, not
+its contents.
+
+## How the work is divided
+One short paragraph or a few bullets: how the modules split that responsibility between them, and
+WHY the split falls where it does. A reader should finish knowing which module to open for what.
+
+## What it depends on, and what depends on it
+Two or three sentences about the boundary: what this area needs from elsewhere and what it promises
+to the rest.
+
+## Where to start reading
+2-4 bullets naming the module page to open first for the most common tasks in this area.
+
+RULES:
+- Build ONLY on the proven facts and the module list above. Never invent a module, a behaviour or a
+  dependency that is not there.
+- Describe the area, not each module in turn. A page that walks the list one by one has added
+  nothing that the list did not already say — it is the failure mode here.
+- Never state that something does NOT exist: your facts are a selection, so absence is not provable.
+- Max ~450 words. No preamble, no closing remarks.
+
+End with a fenced block citing the proven facts your sentences rest on, one per line:
+
+```isidore-claims
+<the sentence you wrote> | <the wiki:// URI, exactly as given above> |
+```
+Leave the third field empty. Every claim must use a URI from the list above, verbatim. The `wiki://`
+form belongs ONLY in this block — in your prose, name a page as `its-file-name.md`, never as a link
+to `wiki://`, which resolves to nothing for a reader.
+"""
+
+
+def compile_subsystems(repo: Path, nodes: list[dict], links: list[dict], config: dict, *,
+                       execute: bool = False, generator=None, max_calls: int = 0) -> list[dict]:
+    """Compile the N2 layer: one bounded call per area, each page chained to its module pages.
+
+    This is the level that makes the pyramid worth having. Without it the product page cites module
+    claims directly, which verifies fine and reads badly: "the guide can be trusted" resting on a
+    claim from a test module is a true chain and a poor argument. An area page is the natural place
+    for a claim a product statement can honestly lean on.
+    """
+    from .claims import parse_claims_block
+    from .pcp import CERT_SUFFIX, VerifyContext, write_certificate
+    from .render import WIKI_DIRNAME
+    from .verify import build_certificate, classify_mass
+
+    specs = [s for s in plan_pyramid(nodes, links, config) if s.get("level") == 2]
+    specs = [s for s in specs if _module_pages_of(repo, s["name"])][:_MAX_SUBSYSTEM_PAGES]
+    results = [{"name": s["name"], "page": subsystem_page_name(s["name"]),
+                "facts": subsystem_facts(repo, s), "calls": 0, "proved": 0, "written": False}
+               for s in specs]
+    if not execute:
+        return results
+
+    if generator is None:
+        from .llm import default_generator
+        generator = default_generator()
+
+    ctx = VerifyContext(repo=repo, nodes=nodes, links=links)
+    wiki = repo / WIKI_DIRNAME
+    wiki.mkdir(parents=True, exist_ok=True)
+    calls = 0
+    for result in results:
+        if max_calls and calls >= max_calls:
+            break
+        facts = result["facts"]
+        if not facts["claims"]:
+            # Nothing proven underneath: an area page here could only paraphrase the module list.
+            result["skipped"] = "no proven claims in this area yet"
+            continue
+        prompt = SUBSYSTEM_PROMPT.format(
+            name=facts["name"],
+            pages="\n".join(f"- {p['module']} -> {p['page']}" for p in facts["pages"]),
+            depends_on=", ".join(facts["depends_on"]) or "(none recorded)",
+            claims="\n".join(f"- {c['statement']} -> {c['uri']}" for c in facts["claims"]),
+        )
+        raw = generator(prompt)
+        calls += 1
+        result["calls"] = 1
+
+        markdown, raw_claims = parse_claims_block(raw)
+        wiki_rows = [c for c in raw_claims if (c.get("evidence") or "").startswith(WIKI_SCHEME)]
+        cert = build_certificate(result["page"], markdown, [], ctx)
+        cert.claims.extend(_chain_verdicts(repo, wiki_rows, ctx, cert))
+        cert.mass = classify_mass(markdown, cert.claims)
+        proved = [c for c in cert.claims if c.verdict == TRUE]
+        result["proved"] = len(proved)
+
+        if not proved:
+            markdown = (f"# {facts['name']}\n\n> This area page was not published: none of its "
+                        "statements could be traced back to a proven fact. See the module pages.\n")
+            cert = build_certificate(result["page"], markdown, [], ctx)
+        else:
+            # Rewrite the reader-facing links AFTER certifying, so the certificate's prose hash
+            # covers exactly the bytes on disk.
+            markdown = relink_wiki_uris(markdown)
+            cert = build_certificate(result["page"], markdown, [], ctx)
+            cert.claims.extend(_chain_verdicts(repo, wiki_rows, ctx, cert))
+            cert.mass = classify_mass(markdown, cert.claims)
+        (wiki / result["page"]).write_text(markdown, encoding="utf-8")
+        write_certificate(cert, wiki / f"{result['page']}{CERT_SUFFIX}")
+        result["written"] = bool(proved)
+    return results
+
+
 # ---------------------------------------------------------------- N3: the product overview
 
 OVERVIEW_PAGE = "overview.md"
@@ -161,12 +324,17 @@ _MAX_MODULES = 12
 _README_LINES = 40
 
 
-def verified_claims(repo: Path) -> list[dict]:
-    """Every claim the module pages PROVED, as citable `wiki://page#id` facts.
+def verified_claims(repo: Path, *, prefer_level: int = 0) -> list[dict]:
+    """Every claim the pages below PROVED, as citable `wiki://page#id` facts.
 
-    This is the whole point of building the overview last: its raw material is not the code and not
-    the model's memory, but statements a deterministic oracle already judged TRUE. A sentence up here
-    can therefore inherit its truth from a certificate further down instead of asserting anything new.
+    This is the whole point of building upward: the raw material is not the code and not the model's
+    memory, but statements a deterministic oracle already judged TRUE. A sentence up here can inherit
+    its truth from a certificate further down instead of asserting anything new.
+
+    `prefer_level=2` returns subsystem claims when any exist. It matters for the product page: a
+    module claim verifies exactly as well, but "the guide can be trusted" resting on a fact from a
+    test module is a valid chain and a poor argument. Citing the layer directly below keeps each
+    step of the pyramid a short, defensible one.
     """
     from .pcp import CERT_SUFFIX, TRUE, read_certificate
     from .render import WIKI_DIRNAME
@@ -181,11 +349,18 @@ def verified_claims(repo: Path) -> list[dict]:
         except ValueError:
             continue
         page = cert_path.name[: -len(CERT_SUFFIX)]
+        if page == OVERVIEW_PAGE:
+            continue                      # the product page never cites itself
         for claim in cert.claims:
             if claim.verdict == TRUE:
                 out.append({"page": page, "id": claim.id, "statement": claim.statement,
-                            "evidence": claim.evidence,
+                            "evidence": claim.evidence, "level": 2 if
+                            page.startswith(SUBSYSTEM_PREFIX) else 1,
                             "uri": f"{WIKI_SCHEME}{page}#{claim.id}"})
+    if prefer_level == 2:
+        subsystem = [c for c in out if c["level"] == 2]
+        if subsystem:
+            return subsystem
     return out
 
 
@@ -213,7 +388,7 @@ def overview_facts(repo: Path, nodes: list[dict], links: list[dict], config: dic
         "readme": _readme_context(repo),
         "subsystems": [s for s in plan_pyramid(nodes, links, config) if s.get("level") == 2],
         "modules": [{"name": name, "symbols": n} for name, n in modules],
-        "claims": verified_claims(repo)[:_MAX_CLAIMS],
+        "claims": verified_claims(repo, prefer_level=2)[:_MAX_CLAIMS],
     }
 
 
@@ -276,6 +451,17 @@ Your previous answer used wording a non-technical reader cannot follow. These ru
 Rewrite it saying the same thing without those words or shapes. If a sentence cannot survive the
 rewrite, drop that sentence entirely rather than keeping a technical one.
 """
+
+
+def relink_wiki_uris(markdown: str) -> str:
+    """Turn `wiki://page` into `page` in PROSE, so the links a reader clicks actually resolve.
+
+    The scheme is machine-facing: it is how a claim names its evidence, and lane D's verifier is what
+    reads it. In a sentence it is a dead link — `[page](wiki://page)` opens nothing. Dropping the
+    scheme leaves a working relative link in the `[text](page)` form and a readable file name in the
+    bare `(wiki://page)` form, which are the two shapes models actually produce here.
+    """
+    return markdown.replace(WIKI_SCHEME, "")
 
 
 def _plain_violations(markdown: str) -> list[str]:
@@ -345,6 +531,7 @@ def compile_overview(repo: Path, nodes: list[dict], links: list[dict], config: d
     # never actually decided a single claim. Split them out and resolve them through the registry.
     wiki_rows = [c for c in raw_claims if (c.get("evidence") or "").startswith(WIKI_SCHEME)]
     file_rows = [c for c in raw_claims if not (c.get("evidence") or "").startswith(WIKI_SCHEME)]
+    markdown = relink_wiki_uris(markdown)
     anchored, _dropped, _repaired = anchor_claims(repo, file_rows, None)
     cert = build_certificate(OVERVIEW_PAGE, markdown, anchored, ctx)
     cert.claims.extend(_chain_verdicts(repo, wiki_rows, ctx, cert))
@@ -415,11 +602,45 @@ def register_cli(sub) -> None:
     p.add_argument("--graph", type=Path, default=None)
     p.set_defaults(func=_cmd_pyramid)
 
+    s = sub.add_parser("subsystems", help="compile the area pages (N2) from the module pages below")
+    s.add_argument("--repo", type=Path, default=Path("."))
+    s.add_argument("--graph", type=Path, default=None)
+    s.add_argument("--execute", action="store_true", help="write the pages (1 LLM call per area)")
+    s.add_argument("--max-calls", type=int, default=0, help="0 = no cap")
+    s.set_defaults(func=_cmd_subsystems)
+
     o = sub.add_parser("overview", help="compile the plain-language product page from proven claims")
     o.add_argument("--repo", type=Path, default=Path("."))
     o.add_argument("--graph", type=Path, default=None)
     o.add_argument("--execute", action="store_true", help="write the page (1 LLM call, +1 repair)")
     o.set_defaults(func=_cmd_overview)
+
+
+def _cmd_subsystems(args) -> int:
+    nodes, links, config = _load_graph_for(args)
+    results = compile_subsystems(args.repo, nodes, links, config, execute=args.execute,
+                                 max_calls=args.max_calls)
+    if not results:
+        print("[isidore] no areas with compiled module pages — run `isidore compile --execute` first")
+        return 1
+    if not args.execute:
+        for item in results:
+            print(f"[isidore] {item['name']}: {len(item['facts']['pages'])} module page(s), "
+                  f"{len(item['facts']['claims'])} proven claim(s)")
+        print(f"[isidore] {len(results)} area page(s) planned — 0 LLM calls made; "
+              "run with --execute to compile")
+        return 0
+    written = [r for r in results if r["written"]]
+    for item in results:
+        if item["written"]:
+            print(f"  OK   {item['page']}  ({item['proved']} claim(s) chained)")
+        elif item.get("skipped"):
+            print(f"  SKIP {item['page']}  ({item['skipped']})")
+        else:
+            print(f"  REFUSED {item['page']}  (nothing traceable to a proven fact)")
+    print(f"[isidore] {len(written)}/{len(results)} area page(s) written · "
+          f"{sum(r['calls'] for r in results)} call(s)")
+    return 0 if written else 1
 
 
 def _load_graph_for(args) -> tuple[list[dict], list[dict], dict]:

@@ -126,16 +126,30 @@ claims kept in the certificate but never published. Two properties keep it hones
 `--execute` requires `--until` to be HEAD, because claims anchor to the working tree. The artifact
 is a photograph of a range, so it stays out of the staleness loop that governs living pages.
 
-## The product page — documentation for people who will never read the code
+## The pyramid — three levels, each resting on the one below
 
-Module pages are written for whoever is about to change the code; that is what they are for, and it
-is why a manager, a customer or a new colleague cannot use them. `isidore overview` compiles the one
-page they can:
+A module page is written for whoever is about to change that module. That is what it is for, and it
+is why a tech lead, a manager or a customer cannot use it. Two more levels are compiled **from the
+pages already certified below them**, so each step up inherits its truth instead of asserting
+anything new:
 
 ```bash
-isidore overview                  # 0 LLM: what it would be built from
-isidore overview --execute        # one call, plus at most one plain-language repair
+isidore compile --execute         # N1: module pages (for whoever changes the code)
+isidore subsystems --execute      # N2: area pages   (for whoever must understand an area)
+isidore overview --execute        # N3: the product page (for anyone at all)
 ```
+
+Every sentence up here cites `wiki://<page>#<claim-id>`; the verdict comes from the cited page's
+**certificate**, and each cited certificate is hashed into `child_cert_hashes`. Edit a module page
+and the composition above it breaks — detectable with no model call at all. Run each level after the
+one below; a page that can prove nothing is refused rather than published.
+
+The middle level is what makes the top one honest. Without it the product page reaches straight down
+to module claims, which verifies exactly as well and argues badly: *"the guide can be trusted"*
+resting on a fact from a test module is a valid chain and a poor reason. An area page is where a
+claim a product statement can lean on actually lives.
+
+`isidore overview` is the level anyone can read:
 
 It is built from the claims the module pages already **proved**, and its own sentences cite them as
 `wiki://<page>#<claim-id>`. The verdict comes from the child page's certificate, so the overview

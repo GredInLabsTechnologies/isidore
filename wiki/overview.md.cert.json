@@ -1,70 +1,58 @@
 {
   "child_cert_hashes": {
-    "tests-test_claims_py.md": "9b9da050c8aafbba2d2c3bd8fbacc1be5baa62b55aef5db8401f58642afc2c2a",
-    "tests-test_verify_py.md": "467c61c602722b07be7ab383dc8ff77e7f67e23ebf60fb52b088e42783b2bccd",
-    "tests-test_whatsnew_py.md": "80c753ec1033afec3830973d45ca488d2ac2d0bc41e8e483a45f354dfc0d5abf"
+    "subsystem-tests.md": "6049081b0f302a7daf425eab8d4cae9d7dc35cdd2f9a02c79ec96e505f4cf2de"
   },
   "claims": [
     {
       "detail": "cited claim proved TRUE",
-      "ehash": "9b9da050c8aa",
-      "evidence": "wiki://tests-test_claims_py.md#c-1068b52d",
-      "id": "c-cb5d48bd",
+      "ehash": "6049081b0f30",
+      "evidence": "wiki://subsystem-tests.md#c-900ce303",
+      "id": "c-97210e2a",
       "oracle": "wiki",
-      "predicate": "wikichain:wiki://tests-test_claims_py.md#c-1068b52d",
-      "statement": "isidore creates a structured guide to your project by analyzing its structure and content",
+      "predicate": "wikichain:wiki://subsystem-tests.md#c-900ce303",
+      "statement": "See what\u2019s in your project",
       "verdict": "TRUE"
     },
     {
       "detail": "cited claim proved TRUE",
-      "ehash": "9b9da050c8aa",
-      "evidence": "wiki://tests-test_claims_py.md#c-6f48da29",
-      "id": "c-c2b98906",
+      "ehash": "6049081b0f30",
+      "evidence": "wiki://subsystem-tests.md#c-a1495cd9",
+      "id": "c-6ee77f8d",
       "oracle": "wiki",
-      "predicate": "wikichain:wiki://tests-test_claims_py.md#c-6f48da29",
-      "statement": "isidore helps people understand what the project does and how it works without needing to read the code",
+      "predicate": "wikichain:wiki://subsystem-tests.md#c-a1495cd9",
+      "statement": "Understand how parts fit together",
       "verdict": "TRUE"
     },
     {
       "detail": "cited claim proved TRUE",
-      "ehash": "467c61c60272",
-      "evidence": "wiki://tests-test_verify_py.md#c-395df6c3",
-      "id": "c-e1dee24e",
+      "ehash": "6049081b0f30",
+      "evidence": "wiki://subsystem-tests.md#c-9cdac0ef",
+      "id": "c-cc2b5371",
       "oracle": "wiki",
-      "predicate": "wikichain:wiki://tests-test_verify_py.md#c-395df6c3",
-      "statement": "isidore checks every fact in the guide against the actual code to make sure it is accurate",
+      "predicate": "wikichain:wiki://subsystem-tests.md#c-9cdac0ef",
+      "statement": "Keep the guide updated",
       "verdict": "TRUE"
     },
     {
       "detail": "cited claim proved TRUE",
-      "ehash": "80c753ec1033",
-      "evidence": "wiki://tests-test_whatsnew_py.md#c-5666b9f6",
-      "id": "c-813e4385",
+      "ehash": "6049081b0f30",
+      "evidence": "wiki://subsystem-tests.md#c-060904f9",
+      "id": "c-881e58e6",
       "oracle": "wiki",
-      "predicate": "wikichain:wiki://tests-test_whatsnew_py.md#c-5666b9f6",
-      "statement": "isidore updates the guide only when the code changes, so it stays accurate",
-      "verdict": "TRUE"
-    },
-    {
-      "detail": "cited claim proved TRUE",
-      "ehash": "467c61c60272",
-      "evidence": "wiki://tests-test_verify_py.md#c-d5c8cfe6",
-      "id": "c-c9b7797a",
-      "oracle": "wiki",
-      "predicate": "wikichain:wiki://tests-test_verify_py.md#c-d5c8cfe6",
-      "statement": "isidore allows you to cite specific parts of the guide to support discussions or decisions",
+      "predicate": "wikichain:wiki://subsystem-tests.md#c-060904f9",
+      "statement": "Trust what you read",
       "verdict": "TRUE"
     }
   ],
   "graph_commit": null,
   "marks": [],
   "mass": {
-    "gray": 23,
-    "green": 0,
+    "gray": 20,
+    "green": 4,
     "yellow": 0
   },
   "page": "overview.md",
-  "prose_sha256": "b64012d0e1e539a3daa6ffc2d611e195f3dbb07e4d6d49f8213f34808adefccc",
+  "prose_sha256": "eb4b648c1dfceaa2b669d82849a9bf4e92f273ad6616efdacb44d46dddab52f7",
   "version": "pcp-1",
   "violations": []
 }
