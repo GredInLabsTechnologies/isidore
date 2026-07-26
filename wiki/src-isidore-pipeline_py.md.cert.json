@@ -2,67 +2,77 @@
   "child_cert_hashes": {},
   "claims": [
     {
-      "detail": "plan_pages has no call to py",
-      "ehash": "906171e70802",
-      "evidence": "src/isidore/pipeline.py:3",
-      "id": "c-fafe1189",
+      "detail": "src/isidore/pipeline.py defines source_destination",
+      "ehash": "d6680bee67b4",
+      "evidence": "src/isidore/pipeline.py:158",
+      "id": "c-7b0207dd",
+      "oracle": "graph",
+      "predicate": "defines:src/isidore/pipeline.py;source_destination",
+      "statement": "pipeline.py defines source_destination, which classifies where a compile would send the source",
+      "verdict": "TRUE"
+    },
+    {
+      "detail": "assert_may_send_source(what)",
+      "ehash": "e21f9153ca2b",
+      "evidence": "src/isidore/pipeline.py:183",
+      "id": "c-7ff649fd",
       "oracle": "ast",
-      "predicate": "calls:plan_pages;llm.py",
-      "statement": "The pipeline uses a bounded LLM call per dirty page",
-      "verdict": "FALSE"
+      "predicate": "signature:assert_may_send_source;what",
+      "statement": "assert_may_send_source takes the description of what would be sent as its parameter",
+      "verdict": "TRUE"
     },
     {
-      "detail": "file 'pipeline.py' not in the graph",
-      "ehash": "c4762e57a622",
-      "evidence": "src/isidore/pipeline.py:133",
-      "id": "c-dc288f54",
+      "detail": "TRUST_ENV == ISIDORE_PROMPT_TRUSTS_PROVIDER",
+      "ehash": "47817a0a6077",
+      "evidence": "src/isidore/pipeline.py:145",
+      "id": "c-0bf9c0a4",
+      "oracle": "ast",
+      "predicate": "value:TRUST_ENV;ISIDORE_PROMPT_TRUSTS_PROVIDER",
+      "statement": "TRUST_ENV names the environment variable an operator sets to declare a host fit",
+      "verdict": "TRUE"
+    },
+    {
+      "detail": "no predicate (existence-anchored only)",
+      "ehash": "3ef98f684774",
+      "evidence": "src/isidore/pipeline.py:197",
+      "id": "c-30a5fb79",
       "oracle": "none",
-      "predicate": "defines:pipeline.py;PageSpec",
-      "statement": "The PageSpec class represents a page's metadata",
+      "predicate": "",
+      "statement": "an undeclared destination raises instead of sending",
       "verdict": "UNDECIDABLE"
     },
     {
-      "detail": "file 'pipeline.py' not in the graph",
-      "ehash": "5dac3ee6a72f",
-      "evidence": "src/isidore/pipeline.py:153",
-      "id": "c-a75265c4",
+      "detail": "no predicate (existence-anchored only)",
+      "ehash": "d7dc08c97b00",
+      "evidence": "src/isidore/pipeline.py:207",
+      "id": "c-5ecdf4d0",
       "oracle": "none",
-      "predicate": "defines:pipeline.py;module_dep_edges",
-      "statement": "The module_dep_edges function computes cross-module dependencies",
+      "predicate": "",
+      "statement": "a destination the operator declared is permitted, and returns a line to record",
       "verdict": "UNDECIDABLE"
     },
     {
-      "detail": "file 'pipeline.py' not in the graph",
-      "ehash": "39de4826fe9b",
-      "evidence": "src/isidore/pipeline.py:177",
-      "id": "c-dccc4f86",
-      "oracle": "none",
-      "predicate": "defines:pipeline.py;degenerate_certificate",
-      "statement": "The degenerate_certificate function checks for oversized certificates",
-      "verdict": "UNDECIDABLE"
+      "detail": "MAX_CERT_VIOLATIONS == 500",
+      "ehash": "69ed233bf956",
+      "evidence": "src/isidore/pipeline.py:253",
+      "id": "c-a97bacaf",
+      "oracle": "ast",
+      "predicate": "value:MAX_CERT_VIOLATIONS;500",
+      "statement": "the certificate violation cap is a constant in code",
+      "verdict": "TRUE"
     },
     {
-      "detail": "file 'pipeline.py' not in the graph",
-      "ehash": "e95f445b5d3b",
-      "evidence": "src/isidore/pipeline.py:188",
-      "id": "c-3fb04307",
-      "oracle": "none",
-      "predicate": "defines:pipeline.py;drop_wiki_output",
-      "statement": "The drop_wiki_output function filters out wiki output nodes",
-      "verdict": "UNDECIDABLE"
-    },
-    {
-      "detail": "file 'pipeline.py' not in the graph",
-      "ehash": "94fdab5fe0e4",
-      "evidence": "src/isidore/pipeline.py:202",
-      "id": "c-aec4f7c0",
-      "oracle": "none",
-      "predicate": "defines:pipeline.py;plan_pages",
-      "statement": "The plan_pages function selects modules or workflows to document",
-      "verdict": "UNDECIDABLE"
+      "detail": "src/isidore/pipeline.py defines degenerate_certificate",
+      "ehash": "91c2ea334a3a",
+      "evidence": "src/isidore/pipeline.py:257",
+      "id": "c-5adb29f3",
+      "oracle": "graph",
+      "predicate": "defines:src/isidore/pipeline.py;degenerate_certificate",
+      "statement": "degenerate_certificate reports why a runaway certificate must not be written",
+      "verdict": "TRUE"
     }
   ],
-  "graph_commit": "d5d1a1f33219a3171cc701884ca77e794db897e2",
+  "graph_commit": "3f397e139e6990661d04185ce0130368e5017bdd",
   "marks": [
     {
       "disposition": "",
@@ -74,12 +84,12 @@
     }
   ],
   "mass": {
-    "gray": 24,
-    "green": 0,
-    "yellow": 19
+    "gray": 56,
+    "green": 10,
+    "yellow": 0
   },
   "page": "src-isidore-pipeline_py.md",
-  "prose_sha256": "05a2153da6bdfbb6a7be4a8d24a0484744d5c7bb48adbf3205bdd0cf96aacb78",
+  "prose_sha256": "28eb92e27196108a55f6f40fb2dbfdc8cf4d3e8f03dc9cf5d0fa027e24f3d6bb",
   "version": "pcp-1",
   "violations": []
 }

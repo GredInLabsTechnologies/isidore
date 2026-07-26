@@ -117,6 +117,11 @@ def _cmd_ask(args) -> int:
         print("ERROR: no structure graph — run `isidore scan` first", file=sys.stderr)
         return 2
     try:
+        # `ask` retrieves excerpts and cited claims to answer with, so an online question is a
+        # disclosure too — a smaller one than a compile, of the same material. (`--offline` returned
+        # above: it reads verified claims and sends nothing.)
+        from .pipeline import assert_may_send_source
+        assert_may_send_source("this question together with the excerpts cited to answer it")
         answer = ask(args.repo, args.question, graph_path=graph_path or Path("."),
                      generator=default_generator(), knowledge=args.knowledge)
     except GenerationError as exc:

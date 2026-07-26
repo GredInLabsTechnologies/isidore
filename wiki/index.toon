@@ -1,4 +1,4 @@
-# isidore wiki index · commit f92c64149ed85261aab4389441ceab868b67e5e6
+# isidore wiki index · commit 3f397e139e6990661d04185ce0130368e5017bdd
 # same catalog as quickstart.md, in TOON tables (cheap for agents to load)
 modules[40]{module,files,symbols,page}:
   src/isidore/connectors,9,67,src-isidore-connectors.md
@@ -7,14 +7,15 @@ modules[40]{module,files,symbols,page}:
   tests/test_pipeline.py,1,35,tests-test_pipeline_py.md
   tests/test_connectors_f4.py,1,32,tests-test_connectors_f4_py.md
   src/isidore/whatsnew.py,1,30,src-isidore-whatsnew_py.md
+  src/isidore/pipeline.py,1,26,src-isidore-pipeline_py.md
   src/isidore/pcp.py,1,25,src-isidore-pcp_py.md
   src/isidore/pyramid.py,1,25,src-isidore-pyramid_py.md
   tests/test_units.py,1,24,tests-test_units_py.md
-  src/isidore/pipeline.py,1,24,src-isidore-pipeline_py.md
   tests/test_connect_cli.py,1,23,tests-test_connect_cli_py.md
   tests/test_handoff.py,1,23,tests-test_handoff_py.md
   src/isidore/graph.py,1,21,src-isidore-graph_py.md
   tests/test_recertify.py,1,19,tests-test_recertify_py.md
+  tests/test_source_disclosure_gate.py,1,19,tests-test_source_disclosure_gate_py.md
   tests/test_overview.py,1,18,tests-test_overview_py.md
   src/isidore/claims.py,1,18,src-isidore-claims_py.md
   tests/test_claims.py,1,17,tests-test_claims_py.md
@@ -33,14 +34,13 @@ modules[40]{module,files,symbols,page}:
   tests/test_classification_gate.py,1,11,tests-test_classification_gate_py.md
   tests/test_pcp_seams.py,1,11,tests-test_pcp_seams_py.md
   tests/test_security_prose.py,1,11,tests-test_security_prose_py.md
+  tests/test_verify.py,1,11,tests-test_verify_py.md
   src/isidore/render.py,1,11,src-isidore-render_py.md
-  tests/test_verify.py,1,10,tests-test_verify_py.md
   tests/test_wiki_not_input.py,1,10,tests-test_wiki_not_input_py.md
   src/isidore/qa.py,1,10,src-isidore-qa_py.md
   tests/test_pcp_pipeline.py,1,9,tests-test_pcp_pipeline_py.md
   tests/fixtures/pcp,8,9,tests-fixtures-pcp.md
   src/isidore/connect.py,1,9,src-isidore-connect_py.md
-  src/isidore/handoff.py,1,9,src-isidore-handoff_py.md
 flows[0]{flow,modules,page}:
 hot_symbols[240]{module,symbol,file,line,degree}:
   src/isidore/connectors,store.py,src/isidore/connectors/store.py,1,17
@@ -79,6 +79,12 @@ hot_symbols[240]{module,symbol,file,line,degree}:
   src/isidore/whatsnew.py,SurfaceDelta,src/isidore/whatsnew.py,142-L159,0
   src/isidore/whatsnew.py,WhatsnewResult,src/isidore/whatsnew.py,163-L175,0
   src/isidore/whatsnew.py,_git(),src/isidore/whatsnew.py,180-L193,0
+  src/isidore/pipeline.py,pipeline.py,src/isidore/pipeline.py,1,36
+  src/isidore/pipeline.py,source_destination(),src/isidore/pipeline.py,157-L179,0
+  src/isidore/pipeline.py,assert_may_send_source(),src/isidore/pipeline.py,182-L208,0
+  src/isidore/pipeline.py,PageSpec,src/isidore/pipeline.py,212-L227,0
+  src/isidore/pipeline.py,module_dep_edges(),src/isidore/pipeline.py,232-L246,0
+  src/isidore/pipeline.py,degenerate_certificate(),src/isidore/pipeline.py,256-L264,0
   src/isidore/pcp.py,pcp.py,src/isidore/pcp.py,1,24
   src/isidore/pcp.py,Predicate,src/isidore/pcp.py,76-L82,0
   src/isidore/pcp.py,parse_predicate(),src/isidore/pcp.py,85-L100,0
@@ -97,12 +103,6 @@ hot_symbols[240]{module,symbol,file,line,degree}:
   tests/test_units.py,test_scan_repo_extracts_symbols_imports_and_docs(),tests/test_units.py,39-L55,0
   tests/test_units.py,test_scan_tolerates_syntax_errors(),tests/test_units.py,58-L61,0
   tests/test_units.py,test_write_scan_and_find_graph_roundtrip(),tests/test_units.py,64-L69,0
-  src/isidore/pipeline.py,pipeline.py,src/isidore/pipeline.py,1,34
-  src/isidore/pipeline.py,PageSpec,src/isidore/pipeline.py,133-L148,0
-  src/isidore/pipeline.py,module_dep_edges(),src/isidore/pipeline.py,153-L167,0
-  src/isidore/pipeline.py,degenerate_certificate(),src/isidore/pipeline.py,177-L185,0
-  src/isidore/pipeline.py,drop_wiki_output(),src/isidore/pipeline.py,188-L199,0
-  src/isidore/pipeline.py,plan_pages(),src/isidore/pipeline.py,202-L255,0
   tests/test_connect_cli.py,test_connect_cli.py,tests/test_connect_cli.py,1,22
   tests/test_connect_cli.py,_git(),tests/test_connect_cli.py,20-L21,0
   tests/test_connect_cli.py,_make_repo(),tests/test_connect_cli.py,24-L32,0
@@ -127,6 +127,12 @@ hot_symbols[240]{module,symbol,file,line,degree}:
   tests/test_recertify.py,_claim(),tests/test_recertify.py,39-L41,0
   tests/test_recertify.py,test_a_certificate_the_code_outgrew_is_repaired_without_a_model_call(),tests/test_recertify.py,46-L57,0
   tests/test_recertify.py,test_the_prose_is_not_touched(),tests/test_recertify.py,60-L65,0
+  tests/test_source_disclosure_gate.py,test_source_disclosure_gate.py,tests/test_source_disclosure_gate.py,1,18
+  tests/test_source_disclosure_gate.py,_make_repo(),tests/test_source_disclosure_gate.py,34-L46,0
+  tests/test_source_disclosure_gate.py,clean_env(),tests/test_source_disclosure_gate.py,50-L53,0
+  tests/test_source_disclosure_gate.py,_gp(),tests/test_source_disclosure_gate.py,56-L57,0
+  tests/test_source_disclosure_gate.py,test_the_default_destination_is_this_machine(),tests/test_source_disclosure_gate.py,62-L65,0
+  tests/test_source_disclosure_gate.py,test_a_model_on_this_machine_is_local_however_it_is_addressed(),tests/test_source_disclosure_gate.py,70-L72,0
   tests/test_overview.py,test_overview.py,tests/test_overview.py,1,17
   tests/test_overview.py,repo(),tests/test_overview.py,34-L50,0
   tests/test_overview.py,test_only_proven_claims_become_citable_facts(),tests/test_overview.py,53-L56,0
@@ -203,8 +209,8 @@ hot_symbols[240]{module,symbol,file,line,degree}:
   src/isidore/cli.py,_setting(),src/isidore/cli.py,32-L36,0
   src/isidore/cli.py,_cmd_scan(),src/isidore/cli.py,39-L43,0
   src/isidore/cli.py,_cmd_compile(),src/isidore/cli.py,46-L107,0
-  src/isidore/cli.py,_cmd_ask(),src/isidore/cli.py,110-L126,0
-  src/isidore/cli.py,_cmd_suggest_flows(),src/isidore/cli.py,129-L141,0
+  src/isidore/cli.py,_cmd_ask(),src/isidore/cli.py,110-L131,0
+  src/isidore/cli.py,_cmd_suggest_flows(),src/isidore/cli.py,134-L146,0
   tests/test_connectors_f5.py,test_connectors_f5.py,tests/test_connectors_f5.py,1,11
   tests/test_connectors_f5.py,server(),tests/test_connectors_f5.py,85-L89,0
   tests/test_connectors_f5.py,_config(),tests/test_connectors_f5.py,92-L95,0
@@ -235,18 +241,18 @@ hot_symbols[240]{module,symbol,file,line,degree}:
   tests/test_security_prose.py,test_ignores_non_security_and_wrong_kinds(),tests/test_security_prose.py,38-L42,0
   tests/test_security_prose.py,test_negation_guard_does_not_escalate_safety_affirming_notes(),tests/test_security_prose.py,45-L55,0
   tests/test_security_prose.py,test_hardcoded_with_intervening_word_is_caught(),tests/test_security_prose.py,58-L63,0
+  tests/test_verify.py,test_verify.py,tests/test_verify.py,1,10
+  tests/test_verify.py,_ctx(),tests/test_verify.py,16-L18,0
+  tests/test_verify.py,_anchored(),tests/test_verify.py,21-L25,0
+  tests/test_verify.py,test_three_field_parser_captures_predicate(),tests/test_verify.py,28-L32,0
+  tests/test_verify.py,test_each_predicate_kind_decides_correctly(),tests/test_verify.py,35-L51,0
+  tests/test_verify.py,test_certificate_matches_golden_verdicts(),tests/test_verify.py,54-L65,0
   src/isidore/render.py,render.py,src/isidore/render.py,1,11
   src/isidore/render.py,render_quickstart(),src/isidore/render.py,25-L49,0
   src/isidore/render.py,render_toon_index(),src/isidore/render.py,52-L74,0
   src/isidore/render.py,agents_md_block(),src/isidore/render.py,77-L108,0
   src/isidore/render.py,knowledge_summary(),src/isidore/render.py,111-L127,0
   src/isidore/render.py,upsert_agents_block(),src/isidore/render.py,130-L137,0
-  tests/test_verify.py,test_verify.py,tests/test_verify.py,1,9
-  tests/test_verify.py,_ctx(),tests/test_verify.py,16-L18,0
-  tests/test_verify.py,_anchored(),tests/test_verify.py,21-L25,0
-  tests/test_verify.py,test_three_field_parser_captures_predicate(),tests/test_verify.py,28-L32,0
-  tests/test_verify.py,test_each_predicate_kind_decides_correctly(),tests/test_verify.py,35-L51,0
-  tests/test_verify.py,test_certificate_matches_golden_verdicts(),tests/test_verify.py,54-L65,0
   tests/test_wiki_not_input.py,test_wiki_not_input.py,tests/test_wiki_not_input.py,1,9
   tests/test_wiki_not_input.py,nested_wiki_dir(),tests/test_wiki_not_input.py,28-L33,0
   tests/test_wiki_not_input.py,repo_with_nested_wiki(),tests/test_wiki_not_input.py,37-L53,0
@@ -277,13 +283,7 @@ hot_symbols[240]{module,symbol,file,line,degree}:
   src/isidore/connect.py,parse_setting(),src/isidore/connect.py,45-L57,0
   src/isidore/connect.py,apply_settings(),src/isidore/connect.py,60-L84,0
   src/isidore/connect.py,connector_summary(),src/isidore/connect.py,87-L102,0
-  src/isidore/handoff.py,handoff.py,src/isidore/handoff.py,1,11
-  src/isidore/handoff.py,handoff_dir(),src/isidore/handoff.py,51-L52,0
-  src/isidore/handoff.py,prompt_id(),src/isidore/handoff.py,55-L58,0
-  src/isidore/handoff.py,_plan(),src/isidore/handoff.py,61-L74,0
-  src/isidore/handoff.py,emit(),src/isidore/handoff.py,77-L94,0
-  src/isidore/handoff.py,response_generator(),src/isidore/handoff.py,97-L151,0
-module_deps[44]{from,to,links}:
+module_deps[41]{from,to,links}:
   src/isidore/connectors,src/isidore/home.py,2
   src/isidore/connectors,src/isidore/claims.py,1
   src/isidore/verify.py,src/isidore/graph.py,1
@@ -296,7 +296,6 @@ module_deps[44]{from,to,links}:
   src/isidore/whatsnew.py,src/isidore/pipeline.py,1
   src/isidore/whatsnew.py,src/isidore/render.py,1
   src/isidore/whatsnew.py,src/isidore/surface.py,1
-  src/isidore/pyramid.py,src/isidore/pcp.py,1
   src/isidore/pipeline.py,src/isidore/changeset.py,1
   src/isidore/pipeline.py,src/isidore/journal.py,1
   src/isidore/pipeline.py,src/isidore/claims.py,1
@@ -305,6 +304,7 @@ module_deps[44]{from,to,links}:
   src/isidore/pipeline.py,src/isidore/llm.py,1
   src/isidore/pipeline.py,src/isidore/pcp.py,1
   src/isidore/pipeline.py,src/isidore/verify.py,1
+  src/isidore/pyramid.py,src/isidore/pcp.py,1
   src/isidore/graph.py,src/isidore/langspec.py,1
   src/isidore/claims.py,src/isidore/toon.py,1
   src/isidore/findings.py,src/isidore/toon.py,1
@@ -325,6 +325,3 @@ module_deps[44]{from,to,links}:
   src/isidore/connect.py,src/isidore/connectors,2
   src/isidore/connect.py,src/isidore/home.py,1
   src/isidore/connect.py,src/isidore/toon.py,1
-  src/isidore/handoff.py,src/isidore/graph.py,1
-  src/isidore/handoff.py,src/isidore/llm.py,1
-  src/isidore/handoff.py,src/isidore/pipeline.py,1

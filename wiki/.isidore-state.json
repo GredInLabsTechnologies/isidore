@@ -546,6 +546,45 @@
       "quarantined": 0,
       "retries": 0,
       "skipped": 0
+    },
+    {
+      "calls_saved": 0,
+      "commit": "3f397e139e69",
+      "dirty": 1,
+      "generated": 1,
+      "generated_pages": [
+        "src-isidore-pipeline_py.md"
+      ],
+      "planned": 40,
+      "quarantined": 0,
+      "retries": 0,
+      "skipped": 0
+    },
+    {
+      "calls_saved": 0,
+      "commit": "3f397e139e69",
+      "dirty": 1,
+      "generated": 1,
+      "generated_pages": [
+        "src-isidore-pipeline_py.md"
+      ],
+      "planned": 40,
+      "quarantined": 0,
+      "retries": 0,
+      "skipped": 0
+    },
+    {
+      "calls_saved": 0,
+      "commit": "3f397e139e69",
+      "dirty": 1,
+      "generated": 1,
+      "generated_pages": [
+        "src-isidore-pipeline_py.md"
+      ],
+      "planned": 40,
+      "quarantined": 0,
+      "retries": 0,
+      "skipped": 0
     }
   ],
   "pages": {
@@ -1730,95 +1769,66 @@
     "src-isidore-pipeline_py.md": {
       "claims": [
         {
-          "ehash": "c4762e57a622",
-          "evidence": "src/isidore/pipeline.py:133",
-          "id": "c-dc288f54",
-          "predicate": "defines:pipeline.py;PageSpec",
-          "statement": "The PageSpec class represents a page's metadata",
+          "ehash": "d6680bee67b4",
+          "evidence": "src/isidore/pipeline.py:158",
+          "id": "c-7b0207dd",
+          "predicate": "defines:src/isidore/pipeline.py;source_destination",
+          "statement": "pipeline.py defines source_destination, which classifies where a compile would send the source",
+          "verdict": "TRUE"
+        },
+        {
+          "ehash": "e21f9153ca2b",
+          "evidence": "src/isidore/pipeline.py:183",
+          "id": "c-7ff649fd",
+          "predicate": "signature:assert_may_send_source;what",
+          "statement": "assert_may_send_source takes the description of what would be sent as its parameter",
+          "verdict": "TRUE"
+        },
+        {
+          "ehash": "47817a0a6077",
+          "evidence": "src/isidore/pipeline.py:145",
+          "id": "c-0bf9c0a4",
+          "predicate": "value:TRUST_ENV;ISIDORE_PROMPT_TRUSTS_PROVIDER",
+          "statement": "TRUST_ENV names the environment variable an operator sets to declare a host fit",
+          "verdict": "TRUE"
+        },
+        {
+          "ehash": "3ef98f684774",
+          "evidence": "src/isidore/pipeline.py:197",
+          "id": "c-30a5fb79",
+          "predicate": "",
+          "statement": "an undeclared destination raises instead of sending",
           "verdict": "UNDECIDABLE"
         },
         {
-          "ehash": "5dac3ee6a72f",
-          "evidence": "src/isidore/pipeline.py:153",
-          "id": "c-a75265c4",
-          "predicate": "defines:pipeline.py;module_dep_edges",
-          "statement": "The module_dep_edges function computes cross-module dependencies",
+          "ehash": "d7dc08c97b00",
+          "evidence": "src/isidore/pipeline.py:207",
+          "id": "c-5ecdf4d0",
+          "predicate": "",
+          "statement": "a destination the operator declared is permitted, and returns a line to record",
           "verdict": "UNDECIDABLE"
         },
         {
-          "ehash": "39de4826fe9b",
-          "evidence": "src/isidore/pipeline.py:177",
-          "id": "c-dccc4f86",
-          "predicate": "defines:pipeline.py;degenerate_certificate",
-          "statement": "The degenerate_certificate function checks for oversized certificates",
-          "verdict": "UNDECIDABLE"
+          "ehash": "69ed233bf956",
+          "evidence": "src/isidore/pipeline.py:253",
+          "id": "c-a97bacaf",
+          "predicate": "value:MAX_CERT_VIOLATIONS;500",
+          "statement": "the certificate violation cap is a constant in code",
+          "verdict": "TRUE"
         },
         {
-          "ehash": "e95f445b5d3b",
-          "evidence": "src/isidore/pipeline.py:188",
-          "id": "c-3fb04307",
-          "predicate": "defines:pipeline.py;drop_wiki_output",
-          "statement": "The drop_wiki_output function filters out wiki output nodes",
-          "verdict": "UNDECIDABLE"
-        },
-        {
-          "ehash": "94fdab5fe0e4",
-          "evidence": "src/isidore/pipeline.py:202",
-          "id": "c-aec4f7c0",
-          "predicate": "defines:pipeline.py;plan_pages",
-          "statement": "The plan_pages function selects modules or workflows to document",
-          "verdict": "UNDECIDABLE"
+          "ehash": "91c2ea334a3a",
+          "evidence": "src/isidore/pipeline.py:257",
+          "id": "c-5adb29f3",
+          "predicate": "defines:src/isidore/pipeline.py;degenerate_certificate",
+          "statement": "degenerate_certificate reports why a runaway certificate must not be written",
+          "verdict": "TRUE"
         }
       ],
-      "compiled_at": "2026-07-26T18:42:01Z",
-      "context_hash": "18ff905843af177581e0111318d4bfdc9e92715c0446caaf454db92a9b1de3da",
+      "compiled_at": "2026-07-26T23:54:29Z",
+      "context_hash": "1062543cc39ec90728954a606d5cd1dc0f13805de2b18d522407b5b5f914f400",
       "findings": [],
-      "history": [
-        {
-          "commit": "1a34c13ecf2e",
-          "line_delta": 31,
-          "sections_changed": [
-            "Architecture",
-            "Dependencies",
-            "How to change safely",
-            "Key entry points",
-            "Purpose"
-          ]
-        },
-        {
-          "commit": "036487e21379",
-          "line_delta": 0,
-          "sections_changed": [
-            "Architecture",
-            "Dependencies",
-            "How to change safely",
-            "Key entry points",
-            "Purpose"
-          ]
-        },
-        {
-          "commit": "d5d1a1f33219",
-          "line_delta": 2,
-          "sections_changed": [
-            "Architecture",
-            "Dependencies",
-            "How to change safely",
-            "Key entry points",
-            "Purpose"
-          ]
-        },
-        {
-          "commit": "d5d1a1f33219",
-          "line_delta": 3,
-          "sections_changed": [
-            "Architecture",
-            "Dependencies",
-            "How to change safely",
-            "Key entry points",
-            "Purpose"
-          ]
-        }
-      ],
+      "history": [],
       "kind": "module",
       "name": "src/isidore/pipeline.py",
       "quarantined": false

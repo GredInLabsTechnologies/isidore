@@ -15,13 +15,13 @@
     "semantic_hash": "69ebc79e87f72af29e9bd7b749a68349"
   },
   "src/isidore/claims.py": {
-    "mtime": 1785032125.045009,
-    "ast_hash": "a03e013b6cf3148917709f60422e312d",
+    "mtime": 1785109992.9284291,
+    "ast_hash": "afbec95977cc18738ea657efc2c086e5",
     "semantic_hash": ""
   },
   "src/isidore/cli.py": {
-    "mtime": 1785106919.4605608,
-    "ast_hash": "c28192325b9b3b5573b2be7cad7ea9f1",
+    "mtime": 1785109591.5839393,
+    "ast_hash": "276b81d2227a230c4d8558b96280c0cd",
     "semantic_hash": ""
   },
   "src/isidore/connectors/__init__.py": {
@@ -115,13 +115,13 @@
     "semantic_hash": ""
   },
   "src/isidore/pipeline.py": {
-    "mtime": 1785106871.3296914,
-    "ast_hash": "c2ab4a7b39322c7ca36c11f87ee64ae0",
+    "mtime": 1785109565.5816574,
+    "ast_hash": "d9602156c241f2927d5bdf0f6eb4a82a",
     "semantic_hash": ""
   },
   "src/isidore/pyramid.py": {
-    "mtime": 1785028038.034428,
-    "ast_hash": "ead9a783975e1c26f39438c670296dd1",
+    "mtime": 1785109584.13371,
+    "ast_hash": "b843f9fd53bb0976bd5495aba0149e37",
     "semantic_hash": ""
   },
   "src/isidore/qa.py": {
@@ -290,8 +290,8 @@
     "semantic_hash": ""
   },
   "wiki/.isidore-state.json": {
-    "mtime": 1785108619.5453346,
-    "ast_hash": "6e3df8183c1add85032b2d89219f36b8",
+    "mtime": 1785110073.7315543,
+    "ast_hash": "13e0ed99eb90deffb812878e243ed83b",
     "semantic_hash": ""
   },
   "wiki/src-isidore.md.cert.json": {
@@ -365,8 +365,8 @@
     "semantic_hash": "b92ed42051c0476f23ed2bbfc869e6c4"
   },
   "wiki/quickstart.md": {
-    "mtime": 1785108616.6964135,
-    "ast_hash": "3dded16d5d8e87e49821de4cb619f6e1",
+    "mtime": 1785110070.1462953,
+    "ast_hash": "f262a8c4eefbbb4e1ae16bde412e0542",
     "semantic_hash": ""
   },
   "wiki/tests-test_claims_py.md": {
@@ -410,8 +410,8 @@
     "semantic_hash": ""
   },
   "src/isidore/whatsnew.py": {
-    "mtime": 1785017311.9238749,
-    "ast_hash": "d02f401e9179c3fe8238730ee232a61c",
+    "mtime": 1785109572.4853346,
+    "ast_hash": "7809905ada1fd284a174d71ce12c8765",
     "semantic_hash": ""
   },
   "tests/fixtures/pcp/repo/svc/tokens.py": {
@@ -575,8 +575,8 @@
     "semantic_hash": ""
   },
   "wiki/src-isidore-pipeline_py.md.cert.json": {
-    "mtime": 1785091321.5761416,
-    "ast_hash": "1485c13b289aefce4fa558936877f10c",
+    "mtime": 1785110070.1452966,
+    "ast_hash": "c3b8ae0d10a73aa4d8ff24353dc50c9a",
     "semantic_hash": ""
   },
   "wiki/src-isidore-pyramid_py.md.cert.json": {
@@ -730,8 +730,8 @@
     "semantic_hash": ""
   },
   "wiki/src-isidore-pipeline_py.md": {
-    "mtime": 1785091321.5523813,
-    "ast_hash": "5907748ff20258d54b740ab8c81a00f8",
+    "mtime": 1785110069.8648272,
+    "ast_hash": "7bd045fb306dbaa9744d0b0bbc7b5bca",
     "semantic_hash": ""
   },
   "wiki/src-isidore-pyramid_py.md": {
@@ -830,7 +830,7 @@
     "semantic_hash": ""
   },
   "llms.txt": {
-    "mtime": 1785108893.84226,
+    "mtime": 1785110179.466647,
     "ast_hash": "17c37f4b5ad0f9d9a66f9f6900385b58",
     "semantic_hash": ""
   },
@@ -1067,6 +1067,11 @@
   "wiki/tests-test_wiki_not_input_py.md": {
     "mtime": 1785091340.848933,
     "ast_hash": "ad00448bb24ae403a530dfdfef341652",
+    "semantic_hash": ""
+  },
+  "tests/test_source_disclosure_gate.py": {
+    "mtime": 1785109625.5555825,
+    "ast_hash": "9393a95dd175a845af56741c87ebf440",
     "semantic_hash": ""
   }
 }

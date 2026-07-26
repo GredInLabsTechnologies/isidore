@@ -41,6 +41,7 @@ Predicate grammar (third field) — `<kind>:<arg1>;<arg2>` (separate args with S
 - defines:FILE;SYMBOL   — FILE defines a top-level SYMBOL        e.g. defines:src/auth.py;authenticate
 - imports:FILE;TARGET   — FILE imports TARGET module/file        e.g. imports:src/auth.py;src/tokens.py
 - value:NAME;LITERAL    — module-level NAME equals LITERAL        e.g. value:MAX_ATTEMPTS;5
+                          (a STRING goes WITHOUT its quotes: value:MODE;strict, never value:MODE;"strict")
 - signature:FN;A1;A2    — FN's parameter names, in order          e.g. signature:authenticate;request
 - env:NAME              — the env var NAME is read somewhere      e.g. env:AUTH_SIGNING_KEY
 
@@ -55,9 +56,10 @@ Common mistakes that get a predicate REFUTED — do NOT make these:
 - `env:` is ONLY for real environment variables read via os.environ/os.getenv/process.env. NEVER
   use it for a function, class, constant, or registry name (e.g. `env:scan_repo` is wrong — scan_repo
   is a function, not an env var).
-- `value:` needs the EXACT literal as written in the code. Copy it character-for-character. If the
-  value is anything but a plain literal (a call like `Path(...)`, an expression, another name), do
-  NOT use `value:` at all. Never guess the number/string.
+- `value:` needs the literal's VALUE, not its source text: the oracle compares against the value, so
+  a string is given bare (`value:TRUST_ENV;ISIDORE_TRUSTS_PROVIDER`) and quoting it refutes a claim
+  that was true. If the value is anything but a plain literal (a call like `Path(...)`, an
+  expression, another name), do NOT use `value:` at all. Never guess the number/string.
 - `defines:` is for a symbol DECLARED in that file. A symbol the file IMPORTS is not defined there.
 - `calls:CALLER;CALLEE` only if CALLEE literally appears called inside CALLER's body.
 

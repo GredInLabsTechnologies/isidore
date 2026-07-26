@@ -12,6 +12,7 @@ from __future__ import annotations
 
 import hashlib
 import json
+import os
 import re
 import subprocess
 from collections import Counter, defaultdict, deque
@@ -127,6 +128,84 @@ CORRECTION REQUIRED. Your previous version cited paths that DO NOT EXIST in this
 Rewrite the page: remove or replace EACH of those citations with a path that appears VERBATIM in the
 FACTS above. Cite only real paths. Keep the rest of the page unchanged.
 """
+
+
+# ------------------------------------------------------- where the source is allowed to go (I7/I9)
+#
+# A page's prompt carries up to six real source excerpts. Compiling is therefore a DISCLOSURE, and
+# until now nothing in this file asked where the disclosure was going: whatever `ISIDORE_MODEL` named
+# received the code. Measured 2026-07-26 — a key pointing at a free tier whose "use my API calls for
+# training" toggle is ON by default took 87 prompts of private source out of five repositories, about
+# 26,000 lines, before anyone read the setting. No rule was broken; nobody was looking.
+#
+# `knowledge.py` already gates the OTHER input — ingested items carrying a classification. This gates
+# the one that leaked: the repository's own code. The question it asks is not "is a provider
+# configured" but "does this destination keep the source on machines we accept".
+TRUST_ENV = "ISIDORE_PROMPT_TRUSTS_PROVIDER"
+LOCAL_HOSTS = frozenset({"localhost", "127.0.0.1", "::1", "0.0.0.0", ""})
+# Endpoints that receive the source under an agreement the operator already has, rather than under a
+# free tier's default. Deliberately short: this list is a statement about terms, not about quality.
+TRUSTED_HOSTS = frozenset({"api.anthropic.com"})
+
+DEST_LOCAL = "local"
+DEST_CLI = "cli"
+DEST_TRUSTED = "trusted"
+DEST_DECLARED = "declared"
+DEST_UNDECLARED = "undeclared"
+
+
+def source_destination() -> tuple[str, str]:
+    """Classify wherever a compile would send this repository's source, as (kind, detail).
+
+    Read from the environment rather than passed in, because that is where the destination actually
+    lives — the same place a stray `export` puts it.
+    """
+    from urllib.parse import urlsplit
+    from .llm import CLI_PROVIDER, DEFAULT_BASE_URL
+
+    if os.environ.get("ISIDORE_PROVIDER", "").strip().lower() == CLI_PROVIDER:
+        # The caller's own Claude session. No third party, no free tier, and the subscription it
+        # spends is the one the operator is already accountable for.
+        return DEST_CLI, CLI_PROVIDER
+
+    base_url = os.environ.get("ISIDORE_BASE_URL", DEFAULT_BASE_URL)
+    host = (urlsplit(base_url).hostname or "").lower()
+    if host in LOCAL_HOSTS:
+        return DEST_LOCAL, base_url                 # a model on this machine: nothing leaves it
+    if host in TRUSTED_HOSTS:
+        return DEST_TRUSTED, host
+    if os.environ.get(TRUST_ENV, "").strip().lower() == "yes":
+        return DEST_DECLARED, host
+    return DEST_UNDECLARED, host
+
+
+def assert_may_send_source(what: str) -> str | None:
+    """Fail closed unless the destination may see this repository's content. `what` names what would
+    be sent, as a full phrase in the caller's own terms ("source excerpts from 7 page(s)").
+
+    Returns a warning to record when the operator has declared a third party, so a permitted
+    disclosure is visible AFTERWARDS — the incident was invisible for weeks precisely because no run
+    ever said where its prompts had gone.
+
+    Every path that puts repository content into a prompt calls this: pages, changed modules, the
+    pyramid's subsystem and overview pages, and `ask`. `knowledge.py` keeps its own gate instead,
+    because its input is ingested items carrying a classification, and public material going to a
+    free endpoint is the legitimate use this must not block.
+    """
+    kind, where = source_destination()
+    if kind == DEST_UNDECLARED:
+        raise GenerationError(
+            f"refusing to send source code to '{where or 'an unnamed endpoint'}': this would put "
+            f"{what} into prompts bound for a host that has not been declared fit to receive it.\n"
+            f"  - write the pages yourself, sending nothing:  isidore handoff emit\n"
+            f"  - or point ISIDORE_BASE_URL at a model on this machine\n"
+            f"  - or set ISIDORE_PROVIDER=claude-cli to use your own Claude session\n"
+            f"  - or, if that host is genuinely fit, declare it: {TRUST_ENV}=yes\n"
+            f"Free inference tiers commonly train on what they receive by default; on 2026-07-26 one "
+            f"took 87 prompts of private source before anyone checked.")
+    if kind == DEST_DECLARED:
+        return f"DISCLOSURE: {what} sent to '{where}', declared trusted via {TRUST_ENV}"
+    return None
 
 
 @dataclass
@@ -702,6 +781,14 @@ def compile_wiki(
         return result
 
     wiki_dir.mkdir(parents=True, exist_ok=True)  # parents: WIKI_DIRNAME may be nested (e.g. doc/isidore)
+    if generator is None:
+        # BEFORE the directory has a single new page in it, and before one byte of source is
+        # assembled into a request. An injected generator is exempt because the caller wrote the
+        # function that receives the prompt — `handoff` answers from disk and never opens a socket —
+        # so the destination is theirs to know, not something this gate can see.
+        disclosure = assert_may_send_source(f"source excerpts from {len(result.dirty)} page(s)")
+        if disclosure:
+            result.warnings.append(disclosure)
     generate = generator if generator is not None else default_generator()
     known_files = {n["source_file"] for n in nodes if n.get("source_file")}
 

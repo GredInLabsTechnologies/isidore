@@ -292,6 +292,8 @@ def compile_subsystems(repo: Path, nodes: list[dict], links: list[dict], config:
 
     if generator is None:
         from .llm import default_generator
+        from .pipeline import assert_may_send_source
+        assert_may_send_source(f"facts drawn from {len(results)} subsystem(s) of this repository")
         generator = default_generator()
 
     ctx = VerifyContext(repo=repo, nodes=nodes, links=links)
@@ -540,6 +542,8 @@ def compile_overview(repo: Path, nodes: list[dict], links: list[dict], config: d
 
     if generator is None:
         from .llm import default_generator
+        from .pipeline import assert_may_send_source
+        assert_may_send_source("this repository's README and its module inventory")
         generator = default_generator()
 
     prompt = OVERVIEW_PROMPT.format(

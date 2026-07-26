@@ -822,7 +822,14 @@ def run_whatsnew(repo: Path, since: str, until: str = "HEAD", *, execute: bool =
             result.warnings.append(
                 "working tree is dirty — claims anchor to the files on disk, not to HEAD")
         if generator is None:
+            # Same disclosure as a compile, by a different door: the delta's prompts carry excerpts
+            # of every added and changed symbol. Gating only `compile` would have left this one open.
             from .llm import default_generator
+            from .pipeline import assert_may_send_source
+            disclosure = assert_may_send_source(
+                f"source excerpts from {len(delta.entries)} changed symbol(s)")
+            if disclosure:
+                result.warnings.append(disclosure)
             generator = default_generator()
         prose, plain, claims, stats = generate_prose(
             repo, delta, commit_hints(repo, delta.since_sha, delta.until_sha), generator,

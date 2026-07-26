@@ -1,8 +1,8 @@
-# isidore claims · commit f92c64149ed85261aab4389441ceab868b67e5e6
+# isidore claims · commit 3f397e139e6990661d04185ce0130368e5017bdd
 # each claim is anchored to its evidence by a content hash; state is re-checked
 # mechanically on every compile (zero LLM calls). stale/orphan => page regenerates.
-# summary: 316 claims, 0 stale/orphan
-claims[316]{page,id,statement,evidence,state}:
+# summary: 318 claims, 0 stale/orphan
+claims[318]{page,id,statement,evidence,state}:
   src-isidore-changeset_py.md,c-1ea2e1cc,The module processes git diffs to identify changed lines,src/isidore/changeset.py:36,ok
   src-isidore-changeset_py.md,c-90be0b37,changed_lines() maps files to sets of changed line numbers,src/isidore/changeset.py:36,ok
   src-isidore-changeset_py.md,c-6b86763d,symbol_spans() converts graph nodes to line ranges,src/isidore/changeset.py:68,ok
@@ -85,11 +85,13 @@ claims[316]{page,id,statement,evidence,state}:
   src-isidore-pcp_py.md,c-4ba85a8e,The `undecidable` function returns a `Verdict` with `UNDECIDABLE` and no oracle,src/isidore/pcp.py:138,ok
   src-isidore-pcp_py.md,c-5a20f323,"The `Verifier` protocol requires deterministic, 0-LLM implementations",src/isidore/pcp.py:153,ok
   src-isidore-pcp_py.md,c-54b5ed57,The `VERIFIERS` registry is initialized as an empty dictionary,src/isidore/pcp.py:161,ok
-  src-isidore-pipeline_py.md,c-dc288f54,The PageSpec class represents a page's metadata,src/isidore/pipeline.py:133,ok
-  src-isidore-pipeline_py.md,c-a75265c4,The module_dep_edges function computes cross-module dependencies,src/isidore/pipeline.py:153,ok
-  src-isidore-pipeline_py.md,c-dccc4f86,The degenerate_certificate function checks for oversized certificates,src/isidore/pipeline.py:177,ok
-  src-isidore-pipeline_py.md,c-3fb04307,The drop_wiki_output function filters out wiki output nodes,src/isidore/pipeline.py:188,ok
-  src-isidore-pipeline_py.md,c-aec4f7c0,The plan_pages function selects modules or workflows to document,src/isidore/pipeline.py:202,ok
+  src-isidore-pipeline_py.md,c-7b0207dd,"pipeline.py defines source_destination, which classifies where a compile would send the source",src/isidore/pipeline.py:158,ok
+  src-isidore-pipeline_py.md,c-7ff649fd,assert_may_send_source takes the description of what would be sent as its parameter,src/isidore/pipeline.py:183,ok
+  src-isidore-pipeline_py.md,c-0bf9c0a4,TRUST_ENV names the environment variable an operator sets to declare a host fit,src/isidore/pipeline.py:145,ok
+  src-isidore-pipeline_py.md,c-30a5fb79,an undeclared destination raises instead of sending,src/isidore/pipeline.py:197,ok
+  src-isidore-pipeline_py.md,c-5ecdf4d0,"a destination the operator declared is permitted, and returns a line to record",src/isidore/pipeline.py:207,ok
+  src-isidore-pipeline_py.md,c-a97bacaf,the certificate violation cap is a constant in code,src/isidore/pipeline.py:253,ok
+  src-isidore-pipeline_py.md,c-5adb29f3,degenerate_certificate reports why a runaway certificate must not be written,src/isidore/pipeline.py:257,ok
   src-isidore-pyramid_py.md,c-73630108,The module implements a wiki:// chain verifier,src/isidore/pyramid.py:69,ok
   src-isidore-pyramid_py.md,c-045d6d7a,The verifier checks certificates first for claim resolution,src/isidore/pyramid.py:43,ok
   src-isidore-pyramid_py.md,c-b64c89a5,The subsystem suggester groups files by top directory,src/isidore/pyramid.py:109,ok

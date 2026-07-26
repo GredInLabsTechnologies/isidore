@@ -124,17 +124,11 @@
   "122": "tests-test_connect_cli_py.md",
   "123": "CertStatus",
   "124": "anchor_claims",
-  "125": "apply_settings",
   "126": "encode",
-  "127": "test_vigil.py",
-  "128": "GitRepoConnector",
-  "129": "ValueError",
   "130": "tests-test_connectors_f5_py.md",
-  "131": "generate_prose",
   "132": "_cap_content",
   "133": "harvest_todos",
   "134": "render_findings",
   "135": "tests-test_handoff_py.md",
-  "136": "tests-test_wiki_not_input_py.md",
-  "137": "is_negative_existential"
+  "136": "tests-test_wiki_not_input_py.md"
 }
