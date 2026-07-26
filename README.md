@@ -137,7 +137,14 @@ anything new:
 isidore compile --execute         # N1: module pages (for whoever changes the code)
 isidore subsystems --execute      # N2: area pages   (for whoever must understand an area)
 isidore overview --execute        # N3: the product page (for anyone at all)
+isidore llms                      # llms.txt: the whole thing indexed for agents (0 LLM)
 ```
+
+`llms.txt` follows the [convention](https://llmstxt.org/) coding agents fetch when they need a
+project's documentation: the product page becomes the summary, areas come before modules because
+they orient, and anything an agent can skip when its context is short sits under the reserved
+`## Optional` heading. It is a second index over files that already exist — deterministic, free, and
+nothing extra to keep true.
 
 Every sentence up here cites `wiki://<page>#<claim-id>`; the verdict comes from the cited page's
 **certificate**, and each cited certificate is hashed into `child_cert_hashes`. Edit a module page

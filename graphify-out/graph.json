@@ -273,7 +273,7 @@
       "source_location": "",
       "_origin": "ast",
       "id": "src_isidore_claims_py_path",
-      "community": 40,
+      "community": 37,
       "norm_label": "path"
     },
     {
@@ -333,7 +333,7 @@
       "source_location": "L313",
       "_origin": "ast",
       "id": "src_isidore_claims_check_claims",
-      "community": 40,
+      "community": 0,
       "norm_label": "check_claims()"
     },
     {
@@ -343,7 +343,7 @@
       "source_location": "L328",
       "_origin": "ast",
       "id": "src_isidore_claims_claims_for_file",
-      "community": 40,
+      "community": 0,
       "norm_label": "claims_for_file()"
     },
     {
@@ -353,7 +353,7 @@
       "source_location": "L341",
       "_origin": "ast",
       "id": "src_isidore_claims_claims_grep",
-      "community": 40,
+      "community": 0,
       "norm_label": "claims_grep()"
     },
     {
@@ -363,7 +363,7 @@
       "source_location": "L348",
       "_origin": "ast",
       "id": "src_isidore_claims_stale_pages",
-      "community": 24,
+      "community": 37,
       "norm_label": "stale_pages()"
     },
     {
@@ -373,7 +373,7 @@
       "source_location": "L354",
       "_origin": "ast",
       "id": "src_isidore_claims_render_claims",
-      "community": 40,
+      "community": 37,
       "norm_label": "render_claims()"
     },
     {
@@ -483,7 +483,7 @@
       "source_location": "L314",
       "_origin": "ast",
       "id": "src_isidore_claims_rationale_314",
-      "community": 40,
+      "community": 0,
       "norm_label": "re-hash every stored claim's evidence \u2014 the zero-llm staleness audit.      retur"
     },
     {
@@ -493,7 +493,7 @@
       "source_location": "L329",
       "_origin": "ast",
       "id": "src_isidore_claims_rationale_329",
-      "community": 40,
+      "community": 0,
       "norm_label": "the documentation contract of a file: every anchored claim whose evidence points"
     },
     {
@@ -503,7 +503,7 @@
       "source_location": "L342",
       "_origin": "ast",
       "id": "src_isidore_claims_rationale_342",
-      "community": 40,
+      "community": 0,
       "norm_label": "free-text search over verified atomic facts \u2014 answers many questions with 0 llm"
     },
     {
@@ -513,7 +513,7 @@
       "source_location": "L349",
       "_origin": "ast",
       "id": "src_isidore_claims_rationale_349",
-      "community": 24,
+      "community": 37,
       "norm_label": "pages owning at least one stale/orphan claim \u2014 they must regenerate even if thei"
     },
     {
@@ -553,7 +553,7 @@
       "source_location": "L46",
       "_origin": "ast",
       "id": "src_isidore_cli_cmd_compile",
-      "community": 31,
+      "community": 0,
       "norm_label": "_cmd_compile()"
     },
     {
@@ -563,7 +563,7 @@
       "source_location": "L110",
       "_origin": "ast",
       "id": "src_isidore_cli_cmd_ask",
-      "community": 21,
+      "community": 0,
       "norm_label": "_cmd_ask()"
     },
     {
@@ -593,7 +593,7 @@
       "source_location": "L164",
       "_origin": "ast",
       "id": "src_isidore_cli_cmd_claims",
-      "community": 40,
+      "community": 0,
       "norm_label": "_cmd_claims()"
     },
     {
@@ -873,7 +873,7 @@
       "source_location": "L29",
       "_origin": "ast",
       "id": "src_isidore_connectors_git_repo_gitrepoconnector_ingest",
-      "community": 20,
+      "community": 56,
       "norm_label": ".ingest()"
     },
     {
@@ -883,7 +883,7 @@
       "source_location": "L67",
       "_origin": "ast",
       "id": "src_isidore_connectors_git_repo_gitrepoconnector_load_config",
-      "community": 20,
+      "community": 56,
       "norm_label": "._load_config()"
     },
     {
@@ -893,7 +893,7 @@
       "source_location": "L76",
       "_origin": "ast",
       "id": "src_isidore_connectors_git_repo_gitrepoconnector_manifest",
-      "community": 20,
+      "community": 56,
       "norm_label": "._manifest()"
     },
     {
@@ -903,7 +903,7 @@
       "source_location": "L106",
       "_origin": "ast",
       "id": "src_isidore_connectors_git_repo_gitrepoconnector_commits",
-      "community": 20,
+      "community": 56,
       "norm_label": "._commits()"
     },
     {
@@ -913,7 +913,7 @@
       "source_location": "L123",
       "_origin": "ast",
       "id": "src_isidore_connectors_git_repo_gitrepoconnector_git",
-      "community": 20,
+      "community": 56,
       "norm_label": "._git()"
     },
     {
@@ -933,7 +933,7 @@
       "source_location": "L77",
       "_origin": "ast",
       "id": "src_isidore_connectors_git_repo_rationale_77",
-      "community": 20,
+      "community": 56,
       "norm_label": "(item, none) for a changed repo, (none, none) if head is unchanged, (none, warni"
     },
     {
@@ -943,7 +943,7 @@
       "source_location": "L124",
       "_origin": "ast",
       "id": "src_isidore_connectors_git_repo_rationale_124",
-      "community": 20,
+      "community": 56,
       "norm_label": "run a git command; return stdout or none on any failure (never raises)."
     },
     {
@@ -1143,7 +1143,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "src_isidore_connectors_store",
-      "community": 11,
+      "community": 37,
       "norm_label": "store.py"
     },
     {
@@ -1153,7 +1153,7 @@
       "source_location": "L23",
       "_origin": "ast",
       "id": "src_isidore_connectors_store_create_run_id",
-      "community": 101,
+      "community": 22,
       "norm_label": "create_run_id()"
     },
     {
@@ -1163,7 +1163,7 @@
       "source_location": "L29",
       "_origin": "ast",
       "id": "src_isidore_connectors_store_iso_now",
-      "community": 20,
+      "community": 56,
       "norm_label": "iso_now()"
     },
     {
@@ -1183,7 +1183,7 @@
       "source_location": "L37",
       "_origin": "ast",
       "id": "src_isidore_connectors_store_write_items",
-      "community": 24,
+      "community": 37,
       "norm_label": "write_items()"
     },
     {
@@ -1233,7 +1233,7 @@
       "source_location": "L88",
       "_origin": "ast",
       "id": "src_isidore_connectors_store_iter_items",
-      "community": 11,
+      "community": 37,
       "norm_label": "iter_items()"
     },
     {
@@ -1273,7 +1273,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "src_isidore_connectors_store_rationale_1",
-      "community": 11,
+      "community": 37,
       "norm_label": "the raw store: immutable ingested items + per-connector cursor state (adr-0032 f"
     },
     {
@@ -1283,7 +1283,7 @@
       "source_location": "L24",
       "_origin": "ast",
       "id": "src_isidore_connectors_store_rationale_24",
-      "community": 101,
+      "community": 22,
       "norm_label": "sortable, collision-resistant run id (utc second + millis)."
     },
     {
@@ -1293,7 +1293,7 @@
       "source_location": "L38",
       "_origin": "ast",
       "id": "src_isidore_connectors_store_rationale_38",
-      "community": 24,
+      "community": 37,
       "norm_label": "append items as jsonl to `raw/<run_id>/items.jsonl`; stamp each with its `chash`"
     },
     {
@@ -1333,7 +1333,7 @@
       "source_location": "L89",
       "_origin": "ast",
       "id": "src_isidore_connectors_store_rationale_89",
-      "community": 11,
+      "community": 37,
       "norm_label": "yield stored items, newest run first. a corrupt/half-written jsonl line is skipp"
     },
     {
@@ -1373,7 +1373,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "src_isidore_contracts",
-      "community": 29,
+      "community": 5,
       "norm_label": "contracts.py"
     },
     {
@@ -1413,7 +1413,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "src_isidore_contracts_rationale_1",
-      "community": 29,
+      "community": 5,
       "norm_label": "lane b (part 2) \u2014 claim->contract graduation + `isidore contracts`. (t-8dfc)  a"
     },
     {
@@ -1753,7 +1753,7 @@
       "source_location": "L146",
       "_origin": "ast",
       "id": "src_isidore_findings_filter_findings",
-      "community": 24,
+      "community": 59,
       "norm_label": "filter_findings()"
     },
     {
@@ -1763,7 +1763,7 @@
       "source_location": "L214",
       "_origin": "ast",
       "id": "src_isidore_findings_is_security_finding",
-      "community": 8,
+      "community": 59,
       "norm_label": "is_security_finding()"
     },
     {
@@ -1773,7 +1773,7 @@
       "source_location": "L228",
       "_origin": "ast",
       "id": "src_isidore_findings_security_suspects",
-      "community": 8,
+      "community": 59,
       "norm_label": "security_suspects()"
     },
     {
@@ -1783,7 +1783,7 @@
       "source_location": "L232",
       "_origin": "ast",
       "id": "src_isidore_findings_security_banner",
-      "community": 69,
+      "community": 59,
       "norm_label": "security_banner()"
     },
     {
@@ -1793,7 +1793,7 @@
       "source_location": "L251",
       "_origin": "ast",
       "id": "src_isidore_findings_insert_security_banner",
-      "community": 69,
+      "community": 15,
       "norm_label": "insert_security_banner()"
     },
     {
@@ -1823,7 +1823,7 @@
       "source_location": "L311",
       "_origin": "ast",
       "id": "src_isidore_findings_orphan_file_candidates",
-      "community": 15,
+      "community": 59,
       "norm_label": "orphan_file_candidates()"
     },
     {
@@ -1863,7 +1863,7 @@
       "source_location": "L366",
       "_origin": "ast",
       "id": "src_isidore_findings_render_findings",
-      "community": 15,
+      "community": 19,
       "norm_label": "render_findings()"
     },
     {
@@ -1923,7 +1923,7 @@
       "source_location": "L147",
       "_origin": "ast",
       "id": "src_isidore_findings_rationale_147",
-      "community": 24,
+      "community": 59,
       "norm_label": "drop findings whose cited path does not exist (mechanical hallucination filter)."
     },
     {
@@ -1933,7 +1933,7 @@
       "source_location": "L215",
       "_origin": "ast",
       "id": "src_isidore_findings_rationale_215",
-      "community": 8,
+      "community": 59,
       "norm_label": "true if a suspect reads as a security risk (hardcoded secret, auth bypass, injec"
     },
     {
@@ -1943,7 +1943,7 @@
       "source_location": "L233",
       "_origin": "ast",
       "id": "src_isidore_findings_rationale_233",
-      "community": 69,
+      "community": 59,
       "norm_label": "a prominent, deterministic banner listing this page's security suspects \u2014 meant"
     },
     {
@@ -1953,7 +1953,7 @@
       "source_location": "L252",
       "_origin": "ast",
       "id": "src_isidore_findings_rationale_252",
-      "community": 69,
+      "community": 15,
       "norm_label": "place the banner right under the page's h1 (or at the very top if there is none)"
     },
     {
@@ -1983,7 +1983,7 @@
       "source_location": "L312",
       "_origin": "ast",
       "id": "src_isidore_findings_rationale_312",
-      "community": 15,
+      "community": 59,
       "norm_label": "code file nodes nothing links to \u2014 dead-code candidates (entrypoint-looking name"
     },
     {
@@ -2063,7 +2063,7 @@
       "source_location": "L61",
       "_origin": "ast",
       "id": "src_isidore_graph_find_graph",
-      "community": 21,
+      "community": 0,
       "norm_label": "find_graph()"
     },
     {
@@ -2213,7 +2213,7 @@
       "source_location": "L334",
       "_origin": "ast",
       "id": "src_isidore_graph_write_scan",
-      "community": 41,
+      "community": 29,
       "norm_label": "write_scan()"
     },
     {
@@ -2243,7 +2243,7 @@
       "source_location": "L62",
       "_origin": "ast",
       "id": "src_isidore_graph_rationale_62",
-      "community": 21,
+      "community": 0,
       "norm_label": "resolve the graph source.      precedence: explicit --graph > this tool's own"
     },
     {
@@ -2343,7 +2343,7 @@
       "source_location": "L335",
       "_origin": "ast",
       "id": "src_isidore_graph_rationale_335",
-      "community": 41,
+      "community": 29,
       "norm_label": "run the scanner and persist the graph to .isidore/graph.json."
     },
     {
@@ -2533,7 +2533,7 @@
       "source_location": "L89",
       "_origin": "ast",
       "id": "src_isidore_humanpack_format_mark",
-      "community": 6,
+      "community": 67,
       "norm_label": "format_mark()"
     },
     {
@@ -2543,7 +2543,7 @@
       "source_location": "L93",
       "_origin": "ast",
       "id": "src_isidore_humanpack_generate_security_banner",
-      "community": 6,
+      "community": 67,
       "norm_label": "generate_security_banner()"
     },
     {
@@ -2743,7 +2743,7 @@
       "source_location": "L48",
       "_origin": "ast",
       "id": "src_isidore_impact_build_impact",
-      "community": 41,
+      "community": 0,
       "norm_label": "build_impact()"
     },
     {
@@ -2753,7 +2753,7 @@
       "source_location": "",
       "_origin": "ast",
       "id": "src_isidore_impact_py_path",
-      "community": 41,
+      "community": 0,
       "norm_label": "path"
     },
     {
@@ -2793,7 +2793,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "src_isidore_journal",
-      "community": 38,
+      "community": 29,
       "norm_label": "journal.py"
     },
     {
@@ -2803,7 +2803,7 @@
       "source_location": "L21",
       "_origin": "ast",
       "id": "src_isidore_journal_append_run",
-      "community": 38,
+      "community": 15,
       "norm_label": "append_run()"
     },
     {
@@ -2813,7 +2813,7 @@
       "source_location": "L27",
       "_origin": "ast",
       "id": "src_isidore_journal_sections",
-      "community": 38,
+      "community": 29,
       "norm_label": "_sections()"
     },
     {
@@ -2823,7 +2823,7 @@
       "source_location": "L40",
       "_origin": "ast",
       "id": "src_isidore_journal_section_diff",
-      "community": 38,
+      "community": 29,
       "norm_label": "section_diff()"
     },
     {
@@ -2833,7 +2833,7 @@
       "source_location": "L51",
       "_origin": "ast",
       "id": "src_isidore_journal_record_page_change",
-      "community": 38,
+      "community": 29,
       "norm_label": "record_page_change()"
     },
     {
@@ -2853,7 +2853,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "src_isidore_journal_rationale_1",
-      "community": 38,
+      "community": 29,
       "norm_label": "compile journal + per-page changelog \u2014 residue mining, all zero-llm.  every comp"
     },
     {
@@ -2863,7 +2863,7 @@
       "source_location": "L28",
       "_origin": "ast",
       "id": "src_isidore_journal_rationale_28",
-      "community": 38,
+      "community": 29,
       "norm_label": "map each `## heading` to its body text (content before the first heading is keye"
     },
     {
@@ -2873,7 +2873,7 @@
       "source_location": "L41",
       "_origin": "ast",
       "id": "src_isidore_journal_rationale_41",
-      "community": 38,
+      "community": 29,
       "norm_label": "(h2 headings whose content changed / were added / removed, new_line_count - old_"
     },
     {
@@ -2883,7 +2883,7 @@
       "source_location": "L52",
       "_origin": "ast",
       "id": "src_isidore_journal_rationale_52",
-      "community": 38,
+      "community": 29,
       "norm_label": "append an h2-level changelog entry to a page's state (capped). no-op if the pros"
     },
     {
@@ -3303,7 +3303,7 @@
       "source_location": "L64",
       "_origin": "ast",
       "id": "src_isidore_llm_default_generator",
-      "community": 21,
+      "community": 31,
       "norm_label": "default_generator()"
     },
     {
@@ -3333,7 +3333,7 @@
       "source_location": "L65",
       "_origin": "ast",
       "id": "src_isidore_llm_rationale_65",
-      "community": 21,
+      "community": 31,
       "norm_label": "build the env-configured generator. fails closed if no model is set."
     },
     {
@@ -3343,7 +3343,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "src_isidore_pcp_py",
-      "community": 26,
+      "community": 3,
       "norm_label": "pcp.py"
     },
     {
@@ -3413,7 +3413,7 @@
       "source_location": "L127",
       "_origin": "ast",
       "id": "src_isidore_pcp_verifier",
-      "community": 26,
+      "community": 66,
       "norm_label": "verifier"
     },
     {
@@ -3423,7 +3423,7 @@
       "source_location": "",
       "_origin": "ast",
       "id": "src_isidore_pcp_py_protocol",
-      "community": 26,
+      "community": 66,
       "norm_label": "protocol"
     },
     {
@@ -3433,7 +3433,7 @@
       "source_location": "L129",
       "_origin": "ast",
       "id": "src_isidore_pcp_verifier_call",
-      "community": 5,
+      "community": 66,
       "norm_label": ".__call__()"
     },
     {
@@ -3443,7 +3443,7 @@
       "source_location": "L138",
       "_origin": "ast",
       "id": "src_isidore_pcp_register_verifier",
-      "community": 26,
+      "community": 66,
       "norm_label": "register_verifier()"
     },
     {
@@ -3453,7 +3453,7 @@
       "source_location": "L142",
       "_origin": "ast",
       "id": "src_isidore_pcp_get_verifier",
-      "community": 26,
+      "community": 41,
       "norm_label": "get_verifier()"
     },
     {
@@ -3463,7 +3463,7 @@
       "source_location": "L146",
       "_origin": "ast",
       "id": "src_isidore_pcp_verify_predicate",
-      "community": 26,
+      "community": 41,
       "norm_label": "verify_predicate()"
     },
     {
@@ -3473,7 +3473,7 @@
       "source_location": "L159",
       "_origin": "ast",
       "id": "src_isidore_pcp_claimverdict",
-      "community": 54,
+      "community": 42,
       "norm_label": "claimverdict"
     },
     {
@@ -3503,7 +3503,7 @@
       "source_location": "L189",
       "_origin": "ast",
       "id": "src_isidore_pcp_mark",
-      "community": 6,
+      "community": 67,
       "norm_label": "mark"
     },
     {
@@ -3523,7 +3523,7 @@
       "source_location": "L213",
       "_origin": "ast",
       "id": "src_isidore_pcp_certificate",
-      "community": 3,
+      "community": 42,
       "norm_label": "certificate"
     },
     {
@@ -3543,7 +3543,7 @@
       "source_location": "L233",
       "_origin": "ast",
       "id": "src_isidore_pcp_certificate_to_dict",
-      "community": 3,
+      "community": 42,
       "norm_label": "certificate_to_dict()"
     },
     {
@@ -3553,7 +3553,7 @@
       "source_location": "L238",
       "_origin": "ast",
       "id": "src_isidore_pcp_certificate_from_dict",
-      "community": 6,
+      "community": 67,
       "norm_label": "certificate_from_dict()"
     },
     {
@@ -3563,7 +3563,7 @@
       "source_location": "L256",
       "_origin": "ast",
       "id": "src_isidore_pcp_write_certificate",
-      "community": 3,
+      "community": 42,
       "norm_label": "write_certificate()"
     },
     {
@@ -3583,7 +3583,7 @@
       "source_location": "L262",
       "_origin": "ast",
       "id": "src_isidore_pcp_read_certificate",
-      "community": 3,
+      "community": 23,
       "norm_label": "read_certificate()"
     },
     {
@@ -3623,7 +3623,7 @@
       "source_location": "L312",
       "_origin": "ast",
       "id": "src_isidore_pcp_parse_wiki_uri",
-      "community": 26,
+      "community": 55,
       "norm_label": "parse_wiki_uri()"
     },
     {
@@ -3633,7 +3633,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "src_isidore_pcp_rationale_1",
-      "community": 26,
+      "community": 3,
       "norm_label": "proof-carrying prose (pcp) \u2014 the frozen seam shared by every pcp lane.  this mod"
     },
     {
@@ -3683,7 +3683,7 @@
       "source_location": "L128",
       "_origin": "ast",
       "id": "src_isidore_pcp_rationale_128",
-      "community": 26,
+      "community": 66,
       "norm_label": "a predicate verifier. must be deterministic and 0-llm. returns undecidable, neve"
     },
     {
@@ -3693,7 +3693,7 @@
       "source_location": "L147",
       "_origin": "ast",
       "id": "src_isidore_pcp_rationale_147",
-      "community": 26,
+      "community": 41,
       "norm_label": "dispatch one predicate to its registered verifier. no verifier -> undecidable (f"
     },
     {
@@ -3703,7 +3703,7 @@
       "source_location": "L160",
       "_origin": "ast",
       "id": "src_isidore_pcp_rationale_160",
-      "community": 54,
+      "community": 42,
       "norm_label": "one claim's line in a certificate: the anchored claim + its typed verdict (if an"
     },
     {
@@ -3713,7 +3713,7 @@
       "source_location": "L190",
       "_origin": "ast",
       "id": "src_isidore_pcp_rationale_190",
-      "community": 6,
+      "community": 67,
       "norm_label": "a deterministic security-relevant flag raised before the llm call (lane c)."
     },
     {
@@ -3733,7 +3733,7 @@
       "source_location": "L214",
       "_origin": "ast",
       "id": "src_isidore_pcp_rationale_214",
-      "community": 3,
+      "community": 42,
       "norm_label": "the re-verifiable sidecar for one page. persisted as json (machine-read). tamper"
     },
     {
@@ -3753,7 +3753,7 @@
       "source_location": "L234",
       "_origin": "ast",
       "id": "src_isidore_pcp_rationale_234",
-      "community": 3,
+      "community": 42,
       "norm_label": "certificate -> plain dict (asdict handles the nested dataclasses). the json on d"
     },
     {
@@ -3763,7 +3763,7 @@
       "source_location": "L239",
       "_origin": "ast",
       "id": "src_isidore_pcp_rationale_239",
-      "community": 6,
+      "community": 67,
       "norm_label": "rebuild a certificate from parsed json, reconstructing the nested dataclasses. t"
     },
     {
@@ -3773,7 +3773,7 @@
       "source_location": "L257",
       "_origin": "ast",
       "id": "src_isidore_pcp_rationale_257",
-      "community": 3,
+      "community": 42,
       "norm_label": "persist a certificate as pretty json (stable key order for byte-deterministic di"
     },
     {
@@ -3783,7 +3783,7 @@
       "source_location": "L263",
       "_origin": "ast",
       "id": "src_isidore_pcp_rationale_263",
-      "community": 3,
+      "community": 23,
       "norm_label": "load a certificate from disk. raises valueerror on malformed json (fail-closed f"
     },
     {
@@ -3823,7 +3823,7 @@
       "source_location": "L313",
       "_origin": "ast",
       "id": "src_isidore_pcp_rationale_313",
-      "community": 26,
+      "community": 55,
       "norm_label": "wiki://<page>#<claim-id> -> (page, claim_id), or none if it is not a wiki uri."
     },
     {
@@ -3863,7 +3863,7 @@
       "source_location": "L152",
       "_origin": "ast",
       "id": "src_isidore_pipeline_module_dep_edges",
-      "community": 9,
+      "community": 19,
       "norm_label": "module_dep_edges()"
     },
     {
@@ -3873,7 +3873,7 @@
       "source_location": "",
       "_origin": "ast",
       "id": "counter",
-      "community": 15,
+      "community": 19,
       "norm_label": "counter"
     },
     {
@@ -3893,7 +3893,7 @@
       "source_location": "L218",
       "_origin": "ast",
       "id": "src_isidore_pipeline_match_seed",
-      "community": 15,
+      "community": 19,
       "norm_label": "_match_seed()"
     },
     {
@@ -3903,7 +3903,7 @@
       "source_location": "L225",
       "_origin": "ast",
       "id": "src_isidore_pipeline_plan_flows",
-      "community": 15,
+      "community": 19,
       "norm_label": "plan_flows()"
     },
     {
@@ -3983,7 +3983,7 @@
       "source_location": "L396",
       "_origin": "ast",
       "id": "src_isidore_pipeline_lint_cited_paths",
-      "community": 65,
+      "community": 2,
       "norm_label": "lint_cited_paths()"
     },
     {
@@ -3993,7 +3993,7 @@
       "source_location": "L416",
       "_origin": "ast",
       "id": "src_isidore_pipeline_annotate_unverified_paths",
-      "community": 15,
+      "community": 12,
       "norm_label": "annotate_unverified_paths()"
     },
     {
@@ -4013,7 +4013,7 @@
       "source_location": "L435",
       "_origin": "ast",
       "id": "src_isidore_pipeline_load_state",
-      "community": 55,
+      "community": 0,
       "norm_label": "load_state()"
     },
     {
@@ -4033,7 +4033,7 @@
       "source_location": "L453",
       "_origin": "ast",
       "id": "src_isidore_pipeline_load_config",
-      "community": 31,
+      "community": 0,
       "norm_label": "load_config()"
     },
     {
@@ -4053,7 +4053,7 @@
       "source_location": "L480",
       "_origin": "ast",
       "id": "src_isidore_pipeline_resolve_scope",
-      "community": 15,
+      "community": 9,
       "norm_label": "_resolve_scope()"
     },
     {
@@ -4093,7 +4093,7 @@
       "source_location": "L154",
       "_origin": "ast",
       "id": "src_isidore_pipeline_rationale_154",
-      "community": 9,
+      "community": 19,
       "norm_label": "cross-module dependency edges (src_module, dst_module) -> link count. shared by"
     },
     {
@@ -4113,7 +4113,7 @@
       "source_location": "L233",
       "_origin": "ast",
       "id": "src_isidore_pipeline_rationale_233",
-      "community": 15,
+      "community": 19,
       "norm_label": "cross-cutting flow pages: bfs over the graph from user-declared seeds.      conf"
     },
     {
@@ -4163,7 +4163,7 @@
       "source_location": "L397",
       "_origin": "ast",
       "id": "src_isidore_pipeline_rationale_397",
-      "community": 65,
+      "community": 2,
       "norm_label": "file-looking paths cited in the prose that do not exist in the repo."
     },
     {
@@ -4173,7 +4173,7 @@
       "source_location": "L417",
       "_origin": "ast",
       "id": "src_isidore_pipeline_rationale_417",
-      "community": 15,
+      "community": 12,
       "norm_label": "annotate every cited path that does not exist in the repo, inline and visibly \u2014"
     },
     {
@@ -4203,7 +4203,7 @@
       "source_location": "L482",
       "_origin": "ast",
       "id": "src_isidore_pipeline_rationale_482",
-      "community": 15,
+      "community": 9,
       "norm_label": "compute the eligible page filenames for this run, or none for a full compile."
     },
     {
@@ -4343,7 +4343,7 @@
       "source_location": "L39",
       "_origin": "ast",
       "id": "src_isidore_pyramid_claim_verdict",
-      "community": 56,
+      "community": 26,
       "norm_label": "_claim_verdict()"
     },
     {
@@ -4353,7 +4353,7 @@
       "source_location": "L69",
       "_origin": "ast",
       "id": "src_isidore_pyramid_wikichain_verifier",
-      "community": 56,
+      "community": 26,
       "norm_label": "_wikichain_verifier()"
     },
     {
@@ -4363,7 +4363,7 @@
       "source_location": "L96",
       "_origin": "ast",
       "id": "src_isidore_pyramid_top_dir",
-      "community": 57,
+      "community": 21,
       "norm_label": "_top_dir()"
     },
     {
@@ -4403,7 +4403,7 @@
       "source_location": "L163",
       "_origin": "ast",
       "id": "src_isidore_pyramid_subsystem_page_name",
-      "community": 66,
+      "community": 25,
       "norm_label": "subsystem_page_name()"
     },
     {
@@ -4413,7 +4413,7 @@
       "source_location": "L168",
       "_origin": "ast",
       "id": "src_isidore_pyramid_module_pages_of",
-      "community": 57,
+      "community": 21,
       "norm_label": "_module_pages_of()"
     },
     {
@@ -4423,7 +4423,7 @@
       "source_location": "",
       "_origin": "ast",
       "id": "src_isidore_pyramid_py_path",
-      "community": 57,
+      "community": 21,
       "norm_label": "path"
     },
     {
@@ -4433,7 +4433,7 @@
       "source_location": "L179",
       "_origin": "ast",
       "id": "src_isidore_pyramid_page_purpose",
-      "community": 57,
+      "community": 21,
       "norm_label": "_page_purpose()"
     },
     {
@@ -4443,7 +4443,7 @@
       "source_location": "L196",
       "_origin": "ast",
       "id": "src_isidore_pyramid_subsystem_facts",
-      "community": 57,
+      "community": 21,
       "norm_label": "subsystem_facts()"
     },
     {
@@ -4453,7 +4453,7 @@
       "source_location": "L271",
       "_origin": "ast",
       "id": "src_isidore_pyramid_compile_subsystems",
-      "community": 66,
+      "community": 25,
       "norm_label": "compile_subsystems()"
     },
     {
@@ -4463,7 +4463,7 @@
       "source_location": "L357",
       "_origin": "ast",
       "id": "src_isidore_pyramid_verified_claims",
-      "community": 66,
+      "community": 21,
       "norm_label": "verified_claims()"
     },
     {
@@ -4473,7 +4473,7 @@
       "source_location": "L397",
       "_origin": "ast",
       "id": "src_isidore_pyramid_readme_context",
-      "community": 57,
+      "community": 21,
       "norm_label": "_readme_context()"
     },
     {
@@ -4483,7 +4483,7 @@
       "source_location": "L407",
       "_origin": "ast",
       "id": "src_isidore_pyramid_overview_facts",
-      "community": 57,
+      "community": 21,
       "norm_label": "overview_facts()"
     },
     {
@@ -4513,7 +4513,7 @@
       "source_location": "L509",
       "_origin": "ast",
       "id": "src_isidore_pyramid_plain_violations",
-      "community": 30,
+      "community": 21,
       "norm_label": "_plain_violations()"
     },
     {
@@ -4533,7 +4533,7 @@
       "source_location": "L607",
       "_origin": "ast",
       "id": "src_isidore_pyramid_chain_verdicts",
-      "community": 26,
+      "community": 21,
       "norm_label": "_chain_verdicts()"
     },
     {
@@ -4603,7 +4603,7 @@
       "source_location": "L40",
       "_origin": "ast",
       "id": "src_isidore_pyramid_rationale_40",
-      "community": 56,
+      "community": 26,
       "norm_label": "resolve (verdict, state) for a cited claim. truth comes from the page's certific"
     },
     {
@@ -4613,7 +4613,7 @@
       "source_location": "L70",
       "_origin": "ast",
       "id": "src_isidore_pyramid_rationale_70",
-      "community": 56,
+      "community": 26,
       "norm_label": "resolve a wiki:// chain. fail-closed: none/invalid/missing -> not true, never cr"
     },
     {
@@ -4643,7 +4643,7 @@
       "source_location": "L169",
       "_origin": "ast",
       "id": "src_isidore_pyramid_rationale_169",
-      "community": 57,
+      "community": 21,
       "norm_label": "the compiled module pages that belong to one subsystem, keyed by page file name."
     },
     {
@@ -4653,7 +4653,7 @@
       "source_location": "L180",
       "_origin": "ast",
       "id": "src_isidore_pyramid_rationale_180",
-      "community": 57,
+      "community": 21,
       "norm_label": "the first sentence of a module page's `## purpose` \u2014 what that module says it is"
     },
     {
@@ -4663,7 +4663,7 @@
       "source_location": "L197",
       "_origin": "ast",
       "id": "src_isidore_pyramid_rationale_197",
-      "community": 57,
+      "community": 21,
       "norm_label": "what one subsystem page is written from: its module pages, what each says it is"
     },
     {
@@ -4673,7 +4673,7 @@
       "source_location": "L273",
       "_origin": "ast",
       "id": "src_isidore_pyramid_rationale_273",
-      "community": 66,
+      "community": 25,
       "norm_label": "compile the n2 layer: one bounded call per area, each page chained to its module"
     },
     {
@@ -4683,7 +4683,7 @@
       "source_location": "L358",
       "_origin": "ast",
       "id": "src_isidore_pyramid_rationale_358",
-      "community": 66,
+      "community": 21,
       "norm_label": "every claim the pages below proved, as citable `wiki://page#id` facts.      this"
     },
     {
@@ -4693,7 +4693,7 @@
       "source_location": "L398",
       "_origin": "ast",
       "id": "src_isidore_pyramid_rationale_398",
-      "community": 57,
+      "community": 21,
       "norm_label": "the project's own words about itself \u2014 context, never evidence (see overview_pro"
     },
     {
@@ -4703,7 +4703,7 @@
       "source_location": "L408",
       "_origin": "ast",
       "id": "src_isidore_pyramid_rationale_408",
-      "community": 57,
+      "community": 21,
       "norm_label": "everything the overview is allowed to be written from. 0 llm."
     },
     {
@@ -4733,7 +4733,7 @@
       "source_location": "L510",
       "_origin": "ast",
       "id": "src_isidore_pyramid_rationale_510",
-      "community": 30,
+      "community": 21,
       "norm_label": "rule names broken by the prose (fenced blocks excluded \u2014 those are machine-facin"
     },
     {
@@ -4753,7 +4753,7 @@
       "source_location": "L608",
       "_origin": "ast",
       "id": "src_isidore_pyramid_rationale_608",
-      "community": 26,
+      "community": 21,
       "norm_label": "resolve `wiki://` claims through lane d's verifier and compose the child certifi"
     },
     {
@@ -4993,24 +4993,24 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "src_isidore_render",
-      "community": 70,
+      "community": 15,
       "norm_label": "render.py"
     },
     {
       "label": "render_quickstart()",
       "file_type": "code",
       "source_file": "src/isidore/render.py",
-      "source_location": "L22",
+      "source_location": "L25",
       "_origin": "ast",
       "id": "src_isidore_render_render_quickstart",
-      "community": 70,
+      "community": 15,
       "norm_label": "render_quickstart()"
     },
     {
       "label": "render_toon_index()",
       "file_type": "code",
       "source_file": "src/isidore/render.py",
-      "source_location": "L49",
+      "source_location": "L52",
       "_origin": "ast",
       "id": "src_isidore_render_render_toon_index",
       "community": 15,
@@ -5020,41 +5020,131 @@
       "label": "agents_md_block()",
       "file_type": "code",
       "source_file": "src/isidore/render.py",
-      "source_location": "L74",
+      "source_location": "L77",
       "_origin": "ast",
       "id": "src_isidore_render_agents_md_block",
-      "community": 70,
+      "community": 15,
       "norm_label": "agents_md_block()"
     },
     {
       "label": "upsert_agents_block()",
       "file_type": "code",
       "source_file": "src/isidore/render.py",
-      "source_location": "L88",
+      "source_location": "L91",
       "_origin": "ast",
       "id": "src_isidore_render_upsert_agents_block",
-      "community": 70,
+      "community": 15,
       "norm_label": "upsert_agents_block()"
     },
     {
-      "label": "Deterministic outputs: quickstart.md, index.toon, and the AGENTS.md reference bl",
+      "label": "_first_sentence()",
+      "file_type": "code",
+      "source_file": "src/isidore/render.py",
+      "source_location": "L109",
+      "_origin": "ast",
+      "id": "src_isidore_render_first_sentence",
+      "community": 40,
+      "norm_label": "_first_sentence()"
+    },
+    {
+      "label": "render_llms_txt()",
+      "file_type": "code",
+      "source_file": "src/isidore/render.py",
+      "source_location": "L117",
+      "_origin": "ast",
+      "id": "src_isidore_render_render_llms_txt",
+      "community": 40,
+      "norm_label": "render_llms_txt()"
+    },
+    {
+      "label": "Path",
+      "file_type": "code",
+      "source_file": "",
+      "source_location": "",
+      "_origin": "ast",
+      "id": "src_isidore_render_py_path",
+      "community": 40,
+      "norm_label": "path"
+    },
+    {
+      "label": "write_llms_txt()",
+      "file_type": "code",
+      "source_file": "src/isidore/render.py",
+      "source_location": "L173",
+      "_origin": "ast",
+      "id": "src_isidore_render_write_llms_txt",
+      "community": 40,
+      "norm_label": "write_llms_txt()"
+    },
+    {
+      "label": "register_cli()",
+      "file_type": "code",
+      "source_file": "src/isidore/render.py",
+      "source_location": "L180",
+      "_origin": "ast",
+      "id": "src_isidore_render_register_cli",
+      "community": 40,
+      "norm_label": "register_cli()"
+    },
+    {
+      "label": "_cmd_llms()",
+      "file_type": "code",
+      "source_file": "src/isidore/render.py",
+      "source_location": "L187",
+      "_origin": "ast",
+      "id": "src_isidore_render_cmd_llms",
+      "community": 40,
+      "norm_label": "_cmd_llms()"
+    },
+    {
+      "label": "Deterministic outputs: quickstart.md, index.toon, llms.txt, and the AGENTS.md re",
       "file_type": "rationale",
       "source_file": "src/isidore/render.py",
       "source_location": "L1",
       "_origin": "ast",
       "id": "src_isidore_render_rationale_1",
-      "community": 70,
-      "norm_label": "deterministic outputs: quickstart.md, index.toon, and the agents.md reference bl"
+      "community": 15,
+      "norm_label": "deterministic outputs: quickstart.md, index.toon, llms.txt, and the agents.md re"
     },
     {
       "label": "Insert or replace the delimited block without touching the rest of the file (ide",
       "file_type": "rationale",
       "source_file": "src/isidore/render.py",
-      "source_location": "L89",
+      "source_location": "L92",
       "_origin": "ast",
-      "id": "src_isidore_render_rationale_89",
-      "community": 70,
+      "id": "src_isidore_render_rationale_92",
+      "community": 15,
       "norm_label": "insert or replace the delimited block without touching the rest of the file (ide"
+    },
+    {
+      "label": "The wiki, in the layout agents are converging on for being handed documentation.",
+      "file_type": "rationale",
+      "source_file": "src/isidore/render.py",
+      "source_location": "L118",
+      "_origin": "ast",
+      "id": "src_isidore_render_rationale_118",
+      "community": 40,
+      "norm_label": "the wiki, in the layout agents are converging on for being handed documentation."
+    },
+    {
+      "label": "Write llms.txt at the repo root \u2014 where the convention puts it, so a fetcher fin",
+      "file_type": "rationale",
+      "source_file": "src/isidore/render.py",
+      "source_location": "L174",
+      "_origin": "ast",
+      "id": "src_isidore_render_rationale_174",
+      "community": 40,
+      "norm_label": "write llms.txt at the repo root \u2014 where the convention puts it, so a fetcher fin"
+    },
+    {
+      "label": "Add `isidore llms` (regenerate llms.txt from whatever is compiled). 0 LLM.",
+      "file_type": "rationale",
+      "source_file": "src/isidore/render.py",
+      "source_location": "L181",
+      "_origin": "ast",
+      "id": "src_isidore_render_rationale_181",
+      "community": 40,
+      "norm_label": "add `isidore llms` (regenerate llms.txt from whatever is compiled). 0 llm."
     },
     {
       "label": "surface.py",
@@ -5073,7 +5163,7 @@
       "source_location": "L88",
       "_origin": "ast",
       "id": "src_isidore_surface_surfacesymbol",
-      "community": 16,
+      "community": 12,
       "norm_label": "surfacesymbol"
     },
     {
@@ -5083,7 +5173,7 @@
       "source_location": "L102",
       "_origin": "ast",
       "id": "src_isidore_surface_surfacesymbol_name",
-      "community": 16,
+      "community": 12,
       "norm_label": ".name()"
     },
     {
@@ -5093,7 +5183,7 @@
       "source_location": "L106",
       "_origin": "ast",
       "id": "src_isidore_surface_clean_sig",
-      "community": 16,
+      "community": 38,
       "norm_label": "clean_sig()"
     },
     {
@@ -5143,7 +5233,7 @@
       "source_location": "L153",
       "_origin": "ast",
       "id": "src_isidore_surface_py_signature",
-      "community": 16,
+      "community": 38,
       "norm_label": "_py_signature()"
     },
     {
@@ -5153,7 +5243,7 @@
       "source_location": "",
       "_origin": "ast",
       "id": "src_isidore_surface_py_functiondef",
-      "community": 16,
+      "community": 38,
       "norm_label": "functiondef"
     },
     {
@@ -5163,7 +5253,7 @@
       "source_location": "",
       "_origin": "ast",
       "id": "src_isidore_surface_py_asyncfunctiondef",
-      "community": 16,
+      "community": 38,
       "norm_label": "asyncfunctiondef"
     },
     {
@@ -5173,7 +5263,7 @@
       "source_location": "L193",
       "_origin": "ast",
       "id": "src_isidore_surface_py_constant",
-      "community": 16,
+      "community": 38,
       "norm_label": "_py_constant()"
     },
     {
@@ -5183,7 +5273,7 @@
       "source_location": "",
       "_origin": "ast",
       "id": "stmt",
-      "community": 16,
+      "community": 38,
       "norm_label": "stmt"
     },
     {
@@ -5193,7 +5283,7 @@
       "source_location": "L211",
       "_origin": "ast",
       "id": "src_isidore_surface_python_surface",
-      "community": 16,
+      "community": 38,
       "norm_label": "python_surface()"
     },
     {
@@ -5223,7 +5313,7 @@
       "source_location": "L370",
       "_origin": "ast",
       "id": "src_isidore_surface_extract_surface",
-      "community": 16,
+      "community": 38,
       "norm_label": "extract_surface()"
     },
     {
@@ -5243,7 +5333,7 @@
       "source_location": "L89",
       "_origin": "ast",
       "id": "src_isidore_surface_rationale_89",
-      "community": 16,
+      "community": 12,
       "norm_label": "one declared symbol of a file, as of one revision of its text.      `qualname` i"
     },
     {
@@ -5253,7 +5343,7 @@
       "source_location": "L107",
       "_origin": "ast",
       "id": "src_isidore_surface_rationale_107",
-      "community": 16,
+      "community": 38,
       "norm_label": "collapse a declaration header into a stable one-line comparison key, readable as"
     },
     {
@@ -5283,7 +5373,7 @@
       "source_location": "L154",
       "_origin": "ast",
       "id": "src_isidore_surface_rationale_154",
-      "community": 16,
+      "community": 38,
       "norm_label": "the parameter list and return annotation, rendered from the ast rather than the"
     },
     {
@@ -5293,7 +5383,7 @@
       "source_location": "L194",
       "_origin": "ast",
       "id": "src_isidore_surface_rationale_194",
-      "community": 16,
+      "community": 38,
       "norm_label": "a module-level binding -> (name, `= value`). config constants are api: a consume"
     },
     {
@@ -5303,7 +5393,7 @@
       "source_location": "L212",
       "_origin": "ast",
       "id": "src_isidore_surface_rationale_212",
-      "community": 16,
+      "community": 38,
       "norm_label": "exact surface of one python source text, or none if it does not parse.      none"
     },
     {
@@ -5333,7 +5423,7 @@
       "source_location": "L371",
       "_origin": "ast",
       "id": "src_isidore_surface_rationale_371",
-      "community": 16,
+      "community": 38,
       "norm_label": "surface of one file's text, routed by extension. none = not comparable source."
     },
     {
@@ -5433,7 +5523,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "src_isidore_verify",
-      "community": 5,
+      "community": 54,
       "norm_label": "verify.py"
     },
     {
@@ -5453,7 +5543,7 @@
       "source_location": "L47",
       "_origin": "ast",
       "id": "src_isidore_verify_symbol_base",
-      "community": 5,
+      "community": 54,
       "norm_label": "_symbol_base()"
     },
     {
@@ -5463,7 +5553,7 @@
       "source_location": "L52",
       "_origin": "ast",
       "id": "src_isidore_verify_symbol_nodes",
-      "community": 5,
+      "community": 54,
       "norm_label": "_symbol_nodes()"
     },
     {
@@ -5503,7 +5593,7 @@
       "source_location": "",
       "_origin": "ast",
       "id": "module",
-      "community": 5,
+      "community": 69,
       "norm_label": "module"
     },
     {
@@ -5513,7 +5603,7 @@
       "source_location": "L82",
       "_origin": "ast",
       "id": "src_isidore_verify_find_funcdef",
-      "community": 5,
+      "community": 69,
       "norm_label": "_find_funcdef()"
     },
     {
@@ -5523,7 +5613,7 @@
       "source_location": "",
       "_origin": "ast",
       "id": "src_isidore_verify_py_functiondef",
-      "community": 5,
+      "community": 69,
       "norm_label": "functiondef"
     },
     {
@@ -5533,7 +5623,7 @@
       "source_location": "",
       "_origin": "ast",
       "id": "src_isidore_verify_py_asyncfunctiondef",
-      "community": 5,
+      "community": 69,
       "norm_label": "asyncfunctiondef"
     },
     {
@@ -5583,7 +5673,7 @@
       "source_location": "L188",
       "_origin": "ast",
       "id": "src_isidore_verify_literal_str",
-      "community": 5,
+      "community": 54,
       "norm_label": "_literal_str()"
     },
     {
@@ -5593,7 +5683,7 @@
       "source_location": "",
       "_origin": "ast",
       "id": "ast",
-      "community": 5,
+      "community": 54,
       "norm_label": "ast"
     },
     {
@@ -5653,7 +5743,7 @@
       "source_location": "L285",
       "_origin": "ast",
       "id": "src_isidore_verify_prose_identifiers",
-      "community": 5,
+      "community": 54,
       "norm_label": "_prose_identifiers()"
     },
     {
@@ -5663,7 +5753,7 @@
       "source_location": "L296",
       "_origin": "ast",
       "id": "src_isidore_verify_ground_symbols",
-      "community": 5,
+      "community": 54,
       "norm_label": "ground_symbols()"
     },
     {
@@ -5773,7 +5863,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "src_isidore_verify_rationale_1",
-      "community": 5,
+      "community": 54,
       "norm_label": "lane a \u2014 typed-claim verifiers, certificate building, `isidore verify`. (adr-003"
     },
     {
@@ -5783,7 +5873,7 @@
       "source_location": "L48",
       "_origin": "ast",
       "id": "src_isidore_verify_rationale_48",
-      "community": 5,
+      "community": 54,
       "norm_label": "authenticate()' -> 'authenticate', 'myclass' -> 'myclass'."
     },
     {
@@ -5793,7 +5883,7 @@
       "source_location": "L53",
       "_origin": "ast",
       "id": "src_isidore_verify_rationale_53",
-      "community": 5,
+      "community": 54,
       "norm_label": "graph nodes whose symbol label matches `name` (last dotted component tolerated)."
     },
     {
@@ -5883,7 +5973,7 @@
       "source_location": "L297",
       "_origin": "ast",
       "id": "src_isidore_verify_rationale_297",
-      "community": 5,
+      "community": 54,
       "norm_label": "return prose identifiers that don't resolve to any graph symbol or file (groundi"
     },
     {
@@ -5963,7 +6053,7 @@
       "source_location": "L108",
       "_origin": "ast",
       "id": "src_isidore_whatsnew_whatsnewerror",
-      "community": 12,
+      "community": 8,
       "norm_label": "whatsnewerror"
     },
     {
@@ -5973,7 +6063,7 @@
       "source_location": "",
       "_origin": "ast",
       "id": "src_isidore_whatsnew_py_runtimeerror",
-      "community": 12,
+      "community": 8,
       "norm_label": "runtimeerror"
     },
     {
@@ -6163,7 +6253,7 @@
       "source_location": "L340",
       "_origin": "ast",
       "id": "src_isidore_whatsnew_build_delta",
-      "community": 12,
+      "community": 8,
       "norm_label": "build_delta()"
     },
     {
@@ -6183,7 +6273,7 @@
       "source_location": "L444",
       "_origin": "ast",
       "id": "src_isidore_whatsnew_impact_summary",
-      "community": 12,
+      "community": 8,
       "norm_label": "impact_summary()"
     },
     {
@@ -6213,7 +6303,7 @@
       "source_location": "L502",
       "_origin": "ast",
       "id": "src_isidore_whatsnew_md_section",
-      "community": 12,
+      "community": 8,
       "norm_label": "_md_section()"
     },
     {
@@ -6223,7 +6313,7 @@
       "source_location": "L523",
       "_origin": "ast",
       "id": "src_isidore_whatsnew_render_whatsnew_md",
-      "community": 12,
+      "community": 8,
       "norm_label": "render_whatsnew_md()"
     },
     {
@@ -6243,7 +6333,7 @@
       "source_location": "L672",
       "_origin": "ast",
       "id": "src_isidore_whatsnew_strip_inline_claim_rows",
-      "community": 12,
+      "community": 70,
       "norm_label": "strip_inline_claim_rows()"
     },
     {
@@ -6293,7 +6383,7 @@
       "source_location": "L802",
       "_origin": "ast",
       "id": "src_isidore_whatsnew_run_whatsnew",
-      "community": 12,
+      "community": 8,
       "norm_label": "run_whatsnew()"
     },
     {
@@ -6333,7 +6423,7 @@
       "source_location": "L109",
       "_origin": "ast",
       "id": "src_isidore_whatsnew_rationale_109",
-      "community": 12,
+      "community": 8,
       "norm_label": "git could not answer, or a ref does not resolve. fail closed: never guess a rang"
     },
     {
@@ -6433,7 +6523,7 @@
       "source_location": "L341",
       "_origin": "ast",
       "id": "src_isidore_whatsnew_rationale_341",
-      "community": 12,
+      "community": 8,
       "norm_label": "the zero-llm core: a typed api-surface difference between two revisions.      pr"
     },
     {
@@ -6453,7 +6543,7 @@
       "source_location": "L445",
       "_origin": "ast",
       "id": "src_isidore_whatsnew_rationale_445",
-      "community": 12,
+      "community": 8,
       "norm_label": "the consequence of this range, in plain words, with zero llm calls.      a non-t"
     },
     {
@@ -6473,7 +6563,7 @@
       "source_location": "L525",
       "_origin": "ast",
       "id": "src_isidore_whatsnew_rationale_525",
-      "community": 12,
+      "community": 8,
       "norm_label": "the page, layered by reader rather than by topic.      the same range has three"
     },
     {
@@ -6493,7 +6583,7 @@
       "source_location": "L673",
       "_origin": "ast",
       "id": "src_isidore_whatsnew_rationale_673",
-      "community": 12,
+      "community": 70,
       "norm_label": "drop the pipe-separated citation a model appends to its own bullets.      observ"
     },
     {
@@ -6523,7 +6613,7 @@
       "source_location": "L805",
       "_origin": "ast",
       "id": "src_isidore_whatsnew_rationale_805",
-      "community": 12,
+      "community": 8,
       "norm_label": "build the delta, optionally write the prose, and persist page + certificate."
     },
     {
@@ -6613,7 +6703,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "tests_golden_vigil_test_vigil",
-      "community": 42,
+      "community": 59,
       "norm_label": "test_vigil.py"
     },
     {
@@ -6623,7 +6713,7 @@
       "source_location": "L8",
       "_origin": "ast",
       "id": "tests_golden_vigil_test_vigil_test_adversarial_backdoor_detection",
-      "community": 42,
+      "community": 59,
       "norm_label": "test_adversarial_backdoor_detection()"
     },
     {
@@ -6633,7 +6723,7 @@
       "source_location": "L31",
       "_origin": "ast",
       "id": "tests_golden_vigil_test_vigil_test_negations_false_positives",
-      "community": 42,
+      "community": 59,
       "norm_label": "test_negations_false_positives()"
     },
     {
@@ -6643,7 +6733,7 @@
       "source_location": "L46",
       "_origin": "ast",
       "id": "tests_golden_vigil_test_vigil_test_false_negative_intervening_words",
-      "community": 42,
+      "community": 59,
       "norm_label": "test_false_negative_intervening_words()"
     },
     {
@@ -6653,7 +6743,7 @@
       "source_location": "L58",
       "_origin": "ast",
       "id": "tests_golden_vigil_test_vigil_test_vigil_impossible_to_clean_by_model",
-      "community": 42,
+      "community": 59,
       "norm_label": "test_vigil_impossible_to_clean_by_model()"
     },
     {
@@ -6663,7 +6753,7 @@
       "source_location": "L9",
       "_origin": "ast",
       "id": "tests_golden_vigil_test_vigil_rationale_9",
-      "community": 42,
+      "community": 59,
       "norm_label": "vigil case: a camouflaged auth backdoor reported in findings but justified by pr"
     },
     {
@@ -6673,7 +6763,7 @@
       "source_location": "L32",
       "_origin": "ast",
       "id": "tests_golden_vigil_test_vigil_rationale_32",
-      "community": 42,
+      "community": 59,
       "norm_label": "verify that negation patterns do not trigger false positive security findings (6"
     },
     {
@@ -6683,7 +6773,7 @@
       "source_location": "L47",
       "_origin": "ast",
       "id": "tests_golden_vigil_test_vigil_rationale_47",
-      "community": 42,
+      "community": 59,
       "norm_label": "verify that safety-checks catch risks even with intermediate/intervening words."
     },
     {
@@ -6693,7 +6783,7 @@
       "source_location": "L59",
       "_origin": "ast",
       "id": "tests_golden_vigil_test_vigil_rationale_59",
-      "community": 42,
+      "community": 59,
       "norm_label": "if the model attempts social engineering in prose while findings report the bug,"
     },
     {
@@ -6793,7 +6883,7 @@
       "source_location": "L21",
       "_origin": "ast",
       "id": "tests_test_claims_test_is_negative_existential_flags_absence_not_behavior",
-      "community": 10,
+      "community": 24,
       "norm_label": "test_is_negative_existential_flags_absence_not_behavior()"
     },
     {
@@ -7013,7 +7103,7 @@
       "source_location": "L40",
       "_origin": "ast",
       "id": "tests_test_connectors_f1_test_home_env_override",
-      "community": 11,
+      "community": 20,
       "norm_label": "test_home_env_override()"
     },
     {
@@ -7183,7 +7273,7 @@
       "source_location": "L40",
       "_origin": "ast",
       "id": "tests_test_contracts_test_contracts_cli_promote_and_list",
-      "community": 3,
+      "community": 42,
       "norm_label": "test_contracts_cli_promote_and_list()"
     },
     {
@@ -7413,7 +7503,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "tests_test_impact",
-      "community": 41,
+      "community": 29,
       "norm_label": "test_impact.py"
     },
     {
@@ -7423,7 +7513,7 @@
       "source_location": "L16",
       "_origin": "ast",
       "id": "tests_test_impact_git",
-      "community": 41,
+      "community": 29,
       "norm_label": "_git()"
     },
     {
@@ -7433,7 +7523,7 @@
       "source_location": "L20",
       "_origin": "ast",
       "id": "tests_test_impact_seed_repo",
-      "community": 41,
+      "community": 29,
       "norm_label": "_seed_repo()"
     },
     {
@@ -7443,7 +7533,7 @@
       "source_location": "L40",
       "_origin": "ast",
       "id": "tests_test_impact_test_impact_reports_a_new_cross_module_edge_as_emergent",
-      "community": 41,
+      "community": 29,
       "norm_label": "test_impact_reports_a_new_cross_module_edge_as_emergent()"
     },
     {
@@ -7453,7 +7543,7 @@
       "source_location": "L55",
       "_origin": "ast",
       "id": "tests_test_impact_test_impact_reports_a_removed_edge",
-      "community": 41,
+      "community": 29,
       "norm_label": "test_impact_reports_a_removed_edge()"
     },
     {
@@ -7463,7 +7553,7 @@
       "source_location": "L74",
       "_origin": "ast",
       "id": "tests_test_impact_test_impact_check_exit_signal_and_clean",
-      "community": 41,
+      "community": 29,
       "norm_label": "test_impact_check_exit_signal_and_clean()"
     },
     {
@@ -7473,7 +7563,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "tests_test_impact_rationale_1",
-      "community": 41,
+      "community": 29,
       "norm_label": "isidore impact \u2014 the 0-llm emergent-interaction detector, over a real git repo +"
     },
     {
@@ -7483,7 +7573,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "tests_test_knowledge",
-      "community": 37,
+      "community": 101,
       "norm_label": "test_knowledge.py"
     },
     {
@@ -7493,7 +7583,7 @@
       "source_location": "L16",
       "_origin": "ast",
       "id": "tests_test_knowledge_test_split_evidence_src",
-      "community": 37,
+      "community": 101,
       "norm_label": "test_split_evidence_src()"
     },
     {
@@ -7533,7 +7623,7 @@
       "source_location": "L151",
       "_origin": "ast",
       "id": "tests_test_knowledge_test_filter_findings_with_src",
-      "community": 24,
+      "community": 101,
       "norm_label": "test_filter_findings_with_src()"
     },
     {
@@ -7687,6 +7777,96 @@
       "norm_label": "multi-language scanner: the declarative engine (langspec) and its wiring into sc"
     },
     {
+      "label": "test_llms_txt.py",
+      "file_type": "code",
+      "source_file": "tests/test_llms_txt.py",
+      "source_location": "L1",
+      "_origin": "ast",
+      "id": "tests_test_llms_txt",
+      "community": 40,
+      "norm_label": "test_llms_txt.py"
+    },
+    {
+      "label": "_wiki()",
+      "file_type": "code",
+      "source_file": "tests/test_llms_txt.py",
+      "source_location": "L7",
+      "_origin": "ast",
+      "id": "tests_test_llms_txt_wiki",
+      "community": 40,
+      "norm_label": "_wiki()"
+    },
+    {
+      "label": "test_the_required_shape_of_the_format()",
+      "file_type": "code",
+      "source_file": "tests/test_llms_txt.py",
+      "source_location": "L22",
+      "_origin": "ast",
+      "id": "tests_test_llms_txt_test_the_required_shape_of_the_format",
+      "community": 40,
+      "norm_label": "test_the_required_shape_of_the_format()"
+    },
+    {
+      "label": "test_the_summary_is_the_plain_language_sentence_already_written()",
+      "file_type": "code",
+      "source_file": "tests/test_llms_txt.py",
+      "source_location": "L32",
+      "_origin": "ast",
+      "id": "tests_test_llms_txt_test_the_summary_is_the_plain_language_sentence_already_written",
+      "community": 40,
+      "norm_label": "test_the_summary_is_the_plain_language_sentence_already_written()"
+    },
+    {
+      "label": "test_pages_are_layered_and_areas_come_before_modules()",
+      "file_type": "code",
+      "source_file": "tests/test_llms_txt.py",
+      "source_location": "L38",
+      "_origin": "ast",
+      "id": "tests_test_llms_txt_test_pages_are_layered_and_areas_come_before_modules",
+      "community": 40,
+      "norm_label": "test_pages_are_layered_and_areas_come_before_modules()"
+    },
+    {
+      "label": "test_skippable_material_sits_under_the_reserved_optional_heading()",
+      "file_type": "code",
+      "source_file": "tests/test_llms_txt.py",
+      "source_location": "L47",
+      "_origin": "ast",
+      "id": "tests_test_llms_txt_test_skippable_material_sits_under_the_reserved_optional_heading",
+      "community": 40,
+      "norm_label": "test_skippable_material_sits_under_the_reserved_optional_heading()"
+    },
+    {
+      "label": "test_it_is_written_where_a_fetcher_looks_and_is_deterministic()",
+      "file_type": "code",
+      "source_file": "tests/test_llms_txt.py",
+      "source_location": "L55",
+      "_origin": "ast",
+      "id": "tests_test_llms_txt_test_it_is_written_where_a_fetcher_looks_and_is_deterministic",
+      "community": 40,
+      "norm_label": "test_it_is_written_where_a_fetcher_looks_and_is_deterministic()"
+    },
+    {
+      "label": "test_a_repo_without_a_product_page_still_produces_a_valid_file()",
+      "file_type": "code",
+      "source_file": "tests/test_llms_txt.py",
+      "source_location": "L63",
+      "_origin": "ast",
+      "id": "tests_test_llms_txt_test_a_repo_without_a_product_page_still_produces_a_valid_file",
+      "community": 40,
+      "norm_label": "test_a_repo_without_a_product_page_still_produces_a_valid_file()"
+    },
+    {
+      "label": "llms.txt: the wiki handed to an agent in the shape the ecosystem converged on. 0",
+      "file_type": "rationale",
+      "source_file": "tests/test_llms_txt.py",
+      "source_location": "L1",
+      "_origin": "ast",
+      "id": "tests_test_llms_txt_rationale_1",
+      "community": 40,
+      "norm_label": "llms.txt: the wiki handed to an agent in the shape the ecosystem converged on. 0"
+    },
+    {
       "label": "test_mcp_barrier.py",
       "file_type": "code",
       "source_file": "tests/test_mcp_barrier.py",
@@ -7753,7 +7933,7 @@
       "source_location": "L50",
       "_origin": "ast",
       "id": "tests_test_mcp_barrier_fakeclient",
-      "community": 27,
+      "community": 57,
       "norm_label": "_fakeclient"
     },
     {
@@ -7763,7 +7943,7 @@
       "source_location": "L53",
       "_origin": "ast",
       "id": "tests_test_mcp_barrier_fakeclient_init",
-      "community": 27,
+      "community": 57,
       "norm_label": ".__init__()"
     },
     {
@@ -7773,7 +7953,7 @@
       "source_location": "L56",
       "_origin": "ast",
       "id": "tests_test_mcp_barrier_fakeclient_request",
-      "community": 27,
+      "community": 57,
       "norm_label": ".request()"
     },
     {
@@ -7783,7 +7963,7 @@
       "source_location": "L70",
       "_origin": "ast",
       "id": "tests_test_mcp_barrier_fakeclient_notify",
-      "community": 27,
+      "community": 57,
       "norm_label": ".notify()"
     },
     {
@@ -7793,7 +7973,7 @@
       "source_location": "L73",
       "_origin": "ast",
       "id": "tests_test_mcp_barrier_fakeclient_close",
-      "community": 27,
+      "community": 57,
       "norm_label": ".close()"
     },
     {
@@ -7803,7 +7983,7 @@
       "source_location": "L77",
       "_origin": "ast",
       "id": "tests_test_mcp_barrier_test_ingest_invokes_only_read_only_tools",
-      "community": 22,
+      "community": 27,
       "norm_label": "test_ingest_invokes_only_read_only_tools()"
     },
     {
@@ -7823,7 +8003,7 @@
       "source_location": "L51",
       "_origin": "ast",
       "id": "tests_test_mcp_barrier_rationale_51",
-      "community": 27,
+      "community": 57,
       "norm_label": "stands in for _jsonrpcclient: a server exposing one read tool, one write tool (a"
     },
     {
@@ -7843,7 +8023,7 @@
       "source_location": "L34",
       "_origin": "ast",
       "id": "tests_test_overview_repo",
-      "community": 3,
+      "community": 42,
       "norm_label": "repo()"
     },
     {
@@ -7853,7 +8033,7 @@
       "source_location": "L53",
       "_origin": "ast",
       "id": "tests_test_overview_test_only_proven_claims_become_citable_facts",
-      "community": 66,
+      "community": 21,
       "norm_label": "test_only_proven_claims_become_citable_facts()"
     },
     {
@@ -7933,7 +8113,7 @@
       "source_location": "L150",
       "_origin": "ast",
       "id": "tests_test_overview_nodes",
-      "community": 66,
+      "community": 25,
       "norm_label": "_nodes()"
     },
     {
@@ -7943,7 +8123,7 @@
       "source_location": "L155",
       "_origin": "ast",
       "id": "tests_test_overview_test_an_area_page_is_chained_to_the_module_pages_below_it",
-      "community": 66,
+      "community": 25,
       "norm_label": "test_an_area_page_is_chained_to_the_module_pages_below_it()"
     },
     {
@@ -7953,7 +8133,7 @@
       "source_location": "L168",
       "_origin": "ast",
       "id": "tests_test_overview_test_an_area_with_nothing_proven_under_it_is_skipped_not_invented",
-      "community": 66,
+      "community": 25,
       "norm_label": "test_an_area_with_nothing_proven_under_it_is_skipped_not_invented()"
     },
     {
@@ -7963,7 +8143,7 @@
       "source_location": "L176",
       "_origin": "ast",
       "id": "tests_test_overview_test_the_machine_scheme_never_reaches_a_reader_facing_link",
-      "community": 66,
+      "community": 25,
       "norm_label": "test_the_machine_scheme_never_reaches_a_reader_facing_link()"
     },
     {
@@ -7993,7 +8173,7 @@
       "source_location": "L203",
       "_origin": "ast",
       "id": "tests_test_overview_test_the_product_page_prefers_the_layer_directly_below_it",
-      "community": 66,
+      "community": 25,
       "norm_label": "test_the_product_page_prefers_the_layer_directly_below_it()"
     },
     {
@@ -8013,7 +8193,7 @@
       "source_location": "L35",
       "_origin": "ast",
       "id": "tests_test_overview_rationale_35",
-      "community": 3,
+      "community": 42,
       "norm_label": "a repo whose module page already proved one claim and failed another."
     },
     {
@@ -8143,7 +8323,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "tests_test_pcp_seams",
-      "community": 26,
+      "community": 55,
       "norm_label": "test_pcp_seams.py"
     },
     {
@@ -8153,7 +8333,7 @@
       "source_location": "L36",
       "_origin": "ast",
       "id": "tests_test_pcp_seams_test_golden_graph_loads",
-      "community": 0,
+      "community": 55,
       "norm_label": "test_golden_graph_loads()"
     },
     {
@@ -8163,7 +8343,7 @@
       "source_location": "L42",
       "_origin": "ast",
       "id": "tests_test_pcp_seams_test_golden_certificate_round_trips",
-      "community": 3,
+      "community": 42,
       "norm_label": "test_golden_certificate_round_trips()"
     },
     {
@@ -8183,7 +8363,7 @@
       "source_location": "L62",
       "_origin": "ast",
       "id": "tests_test_pcp_seams_test_golden_marks_and_pyramid_config_parse",
-      "community": 26,
+      "community": 55,
       "norm_label": "test_golden_marks_and_pyramid_config_parse()"
     },
     {
@@ -8213,7 +8393,7 @@
       "source_location": "L88",
       "_origin": "ast",
       "id": "tests_test_pcp_seams_test_wiki_uri_parsing",
-      "community": 26,
+      "community": 55,
       "norm_label": "test_wiki_uri_parsing()"
     },
     {
@@ -8233,7 +8413,7 @@
       "source_location": "L107",
       "_origin": "ast",
       "id": "tests_test_pcp_seams_test_lane_public_surfaces_return_frozen_types",
-      "community": 3,
+      "community": 55,
       "norm_label": "test_lane_public_surfaces_return_frozen_types()"
     },
     {
@@ -8243,7 +8423,7 @@
       "source_location": "L123",
       "_origin": "ast",
       "id": "tests_test_pcp_seams_test_pcp_subcommands_are_registered",
-      "community": 0,
+      "community": 55,
       "norm_label": "test_pcp_subcommands_are_registered()"
     },
     {
@@ -8253,7 +8433,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "tests_test_pcp_seams_rationale_1",
-      "community": 26,
+      "community": 55,
       "norm_label": "p0 gate (adr-0033) \u2014 the frozen pcp seam parses its golden fixtures and exposes"
     },
     {
@@ -8263,7 +8443,7 @@
       "source_location": "L108",
       "_origin": "ast",
       "id": "tests_test_pcp_seams_rationale_108",
-      "community": 3,
+      "community": 55,
       "norm_label": "the frozen signatures exist and return the seam's types (whether stub or impleme"
     },
     {
@@ -8273,7 +8453,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "tests_test_pipeline",
-      "community": 19,
+      "community": 2,
       "norm_label": "test_pipeline.py"
     },
     {
@@ -8283,7 +8463,7 @@
       "source_location": "L26",
       "_origin": "ast",
       "id": "tests_test_pipeline_node",
-      "community": 19,
+      "community": 2,
       "norm_label": "_node()"
     },
     {
@@ -8293,7 +8473,7 @@
       "source_location": "L31",
       "_origin": "ast",
       "id": "tests_test_pipeline_link",
-      "community": 19,
+      "community": 2,
       "norm_label": "_link()"
     },
     {
@@ -8393,7 +8573,7 @@
       "source_location": "L118",
       "_origin": "ast",
       "id": "tests_test_pipeline_test_suggest_flows_ranks_heaviest_bridges",
-      "community": 19,
+      "community": 2,
       "norm_label": "test_suggest_flows_ranks_heaviest_bridges()"
     },
     {
@@ -8433,7 +8613,7 @@
       "source_location": "L164",
       "_origin": "ast",
       "id": "tests_test_pipeline_test_lint_flags_only_nonexistent_paths_with_directories",
-      "community": 65,
+      "community": 2,
       "norm_label": "test_lint_flags_only_nonexistent_paths_with_directories()"
     },
     {
@@ -8443,7 +8623,7 @@
       "source_location": "L171",
       "_origin": "ast",
       "id": "tests_test_pipeline_test_lint_ignores_placeholders_and_code_blocks",
-      "community": 65,
+      "community": 2,
       "norm_label": "test_lint_ignores_placeholders_and_code_blocks()"
     },
     {
@@ -8453,7 +8633,7 @@
       "source_location": "L192",
       "_origin": "ast",
       "id": "tests_test_pipeline_test_upsert_agents_block_is_idempotent_and_preserves_content",
-      "community": 70,
+      "community": 15,
       "norm_label": "test_upsert_agents_block_is_idempotent_and_preserves_content()"
     },
     {
@@ -8543,7 +8723,7 @@
       "source_location": "L303",
       "_origin": "ast",
       "id": "tests_test_pipeline_test_changed_scopes_to_blast_radius_over_a_real_git_repo",
-      "community": 19,
+      "community": 2,
       "norm_label": "test_changed_scopes_to_blast_radius_over_a_real_git_repo()"
     },
     {
@@ -8613,7 +8793,7 @@
       "source_location": "L447",
       "_origin": "ast",
       "id": "tests_test_pipeline_test_git_log_survives_non_ascii_commit_messages",
-      "community": 65,
+      "community": 2,
       "norm_label": "test_git_log_survives_non_ascii_commit_messages()"
     },
     {
@@ -8633,7 +8813,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "tests_test_pipeline_rationale_1",
-      "community": 19,
+      "community": 2,
       "norm_label": "compiler pipeline tests \u2014 no network: the llm generator is always injected and c"
     },
     {
@@ -8783,7 +8963,7 @@
       "source_location": "L58",
       "_origin": "ast",
       "id": "tests_test_pyramid_test_wikichain_none_does_not_crash",
-      "community": 56,
+      "community": 26,
       "norm_label": "test_wikichain_none_does_not_crash()"
     },
     {
@@ -8793,7 +8973,7 @@
       "source_location": "L65",
       "_origin": "ast",
       "id": "tests_test_pyramid_test_wikichain_resolves_verdict_from_certificate",
-      "community": 3,
+      "community": 26,
       "norm_label": "test_wikichain_resolves_verdict_from_certificate()"
     },
     {
@@ -8833,7 +9013,7 @@
       "source_location": "L59",
       "_origin": "ast",
       "id": "tests_test_pyramid_rationale_59",
-      "community": 56,
+      "community": 26,
       "norm_label": "bug 3 regression: a none predicate crashed with attributeerror."
     },
     {
@@ -8843,7 +9023,7 @@
       "source_location": "L66",
       "_origin": "ast",
       "id": "tests_test_pyramid_rationale_66",
-      "community": 3,
+      "community": 26,
       "norm_label": "the chain's truth comes from the cited page's certificate (verdict lives there)."
     },
     {
@@ -9003,7 +9183,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "tests_test_residue",
-      "community": 55,
+      "community": 29,
       "norm_label": "test_residue.py"
     },
     {
@@ -9013,7 +9193,7 @@
       "source_location": "L18",
       "_origin": "ast",
       "id": "tests_test_residue_git",
-      "community": 55,
+      "community": 29,
       "norm_label": "_git()"
     },
     {
@@ -9023,7 +9203,7 @@
       "source_location": "L22",
       "_origin": "ast",
       "id": "tests_test_residue_repo",
-      "community": 55,
+      "community": 29,
       "norm_label": "_repo()"
     },
     {
@@ -9033,7 +9213,7 @@
       "source_location": "L38",
       "_origin": "ast",
       "id": "tests_test_residue_test_section_diff_reports_changed_headings_and_line_delta",
-      "community": 38,
+      "community": 29,
       "norm_label": "test_section_diff_reports_changed_headings_and_line_delta()"
     },
     {
@@ -9043,7 +9223,7 @@
       "source_location": "L46",
       "_origin": "ast",
       "id": "tests_test_residue_test_journal_and_stats_track_calls_saved_and_unstable",
-      "community": 55,
+      "community": 29,
       "norm_label": "test_journal_and_stats_track_calls_saved_and_unstable()"
     },
     {
@@ -9053,7 +9233,7 @@
       "source_location": "L58",
       "_origin": "ast",
       "id": "tests_test_residue_test_page_history_records_section_changes",
-      "community": 55,
+      "community": 29,
       "norm_label": "test_page_history_records_section_changes()"
     },
     {
@@ -9063,7 +9243,7 @@
       "source_location": "L73",
       "_origin": "ast",
       "id": "tests_test_residue_test_claims_for_file_and_grep",
-      "community": 55,
+      "community": 0,
       "norm_label": "test_claims_for_file_and_grep()"
     },
     {
@@ -9073,7 +9253,7 @@
       "source_location": "L85",
       "_origin": "ast",
       "id": "tests_test_residue_test_findings_new_reports_todos_in_changed_files",
-      "community": 55,
+      "community": 29,
       "norm_label": "test_findings_new_reports_todos_in_changed_files()"
     },
     {
@@ -9083,7 +9263,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "tests_test_residue_rationale_1",
-      "community": 55,
+      "community": 29,
       "norm_label": "residue-mining units: section diff, compile journal/stats, per-page history, cla"
     },
     {
@@ -9093,7 +9273,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "tests_test_security_prose",
-      "community": 8,
+      "community": 59,
       "norm_label": "test_security_prose.py"
     },
     {
@@ -9103,7 +9283,7 @@
       "source_location": "L21",
       "_origin": "ast",
       "id": "tests_test_security_prose_test_detects_the_camouflaged_backdoor",
-      "community": 8,
+      "community": 59,
       "norm_label": "test_detects_the_camouflaged_backdoor()"
     },
     {
@@ -9113,7 +9293,7 @@
       "source_location": "L25",
       "_origin": "ast",
       "id": "tests_test_security_prose_test_detects_common_security_vocabulary",
-      "community": 8,
+      "community": 59,
       "norm_label": "test_detects_common_security_vocabulary()"
     },
     {
@@ -9123,7 +9303,7 @@
       "source_location": "L38",
       "_origin": "ast",
       "id": "tests_test_security_prose_test_ignores_non_security_and_wrong_kinds",
-      "community": 8,
+      "community": 59,
       "norm_label": "test_ignores_non_security_and_wrong_kinds()"
     },
     {
@@ -9133,7 +9313,7 @@
       "source_location": "L45",
       "_origin": "ast",
       "id": "tests_test_security_prose_test_negation_guard_does_not_escalate_safety_affirming_notes",
-      "community": 8,
+      "community": 59,
       "norm_label": "test_negation_guard_does_not_escalate_safety_affirming_notes()"
     },
     {
@@ -9143,7 +9323,7 @@
       "source_location": "L58",
       "_origin": "ast",
       "id": "tests_test_security_prose_test_hardcoded_with_intervening_word_is_caught",
-      "community": 8,
+      "community": 59,
       "norm_label": "test_hardcoded_with_intervening_word_is_caught()"
     },
     {
@@ -9153,7 +9333,7 @@
       "source_location": "L66",
       "_origin": "ast",
       "id": "tests_test_security_prose_test_banner_is_loud_and_lists_evidence",
-      "community": 69,
+      "community": 59,
       "norm_label": "test_banner_is_loud_and_lists_evidence()"
     },
     {
@@ -9163,7 +9343,7 @@
       "source_location": "L75",
       "_origin": "ast",
       "id": "tests_test_security_prose_test_no_banner_without_security_suspects",
-      "community": 69,
+      "community": 59,
       "norm_label": "test_no_banner_without_security_suspects()"
     },
     {
@@ -9173,7 +9353,7 @@
       "source_location": "L79",
       "_origin": "ast",
       "id": "tests_test_security_prose_test_banner_goes_under_the_h1",
-      "community": 69,
+      "community": 59,
       "norm_label": "test_banner_goes_under_the_h1()"
     },
     {
@@ -9183,7 +9363,7 @@
       "source_location": "L88",
       "_origin": "ast",
       "id": "tests_test_security_prose_test_findings_toon_lists_security_first_and_in_summary",
-      "community": 8,
+      "community": 59,
       "norm_label": "test_findings_toon_lists_security_first_and_in_summary()"
     },
     {
@@ -9193,7 +9373,7 @@
       "source_location": "L95",
       "_origin": "ast",
       "id": "tests_test_security_prose_test_security_suspects_filters",
-      "community": 8,
+      "community": 59,
       "norm_label": "test_security_suspects_filters()"
     },
     {
@@ -9203,7 +9383,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "tests_test_security_prose_rationale_1",
-      "community": 8,
+      "community": 59,
       "norm_label": "security escalation: a security suspect forces a loud, deterministic prose banne"
     },
     {
@@ -9213,7 +9393,7 @@
       "source_location": "L46",
       "_origin": "ast",
       "id": "tests_test_security_prose_rationale_46",
-      "community": 8,
+      "community": 59,
       "norm_label": "false-positive regression: a note that clears the code must not raise the banner"
     },
     {
@@ -9223,7 +9403,7 @@
       "source_location": "L59",
       "_origin": "ast",
       "id": "tests_test_security_prose_rationale_59",
-      "community": 8,
+      "community": 59,
       "norm_label": "false-negative regression: 'hardcoded service token' has a word between hardcode"
     },
     {
@@ -9233,7 +9413,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "tests_test_surface",
-      "community": 16,
+      "community": 38,
       "norm_label": "test_surface.py"
     },
     {
@@ -9243,7 +9423,7 @@
       "source_location": "L18",
       "_origin": "ast",
       "id": "tests_test_surface_by_name",
-      "community": 16,
+      "community": 38,
       "norm_label": "_by_name()"
     },
     {
@@ -9253,7 +9433,7 @@
       "source_location": "L64",
       "_origin": "ast",
       "id": "tests_test_surface_test_python_surface_covers_functions_methods_nested_and_constants",
-      "community": 16,
+      "community": 38,
       "norm_label": "test_python_surface_covers_functions_methods_nested_and_constants()"
     },
     {
@@ -9263,7 +9443,7 @@
       "source_location": "L79",
       "_origin": "ast",
       "id": "tests_test_surface_test_python_surface_marks_visibility_including_inheritance_from_the_container",
-      "community": 16,
+      "community": 38,
       "norm_label": "test_python_surface_marks_visibility_including_inheritance_from_the_container()"
     },
     {
@@ -9273,7 +9453,7 @@
       "source_location": "L92",
       "_origin": "ast",
       "id": "tests_test_surface_test_python_signature_is_exact_and_survives_reformatting",
-      "community": 16,
+      "community": 38,
       "norm_label": "test_python_signature_is_exact_and_survives_reformatting()"
     },
     {
@@ -9283,7 +9463,7 @@
       "source_location": "L104",
       "_origin": "ast",
       "id": "tests_test_surface_test_python_signature_moves_when_a_default_or_parameter_changes",
-      "community": 16,
+      "community": 38,
       "norm_label": "test_python_signature_moves_when_a_default_or_parameter_changes()"
     },
     {
@@ -9293,7 +9473,7 @@
       "source_location": "L112",
       "_origin": "ast",
       "id": "tests_test_surface_test_python_constant_value_change_is_visible",
-      "community": 16,
+      "community": 38,
       "norm_label": "test_python_constant_value_change_is_visible()"
     },
     {
@@ -9303,7 +9483,7 @@
       "source_location": "L119",
       "_origin": "ast",
       "id": "tests_test_surface_test_python_surface_returns_none_on_syntax_error",
-      "community": 16,
+      "community": 38,
       "norm_label": "test_python_surface_returns_none_on_syntax_error()"
     },
     {
@@ -9313,7 +9493,7 @@
       "source_location": "L124",
       "_origin": "ast",
       "id": "tests_test_surface_test_python_line_spans_point_at_the_declaration",
-      "community": 16,
+      "community": 38,
       "norm_label": "test_python_line_spans_point_at_the_declaration()"
     },
     {
@@ -9323,7 +9503,7 @@
       "source_location": "L167",
       "_origin": "ast",
       "id": "tests_test_surface_test_generic_surface_folds_a_multiline_signature_and_qualifies_the_method",
-      "community": 16,
+      "community": 38,
       "norm_label": "test_generic_surface_folds_a_multiline_signature_and_qualifies_the_method()"
     },
     {
@@ -9333,7 +9513,7 @@
       "source_location": "L179",
       "_origin": "ast",
       "id": "tests_test_surface_test_generic_surface_disambiguates_same_named_methods_of_different_classes",
-      "community": 16,
+      "community": 38,
       "norm_label": "test_generic_surface_disambiguates_same_named_methods_of_different_classes()"
     },
     {
@@ -9343,7 +9523,7 @@
       "source_location": "L186",
       "_origin": "ast",
       "id": "tests_test_surface_test_generic_surface_reads_types_constants_and_visibility",
-      "community": 16,
+      "community": 38,
       "norm_label": "test_generic_surface_reads_types_constants_and_visibility()"
     },
     {
@@ -9353,7 +9533,7 @@
       "source_location": "L196",
       "_origin": "ast",
       "id": "tests_test_surface_test_generic_surface_does_not_capture_control_flow_or_locals",
-      "community": 16,
+      "community": 38,
       "norm_label": "test_generic_surface_does_not_capture_control_flow_or_locals()"
     },
     {
@@ -9363,7 +9543,7 @@
       "source_location": "L211",
       "_origin": "ast",
       "id": "tests_test_surface_test_logical_lines_abandons_a_run_that_never_balances",
-      "community": 16,
+      "community": 38,
       "norm_label": "test_logical_lines_abandons_a_run_that_never_balances()"
     },
     {
@@ -9373,7 +9553,7 @@
       "source_location": "L231",
       "_origin": "ast",
       "id": "tests_test_surface_test_extract_surface_returns_none_for_non_code",
-      "community": 16,
+      "community": 38,
       "norm_label": "test_extract_surface_returns_none_for_non_code()"
     },
     {
@@ -9383,7 +9563,7 @@
       "source_location": "L236",
       "_origin": "ast",
       "id": "tests_test_surface_test_signature_is_kept_verbatim_for_human_eyes_and_still_encodes_as_toon",
-      "community": 16,
+      "community": 38,
       "norm_label": "test_signature_is_kept_verbatim_for_human_eyes_and_still_encodes_as_toon()"
     },
     {
@@ -9393,7 +9573,7 @@
       "source_location": "L246",
       "_origin": "ast",
       "id": "tests_test_surface_test_clean_sig_normalises_whitespace_and_caps_length",
-      "community": 16,
+      "community": 38,
       "norm_label": "test_clean_sig_normalises_whitespace_and_caps_length()"
     },
     {
@@ -9403,7 +9583,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "tests_test_surface_rationale_1",
-      "community": 16,
+      "community": 38,
       "norm_label": "api surface extraction: qualified names, signatures as change keys, and the fold"
     },
     {
@@ -9423,7 +9603,7 @@
       "source_location": "L26",
       "_origin": "ast",
       "id": "tests_test_units_test_toon_encode_table_quoting_and_counts",
-      "community": 1,
+      "community": 29,
       "norm_label": "test_toon_encode_table_quoting_and_counts()"
     },
     {
@@ -9703,7 +9883,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "tests_test_verify",
-      "community": 13,
+      "community": 41,
       "norm_label": "test_verify.py"
     },
     {
@@ -9713,7 +9893,7 @@
       "source_location": "L16",
       "_origin": "ast",
       "id": "tests_test_verify_ctx",
-      "community": 13,
+      "community": 41,
       "norm_label": "_ctx()"
     },
     {
@@ -9723,7 +9903,7 @@
       "source_location": "L21",
       "_origin": "ast",
       "id": "tests_test_verify_anchored",
-      "community": 13,
+      "community": 41,
       "norm_label": "_anchored()"
     },
     {
@@ -9733,7 +9913,7 @@
       "source_location": "L28",
       "_origin": "ast",
       "id": "tests_test_verify_test_three_field_parser_captures_predicate",
-      "community": 10,
+      "community": 41,
       "norm_label": "test_three_field_parser_captures_predicate()"
     },
     {
@@ -9743,7 +9923,7 @@
       "source_location": "L35",
       "_origin": "ast",
       "id": "tests_test_verify_test_each_predicate_kind_decides_correctly",
-      "community": 13,
+      "community": 41,
       "norm_label": "test_each_predicate_kind_decides_correctly()"
     },
     {
@@ -9753,7 +9933,7 @@
       "source_location": "L54",
       "_origin": "ast",
       "id": "tests_test_verify_test_certificate_matches_golden_verdicts",
-      "community": 13,
+      "community": 41,
       "norm_label": "test_certificate_matches_golden_verdicts()"
     },
     {
@@ -9763,7 +9943,7 @@
       "source_location": "L68",
       "_origin": "ast",
       "id": "tests_test_verify_test_imports_and_value_fail_closed_to_undecidable_not_false",
-      "community": 13,
+      "community": 41,
       "norm_label": "test_imports_and_value_fail_closed_to_undecidable_not_false()"
     },
     {
@@ -9773,7 +9953,7 @@
       "source_location": "L85",
       "_origin": "ast",
       "id": "tests_test_verify_test_symbol_grounding_catches_a_hallucinated_identifier",
-      "community": 13,
+      "community": 41,
       "norm_label": "test_symbol_grounding_catches_a_hallucinated_identifier()"
     },
     {
@@ -9803,7 +9983,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "tests_test_verify_rationale_1",
-      "community": 13,
+      "community": 41,
       "norm_label": "lane a gate \u2014 the typed-claim verifiers decide truth against the two oracles, bu"
     },
     {
@@ -9813,7 +9993,7 @@
       "source_location": "L69",
       "_origin": "ast",
       "id": "tests_test_verify_rationale_69",
-      "community": 13,
+      "community": 41,
       "norm_label": "dogfood regression: the graph's import edges are partial and `value` can't compa"
     },
     {
@@ -9823,7 +10003,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "tests_test_whatsnew",
-      "community": 12,
+      "community": 8,
       "norm_label": "test_whatsnew.py"
     },
     {
@@ -9833,7 +10013,7 @@
       "source_location": "L39",
       "_origin": "ast",
       "id": "tests_test_whatsnew_git",
-      "community": 12,
+      "community": 8,
       "norm_label": "_git()"
     },
     {
@@ -9843,7 +10023,7 @@
       "source_location": "L43",
       "_origin": "ast",
       "id": "tests_test_whatsnew_commit",
-      "community": 12,
+      "community": 8,
       "norm_label": "_commit()"
     },
     {
@@ -9853,7 +10033,7 @@
       "source_location": "L52",
       "_origin": "ast",
       "id": "tests_test_whatsnew_repo",
-      "community": 12,
+      "community": 8,
       "norm_label": "repo()"
     },
     {
@@ -9863,7 +10043,7 @@
       "source_location": "L105",
       "_origin": "ast",
       "id": "tests_test_whatsnew_test_delta_reports_exactly_the_real_changes_and_invents_nothing",
-      "community": 12,
+      "community": 8,
       "norm_label": "test_delta_reports_exactly_the_real_changes_and_invents_nothing()"
     },
     {
@@ -9873,7 +10053,7 @@
       "source_location": "L124",
       "_origin": "ast",
       "id": "tests_test_whatsnew_test_signature_change_records_both_sides",
-      "community": 12,
+      "community": 8,
       "norm_label": "test_signature_change_records_both_sides()"
     },
     {
@@ -9883,7 +10063,7 @@
       "source_location": "L132",
       "_origin": "ast",
       "id": "tests_test_whatsnew_test_multiline_typescript_signature_is_cited_at_its_declaration",
-      "community": 12,
+      "community": 8,
       "norm_label": "test_multiline_typescript_signature_is_cited_at_its_declaration()"
     },
     {
@@ -9893,7 +10073,7 @@
       "source_location": "L141",
       "_origin": "ast",
       "id": "tests_test_whatsnew_test_rename_maps_to_the_new_path",
-      "community": 12,
+      "community": 8,
       "norm_label": "test_rename_maps_to_the_new_path()"
     },
     {
@@ -9903,7 +10083,7 @@
       "source_location": "L147",
       "_origin": "ast",
       "id": "tests_test_whatsnew_test_deleted_file_is_reported_but_carries_no_line_to_cite",
-      "community": 12,
+      "community": 8,
       "norm_label": "test_deleted_file_is_reported_but_carries_no_line_to_cite()"
     },
     {
@@ -9913,7 +10093,7 @@
       "source_location": "L154",
       "_origin": "ast",
       "id": "tests_test_whatsnew_test_empty_range_is_valid_and_not_an_error",
-      "community": 12,
+      "community": 8,
       "norm_label": "test_empty_range_is_valid_and_not_an_error()"
     },
     {
@@ -9923,7 +10103,7 @@
       "source_location": "L163",
       "_origin": "ast",
       "id": "tests_test_whatsnew_test_impact_summary_answers_do_i_have_to_do_anything_without_jargon",
-      "community": 12,
+      "community": 8,
       "norm_label": "test_impact_summary_answers_do_i_have_to_do_anything_without_jargon()"
     },
     {
@@ -9933,7 +10113,7 @@
       "source_location": "L175",
       "_origin": "ast",
       "id": "tests_test_whatsnew_test_impact_summary_says_so_when_nothing_can_break",
-      "community": 12,
+      "community": 8,
       "norm_label": "test_impact_summary_says_so_when_nothing_can_break()"
     },
     {
@@ -9943,7 +10123,7 @@
       "source_location": "L184",
       "_origin": "ast",
       "id": "tests_test_whatsnew_test_page_is_layered_so_a_non_technical_reader_can_stop_after_the_top",
-      "community": 12,
+      "community": 8,
       "norm_label": "test_page_is_layered_so_a_non_technical_reader_can_stop_after_the_top()"
     },
     {
@@ -9963,7 +10143,7 @@
       "source_location": "L210",
       "_origin": "ast",
       "id": "tests_test_whatsnew_test_plain_language_summary_reaches_the_page_and_the_rejection_is_counted",
-      "community": 12,
+      "community": 8,
       "norm_label": "test_plain_language_summary_reaches_the_page_and_the_rejection_is_counted()"
     },
     {
@@ -9973,7 +10153,7 @@
       "source_location": "L230",
       "_origin": "ast",
       "id": "tests_test_whatsnew_test_agents_get_the_same_delta_as_a_toon_sidecar",
-      "community": 12,
+      "community": 8,
       "norm_label": "test_agents_get_the_same_delta_as_a_toon_sidecar()"
     },
     {
@@ -9983,7 +10163,7 @@
       "source_location": "L240",
       "_origin": "ast",
       "id": "tests_test_whatsnew_test_unresolvable_ref_fails_closed",
-      "community": 12,
+      "community": 8,
       "norm_label": "test_unresolvable_ref_fails_closed()"
     },
     {
@@ -9993,7 +10173,7 @@
       "source_location": "L246",
       "_origin": "ast",
       "id": "tests_test_whatsnew_test_generated_wiki_and_docs_are_not_mistaken_for_source",
-      "community": 12,
+      "community": 8,
       "norm_label": "test_generated_wiki_and_docs_are_not_mistaken_for_source()"
     },
     {
@@ -10003,7 +10183,7 @@
       "source_location": "L258",
       "_origin": "ast",
       "id": "tests_test_whatsnew_test_paths_with_spaces_and_unicode_survive_the_nul_parse",
-      "community": 12,
+      "community": 8,
       "norm_label": "test_paths_with_spaces_and_unicode_survive_the_nul_parse()"
     },
     {
@@ -10013,7 +10193,7 @@
       "source_location": "L268",
       "_origin": "ast",
       "id": "tests_test_whatsnew_test_test_files_are_reported_in_their_own_area",
-      "community": 12,
+      "community": 8,
       "norm_label": "test_test_files_are_reported_in_their_own_area()"
     },
     {
@@ -10023,7 +10203,7 @@
       "source_location": "L281",
       "_origin": "ast",
       "id": "tests_test_whatsnew_test_run_writes_a_deterministic_page_and_certificate_without_calling_the_model",
-      "community": 12,
+      "community": 8,
       "norm_label": "test_run_writes_a_deterministic_page_and_certificate_without_calling_the_model()"
     },
     {
@@ -10033,7 +10213,7 @@
       "source_location": "L302",
       "_origin": "ast",
       "id": "tests_test_whatsnew_test_artifact_lives_outside_the_page_state_and_the_verify_glob",
-      "community": 12,
+      "community": 8,
       "norm_label": "test_artifact_lives_outside_the_page_state_and_the_verify_glob()"
     },
     {
@@ -10053,7 +10233,7 @@
       "source_location": "L322",
       "_origin": "ast",
       "id": "tests_test_whatsnew_test_execute_publishes_a_verified_claim",
-      "community": 12,
+      "community": 8,
       "norm_label": "test_execute_publishes_a_verified_claim()"
     },
     {
@@ -10063,7 +10243,7 @@
       "source_location": "L350",
       "_origin": "ast",
       "id": "tests_test_whatsnew_one_file_repo",
-      "community": 12,
+      "community": 8,
       "norm_label": "_one_file_repo()"
     },
     {
@@ -10073,7 +10253,7 @@
       "source_location": "L363",
       "_origin": "ast",
       "id": "tests_test_whatsnew_test_a_false_predicate_is_kept_in_the_certificate_but_never_published",
-      "community": 12,
+      "community": 8,
       "norm_label": "test_a_false_predicate_is_kept_in_the_certificate_but_never_published()"
     },
     {
@@ -10083,7 +10263,7 @@
       "source_location": "L377",
       "_origin": "ast",
       "id": "tests_test_whatsnew_test_a_phantom_path_earns_one_repair_attempt_then_a_visible_quarantine",
-      "community": 12,
+      "community": 8,
       "norm_label": "test_a_phantom_path_earns_one_repair_attempt_then_a_visible_quarantine()"
     },
     {
@@ -10093,7 +10273,7 @@
       "source_location": "L396",
       "_origin": "ast",
       "id": "tests_test_whatsnew_test_absence_and_out_of_range_claims_are_dropped_before_anchoring",
-      "community": 12,
+      "community": 8,
       "norm_label": "test_absence_and_out_of_range_claims_are_dropped_before_anchoring()"
     },
     {
@@ -10103,7 +10283,7 @@
       "source_location": "L415",
       "_origin": "ast",
       "id": "tests_test_whatsnew_test_prose_never_sees_a_raw_diff_and_is_told_hints_are_not_evidence",
-      "community": 12,
+      "community": 8,
       "norm_label": "test_prose_never_sees_a_raw_diff_and_is_told_hints_are_not_evidence()"
     },
     {
@@ -10113,7 +10293,7 @@
       "source_location": "L430",
       "_origin": "ast",
       "id": "tests_test_whatsnew_test_execute_refuses_a_range_that_does_not_end_at_head",
-      "community": 12,
+      "community": 8,
       "norm_label": "test_execute_refuses_a_range_that_does_not_end_at_head()"
     },
     {
@@ -10123,7 +10303,7 @@
       "source_location": "L439",
       "_origin": "ast",
       "id": "tests_test_whatsnew_test_execute_refuses_an_off_head_range_even_when_it_is_empty",
-      "community": 12,
+      "community": 8,
       "norm_label": "test_execute_refuses_an_off_head_range_even_when_it_is_empty()"
     },
     {
@@ -10133,7 +10313,7 @@
       "source_location": "L449",
       "_origin": "ast",
       "id": "tests_test_whatsnew_test_machine_syntax_never_leaks_into_the_page",
-      "community": 12,
+      "community": 8,
       "norm_label": "test_machine_syntax_never_leaks_into_the_page()"
     },
     {
@@ -10143,7 +10323,7 @@
       "source_location": "L469",
       "_origin": "ast",
       "id": "tests_test_whatsnew_test_a_bare_trailing_citation_is_stripped_too",
-      "community": 12,
+      "community": 70,
       "norm_label": "test_a_bare_trailing_citation_is_stripped_too()"
     },
     {
@@ -10153,7 +10333,7 @@
       "source_location": "L475",
       "_origin": "ast",
       "id": "tests_test_whatsnew_test_a_real_markdown_table_is_left_alone",
-      "community": 12,
+      "community": 70,
       "norm_label": "test_a_real_markdown_table_is_left_alone()"
     },
     {
@@ -10163,7 +10343,7 @@
       "source_location": "L480",
       "_origin": "ast",
       "id": "tests_test_whatsnew_test_cli_smoke",
-      "community": 0,
+      "community": 8,
       "norm_label": "test_cli_smoke()"
     },
     {
@@ -10173,7 +10353,7 @@
       "source_location": "L487",
       "_origin": "ast",
       "id": "tests_test_whatsnew_test_cli_reports_a_bad_ref_without_writing_an_artifact",
-      "community": 0,
+      "community": 8,
       "norm_label": "test_cli_reports_a_bad_ref_without_writing_an_artifact()"
     },
     {
@@ -10183,7 +10363,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "tests_test_whatsnew_rationale_1",
-      "community": 12,
+      "community": 8,
       "norm_label": "isidore whatsnew: the typed surface delta, its artifact, and the verification di"
     },
     {
@@ -10193,7 +10373,7 @@
       "source_location": "L53",
       "_origin": "ast",
       "id": "tests_test_whatsnew_rationale_53",
-      "community": 12,
+      "community": 8,
       "norm_label": "a repository mirroring the shape of the change that motivated this command: a me"
     },
     {
@@ -16198,6 +16378,17 @@
       "context": "submodule_import",
       "confidence": "EXTRACTED",
       "source_file": "src/isidore/cli.py",
+      "source_location": "L414",
+      "weight": 1.0,
+      "source": "src_isidore_cli",
+      "target": "src_isidore_render",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports_from",
+      "context": "submodule_import",
+      "confidence": "EXTRACTED",
+      "source_file": "src/isidore/cli.py",
       "source_location": "L413",
       "weight": 1.0,
       "source": "src_isidore_cli",
@@ -16209,7 +16400,7 @@
       "context": "submodule_import",
       "confidence": "EXTRACTED",
       "source_file": "src/isidore/cli.py",
-      "source_location": "L414",
+      "source_location": "L415",
       "weight": 1.0,
       "source": "src_isidore_cli",
       "target": "src_isidore_whatsnew",
@@ -31967,7 +32158,7 @@
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "src/isidore/render.py",
-      "source_location": "L74",
+      "source_location": "L77",
       "weight": 1.0,
       "source": "src_isidore_render",
       "target": "src_isidore_render_agents_md_block",
@@ -31977,7 +32168,47 @@
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "src/isidore/render.py",
-      "source_location": "L22",
+      "source_location": "L187",
+      "weight": 1.0,
+      "source": "src_isidore_render",
+      "target": "src_isidore_render_cmd_llms",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "src/isidore/render.py",
+      "source_location": "L109",
+      "weight": 1.0,
+      "source": "src_isidore_render",
+      "target": "src_isidore_render_first_sentence",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "src/isidore/render.py",
+      "source_location": "L180",
+      "weight": 1.0,
+      "source": "src_isidore_render",
+      "target": "src_isidore_render_register_cli",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "src/isidore/render.py",
+      "source_location": "L117",
+      "weight": 1.0,
+      "source": "src_isidore_render",
+      "target": "src_isidore_render_render_llms_txt",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "src/isidore/render.py",
+      "source_location": "L25",
       "weight": 1.0,
       "source": "src_isidore_render",
       "target": "src_isidore_render_render_quickstart",
@@ -31987,7 +32218,7 @@
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "src/isidore/render.py",
-      "source_location": "L49",
+      "source_location": "L52",
       "weight": 1.0,
       "source": "src_isidore_render",
       "target": "src_isidore_render_render_toon_index",
@@ -31997,10 +32228,20 @@
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "src/isidore/render.py",
-      "source_location": "L88",
+      "source_location": "L91",
       "weight": 1.0,
       "source": "src_isidore_render",
       "target": "src_isidore_render_upsert_agents_block",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "src/isidore/render.py",
+      "source_location": "L173",
+      "weight": 1.0,
+      "source": "src_isidore_render",
+      "target": "src_isidore_render_write_llms_txt",
       "confidence_score": 1.0
     },
     {
@@ -32008,7 +32249,7 @@
       "context": "import",
       "confidence": "EXTRACTED",
       "source_file": "src/isidore/render.py",
-      "source_location": "L10",
+      "source_location": "L13",
       "weight": 1.0,
       "source": "src_isidore_render",
       "target": "src_isidore_toon",
@@ -32019,7 +32260,7 @@
       "context": "import",
       "confidence": "EXTRACTED",
       "source_file": "src/isidore/render.py",
-      "source_location": "L10",
+      "source_location": "L13",
       "weight": 1.0,
       "source": "src_isidore_render",
       "target": "src_isidore_toon_encode",
@@ -32043,6 +32284,17 @@
       "source_location": "L64",
       "weight": 1.0,
       "source": "src_isidore_whatsnew",
+      "target": "src_isidore_render",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports_from",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "tests/test_llms_txt.py",
+      "source_location": "L4",
+      "weight": 1.0,
+      "source": "tests_test_llms_txt",
       "target": "src_isidore_render",
       "confidence_score": 1.0
     },
@@ -32084,7 +32336,7 @@
       "context": "call",
       "confidence": "EXTRACTED",
       "source_file": "src/isidore/render.py",
-      "source_location": "L71",
+      "source_location": "L74",
       "weight": 1.0,
       "source": "src_isidore_render_render_toon_index",
       "target": "src_isidore_toon_encode",
@@ -32116,9 +32368,9 @@
       "relation": "rationale_for",
       "confidence": "EXTRACTED",
       "source_file": "src/isidore/render.py",
-      "source_location": "L89",
+      "source_location": "L92",
       "weight": 1.0,
-      "source": "src_isidore_render_rationale_89",
+      "source": "src_isidore_render_rationale_92",
       "target": "src_isidore_render_upsert_agents_block",
       "confidence_score": 1.0
     },
@@ -32132,6 +32384,201 @@
       "weight": 1.0,
       "source": "tests_test_pipeline_test_upsert_agents_block_is_idempotent_and_preserves_content",
       "target": "src_isidore_render_upsert_agents_block"
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "source_file": "src/isidore/render.py",
+      "source_location": "L138",
+      "weight": 1.0,
+      "source": "src_isidore_render_render_llms_txt",
+      "target": "src_isidore_render_first_sentence",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "source_file": "src/isidore/render.py",
+      "source_location": "L193",
+      "weight": 1.0,
+      "source": "src_isidore_render_cmd_llms",
+      "target": "src_isidore_render_render_llms_txt",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "rationale_for",
+      "confidence": "EXTRACTED",
+      "source_file": "src/isidore/render.py",
+      "source_location": "L118",
+      "weight": 1.0,
+      "source": "src_isidore_render_rationale_118",
+      "target": "src_isidore_render_render_llms_txt",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "references",
+      "context": "parameter_type",
+      "confidence": "EXTRACTED",
+      "source_file": "src/isidore/render.py",
+      "source_location": "L117",
+      "weight": 1.0,
+      "source": "src_isidore_render_render_llms_txt",
+      "target": "src_isidore_render_py_path",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "source_file": "src/isidore/render.py",
+      "source_location": "L176",
+      "weight": 1.0,
+      "source": "src_isidore_render_write_llms_txt",
+      "target": "src_isidore_render_render_llms_txt",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "INFERRED",
+      "confidence_score": 0.8,
+      "source_file": "tests/test_llms_txt.py",
+      "source_location": "L66",
+      "weight": 1.0,
+      "source": "tests_test_llms_txt_test_a_repo_without_a_product_page_still_produces_a_valid_file",
+      "target": "src_isidore_render_render_llms_txt"
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "INFERRED",
+      "confidence_score": 0.8,
+      "source_file": "tests/test_llms_txt.py",
+      "source_location": "L59",
+      "weight": 1.0,
+      "source": "tests_test_llms_txt_test_it_is_written_where_a_fetcher_looks_and_is_deterministic",
+      "target": "src_isidore_render_render_llms_txt"
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "INFERRED",
+      "confidence_score": 0.8,
+      "source_file": "tests/test_llms_txt.py",
+      "source_location": "L39",
+      "weight": 1.0,
+      "source": "tests_test_llms_txt_test_pages_are_layered_and_areas_come_before_modules",
+      "target": "src_isidore_render_render_llms_txt"
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "INFERRED",
+      "confidence_score": 0.8,
+      "source_file": "tests/test_llms_txt.py",
+      "source_location": "L48",
+      "weight": 1.0,
+      "source": "tests_test_llms_txt_test_skippable_material_sits_under_the_reserved_optional_heading",
+      "target": "src_isidore_render_render_llms_txt"
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "INFERRED",
+      "confidence_score": 0.8,
+      "source_file": "tests/test_llms_txt.py",
+      "source_location": "L23",
+      "weight": 1.0,
+      "source": "tests_test_llms_txt_test_the_required_shape_of_the_format",
+      "target": "src_isidore_render_render_llms_txt"
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "INFERRED",
+      "confidence_score": 0.8,
+      "source_file": "tests/test_llms_txt.py",
+      "source_location": "L35",
+      "weight": 1.0,
+      "source": "tests_test_llms_txt_test_the_summary_is_the_plain_language_sentence_already_written",
+      "target": "src_isidore_render_render_llms_txt"
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "source_file": "src/isidore/render.py",
+      "source_location": "L183",
+      "weight": 1.0,
+      "source": "src_isidore_render_register_cli",
+      "target": "src_isidore_render_py_path",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "references",
+      "context": "return_type",
+      "confidence": "EXTRACTED",
+      "source_file": "src/isidore/render.py",
+      "source_location": "L173",
+      "weight": 1.0,
+      "source": "src_isidore_render_write_llms_txt",
+      "target": "src_isidore_render_py_path",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "source_file": "src/isidore/render.py",
+      "source_location": "L192",
+      "weight": 1.0,
+      "source": "src_isidore_render_cmd_llms",
+      "target": "src_isidore_render_write_llms_txt",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "rationale_for",
+      "confidence": "EXTRACTED",
+      "source_file": "src/isidore/render.py",
+      "source_location": "L174",
+      "weight": 1.0,
+      "source": "src_isidore_render_rationale_174",
+      "target": "src_isidore_render_write_llms_txt",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "INFERRED",
+      "confidence_score": 0.8,
+      "source_file": "tests/test_llms_txt.py",
+      "source_location": "L57",
+      "weight": 1.0,
+      "source": "tests_test_llms_txt_test_it_is_written_where_a_fetcher_looks_and_is_deterministic",
+      "target": "src_isidore_render_write_llms_txt"
+    },
+    {
+      "relation": "rationale_for",
+      "confidence": "EXTRACTED",
+      "source_file": "src/isidore/render.py",
+      "source_location": "L181",
+      "weight": 1.0,
+      "source": "src_isidore_render_rationale_181",
+      "target": "src_isidore_render_register_cli",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "indirect_call",
+      "context": "argument",
+      "confidence": "INFERRED",
+      "source_file": "src/isidore/render.py",
+      "source_location": "L184",
+      "weight": 1.0,
+      "source": "src_isidore_render_register_cli",
+      "target": "src_isidore_render_cmd_llms",
+      "confidence_score": 0.5
     },
     {
       "relation": "imports",
@@ -37558,6 +38005,152 @@
       "weight": 1.0,
       "source": "tests_test_langspec_test_sanitize_handles_escaped_quote",
       "target": "tests_test_langspec_names",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "tests/test_llms_txt.py",
+      "source_location": "L63",
+      "weight": 1.0,
+      "source": "tests_test_llms_txt",
+      "target": "tests_test_llms_txt_test_a_repo_without_a_product_page_still_produces_a_valid_file",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "tests/test_llms_txt.py",
+      "source_location": "L55",
+      "weight": 1.0,
+      "source": "tests_test_llms_txt",
+      "target": "tests_test_llms_txt_test_it_is_written_where_a_fetcher_looks_and_is_deterministic",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "tests/test_llms_txt.py",
+      "source_location": "L38",
+      "weight": 1.0,
+      "source": "tests_test_llms_txt",
+      "target": "tests_test_llms_txt_test_pages_are_layered_and_areas_come_before_modules",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "tests/test_llms_txt.py",
+      "source_location": "L47",
+      "weight": 1.0,
+      "source": "tests_test_llms_txt",
+      "target": "tests_test_llms_txt_test_skippable_material_sits_under_the_reserved_optional_heading",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "tests/test_llms_txt.py",
+      "source_location": "L22",
+      "weight": 1.0,
+      "source": "tests_test_llms_txt",
+      "target": "tests_test_llms_txt_test_the_required_shape_of_the_format",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "tests/test_llms_txt.py",
+      "source_location": "L32",
+      "weight": 1.0,
+      "source": "tests_test_llms_txt",
+      "target": "tests_test_llms_txt_test_the_summary_is_the_plain_language_sentence_already_written",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "tests/test_llms_txt.py",
+      "source_location": "L7",
+      "weight": 1.0,
+      "source": "tests_test_llms_txt",
+      "target": "tests_test_llms_txt_wiki",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "rationale_for",
+      "confidence": "EXTRACTED",
+      "source_file": "tests/test_llms_txt.py",
+      "source_location": "L1",
+      "weight": 1.0,
+      "source": "tests_test_llms_txt_rationale_1",
+      "target": "tests_test_llms_txt",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "source_file": "tests/test_llms_txt.py",
+      "source_location": "L64",
+      "weight": 1.0,
+      "source": "tests_test_llms_txt_test_a_repo_without_a_product_page_still_produces_a_valid_file",
+      "target": "tests_test_llms_txt_wiki",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "source_file": "tests/test_llms_txt.py",
+      "source_location": "L56",
+      "weight": 1.0,
+      "source": "tests_test_llms_txt_test_it_is_written_where_a_fetcher_looks_and_is_deterministic",
+      "target": "tests_test_llms_txt_wiki",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "source_file": "tests/test_llms_txt.py",
+      "source_location": "L39",
+      "weight": 1.0,
+      "source": "tests_test_llms_txt_test_pages_are_layered_and_areas_come_before_modules",
+      "target": "tests_test_llms_txt_wiki",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "source_file": "tests/test_llms_txt.py",
+      "source_location": "L48",
+      "weight": 1.0,
+      "source": "tests_test_llms_txt_test_skippable_material_sits_under_the_reserved_optional_heading",
+      "target": "tests_test_llms_txt_wiki",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "source_file": "tests/test_llms_txt.py",
+      "source_location": "L23",
+      "weight": 1.0,
+      "source": "tests_test_llms_txt_test_the_required_shape_of_the_format",
+      "target": "tests_test_llms_txt_wiki",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "source_file": "tests/test_llms_txt.py",
+      "source_location": "L35",
+      "weight": 1.0,
+      "source": "tests_test_llms_txt_test_the_summary_is_the_plain_language_sentence_already_written",
+      "target": "tests_test_llms_txt_wiki",
       "confidence_score": 1.0
     },
     {
@@ -44353,5 +44946,5 @@
     }
   ],
   "hyperedges": [],
-  "built_at_commit": "a60216c6121e32ec24eaf8984494379bacefd2b5"
+  "built_at_commit": "bf9b1d680434c945a63384e7ee5101e3553d3d41"
 }

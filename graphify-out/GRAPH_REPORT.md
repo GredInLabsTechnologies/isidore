@@ -1,16 +1,16 @@
 # Graph Report - isidore  (2026-07-26)
 
 ## Corpus Check
-- 164 files · ~98,887 words
+- 165 files · ~99,934 words
 - Verdict: corpus is large enough that graph structure adds value.
 
 ## Summary
-- 1344 nodes · 2924 edges · 103 communities (98 shown, 5 thin omitted)
-- Extraction: 86% EXTRACTED · 14% INFERRED · 0% AMBIGUOUS · INFERRED: 415 edges (avg confidence: 0.77)
+- 1362 nodes · 2963 edges · 103 communities (97 shown, 6 thin omitted)
+- Extraction: 86% EXTRACTED · 14% INFERRED · 0% AMBIGUOUS · INFERRED: 423 edges (avg confidence: 0.77)
 - Token cost: 0 input · 0 output
 
 ## Graph Freshness
-- Built from commit: `a60216c6`
+- Built from commit: `bf9b1d68`
 - Run `git rev-parse HEAD` and compare to check if the graph is stale.
 - Run `graphify update .` after code changes (no API cost).
 
@@ -132,77 +132,77 @@
 10. `load_state()` - 21 edges
 
 ## Surprising Connections (you probably didn't know these)
-- `test_is_negative_existential_flags_absence_not_behavior()` --calls--> `is_negative_existential()`  [INFERRED]
-  tests/test_claims.py → src/isidore/claims.py
+- `test_three_field_parser_captures_predicate()` --calls--> `parse_claims_block()`  [INFERRED]
+  tests/test_verify.py → src/isidore/claims.py
+- `test_pcp_subcommands_are_registered()` --calls--> `main()`  [INFERRED]
+  tests/test_pcp_seams.py → src/isidore/cli.py
+- `test_cli_reports_a_bad_ref_without_writing_an_artifact()` --calls--> `main()`  [INFERRED]
+  tests/test_whatsnew.py → src/isidore/cli.py
+- `test_cli_smoke()` --calls--> `main()`  [INFERRED]
+  tests/test_whatsnew.py → src/isidore/cli.py
 - `test_filter_findings_drops_hallucinated_paths()` --calls--> `filter_findings()`  [INFERRED]
   tests/test_units.py → src/isidore/findings.py
-- `test_findings_toon_lists_security_first_and_in_summary()` --calls--> `render_findings()`  [INFERRED]
-  tests/test_security_prose.py → src/isidore/findings.py
-- `test_render_findings_tables_and_summary()` --calls--> `render_findings()`  [INFERRED]
-  tests/test_units.py → src/isidore/findings.py
-- `test_module_of_normalizes_and_buckets()` --calls--> `module_of()`  [INFERRED]
-  tests/test_units.py → src/isidore/graph.py
 
 ## Import Cycles
 - 1-file cycle: `src/isidore/connectors/__init__.py -> src/isidore/connectors/__init__.py`
 
-## Communities (103 total, 5 thin omitted)
+## Communities (103 total, 6 thin omitted)
 
 ### Community 0 - "cli.py"
-Cohesion: 0.14
-Nodes (21): _cmd_impact(), _cmd_scan(), _cmd_stats(), _cmd_suggest_flows(), _cmd_sync(), main(), isidore — compile an agent-oriented wiki from your codebase's structure graph., Precedence: explicit CLI arg > isidore.json > built-in default. (+13 more)
+Cohesion: 0.13
+Nodes (33): check_claims(), claims_for_file(), claims_grep(), Re-hash every stored claim's evidence — the zero-LLM staleness audit.      Retur, The documentation contract of a file: every anchored claim whose evidence points, Free-text search over verified atomic facts — answers many questions with 0 LLM, _cmd_ask(), _cmd_claims() (+25 more)
 
 ### Community 1 - "graph.py"
-Cohesion: 0.09
-Nodes (38): answer_knowledge_offline(), answer_offline(), ask(), ask_knowledge(), gather_claims(), gather_evidence(), gather_knowledge_claims(), Path (+30 more)
+Cohesion: 0.10
+Nodes (37): answer_knowledge_offline(), answer_offline(), ask(), ask_knowledge(), gather_claims(), gather_evidence(), gather_knowledge_claims(), Path (+29 more)
 
 ### Community 2 - "compile_wiki"
-Cohesion: 0.25
-Nodes (20): compile_wiki(), Run the pipeline. With execute=False no LLM is called and no page is written., _gp(), _make_repo(), Path, test_absence_claims_and_findings_dropped_but_behavioral_kept(), test_compile_preserves_crlf_line_endings_in_agents_md(), test_dry_run_reports_dirty_and_never_calls_generator() (+12 more)
+Cohesion: 0.18
+Nodes (30): compile_wiki(), lint_cited_paths(), File-looking paths cited in the prose that do NOT exist in the repo., Run the pipeline. With execute=False no LLM is called and no page is written., _gp(), _link(), _make_repo(), _node() (+22 more)
 
 ### Community 3 - "read_certificate"
-Cohesion: 0.10
-Nodes (27): Certificate, certificate_to_dict(), Contract, Path, The re-verifiable sidecar for one page. Persisted as JSON (machine-read). Tamper, Certificate -> plain dict (asdict handles the nested dataclasses). The JSON on d, Persist a certificate as pretty JSON (stable key order for byte-deterministic di, Load a certificate from disk. Raises ValueError on malformed JSON (fail-closed f (+19 more)
+Cohesion: 0.20
+Nodes (12): Contract, Path, Proof-Carrying Prose (PCP) — the frozen seam shared by every PCP lane.  This mod, Load promoted contracts (empty list if the file is absent). Malformed -> ValueEr, Persist contracts as JSON (machine-read gate input)., A typed claim a human promoted to an invariant. `isidore verify --contracts` fai, read_contracts(), write_contracts() (+4 more)
 
 ### Community 4 - "detectors.py"
 Cohesion: 0.14
 Nodes (22): _looks_like_secret(), Path, Lane C — deterministic security detectors: entropy, sinks, topology. 0 LLM. (T-e, Files reachable from an auth/secret/crypto root via imports (BFS, file-level). 0, Run all three detector families over the repo -> deterministic marks. Pure, 0-LL, Shannon entropy per character (bits). Stdlib only., Return a reason if the literal is credential-shaped, else None., Repo-relative source files to scan: the graph's, or a bounded walk if the graph (+14 more)
 
 ### Community 5 - "verify.py"
-Cohesion: 0.12
-Nodes (42): AST, Module, Check every promoted contract against the current graph. Pure, 0-LLM., verify_contracts(), The result of checking one predicate against an oracle. `value` is TRUE|FALSE|UN, Everything a verifier needs, assembled once per page/verify run. Read-only to ve, undecidable(), Verdict (+34 more)
+Cohesion: 0.17
+Nodes (29): Lane B (part 2) — claim->contract graduation + `isidore contracts`. (T-8dfc)  A, Check every promoted contract against the current graph. Pure, 0-LLM., verify_contracts(), The result of checking one predicate against an oracle. `value` is TRUE|FALSE|UN, Everything a verifier needs, assembled once per page/verify run. Read-only to ve, undecidable(), Verdict, VerifyContext (+21 more)
 
 ### Community 6 - "humanpack.py"
-Cohesion: 0.10
-Nodes (32): _cmd_render(), _esc(), format_mark(), generate_architecture_map(), generate_claims_table(), generate_contracts_section(), generate_glossary(), generate_mass_bar() (+24 more)
+Cohesion: 0.12
+Nodes (26): _cmd_render(), _esc(), generate_architecture_map(), generate_claims_table(), generate_contracts_section(), generate_glossary(), generate_mass_bar(), minimal_markdown_to_html() (+18 more)
 
 ### Community 7 - "quickstart.md"
 Cohesion: 0.40
 Nodes (3): Wiki (isidore), Modules, Wiki (isidore)
 
 ### Community 8 - "findings.py"
-Cohesion: 0.20
-Nodes (13): is_security_finding(), True if a suspect reads as a security risk (hardcoded secret, auth bypass, injec, security_suspects(), Security escalation: a security suspect forces a loud, deterministic prose banne, False-positive regression: a note that CLEARS the code must not raise the banner, False-negative regression: 'hardcoded SERVICE token' has a word between hardcode, test_detects_common_security_vocabulary(), test_detects_the_camouflaged_backdoor() (+5 more)
+Cohesion: 0.09
+Nodes (45): build_delta(), impact_summary(), _md_section(), RuntimeError, Git could not answer, or a ref does not resolve. Fail closed: never guess a rang, The zero-LLM core: a typed API-surface difference between two revisions.      Pr, The consequence of this range, in plain words, with zero LLM calls.      A non-t, The page, layered by READER rather than by topic.      The same range has three (+37 more)
 
 ### Community 9 - "module_of"
 Cohesion: 0.11
 Nodes (28): affected_modules(), changed_lines(), changed_symbols(), _git_diff(), _module_fan_in(), modules_of(), Path, Change-set detection: which graph symbols a git diff touched, and which modules (+20 more)
 
 ### Community 10 - "test_claims.py"
-Cohesion: 0.13
-Nodes (27): anchor_claims(), claim_id(), parse_claims_block(), Split a generated page into (clean page, raw claim rows). Tolerant of malformed, Deterministic, ledger-friendly id: stable across runs for the same (statement, e, Repair a shortened citation to a real file, or None if it can't be resolved uniq, Quarantine filter + anchoring. Returns (anchored claims, dropped, repaired)., resolve_citation() (+19 more)
+Cohesion: 0.14
+Nodes (25): anchor_claims(), claim_id(), parse_claims_block(), Split a generated page into (clean page, raw claim rows). Tolerant of malformed, Deterministic, ledger-friendly id: stable across runs for the same (statement, e, Repair a shortened citation to a real file, or None if it can't be resolved uniq, Quarantine filter + anchoring. Returns (anchored claims, dropped, repaired)., resolve_citation() (+17 more)
 
 ### Community 11 - "home.py"
-Cohesion: 0.17
-Nodes (21): iter_items(), prune_runs(), The raw store: immutable ingested items + per-connector cursor state (ADR-0032 F, Run ids from state (already newest-first); fall back to sorting the raw dir if s, Drop all but the newest `keep` runs, deleting their raw dirs and trimming state., Current state, or a fresh default if missing OR corrupt (I13-style recovery, nev, Atomic write (tmp + os.replace) so a crash mid-write never corrupts the live sta, Yield stored items, newest run first. A corrupt/half-written JSONL line is skipp (+13 more)
+Cohesion: 0.20
+Nodes (17): prune_runs(), Run ids from state (already newest-first); fall back to sorting the raw dir if s, Drop all but the newest `keep` runs, deleting their raw dirs and trimming state., Current state, or a fresh default if missing OR corrupt (I13-style recovery, nev, Atomic write (tmp + os.replace) so a crash mid-write never corrupts the live sta, read_state(), _run_ids_newest_first(), write_state() (+9 more)
 
 ### Community 12 - "whatsnew.py"
-Cohesion: 0.05
-Nodes (87): _blob(), build_delta(), _cmd_whatsnew(), commit_hints(), DeltaEntry, _diff_surfaces(), _file_summary(), generate_prose() (+79 more)
+Cohesion: 0.07
+Nodes (44): annotate_unverified_paths(), Annotate every cited path that does not exist in the repo, inline and visibly —, One declared symbol of a file, as of one revision of its text.      `qualname` i, SurfaceSymbol, _blob(), _cmd_whatsnew(), commit_hints(), DeltaEntry (+36 more)
 
 ### Community 13 - "build_certificate"
-Cohesion: 0.13
-Nodes (24): parse_predicate_field(), Parse a claim's optional third field into a pcp.Predicate (or None). PCP typed-c, prose_hash(), The tamper-evidence anchor: sha256 of the page prose (full hex, this is a machin, build_certificate(), _cmd_verify(), _ctx_for(), Path (+16 more)
+Cohesion: 0.18
+Nodes (16): parse_predicate_field(), Parse a claim's optional third field into a pcp.Predicate (or None). PCP typed-c, prose_hash(), The tamper-evidence anchor: sha256 of the page prose (full hex, this is a machin, build_certificate(), _cmd_verify(), _ctx_for(), Path (+8 more)
 
 ### Community 14 - "pyramid.py"
 Cohesion: 0.29
@@ -210,11 +210,11 @@ Nodes (9): plan_pyramid(), Plan deterministic N2 subsystem + N3 product pages. 0
 
 ### Community 15 - "claims.py"
 Cohesion: 0.09
-Nodes (27): Counter, coverage_gap_candidates(), orphan_file_candidates(), Code FILE nodes nothing links to — dead-code candidates (entrypoint-looking name, Module pages with no inbound link from any test-looking module., render_findings(), isidore — compile an agent-oriented wiki from your codebase's structure graph., annotate_unverified_paths() (+19 more)
+Nodes (25): coverage_gap_candidates(), insert_security_banner(), Place the banner right under the page's H1 (or at the very top if there is none), Module pages with no inbound link from any test-looking module., isidore — compile an agent-oriented wiki from your codebase's structure graph., append_run(), CompileResult, context_hash() (+17 more)
 
 ### Community 16 - "surface.py"
-Cohesion: 0.05
-Nodes (72): Match, _brace(), _doc(), extract(), _js(), _kw_func(), _kw_type(), LanguageSpec (+64 more)
+Cohesion: 0.09
+Nodes (40): Match, _brace(), _doc(), extract(), _js(), _kw_func(), _kw_type(), LanguageSpec (+32 more)
 
 ### Community 17 - "Isidore v2 — Incremental compilation, impact detection & residue mining"
 Cohesion: 0.12
@@ -225,56 +225,56 @@ Cohesion: 0.23
 Nodes (14): all_connectors(), Connector, get(), IngestResult, _load_plugins(), missing_env(), Protocol, Connector protocol + registry (ADR-0032 F1).  A connector ingests raw items from (+6 more)
 
 ### Community 19 - "VerifyContext"
-Cohesion: 0.23
-Nodes (15): plan_pages(), Module pages from the graph: top-K modules holding at least min_symbols code sym, _graph(), _link(), _node(), Compiler pipeline tests — no network: the LLM generator is always injected and c, test_assemble_context_includes_docs_excerpts_deps_and_budget_warning(), test_changed_scopes_to_blast_radius_over_a_real_git_repo() (+7 more)
+Cohesion: 0.17
+Nodes (17): Counter, render_findings(), _match_seed(), module_dep_edges(), plan_flows(), plan_pages(), Cross-module dependency edges (src_module, dst_module) -> link count. Shared by, Module pages from the graph: top-K modules holding at least min_symbols code sym (+9 more)
 
 ### Community 20 - "IngestOptions"
-Cohesion: 0.14
-Nodes (17): IngestOptions, Caps and scoping for a run. All limits live here (in code), never in a prompt., GitRepoConnector, Run a git command; return stdout or None on any failure (never raises)., (item, None) for a changed repo, (None, None) if HEAD is unchanged, (None, warni, iso_now(), _git(), _head() (+9 more)
+Cohesion: 0.18
+Nodes (15): IngestOptions, Caps and scoping for a run. All limits live here (in code), never in a prompt., GitRepoConnector, _git(), _head(), _make_repo(), F1 (ADR-0032): knowledge home + raw store + git-repo connector.  The load-bearin, Regression: a real repo's commit messages carry UTF-8 (accents, emoji). On Windo (+7 more)
 
 ### Community 21 - "pipeline.py"
-Cohesion: 0.18
-Nodes (16): _cmd_ask(), find_graph(), Resolve the graph source.      Precedence: explicit --graph > this tool's own, default_generator(), Build the env-configured generator. Fails closed if no model is set., _cmd_overview(), _cmd_pyramid(), _cmd_subsystems() (+8 more)
+Cohesion: 0.11
+Nodes (30): _chain_verdicts(), _cmd_overview(), _cmd_pyramid(), _cmd_subsystems(), _load_graph_for(), _module_pages_of(), _norm(), overview_facts() (+22 more)
 
 ### Community 22 - "mcp.py"
-Cohesion: 0.18
-Nodes (10): _allowed(), _JsonRpcClient, McpConnector, Any, Minimal read-only MCP connector (ADR-0032 F3).  The implementation deliberately, Map tool name -> its MCP annotations via tools/list (paginated). Empty if the se, Prepend a run summary, keeping the last 20 (newest first)., record_run() (+2 more)
+Cohesion: 0.17
+Nodes (11): _allowed(), _JsonRpcClient, McpConnector, Any, Minimal read-only MCP connector (ADR-0032 F3).  The implementation deliberately, Map tool name -> its MCP annotations via tools/list (paginated). Empty if the se, create_run_id(), Sortable, collision-resistant run id (UTC second + millis). (+3 more)
 
 ### Community 23 - "test_pcp_pipeline.py"
-Cohesion: 0.29
-Nodes (10): _compile(), _fake_generator(), _fake_generator_with_a_lie(), Path, P-INT gate — the pipeline wiring ties all five PCP lanes together end to end: a, test_compile_writes_a_certificate_with_typed_verdicts(), test_deterministic_mark_forces_the_banner_despite_calm_prose(), test_refuted_claim_is_quarantined_not_published() (+2 more)
+Cohesion: 0.26
+Nodes (12): Load a certificate from disk. Raises ValueError on malformed JSON (fail-closed f, read_certificate(), _compile(), _fake_generator(), _fake_generator_with_a_lie(), Path, P-INT gate — the pipeline wiring ties all five PCP lanes together end to end: a, test_compile_writes_a_certificate_with_typed_verdicts() (+4 more)
 
 ### Community 24 - "knowledge.py"
-Cohesion: 0.12
-Nodes (29): is_negative_existential(), True for statements asserting existential/definitional ABSENCE (unanchorable). C, Pages owning at least one stale/orphan claim — they must regenerate even if thei, stale_pages(), Append items as JSONL to `raw/<run_id>/items.jsonl`; stamp each with its `chash`, write_items(), filter_findings(), parse_findings_block() (+21 more)
+Cohesion: 0.15
+Nodes (23): is_negative_existential(), True for statements asserting existential/definitional ABSENCE (unanchorable). C, parse_findings_block(), Split a generated page into (clean page, findings rows). Tolerant of malformed l, chmod that never raises; a no-op on Windows where POSIX modes don't apply., mkdir -p with restrictive mode, best-effort — never raises on a perms/FS quirk., safe_chmod(), safe_mkdir() (+15 more)
 
 ### Community 25 - "plan_pages"
-Cohesion: 0.16
-Nodes (17): compile_overview(), missing_sections(), Required headings the page does not have. 0 LLM., Turn `wiki://page` into `page` in PROSE, so the links a reader clicks actually r, Compile the plain-language product page (N3). One LLM call, plus at most one rep, relink_wiki_uris(), The N3 product overview: plain language for anyone, resting on claims already pr, The module page above, registered in the wiki state so an area can find it. (+9 more)
+Cohesion: 0.13
+Nodes (25): compile_overview(), compile_subsystems(), missing_sections(), Compile the N2 layer: one bounded call per area, each page chained to its module, Required headings the page does not have. 0 LLM., Turn `wiki://page` into `page` in PROSE, so the links a reader clicks actually r, Compile the plain-language product page (N3). One LLM call, plus at most one rep, relink_wiki_uris() (+17 more)
 
 ### Community 26 - "pcp.py"
-Cohesion: 0.13
-Nodes (22): get_verifier(), parse_predicate(), parse_wiki_uri(), Predicate, Protocol, Proof-Carrying Prose (PCP) — the frozen seam shared by every PCP lane.  This mod, A predicate verifier. MUST be deterministic and 0-LLM. Returns UNDECIDABLE, neve, Dispatch one predicate to its registered verifier. No verifier -> UNDECIDABLE (f (+14 more)
+Cohesion: 0.16
+Nodes (15): parse_predicate(), Predicate, A decidable assertion parsed from a claim's third field. Frozen: predicates are, Parse "<kind>:<a>;<b>" -> Predicate, or None if absent/malformed/unknown-kind., _claim_verdict(), Resolve (verdict, state) for a cited claim. Truth comes from the page's certific, Resolve a wiki:// chain. Fail-closed: None/invalid/missing -> not TRUE, never cr, _wikichain_verifier() (+7 more)
 
 ### Community 27 - "_tool_read_only"
-Cohesion: 0.16
-Nodes (12): _name_looks_mutating(), Fallback heuristic ONLY (not exhaustive): does the tool name contain a mutating, (allowed, reason). Authority order: explicit readOnlyHint/destructiveHint > name, _tool_read_only(), _FakeClient, MCP connector read-only barrier (ADR-0032 F3). Regression for the review of T-db, Stands in for _JsonRpcClient: a server exposing one read tool, one write tool (a, test_destructive_hint_rejects() (+4 more)
+Cohesion: 0.26
+Nodes (11): _name_looks_mutating(), Fallback heuristic ONLY (not exhaustive): does the tool name contain a mutating, (allowed, reason). Authority order: explicit readOnlyHint/destructiveHint > name, _tool_read_only(), MCP connector read-only barrier (ADR-0032 F3). Regression for the review of T-db, test_destructive_hint_rejects(), test_ingest_invokes_only_read_only_tools(), test_mutating_names_are_rejected_without_annotation() (+3 more)
 
 ### Community 28 - "PCP_SEAMS — the frozen interface for Proof-Carrying Prose (ADR-0033, phase P0)"
 Cohesion: 0.15
 Nodes (12): Certificate (`<page>.md` → `<page>.md.cert.json`, alongside the page), CLI, Contracts (`contracts.json` in the wiki dir), File ownership matrix (nobody edits another lane's files), How each lane starts (all depend ONLY on P0 = T-1dc9), Marks (lane C output; also the golden `marks.json`), PCP_SEAMS — the frozen interface for Proof-Carrying Prose (ADR-0033, phase P0), Pipeline hooks (lane A wires; signatures frozen) (+4 more)
 
 ### Community 29 - "encode"
-Cohesion: 0.22
-Nodes (13): _cmd_contracts(), Lane B (part 2) — claim->contract graduation + `isidore contracts`. (T-8dfc)  A, Add `isidore contracts` (promote / list / check)., Command implementation for `isidore contracts`., register_cli(), encode(), encode_table(), _field() (+5 more)
+Cohesion: 0.08
+Nodes (35): _cmd_contracts(), Add `isidore contracts` (promote / list / check)., Command implementation for `isidore contracts`., register_cli(), Run the scanner and persist the graph to .isidore/graph.json., write_scan(), Compile journal + per-page changelog — residue mining, all zero-LLM.  Every comp, Map each `## heading` to its body text (content before the first heading is keye (+27 more)
 
 ### Community 30 - "Mark"
-Cohesion: 0.13
-Nodes (19): check(), explain(), is_plain(), PlainRule, Pattern, Plain-language gate: can a reader who has never seen code use this sentence?  Do, Human-readable reason for a rejection, for the run summary and the journal., One named check. `kind` mirrors Vale's rule taxonomy so the intent of each is de (+11 more)
+Cohesion: 0.15
+Nodes (17): check(), explain(), is_plain(), PlainRule, Pattern, Plain-language gate: can a reader who has never seen code use this sentence?  Do, Human-readable reason for a rejection, for the run summary and the journal., One named check. `kind` mirrors Vale's rule taxonomy so the intent of each is de (+9 more)
 
 ### Community 31 - "write_items"
-Cohesion: 0.22
-Nodes (10): Request, _cmd_compile(), build_request(), generate(), GenerationError, RuntimeError, Single-provider LLM client (OpenAI-compatible), fail-closed by design.  One mode, The provider failed. No retry with a different model — fail closed. (+2 more)
+Cohesion: 0.24
+Nodes (10): Request, build_request(), default_generator(), generate(), GenerationError, RuntimeError, Single-provider LLM client (OpenAI-compatible), fail-closed by design.  One mode, The provider failed. No retry with a different model — fail closed. (+2 more)
 
 ### Community 32 - "isidore"
 Cohesion: 0.14
@@ -293,28 +293,28 @@ Cohesion: 0.23
 Nodes (14): _cmd_export_agora(), build_cards(), Path, export-agora — bridge isidore's verified claims into Living-Library card DRAFTS, Return [(filename, content)] draft cards — one per wiki page with enough OK clai, render_card(), _slug(), write_cards() (+6 more)
 
 ### Community 37 - "GenerationError"
-Cohesion: 0.22
-Nodes (14): evidence_hash(), evidence_state(), _hash(), _normalize(), Claims: the atomic, evidence-anchored form of wiki knowledge.  A claim is a sing, Collapse all whitespace runs to single spaces and trim — so re-indentation, trai, Fingerprint of the CITED LINE's normalized content (whole normalized file if no, ok" | "stale" | "orphan" | "superseded" — content-anchored, tolerant of line shi (+6 more)
+Cohesion: 0.17
+Nodes (23): evidence_hash(), evidence_state(), _hash(), _normalize(), Path, Claims: the atomic, evidence-anchored form of wiki knowledge.  A claim is a sing, Collapse all whitespace runs to single spaces and trim — so re-indentation, trai, Fingerprint of the CITED LINE's normalized content (whole normalized file if no (+15 more)
 
 ### Community 38 - "ClaimVerdict"
-Cohesion: 0.24
-Nodes (9): append_run(), Compile journal + per-page changelog — residue mining, all zero-LLM.  Every comp, Map each `## heading` to its body text (content before the first heading is keye, (H2 headings whose content changed / were added / removed, new_line_count - old_, Append an H2-level changelog entry to a page's state (capped). No-op if the pros, record_page_change(), section_diff(), _sections() (+1 more)
+Cohesion: 0.12
+Nodes (30): clean_sig(), extract_surface(), AsyncFunctionDef, _py_constant(), FunctionDef, _py_signature(), python_surface(), Collapse a declaration header into a stable one-line comparison key, readable as (+22 more)
 
 ### Community 39 - "test_wiki_dir_env.py"
 Cohesion: 0.31
 Nodes (7): ISIDORE_WIKI_DIR redirects the compiled-wiki output directory.  WIKI_DIRNAME is, A nested WIKI_DIRNAME (e.g. doc/isidore) must create its parents, not crash., _reload_render(), test_save_state_creates_nested_wiki_dir(), test_wiki_dirname_blank_env_falls_back(), test_wiki_dirname_defaults_to_wiki(), test_wiki_dirname_honors_env()
 
 ### Community 40 - "test_reconcile.py"
-Cohesion: 0.36
-Nodes (9): check_claims(), claims_for_file(), claims_grep(), Path, Re-hash every stored claim's evidence — the zero-LLM staleness audit.      Retur, The documentation contract of a file: every anchored claim whose evidence points, Free-text search over verified atomic facts — answers many questions with 0 LLM, render_claims() (+1 more)
+Cohesion: 0.21
+Nodes (17): _cmd_llms(), _first_sentence(), Path, The wiki, in the layout agents are converging on for being handed documentation., Write llms.txt at the repo root — where the convention puts it, so a fetcher fin, Add `isidore llms` (regenerate llms.txt from whatever is compiled). 0 LLM., register_cli(), render_llms_txt() (+9 more)
 
 ### Community 41 - "test_humanpack.py"
-Cohesion: 0.36
-Nodes (10): Run the scanner and persist the graph to .isidore/graph.json., write_scan(), build_impact(), Path, _git(), isidore impact — the 0-LLM emergent-interaction detector, over a real git repo +, _seed_repo(), test_impact_check_exit_signal_and_clean() (+2 more)
+Cohesion: 0.23
+Nodes (12): get_verifier(), Dispatch one predicate to its registered verifier. No verifier -> UNDECIDABLE (f, verify_predicate(), _anchored(), _ctx(), Lane A gate — the typed-claim verifiers decide truth against the two oracles, bu, Dogfood regression: the graph's import edges are partial and `value` can't compa, test_certificate_matches_golden_verdicts() (+4 more)
 
 ### Community 42 - "src-isidore.md"
-Cohesion: 0.22
-Nodes (8): Verify that negation patterns do not trigger false positive security findings (6, Verify that safety-checks catch risks even with intermediate/intervening words., If the model attempts social engineering in prose while findings report the bug,, Vigil case: A camouflaged auth backdoor reported in findings but justified by pr, test_adversarial_backdoor_detection(), test_false_negative_intervening_words(), test_negations_false_positives(), test_vigil_impossible_to_clean_by_model()
+Cohesion: 0.23
+Nodes (12): Certificate, certificate_to_dict(), ClaimVerdict, One claim's line in a certificate: the anchored claim + its typed verdict (if an, The re-verifiable sidecar for one page. Persisted as JSON (machine-read). Tamper, Certificate -> plain dict (asdict handles the nested dataclasses). The JSON on d, Persist a certificate as pretty JSON (stable key order for byte-deterministic di, write_certificate() (+4 more)
 
 ### Community 43 - "tests-test_claims_py.md"
 Cohesion: 0.33
@@ -345,28 +345,24 @@ Cohesion: 0.33
 Nodes (5): Architecture, Dependencies, How to change safely, Key entry points, Purpose
 
 ### Community 54 - "verify_page"
-Cohesion: 0.32
-Nodes (8): ClaimVerdict, One claim's line in a certificate: the anchored claim + its typed verdict (if an, _claim_symbols(), classify_mass(), The code identifiers a claim is about: its predicate args (last dotted component, Per-sentence confidence, 0-LLM: green if a sentence mentions a symbol from a cla, _sentence_split(), test_verified_mass_classifies_sentences()
+Cohesion: 0.16
+Nodes (16): AST, _claim_symbols(), classify_mass(), ground_symbols(), _literal_str(), _prose_identifiers(), Lane A — typed-claim verifiers, certificate building, `isidore verify`. (ADR-003, Return prose identifiers that DON'T resolve to any graph symbol or file (groundi (+8 more)
 
 ### Community 55 - "load_state"
-Cohesion: 0.44
-Nodes (8): load_state(), _git(), Residue-mining units: section diff, compile journal/stats, per-page history, cla, _repo(), test_claims_for_file_and_grep(), test_findings_new_reports_todos_in_changed_files(), test_journal_and_stats_track_calls_saved_and_unstable(), test_page_history_records_section_changes()
+Cohesion: 0.20
+Nodes (9): parse_wiki_uri(), wiki://<page>#<claim-id> -> (page, claim_id), or None if it is not a wiki URI., P0 gate (ADR-0033) — the frozen PCP seam parses its golden fixtures and exposes, The frozen signatures exist and return the seam's types (whether stub or impleme, test_golden_graph_loads(), test_golden_marks_and_pyramid_config_parse(), test_lane_public_surfaces_return_frozen_types(), test_pcp_subcommands_are_registered() (+1 more)
 
 ### Community 56 - "render_whatsnew_md"
-Cohesion: 0.33
-Nodes (6): _claim_verdict(), Resolve (verdict, state) for a cited claim. Truth comes from the page's certific, Resolve a wiki:// chain. Fail-closed: None/invalid/missing -> not TRUE, never cr, _wikichain_verifier(), BUG 3 regression: a None predicate crashed with AttributeError., test_wikichain_none_does_not_crash()
-
-### Community 57 - "test_changeset.py"
-Cohesion: 0.21
-Nodes (12): _module_pages_of(), overview_facts(), _page_purpose(), Path, The compiled module pages that belong to one subsystem, keyed by page file name., The first sentence of a module page's `## Purpose` — what that module says it is, What one subsystem page is written from: its module pages, what each says it is, The project's own words about itself — CONTEXT, never evidence (see OVERVIEW_PRO (+4 more)
+Cohesion: 0.32
+Nodes (3): Run a git command; return stdout or None on any failure (never raises)., (item, None) for a changed repo, (None, None) if HEAD is unchanged, (None, warni, iso_now()
 
 ### Community 58 - "What's new — `HEAD~2..HEAD`"
 Cohesion: 0.29
 Nodes (6): Every change, in detail, In plain words, Internal surface, Public API, Tests, What's new — `HEAD~2..HEAD`
 
 ### Community 59 - "harvest_todos"
-Cohesion: 0.16
-Nodes (18): _cmd_findings(), _churn(), finding_id(), findings_new(), harvest_todos(), is_finding_resolved(), Path, Side observations ("residue") harvested during compilation — at ~zero marginal c (+10 more)
+Cohesion: 0.06
+Nodes (48): _cmd_findings(), _churn(), filter_findings(), finding_id(), findings_new(), harvest_todos(), is_finding_resolved(), is_security_finding() (+40 more)
 
 ### Community 60 - "tests-test_surface_py.md"
 Cohesion: 0.33
@@ -389,28 +385,28 @@ Cohesion: 0.25
 Nodes (3): Ensure reconcile.py does not import pipeline, claims, or verify (frozen boundary, test_pure_reconcile_imports_constraint(), test_reconcile_mark_uncovered()
 
 ### Community 65 - "assemble_context"
-Cohesion: 0.18
-Nodes (13): assemble_context(), git_log_for(), lint_cited_paths(), Path, ±radius lines around a graph `L<n>` location. Tolerates stale files/locations., Gather one page's facts. Returns (context, truncation-warnings)., File-looking paths cited in the prose that do NOT exist in the repo., read_excerpt() (+5 more)
+Cohesion: 0.32
+Nodes (8): assemble_context(), git_log_for(), Path, ±radius lines around a graph `L<n>` location. Tolerates stale files/locations., Gather one page's facts. Returns (context, truncation-warnings)., read_excerpt(), save_state(), test_read_excerpt_exact_lines_and_tolerance()
 
 ### Community 66 - "compile_subsystems"
-Cohesion: 0.25
-Nodes (11): compile_subsystems(), Compile the N2 layer: one bounded call per area, each page chained to its module, Every claim the pages below PROVED, as citable `wiki://page#id` facts.      This, subsystem_page_name(), verified_claims(), _nodes(), test_an_area_page_is_chained_to_the_module_pages_below_it(), test_an_area_with_nothing_proven_under_it_is_skipped_not_invented() (+3 more)
+Cohesion: 0.40
+Nodes (4): Protocol, A predicate verifier. MUST be deterministic and 0-LLM. Returns UNDECIDABLE, neve, register_verifier(), Verifier
 
 ### Community 67 - "reconcile"
-Cohesion: 0.32
-Nodes (7): A reconciler finding (lane B): the model's own outputs contradict each other. 0-, Violation, Lane B (part 1) — the reconciler: the model's own outputs cross-checked, 0 LLM., Helper to split file:line into (file, line)., Cross-check prose vs findings vs claims vs marks -> internal contradictions. Pur, reconcile(), _split_evidence()
+Cohesion: 0.20
+Nodes (13): format_mark(), generate_security_banner(), certificate_from_dict(), Mark, A deterministic security-relevant flag raised BEFORE the LLM call (lane C)., A reconciler finding (lane B): the model's own outputs contradict each other. 0-, Rebuild a Certificate from parsed JSON, reconstructing the nested dataclasses. T, Violation (+5 more)
 
 ### Community 68 - "subsystem-tests.md"
 Cohesion: 0.40
 Nodes (4): How the work is divided, What it depends on, and what depends on it, What this area is responsible for, Where to start reading
 
 ### Community 69 - "security_banner"
-Cohesion: 0.29
-Nodes (7): insert_security_banner(), A prominent, deterministic banner listing this page's security suspects — meant, Place the banner right under the page's H1 (or at the very top if there is none), security_banner(), test_banner_goes_under_the_h1(), test_banner_is_loud_and_lists_evidence(), test_no_banner_without_security_suspects()
+Cohesion: 0.50
+Nodes (4): Module, _find_funcdef(), AsyncFunctionDef, FunctionDef
 
 ### Community 70 - "render.py"
-Cohesion: 0.33
-Nodes (6): agents_md_block(), Deterministic outputs: quickstart.md, index.toon, and the AGENTS.md reference bl, Insert or replace the delimited block without touching the rest of the file (ide, render_quickstart(), upsert_agents_block(), test_upsert_agents_block_is_idempotent_and_preserves_content()
+Cohesion: 0.50
+Nodes (4): Drop the pipe-separated citation a model appends to its own bullets.      Observ, strip_inline_claim_rows(), test_a_bare_trailing_citation_is_stripped_too(), test_a_real_markdown_table_is_left_alone()
 
 ### Community 71 - "src-isidore-changeset_py.md"
 Cohesion: 0.33
@@ -533,8 +529,8 @@ Cohesion: 0.33
 Nodes (5): Architecture, Dependencies, How to change safely, Key entry points, Purpose
 
 ### Community 101 - "create_run_id"
-Cohesion: 0.40
-Nodes (5): create_run_id(), Sortable, collision-resistant run id (UTC second + millis)., Algorithmically suggest topics from ingested raw items (0-LLM, term frequency ba, suggest_topics(), test_suggest_topics()
+Cohesion: 0.33
+Nodes (4): Algorithmically suggest topics from ingested raw items (0-LLM, term frequency ba, suggest_topics(), test_filter_findings_with_src(), test_suggest_topics()
 
 ### Community 102 - "subsystem-src.md"
 Cohesion: 0.40
@@ -543,17 +539,17 @@ Nodes (4): How the work is divided, What it depends on, and what depends on it, 
 ## Knowledge Gaps
 - **258 isolated node(s):** `isidore-wiki`, `Wiki (isidore)`, `Why`, `Quickstart`, `What you get` (+253 more)
   These have ≤1 connection - possible missing edges or undocumented components.
-- **5 thin communities (<3 nodes) omitted from report** — run `graphify query` to explore isolated nodes.
+- **6 thin communities (<3 nodes) omitted from report** — run `graphify query` to explore isolated nodes.
 
 ## Suggested Questions
 _Questions this graph is uniquely positioned to answer:_
 
-- **Why does `IngestOptions` connect `IngestOptions` to `cli.py`, `git_repo.py`, `_tool_read_only`, `mcp.py`?**
-  _High betweenness centrality (0.076) - this node is a cross-community bridge._
-- **Why does `compile_wiki()` connect `compile_wiki` to `cli.py`, `graph.py`, `read_certificate`, `detectors.py`, `verify.py`, `module_of`, `test_claims.py`, `build_certificate`, `claims.py`, `VerifyContext`, `pipeline.py`, `test_pcp_pipeline.py`, `knowledge.py`, `write_items`, `scan`, `assemble_context`, `ClaimVerdict`, `test_reconcile.py`, `test_humanpack.py`, `load_state`, `harvest_todos`, `assemble_context`, `reconcile`, `security_banner`, `render.py`?**
-  _High betweenness centrality (0.049) - this node is a cross-community bridge._
-- **Why does `VerifyContext` connect `verify.py` to `compile_wiki`, `compile_subsystems`, `detectors.py`, `read_certificate`, `whatsnew.py`, `build_certificate`, `claims.py`, `pipeline.py`, `render_whatsnew_md`, `plan_pages`, `pcp.py`, `encode`?**
-  _High betweenness centrality (0.044) - this node is a cross-community bridge._
+- **Why does `compile_wiki()` connect `compile_wiki` to `cli.py`, `graph.py`, `detectors.py`, `verify.py`, `module_of`, `test_claims.py`, `whatsnew.py`, `build_certificate`, `claims.py`, `VerifyContext`, `test_pcp_pipeline.py`, `knowledge.py`, `encode`, `write_items`, `scan`, `assemble_context`, `GenerationError`, `src-isidore.md`, `harvest_todos`, `assemble_context`, `reconcile`?**
+  _High betweenness centrality (0.054) - this node is a cross-community bridge._
+- **Why does `IngestOptions` connect `IngestOptions` to `cli.py`, `git_repo.py`, `mcp.py`, `render_whatsnew_md`, `test_changeset.py`, `_tool_read_only`?**
+  _High betweenness centrality (0.043) - this node is a cross-community bridge._
+- **Why does `VerifyContext` connect `verify.py` to `compile_subsystems`, `read_certificate`, `detectors.py`, `compile_wiki`, `findings.py`, `test_humanpack.py`, `whatsnew.py`, `build_certificate`, `claims.py`, `pipeline.py`, `verify_page`, `load_state`, `plan_pages`, `pcp.py`?**
+  _High betweenness centrality (0.042) - this node is a cross-community bridge._
 - **Are the 30 inferred relationships involving `compile_wiki()` (e.g. with `test_compile_stores_claims_and_writes_claims_toon()` and `test_dry_run_still_detects_stale_claims_for_free()`) actually correct?**
   _`compile_wiki()` has 30 INFERRED edges - model-reasoned connections that need verification._
 - **Are the 12 inferred relationships involving `VerifyContext` (e.g. with `CompileResult` and `PageSpec`) actually correct?**

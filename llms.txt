@@ -1,0 +1,64 @@
+# isidore
+
+> isidore creates a detailed guide for your project by analyzing its structure and content.
+
+Documentation compiled by isidore from this repository's structure. Every page ships a `.cert.json` recording which of its statements were mechanically verified against the code.
+
+## Start here
+
+- [overview.md](wiki/overview.md): what this project is, in plain language
+
+## Areas
+
+- [subsystem-src.md](wiki/subsystem-src.md)
+- [subsystem-tests.md](wiki/subsystem-tests.md)
+
+## Modules
+
+- [src-isidore-changeset_py.md](wiki/src-isidore-changeset_py.md)
+- [src-isidore-claims_py.md](wiki/src-isidore-claims_py.md)
+- [src-isidore-cli_py.md](wiki/src-isidore-cli_py.md)
+- [src-isidore-connectors.md](wiki/src-isidore-connectors.md)
+- [src-isidore-detectors_py.md](wiki/src-isidore-detectors_py.md)
+- [src-isidore-findings_py.md](wiki/src-isidore-findings_py.md)
+- [src-isidore-graph_py.md](wiki/src-isidore-graph_py.md)
+- [src-isidore-home_py.md](wiki/src-isidore-home_py.md)
+- [src-isidore-humanpack_py.md](wiki/src-isidore-humanpack_py.md)
+- [src-isidore-knowledge_py.md](wiki/src-isidore-knowledge_py.md)
+- [src-isidore-langspec_py.md](wiki/src-isidore-langspec_py.md)
+- [src-isidore-pcp_py.md](wiki/src-isidore-pcp_py.md)
+- [src-isidore-pipeline_py.md](wiki/src-isidore-pipeline_py.md)
+- [src-isidore-pyramid_py.md](wiki/src-isidore-pyramid_py.md)
+- [src-isidore-qa_py.md](wiki/src-isidore-qa_py.md)
+- [src-isidore-surface_py.md](wiki/src-isidore-surface_py.md)
+- [src-isidore-verify_py.md](wiki/src-isidore-verify_py.md)
+- [src-isidore-whatsnew_py.md](wiki/src-isidore-whatsnew_py.md)
+- [tests-fixtures-pcp.md](wiki/tests-fixtures-pcp.md)
+- [tests-test_changeset_py.md](wiki/tests-test_changeset_py.md)
+- [tests-test_claims_py.md](wiki/tests-test_claims_py.md)
+- [tests-test_connectors_f1_py.md](wiki/tests-test_connectors_f1_py.md)
+- [tests-test_detectors_py.md](wiki/tests-test_detectors_py.md)
+- [tests-test_impact_py.md](wiki/tests-test_impact_py.md)
+- [tests-test_langspec_py.md](wiki/tests-test_langspec_py.md)
+- [tests-test_mcp_barrier_py.md](wiki/tests-test_mcp_barrier_py.md)
+- [tests-test_overview_py.md](wiki/tests-test_overview_py.md)
+- [tests-test_pcp_pipeline_py.md](wiki/tests-test_pcp_pipeline_py.md)
+- [tests-test_pcp_seams_py.md](wiki/tests-test_pcp_seams_py.md)
+- [tests-test_pipeline_py.md](wiki/tests-test_pipeline_py.md)
+- [tests-test_plain_py.md](wiki/tests-test_plain_py.md)
+- [tests-test_pyramid_py.md](wiki/tests-test_pyramid_py.md)
+- [tests-test_reconcile_py.md](wiki/tests-test_reconcile_py.md)
+- [tests-test_residue_py.md](wiki/tests-test_residue_py.md)
+- [tests-test_security_prose_py.md](wiki/tests-test_security_prose_py.md)
+- [tests-test_surface_py.md](wiki/tests-test_surface_py.md)
+- [tests-test_units_py.md](wiki/tests-test_units_py.md)
+- [tests-test_verify_py.md](wiki/tests-test_verify_py.md)
+- [tests-test_whatsnew_py.md](wiki/tests-test_whatsnew_py.md)
+- [tests-test_wiki_dir_env_py.md](wiki/tests-test_wiki_dir_env_py.md)
+
+## Optional
+
+- [quickstart.md](wiki/quickstart.md): deterministic catalog of every module
+- [index.toon](wiki/index.toon): the same catalog as TOON tables, fewer tokens
+- [claims.toon](wiki/claims.toon): every claim with its evidence and freshness
+- [findings.toon](wiki/findings.toon): unverified residue: suspected bugs, TODOs, open questions
