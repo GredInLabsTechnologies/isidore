@@ -1,8 +1,8 @@
-# isidore claims · commit d5d1a1f33219a3171cc701884ca77e794db897e2
+# isidore claims · commit fb2e3e9792b7fbffea1dcf2d24bd9764aae1dcdd
 # each claim is anchored to its evidence by a content hash; state is re-checked
 # mechanically on every compile (zero LLM calls). stale/orphan => page regenerates.
-# summary: 302 claims, 0 stale/orphan
-claims[302]{page,id,statement,evidence,state}:
+# summary: 307 claims, 0 stale/orphan
+claims[307]{page,id,statement,evidence,state}:
   src-isidore-changeset_py.md,c-1ea2e1cc,The module processes git diffs to identify changed lines,src/isidore/changeset.py:36,ok
   src-isidore-changeset_py.md,c-90be0b37,changed_lines() maps files to sets of changed line numbers,src/isidore/changeset.py:36,ok
   src-isidore-changeset_py.md,c-6b86763d,symbol_spans() converts graph nodes to line ranges,src/isidore/changeset.py:68,ok
@@ -55,6 +55,11 @@ claims[302]{page,id,statement,evidence,state}:
   src-isidore-graph_py.md,c-a496259d,Git-ignored files are excluded from scanning,src/isidore/graph.py:94,ok
   src-isidore-graph_py.md,c-6b9deb15,Files are grouped into modules by directory structure,src/isidore/graph.py:84,ok
   src-isidore-graph_py.md,c-623faedc,The scanner uses Python's ast module for Python files,src/isidore/graph.py:17,ok
+  src-isidore-handoff_py.md,c-5e669126,The module writes one prompt file per dirty page and a manifest.,src/isidore/handoff.py:72,ok
+  src-isidore-handoff_py.md,c-bd78cb4f,Responses are paired to pages by a content hash of the prompt.,src/isidore/handoff.py:50,ok
+  src-isidore-handoff_py.md,c-8e22cdba,The generator that answers from disk is built by response_generator.,src/isidore/handoff.py:92,ok
+  src-isidore-handoff_py.md,c-a7a743d6,Both halves resolve the handoff location through a single function.,src/isidore/handoff.py:46,ok
+  src-isidore-handoff_py.md,c-f7a26efa,The plan is produced by a dry run of the compiler.,src/isidore/handoff.py:56,ok
   src-isidore-home_py.md,c-348916ba,The module defines the base knowledge home directory as `~/.isidore` or `$ISIDORE_HOME`,src/isidore/home.py:13,ok
   src-isidore-home_py.md,c-839d2ad8,The `connector_dir()` function constructs paths under `~/.isidore/connectors/<cid>`,src/isidore/home.py:19,ok
   src-isidore-home_py.md,c-aa9e20cc,The `raw_dir()` function appends `/raw/<run_id>` to a connector's directory,src/isidore/home.py:24,ok

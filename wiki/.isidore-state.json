@@ -519,6 +519,19 @@
       "quarantined": 1,
       "retries": 1,
       "skipped": 0
+    },
+    {
+      "calls_saved": 0,
+      "commit": "fb2e3e9792b7",
+      "dirty": 1,
+      "generated": 1,
+      "generated_pages": [
+        "src-isidore-handoff_py.md"
+      ],
+      "planned": 40,
+      "quarantined": 0,
+      "retries": 0,
+      "skipped": 0
     }
   ],
   "pages": {
@@ -1220,6 +1233,69 @@
       ],
       "kind": "module",
       "name": "src/isidore/graph.py",
+      "quarantined": false
+    },
+    "src-isidore-handoff_py.md": {
+      "claims": [
+        {
+          "ehash": "27ca25fe9c12",
+          "evidence": "src/isidore/handoff.py:72",
+          "id": "c-5e669126",
+          "predicate": "defines:src/isidore/handoff.py;emit",
+          "statement": "The module writes one prompt file per dirty page and a manifest.",
+          "verdict": "TRUE"
+        },
+        {
+          "ehash": "22c05a4f0235",
+          "evidence": "src/isidore/handoff.py:50",
+          "id": "c-bd78cb4f",
+          "predicate": "defines:src/isidore/handoff.py;prompt_id",
+          "statement": "Responses are paired to pages by a content hash of the prompt.",
+          "verdict": "TRUE"
+        },
+        {
+          "ehash": "eb5f453e5823",
+          "evidence": "src/isidore/handoff.py:92",
+          "id": "c-8e22cdba",
+          "predicate": "defines:src/isidore/handoff.py;response_generator",
+          "statement": "The generator that answers from disk is built by response_generator.",
+          "verdict": "TRUE"
+        },
+        {
+          "ehash": "a598e90046cf",
+          "evidence": "src/isidore/handoff.py:46",
+          "id": "c-a7a743d6",
+          "predicate": "defines:src/isidore/handoff.py;handoff_dir",
+          "statement": "Both halves resolve the handoff location through a single function.",
+          "verdict": "TRUE"
+        },
+        {
+          "ehash": "670ad485be41",
+          "evidence": "src/isidore/handoff.py:56",
+          "id": "c-f7a26efa",
+          "predicate": "defines:src/isidore/handoff.py;_plan",
+          "statement": "The plan is produced by a dry run of the compiler.",
+          "verdict": "TRUE"
+        }
+      ],
+      "compiled_at": "2026-07-26T23:04:10Z",
+      "context_hash": "87e216468c1e0d5f87d928c61446cd11fe1269aa8915327c29876bae0f4a8d20",
+      "findings": [],
+      "history": [
+        {
+          "commit": "fb2e3e9792b7",
+          "line_delta": 66,
+          "sections_changed": [
+            "Architecture",
+            "Dependencies",
+            "How to change safely",
+            "Key entry points",
+            "Purpose"
+          ]
+        }
+      ],
+      "kind": "module",
+      "name": "src/isidore/handoff.py",
       "quarantined": false
     },
     "src-isidore-home_py.md": {

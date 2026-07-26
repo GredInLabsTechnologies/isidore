@@ -9,3 +9,6 @@ build/
 .isidore/
 isidore-pack/
 graphify-out/cache/
+
+# Handoff scratch: prompts and answers in flight, regenerable from the graph.
+wiki/.handoff/

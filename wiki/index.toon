@@ -1,4 +1,4 @@
-# isidore wiki index · commit d5d1a1f33219a3171cc701884ca77e794db897e2
+# isidore wiki index · commit fb2e3e9792b7fbffea1dcf2d24bd9764aae1dcdd
 # same catalog as quickstart.md, in TOON tables (cheap for agents to load)
 modules[40]{module,files,symbols,page}:
   src/isidore/connectors,9,67,src-isidore-connectors.md
@@ -39,8 +39,8 @@ modules[40]{module,files,symbols,page}:
   tests/test_pcp_pipeline.py,1,9,tests-test_pcp_pipeline_py.md
   tests/fixtures/pcp,8,9,tests-fixtures-pcp.md
   src/isidore/connect.py,1,9,src-isidore-connect_py.md
+  src/isidore/handoff.py,1,9,src-isidore-handoff_py.md
   src/isidore/home.py,1,9,src-isidore-home_py.md
-  src/isidore/recertify.py,1,9,src-isidore-recertify_py.md
 flows[0]{flow,modules,page}:
 hot_symbols[240]{module,symbol,file,line,degree}:
   src/isidore/connectors,store.py,src/isidore/connectors/store.py,1,17
@@ -271,19 +271,19 @@ hot_symbols[240]{module,symbol,file,line,degree}:
   src/isidore/connect.py,parse_setting(),src/isidore/connect.py,45-L57,0
   src/isidore/connect.py,apply_settings(),src/isidore/connect.py,60-L84,0
   src/isidore/connect.py,connector_summary(),src/isidore/connect.py,87-L102,0
+  src/isidore/handoff.py,handoff.py,src/isidore/handoff.py,1,11
+  src/isidore/handoff.py,handoff_dir(),src/isidore/handoff.py,46-L47,0
+  src/isidore/handoff.py,prompt_id(),src/isidore/handoff.py,50-L53,0
+  src/isidore/handoff.py,_plan(),src/isidore/handoff.py,56-L69,0
+  src/isidore/handoff.py,emit(),src/isidore/handoff.py,72-L89,0
+  src/isidore/handoff.py,response_generator(),src/isidore/handoff.py,92-L118,0
   src/isidore/home.py,home.py,src/isidore/home.py,1,8
   src/isidore/home.py,home(),src/isidore/home.py,13-L16,0
   src/isidore/home.py,connector_dir(),src/isidore/home.py,19-L21,0
   src/isidore/home.py,raw_dir(),src/isidore/home.py,24-L25,0
   src/isidore/home.py,config_path(),src/isidore/home.py,28-L29,0
   src/isidore/home.py,state_path(),src/isidore/home.py,32-L33,0
-  src/isidore/recertify.py,recertify.py,src/isidore/recertify.py,1,10
-  src/isidore/recertify.py,PageRecert,src/isidore/recertify.py,47-L55,0
-  src/isidore/recertify.py,RecertifyResult,src/isidore/recertify.py,59-L65,0
-  src/isidore/recertify.py,_level(),src/isidore/recertify.py,68-L77,0
-  src/isidore/recertify.py,_child_digest(),src/isidore/recertify.py,80-L92,0
-  src/isidore/recertify.py,rebuild_certificate(),src/isidore/recertify.py,95-L134,0
-module_deps[43]{from,to,links}:
+module_deps[44]{from,to,links}:
   src/isidore/connectors,src/isidore/home.py,2
   src/isidore/connectors,src/isidore/claims.py,1
   src/isidore/verify.py,src/isidore/graph.py,1
@@ -325,5 +325,6 @@ module_deps[43]{from,to,links}:
   src/isidore/connect.py,src/isidore/connectors,2
   src/isidore/connect.py,src/isidore/home.py,1
   src/isidore/connect.py,src/isidore/toon.py,1
-  src/isidore/recertify.py,src/isidore/pcp.py,1
-  src/isidore/recertify.py,src/isidore/verify.py,1
+  src/isidore/handoff.py,src/isidore/graph.py,1
+  src/isidore/handoff.py,src/isidore/llm.py,1
+  src/isidore/handoff.py,src/isidore/pipeline.py,1

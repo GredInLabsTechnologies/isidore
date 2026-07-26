@@ -1,7 +1,7 @@
-# isidore findings · commit d5d1a1f33219a3171cc701884ca77e794db897e2
+# isidore findings · commit fb2e3e9792b7fbffea1dcf2d24bd9764aae1dcdd
 # suspects/drift/questions: UNVERIFIED model observations (triage queue).
 # todos/orphans/test_gaps/hotspots: mechanical facts from graph+git, no LLM.
-# summary: 2 SECURITY, 2 bug suspects, 1 drift, 1 questions, 10 todos, 34 orphan files, 19 test gaps
+# summary: 2 SECURITY, 2 bug suspects, 1 drift, 1 questions, 10 todos, 35 orphan files, 19 test gaps
 security[2]{kind,where,note}:
   bug,tests/fixtures/pcp/repo/svc/auth.py:23,security risk: hardcoded credential literal in auth path
   bug,tests/test_detectors.py:22,security risk: hardcoded secret (sk_live_) is flagged as dangerous
@@ -23,7 +23,7 @@ todos[10]{marker,file,line,note}:
   TODO,tests/test_units.py,169,"ignored\\n\" + (\"x = 1\\n\" * (MAX_TODO_FILE_BYTES // 5)), encoding=\"utf-8\")"
   TODO,tests/test_units.py,170,"real\\n\", encoding=\"utf-8\")"
   TODO,tests/test_units.py,212,"\", \"file\": \"a/b.py\", \"line\": 2, \"note\": \"x\"}],"
-orphan_files[34]{file}:
+orphan_files[35]{file}:
   .gitignore
   isidore.json
   LICENSE
@@ -38,6 +38,7 @@ orphan_files[34]{file}:
   src/isidore/connect.py
   src/isidore/contracts.py
   src/isidore/export.py
+  src/isidore/handoff.py
   src/isidore/humanpack.py
   src/isidore/impact.py
   src/isidore/knowledge.py
@@ -76,14 +77,14 @@ test_gaps[19]{module,symbols}:
   src/isidore/render.py,11
   src/isidore/qa.py,10
   src/isidore/connect.py,9
+  src/isidore/handoff.py,9
   src/isidore/home.py,9
-  src/isidore/recertify.py,9
 hotspots[15]{module,symbol,file,line,degree,churn,risk}:
-  src/isidore/pipeline.py,pipeline.py,src/isidore/pipeline.py,1,34,11,374
+  src/isidore/pipeline.py,pipeline.py,src/isidore/pipeline.py,1,34,12,408
+  src/isidore/cli.py,cli.py,src/isidore/cli.py,1,16,12,192
   src/isidore/verify.py,verify.py,src/isidore/verify.py,1,38,5,190
-  src/isidore/cli.py,cli.py,src/isidore/cli.py,1,16,11,176
   tests/test_pipeline.py,test_pipeline.py,tests/test_pipeline.py,1,34,5,170
-  src/isidore/graph.py,graph.py,src/isidore/graph.py,1,21,6,126
+  src/isidore/graph.py,graph.py,src/isidore/graph.py,1,21,7,147
   src/isidore/pyramid.py,pyramid.py,src/isidore/pyramid.py,1,25,5,125
   src/isidore/whatsnew.py,whatsnew.py,src/isidore/whatsnew.py,1,40,3,120
   tests/test_whatsnew.py,test_whatsnew.py,tests/test_whatsnew.py,1,35,3,105
@@ -93,4 +94,4 @@ hotspots[15]{module,symbol,file,line,degree,churn,risk}:
   tests/test_units.py,test_units.py,tests/test_units.py,1,23,3,69
   src/isidore/connectors,store.py,src/isidore/connectors/store.py,1,17,4,68
   tests/test_overview.py,test_overview.py,tests/test_overview.py,1,17,4,68
-  src/isidore/knowledge.py,knowledge.py,src/isidore/knowledge.py,1,17,3,51
+  src/isidore/knowledge.py,knowledge.py,src/isidore/knowledge.py,1,17,4,68

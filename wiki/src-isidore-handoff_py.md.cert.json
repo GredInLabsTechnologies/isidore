@@ -1,0 +1,75 @@
+{
+  "child_cert_hashes": {},
+  "claims": [
+    {
+      "detail": "src/isidore/handoff.py defines emit",
+      "ehash": "27ca25fe9c12",
+      "evidence": "src/isidore/handoff.py:72",
+      "id": "c-5e669126",
+      "oracle": "graph",
+      "predicate": "defines:src/isidore/handoff.py;emit",
+      "statement": "The module writes one prompt file per dirty page and a manifest.",
+      "verdict": "TRUE"
+    },
+    {
+      "detail": "src/isidore/handoff.py defines prompt_id",
+      "ehash": "22c05a4f0235",
+      "evidence": "src/isidore/handoff.py:50",
+      "id": "c-bd78cb4f",
+      "oracle": "graph",
+      "predicate": "defines:src/isidore/handoff.py;prompt_id",
+      "statement": "Responses are paired to pages by a content hash of the prompt.",
+      "verdict": "TRUE"
+    },
+    {
+      "detail": "src/isidore/handoff.py defines response_generator",
+      "ehash": "eb5f453e5823",
+      "evidence": "src/isidore/handoff.py:92",
+      "id": "c-8e22cdba",
+      "oracle": "graph",
+      "predicate": "defines:src/isidore/handoff.py;response_generator",
+      "statement": "The generator that answers from disk is built by response_generator.",
+      "verdict": "TRUE"
+    },
+    {
+      "detail": "src/isidore/handoff.py defines handoff_dir",
+      "ehash": "a598e90046cf",
+      "evidence": "src/isidore/handoff.py:46",
+      "id": "c-a7a743d6",
+      "oracle": "graph",
+      "predicate": "defines:src/isidore/handoff.py;handoff_dir",
+      "statement": "Both halves resolve the handoff location through a single function.",
+      "verdict": "TRUE"
+    },
+    {
+      "detail": "src/isidore/handoff.py defines _plan",
+      "ehash": "670ad485be41",
+      "evidence": "src/isidore/handoff.py:56",
+      "id": "c-f7a26efa",
+      "oracle": "graph",
+      "predicate": "defines:src/isidore/handoff.py;_plan",
+      "statement": "The plan is produced by a dry run of the compiler.",
+      "verdict": "TRUE"
+    }
+  ],
+  "graph_commit": "fb2e3e9792b7fbffea1dcf2d24bd9764aae1dcdd",
+  "marks": [
+    {
+      "disposition": "",
+      "family": "topology",
+      "file": "src/isidore/handoff.py",
+      "line": 1,
+      "reason": "reachable from auth/secret surface: src/isidore/detectors.py",
+      "severity": "info"
+    }
+  ],
+  "mass": {
+    "gray": 27,
+    "green": 38,
+    "yellow": 0
+  },
+  "page": "src-isidore-handoff_py.md",
+  "prose_sha256": "c68bc355ecb15cef1bf50e8881e8234b461d927e0000c9422ee93b6514264482",
+  "version": "pcp-1",
+  "violations": []
+}

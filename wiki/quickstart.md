@@ -1,6 +1,6 @@
 # Wiki (isidore)
 
-Compiled from the repository structure graph at commit `d5d1a1f33219a3171cc701884ca77e794db897e2`.
+Compiled from the repository structure graph at commit `fb2e3e9792b7fbffea1dcf2d24bd9764aae1dcdd`.
 Pages are generated from exact structural facts; cited `path:line` references are
 mechanically lint-checked against the repository.
 
@@ -50,5 +50,5 @@ Side observations harvested during compilation live in [findings.toon](findings.
 | tests/test_pcp_pipeline.py | 1 | 9 | [tests-test_pcp_pipeline_py.md](tests-test_pcp_pipeline_py.md) |
 | tests/fixtures/pcp | 8 | 9 | [tests-fixtures-pcp.md](tests-fixtures-pcp.md) |
 | src/isidore/connect.py | 1 | 9 | [src-isidore-connect_py.md](src-isidore-connect_py.md) |
+| src/isidore/handoff.py | 1 | 9 | [src-isidore-handoff_py.md](src-isidore-handoff_py.md) |
 | src/isidore/home.py | 1 | 9 | [src-isidore-home_py.md](src-isidore-home_py.md) |
-| src/isidore/recertify.py | 1 | 9 | [src-isidore-recertify_py.md](src-isidore-recertify_py.md) |

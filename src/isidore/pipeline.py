@@ -577,6 +577,9 @@ class CompileResult:
     # re-run, which `isidore recertify` does for nothing — compile must not burn a call on it.
     certs_refuted: list[str] = field(default_factory=list)
     certs_repairable: list[str] = field(default_factory=list)
+    # page filename -> the exact prompt this run would send. Lets a caller BE the model (see
+    # handoff.py): the prompts are already in memory, so carrying them costs nothing.
+    prompts: dict[str, str] = field(default_factory=dict)
 
 
 def compile_wiki(
@@ -688,6 +691,8 @@ def compile_wiki(
     # --max-calls 0 == unlimited (explicit opt-out of the bounded-cost default).
     unlimited = (max_calls == 0)
     calls_budget = float("inf") if unlimited else max_calls
+
+    result.prompts = {name: contexts[name][1] for name in result.dirty}
 
     if not execute:
         cap = len(result.dirty) if unlimited else max_calls
