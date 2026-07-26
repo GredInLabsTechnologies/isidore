@@ -20,8 +20,8 @@
     "semantic_hash": "9144e4979ef1b2f163bffb6cc5b1a327"
   },
   "src/isidore/cli.py": {
-    "mtime": 1785014241.1357417,
-    "ast_hash": "e9ae630b0ab0ad17862775b0b92a4a31",
+    "mtime": 1785028445.9380212,
+    "ast_hash": "a4b26743ba86c0d92d2c83b03c21af6f",
     "semantic_hash": ""
   },
   "src/isidore/connectors/__init__.py": {
@@ -135,8 +135,8 @@
     "semantic_hash": "ea1a19250669a9929f26602b182ec557"
   },
   "src/isidore/render.py": {
-    "mtime": 1784324642.184361,
-    "ast_hash": "e1faf5d55d3904aa97441ce62f4be096",
+    "mtime": 1785028439.2221403,
+    "ast_hash": "bef350aeb75ab25fc5849932b8446d84",
     "semantic_hash": ""
   },
   "src/isidore/toon.py": {
@@ -822,6 +822,16 @@
   "wiki/tests-test_wiki_dir_env_py.md": {
     "mtime": 1785027888.873205,
     "ast_hash": "4d30ad323aa935d8fbb8db31fb80ce37",
+    "semantic_hash": ""
+  },
+  "tests/test_llms_txt.py": {
+    "mtime": 1785028468.367425,
+    "ast_hash": "e77a515da255ed4e851ee7359161914f",
+    "semantic_hash": ""
+  },
+  "llms.txt": {
+    "mtime": 1785028618.105004,
+    "ast_hash": "543059b8da8f45b5c01d4b64fca88c4a",
     "semantic_hash": ""
   }
 }

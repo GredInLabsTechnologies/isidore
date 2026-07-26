@@ -23,6 +23,7 @@ from .pcp import (
     ORACLE_AST,
     ORACLE_GRAPH,
     ORACLE_GREP,
+    ORACLE_LANGSPEC,
     TRUE,
     YELLOW,
     Certificate,
@@ -193,8 +194,113 @@ def _literal_str(node: ast.AST) -> str | None:
     return None
 
 
+def _langspec_symbols(ctx: VerifyContext, want: str) -> list[tuple[str, str, object]]:
+    """[(file, language, SurfaceSymbol)] for every non-Python declaration of `want` in the graph.
+
+    Scoped to files the graph already knows, so a verifier never walks the whole repository, and the
+    universe it can decide over stays exactly the code the wiki was built from.
+    """
+    from .langspec import spec_for
+    from .surface import extract_surface
+
+    tail = want.rsplit(".", 1)[-1]
+    out: list[tuple[str, str, object]] = []
+    seen: set[str] = set()
+    for node in ctx.nodes:
+        rel = _norm(node.get("source_file", ""))
+        if not rel or rel.endswith(".py") or rel in seen:
+            continue
+        seen.add(rel)
+        spec = spec_for(Path(rel).suffix.lower())
+        if spec is None or spec.kind != "code":
+            continue
+        source = _read_source(ctx, rel)
+        if source is None:
+            continue
+        for symbol in extract_surface(source, Path(rel).suffix) or []:
+            if symbol.qualname == want or symbol.name == tail:
+                out.append((rel, spec.name, symbol))
+    return out
+
+
+def _unquote(text: str) -> str:
+    """Strip one layer of matching quotes. Applied to BOTH sides of a literal comparison.
+
+    The Python oracle compares the string's VALUE (`str(node.value)`, no quotes), so a model writing
+    `value:PREFIX;'_insight/'` is using the other convention, not stating a different fact. Measured
+    on GICS: that quoting difference alone refuted a true claim. Normalising both sides is the fix;
+    refuting over punctuation is not a verdict, it is a formatting complaint.
+    """
+    stripped = (text or "").strip()
+    if len(stripped) >= 2 and stripped[0] == stripped[-1] and stripped[0] in "\"'`":
+        return stripped[1:-1]
+    return stripped
+
+
+def _decide(matches: list[str], candidates: int, subject: str, kind: str) -> Verdict:
+    """TRUE if some declaration satisfies the claim; FALSE only when exactly one could have.
+
+    The rule that matters is the last one. `_langspec_symbols` finds declarations BY NAME, and a name
+    is not unique across a repository — `constructor` least of all. Refuting against whichever
+    same-named declaration happened to be found first is how a true claim gets called false; measured
+    on GICS, that is exactly what happened to `signature:constructor;options`. With more than one
+    candidate and no match, the honest answer is that the verifier cannot tell which declaration the
+    claim is about.
+    """
+    if matches:
+        return Verdict(TRUE, ORACLE_LANGSPEC, matches[0])
+    if candidates == 1:
+        return Verdict(FALSE, ORACLE_LANGSPEC, f"{subject}")
+    if candidates > 1:
+        return undecidable(f"{candidates} declarations named '{kind}' and none matches; cannot tell "
+                           "which one the claim is about")
+    return undecidable(f"no declaration of '{kind}' this oracle can read")
+
+
+def _value_via_langspec(name: str, expected: str, ctx: VerifyContext) -> Verdict:
+    """`value` decided outside Python, via the declaration the scanner already extracted."""
+    from .surface import literal_value
+
+    wanted = _unquote(expected)
+    matches: list[str] = []
+    seen: list[str] = []
+    for rel, _language, symbol in _langspec_symbols(ctx, name):
+        literal = literal_value(getattr(symbol, "sig", ""))
+        if literal is None:
+            continue
+        seen.append(literal)
+        if _unquote(literal) == wanted:
+            matches.append(f"{name} == {expected} in {rel}")
+    return _decide(matches, len(seen),
+                   f"{name} is bound to {seen[0] if seen else '?'}, not {wanted}", name)
+
+
+def _signature_via_langspec(fn_name: str, expected: list[str], ctx: VerifyContext) -> Verdict:
+    """`signature` decided outside Python — see `surface.parameter_names` for what it refuses.
+
+    FALSE is only returned once the parameter list has actually been READ and only one declaration
+    could have been meant. A language whose parameter order is not modelled, a declaration the
+    extractor truncated, or an ambiguous name all come back UNDECIDABLE. The generic scanner is a
+    heuristic, and a heuristic may fail to confirm a claim — it may not manufacture a refutation out
+    of its own blind spots.
+    """
+    from .surface import parameter_names
+
+    matches: list[str] = []
+    readable: list[str] = []
+    for rel, language, symbol in _langspec_symbols(ctx, fn_name):
+        params = parameter_names(getattr(symbol, "sig", ""), language)
+        if params is None:
+            continue
+        readable.append(", ".join(params))
+        if params == expected:
+            matches.append(f"{fn_name}({', '.join(params)}) in {rel}")
+    return _decide(matches, len(readable),
+                   f"{fn_name} params are ({readable[0] if readable else '?'})", fn_name)
+
+
 def v_value(pred: Predicate, ctx: VerifyContext) -> Verdict:
-    """value(name, literal): a module-level assignment `name = literal`. Oracle: AST."""
+    """value(name, literal): a module-level assignment `name = literal`. Oracles: AST, then langspec."""
     if len(pred.args) != 2:
         return undecidable("value expects (name, literal)")
     name, expected = pred.args
@@ -217,12 +323,14 @@ def v_value(pred: Predicate, ctx: VerifyContext) -> Verdict:
                         return Verdict(TRUE, ORACLE_AST, f"{name} == {expected}")
     if saw_literal:
         return Verdict(FALSE, ORACLE_AST, f"{name} is assigned a literal, but not {expected}")
-    # assigned to a non-literal (Path(...), a call, a name) or not found: cannot compare -> UNDECIDABLE
-    return undecidable(f"no comparable literal assignment to {name} found")
+    # No comparable Python literal. Before giving up, try the same question in the other languages
+    # the scanner reads — the Python-only oracle is why a true claim about a TypeScript constant came
+    # back UNDECIDABLE on every non-Python repo.
+    return _value_via_langspec(name, expected, ctx)
 
 
 def v_signature(pred: Predicate, ctx: VerifyContext) -> Verdict:
-    """signature(fn, arg1, arg2, ...): fn's positional parameter names, in order. Oracle: AST."""
+    """signature(fn, a1, a2, ...): fn's positional parameter names, in order. Oracles: AST, langspec."""
     if len(pred.args) < 1:
         return undecidable("signature expects (fn, *args)")
     fn_name, expected = pred.args[0], list(pred.args[1:])
@@ -236,7 +344,7 @@ def v_signature(pred: Predicate, ctx: VerifyContext) -> Verdict:
         if params == expected:
             return Verdict(TRUE, ORACLE_AST, f"{fn_name}({', '.join(params)})")
         return Verdict(FALSE, ORACLE_AST, f"{fn_name} params are ({', '.join(params)})")
-    return undecidable(f"function '{fn_name}' not found as a Python symbol")
+    return _signature_via_langspec(fn_name, expected, ctx)
 
 
 def v_env(pred: Predicate, ctx: VerifyContext) -> Verdict:

@@ -138,8 +138,15 @@ def _declaration_tail(line: str, open_paren: int) -> str | None:
 
 
 def _is_declaration(line: str, match: re.Match) -> bool:
+    """A body opens after the parameters close, and no arrow intervenes.
+
+    The body must be *opened*, not necessarily left open: `constructor(options: Opts = {}) {}` is a
+    declaration with an empty body written inline, and it is everywhere in TypeScript. Requiring the
+    line to END in `{` missed every one of them — including the one that made an ambiguous-name
+    refutation look unambiguous, because only ONE of two same-named declarations was ever seen.
+    """
     tail = _declaration_tail(line, match.end() - 1)
-    return tail is not None and tail.strip().endswith("{") and "=>" not in tail
+    return tail is not None and "{" in tail and "=>" not in tail
 
 
 def _is_public(name: str) -> bool:
@@ -329,7 +336,10 @@ def generic_surface(text: str, spec: LanguageSpec) -> list[SurfaceSymbol]:
                 if match and match.group("name"):
                     name = match.group("name")
                     break
-        if name is None and opens_body:
+        if name is None and "{" in line:
+            # The guard is only "a body is opened somewhere on this line" — `_is_declaration` is what
+            # decides, and it is stricter. Gating on the line ENDING in `{` (as `opens_body` does, for
+            # scope tracking) hid every inline-bodied declaration from the matcher entirely.
             match = _HEADER.match(line)
             if match and match.group("name").lower() not in _NOT_A_NAME and _is_declaration(line, match):
                 name = match.group("name")
@@ -365,6 +375,106 @@ def generic_surface(text: str, spec: LanguageSpec) -> list[SurfaceSymbol]:
                 while open_types and depth <= open_types[-1][1]:
                     open_types.pop()
     return out
+
+
+# ------------------------------------------------------------------ reading a signature back
+
+# Where a parameter's NAME sits, per language. This is not a detail that can be guessed: `name: Type`
+# and `Type name` put the identifier at opposite ends, so a rule that "just takes the first word"
+# silently reads the TYPE as the name in half the languages here. Only families listed as name-first
+# are decided; the rest return None and the caller reports UNDECIDABLE rather than a wrong answer.
+NAME_FIRST_LANGUAGES = frozenset({
+    "TypeScript", "JavaScript", "Rust", "Go", "Swift", "Kotlin", "Scala", "Dart", "PHP", "Lua",
+    "Ruby", "Elixir", "Zig", "Python",
+})
+
+# Modifiers that may precede a parameter's name in those languages.
+_PARAM_NOISE = re.compile(
+    r"^(?:(?:public|private|protected|readonly|final|const|mut|ref|out|in|var|val|let|inout|"
+    r"vararg|params)\s+)*")
+_PARAM_NAME = re.compile(r"^[*&.]*(?P<name>[A-Za-z_$][\w$]*)")
+
+
+def _param_group(sig: str) -> str | None:
+    """The text between the first top-level `(` and its matching `)`, or None if it never closes.
+
+    None matters: `clean_sig` caps a signature's length and `logical_lines` gives up on a header that
+    runs too long, so an unbalanced group means the declaration was TRUNCATED. Comparing a truncated
+    parameter list would manufacture a disagreement out of the extractor's own limits.
+    """
+    if sig.endswith("…"):
+        return None
+    start = sig.find("(")
+    if start < 0:
+        return None
+    depth = 0
+    for index in range(start, len(sig)):
+        char = sig[index]
+        if char == "(":
+            depth += 1
+        elif char == ")":
+            depth -= 1
+            if depth == 0:
+                return sig[start + 1:index]
+    return None
+
+
+def _split_params(group: str) -> list[str]:
+    """Split on top-level commas, ignoring those nested in generics, arrays, objects or calls."""
+    parts, depth, current = [], 0, []
+    for char in group:
+        if char in "([{<":
+            depth += 1
+        elif char in ")]}>":
+            depth -= 1
+        if char == "," and depth == 0:
+            parts.append("".join(current))
+            current = []
+        else:
+            current.append(char)
+    parts.append("".join(current))
+    return [p.strip() for p in parts if p.strip()]
+
+
+def parameter_names(sig: str, language: str) -> list[str] | None:
+    """Parameter names in declaration order, or None when they cannot be read with confidence.
+
+    None is returned for a language whose parameter order is not modelled, for a truncated
+    signature, and for any parameter that does not resolve to a plain identifier (a destructured
+    `{ a, b }: Props`, for instance). Every one of those is "I cannot tell", and a verifier that
+    cannot tell must say so rather than guess.
+    """
+    if language not in NAME_FIRST_LANGUAGES:
+        return None
+    group = _param_group(sig or "")
+    if group is None:
+        return None
+    if not group.strip():
+        return []
+    names: list[str] = []
+    for part in _split_params(group):
+        match = _PARAM_NAME.match(_PARAM_NOISE.sub("", part))
+        if not match:
+            return None
+        names.append(match.group("name"))
+    return names
+
+
+def literal_value(sig: str) -> str | None:
+    """The literal a constant is bound to, or None when it is not a plain literal.
+
+    Mirrors the Python verifier's rule exactly: only a comparable literal permits a verdict. A value
+    built by a call or an expression (`new Set([...])`, `join(a, b)`) is not comparable, and saying
+    so is the honest answer.
+    """
+    if not sig or "=" not in sig:
+        return None
+    raw = sig.split("=", 1)[1].strip().rstrip(";").strip()
+    if len(raw) >= 2 and raw[0] == raw[-1] and raw[0] in "\"'`":
+        return raw[1:-1]
+    if re.fullmatch(r"[-+]?\d+(?:\.\d+)?|true|false|null|nil|None", raw):
+        return raw
+    return None
 
 
 def extract_surface(text: str, suffix: str) -> list[SurfaceSymbol] | None:
