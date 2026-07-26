@@ -9,6 +9,9 @@ build/
 .isidore/
 isidore-pack/
 graphify-out/cache/
+# Dated backups `graphify update` leaves behind: a full copy of a 2.8k-node graph per run, of the
+# artifact sitting right next to it. One got committed by accident; they are not history worth keeping.
+graphify-out/[0-9][0-9][0-9][0-9]-[0-9][0-9]-[0-9][0-9]/
 
 # Handoff scratch: prompts and answers in flight, regenerable from the graph.
 wiki/.handoff/
