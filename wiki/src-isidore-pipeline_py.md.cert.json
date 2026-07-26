@@ -1,0 +1,85 @@
+{
+  "child_cert_hashes": {},
+  "claims": [
+    {
+      "detail": "src/isidore/pipeline.py defines plan_pages",
+      "ehash": "dccd940a0f97",
+      "evidence": "src/isidore/pipeline.py:1",
+      "id": "c-f07ccd8b",
+      "oracle": "graph",
+      "predicate": "defines:src/isidore/pipeline.py;plan_pages",
+      "statement": "The pipeline generates pages from the structure graph",
+      "verdict": "TRUE"
+    },
+    {
+      "detail": "src/isidore/pipeline.py defines PageSpec",
+      "ehash": "c4762e57a622",
+      "evidence": "src/isidore/pipeline.py:132",
+      "id": "c-27e14cc7",
+      "oracle": "graph",
+      "predicate": "defines:src/isidore/pipeline.py;PageSpec",
+      "statement": "PageSpec captures module metadata including dependencies and hot symbols",
+      "verdict": "TRUE"
+    },
+    {
+      "detail": "src/isidore/pipeline.py defines module_dep_edges",
+      "ehash": "5dac3ee6a72f",
+      "evidence": "src/isidore/pipeline.py:152",
+      "id": "c-66ca1122",
+      "oracle": "graph",
+      "predicate": "defines:src/isidore/pipeline.py;module_dep_edges",
+      "statement": "module_dep_edges computes cross-module dependencies",
+      "verdict": "TRUE"
+    },
+    {
+      "detail": "plan_pages calls module_dep_edges",
+      "ehash": "94fdab5fe0e4",
+      "evidence": "src/isidore/pipeline.py:168",
+      "id": "c-93fe5345",
+      "oracle": "ast",
+      "predicate": "calls:plan_pages;module_dep_edges",
+      "statement": "plan_pages selects top-K modules with the most symbols",
+      "verdict": "TRUE"
+    },
+    {
+      "detail": "plan_flows calls _match_seed",
+      "ehash": "36cf84432b5e",
+      "evidence": "src/isidore/pipeline.py:225",
+      "id": "c-bf86587a",
+      "oracle": "ast",
+      "predicate": "calls:plan_flows;_match_seed",
+      "statement": "plan_flows generates cross-cutting flow pages from seeds",
+      "verdict": "TRUE"
+    },
+    {
+      "detail": "no comparable literal assignment to MAX_CALLS found",
+      "ehash": "906171e70802",
+      "evidence": "src/isidore/pipeline.py:3",
+      "id": "c-0da4f89a",
+      "oracle": "none",
+      "predicate": "value:MAX_CALLS;1",
+      "statement": "The pipeline is deterministic except for a single LLM call per page",
+      "verdict": "UNDECIDABLE"
+    }
+  ],
+  "graph_commit": "1a34c13ecf2ef7ce206f1ceeaeb1987fea5f8272",
+  "marks": [
+    {
+      "disposition": "",
+      "family": "topology",
+      "file": "src/isidore/pipeline.py",
+      "line": 1,
+      "reason": "reachable from auth/secret surface: src/isidore/detectors.py",
+      "severity": "info"
+    }
+  ],
+  "mass": {
+    "gray": 19,
+    "green": 18,
+    "yellow": 0
+  },
+  "page": "src-isidore-pipeline_py.md",
+  "prose_sha256": "ce782a3c98b651a71fef6f28fe4a2be81581c8a3fcaf27f94ac28e19fc1e6413",
+  "version": "pcp-1",
+  "violations": []
+}

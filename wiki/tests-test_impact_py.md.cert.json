@@ -1,0 +1,46 @@
+{
+  "child_cert_hashes": {},
+  "claims": [
+    {
+      "detail": "no predicate (existence-anchored only)",
+      "ehash": "3db03487082b",
+      "evidence": "tests/test_impact.py:1",
+      "id": "c-bf5e2a4b",
+      "oracle": "none",
+      "predicate": "",
+      "statement": "The module tests the emergent interaction detection of Isidore's impact analysis system",
+      "verdict": "UNDECIDABLE"
+    },
+    {
+      "detail": "caller 'tests/test_impact.py' not a Python symbol in the graph",
+      "ehash": "1a1837b048fa",
+      "evidence": "tests/test_impact.py:49",
+      "id": "c-0880ce50",
+      "oracle": "none",
+      "predicate": "calls:tests/test_impact.py;build_impact",
+      "statement": "The impact analysis detects new cross-module dependencies",
+      "verdict": "UNDECIDABLE"
+    },
+    {
+      "detail": "caller 'tests/test_impact.py' not a Python symbol in the graph",
+      "ehash": "2cffff94c683",
+      "evidence": "tests/test_impact.py:70",
+      "id": "c-472bcd14",
+      "oracle": "none",
+      "predicate": "calls:tests/test_impact.py;build_impact",
+      "statement": "The impact analysis detects removed cross-module dependencies",
+      "verdict": "UNDECIDABLE"
+    }
+  ],
+  "graph_commit": "1a34c13ecf2ef7ce206f1ceeaeb1987fea5f8272",
+  "marks": [],
+  "mass": {
+    "gray": 15,
+    "green": 0,
+    "yellow": 18
+  },
+  "page": "tests-test_impact_py.md",
+  "prose_sha256": "b2445735e75679011b6277c9bcd396f7addd40bc33884cf5efa8cab52fc45595",
+  "version": "pcp-1",
+  "violations": []
+}

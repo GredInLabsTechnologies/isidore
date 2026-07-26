@@ -1,0 +1,85 @@
+{
+  "child_cert_hashes": {},
+  "claims": [
+    {
+      "detail": "no predicate (existence-anchored only)",
+      "ehash": "8d601f16147f",
+      "evidence": "src/isidore/whatsnew.py:1",
+      "id": "c-7a5d1dad",
+      "oracle": "none",
+      "predicate": "",
+      "statement": "The module generates verifiable changelogs by comparing API surfaces at two git revisions",
+      "verdict": "UNDECIDABLE"
+    },
+    {
+      "detail": "src/isidore/whatsnew.py defines DeltaEntry",
+      "ehash": "7bef4744a41b",
+      "evidence": "src/isidore/whatsnew.py:113",
+      "id": "c-496b23ea",
+      "oracle": "graph",
+      "predicate": "defines:src/isidore/whatsnew.py;DeltaEntry",
+      "statement": "DeltaEntry represents a typed novelty row with fields like kind, file, and line",
+      "verdict": "TRUE"
+    },
+    {
+      "detail": "src/isidore/whatsnew.py defines SurfaceDelta",
+      "ehash": "1aeaf73500c7",
+      "evidence": "src/isidore/whatsnew.py:142",
+      "id": "c-d462a529",
+      "oracle": "graph",
+      "predicate": "defines:src/isidore/whatsnew.py;SurfaceDelta",
+      "statement": "SurfaceDelta contains all changes between two revisions, including refs and SHAs",
+      "verdict": "TRUE"
+    },
+    {
+      "detail": "src/isidore/whatsnew.py defines WhatsnewResult",
+      "ehash": "e8926d486fb6",
+      "evidence": "src/isidore/whatsnew.py:163",
+      "id": "c-36361b9c",
+      "oracle": "graph",
+      "predicate": "defines:src/isidore/whatsnew.py;WhatsnewResult",
+      "statement": "WhatsnewResult combines the delta with paths to generated artifacts and metrics",
+      "verdict": "TRUE"
+    },
+    {
+      "detail": "no predicate (existence-anchored only)",
+      "ehash": "c20699da889b",
+      "evidence": "src/isidore/whatsnew.py:181",
+      "id": "c-b6ca81bd",
+      "oracle": "none",
+      "predicate": "",
+      "statement": "The module fails closed on git errors to avoid false claims",
+      "verdict": "UNDECIDABLE"
+    },
+    {
+      "detail": "no predicate (existence-anchored only)",
+      "ehash": "3a51db5e149c",
+      "evidence": "src/isidore/whatsnew.py:88",
+      "id": "c-5d600644",
+      "oracle": "none",
+      "predicate": "",
+      "statement": "The LLM tier only writes about API and internal changes, not tests or docs",
+      "verdict": "UNDECIDABLE"
+    }
+  ],
+  "graph_commit": "1a34c13ecf2ef7ce206f1ceeaeb1987fea5f8272",
+  "marks": [
+    {
+      "disposition": "",
+      "family": "topology",
+      "file": "src/isidore/whatsnew.py",
+      "line": 1,
+      "reason": "reachable from auth/secret surface: src/isidore/detectors.py",
+      "severity": "info"
+    }
+  ],
+  "mass": {
+    "gray": 22,
+    "green": 7,
+    "yellow": 8
+  },
+  "page": "src-isidore-whatsnew_py.md",
+  "prose_sha256": "3fb67882442d67c97fcfc82f1a43d6d5e33fdbc5d05e6f15b9e328780b2875ef",
+  "version": "pcp-1",
+  "violations": []
+}

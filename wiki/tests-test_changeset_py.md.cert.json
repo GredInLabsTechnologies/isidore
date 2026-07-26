@@ -1,0 +1,116 @@
+{
+  "child_cert_hashes": {},
+  "claims": [
+    {
+      "detail": "test_symbol_spans_accepts_span_and_start_only_forms calls symbol_spans",
+      "ehash": "1d0b905d13c7",
+      "evidence": "tests/test_changeset.py:24",
+      "id": "c-e036b149",
+      "oracle": "ast",
+      "predicate": "calls:test_symbol_spans_accepts_span_and_start_only_forms;symbol_spans",
+      "statement": "The module tests the `symbol_spans` function",
+      "verdict": "TRUE"
+    },
+    {
+      "detail": "test_symbol_spans_accepts_span_and_start_only_forms calls symbol_spans",
+      "ehash": "1d0b905d13c7",
+      "evidence": "tests/test_changeset.py:24",
+      "id": "c-06c8edaf",
+      "oracle": "ast",
+      "predicate": "calls:test_symbol_spans_accepts_span_and_start_only_forms;symbol_spans",
+      "statement": "The `test_symbol_spans_accepts_span_and_start_only_forms` test verifies symbol spans",
+      "verdict": "TRUE"
+    },
+    {
+      "detail": "test_changed_symbols_maps_lines_and_whole_file calls changed_symbols",
+      "ehash": "a1fd829dad5a",
+      "evidence": "tests/test_changeset.py:38",
+      "id": "c-4aa2844e",
+      "oracle": "ast",
+      "predicate": "calls:test_changed_symbols_maps_lines_and_whole_file;changed_symbols",
+      "statement": "The `test_changed_symbols_maps_lines_and_whole_file` test verifies changed symbols",
+      "verdict": "TRUE"
+    },
+    {
+      "detail": "test_affected_modules_is_changed_plus_fan_in_dependents calls affected_modules",
+      "ehash": "4b56a16c3ae7",
+      "evidence": "tests/test_changeset.py:47",
+      "id": "c-891e5265",
+      "oracle": "ast",
+      "predicate": "calls:test_affected_modules_is_changed_plus_fan_in_dependents;affected_modules",
+      "statement": "The `test_affected_modules_is_changed_plus_fan_in_dependents` test verifies affected modules",
+      "verdict": "TRUE"
+    },
+    {
+      "detail": "test_changed_lines_parses_new_side_hunks calls changed_lines",
+      "ehash": "a8a8f6aa21fc",
+      "evidence": "tests/test_changeset.py:62",
+      "id": "c-34ce4a45",
+      "oracle": "ast",
+      "predicate": "calls:test_changed_lines_parses_new_side_hunks;changed_lines",
+      "statement": "The `test_changed_lines_parses_new_side_hunks` test verifies changed lines",
+      "verdict": "TRUE"
+    },
+    {
+      "detail": "DEPTH == 2",
+      "ehash": "eca271603f97",
+      "evidence": "tests/test_changeset.py:16",
+      "id": "c-392fa01e",
+      "oracle": "ast",
+      "predicate": "value:DEPTH;2",
+      "statement": "The `DEPTH` constant is set to 2",
+      "verdict": "TRUE"
+    },
+    {
+      "detail": "no import edge tests/test_changeset.py->pytest in the graph; imports are partially resolved, so absence is not decidable",
+      "ehash": "db7b0741c947",
+      "evidence": "tests/test_changeset.py:7",
+      "id": "c-8ba929d8",
+      "oracle": "none",
+      "predicate": "imports:tests/test_changeset.py;pytest",
+      "statement": "The module depends on `pytest`",
+      "verdict": "UNDECIDABLE"
+    },
+    {
+      "detail": "no import edge tests/test_changeset.py->subprocess in the graph; imports are partially resolved, so absence is not decidable",
+      "ehash": "7d8752c4c7ea",
+      "evidence": "tests/test_changeset.py:5",
+      "id": "c-10b0eb2c",
+      "oracle": "none",
+      "predicate": "imports:tests/test_changeset.py;subprocess",
+      "statement": "The module depends on `subprocess`",
+      "verdict": "UNDECIDABLE"
+    },
+    {
+      "detail": "no import edge tests/test_changeset.py->shutil in the graph; imports are partially resolved, so absence is not decidable",
+      "ehash": "582f9ff727d7",
+      "evidence": "tests/test_changeset.py:4",
+      "id": "c-906e44fd",
+      "oracle": "none",
+      "predicate": "imports:tests/test_changeset.py;shutil",
+      "statement": "The module depends on `shutil`",
+      "verdict": "UNDECIDABLE"
+    },
+    {
+      "detail": "no import edge tests/test_changeset.py->isidore.changeset in the graph; imports are partially resolved, so absence is not decidable",
+      "ehash": "fbc2931546ea",
+      "evidence": "tests/test_changeset.py:9",
+      "id": "c-a3bcc0bd",
+      "oracle": "none",
+      "predicate": "imports:tests/test_changeset.py;isidore.changeset",
+      "statement": "The module depends on `isidore.changeset`",
+      "verdict": "UNDECIDABLE"
+    }
+  ],
+  "graph_commit": "1a34c13ecf2ef7ce206f1ceeaeb1987fea5f8272",
+  "marks": [],
+  "mass": {
+    "gray": 18,
+    "green": 18,
+    "yellow": 3
+  },
+  "page": "tests-test_changeset_py.md",
+  "prose_sha256": "5a74a05d63f6d010074391d75de7a9be5da656a0b65b2a6691082311beb93e63",
+  "version": "pcp-1",
+  "violations": []
+}

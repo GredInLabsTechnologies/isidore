@@ -1,0 +1,195 @@
+{
+  "child_cert_hashes": {},
+  "claims": [
+    {
+      "detail": "src/isidore/detectors.py defines SINKS",
+      "ehash": "077587e84882",
+      "evidence": "src/isidore/detectors.py:34",
+      "id": "c-88adfab5",
+      "oracle": "ast",
+      "predicate": "defines:src/isidore/detectors.py;SINKS",
+      "statement": "The module defines a SINKS table for Python and JavaScript/TypeScript files",
+      "verdict": "TRUE"
+    },
+    {
+      "detail": "no comparable literal assignment to ROOTS found",
+      "ehash": "c943d970554b",
+      "evidence": "src/isidore/detectors.py:25",
+      "id": "c-2c5f9fb3",
+      "oracle": "none",
+      "predicate": "value:ROOTS;(\"auth\", \"login\", \"session\", \"token\", \"secret\", \"crypto\", \"password\", \"credential\")",
+      "statement": "The ROOTS set contains security-sensitive file patterns",
+      "verdict": "UNDECIDABLE"
+    },
+    {
+      "detail": "_looks_like_secret calls shannon_entropy",
+      "ehash": "ed166de86e45",
+      "evidence": "src/isidore/detectors.py:75",
+      "id": "c-e9c3c73d",
+      "oracle": "ast",
+      "predicate": "calls:_looks_like_secret;shannon_entropy",
+      "statement": "The entropy detector uses Shannon entropy with a threshold of 3.5 bits/character",
+      "verdict": "TRUE"
+    },
+    {
+      "detail": "_scan_file calls search",
+      "ehash": "1b5a8889e3d0",
+      "evidence": "src/isidore/detectors.py:108",
+      "id": "c-9ed5afb6",
+      "oracle": "ast",
+      "predicate": "calls:_scan_file;re.search",
+      "statement": "The sink detector uses regex patterns from the SINKS table",
+      "verdict": "TRUE"
+    },
+    {
+      "detail": "TOPOLOGY_DEPTH == 2",
+      "ehash": "e6ee0c462d6f",
+      "evidence": "src/isidore/detectors.py:26",
+      "id": "c-8afaf211",
+      "oracle": "ast",
+      "predicate": "value:TOPOLOGY_DEPTH;2",
+      "statement": "The topology analysis performs a BFS with a depth limit of 2",
+      "verdict": "TRUE"
+    },
+    {
+      "detail": "src/isidore/detectors.py imports src/isidore/pcp.py",
+      "ehash": "2c78d2760dd2",
+      "evidence": "src/isidore/detectors.py:21",
+      "id": "c-ceb5bfe6",
+      "oracle": "graph",
+      "predicate": "imports:src/isidore/detectors.py;src/isidore/pcp.py",
+      "statement": "The module imports Mark and VerifyContext from pcp.py",
+      "verdict": "TRUE"
+    }
+  ],
+  "graph_commit": "1a34c13ecf2ef7ce206f1ceeaeb1987fea5f8272",
+  "marks": [
+    {
+      "disposition": "",
+      "family": "topology",
+      "file": "src/isidore/detectors.py",
+      "line": 1,
+      "reason": "auth/secret/crypto surface (direct)",
+      "severity": "info"
+    },
+    {
+      "disposition": "",
+      "family": "entropy",
+      "file": "src/isidore/detectors.py",
+      "line": 29,
+      "reason": "credential-shaped literal (-----BEGIN prefix)",
+      "severity": "danger"
+    },
+    {
+      "disposition": "",
+      "family": "entropy",
+      "file": "src/isidore/detectors.py",
+      "line": 29,
+      "reason": "credential-shaped literal (AIza prefix)",
+      "severity": "danger"
+    },
+    {
+      "disposition": "",
+      "family": "entropy",
+      "file": "src/isidore/detectors.py",
+      "line": 29,
+      "reason": "credential-shaped literal (AKIA prefix)",
+      "severity": "danger"
+    },
+    {
+      "disposition": "",
+      "family": "entropy",
+      "file": "src/isidore/detectors.py",
+      "line": 29,
+      "reason": "credential-shaped literal (gho_ prefix)",
+      "severity": "danger"
+    },
+    {
+      "disposition": "",
+      "family": "entropy",
+      "file": "src/isidore/detectors.py",
+      "line": 29,
+      "reason": "credential-shaped literal (ghp_ prefix)",
+      "severity": "danger"
+    },
+    {
+      "disposition": "",
+      "family": "entropy",
+      "file": "src/isidore/detectors.py",
+      "line": 29,
+      "reason": "credential-shaped literal (glpat- prefix)",
+      "severity": "danger"
+    },
+    {
+      "disposition": "",
+      "family": "entropy",
+      "file": "src/isidore/detectors.py",
+      "line": 29,
+      "reason": "credential-shaped literal (ya29. prefix)",
+      "severity": "danger"
+    },
+    {
+      "disposition": "",
+      "family": "sink",
+      "file": "src/isidore/detectors.py",
+      "line": 34,
+      "reason": "eval()",
+      "severity": "danger"
+    },
+    {
+      "disposition": "",
+      "family": "sink",
+      "file": "src/isidore/detectors.py",
+      "line": 35,
+      "reason": "exec()",
+      "severity": "danger"
+    },
+    {
+      "disposition": "",
+      "family": "sink",
+      "file": "src/isidore/detectors.py",
+      "line": 36,
+      "reason": "os.system()",
+      "severity": "danger"
+    },
+    {
+      "disposition": "",
+      "family": "sink",
+      "file": "src/isidore/detectors.py",
+      "line": 38,
+      "reason": "pickle.loads()",
+      "severity": "danger"
+    },
+    {
+      "disposition": "",
+      "family": "sink",
+      "file": "src/isidore/detectors.py",
+      "line": 39,
+      "reason": "yaml.load() without Loader",
+      "severity": "danger"
+    },
+    {
+      "disposition": "",
+      "family": "sink",
+      "file": "src/isidore/detectors.py",
+      "line": 43,
+      "reason": "eval()",
+      "severity": "danger"
+    }
+  ],
+  "mass": {
+    "gray": 36,
+    "green": 18,
+    "yellow": 0
+  },
+  "page": "src-isidore-detectors_py.md",
+  "prose_sha256": "c8a05a3a25cd41a979d1732050d9f48f66b724daa9208bfcc77ef82705c9f8cd",
+  "version": "pcp-1",
+  "violations": [
+    {
+      "detail": "Security-relevant mark (sink) at src/isidore/detectors.py:43 has no covering claim.",
+      "kind": "mark-uncovered",
+      "where": "src/isidore/detectors.py:43"
+    }
+  ]
+}

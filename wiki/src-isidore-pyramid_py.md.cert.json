@@ -1,0 +1,85 @@
+{
+  "child_cert_hashes": {},
+  "claims": [
+    {
+      "detail": "src/isidore/pyramid.py defines _claim_verdict",
+      "ehash": "ea21456ca50a",
+      "evidence": "src/isidore/pyramid.py:42",
+      "id": "c-a4194d1a",
+      "oracle": "graph",
+      "predicate": "defines:src/isidore/pyramid.py;_claim_verdict",
+      "statement": "The module verifies wiki:// claims by first checking certificates",
+      "verdict": "TRUE"
+    },
+    {
+      "detail": "_claim_verdict calls get",
+      "ehash": "00ddf930c3e5",
+      "evidence": "src/isidore/pyramid.py:56",
+      "id": "c-e299eba8",
+      "oracle": "ast",
+      "predicate": "calls:_claim_verdict;pages_state.get",
+      "statement": "The verifier falls back to pages_state if the certificate check fails",
+      "verdict": "TRUE"
+    },
+    {
+      "detail": "_seed_subsystems calls _top_dir",
+      "ehash": "1a5425c87358",
+      "evidence": "src/isidore/pyramid.py:109",
+      "id": "c-43f174fe",
+      "oracle": "ast",
+      "predicate": "calls:_seed_subsystems;_top_dir",
+      "statement": "Subsystems are initially grouped by top directory",
+      "verdict": "TRUE"
+    },
+    {
+      "detail": "no comparable literal assignment to relation found",
+      "ehash": "cad316eed4bb",
+      "evidence": "src/isidore/pyramid.py:116",
+      "id": "c-91508b69",
+      "oracle": "none",
+      "predicate": "value:relation;imports",
+      "statement": "Inter-subsystem dependencies are recorded from imports edges",
+      "verdict": "UNDECIDABLE"
+    },
+    {
+      "detail": "plan_pyramid calls get",
+      "ehash": "f09921055c7d",
+      "evidence": "src/isidore/pyramid.py:138",
+      "id": "c-38f8626d",
+      "oracle": "ast",
+      "predicate": "calls:plan_pyramid;pyramid.get",
+      "statement": "The pyramid planner supports explicit subsystem configuration",
+      "verdict": "TRUE"
+    },
+    {
+      "detail": "src/isidore/pyramid.py defines plan_pyramid",
+      "ehash": "78bd40561252",
+      "evidence": "src/isidore/pyramid.py:147",
+      "id": "c-93b4038f",
+      "oracle": "graph",
+      "predicate": "defines:src/isidore/pyramid.py;plan_pyramid",
+      "statement": "Product pages reference subsystems by name",
+      "verdict": "TRUE"
+    }
+  ],
+  "graph_commit": "1a34c13ecf2ef7ce206f1ceeaeb1987fea5f8272",
+  "marks": [
+    {
+      "disposition": "",
+      "family": "topology",
+      "file": "src/isidore/pyramid.py",
+      "line": 1,
+      "reason": "reachable from auth/secret surface: src/isidore/detectors.py",
+      "severity": "info"
+    }
+  ],
+  "mass": {
+    "gray": 17,
+    "green": 22,
+    "yellow": 1
+  },
+  "page": "src-isidore-pyramid_py.md",
+  "prose_sha256": "4faf09117673e740e66db74e0bc12969f1e706edd969a758aa53d448948883a6",
+  "version": "pcp-1",
+  "violations": []
+}

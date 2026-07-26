@@ -1,0 +1,66 @@
+{
+  "child_cert_hashes": {},
+  "claims": [
+    {
+      "detail": "no predicate (existence-anchored only)",
+      "ehash": "802ac45245fc",
+      "evidence": "src/isidore/langspec.py:11",
+      "id": "c-b2799216",
+      "oracle": "none",
+      "predicate": "",
+      "statement": "The module uses a declarative approach to define language rules",
+      "verdict": "UNDECIDABLE"
+    },
+    {
+      "detail": "no predicate (existence-anchored only)",
+      "ehash": "fd5cbf7c26e0",
+      "evidence": "src/isidore/langspec.py:56",
+      "id": "c-2829013d",
+      "oracle": "none",
+      "predicate": "",
+      "statement": "The engine sanitizes comments and strings to avoid false positives",
+      "verdict": "UNDECIDABLE"
+    },
+    {
+      "detail": "extract(text, spec)",
+      "ehash": "2400b7612c43",
+      "evidence": "src/isidore/langspec.py:130",
+      "id": "c-b6b5c7b3",
+      "oracle": "ast",
+      "predicate": "signature:extract;text;spec",
+      "statement": "The `extract()` function returns symbols and imports",
+      "verdict": "TRUE"
+    },
+    {
+      "detail": "extract calls sanitize",
+      "ehash": "fd5cbf7c26e0",
+      "evidence": "src/isidore/langspec.py:56",
+      "id": "c-42f4b8db",
+      "oracle": "ast",
+      "predicate": "calls:extract;sanitize",
+      "statement": "The `sanitize()` function preserves newlines and length",
+      "verdict": "TRUE"
+    },
+    {
+      "detail": "no import edge src/isidore/langspec.py->re in the graph; imports are partially resolved, so absence is not decidable",
+      "ehash": "a6284e6d3d43",
+      "evidence": "src/isidore/langspec.py:28",
+      "id": "c-3b7a37c8",
+      "oracle": "none",
+      "predicate": "imports:src/isidore/langspec.py;re",
+      "statement": "The module depends only on Python's standard library",
+      "verdict": "UNDECIDABLE"
+    }
+  ],
+  "graph_commit": "1a34c13ecf2ef7ce206f1ceeaeb1987fea5f8272",
+  "marks": [],
+  "mass": {
+    "gray": 16,
+    "green": 16,
+    "yellow": 0
+  },
+  "page": "src-isidore-langspec_py.md",
+  "prose_sha256": "3a7882d910ca75c971ea9bfd93c5bacd8ee15356dee862b8939318c02ccd70a4",
+  "version": "pcp-1",
+  "violations": []
+}

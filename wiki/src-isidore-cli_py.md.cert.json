@@ -1,0 +1,105 @@
+{
+  "child_cert_hashes": {},
+  "claims": [
+    {
+      "detail": "src/isidore/cli.py does not define cli",
+      "ehash": "f62eb76cad8c",
+      "evidence": "src/isidore/cli.py:1",
+      "id": "c-5eb2e94e",
+      "oracle": "ast",
+      "predicate": "defines:src/isidore/cli.py;cli",
+      "statement": "The module defines a CLI for Isidore with subcommands for scanning, compiling, and querying",
+      "verdict": "FALSE"
+    },
+    {
+      "detail": "calls expects (caller, callee)",
+      "ehash": "18dfc2eb6252",
+      "evidence": "src/isidore/cli.py:40",
+      "id": "c-27d3e192",
+      "oracle": "none",
+      "predicate": "calls:write_scan",
+      "statement": "The `scan` subcommand writes a structure graph to disk",
+      "verdict": "UNDECIDABLE"
+    },
+    {
+      "detail": "calls expects (caller, callee)",
+      "ehash": "a55e1d0f8b61",
+      "evidence": "src/isidore/cli.py:54",
+      "id": "c-7d66d28d",
+      "oracle": "none",
+      "predicate": "calls:_setting",
+      "statement": "The `compile` subcommand respects configuration precedence (CLI args > isidore.json > defaults)",
+      "verdict": "UNDECIDABLE"
+    },
+    {
+      "detail": "calls expects (caller, callee)",
+      "ehash": "49904d276003",
+      "evidence": "src/isidore/cli.py:111",
+      "id": "c-a29e70a6",
+      "oracle": "none",
+      "predicate": "calls:ask",
+      "statement": "The `ask` subcommand supports offline mode using verified claims",
+      "verdict": "UNDECIDABLE"
+    },
+    {
+      "detail": "calls expects (caller, callee)",
+      "ehash": "b4bbedafa324",
+      "evidence": "src/isidore/cli.py:139",
+      "id": "c-9bfd1064",
+      "oracle": "none",
+      "predicate": "calls:suggest_flows",
+      "statement": "The `suggest-flows` subcommand outputs candidates for isidore.json",
+      "verdict": "UNDECIDABLE"
+    },
+    {
+      "detail": "src/isidore/cli.py imports src/isidore/graph.py",
+      "ehash": "07796ddd52c8",
+      "evidence": "src/isidore/cli.py:17",
+      "id": "c-e075992e",
+      "oracle": "graph",
+      "predicate": "imports:src/isidore/cli.py;src/isidore/graph.py",
+      "statement": "The module imports `write_scan` from `graph.py`",
+      "verdict": "TRUE"
+    },
+    {
+      "detail": "src/isidore/cli.py imports src/isidore/pipeline.py",
+      "ehash": "7fd5b120789a",
+      "evidence": "src/isidore/cli.py:25",
+      "id": "c-9cc959e1",
+      "oracle": "graph",
+      "predicate": "imports:src/isidore/cli.py;src/isidore/pipeline.py",
+      "statement": "The module imports `compile_wiki` from `pipeline.py`",
+      "verdict": "TRUE"
+    },
+    {
+      "detail": "src/isidore/cli.py imports src/isidore/qa.py",
+      "ehash": "67c08eece514",
+      "evidence": "src/isidore/cli.py:29",
+      "id": "c-981e8e24",
+      "oracle": "graph",
+      "predicate": "imports:src/isidore/cli.py;src/isidore/qa.py",
+      "statement": "The module imports `ask` from `qa.py`",
+      "verdict": "TRUE"
+    }
+  ],
+  "graph_commit": "1a34c13ecf2ef7ce206f1ceeaeb1987fea5f8272",
+  "marks": [
+    {
+      "disposition": "",
+      "family": "topology",
+      "file": "src/isidore/cli.py",
+      "line": 1,
+      "reason": "reachable from auth/secret surface: src/isidore/detectors.py",
+      "severity": "info"
+    }
+  ],
+  "mass": {
+    "gray": 10,
+    "green": 12,
+    "yellow": 6
+  },
+  "page": "src-isidore-cli_py.md",
+  "prose_sha256": "b480feda110b802544587d29aac32ddc13f3b2181b6cb903a7391f0e01618d58",
+  "version": "pcp-1",
+  "violations": []
+}

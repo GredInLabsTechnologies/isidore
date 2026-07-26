@@ -1,0 +1,95 @@
+{
+  "child_cert_hashes": {},
+  "claims": [
+    {
+      "detail": "no predicate (existence-anchored only)",
+      "ehash": "87e3f6cb8856",
+      "evidence": "src/isidore/findings.py:1",
+      "id": "c-1b8b552a",
+      "oracle": "none",
+      "predicate": "",
+      "statement": "The module harvests findings from LLM and deterministic sources",
+      "verdict": "UNDECIDABLE"
+    },
+    {
+      "detail": "no predicate (existence-anchored only)",
+      "ehash": "25be119bb8c1",
+      "evidence": "src/isidore/findings.py:23",
+      "id": "c-d233ab86",
+      "oracle": "none",
+      "predicate": "",
+      "statement": "The findings are stored in wiki/findings.toon",
+      "verdict": "UNDECIDABLE"
+    },
+    {
+      "detail": "no predicate (existence-anchored only)",
+      "ehash": "c6d8fb02fbe3",
+      "evidence": "src/isidore/findings.py:70",
+      "id": "c-22ef5c2e",
+      "oracle": "none",
+      "predicate": "",
+      "statement": "The `parse_findings_block()` function splits markdown into clean prose and findings",
+      "verdict": "UNDECIDABLE"
+    },
+    {
+      "detail": "no predicate (existence-anchored only)",
+      "ehash": "a9c237fb4e32",
+      "evidence": "src/isidore/findings.py:86",
+      "id": "c-3ea89f6d",
+      "oracle": "none",
+      "predicate": "",
+      "statement": "The `finding_id()` function generates a stable ID for findings",
+      "verdict": "UNDECIDABLE"
+    },
+    {
+      "detail": "no predicate (existence-anchored only)",
+      "ehash": "c96053708e22",
+      "evidence": "src/isidore/findings.py:95",
+      "id": "c-cb2e7b03",
+      "oracle": "none",
+      "predicate": "",
+      "statement": "The `is_finding_resolved()` function checks resolutions in wiki/resolved_findings.json",
+      "verdict": "UNDECIDABLE"
+    },
+    {
+      "detail": "no predicate (existence-anchored only)",
+      "ehash": "443b82eb7075",
+      "evidence": "src/isidore/findings.py:109",
+      "id": "c-2da8efbc",
+      "oracle": "none",
+      "predicate": "",
+      "statement": "The `resolve_finding()` function records resolutions in wiki/resolved_findings.json",
+      "verdict": "UNDECIDABLE"
+    },
+    {
+      "detail": "no predicate (existence-anchored only)",
+      "ehash": "dad79853e188",
+      "evidence": "src/isidore/findings.py:146",
+      "id": "c-2a57f89f",
+      "oracle": "none",
+      "predicate": "",
+      "statement": "The `filter_findings()` function validates findings against the repository",
+      "verdict": "UNDECIDABLE"
+    }
+  ],
+  "graph_commit": "1a34c13ecf2ef7ce206f1ceeaeb1987fea5f8272",
+  "marks": [
+    {
+      "disposition": "",
+      "family": "topology",
+      "file": "src/isidore/findings.py",
+      "line": 1,
+      "reason": "reachable from auth/secret surface: src/isidore/detectors.py",
+      "severity": "info"
+    }
+  ],
+  "mass": {
+    "gray": 16,
+    "green": 0,
+    "yellow": 17
+  },
+  "page": "src-isidore-findings_py.md",
+  "prose_sha256": "0a00bd8efc192787c98ea125fcfc25cbd23bfca8ec9e1db924ea4fd161d76215",
+  "version": "pcp-1",
+  "violations": []
+}

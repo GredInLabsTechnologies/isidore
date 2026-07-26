@@ -1,0 +1,36 @@
+{
+  "child_cert_hashes": {},
+  "claims": [
+    {
+      "detail": "no predicate (existence-anchored only)",
+      "ehash": "644dd1c70598",
+      "evidence": "tests/test_plain.py:L1",
+      "id": "c-378e1474",
+      "oracle": "none",
+      "predicate": "",
+      "statement": "The plain-language gate is tested for named rules, one-sided verdicts, and the absence of readability scores",
+      "verdict": "UNDECIDABLE"
+    },
+    {
+      "detail": "no import edge tests/test_plain.py->isidore.plain in the graph; imports are partially resolved, so absence is not decidable",
+      "ehash": "a02838836e1c",
+      "evidence": "tests/test_plain.py:L4",
+      "id": "c-b7e0fe1f",
+      "oracle": "none",
+      "predicate": "imports:tests/test_plain.py;isidore.plain",
+      "statement": "The module imports RULES, check, explain, and is_plain from isidore.plain",
+      "verdict": "UNDECIDABLE"
+    }
+  ],
+  "graph_commit": "1a34c13ecf2ef7ce206f1ceeaeb1987fea5f8272",
+  "marks": [],
+  "mass": {
+    "gray": 18,
+    "green": 0,
+    "yellow": 17
+  },
+  "page": "tests-test_plain_py.md",
+  "prose_sha256": "b1c0c073b753d3748e66efbb88f936681eadfb265e7e44e9c9bce652613e3aeb",
+  "version": "pcp-1",
+  "violations": []
+}

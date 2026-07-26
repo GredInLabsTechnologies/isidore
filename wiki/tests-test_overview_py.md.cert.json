@@ -1,0 +1,66 @@
+{
+  "child_cert_hashes": {},
+  "claims": [
+    {
+      "detail": "no predicate (existence-anchored only)",
+      "ehash": "3c779363b8e8",
+      "evidence": "tests/test_overview.py:1",
+      "id": "c-52042481",
+      "oracle": "none",
+      "predicate": "",
+      "statement": "The module tests the overview compilation logic.",
+      "verdict": "UNDECIDABLE"
+    },
+    {
+      "detail": "tests/test_overview.py defines repo",
+      "ehash": "1119603b9942",
+      "evidence": "tests/test_overview.py:38",
+      "id": "c-284278d9",
+      "oracle": "graph",
+      "predicate": "defines:tests/test_overview.py;repo",
+      "statement": "The test repository includes a module page with verified claims.",
+      "verdict": "TRUE"
+    },
+    {
+      "detail": "caller 'tests/test_overview.py' not a Python symbol in the graph",
+      "ehash": "0ac4ddd35177",
+      "evidence": "tests/test_overview.py:55",
+      "id": "c-f607829c",
+      "oracle": "none",
+      "predicate": "calls:tests/test_overview.py;verified_claims",
+      "statement": "Only TRUE claims are included in the overview facts.",
+      "verdict": "UNDECIDABLE"
+    },
+    {
+      "detail": "caller 'tests/test_overview.py' not a Python symbol in the graph",
+      "ehash": "aa5b3896a181",
+      "evidence": "tests/test_overview.py:61",
+      "id": "c-740f311c",
+      "oracle": "none",
+      "predicate": "calls:tests/test_overview.py;compile_overview",
+      "statement": "A dry run does not call the LLM.",
+      "verdict": "UNDECIDABLE"
+    },
+    {
+      "detail": "caller 'tests/test_overview.py' not a Python symbol in the graph",
+      "ehash": "18656feb9a3d",
+      "evidence": "tests/test_overview.py:86",
+      "id": "c-c6717782",
+      "oracle": "none",
+      "predicate": "calls:tests/test_overview.py;compile_overview",
+      "statement": "The overview page is only published when it can be proven.",
+      "verdict": "UNDECIDABLE"
+    }
+  ],
+  "graph_commit": "1a34c13ecf2ef7ce206f1ceeaeb1987fea5f8272",
+  "marks": [],
+  "mass": {
+    "gray": 11,
+    "green": 16,
+    "yellow": 0
+  },
+  "page": "tests-test_overview_py.md",
+  "prose_sha256": "d82d98aee09e75ac2b60e6aec380be18f5f1c96c1f2de7031eb111d4c80ba36c",
+  "version": "pcp-1",
+  "violations": []
+}

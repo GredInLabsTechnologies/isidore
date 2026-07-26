@@ -1,15 +1,66 @@
 {
   "child_cert_hashes": {},
-  "claims": [],
-  "graph_commit": "14a96ad814d17fe89cf51e923b45d3b8a67f07e0",
+  "claims": [
+    {
+      "detail": "no predicate (existence-anchored only)",
+      "ehash": "768a285a689e",
+      "evidence": "tests/test_surface.py:1",
+      "id": "c-a597ecdd",
+      "oracle": "none",
+      "predicate": "",
+      "statement": "The module tests the API surface extraction logic",
+      "verdict": "UNDECIDABLE"
+    },
+    {
+      "detail": "tests/test_surface.py defines test_python_surface_covers_functions_methods_nested_and_constants",
+      "ehash": "d8ba66cf2794",
+      "evidence": "tests/test_surface.py:64",
+      "id": "c-cb239827",
+      "oracle": "graph",
+      "predicate": "defines:tests/test_surface.py;test_python_surface_covers_functions_methods_nested_and_constants",
+      "statement": "The test_python_surface_covers_functions_methods_nested_and_constants function verifies symbol extraction",
+      "verdict": "TRUE"
+    },
+    {
+      "detail": "tests/test_surface.py defines test_python_surface_marks_visibility_including_inheritance_from_the_container",
+      "ehash": "c9facc6a62a2",
+      "evidence": "tests/test_surface.py:79",
+      "id": "c-a15e08ab",
+      "oracle": "graph",
+      "predicate": "defines:tests/test_surface.py;test_python_surface_marks_visibility_including_inheritance_from_the_container",
+      "statement": "The test_python_surface_marks_visibility_including_inheritance_from_the_container function checks visibility rules",
+      "verdict": "TRUE"
+    },
+    {
+      "detail": "tests/test_surface.py defines test_python_signature_is_exact_and_survives_reformatting",
+      "ehash": "69fe24ffa7bc",
+      "evidence": "tests/test_surface.py:92",
+      "id": "c-6f9fd58e",
+      "oracle": "graph",
+      "predicate": "defines:tests/test_surface.py;test_python_signature_is_exact_and_survives_reformatting",
+      "statement": "The test_python_signature_is_exact_and_survives_reformatting function ensures signature stability",
+      "verdict": "TRUE"
+    },
+    {
+      "detail": "tests/test_surface.py defines test_python_signature_moves_when_a_default_or_parameter_changes",
+      "ehash": "81aa133d3353",
+      "evidence": "tests/test_surface.py:104",
+      "id": "c-1d053b85",
+      "oracle": "graph",
+      "predicate": "defines:tests/test_surface.py;test_python_signature_moves_when_a_default_or_parameter_changes",
+      "statement": "The test_python_signature_moves_when_a_default_or_parameter_changes function detects parameter changes",
+      "verdict": "TRUE"
+    }
+  ],
+  "graph_commit": "1a34c13ecf2ef7ce206f1ceeaeb1987fea5f8272",
   "marks": [],
   "mass": {
-    "gray": 25,
-    "green": 0,
+    "gray": 17,
+    "green": 18,
     "yellow": 0
   },
   "page": "tests-test_surface_py.md",
-  "prose_sha256": "59b422b8c82dfdffb00ab946c689690ced6a384c12c6b71708c3c0141022ad07",
+  "prose_sha256": "682f136fd8098d5cd526456893a62efc11692282fc5499be1dcaf2e61ab3a375",
   "version": "pcp-1",
   "violations": []
 }

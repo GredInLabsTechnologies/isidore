@@ -115,17 +115,43 @@ def v_calls(pred: Predicate, ctx: VerifyContext) -> Verdict:
 
 
 def v_defines(pred: Predicate, ctx: VerifyContext) -> Verdict:
-    """defines(file, symbol): the file defines a top-level symbol of that name. Oracle: graph."""
+    """defines(file, symbol): the file defines a symbol of that name. Oracles: graph, then AST.
+
+    The graph is consulted first and settles the common case, but its silence is NOT evidence of
+    absence: the scanner emits only top-level functions and classes, so a module constant, a method
+    or an annotated assignment are real definitions it never models. Judging those FALSE refutes true
+    claims — measured on this repo, `defines:claims.py;SEARCH_RADIUS` was refuted while the constant
+    sits at claims.py:26. `v_imports` already refuses to conclude absence from a partial oracle for
+    exactly this reason; `defines` now does the same, and reaches for the parser instead.
+
+    The asymmetry between languages is deliberate. Python is parsed exactly, so absence there IS
+    decidable and FALSE is safe. Every other language goes through the heuristic langspec engine,
+    which can miss a declaration it does not recognise, so a miss returns UNDECIDABLE — a verifier
+    may fail to prove a claim, it may never invent a refutation.
+    """
     if len(pred.args) != 2:
         return undecidable("defines expects (file, symbol)")
     rel, symbol = _norm(pred.args[0]), pred.args[1]
-    fnodes = _file_nodes(ctx, rel)
-    if not fnodes:
-        return undecidable(f"file '{rel}' not in the graph")
     want = symbol.rsplit(".", 1)[-1]
+    fnodes = _file_nodes(ctx, rel)
     if any(_symbol_base(n.get("label", "")) == want for n in fnodes):
         return Verdict(TRUE, ORACLE_GRAPH, f"{rel} defines {want}")
-    return Verdict(FALSE, ORACLE_GRAPH, f"{rel} does not define {want}")
+
+    source = _read_source(ctx, rel)
+    if source is None:
+        return undecidable(f"cannot read '{rel}' to decide" if fnodes
+                           else f"file '{rel}' not in the graph")
+    from .surface import extract_surface
+
+    symbols = extract_surface(source, Path(rel).suffix)
+    if symbols is None:
+        return undecidable(f"'{rel}' is not source this tool can parse")
+    if any(s.qualname == symbol or s.name == want for s in symbols):
+        return Verdict(TRUE, ORACLE_AST, f"{rel} defines {want}")
+    if rel.endswith(".py"):
+        return Verdict(FALSE, ORACLE_AST, f"{rel} does not define {want}")
+    return undecidable(f"no declaration of {want} found in '{rel}', but its language is scanned "
+                       "heuristically, so absence is not decidable")
 
 
 def v_exports(pred: Predicate, ctx: VerifyContext) -> Verdict:

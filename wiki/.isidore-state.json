@@ -1,6 +1,297 @@
 {
-  "commit": "14a96ad814d17fe89cf51e923b45d3b8a67f07e0",
-  "deps": [],
+  "commit": "1a34c13ecf2ef7ce206f1ceeaeb1987fea5f8272",
+  "deps": [
+    [
+      "src/isidore/__init__.py",
+      "src/isidore/pipeline.py",
+      1
+    ],
+    [
+      "src/isidore/__init__.py",
+      "src/isidore/qa.py",
+      1
+    ],
+    [
+      "src/isidore/changeset.py",
+      "src/isidore/graph.py",
+      1
+    ],
+    [
+      "src/isidore/claims.py",
+      "src/isidore/toon.py",
+      1
+    ],
+    [
+      "src/isidore/cli.py",
+      "src/isidore/graph.py",
+      1
+    ],
+    [
+      "src/isidore/cli.py",
+      "src/isidore/llm.py",
+      1
+    ],
+    [
+      "src/isidore/cli.py",
+      "src/isidore/pipeline.py",
+      1
+    ],
+    [
+      "src/isidore/cli.py",
+      "src/isidore/qa.py",
+      1
+    ],
+    [
+      "src/isidore/connectors",
+      "src/isidore/claims.py",
+      1
+    ],
+    [
+      "src/isidore/connectors",
+      "src/isidore/home.py",
+      3
+    ],
+    [
+      "src/isidore/contracts.py",
+      "src/isidore/pcp.py",
+      1
+    ],
+    [
+      "src/isidore/contracts.py",
+      "src/isidore/toon.py",
+      1
+    ],
+    [
+      "src/isidore/detectors.py",
+      "src/isidore/pcp.py",
+      1
+    ],
+    [
+      "src/isidore/export.py",
+      "src/isidore/claims.py",
+      1
+    ],
+    [
+      "src/isidore/export.py",
+      "src/isidore/pipeline.py",
+      1
+    ],
+    [
+      "src/isidore/findings.py",
+      "src/isidore/toon.py",
+      1
+    ],
+    [
+      "src/isidore/graph.py",
+      "src/isidore/langspec.py",
+      1
+    ],
+    [
+      "src/isidore/humanpack.py",
+      "src/isidore/graph.py",
+      1
+    ],
+    [
+      "src/isidore/humanpack.py",
+      "src/isidore/pcp.py",
+      1
+    ],
+    [
+      "src/isidore/impact.py",
+      "src/isidore/changeset.py",
+      1
+    ],
+    [
+      "src/isidore/impact.py",
+      "src/isidore/claims.py",
+      1
+    ],
+    [
+      "src/isidore/impact.py",
+      "src/isidore/graph.py",
+      1
+    ],
+    [
+      "src/isidore/impact.py",
+      "src/isidore/pipeline.py",
+      1
+    ],
+    [
+      "src/isidore/impact.py",
+      "src/isidore/toon.py",
+      1
+    ],
+    [
+      "src/isidore/journal.py",
+      "src/isidore/toon.py",
+      1
+    ],
+    [
+      "src/isidore/knowledge.py",
+      "src/isidore/claims.py",
+      1
+    ],
+    [
+      "src/isidore/knowledge.py",
+      "src/isidore/findings.py",
+      1
+    ],
+    [
+      "src/isidore/knowledge.py",
+      "src/isidore/home.py",
+      1
+    ],
+    [
+      "src/isidore/knowledge.py",
+      "src/isidore/llm.py",
+      1
+    ],
+    [
+      "src/isidore/pipeline.py",
+      "src/isidore/changeset.py",
+      1
+    ],
+    [
+      "src/isidore/pipeline.py",
+      "src/isidore/claims.py",
+      1
+    ],
+    [
+      "src/isidore/pipeline.py",
+      "src/isidore/detectors.py",
+      1
+    ],
+    [
+      "src/isidore/pipeline.py",
+      "src/isidore/findings.py",
+      1
+    ],
+    [
+      "src/isidore/pipeline.py",
+      "src/isidore/graph.py",
+      1
+    ],
+    [
+      "src/isidore/pipeline.py",
+      "src/isidore/journal.py",
+      1
+    ],
+    [
+      "src/isidore/pipeline.py",
+      "src/isidore/llm.py",
+      1
+    ],
+    [
+      "src/isidore/pipeline.py",
+      "src/isidore/pcp.py",
+      1
+    ],
+    [
+      "src/isidore/pipeline.py",
+      "src/isidore/reconcile.py",
+      1
+    ],
+    [
+      "src/isidore/pipeline.py",
+      "src/isidore/render.py",
+      1
+    ],
+    [
+      "src/isidore/pipeline.py",
+      "src/isidore/verify.py",
+      1
+    ],
+    [
+      "src/isidore/pyramid.py",
+      "src/isidore/pcp.py",
+      1
+    ],
+    [
+      "src/isidore/qa.py",
+      "src/isidore/graph.py",
+      1
+    ],
+    [
+      "src/isidore/qa.py",
+      "src/isidore/pipeline.py",
+      1
+    ],
+    [
+      "src/isidore/reconcile.py",
+      "src/isidore/pcp.py",
+      1
+    ],
+    [
+      "src/isidore/render.py",
+      "src/isidore/toon.py",
+      1
+    ],
+    [
+      "src/isidore/surface.py",
+      "src/isidore/langspec.py",
+      1
+    ],
+    [
+      "src/isidore/verify.py",
+      "src/isidore/graph.py",
+      1
+    ],
+    [
+      "src/isidore/verify.py",
+      "src/isidore/pcp.py",
+      1
+    ],
+    [
+      "src/isidore/whatsnew.py",
+      "src/isidore/claims.py",
+      1
+    ],
+    [
+      "src/isidore/whatsnew.py",
+      "src/isidore/graph.py",
+      1
+    ],
+    [
+      "src/isidore/whatsnew.py",
+      "src/isidore/langspec.py",
+      1
+    ],
+    [
+      "src/isidore/whatsnew.py",
+      "src/isidore/pcp.py",
+      1
+    ],
+    [
+      "src/isidore/whatsnew.py",
+      "src/isidore/pipeline.py",
+      1
+    ],
+    [
+      "src/isidore/whatsnew.py",
+      "src/isidore/plain.py",
+      2
+    ],
+    [
+      "src/isidore/whatsnew.py",
+      "src/isidore/render.py",
+      1
+    ],
+    [
+      "src/isidore/whatsnew.py",
+      "src/isidore/surface.py",
+      1
+    ],
+    [
+      "src/isidore/whatsnew.py",
+      "src/isidore/toon.py",
+      1
+    ],
+    [
+      "src/isidore/whatsnew.py",
+      "src/isidore/verify.py",
+      1
+    ]
+  ],
   "journal": [
     {
       "calls_saved": 0,
@@ -42,70 +333,111 @@
       "quarantined": 0,
       "retries": 0,
       "skipped": 0
+    },
+    {
+      "calls_saved": 8,
+      "commit": "1a34c13ecf2e",
+      "dirty": 32,
+      "generated": 32,
+      "generated_pages": [
+        "src-isidore-graph_py.md",
+        "src-isidore-pcp_py.md",
+        "src-isidore-claims_py.md",
+        "src-isidore-pipeline_py.md",
+        "src-isidore-home_py.md",
+        "src-isidore-langspec_py.md",
+        "src-isidore-changeset_py.md",
+        "src-isidore-findings_py.md",
+        "src-isidore-qa_py.md",
+        "src-isidore-verify_py.md",
+        "src-isidore-detectors_py.md",
+        "src-isidore-surface_py.md",
+        "src-isidore-cli_py.md",
+        "src-isidore-connectors.md",
+        "src-isidore-humanpack_py.md",
+        "src-isidore-knowledge_py.md",
+        "src-isidore-pyramid_py.md",
+        "src-isidore-whatsnew_py.md",
+        "tests-fixtures-pcp.md",
+        "tests-test_changeset_py.md",
+        "tests-test_detectors_py.md",
+        "tests-test_impact_py.md",
+        "tests-test_mcp_barrier_py.md",
+        "tests-test_overview_py.md",
+        "tests-test_pcp_pipeline_py.md",
+        "tests-test_plain_py.md",
+        "tests-test_pyramid_py.md",
+        "tests-test_reconcile_py.md",
+        "tests-test_residue_py.md",
+        "tests-test_surface_py.md",
+        "tests-test_whatsnew_py.md",
+        "tests-test_wiki_dir_env_py.md"
+      ],
+      "planned": 40,
+      "quarantined": 2,
+      "retries": 4,
+      "skipped": 0
     }
   ],
   "pages": {
-    "src-isidore.md": {
+    "src-isidore-changeset_py.md": {
       "claims": [
         {
-          "ehash": "dccd940a0f97",
-          "evidence": "src/isidore/pipeline.py:L1",
-          "id": "c-95bd8b22",
-          "predicate": "",
-          "statement": "The module generates documentation anchored to code structure",
-          "verdict": "UNDECIDABLE"
+          "ehash": "83ec2767721b",
+          "evidence": "src/isidore/changeset.py:36",
+          "id": "c-1ea2e1cc",
+          "predicate": "calls:changed_lines;_git_diff",
+          "statement": "The module processes git diffs to identify changed lines",
+          "verdict": "TRUE"
         },
         {
-          "ehash": "011d5c70491b",
-          "evidence": "src/isidore/graph.py:L11",
-          "id": "c-61f4c919",
-          "predicate": "",
-          "statement": "The graph format is tool-agnostic and can be produced by any tool",
-          "verdict": "UNDECIDABLE"
+          "ehash": "83ec2767721b",
+          "evidence": "src/isidore/changeset.py:36",
+          "id": "c-90be0b37",
+          "predicate": "defines:src/isidore/changeset.py;changed_lines",
+          "statement": "changed_lines() maps files to sets of changed line numbers",
+          "verdict": "TRUE"
         },
         {
-          "ehash": "906171e70802",
-          "evidence": "src/isidore/pipeline.py:L3",
-          "id": "c-a4d46e9c",
-          "predicate": "",
-          "statement": "The pipeline is deterministic except for the single bounded LLM call per dirty page",
-          "verdict": "UNDECIDABLE"
+          "ehash": "79c3be3cad9a",
+          "evidence": "src/isidore/changeset.py:68",
+          "id": "c-6b86763d",
+          "predicate": "defines:src/isidore/changeset.py;symbol_spans",
+          "statement": "symbol_spans() converts graph nodes to line ranges",
+          "verdict": "TRUE"
         },
         {
-          "ehash": "0a62f13a8963",
-          "evidence": "src/isidore/pcp.py:L21",
-          "id": "c-97885691",
-          "predicate": "",
-          "statement": "Proof-Carrying Prose uses JSON for machine-readable certificates",
-          "verdict": "UNDECIDABLE"
+          "ehash": "2c3c200bbe43",
+          "evidence": "src/isidore/changeset.py:95",
+          "id": "c-7ea4587c",
+          "predicate": "defines:src/isidore/changeset.py;changed_symbols",
+          "statement": "changed_symbols() maps changed lines to graph node IDs",
+          "verdict": "TRUE"
         },
         {
-          "ehash": "e1022c8ee33c",
-          "evidence": "src/isidore/verify.py:L3",
-          "id": "c-88e6dbbf",
-          "predicate": "",
-          "statement": "The verifiers decide a Predicate's truth against two oracles",
-          "verdict": "UNDECIDABLE"
+          "ehash": "36766a8c5844",
+          "evidence": "src/isidore/changeset.py:22",
+          "id": "c-436a43d3",
+          "predicate": "value:WHOLE_FILE;0",
+          "statement": "WHOLE_FILE is a sentinel for pure renames",
+          "verdict": "TRUE"
+        },
+        {
+          "ehash": "289a8f06db96",
+          "evidence": "src/isidore/changeset.py:15",
+          "id": "c-e4061fd8",
+          "predicate": "imports:src/isidore/changeset.py;src/isidore/graph.py",
+          "statement": "The module depends on graph.py's module_of",
+          "verdict": "TRUE"
         }
       ],
-      "compiled_at": "2026-07-25T21:31:54Z",
-      "context_hash": "8dfc28aa89a44b754d447aeb58593a1df00b257cbf01e56e6383571c31824db4",
+      "compiled_at": "2026-07-26T01:01:08Z",
+      "context_hash": "07dd641457c5a3b93a3d16d9500cb107bfd954c618b13eeacf9746e8d01de551",
       "findings": [],
       "history": [
         {
-          "commit": "3f4179988e00",
-          "line_delta": -2,
-          "sections_changed": [
-            "Architecture",
-            "Dependencies",
-            "How to change safely",
-            "Key entry points",
-            "Purpose"
-          ]
-        },
-        {
-          "commit": "14a96ad814d1",
-          "line_delta": -9,
+          "commit": "1a34c13ecf2e",
+          "line_delta": 34,
           "sections_changed": [
             "Architecture",
             "Dependencies",
@@ -116,7 +448,1471 @@
         }
       ],
       "kind": "module",
-      "name": "src/isidore",
+      "name": "src/isidore/changeset.py",
+      "quarantined": false
+    },
+    "src-isidore-claims_py.md": {
+      "claims": [
+        {
+          "ehash": "e7b4cb831799",
+          "evidence": "src/isidore/claims.py:1",
+          "id": "c-b4bccd57",
+          "predicate": "",
+          "statement": "The module defines claims as evidence-anchored statements about the code",
+          "verdict": "UNDECIDABLE"
+        },
+        {
+          "ehash": "a5c2de61e5be",
+          "evidence": "src/isidore/claims.py:103",
+          "id": "c-8ea600ba",
+          "predicate": "defines:src/isidore/claims.py;parse_claims_block",
+          "statement": "Claims are parsed from markdown fenced blocks",
+          "verdict": "TRUE"
+        },
+        {
+          "ehash": "22ca2a8b29b8",
+          "evidence": "src/isidore/claims.py:171",
+          "id": "c-85cc085c",
+          "predicate": "defines:src/isidore/claims.py;evidence_hash",
+          "statement": "The evidence hash is generated from the cited line's normalized content",
+          "verdict": "TRUE"
+        },
+        {
+          "ehash": "27d5f1e813f1",
+          "evidence": "src/isidore/claims.py:25",
+          "id": "c-5687a2c5",
+          "predicate": "value:SEARCH_RADIUS;40",
+          "statement": "The module uses a 40-line search radius for evidence",
+          "verdict": "TRUE"
+        },
+        {
+          "ehash": "27d5f1e813f1",
+          "evidence": "src/isidore/claims.py:25",
+          "id": "c-42643aa8",
+          "predicate": "value:CLAIMS_FILENAME;claims.toon",
+          "statement": "Claims are stored in a 'claims.toon' file",
+          "verdict": "TRUE"
+        },
+        {
+          "ehash": "78dcc01294ee",
+          "evidence": "src/isidore/claims.py:157",
+          "id": "c-36709047",
+          "predicate": "calls:_hash;hexdigest",
+          "statement": "The evidence hash is truncated to 12 hex characters",
+          "verdict": "TRUE"
+        }
+      ],
+      "compiled_at": "2026-07-26T01:00:41Z",
+      "context_hash": "ef51fbce81baebc106516c6a2bcd28c892868d820ccef90beb4cc51e47fd8d48",
+      "findings": [],
+      "history": [
+        {
+          "commit": "1a34c13ecf2e",
+          "line_delta": 27,
+          "sections_changed": [
+            "Architecture",
+            "Dependencies",
+            "How to change safely",
+            "Key entry points",
+            "Purpose"
+          ]
+        }
+      ],
+      "kind": "module",
+      "name": "src/isidore/claims.py",
+      "quarantined": false
+    },
+    "src-isidore-cli_py.md": {
+      "claims": [
+        {
+          "ehash": "18dfc2eb6252",
+          "evidence": "src/isidore/cli.py:40",
+          "id": "c-27d3e192",
+          "predicate": "calls:write_scan",
+          "statement": "The `scan` subcommand writes a structure graph to disk",
+          "verdict": "UNDECIDABLE"
+        },
+        {
+          "ehash": "a55e1d0f8b61",
+          "evidence": "src/isidore/cli.py:54",
+          "id": "c-7d66d28d",
+          "predicate": "calls:_setting",
+          "statement": "The `compile` subcommand respects configuration precedence (CLI args > isidore.json > defaults)",
+          "verdict": "UNDECIDABLE"
+        },
+        {
+          "ehash": "49904d276003",
+          "evidence": "src/isidore/cli.py:111",
+          "id": "c-a29e70a6",
+          "predicate": "calls:ask",
+          "statement": "The `ask` subcommand supports offline mode using verified claims",
+          "verdict": "UNDECIDABLE"
+        },
+        {
+          "ehash": "b4bbedafa324",
+          "evidence": "src/isidore/cli.py:139",
+          "id": "c-9bfd1064",
+          "predicate": "calls:suggest_flows",
+          "statement": "The `suggest-flows` subcommand outputs candidates for isidore.json",
+          "verdict": "UNDECIDABLE"
+        },
+        {
+          "ehash": "07796ddd52c8",
+          "evidence": "src/isidore/cli.py:17",
+          "id": "c-e075992e",
+          "predicate": "imports:src/isidore/cli.py;src/isidore/graph.py",
+          "statement": "The module imports `write_scan` from `graph.py`",
+          "verdict": "TRUE"
+        },
+        {
+          "ehash": "7fd5b120789a",
+          "evidence": "src/isidore/cli.py:25",
+          "id": "c-9cc959e1",
+          "predicate": "imports:src/isidore/cli.py;src/isidore/pipeline.py",
+          "statement": "The module imports `compile_wiki` from `pipeline.py`",
+          "verdict": "TRUE"
+        },
+        {
+          "ehash": "67c08eece514",
+          "evidence": "src/isidore/cli.py:29",
+          "id": "c-981e8e24",
+          "predicate": "imports:src/isidore/cli.py;src/isidore/qa.py",
+          "statement": "The module imports `ask` from `qa.py`",
+          "verdict": "TRUE"
+        }
+      ],
+      "compiled_at": "2026-07-26T01:02:04Z",
+      "context_hash": "201dcefa3045522eee685d52ec40ea68eca656e9c7e393e8a32a7f3f85548a64",
+      "findings": [],
+      "history": [
+        {
+          "commit": "1a34c13ecf2e",
+          "line_delta": 24,
+          "sections_changed": [
+            "Architecture",
+            "Dependencies",
+            "How to change safely",
+            "Key entry points",
+            "Purpose"
+          ]
+        }
+      ],
+      "kind": "module",
+      "name": "src/isidore/cli.py",
+      "quarantined": false
+    },
+    "src-isidore-connectors.md": {
+      "claims": [
+        {
+          "ehash": "27b1a261a063",
+          "evidence": "src/isidore/connectors/store.py:23",
+          "id": "c-af79e99f",
+          "predicate": "signature:create_run_id",
+          "statement": "The `store.py` module defines a function `create_run_id` that generates a sortable, collision-resistant run ID.",
+          "verdict": "TRUE"
+        },
+        {
+          "ehash": "cea4dd1938a6",
+          "evidence": "src/isidore/connectors/git_repo.py:24",
+          "id": "c-86472f18",
+          "predicate": "",
+          "statement": "The `git-repo` connector emits items with IDs of the form `<repo-name>@<head-sha>`.",
+          "verdict": "UNDECIDABLE"
+        },
+        {
+          "ehash": "af99863cb756",
+          "evidence": "src/isidore/connectors/mcp.py:26",
+          "id": "c-52b404a1",
+          "predicate": "",
+          "statement": "The `mcp.py` connector enforces read-only operations by checking the `readOnlyHint` annotation.",
+          "verdict": "UNDECIDABLE"
+        },
+        {
+          "ehash": "2b34f02a03f5",
+          "evidence": "src/isidore/connectors/base.py:21",
+          "id": "c-ed177ea8",
+          "predicate": "defines:src/isidore/connectors/base.py;IngestResult",
+          "statement": "The `base.py` module defines the `IngestResult` dataclass with fields for `connector_id`, `status`, and `raw_files`.",
+          "verdict": "TRUE"
+        },
+        {
+          "ehash": "bf66e1178c7f",
+          "evidence": "src/isidore/connectors/store.py:18",
+          "id": "c-6d703e9b",
+          "predicate": "imports:src/isidore/connectors/store.py;src/isidore/home.py",
+          "statement": "The `store.py` module imports `safe_mkdir` and `state_path` from `src/isidore/home.py`.",
+          "verdict": "TRUE"
+        },
+        {
+          "ehash": "7d390781487f",
+          "evidence": "src/isidore/connectors/git_repo.py:18",
+          "id": "c-6a3be8cb",
+          "predicate": "calls:src/isidore/connectors/git_repo.py;read_state",
+          "statement": "The `git-repo` connector uses the `store.py` functions `read_state`, `record_run`, and `write_items`.",
+          "verdict": "UNDECIDABLE"
+        },
+        {
+          "ehash": "ce700810711d",
+          "evidence": "src/isidore/connectors/mcp.py:17",
+          "id": "c-764e8bbe",
+          "predicate": "imports:src/isidore/connectors/mcp.py;src/isidore/connectors/base.py",
+          "statement": "The `mcp.py` connector imports `IngestOptions` and `IngestResult` from `base.py`.",
+          "verdict": "TRUE"
+        },
+        {
+          "ehash": "d9308040565d",
+          "evidence": "src/isidore/connectors/store.py:20",
+          "id": "c-f230442f",
+          "predicate": "value:_DEFAULT_STATE;{\"version\": 1, \"cursors\": {}, \"runs\": []}",
+          "statement": "The `store.py` module defines `_DEFAULT_STATE` as a dictionary with keys `version`, `cursors`, and `runs`.",
+          "verdict": "UNDECIDABLE"
+        }
+      ],
+      "compiled_at": "2026-07-26T01:02:13Z",
+      "context_hash": "cf51ebe8d9b4de65dcc0bc0b1cf3d26458d05f1f59f4cf7034786d3debd922dc",
+      "findings": [],
+      "history": [
+        {
+          "commit": "1a34c13ecf2e",
+          "line_delta": 23,
+          "sections_changed": [
+            "Architecture",
+            "Dependencies",
+            "How to change safely",
+            "Key entry points",
+            "Purpose"
+          ]
+        }
+      ],
+      "kind": "module",
+      "name": "src/isidore/connectors",
+      "quarantined": false
+    },
+    "src-isidore-detectors_py.md": {
+      "claims": [
+        {
+          "ehash": "077587e84882",
+          "evidence": "src/isidore/detectors.py:34",
+          "id": "c-88adfab5",
+          "predicate": "defines:src/isidore/detectors.py;SINKS",
+          "statement": "The module defines a SINKS table for Python and JavaScript/TypeScript files",
+          "verdict": "TRUE"
+        },
+        {
+          "ehash": "c943d970554b",
+          "evidence": "src/isidore/detectors.py:25",
+          "id": "c-2c5f9fb3",
+          "predicate": "value:ROOTS;(\"auth\", \"login\", \"session\", \"token\", \"secret\", \"crypto\", \"password\", \"credential\")",
+          "statement": "The ROOTS set contains security-sensitive file patterns",
+          "verdict": "UNDECIDABLE"
+        },
+        {
+          "ehash": "ed166de86e45",
+          "evidence": "src/isidore/detectors.py:75",
+          "id": "c-e9c3c73d",
+          "predicate": "calls:_looks_like_secret;shannon_entropy",
+          "statement": "The entropy detector uses Shannon entropy with a threshold of 3.5 bits/character",
+          "verdict": "TRUE"
+        },
+        {
+          "ehash": "1b5a8889e3d0",
+          "evidence": "src/isidore/detectors.py:108",
+          "id": "c-9ed5afb6",
+          "predicate": "calls:_scan_file;re.search",
+          "statement": "The sink detector uses regex patterns from the SINKS table",
+          "verdict": "TRUE"
+        },
+        {
+          "ehash": "e6ee0c462d6f",
+          "evidence": "src/isidore/detectors.py:26",
+          "id": "c-8afaf211",
+          "predicate": "value:TOPOLOGY_DEPTH;2",
+          "statement": "The topology analysis performs a BFS with a depth limit of 2",
+          "verdict": "TRUE"
+        },
+        {
+          "ehash": "2c78d2760dd2",
+          "evidence": "src/isidore/detectors.py:21",
+          "id": "c-ceb5bfe6",
+          "predicate": "imports:src/isidore/detectors.py;src/isidore/pcp.py",
+          "statement": "The module imports Mark and VerifyContext from pcp.py",
+          "verdict": "TRUE"
+        }
+      ],
+      "compiled_at": "2026-07-26T01:01:42Z",
+      "context_hash": "6ac7017041acbf74a60d4f7858d813b93783ee797cf533d2fd634fcfe0c6b316",
+      "findings": [],
+      "history": [
+        {
+          "commit": "1a34c13ecf2e",
+          "line_delta": 43,
+          "sections_changed": [
+            "(intro)",
+            "Architecture",
+            "Dependencies",
+            "How to change safely",
+            "Key entry points",
+            "Purpose"
+          ]
+        }
+      ],
+      "kind": "module",
+      "name": "src/isidore/detectors.py",
+      "quarantined": false
+    },
+    "src-isidore-findings_py.md": {
+      "claims": [
+        {
+          "ehash": "87e3f6cb8856",
+          "evidence": "src/isidore/findings.py:1",
+          "id": "c-1b8b552a",
+          "predicate": "",
+          "statement": "The module harvests findings from LLM and deterministic sources",
+          "verdict": "UNDECIDABLE"
+        },
+        {
+          "ehash": "25be119bb8c1",
+          "evidence": "src/isidore/findings.py:23",
+          "id": "c-d233ab86",
+          "predicate": "",
+          "statement": "The findings are stored in wiki/findings.toon",
+          "verdict": "UNDECIDABLE"
+        },
+        {
+          "ehash": "c6d8fb02fbe3",
+          "evidence": "src/isidore/findings.py:70",
+          "id": "c-22ef5c2e",
+          "predicate": "",
+          "statement": "The `parse_findings_block()` function splits markdown into clean prose and findings",
+          "verdict": "UNDECIDABLE"
+        },
+        {
+          "ehash": "a9c237fb4e32",
+          "evidence": "src/isidore/findings.py:86",
+          "id": "c-3ea89f6d",
+          "predicate": "",
+          "statement": "The `finding_id()` function generates a stable ID for findings",
+          "verdict": "UNDECIDABLE"
+        },
+        {
+          "ehash": "c96053708e22",
+          "evidence": "src/isidore/findings.py:95",
+          "id": "c-cb2e7b03",
+          "predicate": "",
+          "statement": "The `is_finding_resolved()` function checks resolutions in wiki/resolved_findings.json",
+          "verdict": "UNDECIDABLE"
+        },
+        {
+          "ehash": "443b82eb7075",
+          "evidence": "src/isidore/findings.py:109",
+          "id": "c-2da8efbc",
+          "predicate": "",
+          "statement": "The `resolve_finding()` function records resolutions in wiki/resolved_findings.json",
+          "verdict": "UNDECIDABLE"
+        },
+        {
+          "ehash": "dad79853e188",
+          "evidence": "src/isidore/findings.py:146",
+          "id": "c-2a57f89f",
+          "predicate": "",
+          "statement": "The `filter_findings()` function validates findings against the repository",
+          "verdict": "UNDECIDABLE"
+        }
+      ],
+      "compiled_at": "2026-07-26T01:01:20Z",
+      "context_hash": "0baa22b409078a4037c470f629ab6cee36e4a656e6442e4828f6ba4b02ed0d56",
+      "findings": [],
+      "history": [
+        {
+          "commit": "1a34c13ecf2e",
+          "line_delta": 30,
+          "sections_changed": [
+            "Architecture",
+            "Dependencies",
+            "How to change safely",
+            "Key entry points",
+            "Purpose"
+          ]
+        }
+      ],
+      "kind": "module",
+      "name": "src/isidore/findings.py",
+      "quarantined": true
+    },
+    "src-isidore-graph_py.md": {
+      "claims": [
+        {
+          "ehash": "375346641a62",
+          "evidence": "src/isidore/graph.py:54",
+          "id": "c-dfca30af",
+          "predicate": "defines:src/isidore/graph.py;load_graph",
+          "statement": "The graph format requires nodes to be a list",
+          "verdict": "TRUE"
+        },
+        {
+          "ehash": "90274b9bdde4",
+          "evidence": "src/isidore/graph.py:55",
+          "id": "c-ee546780",
+          "predicate": "defines:src/isidore/graph.py;load_graph",
+          "statement": "The graph format requires links to be a list",
+          "verdict": "TRUE"
+        },
+        {
+          "ehash": "d561e60320be",
+          "evidence": "src/isidore/graph.py:31",
+          "id": "c-7e203abe",
+          "predicate": "imports:src/isidore/graph.py;src/isidore/langspec.py",
+          "statement": "The module imports language specifications from langspec.py",
+          "verdict": "TRUE"
+        },
+        {
+          "ehash": "3bfecaad11de",
+          "evidence": "src/isidore/graph.py:42",
+          "id": "c-bde6a71d",
+          "predicate": "defines:src/isidore/graph.py;GraphError",
+          "statement": "The module defines a GraphError exception for invalid graphs",
+          "verdict": "TRUE"
+        },
+        {
+          "ehash": "28e3ad9d52ec",
+          "evidence": "src/isidore/graph.py:47",
+          "id": "c-b3552b66",
+          "predicate": "calls:load_graph;read_text",
+          "statement": "The module uses UTF-8 encoding for file operations",
+          "verdict": "TRUE"
+        },
+        {
+          "ehash": "6da28815e310",
+          "evidence": "src/isidore/graph.py:81",
+          "id": "c-0b91488c",
+          "predicate": "calls:module_of;replace",
+          "statement": "The module normalizes paths to POSIX format",
+          "verdict": "TRUE"
+        },
+        {
+          "ehash": "02548f2e276f",
+          "evidence": "src/isidore/graph.py:33",
+          "id": "c-4032b74c",
+          "predicate": "value:CONCEPTS_BUCKET;(concepts)",
+          "statement": "The module defines a concepts bucket for files without sources",
+          "verdict": "TRUE"
+        }
+      ],
+      "compiled_at": "2026-07-26T01:00:28Z",
+      "context_hash": "ffb868d67c88df34e8097f2940e03fe9dbc84d7398e3c8016f643d24f3e2240d",
+      "findings": [],
+      "history": [
+        {
+          "commit": "1a34c13ecf2e",
+          "line_delta": 34,
+          "sections_changed": [
+            "Architecture",
+            "Dependencies",
+            "How to change safely",
+            "Key entry points",
+            "Purpose"
+          ]
+        }
+      ],
+      "kind": "module",
+      "name": "src/isidore/graph.py",
+      "quarantined": false
+    },
+    "src-isidore-home_py.md": {
+      "claims": [
+        {
+          "ehash": "cae2ee2c6921",
+          "evidence": "src/isidore/home.py:16",
+          "id": "c-54a080bd",
+          "predicate": "value:DEFAULT_HOME;~/.isidore",
+          "statement": "The knowledge home defaults to `~/.isidore`",
+          "verdict": "UNDECIDABLE"
+        },
+        {
+          "ehash": "38904d9668e7",
+          "evidence": "src/isidore/home.py:15",
+          "id": "c-24dd88fe",
+          "predicate": "env:ISIDORE_HOME",
+          "statement": "The `ISIDORE_HOME` environment variable overrides the default home path",
+          "verdict": "TRUE"
+        },
+        {
+          "ehash": "cae2ee2c6921",
+          "evidence": "src/isidore/home.py:16",
+          "id": "c-9fc9132f",
+          "predicate": "calls:home;Path",
+          "statement": "The `home()` function resolves paths using `pathlib.Path`",
+          "verdict": "TRUE"
+        },
+        {
+          "ehash": "80694f635c81",
+          "evidence": "src/isidore/home.py:20",
+          "id": "c-86b46332",
+          "predicate": "calls:connector_dir;home",
+          "statement": "The `connector_dir` function constructs paths under `home() / \"connectors\" / cid`",
+          "verdict": "TRUE"
+        },
+        {
+          "ehash": "43fe62d20f47",
+          "evidence": "src/isidore/home.py:25",
+          "id": "c-32319464",
+          "predicate": "calls:raw_dir;connector_dir",
+          "statement": "The `raw_dir` function appends `raw/run_id` to the connector directory",
+          "verdict": "TRUE"
+        },
+        {
+          "ehash": "388ba642bb3e",
+          "evidence": "src/isidore/home.py:29",
+          "id": "c-05809ebd",
+          "predicate": "calls:config_path;connector_dir",
+          "statement": "The `config_path` function returns `config.json` in the connector directory",
+          "verdict": "TRUE"
+        },
+        {
+          "ehash": "332a684d54ef",
+          "evidence": "src/isidore/home.py:33",
+          "id": "c-11f5ace6",
+          "predicate": "calls:state_path;connector_dir",
+          "statement": "The `state_path` function returns `state.json` in the connector directory",
+          "verdict": "TRUE"
+        },
+        {
+          "ehash": "4dc17f82c08f",
+          "evidence": "src/isidore/home.py:37",
+          "id": "c-08ef5939",
+          "predicate": "calls:knowledge_dir;home",
+          "statement": "The `knowledge_dir` function returns `home() / \"knowledge\"`",
+          "verdict": "TRUE"
+        },
+        {
+          "ehash": "4db677f5431a",
+          "evidence": "src/isidore/home.py:53",
+          "id": "c-a9f86090",
+          "predicate": "calls:safe_mkdir;mkdir",
+          "statement": "The `safe_mkdir` function creates directories recursively with restrictive permissions",
+          "verdict": "TRUE"
+        }
+      ],
+      "compiled_at": "2026-07-26T01:00:56Z",
+      "context_hash": "b1988e03378c44875a5d4be799d1ed8083646b5870ee127f302671ab4995571a",
+      "findings": [],
+      "history": [
+        {
+          "commit": "1a34c13ecf2e",
+          "line_delta": 24,
+          "sections_changed": [
+            "Architecture",
+            "Dependencies",
+            "How to change safely",
+            "Key entry points",
+            "Purpose"
+          ]
+        }
+      ],
+      "kind": "module",
+      "name": "src/isidore/home.py",
+      "quarantined": false
+    },
+    "src-isidore-humanpack_py.md": {
+      "claims": [
+        {
+          "ehash": "26aeb924df3f",
+          "evidence": "src/isidore/humanpack.py:1",
+          "id": "c-a18b42c0",
+          "predicate": "",
+          "statement": "The module generates a self-contained HTML/PDF onboarding pack",
+          "verdict": "UNDECIDABLE"
+        },
+        {
+          "ehash": "a4a988157ce6",
+          "evidence": "src/isidore/humanpack.py:10",
+          "id": "c-f3f98252",
+          "predicate": "",
+          "statement": "The module avoids LLM dependencies",
+          "verdict": "UNDECIDABLE"
+        },
+        {
+          "ehash": "905923120838",
+          "evidence": "src/isidore/humanpack.py:20",
+          "id": "c-2529691a",
+          "predicate": "imports:src/isidore/humanpack.py;src/isidore/graph.py",
+          "statement": "The module uses `load_graph` from `src/isidore/graph.py`",
+          "verdict": "TRUE"
+        }
+      ],
+      "compiled_at": "2026-07-26T01:02:22Z",
+      "context_hash": "f89ddc5d776fdc1d09af3c70de8c4143b3c2597865c21eb863032ddaebde41a0",
+      "findings": [],
+      "history": [
+        {
+          "commit": "1a34c13ecf2e",
+          "line_delta": 39,
+          "sections_changed": [
+            "Architecture",
+            "Dependencies",
+            "How to change safely",
+            "Key entry points",
+            "Purpose"
+          ]
+        }
+      ],
+      "kind": "module",
+      "name": "src/isidore/humanpack.py",
+      "quarantined": false
+    },
+    "src-isidore-knowledge_py.md": {
+      "claims": [
+        {
+          "ehash": "35ec918b4efd",
+          "evidence": "src/isidore/knowledge.py:52",
+          "id": "c-547c45df",
+          "predicate": "defines:src/isidore/knowledge.py;TopicCompileResult",
+          "statement": "The module defines a TopicCompileResult dataclass to track compilation metrics",
+          "verdict": "TRUE"
+        },
+        {
+          "ehash": "f42dee566103",
+          "evidence": "src/isidore/knowledge.py:73",
+          "id": "c-7ed6a2b2",
+          "predicate": "defines:src/isidore/knowledge.py;knowledge_dir",
+          "statement": "The knowledge_dir() function returns the path to the knowledge directory",
+          "verdict": "TRUE"
+        },
+        {
+          "ehash": "a9d633aec870",
+          "evidence": "src/isidore/knowledge.py:79",
+          "id": "c-d31de57f",
+          "predicate": "defines:src/isidore/knowledge.py;state_path",
+          "statement": "The state_path() function returns the path to the state file",
+          "verdict": "TRUE"
+        },
+        {
+          "ehash": "43d9e4ebf853",
+          "evidence": "src/isidore/knowledge.py:83",
+          "id": "c-503e35b4",
+          "predicate": "defines:src/isidore/knowledge.py;load_knowledge_state",
+          "statement": "The load_knowledge_state() function loads the state from the state file",
+          "verdict": "TRUE"
+        },
+        {
+          "ehash": "1b3f1b6d4138",
+          "evidence": "src/isidore/knowledge.py:97",
+          "id": "c-4872e9bb",
+          "predicate": "defines:src/isidore/knowledge.py;write_knowledge_state",
+          "statement": "The write_knowledge_state() function writes the state to the state file",
+          "verdict": "TRUE"
+        },
+        {
+          "ehash": "f07be74381ff",
+          "evidence": "src/isidore/knowledge.py:106",
+          "id": "c-853e782f",
+          "predicate": "defines:src/isidore/knowledge.py;load_topics",
+          "statement": "The load_topics() function loads topics from the topics.json file",
+          "verdict": "TRUE"
+        }
+      ],
+      "compiled_at": "2026-07-26T01:02:39Z",
+      "context_hash": "5379c8a68d7564ab4fe76abaf917821ff0346fb382f532627e957988b6a44046",
+      "findings": [],
+      "history": [
+        {
+          "commit": "1a34c13ecf2e",
+          "line_delta": 29,
+          "sections_changed": [
+            "Architecture",
+            "Dependencies",
+            "How to change safely",
+            "Key entry points",
+            "Purpose"
+          ]
+        }
+      ],
+      "kind": "module",
+      "name": "src/isidore/knowledge.py",
+      "quarantined": true
+    },
+    "src-isidore-langspec_py.md": {
+      "claims": [
+        {
+          "ehash": "802ac45245fc",
+          "evidence": "src/isidore/langspec.py:11",
+          "id": "c-b2799216",
+          "predicate": "",
+          "statement": "The module uses a declarative approach to define language rules",
+          "verdict": "UNDECIDABLE"
+        },
+        {
+          "ehash": "fd5cbf7c26e0",
+          "evidence": "src/isidore/langspec.py:56",
+          "id": "c-2829013d",
+          "predicate": "",
+          "statement": "The engine sanitizes comments and strings to avoid false positives",
+          "verdict": "UNDECIDABLE"
+        },
+        {
+          "ehash": "2400b7612c43",
+          "evidence": "src/isidore/langspec.py:130",
+          "id": "c-b6b5c7b3",
+          "predicate": "signature:extract;text;spec",
+          "statement": "The `extract()` function returns symbols and imports",
+          "verdict": "TRUE"
+        },
+        {
+          "ehash": "fd5cbf7c26e0",
+          "evidence": "src/isidore/langspec.py:56",
+          "id": "c-42f4b8db",
+          "predicate": "calls:extract;sanitize",
+          "statement": "The `sanitize()` function preserves newlines and length",
+          "verdict": "TRUE"
+        },
+        {
+          "ehash": "a6284e6d3d43",
+          "evidence": "src/isidore/langspec.py:28",
+          "id": "c-3b7a37c8",
+          "predicate": "imports:src/isidore/langspec.py;re",
+          "statement": "The module depends only on Python's standard library",
+          "verdict": "UNDECIDABLE"
+        }
+      ],
+      "compiled_at": "2026-07-26T01:01:03Z",
+      "context_hash": "5c67209a8ff502eaa4eedb3dd9701a713e6efad18dc9b3c841a3cb2245deb86e",
+      "findings": [],
+      "history": [
+        {
+          "commit": "1a34c13ecf2e",
+          "line_delta": 23,
+          "sections_changed": [
+            "Architecture",
+            "Dependencies",
+            "How to change safely",
+            "Key entry points",
+            "Purpose"
+          ]
+        }
+      ],
+      "kind": "module",
+      "name": "src/isidore/langspec.py",
+      "quarantined": false
+    },
+    "src-isidore-pcp_py.md": {
+      "claims": [
+        {
+          "ehash": "8e1e911e3d03",
+          "evidence": "src/isidore/pcp.py:1",
+          "id": "c-6df0b9eb",
+          "predicate": "",
+          "statement": "The module defines a frozen seam for PCP",
+          "verdict": "UNDECIDABLE"
+        },
+        {
+          "ehash": "0dd68e58fa2e",
+          "evidence": "src/isidore/pcp.py:64",
+          "id": "c-a3d25328",
+          "predicate": "value:PREDICATE_KINDS;{\"calls\", \"defines\", \"exports\", \"imports\", \"value\", \"signature\", \"route\", \"env\"}",
+          "statement": "The predicate grammar includes 'calls', 'defines', 'imports', and 'value'",
+          "verdict": "UNDECIDABLE"
+        },
+        {
+          "ehash": "df35830970c5",
+          "evidence": "src/isidore/pcp.py:88",
+          "id": "c-5d1cbc7c",
+          "predicate": "",
+          "statement": "A malformed predicate degrades a claim to existence-anchored",
+          "verdict": "UNDECIDABLE"
+        },
+        {
+          "ehash": "ee4c74d5ac48",
+          "evidence": "src/isidore/pcp.py:107",
+          "id": "c-b621f1b4",
+          "predicate": "defines:src/isidore/pcp.py;Verdict",
+          "statement": "The `Verdict` class records the oracle that decided it",
+          "verdict": "TRUE"
+        },
+        {
+          "ehash": "59d51c715eda",
+          "evidence": "src/isidore/pcp.py:119",
+          "id": "c-8b733e17",
+          "predicate": "defines:src/isidore/pcp.py;VerifyContext",
+          "statement": "The `VerifyContext` provides read-only access to the repo state",
+          "verdict": "TRUE"
+        },
+        {
+          "ehash": "851f5dc632df",
+          "evidence": "src/isidore/pcp.py:127",
+          "id": "c-7e1e8036",
+          "predicate": "defines:src/isidore/pcp.py;Verifier",
+          "statement": "The `Verifier` protocol requires deterministic, LLM-free implementations",
+          "verdict": "TRUE"
+        },
+        {
+          "ehash": "43ef942000fa",
+          "evidence": "src/isidore/pcp.py:135",
+          "id": "c-0e550a32",
+          "predicate": "defines:src/isidore/pcp.py;VERIFIERS",
+          "statement": "The `VERIFIERS` registry is global and shared across lanes",
+          "verdict": "TRUE"
+        }
+      ],
+      "compiled_at": "2026-07-26T01:00:35Z",
+      "context_hash": "a66391b6a5a5be1c31e4fdb38a3a92406eb8bfa5ed8002ca8a86fcd9d858964d",
+      "findings": [],
+      "history": [
+        {
+          "commit": "1a34c13ecf2e",
+          "line_delta": 28,
+          "sections_changed": [
+            "(intro)",
+            "Architecture",
+            "Dependencies",
+            "How to change safely",
+            "Key entry points",
+            "Purpose"
+          ]
+        }
+      ],
+      "kind": "module",
+      "name": "src/isidore/pcp.py",
+      "quarantined": false
+    },
+    "src-isidore-pipeline_py.md": {
+      "claims": [
+        {
+          "ehash": "dccd940a0f97",
+          "evidence": "src/isidore/pipeline.py:1",
+          "id": "c-f07ccd8b",
+          "predicate": "defines:src/isidore/pipeline.py;plan_pages",
+          "statement": "The pipeline generates pages from the structure graph",
+          "verdict": "TRUE"
+        },
+        {
+          "ehash": "c4762e57a622",
+          "evidence": "src/isidore/pipeline.py:132",
+          "id": "c-27e14cc7",
+          "predicate": "defines:src/isidore/pipeline.py;PageSpec",
+          "statement": "PageSpec captures module metadata including dependencies and hot symbols",
+          "verdict": "TRUE"
+        },
+        {
+          "ehash": "5dac3ee6a72f",
+          "evidence": "src/isidore/pipeline.py:152",
+          "id": "c-66ca1122",
+          "predicate": "defines:src/isidore/pipeline.py;module_dep_edges",
+          "statement": "module_dep_edges computes cross-module dependencies",
+          "verdict": "TRUE"
+        },
+        {
+          "ehash": "94fdab5fe0e4",
+          "evidence": "src/isidore/pipeline.py:168",
+          "id": "c-93fe5345",
+          "predicate": "calls:plan_pages;module_dep_edges",
+          "statement": "plan_pages selects top-K modules with the most symbols",
+          "verdict": "TRUE"
+        },
+        {
+          "ehash": "36cf84432b5e",
+          "evidence": "src/isidore/pipeline.py:225",
+          "id": "c-bf86587a",
+          "predicate": "calls:plan_flows;_match_seed",
+          "statement": "plan_flows generates cross-cutting flow pages from seeds",
+          "verdict": "TRUE"
+        },
+        {
+          "ehash": "906171e70802",
+          "evidence": "src/isidore/pipeline.py:3",
+          "id": "c-0da4f89a",
+          "predicate": "value:MAX_CALLS;1",
+          "statement": "The pipeline is deterministic except for a single LLM call per page",
+          "verdict": "UNDECIDABLE"
+        }
+      ],
+      "compiled_at": "2026-07-26T01:00:48Z",
+      "context_hash": "a2f58c53f429126152af0da31da64186281139b497d68263cc90ee83d4e03b68",
+      "findings": [],
+      "history": [
+        {
+          "commit": "1a34c13ecf2e",
+          "line_delta": 31,
+          "sections_changed": [
+            "Architecture",
+            "Dependencies",
+            "How to change safely",
+            "Key entry points",
+            "Purpose"
+          ]
+        }
+      ],
+      "kind": "module",
+      "name": "src/isidore/pipeline.py",
+      "quarantined": false
+    },
+    "src-isidore-pyramid_py.md": {
+      "claims": [
+        {
+          "ehash": "ea21456ca50a",
+          "evidence": "src/isidore/pyramid.py:42",
+          "id": "c-a4194d1a",
+          "predicate": "defines:src/isidore/pyramid.py;_claim_verdict",
+          "statement": "The module verifies wiki:// claims by first checking certificates",
+          "verdict": "TRUE"
+        },
+        {
+          "ehash": "00ddf930c3e5",
+          "evidence": "src/isidore/pyramid.py:56",
+          "id": "c-e299eba8",
+          "predicate": "calls:_claim_verdict;pages_state.get",
+          "statement": "The verifier falls back to pages_state if the certificate check fails",
+          "verdict": "TRUE"
+        },
+        {
+          "ehash": "1a5425c87358",
+          "evidence": "src/isidore/pyramid.py:109",
+          "id": "c-43f174fe",
+          "predicate": "calls:_seed_subsystems;_top_dir",
+          "statement": "Subsystems are initially grouped by top directory",
+          "verdict": "TRUE"
+        },
+        {
+          "ehash": "cad316eed4bb",
+          "evidence": "src/isidore/pyramid.py:116",
+          "id": "c-91508b69",
+          "predicate": "value:relation;imports",
+          "statement": "Inter-subsystem dependencies are recorded from imports edges",
+          "verdict": "UNDECIDABLE"
+        },
+        {
+          "ehash": "f09921055c7d",
+          "evidence": "src/isidore/pyramid.py:138",
+          "id": "c-38f8626d",
+          "predicate": "calls:plan_pyramid;pyramid.get",
+          "statement": "The pyramid planner supports explicit subsystem configuration",
+          "verdict": "TRUE"
+        },
+        {
+          "ehash": "78bd40561252",
+          "evidence": "src/isidore/pyramid.py:147",
+          "id": "c-93b4038f",
+          "predicate": "defines:src/isidore/pyramid.py;plan_pyramid",
+          "statement": "Product pages reference subsystems by name",
+          "verdict": "TRUE"
+        }
+      ],
+      "compiled_at": "2026-07-26T01:02:44Z",
+      "context_hash": "d83e39019952a691555184a7c120331f8ce90c5dde49d7868063092299fff18b",
+      "findings": [],
+      "history": [
+        {
+          "commit": "1a34c13ecf2e",
+          "line_delta": 37,
+          "sections_changed": [
+            "Architecture",
+            "Dependencies",
+            "How to change safely",
+            "Key entry points",
+            "Purpose"
+          ]
+        }
+      ],
+      "kind": "module",
+      "name": "src/isidore/pyramid.py",
+      "quarantined": false
+    },
+    "src-isidore-qa_py.md": {
+      "claims": [
+        {
+          "ehash": "4c7dc10ea293",
+          "evidence": "src/isidore/qa.py:43",
+          "id": "c-10dc5377",
+          "predicate": "value:_STOPWORDS;frozenset({'the', 'and', 'for', 'are', 'was', 'were', 'with', 'that', 'this', 'from', 'into', 'your', 'you', 'how', 'does', 'did', 'what', 'why', 'who', 'whom', 'where', 'when', 'which', 'whose', 'has', 'have', 'had', 'not', 'but', 'its', 'their', 'there', 'here', 'then', 'than', 'them', 'they', 'our', 'out', 'get', 'got', 'can', 'could', 'would', 'should', 'will', 'shall', 'may', 'might', 'must', 'about', 'over', 'under', 'between', 'using', 'use', 'used', 'via', 'per'})",
+          "statement": "The module uses a frozen set of stopwords to filter question terms",
+          "verdict": "UNDECIDABLE"
+        },
+        {
+          "ehash": "7f7d618305ea",
+          "evidence": "src/isidore/qa.py:37",
+          "id": "c-d5c11005",
+          "predicate": "value:DEFAULT_MAX_EVIDENCE_CHARS;24000",
+          "statement": "The module defines a constant for the maximum evidence length",
+          "verdict": "TRUE"
+        },
+        {
+          "ehash": "48e9a117b7e3",
+          "evidence": "src/isidore/qa.py:15",
+          "id": "c-63b5f2db",
+          "predicate": "imports:src/isidore/qa.py;src/isidore/pipeline.py",
+          "statement": "The module imports the WIKI_DIRNAME constant from pipeline.py",
+          "verdict": "TRUE"
+        },
+        {
+          "ehash": "073aa2533d66",
+          "evidence": "src/isidore/qa.py:64",
+          "id": "c-ee0a3071",
+          "predicate": "calls:gather_claims;check_claims",
+          "statement": "The gather_claims function calls check_claims from the claims module",
+          "verdict": "TRUE"
+        },
+        {
+          "ehash": "d5626a45ebb5",
+          "evidence": "src/isidore/qa.py:94",
+          "id": "c-770cbd41",
+          "predicate": "calls:gather_evidence;question_terms",
+          "statement": "The gather_evidence function calls question_terms to extract terms from the question",
+          "verdict": "TRUE"
+        },
+        {
+          "ehash": "1b6033841cce",
+          "evidence": "src/isidore/qa.py:158",
+          "id": "c-55f7ebc7",
+          "predicate": "calls:answer_offline;gather_claims",
+          "statement": "The answer_offline function calls gather_claims to retrieve relevant claims",
+          "verdict": "TRUE"
+        },
+        {
+          "ehash": "fbb05d667dba",
+          "evidence": "src/isidore/qa.py:153",
+          "id": "c-a002d2f1",
+          "predicate": "value:OFFLINE_MIN_SCORE;3",
+          "statement": "The module defines the OFFLINE_MIN_SCORE constant",
+          "verdict": "TRUE"
+        },
+        {
+          "ehash": "ebb4d6f4a3cf",
+          "evidence": "src/isidore/qa.py:141",
+          "id": "c-dbd200b6",
+          "predicate": "calls:gather_evidence;read_excerpt",
+          "statement": "The gather_evidence function calls read_excerpt to include code excerpts in the evidence",
+          "verdict": "TRUE"
+        }
+      ],
+      "compiled_at": "2026-07-26T01:01:29Z",
+      "context_hash": "f00befa225fa4a7388df53adf9c8cf21454443e4b260826b002552975b0757c4",
+      "findings": [],
+      "history": [
+        {
+          "commit": "1a34c13ecf2e",
+          "line_delta": 24,
+          "sections_changed": [
+            "Architecture",
+            "Dependencies",
+            "How to change safely",
+            "Key entry points",
+            "Purpose"
+          ]
+        }
+      ],
+      "kind": "module",
+      "name": "src/isidore/qa.py",
+      "quarantined": false
+    },
+    "src-isidore-surface_py.md": {
+      "claims": [
+        {
+          "ehash": "9d4920c93459",
+          "evidence": "src/isidore/surface.py:1",
+          "id": "c-c8b7c052",
+          "predicate": "",
+          "statement": "The module extracts API surfaces from text, not file paths",
+          "verdict": "UNDECIDABLE"
+        },
+        {
+          "ehash": "eeb0efde5e8f",
+          "evidence": "src/isidore/surface.py:88",
+          "id": "c-20b6b927",
+          "predicate": "defines:src/isidore/surface.py;SurfaceSymbol",
+          "statement": "SurfaceSymbol captures qualified names, kinds, visibility, and signatures",
+          "verdict": "TRUE"
+        },
+        {
+          "ehash": "6e7d9b3f76ef",
+          "evidence": "src/isidore/surface.py:106",
+          "id": "c-9a088c15",
+          "predicate": "defines:src/isidore/surface.py;clean_sig",
+          "statement": "clean_sig normalizes whitespace and truncates long signatures",
+          "verdict": "TRUE"
+        },
+        {
+          "ehash": "1a210a90de99",
+          "evidence": "src/isidore/surface.py:119",
+          "id": "c-b5bc7b0c",
+          "predicate": "defines:src/isidore/surface.py;_declaration_tail",
+          "statement": "_declaration_tail checks if parentheses close on a line",
+          "verdict": "TRUE"
+        },
+        {
+          "ehash": "7264bac51424",
+          "evidence": "src/isidore/surface.py:140",
+          "id": "c-109388d4",
+          "predicate": "defines:src/isidore/surface.py;_is_declaration",
+          "statement": "_is_declaration filters out test-framework blocks",
+          "verdict": "TRUE"
+        },
+        {
+          "ehash": "32e4d3d695bd",
+          "evidence": "src/isidore/surface.py:145",
+          "id": "c-ac7fc498",
+          "predicate": "defines:src/isidore/surface.py;_is_public",
+          "statement": "_is_public enforces the underscore convention for visibility",
+          "verdict": "TRUE"
+        },
+        {
+          "ehash": "7ab1e1a15729",
+          "evidence": "src/isidore/surface.py:153",
+          "id": "c-41cb7c0d",
+          "predicate": "defines:src/isidore/surface.py;_py_signature",
+          "statement": "Python signatures are parsed via ast for exactness",
+          "verdict": "TRUE"
+        }
+      ],
+      "compiled_at": "2026-07-26T01:01:48Z",
+      "context_hash": "6a9e0dcfad5d8d1b9803e2ef2cb53a843865ec68c266b03e80f898027701f004",
+      "findings": [],
+      "history": [
+        {
+          "commit": "1a34c13ecf2e",
+          "line_delta": 21,
+          "sections_changed": [
+            "Architecture",
+            "Dependencies",
+            "How to change safely",
+            "Key entry points",
+            "Purpose"
+          ]
+        }
+      ],
+      "kind": "module",
+      "name": "src/isidore/surface.py",
+      "quarantined": false
+    },
+    "src-isidore-verify_py.md": {
+      "claims": [
+        {
+          "ehash": "b1bd38130168",
+          "evidence": "src/isidore/verify.py:4",
+          "id": "c-de1e10e2",
+          "predicate": "calls:verify;graph.json;ORACLE_GRAPH",
+          "statement": "The verifiers use graph.json and AST reparsing as oracles",
+          "verdict": "UNDECIDABLE"
+        },
+        {
+          "ehash": "d1c7e7e71afb",
+          "evidence": "src/isidore/verify.py:43",
+          "id": "c-261da67e",
+          "predicate": "defines:src/isidore/verify.py;_norm",
+          "statement": "The module normalizes paths with _norm",
+          "verdict": "TRUE"
+        },
+        {
+          "ehash": "0ee4bb929a85",
+          "evidence": "src/isidore/verify.py:47",
+          "id": "c-a6f746a5",
+          "predicate": "defines:src/isidore/verify.py;_symbol_base",
+          "statement": "The module extracts symbol bases with _symbol_base",
+          "verdict": "TRUE"
+        },
+        {
+          "ehash": "1df10183faa2",
+          "evidence": "src/isidore/verify.py:63",
+          "id": "c-9a05079e",
+          "predicate": "defines:src/isidore/verify.py;_read_source",
+          "statement": "The module reads source files with _read_source",
+          "verdict": "TRUE"
+        },
+        {
+          "ehash": "e300e682cd5e",
+          "evidence": "src/isidore/verify.py:70",
+          "id": "c-25a70eb0",
+          "predicate": "defines:src/isidore/verify.py;_ast_of",
+          "statement": "The module parses ASTs with _ast_of",
+          "verdict": "TRUE"
+        },
+        {
+          "ehash": "6322ff26b35e",
+          "evidence": "src/isidore/verify.py:82",
+          "id": "c-9a25a17f",
+          "predicate": "defines:src/isidore/verify.py;_find_funcdef",
+          "statement": "The module finds function definitions with _find_funcdef",
+          "verdict": "TRUE"
+        }
+      ],
+      "compiled_at": "2026-07-26T01:01:35Z",
+      "context_hash": "d3faae6d7e25c4e4c1d169a6b23bbffe5768aa999d7239f4f158cd6a0b7119d8",
+      "findings": [],
+      "history": [
+        {
+          "commit": "1a34c13ecf2e",
+          "line_delta": 21,
+          "sections_changed": [
+            "Architecture",
+            "Dependencies",
+            "How to change safely",
+            "Key entry points",
+            "Purpose"
+          ]
+        }
+      ],
+      "kind": "module",
+      "name": "src/isidore/verify.py",
+      "quarantined": false
+    },
+    "src-isidore-whatsnew_py.md": {
+      "claims": [
+        {
+          "ehash": "8d601f16147f",
+          "evidence": "src/isidore/whatsnew.py:1",
+          "id": "c-7a5d1dad",
+          "predicate": "",
+          "statement": "The module generates verifiable changelogs by comparing API surfaces at two git revisions",
+          "verdict": "UNDECIDABLE"
+        },
+        {
+          "ehash": "7bef4744a41b",
+          "evidence": "src/isidore/whatsnew.py:113",
+          "id": "c-496b23ea",
+          "predicate": "defines:src/isidore/whatsnew.py;DeltaEntry",
+          "statement": "DeltaEntry represents a typed novelty row with fields like kind, file, and line",
+          "verdict": "TRUE"
+        },
+        {
+          "ehash": "1aeaf73500c7",
+          "evidence": "src/isidore/whatsnew.py:142",
+          "id": "c-d462a529",
+          "predicate": "defines:src/isidore/whatsnew.py;SurfaceDelta",
+          "statement": "SurfaceDelta contains all changes between two revisions, including refs and SHAs",
+          "verdict": "TRUE"
+        },
+        {
+          "ehash": "e8926d486fb6",
+          "evidence": "src/isidore/whatsnew.py:163",
+          "id": "c-36361b9c",
+          "predicate": "defines:src/isidore/whatsnew.py;WhatsnewResult",
+          "statement": "WhatsnewResult combines the delta with paths to generated artifacts and metrics",
+          "verdict": "TRUE"
+        },
+        {
+          "ehash": "c20699da889b",
+          "evidence": "src/isidore/whatsnew.py:181",
+          "id": "c-b6ca81bd",
+          "predicate": "",
+          "statement": "The module fails closed on git errors to avoid false claims",
+          "verdict": "UNDECIDABLE"
+        },
+        {
+          "ehash": "3a51db5e149c",
+          "evidence": "src/isidore/whatsnew.py:88",
+          "id": "c-5d600644",
+          "predicate": "",
+          "statement": "The LLM tier only writes about API and internal changes, not tests or docs",
+          "verdict": "UNDECIDABLE"
+        }
+      ],
+      "compiled_at": "2026-07-26T01:02:54Z",
+      "context_hash": "ef847397a8483b0937aa65ca99f60faf6bda4c43f97424ba5074535a03cd7336",
+      "findings": [
+        {
+          "id": "f-4ecebdd7",
+          "kind": "question",
+          "note": "Why are removals never written by the model, and how does this affect the changelog's completeness?",
+          "resolved": false,
+          "where": ""
+        }
+      ],
+      "history": [
+        {
+          "commit": "1a34c13ecf2e",
+          "line_delta": 32,
+          "sections_changed": [
+            "Architecture",
+            "Dependencies",
+            "How to change safely",
+            "Key entry points",
+            "Purpose"
+          ]
+        }
+      ],
+      "kind": "module",
+      "name": "src/isidore/whatsnew.py",
+      "quarantined": false
+    },
+    "tests-fixtures-pcp.md": {
+      "claims": [
+        {
+          "ehash": "0f4f56be82b1",
+          "evidence": "tests/fixtures/pcp/repo/svc/auth.py:14",
+          "id": "c-2dd8fe5a",
+          "predicate": "calls:authenticate;verify_jwt",
+          "statement": "authenticate verifies the JWT by calling verify_jwt",
+          "verdict": "TRUE"
+        },
+        {
+          "ehash": "234aa98f1c0f",
+          "evidence": "tests/fixtures/pcp/repo/svc/auth.py:7",
+          "id": "c-11e675b5",
+          "predicate": "value:MAX_ATTEMPTS;5",
+          "statement": "the attempt ceiling MAX_ATTEMPTS is 5",
+          "verdict": "TRUE"
+        },
+        {
+          "ehash": "cc92d602edbd",
+          "evidence": "tests/fixtures/pcp/repo/svc/auth.py:5",
+          "id": "c-4856c5c7",
+          "predicate": "imports:tests/fixtures/pcp/repo/svc/auth.py;tests/fixtures/pcp/repo/svc/tokens.py",
+          "statement": "the auth module imports the tokens service",
+          "verdict": "UNDECIDABLE"
+        },
+        {
+          "ehash": "fac6bd2f57b6",
+          "evidence": "tests/fixtures/pcp/repo/svc/auth.py:13",
+          "id": "c-0243c424",
+          "predicate": "env:AUTH_SIGNING_KEY",
+          "statement": "authenticate reads the AUTH_SIGNING_KEY environment variable",
+          "verdict": "TRUE"
+        },
+        {
+          "ehash": "b35ac700f702",
+          "evidence": "tests/fixtures/pcp/repo/svc/auth.py:10",
+          "id": "c-8e3347e7",
+          "predicate": "defines:tests/fixtures/pcp/repo/svc/auth.py;authenticate",
+          "statement": "the auth module defines authenticate",
+          "verdict": "TRUE"
+        },
+        {
+          "ehash": "9f730a1a70a6",
+          "evidence": "tests/fixtures/pcp/repo/svc/auth.py:16",
+          "id": "c-4d27ffcc",
+          "predicate": "",
+          "statement": "authenticate returns None when the token is invalid",
+          "verdict": "UNDECIDABLE"
+        }
+      ],
+      "compiled_at": "2026-07-26T01:03:07Z",
+      "context_hash": "9e6bb4e974e387ae427bf3e5302f68911d2f4e5764a650c4a28318dbbcf89e0d",
+      "findings": [
+        {
+          "id": "f-b067c20b",
+          "kind": "bug",
+          "note": "security risk: hardcoded credential literal in auth path",
+          "resolved": false,
+          "where": "tests/fixtures/pcp/repo/svc/auth.py:23"
+        }
+      ],
+      "history": [
+        {
+          "commit": "1a34c13ecf2e",
+          "line_delta": 29,
+          "sections_changed": [
+            "(intro)",
+            "Architecture",
+            "Dependencies",
+            "How to change safely",
+            "Key entry points",
+            "Purpose"
+          ]
+        }
+      ],
+      "kind": "module",
+      "name": "tests/fixtures/pcp",
+      "quarantined": false
+    },
+    "tests-test_changeset_py.md": {
+      "claims": [
+        {
+          "ehash": "1d0b905d13c7",
+          "evidence": "tests/test_changeset.py:24",
+          "id": "c-e036b149",
+          "predicate": "calls:test_symbol_spans_accepts_span_and_start_only_forms;symbol_spans",
+          "statement": "The module tests the `symbol_spans` function",
+          "verdict": "TRUE"
+        },
+        {
+          "ehash": "1d0b905d13c7",
+          "evidence": "tests/test_changeset.py:24",
+          "id": "c-06c8edaf",
+          "predicate": "calls:test_symbol_spans_accepts_span_and_start_only_forms;symbol_spans",
+          "statement": "The `test_symbol_spans_accepts_span_and_start_only_forms` test verifies symbol spans",
+          "verdict": "TRUE"
+        },
+        {
+          "ehash": "a1fd829dad5a",
+          "evidence": "tests/test_changeset.py:38",
+          "id": "c-4aa2844e",
+          "predicate": "calls:test_changed_symbols_maps_lines_and_whole_file;changed_symbols",
+          "statement": "The `test_changed_symbols_maps_lines_and_whole_file` test verifies changed symbols",
+          "verdict": "TRUE"
+        },
+        {
+          "ehash": "4b56a16c3ae7",
+          "evidence": "tests/test_changeset.py:47",
+          "id": "c-891e5265",
+          "predicate": "calls:test_affected_modules_is_changed_plus_fan_in_dependents;affected_modules",
+          "statement": "The `test_affected_modules_is_changed_plus_fan_in_dependents` test verifies affected modules",
+          "verdict": "TRUE"
+        },
+        {
+          "ehash": "a8a8f6aa21fc",
+          "evidence": "tests/test_changeset.py:62",
+          "id": "c-34ce4a45",
+          "predicate": "calls:test_changed_lines_parses_new_side_hunks;changed_lines",
+          "statement": "The `test_changed_lines_parses_new_side_hunks` test verifies changed lines",
+          "verdict": "TRUE"
+        },
+        {
+          "ehash": "eca271603f97",
+          "evidence": "tests/test_changeset.py:16",
+          "id": "c-392fa01e",
+          "predicate": "value:DEPTH;2",
+          "statement": "The `DEPTH` constant is set to 2",
+          "verdict": "TRUE"
+        },
+        {
+          "ehash": "db7b0741c947",
+          "evidence": "tests/test_changeset.py:7",
+          "id": "c-8ba929d8",
+          "predicate": "imports:tests/test_changeset.py;pytest",
+          "statement": "The module depends on `pytest`",
+          "verdict": "UNDECIDABLE"
+        },
+        {
+          "ehash": "7d8752c4c7ea",
+          "evidence": "tests/test_changeset.py:5",
+          "id": "c-10b0eb2c",
+          "predicate": "imports:tests/test_changeset.py;subprocess",
+          "statement": "The module depends on `subprocess`",
+          "verdict": "UNDECIDABLE"
+        },
+        {
+          "ehash": "582f9ff727d7",
+          "evidence": "tests/test_changeset.py:4",
+          "id": "c-906e44fd",
+          "predicate": "imports:tests/test_changeset.py;shutil",
+          "statement": "The module depends on `shutil`",
+          "verdict": "UNDECIDABLE"
+        },
+        {
+          "ehash": "fbc2931546ea",
+          "evidence": "tests/test_changeset.py:9",
+          "id": "c-a3bcc0bd",
+          "predicate": "imports:tests/test_changeset.py;isidore.changeset",
+          "statement": "The module depends on `isidore.changeset`",
+          "verdict": "UNDECIDABLE"
+        }
+      ],
+      "compiled_at": "2026-07-26T01:03:17Z",
+      "context_hash": "838bc32b1f5a19fce2e5cbf62c583d4c200999f0e7de750fb310f7a4891b1630",
+      "findings": [],
+      "history": [
+        {
+          "commit": "1a34c13ecf2e",
+          "line_delta": 31,
+          "sections_changed": [
+            "Architecture",
+            "Dependencies",
+            "How to change safely",
+            "Key entry points",
+            "Purpose"
+          ]
+        }
+      ],
+      "kind": "module",
+      "name": "tests/test_changeset.py",
       "quarantined": false
     },
     "tests-test_claims_py.md": {
@@ -275,6 +2071,149 @@
       "name": "tests/test_connectors_f1.py",
       "quarantined": false
     },
+    "tests-test_detectors_py.md": {
+      "claims": [
+        {
+          "ehash": "1be60d251ae9",
+          "evidence": "tests/test_detectors.py:1",
+          "id": "c-95c08869",
+          "predicate": "",
+          "statement": "The module tests the `isidore.detectors` subsystem",
+          "verdict": "UNDECIDABLE"
+        },
+        {
+          "ehash": "55e731282a08",
+          "evidence": "tests/test_detectors.py:14",
+          "id": "c-41ac1643",
+          "predicate": "calls:_ctx;load_graph",
+          "statement": "The test context loads graph data from `graph.json`",
+          "verdict": "TRUE"
+        },
+        {
+          "ehash": "4761db950837",
+          "evidence": "tests/test_detectors.py:22",
+          "id": "c-3cf95c4b",
+          "predicate": "value:hit[0].severity;danger",
+          "statement": "The entropy detector flags the backdoor token with \"danger\" severity",
+          "verdict": "UNDECIDABLE"
+        },
+        {
+          "ehash": "337d68ce3d23",
+          "evidence": "tests/test_detectors.py:29",
+          "id": "c-835bd679",
+          "predicate": "value:entropy_lines;{(\"svc/auth.py\", 23)}",
+          "statement": "The entropy detector does not flag non-secret strings",
+          "verdict": "UNDECIDABLE"
+        },
+        {
+          "ehash": "753706362632",
+          "evidence": "tests/test_detectors.py:34",
+          "id": "c-aff40267",
+          "predicate": "value:m.family;topology",
+          "statement": "The topology detector flags tokens in `svc/tokens.py`",
+          "verdict": "UNDECIDABLE"
+        },
+        {
+          "ehash": "b9aed984a086",
+          "evidence": "tests/test_detectors.py:38",
+          "id": "c-7a6a0657",
+          "predicate": "calls:test_determinism;scan",
+          "statement": "The detector output is deterministic",
+          "verdict": "TRUE"
+        },
+        {
+          "ehash": "e916f048f4e3",
+          "evidence": "tests/test_detectors.py:45",
+          "id": "c-577b78b3",
+          "predicate": "value:scan(tmp_path, ctx);[]",
+          "statement": "The system handles missing files gracefully",
+          "verdict": "UNDECIDABLE"
+        },
+        {
+          "ehash": "d39079ca10d5",
+          "evidence": "tests/test_detectors.py:49",
+          "id": "c-3ebfecaa",
+          "predicate": "value:shannon_entropy(\"\");0.0",
+          "statement": "The entropy function returns 0.0 for empty strings",
+          "verdict": "UNDECIDABLE"
+        }
+      ],
+      "compiled_at": "2026-07-26T01:03:26Z",
+      "context_hash": "e152c202be4de83bdefdf44cca8068da1cc179a242864ae1e2cd7c32eeacd0e0",
+      "findings": [
+        {
+          "id": "f-a1852a77",
+          "kind": "bug",
+          "note": "security risk: hardcoded secret (sk_live_) is flagged as dangerous",
+          "resolved": false,
+          "where": "tests/test_detectors.py:22"
+        }
+      ],
+      "history": [
+        {
+          "commit": "1a34c13ecf2e",
+          "line_delta": 42,
+          "sections_changed": [
+            "(intro)",
+            "Architecture",
+            "Dependencies",
+            "How to change safely",
+            "Key entry points",
+            "Purpose"
+          ]
+        }
+      ],
+      "kind": "module",
+      "name": "tests/test_detectors.py",
+      "quarantined": false
+    },
+    "tests-test_impact_py.md": {
+      "claims": [
+        {
+          "ehash": "3db03487082b",
+          "evidence": "tests/test_impact.py:1",
+          "id": "c-bf5e2a4b",
+          "predicate": "",
+          "statement": "The module tests the emergent interaction detection of Isidore's impact analysis system",
+          "verdict": "UNDECIDABLE"
+        },
+        {
+          "ehash": "1a1837b048fa",
+          "evidence": "tests/test_impact.py:49",
+          "id": "c-0880ce50",
+          "predicate": "calls:tests/test_impact.py;build_impact",
+          "statement": "The impact analysis detects new cross-module dependencies",
+          "verdict": "UNDECIDABLE"
+        },
+        {
+          "ehash": "2cffff94c683",
+          "evidence": "tests/test_impact.py:70",
+          "id": "c-472bcd14",
+          "predicate": "calls:tests/test_impact.py;build_impact",
+          "statement": "The impact analysis detects removed cross-module dependencies",
+          "verdict": "UNDECIDABLE"
+        }
+      ],
+      "compiled_at": "2026-07-26T01:03:33Z",
+      "context_hash": "f80b4b2b6a31d7813a12945b68989954302302b23288205ed7f4450a1837cd6a",
+      "findings": [],
+      "history": [
+        {
+          "commit": "1a34c13ecf2e",
+          "line_delta": 28,
+          "sections_changed": [
+            "Architecture",
+            "Dependencies",
+            "How to change safely",
+            "Key entry points",
+            "Purpose"
+          ]
+        }
+      ],
+      "kind": "module",
+      "name": "tests/test_impact.py",
+      "quarantined": false
+    },
     "tests-test_langspec_py.md": {
       "claims": [
         {
@@ -304,6 +2243,171 @@
       ],
       "kind": "module",
       "name": "tests/test_langspec.py",
+      "quarantined": false
+    },
+    "tests-test_mcp_barrier_py.md": {
+      "claims": [
+        {
+          "ehash": "c940e1850036",
+          "evidence": "tests/test_mcp_barrier.py:1",
+          "id": "c-7f2d448c",
+          "predicate": "",
+          "statement": "The module tests the read-only barrier for MCP connectors",
+          "verdict": "UNDECIDABLE"
+        },
+        {
+          "ehash": "d805a655309e",
+          "evidence": "tests/test_mcp_barrier.py:3",
+          "id": "c-5e5acdef",
+          "predicate": "",
+          "statement": "The authoritative barrier is the protocol's readOnlyHint",
+          "verdict": "UNDECIDABLE"
+        },
+        {
+          "ehash": "d805a655309e",
+          "evidence": "tests/test_mcp_barrier.py:3",
+          "id": "c-8b2c4ca9",
+          "predicate": "",
+          "statement": "The name heuristic is a fallback for tools without annotations",
+          "verdict": "UNDECIDABLE"
+        }
+      ],
+      "compiled_at": "2026-07-26T01:03:41Z",
+      "context_hash": "a31ab84ae33d5c1aea23175c2bc05776f7a71dbc65248c676ef800f9511b289a",
+      "findings": [],
+      "history": [
+        {
+          "commit": "1a34c13ecf2e",
+          "line_delta": 32,
+          "sections_changed": [
+            "Architecture",
+            "Dependencies",
+            "How to change safely",
+            "Key entry points",
+            "Purpose"
+          ]
+        }
+      ],
+      "kind": "module",
+      "name": "tests/test_mcp_barrier.py",
+      "quarantined": false
+    },
+    "tests-test_overview_py.md": {
+      "claims": [
+        {
+          "ehash": "3c779363b8e8",
+          "evidence": "tests/test_overview.py:1",
+          "id": "c-52042481",
+          "predicate": "",
+          "statement": "The module tests the overview compilation logic.",
+          "verdict": "UNDECIDABLE"
+        },
+        {
+          "ehash": "1119603b9942",
+          "evidence": "tests/test_overview.py:38",
+          "id": "c-284278d9",
+          "predicate": "defines:tests/test_overview.py;repo",
+          "statement": "The test repository includes a module page with verified claims.",
+          "verdict": "TRUE"
+        },
+        {
+          "ehash": "0ac4ddd35177",
+          "evidence": "tests/test_overview.py:55",
+          "id": "c-f607829c",
+          "predicate": "calls:tests/test_overview.py;verified_claims",
+          "statement": "Only TRUE claims are included in the overview facts.",
+          "verdict": "UNDECIDABLE"
+        },
+        {
+          "ehash": "aa5b3896a181",
+          "evidence": "tests/test_overview.py:61",
+          "id": "c-740f311c",
+          "predicate": "calls:tests/test_overview.py;compile_overview",
+          "statement": "A dry run does not call the LLM.",
+          "verdict": "UNDECIDABLE"
+        },
+        {
+          "ehash": "18656feb9a3d",
+          "evidence": "tests/test_overview.py:86",
+          "id": "c-c6717782",
+          "predicate": "calls:tests/test_overview.py;compile_overview",
+          "statement": "The overview page is only published when it can be proven.",
+          "verdict": "UNDECIDABLE"
+        }
+      ],
+      "compiled_at": "2026-07-26T01:03:48Z",
+      "context_hash": "a16e32813cd409aed06bd765f9cd4675744ba747ebd1573a9e784d04e9bd13dc",
+      "findings": [],
+      "history": [
+        {
+          "commit": "1a34c13ecf2e",
+          "line_delta": 22,
+          "sections_changed": [
+            "Architecture",
+            "Dependencies",
+            "How to change safely",
+            "Key entry points",
+            "Purpose"
+          ]
+        }
+      ],
+      "kind": "module",
+      "name": "tests/test_overview.py",
+      "quarantined": false
+    },
+    "tests-test_pcp_pipeline_py.md": {
+      "claims": [
+        {
+          "ehash": "0d9776ccb828",
+          "evidence": "tests/test_pcp_pipeline.py:43",
+          "id": "c-3e899ad1",
+          "predicate": "calls:_compile;compile_wiki",
+          "statement": "The test verifies certificate generation",
+          "verdict": "TRUE"
+        },
+        {
+          "ehash": "2ec3740a7d37",
+          "evidence": "tests/test_pcp_pipeline.py:60",
+          "id": "c-ca7d9f8f",
+          "predicate": "calls:_compile;compile_wiki",
+          "statement": "The test enforces security banners despite calm prose",
+          "verdict": "TRUE"
+        },
+        {
+          "ehash": "1fcf386fc732",
+          "evidence": "tests/test_pcp_pipeline.py:14",
+          "id": "c-619b9513",
+          "predicate": "defines:tests/test_pcp_pipeline.py;FIX",
+          "statement": "The test uses a golden fixture repository",
+          "verdict": "TRUE"
+        },
+        {
+          "ehash": "0cd72daa5a03",
+          "evidence": "tests/test_pcp_pipeline.py:26",
+          "id": "c-0387f3bd",
+          "predicate": "value:MAX_ATTEMPTS;5",
+          "statement": "The test validates the MAX_ATTEMPTS value",
+          "verdict": "TRUE"
+        }
+      ],
+      "compiled_at": "2026-07-26T01:03:54Z",
+      "context_hash": "d0b8da01e17043d0e76dfa92497c0f3ee9f27470aa65bb870215faaaf928276a",
+      "findings": [],
+      "history": [
+        {
+          "commit": "1a34c13ecf2e",
+          "line_delta": 28,
+          "sections_changed": [
+            "Architecture",
+            "Dependencies",
+            "How to change safely",
+            "Key entry points",
+            "Purpose"
+          ]
+        }
+      ],
+      "kind": "module",
+      "name": "tests/test_pcp_pipeline.py",
       "quarantined": false
     },
     "tests-test_pcp_seams_py.md": {
@@ -494,6 +2598,283 @@
       "name": "tests/test_pipeline.py",
       "quarantined": false
     },
+    "tests-test_plain_py.md": {
+      "claims": [
+        {
+          "ehash": "644dd1c70598",
+          "evidence": "tests/test_plain.py:L1",
+          "id": "c-378e1474",
+          "predicate": "",
+          "statement": "The plain-language gate is tested for named rules, one-sided verdicts, and the absence of readability scores",
+          "verdict": "UNDECIDABLE"
+        },
+        {
+          "ehash": "a02838836e1c",
+          "evidence": "tests/test_plain.py:L4",
+          "id": "c-b7e0fe1f",
+          "predicate": "imports:tests/test_plain.py;isidore.plain",
+          "statement": "The module imports RULES, check, explain, and is_plain from isidore.plain",
+          "verdict": "UNDECIDABLE"
+        }
+      ],
+      "compiled_at": "2026-07-26T01:04:03Z",
+      "context_hash": "f42134557971c552125ed0f621381f1dd3c3e8b15a7170b203a57d27806f68db",
+      "findings": [],
+      "history": [
+        {
+          "commit": "1a34c13ecf2e",
+          "line_delta": 24,
+          "sections_changed": [
+            "Architecture",
+            "Dependencies",
+            "How to change safely",
+            "Key entry points",
+            "Purpose"
+          ]
+        }
+      ],
+      "kind": "module",
+      "name": "tests/test_plain.py",
+      "quarantined": false
+    },
+    "tests-test_pyramid_py.md": {
+      "claims": [
+        {
+          "ehash": "43f9968d0dad",
+          "evidence": "tests/test_pyramid.py:29",
+          "id": "c-f20213fa",
+          "predicate": "calls:test_autoseed_groups_by_source_file_on_the_real_graph;_graph",
+          "statement": "The module tests the `plan_pyramid` function with a real graph loaded from a fixture",
+          "verdict": "TRUE"
+        },
+        {
+          "ehash": "043f6edfba08",
+          "evidence": "tests/test_pyramid.py:61",
+          "id": "c-27750c7c",
+          "predicate": "calls:test_wikichain_none_does_not_crash;_wikichain_verifier",
+          "statement": "The `wikichain` verifier returns \"UNDECIDABLE\" for a `None` predicate",
+          "verdict": "TRUE"
+        },
+        {
+          "ehash": "01d7432da83a",
+          "evidence": "tests/test_pyramid.py:77",
+          "id": "c-29b4af46",
+          "predicate": "calls:test_wikichain_resolves_verdict_from_certificate;_wikichain_verifier",
+          "statement": "The verifier correctly resolves \"TRUE\" from a certificate claim",
+          "verdict": "TRUE"
+        },
+        {
+          "ehash": "cc0b593f5d84",
+          "evidence": "tests/test_pyramid.py:80",
+          "id": "c-18222039",
+          "predicate": "calls:test_wikichain_resolves_verdict_from_certificate;_wikichain_verifier",
+          "statement": "The verifier returns \"FALSE\" for a missing claim ID",
+          "verdict": "TRUE"
+        },
+        {
+          "ehash": "8adc92509277",
+          "evidence": "tests/test_pyramid.py:30",
+          "id": "c-716304e3",
+          "predicate": "calls:test_autoseed_groups_by_source_file_on_the_real_graph;plan_pyramid",
+          "statement": "The `plan_pyramid` function groups nodes by their top-level source directory",
+          "verdict": "TRUE"
+        },
+        {
+          "ehash": "47e1ea5e8b82",
+          "evidence": "tests/test_pyramid.py:41",
+          "id": "c-cc3132b1",
+          "predicate": "calls:test_explicit_config_still_works;plan_pyramid",
+          "statement": "The `plan_pyramid` function respects explicit configuration overrides",
+          "verdict": "TRUE"
+        },
+        {
+          "ehash": "8adc92509277",
+          "evidence": "tests/test_pyramid.py:53",
+          "id": "c-b9710280",
+          "predicate": "calls:test_links_used_for_inter_subsystem_deps;plan_pyramid",
+          "statement": "The `plan_pyramid` function records dependencies from import links",
+          "verdict": "TRUE"
+        }
+      ],
+      "compiled_at": "2026-07-26T01:04:12Z",
+      "context_hash": "e883936ea62a44938a3d582977fc3a91a678db7c360e4914ce8f6ff0b58466e7",
+      "findings": [],
+      "history": [
+        {
+          "commit": "1a34c13ecf2e",
+          "line_delta": 30,
+          "sections_changed": [
+            "Architecture",
+            "Dependencies",
+            "How to change safely",
+            "Key entry points",
+            "Purpose"
+          ]
+        }
+      ],
+      "kind": "module",
+      "name": "tests/test_pyramid.py",
+      "quarantined": false
+    },
+    "tests-test_reconcile_py.md": {
+      "claims": [
+        {
+          "ehash": "a6284e6d3d43",
+          "evidence": "tests/test_reconcile.py:1",
+          "id": "c-02f53295",
+          "predicate": "",
+          "statement": "The module tests the reconciliation logic for Proof-Carrying Prose",
+          "verdict": "UNDECIDABLE"
+        },
+        {
+          "ehash": "192c76a420ee",
+          "evidence": "tests/test_reconcile.py:22",
+          "id": "c-77bfc1ed",
+          "predicate": "calls:test_reconcile_prose_omits_finding;reconcile.reconcile",
+          "statement": "The test checks for prose omitting findings",
+          "verdict": "TRUE"
+        },
+        {
+          "ehash": "284df81fcc8e",
+          "evidence": "tests/test_reconcile.py:37",
+          "id": "c-0e2f4f4b",
+          "predicate": "calls:test_reconcile_prose_contradicts_finding_via_prose_denial;reconcile.reconcile",
+          "statement": "The test detects contradictions where prose denies findings",
+          "verdict": "TRUE"
+        },
+        {
+          "ehash": "5c0c6c2df1f8",
+          "evidence": "tests/test_reconcile.py:56",
+          "id": "c-74a4bcca",
+          "predicate": "calls:test_reconcile_prose_contradicts_finding_via_positive_claim;reconcile.reconcile",
+          "statement": "The test detects contradictions where claims contradict findings",
+          "verdict": "TRUE"
+        },
+        {
+          "ehash": "955c34085473",
+          "evidence": "tests/test_reconcile.py:72",
+          "id": "c-74c10b55",
+          "predicate": "calls:test_reconcile_mark_uncovered;reconcile.reconcile",
+          "statement": "The test ensures marks are covered by claims or prose",
+          "verdict": "TRUE"
+        },
+        {
+          "ehash": "555071af4491",
+          "evidence": "tests/test_reconcile.py:92",
+          "id": "c-e666911f",
+          "predicate": "calls:test_reconcile_ignores_resolved_findings;reconcile.reconcile",
+          "statement": "The test ignores resolved findings",
+          "verdict": "TRUE"
+        }
+      ],
+      "compiled_at": "2026-07-26T01:04:19Z",
+      "context_hash": "bb64ebb930f6eb7d26381d4796b0df8f688f2d9608641920f181f4215fda6bd3",
+      "findings": [],
+      "history": [
+        {
+          "commit": "1a34c13ecf2e",
+          "line_delta": 32,
+          "sections_changed": [
+            "(intro)",
+            "Architecture",
+            "Dependencies",
+            "How to change safely",
+            "Key entry points",
+            "Purpose"
+          ]
+        }
+      ],
+      "kind": "module",
+      "name": "tests/test_reconcile.py",
+      "quarantined": false
+    },
+    "tests-test_residue_py.md": {
+      "claims": [
+        {
+          "ehash": "7bcb3c4645b4",
+          "evidence": "tests/test_residue.py:38",
+          "id": "c-bcbfa564",
+          "predicate": "calls:test_section_diff_reports_changed_headings_and_line_delta;section_diff",
+          "statement": "The module tests section diffing functionality",
+          "verdict": "TRUE"
+        },
+        {
+          "ehash": "adae0fe1d689",
+          "evidence": "tests/test_residue.py:46",
+          "id": "c-a4bae5f7",
+          "predicate": "calls:test_journal_and_stats_track_calls_saved_and_unstable;render_stats",
+          "statement": "The module verifies compile journaling",
+          "verdict": "TRUE"
+        },
+        {
+          "ehash": "5f38beb2a8b7",
+          "evidence": "tests/test_residue.py:58",
+          "id": "c-009e8f22",
+          "predicate": "calls:test_page_history_records_section_changes;compile_wiki",
+          "statement": "The module validates per-page history tracking",
+          "verdict": "TRUE"
+        },
+        {
+          "ehash": "c12b7656b689",
+          "evidence": "tests/test_residue.py:73",
+          "id": "c-6a5df50a",
+          "predicate": "calls:test_claims_for_file_and_grep;claims_for_file",
+          "statement": "The module checks claims/findings querying",
+          "verdict": "TRUE"
+        },
+        {
+          "ehash": "72020fa88d9f",
+          "evidence": "tests/test_residue.py:22",
+          "id": "c-40f28d89",
+          "predicate": "calls:_repo;write_scan",
+          "statement": "The test harness creates temporary repositories",
+          "verdict": "TRUE"
+        },
+        {
+          "ehash": "e9e4ee7d3484",
+          "evidence": "tests/test_residue.py:12",
+          "id": "c-978e5aaa",
+          "predicate": "imports:tests/test_residue.py;isidore.journal",
+          "statement": "The module depends on isidore.journal",
+          "verdict": "UNDECIDABLE"
+        },
+        {
+          "ehash": "cfbdf9e3c2bd",
+          "evidence": "tests/test_residue.py:13",
+          "id": "c-4d71d937",
+          "predicate": "imports:tests/test_residue.py;isidore.pipeline",
+          "statement": "The module depends on isidore.pipeline",
+          "verdict": "UNDECIDABLE"
+        },
+        {
+          "ehash": "ce7b799d71b1",
+          "evidence": "tests/test_residue.py:9",
+          "id": "c-36b85015",
+          "predicate": "imports:tests/test_residue.py;isidore.claims",
+          "statement": "The module depends on isidore.claims",
+          "verdict": "UNDECIDABLE"
+        }
+      ],
+      "compiled_at": "2026-07-26T01:04:26Z",
+      "context_hash": "2d97a3a34c2cd0950560bc7b0811e5173c9dc994bae15bd606d9095388de4241",
+      "findings": [],
+      "history": [
+        {
+          "commit": "1a34c13ecf2e",
+          "line_delta": 40,
+          "sections_changed": [
+            "Architecture",
+            "Dependencies",
+            "How to change safely",
+            "Key entry points",
+            "Purpose"
+          ]
+        }
+      ],
+      "kind": "module",
+      "name": "tests/test_residue.py",
+      "quarantined": false
+    },
     "tests-test_security_prose_py.md": {
       "claims": [
         {
@@ -619,14 +3000,66 @@
       "quarantined": false
     },
     "tests-test_surface_py.md": {
-      "claims": [],
-      "compiled_at": "2026-07-25T21:32:31Z",
-      "context_hash": "3bae257a64f5e75b43a0f6159fb480413e19161b0bd4276d9ddc28ef75f54996",
+      "claims": [
+        {
+          "ehash": "768a285a689e",
+          "evidence": "tests/test_surface.py:1",
+          "id": "c-a597ecdd",
+          "predicate": "",
+          "statement": "The module tests the API surface extraction logic",
+          "verdict": "UNDECIDABLE"
+        },
+        {
+          "ehash": "d8ba66cf2794",
+          "evidence": "tests/test_surface.py:64",
+          "id": "c-cb239827",
+          "predicate": "defines:tests/test_surface.py;test_python_surface_covers_functions_methods_nested_and_constants",
+          "statement": "The test_python_surface_covers_functions_methods_nested_and_constants function verifies symbol extraction",
+          "verdict": "TRUE"
+        },
+        {
+          "ehash": "c9facc6a62a2",
+          "evidence": "tests/test_surface.py:79",
+          "id": "c-a15e08ab",
+          "predicate": "defines:tests/test_surface.py;test_python_surface_marks_visibility_including_inheritance_from_the_container",
+          "statement": "The test_python_surface_marks_visibility_including_inheritance_from_the_container function checks visibility rules",
+          "verdict": "TRUE"
+        },
+        {
+          "ehash": "69fe24ffa7bc",
+          "evidence": "tests/test_surface.py:92",
+          "id": "c-6f9fd58e",
+          "predicate": "defines:tests/test_surface.py;test_python_signature_is_exact_and_survives_reformatting",
+          "statement": "The test_python_signature_is_exact_and_survives_reformatting function ensures signature stability",
+          "verdict": "TRUE"
+        },
+        {
+          "ehash": "81aa133d3353",
+          "evidence": "tests/test_surface.py:104",
+          "id": "c-1d053b85",
+          "predicate": "defines:tests/test_surface.py;test_python_signature_moves_when_a_default_or_parameter_changes",
+          "statement": "The test_python_signature_moves_when_a_default_or_parameter_changes function detects parameter changes",
+          "verdict": "TRUE"
+        }
+      ],
+      "compiled_at": "2026-07-26T01:04:34Z",
+      "context_hash": "675576d6ca92d32a1dc6a9b946b3c6f7c961ed1146824b95a4c0aeae5e93e089",
       "findings": [],
       "history": [
         {
           "commit": "14a96ad814d1",
           "line_delta": 20,
+          "sections_changed": [
+            "Architecture",
+            "Dependencies",
+            "How to change safely",
+            "Key entry points",
+            "Purpose"
+          ]
+        },
+        {
+          "commit": "1a34c13ecf2e",
+          "line_delta": 4,
           "sections_changed": [
             "Architecture",
             "Dependencies",
@@ -736,48 +3169,56 @@
     "tests-test_whatsnew_py.md": {
       "claims": [
         {
-          "ehash": "c1059d8b05f7",
-          "evidence": "tests/test_whatsnew.py:36",
-          "id": "c-af271621",
-          "predicate": "defines:tests/test_whatsnew.py;_git",
-          "statement": "tests/test_whatsnew.py defines _git",
-          "verdict": "TRUE"
+          "ehash": "baa2e40efa53",
+          "evidence": "tests/test_whatsnew.py:1",
+          "id": "c-cb29003e",
+          "predicate": "",
+          "statement": "tests/test_whatsnew.py tests the whatsnew functionality",
+          "verdict": "UNDECIDABLE"
         },
         {
-          "ehash": "3927dd5a0c04",
-          "evidence": "tests/test_whatsnew.py:40",
-          "id": "c-cfc07dd9",
-          "predicate": "defines:tests/test_whatsnew.py;_commit",
-          "statement": "tests/test_whatsnew.py defines _commit",
-          "verdict": "TRUE"
+          "ehash": "baa2e40efa53",
+          "evidence": "tests/test_whatsnew.py:1",
+          "id": "c-574a699b",
+          "predicate": "",
+          "statement": "the module uses real git repositories in tmp_path",
+          "verdict": "UNDECIDABLE"
+        },
+        {
+          "ehash": "baa2e40efa53",
+          "evidence": "tests/test_whatsnew.py:1",
+          "id": "c-f03f0a69",
+          "predicate": "",
+          "statement": "the module tests the delta and prose verification",
+          "verdict": "UNDECIDABLE"
         },
         {
           "ehash": "5df5b58927e8",
-          "evidence": "tests/test_whatsnew.py:49",
-          "id": "c-ba19b35a",
+          "evidence": "tests/test_whatsnew.py:52",
+          "id": "c-4a8b7e2a",
           "predicate": "defines:tests/test_whatsnew.py;repo",
-          "statement": "tests/test_whatsnew.py defines repo",
+          "statement": "the repo fixture sets up a synthetic git repository",
           "verdict": "TRUE"
         },
         {
           "ehash": "2553035d778b",
-          "evidence": "tests/test_whatsnew.py:102",
-          "id": "c-5666b9f6",
+          "evidence": "tests/test_whatsnew.py:105",
+          "id": "c-02617c63",
           "predicate": "defines:tests/test_whatsnew.py;test_delta_reports_exactly_the_real_changes_and_invents_nothing",
-          "statement": "tests/test_whatsnew.py defines test_delta_reports_exactly_the_real_changes_and_invents_nothing",
+          "statement": "the test_delta_reports_exactly_the_real_changes_and_invents_nothing verifies the delta reports real changes",
           "verdict": "TRUE"
         },
         {
           "ehash": "a16920d7b1ef",
-          "evidence": "tests/test_whatsnew.py:121",
-          "id": "c-ac764cd0",
+          "evidence": "tests/test_whatsnew.py:124",
+          "id": "c-ee644339",
           "predicate": "defines:tests/test_whatsnew.py;test_signature_change_records_both_sides",
-          "statement": "tests/test_whatsnew.py defines test_signature_change_records_both_sides",
+          "statement": "the test_signature_change_records_both_sides verifies signature changes include old and new signatures",
           "verdict": "TRUE"
         }
       ],
-      "compiled_at": "2026-07-25T21:32:42Z",
-      "context_hash": "ee710691e076098b5f0803fffbceb331bd60e5af6396bd219fa351d563ec9fdf",
+      "compiled_at": "2026-07-26T01:04:41Z",
+      "context_hash": "2cc17563c738005e93369f81fad72272bb7c8dbd30cf5650d3994916ebf19518",
       "findings": [],
       "history": [
         {
@@ -790,10 +3231,92 @@
             "Key entry points",
             "Purpose"
           ]
+        },
+        {
+          "commit": "1a34c13ecf2e",
+          "line_delta": 11,
+          "sections_changed": [
+            "Architecture",
+            "Dependencies",
+            "How to change safely",
+            "Key entry points",
+            "Purpose"
+          ]
         }
       ],
       "kind": "module",
       "name": "tests/test_whatsnew.py",
+      "quarantined": false
+    },
+    "tests-test_wiki_dir_env_py.md": {
+      "claims": [
+        {
+          "ehash": "cd502b014d96",
+          "evidence": "tests/test_wiki_dir_env.py:3",
+          "id": "c-d6e38a8d",
+          "predicate": "env:ISIDORE_WIKI_DIR",
+          "statement": "The module tests the resolution of WIKI_DIRNAME from ISIDORE_WIKI_DIR",
+          "verdict": "TRUE"
+        },
+        {
+          "ehash": "542df3c7207f",
+          "evidence": "tests/test_wiki_dir_env.py:19",
+          "id": "c-381d5b59",
+          "predicate": "value:WIKI_DIRNAME;wiki",
+          "statement": "WIKI_DIRNAME defaults to \"wiki\" when ISIDORE_WIKI_DIR is unset",
+          "verdict": "UNDECIDABLE"
+        },
+        {
+          "ehash": "4b364ada019e",
+          "evidence": "tests/test_wiki_dir_env.py:24",
+          "id": "c-ad291004",
+          "predicate": "env:ISIDORE_WIKI_DIR",
+          "statement": "WIKI_DIRNAME is set to the value of ISIDORE_WIKI_DIR when provided",
+          "verdict": "TRUE"
+        },
+        {
+          "ehash": "9a63d3e4b4ea",
+          "evidence": "tests/test_wiki_dir_env.py:29",
+          "id": "c-baf9c0d4",
+          "predicate": "value:WIKI_DIRNAME;wiki",
+          "statement": "Blank ISIDORE_WIKI_DIR falls back to the default \"wiki\"",
+          "verdict": "UNDECIDABLE"
+        },
+        {
+          "ehash": "cac7c705cfe0",
+          "evidence": "tests/test_wiki_dir_env.py:37",
+          "id": "c-a806df90",
+          "predicate": "calls:test_save_state_creates_nested_wiki_dir;save_state",
+          "statement": "Nested directories are created when saving state",
+          "verdict": "TRUE"
+        },
+        {
+          "ehash": "3677870356be",
+          "evidence": "tests/test_wiki_dir_env.py:44",
+          "id": "c-6abc3dda",
+          "predicate": "calls:teardown_module;reload",
+          "statement": "The default binding is restored after tests",
+          "verdict": "TRUE"
+        }
+      ],
+      "compiled_at": "2026-07-26T01:04:48Z",
+      "context_hash": "8a9ff89e040f1aba11561dea0c43c993d12680e7675a4d4e3f97401444ec6164",
+      "findings": [],
+      "history": [
+        {
+          "commit": "1a34c13ecf2e",
+          "line_delta": 30,
+          "sections_changed": [
+            "Architecture",
+            "Dependencies",
+            "How to change safely",
+            "Key entry points",
+            "Purpose"
+          ]
+        }
+      ],
+      "kind": "module",
+      "name": "tests/test_wiki_dir_env.py",
       "quarantined": false
     }
   }

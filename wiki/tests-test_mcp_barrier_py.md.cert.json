@@ -1,0 +1,96 @@
+{
+  "child_cert_hashes": {},
+  "claims": [
+    {
+      "detail": "no predicate (existence-anchored only)",
+      "ehash": "c940e1850036",
+      "evidence": "tests/test_mcp_barrier.py:1",
+      "id": "c-7f2d448c",
+      "oracle": "none",
+      "predicate": "",
+      "statement": "The module tests the read-only barrier for MCP connectors",
+      "verdict": "UNDECIDABLE"
+    },
+    {
+      "detail": "no predicate (existence-anchored only)",
+      "ehash": "d805a655309e",
+      "evidence": "tests/test_mcp_barrier.py:3",
+      "id": "c-5e5acdef",
+      "oracle": "none",
+      "predicate": "",
+      "statement": "The authoritative barrier is the protocol's readOnlyHint",
+      "verdict": "UNDECIDABLE"
+    },
+    {
+      "detail": "no predicate (existence-anchored only)",
+      "ehash": "d805a655309e",
+      "evidence": "tests/test_mcp_barrier.py:3",
+      "id": "c-8b2c4ca9",
+      "oracle": "none",
+      "predicate": "",
+      "statement": "The name heuristic is a fallback for tools without annotations",
+      "verdict": "UNDECIDABLE"
+    },
+    {
+      "detail": "_tool_read_only has no call to _tool_read_only",
+      "ehash": "827e7347ceb8",
+      "evidence": "tests/test_mcp_barrier.py:14",
+      "id": "c-8d7b5489",
+      "oracle": "ast",
+      "predicate": "calls:_tool_read_only;_tool_read_only",
+      "statement": "Tools with readOnlyHint: true are allowed",
+      "verdict": "FALSE"
+    },
+    {
+      "detail": "_tool_read_only has no call to _tool_read_only",
+      "ehash": "373e68e4bb66",
+      "evidence": "tests/test_mcp_barrier.py:19",
+      "id": "c-06fb13f5",
+      "oracle": "ast",
+      "predicate": "calls:_tool_read_only;_tool_read_only",
+      "statement": "Tools with readOnlyHint: false are rejected",
+      "verdict": "FALSE"
+    },
+    {
+      "detail": "_tool_read_only has no call to _tool_read_only",
+      "ehash": "eac0edaacc02",
+      "evidence": "tests/test_mcp_barrier.py:24",
+      "id": "c-69d00fe9",
+      "oracle": "ast",
+      "predicate": "calls:_tool_read_only;_tool_read_only",
+      "statement": "Tools with destructiveHint: true are rejected",
+      "verdict": "FALSE"
+    },
+    {
+      "detail": "_name_looks_mutating has no call to _name_looks_mutating",
+      "ehash": "0de01622bdda",
+      "evidence": "tests/test_mcp_barrier.py:37",
+      "id": "c-4c70a007",
+      "oracle": "ast",
+      "predicate": "calls:_name_looks_mutating;_name_looks_mutating",
+      "statement": "The name heuristic identifies mutating tools",
+      "verdict": "FALSE"
+    },
+    {
+      "detail": "_name_looks_mutating has no call to _name_looks_mutating",
+      "ehash": "72738c7c6be4",
+      "evidence": "tests/test_mcp_barrier.py:43",
+      "id": "c-99f3c641",
+      "oracle": "ast",
+      "predicate": "calls:_name_looks_mutating;_name_looks_mutating",
+      "statement": "The name heuristic identifies read-only tools",
+      "verdict": "FALSE"
+    }
+  ],
+  "graph_commit": "1a34c13ecf2ef7ce206f1ceeaeb1987fea5f8272",
+  "marks": [],
+  "mass": {
+    "gray": 13,
+    "green": 0,
+    "yellow": 23
+  },
+  "page": "tests-test_mcp_barrier_py.md",
+  "prose_sha256": "6ad210530ea6796dacf2f665c42724c00cc5ab68358dd2331124051324142dfe",
+  "version": "pcp-1",
+  "violations": []
+}

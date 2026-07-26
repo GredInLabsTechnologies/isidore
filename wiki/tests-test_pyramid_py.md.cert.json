@@ -1,0 +1,86 @@
+{
+  "child_cert_hashes": {},
+  "claims": [
+    {
+      "detail": "test_autoseed_groups_by_source_file_on_the_real_graph calls _graph",
+      "ehash": "43f9968d0dad",
+      "evidence": "tests/test_pyramid.py:29",
+      "id": "c-f20213fa",
+      "oracle": "ast",
+      "predicate": "calls:test_autoseed_groups_by_source_file_on_the_real_graph;_graph",
+      "statement": "The module tests the `plan_pyramid` function with a real graph loaded from a fixture",
+      "verdict": "TRUE"
+    },
+    {
+      "detail": "test_wikichain_none_does_not_crash calls _wikichain_verifier",
+      "ehash": "043f6edfba08",
+      "evidence": "tests/test_pyramid.py:61",
+      "id": "c-27750c7c",
+      "oracle": "ast",
+      "predicate": "calls:test_wikichain_none_does_not_crash;_wikichain_verifier",
+      "statement": "The `wikichain` verifier returns \"UNDECIDABLE\" for a `None` predicate",
+      "verdict": "TRUE"
+    },
+    {
+      "detail": "test_wikichain_resolves_verdict_from_certificate calls _wikichain_verifier",
+      "ehash": "01d7432da83a",
+      "evidence": "tests/test_pyramid.py:77",
+      "id": "c-29b4af46",
+      "oracle": "ast",
+      "predicate": "calls:test_wikichain_resolves_verdict_from_certificate;_wikichain_verifier",
+      "statement": "The verifier correctly resolves \"TRUE\" from a certificate claim",
+      "verdict": "TRUE"
+    },
+    {
+      "detail": "test_wikichain_resolves_verdict_from_certificate calls _wikichain_verifier",
+      "ehash": "cc0b593f5d84",
+      "evidence": "tests/test_pyramid.py:80",
+      "id": "c-18222039",
+      "oracle": "ast",
+      "predicate": "calls:test_wikichain_resolves_verdict_from_certificate;_wikichain_verifier",
+      "statement": "The verifier returns \"FALSE\" for a missing claim ID",
+      "verdict": "TRUE"
+    },
+    {
+      "detail": "test_autoseed_groups_by_source_file_on_the_real_graph calls plan_pyramid",
+      "ehash": "8adc92509277",
+      "evidence": "tests/test_pyramid.py:30",
+      "id": "c-716304e3",
+      "oracle": "ast",
+      "predicate": "calls:test_autoseed_groups_by_source_file_on_the_real_graph;plan_pyramid",
+      "statement": "The `plan_pyramid` function groups nodes by their top-level source directory",
+      "verdict": "TRUE"
+    },
+    {
+      "detail": "test_explicit_config_still_works calls plan_pyramid",
+      "ehash": "47e1ea5e8b82",
+      "evidence": "tests/test_pyramid.py:41",
+      "id": "c-cc3132b1",
+      "oracle": "ast",
+      "predicate": "calls:test_explicit_config_still_works;plan_pyramid",
+      "statement": "The `plan_pyramid` function respects explicit configuration overrides",
+      "verdict": "TRUE"
+    },
+    {
+      "detail": "test_links_used_for_inter_subsystem_deps calls plan_pyramid",
+      "ehash": "8adc92509277",
+      "evidence": "tests/test_pyramid.py:53",
+      "id": "c-b9710280",
+      "oracle": "ast",
+      "predicate": "calls:test_links_used_for_inter_subsystem_deps;plan_pyramid",
+      "statement": "The `plan_pyramid` function records dependencies from import links",
+      "verdict": "TRUE"
+    }
+  ],
+  "graph_commit": "1a34c13ecf2ef7ce206f1ceeaeb1987fea5f8272",
+  "marks": [],
+  "mass": {
+    "gray": 15,
+    "green": 20,
+    "yellow": 0
+  },
+  "page": "tests-test_pyramid_py.md",
+  "prose_sha256": "0ca07a157c2e51c0680b43760b82e5194a01e28694ad87d808c537a4bed4e2d2",
+  "version": "pcp-1",
+  "violations": []
+}

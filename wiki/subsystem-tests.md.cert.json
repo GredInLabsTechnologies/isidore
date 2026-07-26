@@ -1,171 +1,50 @@
 {
   "child_cert_hashes": {
+    "tests-test_changeset_py.md": "343eaaa3e3fac4664a6a1774b2be763e8d50cddaadb270d9e329e6af94cad2c6",
     "tests-test_claims_py.md": "9b9da050c8aafbba2d2c3bd8fbacc1be5baa62b55aef5db8401f58642afc2c2a",
-    "tests-test_connectors_f1_py.md": "98640cc866952d8f286fd8b70e34695a12d178423cbe01fc8ec558a892aac76f",
-    "tests-test_verify_py.md": "467c61c602722b07be7ab383dc8ff77e7f67e23ebf60fb52b088e42783b2bccd",
-    "tests-test_whatsnew_py.md": "80c753ec1033afec3830973d45ca488d2ac2d0bc41e8e483a45f354dfc0d5abf"
+    "tests-test_pcp_pipeline_py.md": "3bb798608291c506ef1f00109e5d415e3fa9f5c7d374c5c1cb0063c2c991477e"
   },
   "claims": [
     {
       "detail": "cited claim proved TRUE",
+      "ehash": "343eaaa3e3fa",
+      "evidence": "wiki://tests-test_changeset_py.md#c-e036b149",
+      "id": "c-77d09fa9",
+      "oracle": "wiki",
+      "predicate": "wikichain:wiki://tests-test_changeset_py.md#c-e036b149",
+      "statement": "The tests area ensures the correctness and reliability of the Isidore system by verifying its core functionality through unit, integration, and regression tests.",
+      "verdict": "TRUE"
+    },
+    {
+      "detail": "cited claim proved TRUE",
+      "ehash": "3bb798608291",
+      "evidence": "wiki://tests-test_pcp_pipeline_py.md#c-3e899ad1",
+      "id": "c-7c63b31c",
+      "oracle": "wiki",
+      "predicate": "wikichain:wiki://tests-test_pcp_pipeline_py.md#c-3e899ad1",
+      "statement": "The tests are split into specialized modules, each targeting a distinct subsystem or feature.",
+      "verdict": "TRUE"
+    },
+    {
+      "detail": "cited claim proved TRUE",
       "ehash": "9b9da050c8aa",
       "evidence": "wiki://tests-test_claims_py.md#c-bc3cb03c",
-      "id": "c-900ce303",
+      "id": "c-f328a26d",
       "oracle": "wiki",
       "predicate": "wikichain:wiki://tests-test_claims_py.md#c-bc3cb03c",
-      "statement": "The module tests the classification of existential vs. behavioral claims",
-      "verdict": "TRUE"
-    },
-    {
-      "detail": "cited claim proved TRUE",
-      "ehash": "9b9da050c8aa",
-      "evidence": "wiki://tests-test_claims_py.md#c-1068b52d",
-      "id": "c-a1495cd9",
-      "oracle": "wiki",
-      "predicate": "wikichain:wiki://tests-test_claims_py.md#c-1068b52d",
-      "statement": "The module tests the extraction of claims from Markdown blocks",
-      "verdict": "TRUE"
-    },
-    {
-      "detail": "cited claim proved TRUE",
-      "ehash": "9b9da050c8aa",
-      "evidence": "wiki://tests-test_claims_py.md#c-6f48da29",
-      "id": "c-9cdac0ef",
-      "oracle": "wiki",
-      "predicate": "wikichain:wiki://tests-test_claims_py.md#c-6f48da29",
-      "statement": "The module tests the hashing of cited lines",
-      "verdict": "TRUE"
-    },
-    {
-      "detail": "cited claim proved TRUE",
-      "ehash": "9b9da050c8aa",
-      "evidence": "wiki://tests-test_claims_py.md#c-6011c9b5",
-      "id": "c-060904f9",
-      "oracle": "wiki",
-      "predicate": "wikichain:wiki://tests-test_claims_py.md#c-6011c9b5",
-      "statement": "The module tests that staleness is only triggered by changes to the cited line",
-      "verdict": "TRUE"
-    },
-    {
-      "detail": "cited claim proved TRUE",
-      "ehash": "98640cc86695",
-      "evidence": "wiki://tests-test_connectors_f1_py.md#c-9e0fb2f2",
-      "id": "c-0cff4d1e",
-      "oracle": "wiki",
-      "predicate": "wikichain:wiki://tests-test_connectors_f1_py.md#c-9e0fb2f2",
-      "statement": "The knowledge home can be overridden via ISIDORE_HOME",
-      "verdict": "TRUE"
-    },
-    {
-      "detail": "cited claim proved TRUE",
-      "ehash": "467c61c60272",
-      "evidence": "wiki://tests-test_verify_py.md#c-eedd3dfb",
-      "id": "c-8ce91328",
-      "oracle": "wiki",
-      "predicate": "wikichain:wiki://tests-test_verify_py.md#c-eedd3dfb",
-      "statement": "The module uses a VerifyContext to hold the repository, nodes, links, and commit",
-      "verdict": "TRUE"
-    },
-    {
-      "detail": "cited claim proved TRUE",
-      "ehash": "467c61c60272",
-      "evidence": "wiki://tests-test_verify_py.md#c-395df6c3",
-      "id": "c-3353a958",
-      "oracle": "wiki",
-      "predicate": "wikichain:wiki://tests-test_verify_py.md#c-395df6c3",
-      "statement": "The module anchors claims by parsing a Markdown file and resolving their locations",
-      "verdict": "TRUE"
-    },
-    {
-      "detail": "cited claim proved TRUE",
-      "ehash": "467c61c60272",
-      "evidence": "wiki://tests-test_verify_py.md#c-d5c8cfe6",
-      "id": "c-46423b0e",
-      "oracle": "wiki",
-      "predicate": "wikichain:wiki://tests-test_verify_py.md#c-d5c8cfe6",
-      "statement": "The module tests that three-field claims are parsed correctly",
-      "verdict": "TRUE"
-    },
-    {
-      "detail": "cited claim proved TRUE",
-      "ehash": "467c61c60272",
-      "evidence": "wiki://tests-test_verify_py.md#c-255b2224",
-      "id": "c-b16e02fb",
-      "oracle": "wiki",
-      "predicate": "wikichain:wiki://tests-test_verify_py.md#c-255b2224",
-      "statement": "The module tests that each predicate type is verified correctly",
-      "verdict": "TRUE"
-    },
-    {
-      "detail": "cited claim proved TRUE",
-      "ehash": "467c61c60272",
-      "evidence": "wiki://tests-test_verify_py.md#c-45925534",
-      "id": "c-3de75783",
-      "oracle": "wiki",
-      "predicate": "wikichain:wiki://tests-test_verify_py.md#c-45925534",
-      "statement": "The module tests that the generated certificate matches golden verdicts",
-      "verdict": "TRUE"
-    },
-    {
-      "detail": "cited claim proved TRUE",
-      "ehash": "80c753ec1033",
-      "evidence": "wiki://tests-test_whatsnew_py.md#c-af271621",
-      "id": "c-6f002d94",
-      "oracle": "wiki",
-      "predicate": "wikichain:wiki://tests-test_whatsnew_py.md#c-af271621",
-      "statement": "tests/test_whatsnew.py defines _git",
-      "verdict": "TRUE"
-    },
-    {
-      "detail": "cited claim proved TRUE",
-      "ehash": "80c753ec1033",
-      "evidence": "wiki://tests-test_whatsnew_py.md#c-cfc07dd9",
-      "id": "c-115628cc",
-      "oracle": "wiki",
-      "predicate": "wikichain:wiki://tests-test_whatsnew_py.md#c-cfc07dd9",
-      "statement": "tests/test_whatsnew.py defines _commit",
-      "verdict": "TRUE"
-    },
-    {
-      "detail": "cited claim proved TRUE",
-      "ehash": "80c753ec1033",
-      "evidence": "wiki://tests-test_whatsnew_py.md#c-ba19b35a",
-      "id": "c-f180db60",
-      "oracle": "wiki",
-      "predicate": "wikichain:wiki://tests-test_whatsnew_py.md#c-ba19b35a",
-      "statement": "tests/test_whatsnew.py defines repo",
-      "verdict": "TRUE"
-    },
-    {
-      "detail": "cited claim proved TRUE",
-      "ehash": "80c753ec1033",
-      "evidence": "wiki://tests-test_whatsnew_py.md#c-5666b9f6",
-      "id": "c-6c564d56",
-      "oracle": "wiki",
-      "predicate": "wikichain:wiki://tests-test_whatsnew_py.md#c-5666b9f6",
-      "statement": "tests/test_whatsnew.py defines test_delta_reports_exactly_the_real_changes_and_invents_nothing",
-      "verdict": "TRUE"
-    },
-    {
-      "detail": "cited claim proved TRUE",
-      "ehash": "80c753ec1033",
-      "evidence": "wiki://tests-test_whatsnew_py.md#c-ac764cd0",
-      "id": "c-23ef7a6a",
-      "oracle": "wiki",
-      "predicate": "wikichain:wiki://tests-test_whatsnew_py.md#c-ac764cd0",
-      "statement": "tests/test_whatsnew.py defines test_signature_change_records_both_sides",
+      "statement": "This area depends on the core modules it tests but has no external dependencies.",
       "verdict": "TRUE"
     }
   ],
   "graph_commit": null,
   "marks": [],
   "mass": {
-    "gray": 10,
-    "green": 9,
+    "gray": 6,
+    "green": 11,
     "yellow": 0
   },
   "page": "subsystem-tests.md",
-  "prose_sha256": "eac6f506e521f03efc55095ee9e3a4263d8646bf963ff2a364074b012a57b879",
+  "prose_sha256": "50d10df08e0f884773ec6cae64f67c1496f0813332d5b77678ad3d29baab9256",
   "version": "pcp-1",
   "violations": []
 }

@@ -1,0 +1,116 @@
+{
+  "child_cert_hashes": {},
+  "claims": [
+    {
+      "detail": "no comparable literal assignment to DEFAULT_HOME found",
+      "ehash": "cae2ee2c6921",
+      "evidence": "src/isidore/home.py:16",
+      "id": "c-54a080bd",
+      "oracle": "none",
+      "predicate": "value:DEFAULT_HOME;~/.isidore",
+      "statement": "The knowledge home defaults to `~/.isidore`",
+      "verdict": "UNDECIDABLE"
+    },
+    {
+      "detail": "ISIDORE_HOME read in src/isidore/home.py",
+      "ehash": "38904d9668e7",
+      "evidence": "src/isidore/home.py:15",
+      "id": "c-24dd88fe",
+      "oracle": "grep",
+      "predicate": "env:ISIDORE_HOME",
+      "statement": "The `ISIDORE_HOME` environment variable overrides the default home path",
+      "verdict": "TRUE"
+    },
+    {
+      "detail": "home calls Path",
+      "ehash": "cae2ee2c6921",
+      "evidence": "src/isidore/home.py:16",
+      "id": "c-9fc9132f",
+      "oracle": "ast",
+      "predicate": "calls:home;Path",
+      "statement": "The `home()` function resolves paths using `pathlib.Path`",
+      "verdict": "TRUE"
+    },
+    {
+      "detail": "connector_dir calls home",
+      "ehash": "80694f635c81",
+      "evidence": "src/isidore/home.py:20",
+      "id": "c-86b46332",
+      "oracle": "ast",
+      "predicate": "calls:connector_dir;home",
+      "statement": "The `connector_dir` function constructs paths under `home() / \"connectors\" / cid`",
+      "verdict": "TRUE"
+    },
+    {
+      "detail": "raw_dir calls connector_dir",
+      "ehash": "43fe62d20f47",
+      "evidence": "src/isidore/home.py:25",
+      "id": "c-32319464",
+      "oracle": "ast",
+      "predicate": "calls:raw_dir;connector_dir",
+      "statement": "The `raw_dir` function appends `raw/run_id` to the connector directory",
+      "verdict": "TRUE"
+    },
+    {
+      "detail": "config_path calls connector_dir",
+      "ehash": "388ba642bb3e",
+      "evidence": "src/isidore/home.py:29",
+      "id": "c-05809ebd",
+      "oracle": "ast",
+      "predicate": "calls:config_path;connector_dir",
+      "statement": "The `config_path` function returns `config.json` in the connector directory",
+      "verdict": "TRUE"
+    },
+    {
+      "detail": "state_path calls connector_dir",
+      "ehash": "332a684d54ef",
+      "evidence": "src/isidore/home.py:33",
+      "id": "c-11f5ace6",
+      "oracle": "ast",
+      "predicate": "calls:state_path;connector_dir",
+      "statement": "The `state_path` function returns `state.json` in the connector directory",
+      "verdict": "TRUE"
+    },
+    {
+      "detail": "knowledge_dir calls home",
+      "ehash": "4dc17f82c08f",
+      "evidence": "src/isidore/home.py:37",
+      "id": "c-08ef5939",
+      "oracle": "ast",
+      "predicate": "calls:knowledge_dir;home",
+      "statement": "The `knowledge_dir` function returns `home() / \"knowledge\"`",
+      "verdict": "TRUE"
+    },
+    {
+      "detail": "safe_chmod has no call to name",
+      "ehash": "f41c3029b312",
+      "evidence": "src/isidore/home.py:42",
+      "id": "c-2bc0f3c8",
+      "oracle": "ast",
+      "predicate": "calls:safe_chmod;os.name",
+      "statement": "The `safe_chmod` function is a no-op on Windows",
+      "verdict": "FALSE"
+    },
+    {
+      "detail": "safe_mkdir calls mkdir",
+      "ehash": "4db677f5431a",
+      "evidence": "src/isidore/home.py:53",
+      "id": "c-a9f86090",
+      "oracle": "ast",
+      "predicate": "calls:safe_mkdir;mkdir",
+      "statement": "The `safe_mkdir` function creates directories recursively with restrictive permissions",
+      "verdict": "TRUE"
+    }
+  ],
+  "graph_commit": "1a34c13ecf2ef7ce206f1ceeaeb1987fea5f8272",
+  "marks": [],
+  "mass": {
+    "gray": 11,
+    "green": 17,
+    "yellow": 1
+  },
+  "page": "src-isidore-home_py.md",
+  "prose_sha256": "9f50f79c20a8dbee3692153de95e52d9fa16f38e5d570bda93dd7ce2100cffed",
+  "version": "pcp-1",
+  "violations": []
+}

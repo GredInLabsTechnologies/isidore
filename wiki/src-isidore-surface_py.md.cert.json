@@ -1,0 +1,86 @@
+{
+  "child_cert_hashes": {},
+  "claims": [
+    {
+      "detail": "no predicate (existence-anchored only)",
+      "ehash": "9d4920c93459",
+      "evidence": "src/isidore/surface.py:1",
+      "id": "c-c8b7c052",
+      "oracle": "none",
+      "predicate": "",
+      "statement": "The module extracts API surfaces from text, not file paths",
+      "verdict": "UNDECIDABLE"
+    },
+    {
+      "detail": "src/isidore/surface.py defines SurfaceSymbol",
+      "ehash": "eeb0efde5e8f",
+      "evidence": "src/isidore/surface.py:88",
+      "id": "c-20b6b927",
+      "oracle": "graph",
+      "predicate": "defines:src/isidore/surface.py;SurfaceSymbol",
+      "statement": "SurfaceSymbol captures qualified names, kinds, visibility, and signatures",
+      "verdict": "TRUE"
+    },
+    {
+      "detail": "src/isidore/surface.py defines clean_sig",
+      "ehash": "6e7d9b3f76ef",
+      "evidence": "src/isidore/surface.py:106",
+      "id": "c-9a088c15",
+      "oracle": "graph",
+      "predicate": "defines:src/isidore/surface.py;clean_sig",
+      "statement": "clean_sig normalizes whitespace and truncates long signatures",
+      "verdict": "TRUE"
+    },
+    {
+      "detail": "src/isidore/surface.py defines _declaration_tail",
+      "ehash": "1a210a90de99",
+      "evidence": "src/isidore/surface.py:119",
+      "id": "c-b5bc7b0c",
+      "oracle": "graph",
+      "predicate": "defines:src/isidore/surface.py;_declaration_tail",
+      "statement": "_declaration_tail checks if parentheses close on a line",
+      "verdict": "TRUE"
+    },
+    {
+      "detail": "src/isidore/surface.py defines _is_declaration",
+      "ehash": "7264bac51424",
+      "evidence": "src/isidore/surface.py:140",
+      "id": "c-109388d4",
+      "oracle": "graph",
+      "predicate": "defines:src/isidore/surface.py;_is_declaration",
+      "statement": "_is_declaration filters out test-framework blocks",
+      "verdict": "TRUE"
+    },
+    {
+      "detail": "src/isidore/surface.py defines _is_public",
+      "ehash": "32e4d3d695bd",
+      "evidence": "src/isidore/surface.py:145",
+      "id": "c-ac7fc498",
+      "oracle": "graph",
+      "predicate": "defines:src/isidore/surface.py;_is_public",
+      "statement": "_is_public enforces the underscore convention for visibility",
+      "verdict": "TRUE"
+    },
+    {
+      "detail": "src/isidore/surface.py defines _py_signature",
+      "ehash": "7ab1e1a15729",
+      "evidence": "src/isidore/surface.py:153",
+      "id": "c-41cb7c0d",
+      "oracle": "graph",
+      "predicate": "defines:src/isidore/surface.py;_py_signature",
+      "statement": "Python signatures are parsed via ast for exactness",
+      "verdict": "TRUE"
+    }
+  ],
+  "graph_commit": "1a34c13ecf2ef7ce206f1ceeaeb1987fea5f8272",
+  "marks": [],
+  "mass": {
+    "gray": 8,
+    "green": 10,
+    "yellow": 4
+  },
+  "page": "src-isidore-surface_py.md",
+  "prose_sha256": "df2a647fdc58d463366969afdfcd820e876c1ee3701a6756628da2dc55530c15",
+  "version": "pcp-1",
+  "violations": []
+}

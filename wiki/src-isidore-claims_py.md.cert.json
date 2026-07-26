@@ -1,0 +1,115 @@
+{
+  "child_cert_hashes": {},
+  "claims": [
+    {
+      "detail": "no predicate (existence-anchored only)",
+      "ehash": "e7b4cb831799",
+      "evidence": "src/isidore/claims.py:1",
+      "id": "c-b4bccd57",
+      "oracle": "none",
+      "predicate": "",
+      "statement": "The module defines claims as evidence-anchored statements about the code",
+      "verdict": "UNDECIDABLE"
+    },
+    {
+      "detail": "src/isidore/claims.py defines parse_claims_block",
+      "ehash": "a5c2de61e5be",
+      "evidence": "src/isidore/claims.py:103",
+      "id": "c-8ea600ba",
+      "oracle": "graph",
+      "predicate": "defines:src/isidore/claims.py;parse_claims_block",
+      "statement": "Claims are parsed from markdown fenced blocks",
+      "verdict": "TRUE"
+    },
+    {
+      "detail": "src/isidore/claims.py defines evidence_hash",
+      "ehash": "22ca2a8b29b8",
+      "evidence": "src/isidore/claims.py:171",
+      "id": "c-85cc085c",
+      "oracle": "graph",
+      "predicate": "defines:src/isidore/claims.py;evidence_hash",
+      "statement": "The evidence hash is generated from the cited line's normalized content",
+      "verdict": "TRUE"
+    },
+    {
+      "detail": "parse_claims_block has no call to is_negative_existential",
+      "ehash": "a5c2de61e5be",
+      "evidence": "src/isidore/claims.py:103",
+      "id": "c-980ed9f2",
+      "oracle": "ast",
+      "predicate": "calls:parse_claims_block;is_negative_existential",
+      "statement": "Claims with existential absence are quarantined",
+      "verdict": "FALSE"
+    },
+    {
+      "detail": "SEARCH_RADIUS == 40",
+      "ehash": "27d5f1e813f1",
+      "evidence": "src/isidore/claims.py:25",
+      "id": "c-5687a2c5",
+      "oracle": "ast",
+      "predicate": "value:SEARCH_RADIUS;40",
+      "statement": "The module uses a 40-line search radius for evidence",
+      "verdict": "TRUE"
+    },
+    {
+      "detail": "CLAIMS_FILENAME == claims.toon",
+      "ehash": "27d5f1e813f1",
+      "evidence": "src/isidore/claims.py:25",
+      "id": "c-42643aa8",
+      "oracle": "ast",
+      "predicate": "value:CLAIMS_FILENAME;claims.toon",
+      "statement": "Claims are stored in a 'claims.toon' file",
+      "verdict": "TRUE"
+    },
+    {
+      "detail": "_hash calls hexdigest",
+      "ehash": "78dcc01294ee",
+      "evidence": "src/isidore/claims.py:157",
+      "id": "c-36709047",
+      "oracle": "ast",
+      "predicate": "calls:_hash;hexdigest",
+      "statement": "The evidence hash is truncated to 12 hex characters",
+      "verdict": "TRUE"
+    },
+    {
+      "detail": "_hash has no call to _normalize",
+      "ehash": "9f00f6109919",
+      "evidence": "src/isidore/claims.py:151",
+      "id": "c-ddc1f55d",
+      "oracle": "ast",
+      "predicate": "calls:_hash;_normalize",
+      "statement": "The module normalizes whitespace before hashing",
+      "verdict": "FALSE"
+    },
+    {
+      "detail": "parse_claims_block has no call to parse_predicate_field",
+      "ehash": "7d89914571e6",
+      "evidence": "src/isidore/claims.py:115",
+      "id": "c-7b0185a6",
+      "oracle": "ast",
+      "predicate": "calls:parse_claims_block;parse_predicate_field",
+      "statement": "Claims can include an optional PCP predicate",
+      "verdict": "FALSE"
+    }
+  ],
+  "graph_commit": "1a34c13ecf2ef7ce206f1ceeaeb1987fea5f8272",
+  "marks": [
+    {
+      "disposition": "",
+      "family": "topology",
+      "file": "src/isidore/claims.py",
+      "line": 1,
+      "reason": "reachable from auth/secret surface: src/isidore/detectors.py",
+      "severity": "info"
+    }
+  ],
+  "mass": {
+    "gray": 14,
+    "green": 17,
+    "yellow": 2
+  },
+  "page": "src-isidore-claims_py.md",
+  "prose_sha256": "a8d1b3bd08a30db11daeb51f4714a7cec536a855bcf89f496649faaa2088bc68",
+  "version": "pcp-1",
+  "violations": []
+}

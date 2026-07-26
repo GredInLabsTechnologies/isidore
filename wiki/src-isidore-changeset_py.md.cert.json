@@ -1,0 +1,85 @@
+{
+  "child_cert_hashes": {},
+  "claims": [
+    {
+      "detail": "changed_lines calls _git_diff",
+      "ehash": "83ec2767721b",
+      "evidence": "src/isidore/changeset.py:36",
+      "id": "c-1ea2e1cc",
+      "oracle": "ast",
+      "predicate": "calls:changed_lines;_git_diff",
+      "statement": "The module processes git diffs to identify changed lines",
+      "verdict": "TRUE"
+    },
+    {
+      "detail": "src/isidore/changeset.py defines changed_lines",
+      "ehash": "83ec2767721b",
+      "evidence": "src/isidore/changeset.py:36",
+      "id": "c-90be0b37",
+      "oracle": "graph",
+      "predicate": "defines:src/isidore/changeset.py;changed_lines",
+      "statement": "changed_lines() maps files to sets of changed line numbers",
+      "verdict": "TRUE"
+    },
+    {
+      "detail": "src/isidore/changeset.py defines symbol_spans",
+      "ehash": "79c3be3cad9a",
+      "evidence": "src/isidore/changeset.py:68",
+      "id": "c-6b86763d",
+      "oracle": "graph",
+      "predicate": "defines:src/isidore/changeset.py;symbol_spans",
+      "statement": "symbol_spans() converts graph nodes to line ranges",
+      "verdict": "TRUE"
+    },
+    {
+      "detail": "src/isidore/changeset.py defines changed_symbols",
+      "ehash": "2c3c200bbe43",
+      "evidence": "src/isidore/changeset.py:95",
+      "id": "c-7ea4587c",
+      "oracle": "graph",
+      "predicate": "defines:src/isidore/changeset.py;changed_symbols",
+      "statement": "changed_symbols() maps changed lines to graph node IDs",
+      "verdict": "TRUE"
+    },
+    {
+      "detail": "WHOLE_FILE == 0",
+      "ehash": "36766a8c5844",
+      "evidence": "src/isidore/changeset.py:22",
+      "id": "c-436a43d3",
+      "oracle": "ast",
+      "predicate": "value:WHOLE_FILE;0",
+      "statement": "WHOLE_FILE is a sentinel for pure renames",
+      "verdict": "TRUE"
+    },
+    {
+      "detail": "src/isidore/changeset.py imports src/isidore/graph.py",
+      "ehash": "289a8f06db96",
+      "evidence": "src/isidore/changeset.py:15",
+      "id": "c-e4061fd8",
+      "oracle": "graph",
+      "predicate": "imports:src/isidore/changeset.py;src/isidore/graph.py",
+      "statement": "The module depends on graph.py's module_of",
+      "verdict": "TRUE"
+    }
+  ],
+  "graph_commit": "1a34c13ecf2ef7ce206f1ceeaeb1987fea5f8272",
+  "marks": [
+    {
+      "disposition": "",
+      "family": "topology",
+      "file": "src/isidore/changeset.py",
+      "line": 1,
+      "reason": "reachable from auth/secret surface: src/isidore/detectors.py",
+      "severity": "info"
+    }
+  ],
+  "mass": {
+    "gray": 24,
+    "green": 14,
+    "yellow": 0
+  },
+  "page": "src-isidore-changeset_py.md",
+  "prose_sha256": "f1c9e097196c84da0308d914764f00aed2d164a86bb60d2c3d0c47a4d62f4174",
+  "version": "pcp-1",
+  "violations": []
+}

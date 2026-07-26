@@ -1,0 +1,105 @@
+{
+  "child_cert_hashes": {},
+  "claims": [
+    {
+      "detail": "no comparable literal assignment to _STOPWORDS found",
+      "ehash": "4c7dc10ea293",
+      "evidence": "src/isidore/qa.py:43",
+      "id": "c-10dc5377",
+      "oracle": "none",
+      "predicate": "value:_STOPWORDS;frozenset({'the', 'and', 'for', 'are', 'was', 'were', 'with', 'that', 'this', 'from', 'into', 'your', 'you', 'how', 'does', 'did', 'what', 'why', 'who', 'whom', 'where', 'when', 'which', 'whose', 'has', 'have', 'had', 'not', 'but', 'its', 'their', 'there', 'here', 'then', 'than', 'them', 'they', 'our', 'out', 'get', 'got', 'can', 'could', 'would', 'should', 'will', 'shall', 'may', 'might', 'must', 'about', 'over', 'under', 'between', 'using', 'use', 'used', 'via', 'per'})",
+      "statement": "The module uses a frozen set of stopwords to filter question terms",
+      "verdict": "UNDECIDABLE"
+    },
+    {
+      "detail": "DEFAULT_MAX_EVIDENCE_CHARS == 24000",
+      "ehash": "7f7d618305ea",
+      "evidence": "src/isidore/qa.py:37",
+      "id": "c-d5c11005",
+      "oracle": "ast",
+      "predicate": "value:DEFAULT_MAX_EVIDENCE_CHARS;24000",
+      "statement": "The module defines a constant for the maximum evidence length",
+      "verdict": "TRUE"
+    },
+    {
+      "detail": "src/isidore/qa.py imports src/isidore/pipeline.py",
+      "ehash": "48e9a117b7e3",
+      "evidence": "src/isidore/qa.py:15",
+      "id": "c-63b5f2db",
+      "oracle": "graph",
+      "predicate": "imports:src/isidore/qa.py;src/isidore/pipeline.py",
+      "statement": "The module imports the WIKI_DIRNAME constant from pipeline.py",
+      "verdict": "TRUE"
+    },
+    {
+      "detail": "gather_claims calls check_claims",
+      "ehash": "073aa2533d66",
+      "evidence": "src/isidore/qa.py:64",
+      "id": "c-ee0a3071",
+      "oracle": "ast",
+      "predicate": "calls:gather_claims;check_claims",
+      "statement": "The gather_claims function calls check_claims from the claims module",
+      "verdict": "TRUE"
+    },
+    {
+      "detail": "gather_evidence calls question_terms",
+      "ehash": "d5626a45ebb5",
+      "evidence": "src/isidore/qa.py:94",
+      "id": "c-770cbd41",
+      "oracle": "ast",
+      "predicate": "calls:gather_evidence;question_terms",
+      "statement": "The gather_evidence function calls question_terms to extract terms from the question",
+      "verdict": "TRUE"
+    },
+    {
+      "detail": "answer_offline calls gather_claims",
+      "ehash": "1b6033841cce",
+      "evidence": "src/isidore/qa.py:158",
+      "id": "c-55f7ebc7",
+      "oracle": "ast",
+      "predicate": "calls:answer_offline;gather_claims",
+      "statement": "The answer_offline function calls gather_claims to retrieve relevant claims",
+      "verdict": "TRUE"
+    },
+    {
+      "detail": "OFFLINE_MIN_SCORE == 3",
+      "ehash": "fbb05d667dba",
+      "evidence": "src/isidore/qa.py:153",
+      "id": "c-a002d2f1",
+      "oracle": "ast",
+      "predicate": "value:OFFLINE_MIN_SCORE;3",
+      "statement": "The module defines the OFFLINE_MIN_SCORE constant",
+      "verdict": "TRUE"
+    },
+    {
+      "detail": "gather_evidence calls read_excerpt",
+      "ehash": "ebb4d6f4a3cf",
+      "evidence": "src/isidore/qa.py:141",
+      "id": "c-dbd200b6",
+      "oracle": "ast",
+      "predicate": "calls:gather_evidence;read_excerpt",
+      "statement": "The gather_evidence function calls read_excerpt to include code excerpts in the evidence",
+      "verdict": "TRUE"
+    }
+  ],
+  "graph_commit": "1a34c13ecf2ef7ce206f1ceeaeb1987fea5f8272",
+  "marks": [
+    {
+      "disposition": "",
+      "family": "topology",
+      "file": "src/isidore/qa.py",
+      "line": 1,
+      "reason": "reachable from auth/secret surface: src/isidore/detectors.py",
+      "severity": "info"
+    }
+  ],
+  "mass": {
+    "gray": 13,
+    "green": 15,
+    "yellow": 0
+  },
+  "page": "src-isidore-qa_py.md",
+  "prose_sha256": "28c6ed6bf11d54546d6f39c489c4c34ad5cbeadfaa3fff3da15505f4e92d6780",
+  "version": "pcp-1",
+  "violations": []
+}

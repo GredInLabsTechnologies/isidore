@@ -1,0 +1,112 @@
+{
+  "child_cert_hashes": {},
+  "claims": [
+    {
+      "detail": "no predicate (existence-anchored only)",
+      "ehash": "a6284e6d3d43",
+      "evidence": "tests/test_reconcile.py:1",
+      "id": "c-02f53295",
+      "oracle": "none",
+      "predicate": "",
+      "statement": "The module tests the reconciliation logic for Proof-Carrying Prose",
+      "verdict": "UNDECIDABLE"
+    },
+    {
+      "detail": "test_reconcile_prose_omits_finding calls reconcile",
+      "ehash": "192c76a420ee",
+      "evidence": "tests/test_reconcile.py:22",
+      "id": "c-77bfc1ed",
+      "oracle": "ast",
+      "predicate": "calls:test_reconcile_prose_omits_finding;reconcile.reconcile",
+      "statement": "The test checks for prose omitting findings",
+      "verdict": "TRUE"
+    },
+    {
+      "detail": "test_reconcile_prose_contradicts_finding_via_prose_denial calls reconcile",
+      "ehash": "284df81fcc8e",
+      "evidence": "tests/test_reconcile.py:37",
+      "id": "c-0e2f4f4b",
+      "oracle": "ast",
+      "predicate": "calls:test_reconcile_prose_contradicts_finding_via_prose_denial;reconcile.reconcile",
+      "statement": "The test detects contradictions where prose denies findings",
+      "verdict": "TRUE"
+    },
+    {
+      "detail": "test_reconcile_prose_contradicts_finding_via_positive_claim calls reconcile",
+      "ehash": "5c0c6c2df1f8",
+      "evidence": "tests/test_reconcile.py:56",
+      "id": "c-74a4bcca",
+      "oracle": "ast",
+      "predicate": "calls:test_reconcile_prose_contradicts_finding_via_positive_claim;reconcile.reconcile",
+      "statement": "The test detects contradictions where claims contradict findings",
+      "verdict": "TRUE"
+    },
+    {
+      "detail": "test_reconcile_mark_uncovered calls reconcile",
+      "ehash": "955c34085473",
+      "evidence": "tests/test_reconcile.py:72",
+      "id": "c-74c10b55",
+      "oracle": "ast",
+      "predicate": "calls:test_reconcile_mark_uncovered;reconcile.reconcile",
+      "statement": "The test ensures marks are covered by claims or prose",
+      "verdict": "TRUE"
+    },
+    {
+      "detail": "test_reconcile_ignores_resolved_findings calls reconcile",
+      "ehash": "555071af4491",
+      "evidence": "tests/test_reconcile.py:92",
+      "id": "c-e666911f",
+      "oracle": "ast",
+      "predicate": "calls:test_reconcile_ignores_resolved_findings;reconcile.reconcile",
+      "statement": "The test ignores resolved findings",
+      "verdict": "TRUE"
+    }
+  ],
+  "graph_commit": "1a34c13ecf2ef7ce206f1ceeaeb1987fea5f8272",
+  "marks": [
+    {
+      "disposition": "",
+      "family": "entropy",
+      "file": "tests/test_reconcile.py",
+      "line": 46,
+      "reason": "high-entropy literal (>=24 chars, >=3.5 bits/char)",
+      "severity": "danger"
+    },
+    {
+      "disposition": "",
+      "family": "entropy",
+      "file": "tests/test_reconcile.py",
+      "line": 63,
+      "reason": "high-entropy literal (>=24 chars, >=3.5 bits/char)",
+      "severity": "danger"
+    },
+    {
+      "disposition": "",
+      "family": "entropy",
+      "file": "tests/test_reconcile.py",
+      "line": 73,
+      "reason": "credential-shaped literal (sk_ prefix)",
+      "severity": "danger"
+    }
+  ],
+  "mass": {
+    "gray": 24,
+    "green": 17,
+    "yellow": 1
+  },
+  "page": "tests-test_reconcile_py.md",
+  "prose_sha256": "114a186b3c9b6818f14055cae1a3b44d6714e64ecc8512476baec157ca09caf5",
+  "version": "pcp-1",
+  "violations": [
+    {
+      "detail": "Security-relevant mark (entropy) at tests/test_reconcile.py:46 has no covering claim.",
+      "kind": "mark-uncovered",
+      "where": "tests/test_reconcile.py:46"
+    },
+    {
+      "detail": "Security-relevant mark (entropy) at tests/test_reconcile.py:63 has no covering claim.",
+      "kind": "mark-uncovered",
+      "where": "tests/test_reconcile.py:63"
+    }
+  ]
+}

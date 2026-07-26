@@ -1,0 +1,95 @@
+{
+  "child_cert_hashes": {},
+  "claims": [
+    {
+      "detail": "calls expects (caller, callee)",
+      "ehash": "b1bd38130168",
+      "evidence": "src/isidore/verify.py:4",
+      "id": "c-de1e10e2",
+      "oracle": "none",
+      "predicate": "calls:verify;graph.json;ORACLE_GRAPH",
+      "statement": "The verifiers use graph.json and AST reparsing as oracles",
+      "verdict": "UNDECIDABLE"
+    },
+    {
+      "detail": "src/isidore/verify.py does not define Verdict",
+      "ehash": "5af45019f483",
+      "evidence": "src/isidore/verify.py:9",
+      "id": "c-6befe377",
+      "oracle": "ast",
+      "predicate": "defines:src/isidore/verify.py;Verdict",
+      "statement": "The verifiers return TRUE, FALSE, or UNDECIDABLE",
+      "verdict": "FALSE"
+    },
+    {
+      "detail": "src/isidore/verify.py defines _norm",
+      "ehash": "d1c7e7e71afb",
+      "evidence": "src/isidore/verify.py:43",
+      "id": "c-261da67e",
+      "oracle": "graph",
+      "predicate": "defines:src/isidore/verify.py;_norm",
+      "statement": "The module normalizes paths with _norm",
+      "verdict": "TRUE"
+    },
+    {
+      "detail": "src/isidore/verify.py defines _symbol_base",
+      "ehash": "0ee4bb929a85",
+      "evidence": "src/isidore/verify.py:47",
+      "id": "c-a6f746a5",
+      "oracle": "graph",
+      "predicate": "defines:src/isidore/verify.py;_symbol_base",
+      "statement": "The module extracts symbol bases with _symbol_base",
+      "verdict": "TRUE"
+    },
+    {
+      "detail": "src/isidore/verify.py defines _read_source",
+      "ehash": "1df10183faa2",
+      "evidence": "src/isidore/verify.py:63",
+      "id": "c-9a05079e",
+      "oracle": "graph",
+      "predicate": "defines:src/isidore/verify.py;_read_source",
+      "statement": "The module reads source files with _read_source",
+      "verdict": "TRUE"
+    },
+    {
+      "detail": "src/isidore/verify.py defines _ast_of",
+      "ehash": "e300e682cd5e",
+      "evidence": "src/isidore/verify.py:70",
+      "id": "c-25a70eb0",
+      "oracle": "graph",
+      "predicate": "defines:src/isidore/verify.py;_ast_of",
+      "statement": "The module parses ASTs with _ast_of",
+      "verdict": "TRUE"
+    },
+    {
+      "detail": "src/isidore/verify.py defines _find_funcdef",
+      "ehash": "6322ff26b35e",
+      "evidence": "src/isidore/verify.py:82",
+      "id": "c-9a25a17f",
+      "oracle": "graph",
+      "predicate": "defines:src/isidore/verify.py;_find_funcdef",
+      "statement": "The module finds function definitions with _find_funcdef",
+      "verdict": "TRUE"
+    }
+  ],
+  "graph_commit": "1a34c13ecf2ef7ce206f1ceeaeb1987fea5f8272",
+  "marks": [
+    {
+      "disposition": "",
+      "family": "topology",
+      "file": "src/isidore/verify.py",
+      "line": 1,
+      "reason": "reachable from auth/secret surface: src/isidore/detectors.py",
+      "severity": "info"
+    }
+  ],
+  "mass": {
+    "gray": 11,
+    "green": 12,
+    "yellow": 8
+  },
+  "page": "src-isidore-verify_py.md",
+  "prose_sha256": "c866331f8ed3f73574619a7b3c20d50e0b592779f1b7367014891ed9b47cf21b",
+  "version": "pcp-1",
+  "violations": []
+}

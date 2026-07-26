@@ -1,0 +1,55 @@
+{
+  "child_cert_hashes": {},
+  "claims": [
+    {
+      "detail": "no predicate (existence-anchored only)",
+      "ehash": "26aeb924df3f",
+      "evidence": "src/isidore/humanpack.py:1",
+      "id": "c-a18b42c0",
+      "oracle": "none",
+      "predicate": "",
+      "statement": "The module generates a self-contained HTML/PDF onboarding pack",
+      "verdict": "UNDECIDABLE"
+    },
+    {
+      "detail": "no predicate (existence-anchored only)",
+      "ehash": "a4a988157ce6",
+      "evidence": "src/isidore/humanpack.py:10",
+      "id": "c-f3f98252",
+      "oracle": "none",
+      "predicate": "",
+      "statement": "The module avoids LLM dependencies",
+      "verdict": "UNDECIDABLE"
+    },
+    {
+      "detail": "src/isidore/humanpack.py imports src/isidore/graph.py",
+      "ehash": "905923120838",
+      "evidence": "src/isidore/humanpack.py:20",
+      "id": "c-2529691a",
+      "oracle": "graph",
+      "predicate": "imports:src/isidore/humanpack.py;src/isidore/graph.py",
+      "statement": "The module uses `load_graph` from `src/isidore/graph.py`",
+      "verdict": "TRUE"
+    }
+  ],
+  "graph_commit": "1a34c13ecf2ef7ce206f1ceeaeb1987fea5f8272",
+  "marks": [
+    {
+      "disposition": "",
+      "family": "topology",
+      "file": "src/isidore/humanpack.py",
+      "line": 1,
+      "reason": "reachable from auth/secret surface: src/isidore/detectors.py",
+      "severity": "info"
+    }
+  ],
+  "mass": {
+    "gray": 29,
+    "green": 12,
+    "yellow": 0
+  },
+  "page": "src-isidore-humanpack_py.md",
+  "prose_sha256": "dbd7e4bc847be5fcb1c8d18ce5107357d3e15e87145d3cceb5570b2ab15ed52a",
+  "version": "pcp-1",
+  "violations": []
+}

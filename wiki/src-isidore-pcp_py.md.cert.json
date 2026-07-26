@@ -1,0 +1,109 @@
+{
+  "child_cert_hashes": {},
+  "claims": [
+    {
+      "detail": "no predicate (existence-anchored only)",
+      "ehash": "8e1e911e3d03",
+      "evidence": "src/isidore/pcp.py:1",
+      "id": "c-6df0b9eb",
+      "oracle": "none",
+      "predicate": "",
+      "statement": "The module defines a frozen seam for PCP",
+      "verdict": "UNDECIDABLE"
+    },
+    {
+      "detail": "no comparable literal assignment to PREDICATE_KINDS found",
+      "ehash": "0dd68e58fa2e",
+      "evidence": "src/isidore/pcp.py:64",
+      "id": "c-a3d25328",
+      "oracle": "none",
+      "predicate": "value:PREDICATE_KINDS;{\"calls\", \"defines\", \"exports\", \"imports\", \"value\", \"signature\", \"route\", \"env\"}",
+      "statement": "The predicate grammar includes 'calls', 'defines', 'imports', and 'value'",
+      "verdict": "UNDECIDABLE"
+    },
+    {
+      "detail": "no predicate (existence-anchored only)",
+      "ehash": "df35830970c5",
+      "evidence": "src/isidore/pcp.py:88",
+      "id": "c-5d1cbc7c",
+      "oracle": "none",
+      "predicate": "",
+      "statement": "A malformed predicate degrades a claim to existence-anchored",
+      "verdict": "UNDECIDABLE"
+    },
+    {
+      "detail": "src/isidore/pcp.py defines Verdict",
+      "ehash": "ee4c74d5ac48",
+      "evidence": "src/isidore/pcp.py:107",
+      "id": "c-b621f1b4",
+      "oracle": "graph",
+      "predicate": "defines:src/isidore/pcp.py;Verdict",
+      "statement": "The `Verdict` class records the oracle that decided it",
+      "verdict": "TRUE"
+    },
+    {
+      "detail": "src/isidore/pcp.py defines VerifyContext",
+      "ehash": "59d51c715eda",
+      "evidence": "src/isidore/pcp.py:119",
+      "id": "c-8b733e17",
+      "oracle": "graph",
+      "predicate": "defines:src/isidore/pcp.py;VerifyContext",
+      "statement": "The `VerifyContext` provides read-only access to the repo state",
+      "verdict": "TRUE"
+    },
+    {
+      "detail": "src/isidore/pcp.py defines Verifier",
+      "ehash": "851f5dc632df",
+      "evidence": "src/isidore/pcp.py:127",
+      "id": "c-7e1e8036",
+      "oracle": "graph",
+      "predicate": "defines:src/isidore/pcp.py;Verifier",
+      "statement": "The `Verifier` protocol requires deterministic, LLM-free implementations",
+      "verdict": "TRUE"
+    },
+    {
+      "detail": "src/isidore/pcp.py defines VERIFIERS",
+      "ehash": "43ef942000fa",
+      "evidence": "src/isidore/pcp.py:135",
+      "id": "c-0e550a32",
+      "oracle": "ast",
+      "predicate": "defines:src/isidore/pcp.py;VERIFIERS",
+      "statement": "The `VERIFIERS` registry is global and shared across lanes",
+      "verdict": "TRUE"
+    }
+  ],
+  "graph_commit": "1a34c13ecf2ef7ce206f1ceeaeb1987fea5f8272",
+  "marks": [
+    {
+      "disposition": "",
+      "family": "topology",
+      "file": "src/isidore/pcp.py",
+      "line": 1,
+      "reason": "reachable from auth/secret surface: src/isidore/detectors.py",
+      "severity": "info"
+    },
+    {
+      "disposition": "",
+      "family": "entropy",
+      "file": "src/isidore/pcp.py",
+      "line": 207,
+      "reason": "high-entropy literal (>=24 chars, >=3.5 bits/char)",
+      "severity": "danger"
+    }
+  ],
+  "mass": {
+    "gray": 13,
+    "green": 16,
+    "yellow": 0
+  },
+  "page": "src-isidore-pcp_py.md",
+  "prose_sha256": "1000b6f6f0ad89a6c442fc4ef11c11c17f08d9896ef261955a61b63b234bc0db",
+  "version": "pcp-1",
+  "violations": [
+    {
+      "detail": "Security-relevant mark (entropy) at src/isidore/pcp.py:207 has no covering claim.",
+      "kind": "mark-uncovered",
+      "where": "src/isidore/pcp.py:207"
+    }
+  ]
+}

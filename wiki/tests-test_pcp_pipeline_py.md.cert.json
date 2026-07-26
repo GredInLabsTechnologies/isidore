@@ -1,0 +1,96 @@
+{
+  "child_cert_hashes": {},
+  "claims": [
+    {
+      "detail": "_compile calls compile_wiki",
+      "ehash": "0d9776ccb828",
+      "evidence": "tests/test_pcp_pipeline.py:43",
+      "id": "c-3e899ad1",
+      "oracle": "ast",
+      "predicate": "calls:_compile;compile_wiki",
+      "statement": "The test verifies certificate generation",
+      "verdict": "TRUE"
+    },
+    {
+      "detail": "read_certificate has no call to claims",
+      "ehash": "101636b957f3",
+      "evidence": "tests/test_pcp_pipeline.py:50",
+      "id": "c-1f586c02",
+      "oracle": "ast",
+      "predicate": "calls:read_certificate;claims",
+      "statement": "The test checks for typed verdicts in certificates",
+      "verdict": "FALSE"
+    },
+    {
+      "detail": "_compile calls compile_wiki",
+      "ehash": "2ec3740a7d37",
+      "evidence": "tests/test_pcp_pipeline.py:60",
+      "id": "c-ca7d9f8f",
+      "oracle": "ast",
+      "predicate": "calls:_compile;compile_wiki",
+      "statement": "The test enforces security banners despite calm prose",
+      "verdict": "TRUE"
+    },
+    {
+      "detail": "read_certificate has no call to claims",
+      "ehash": "d667f6aac27f",
+      "evidence": "tests/test_pcp_pipeline.py:82",
+      "id": "c-18768f32",
+      "oracle": "ast",
+      "predicate": "calls:read_certificate;claims",
+      "statement": "Refuted claims are quarantined in certificates",
+      "verdict": "FALSE"
+    },
+    {
+      "detail": "tests/test_pcp_pipeline.py defines FIX",
+      "ehash": "1fcf386fc732",
+      "evidence": "tests/test_pcp_pipeline.py:14",
+      "id": "c-619b9513",
+      "oracle": "ast",
+      "predicate": "defines:tests/test_pcp_pipeline.py;FIX",
+      "statement": "The test uses a golden fixture repository",
+      "verdict": "TRUE"
+    },
+    {
+      "detail": "MAX_ATTEMPTS == 5",
+      "ehash": "0cd72daa5a03",
+      "evidence": "tests/test_pcp_pipeline.py:26",
+      "id": "c-0387f3bd",
+      "oracle": "ast",
+      "predicate": "value:MAX_ATTEMPTS;5",
+      "statement": "The test validates the MAX_ATTEMPTS value",
+      "verdict": "TRUE"
+    },
+    {
+      "detail": "tests/test_pcp_pipeline.py does not define SECURITY",
+      "ehash": "5010a4188b94",
+      "evidence": "tests/test_pcp_pipeline.py:64",
+      "id": "c-8180d8a2",
+      "oracle": "ast",
+      "predicate": "defines:tests/test_pcp_pipeline.py;SECURITY",
+      "statement": "The test checks for the SECURITY banner",
+      "verdict": "FALSE"
+    },
+    {
+      "detail": "read_certificate has no call to claims",
+      "ehash": "2f8e77573b55",
+      "evidence": "tests/test_pcp_pipeline.py:94",
+      "id": "c-ae0960dc",
+      "oracle": "ast",
+      "predicate": "calls:read_certificate;claims",
+      "statement": "The test ensures refuted claims are kept in certificates",
+      "verdict": "FALSE"
+    }
+  ],
+  "graph_commit": "1a34c13ecf2ef7ce206f1ceeaeb1987fea5f8272",
+  "marks": [],
+  "mass": {
+    "gray": 9,
+    "green": 11,
+    "yellow": 6
+  },
+  "page": "tests-test_pcp_pipeline_py.md",
+  "prose_sha256": "6388b6e37e821017cd1dd829a642be04cb631c17d2d044f997ff60027522e75f",
+  "version": "pcp-1",
+  "violations": []
+}

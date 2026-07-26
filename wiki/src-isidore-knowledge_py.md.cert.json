@@ -1,0 +1,76 @@
+{
+  "child_cert_hashes": {},
+  "claims": [
+    {
+      "detail": "src/isidore/knowledge.py defines TopicCompileResult",
+      "ehash": "35ec918b4efd",
+      "evidence": "src/isidore/knowledge.py:52",
+      "id": "c-547c45df",
+      "oracle": "graph",
+      "predicate": "defines:src/isidore/knowledge.py;TopicCompileResult",
+      "statement": "The module defines a TopicCompileResult dataclass to track compilation metrics",
+      "verdict": "TRUE"
+    },
+    {
+      "detail": "src/isidore/knowledge.py defines knowledge_dir",
+      "ehash": "f42dee566103",
+      "evidence": "src/isidore/knowledge.py:73",
+      "id": "c-7ed6a2b2",
+      "oracle": "graph",
+      "predicate": "defines:src/isidore/knowledge.py;knowledge_dir",
+      "statement": "The knowledge_dir() function returns the path to the knowledge directory",
+      "verdict": "TRUE"
+    },
+    {
+      "detail": "src/isidore/knowledge.py defines state_path",
+      "ehash": "a9d633aec870",
+      "evidence": "src/isidore/knowledge.py:79",
+      "id": "c-d31de57f",
+      "oracle": "graph",
+      "predicate": "defines:src/isidore/knowledge.py;state_path",
+      "statement": "The state_path() function returns the path to the state file",
+      "verdict": "TRUE"
+    },
+    {
+      "detail": "src/isidore/knowledge.py defines load_knowledge_state",
+      "ehash": "43d9e4ebf853",
+      "evidence": "src/isidore/knowledge.py:83",
+      "id": "c-503e35b4",
+      "oracle": "graph",
+      "predicate": "defines:src/isidore/knowledge.py;load_knowledge_state",
+      "statement": "The load_knowledge_state() function loads the state from the state file",
+      "verdict": "TRUE"
+    },
+    {
+      "detail": "src/isidore/knowledge.py defines write_knowledge_state",
+      "ehash": "1b3f1b6d4138",
+      "evidence": "src/isidore/knowledge.py:97",
+      "id": "c-4872e9bb",
+      "oracle": "graph",
+      "predicate": "defines:src/isidore/knowledge.py;write_knowledge_state",
+      "statement": "The write_knowledge_state() function writes the state to the state file",
+      "verdict": "TRUE"
+    },
+    {
+      "detail": "src/isidore/knowledge.py defines load_topics",
+      "ehash": "f07be74381ff",
+      "evidence": "src/isidore/knowledge.py:106",
+      "id": "c-853e782f",
+      "oracle": "graph",
+      "predicate": "defines:src/isidore/knowledge.py;load_topics",
+      "statement": "The load_topics() function loads topics from the topics.json file",
+      "verdict": "TRUE"
+    }
+  ],
+  "graph_commit": "1a34c13ecf2ef7ce206f1ceeaeb1987fea5f8272",
+  "marks": [],
+  "mass": {
+    "gray": 14,
+    "green": 17,
+    "yellow": 0
+  },
+  "page": "src-isidore-knowledge_py.md",
+  "prose_sha256": "d9f57e358e91f0e89ffcd2a3fd564561d222ae53860c4a085735dd28133d9d38",
+  "version": "pcp-1",
+  "violations": []
+}

@@ -176,13 +176,40 @@ def _module_pages_of(repo: Path, subsystem: str) -> dict[str, dict]:
             and _top_dir(entry.get("name", "")) == subsystem}
 
 
+def _page_purpose(repo: Path, page: str) -> str:
+    """The first sentence of a module page's `## Purpose` — what that module says it is FOR."""
+    from .render import WIKI_DIRNAME
+
+    path = repo / WIKI_DIRNAME / page
+    if not path.is_file():
+        return ""
+    lines = path.read_text(encoding="utf-8", errors="replace").splitlines()
+    for index, line in enumerate(lines):
+        if line.strip().lower().startswith("## purpose"):
+            for body in lines[index + 1:]:
+                if body.strip() and not body.startswith("#"):
+                    return body.strip().split(". ")[0].rstrip(".") + "."
+            break
+    return ""
+
+
 def subsystem_facts(repo: Path, spec: dict) -> dict:
-    """What one subsystem page is written from: its module pages and the claims they PROVED. 0 LLM."""
+    """What one subsystem page is written from: its module pages, what each says it is FOR, and the
+    claims they PROVED. 0 LLM.
+
+    The purposes matter as much as the claims. A proven claim is a narrow fact — "this file defines
+    that symbol" — and a page given only narrow facts has to guess what the area is FOR from the file
+    names it can see. Measured here: fed claims alone, the model read `detectors.py` and `claims.py`
+    and opened with "this area analyzes code for security issues and correlates them with known
+    vulnerabilities", about a documentation compiler. Framing has to come from the layer below too,
+    not be re-derived at each level.
+    """
     pages = _module_pages_of(repo, spec["name"])
     claims = [c for c in verified_claims(repo) if c["page"] in pages][:_MAX_SUBSYSTEM_CLAIMS]
     return {
         "name": spec["name"],
-        "pages": [{"page": page, "module": entry.get("name", page)}
+        "pages": [{"page": page, "module": entry.get("name", page),
+                   "purpose": _page_purpose(repo, page)}
                   for page, entry in sorted(pages.items())],
         "depends_on": list(spec.get("depends_on", [])),
         "claims": claims,
@@ -195,7 +222,8 @@ a developer joining it, a reviewer touching it for the first time, an agent orie
 
 AREA: {name}
 
-THE MODULES IN IT (each already has its own page):
+THE MODULES IN IT, each with what its own page says it is FOR. This is what the area DOES — read it
+before anything else, and do not re-derive the area's purpose from the file names:
 {pages}
 
 AREAS THIS ONE DEPENDS ON: {depends_on}
@@ -280,7 +308,9 @@ def compile_subsystems(repo: Path, nodes: list[dict], links: list[dict], config:
             continue
         prompt = SUBSYSTEM_PROMPT.format(
             name=facts["name"],
-            pages="\n".join(f"- {p['module']} -> {p['page']}" for p in facts["pages"]),
+            pages="\n".join(f"- {p['module']} ({p['page']})"
+                            + (f": {p['purpose']}" if p["purpose"] else "")
+                            for p in facts["pages"]),
             depends_on=", ".join(facts["depends_on"]) or "(none recorded)",
             claims="\n".join(f"- {c['statement']} -> {c['uri']}" for c in facts["claims"]),
         )

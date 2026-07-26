@@ -1,0 +1,76 @@
+{
+  "child_cert_hashes": {},
+  "claims": [
+    {
+      "detail": "ISIDORE_WIKI_DIR read in src/isidore/render.py",
+      "ehash": "cd502b014d96",
+      "evidence": "tests/test_wiki_dir_env.py:3",
+      "id": "c-d6e38a8d",
+      "oracle": "grep",
+      "predicate": "env:ISIDORE_WIKI_DIR",
+      "statement": "The module tests the resolution of WIKI_DIRNAME from ISIDORE_WIKI_DIR",
+      "verdict": "TRUE"
+    },
+    {
+      "detail": "no comparable literal assignment to WIKI_DIRNAME found",
+      "ehash": "542df3c7207f",
+      "evidence": "tests/test_wiki_dir_env.py:19",
+      "id": "c-381d5b59",
+      "oracle": "none",
+      "predicate": "value:WIKI_DIRNAME;wiki",
+      "statement": "WIKI_DIRNAME defaults to \"wiki\" when ISIDORE_WIKI_DIR is unset",
+      "verdict": "UNDECIDABLE"
+    },
+    {
+      "detail": "ISIDORE_WIKI_DIR read in src/isidore/render.py",
+      "ehash": "4b364ada019e",
+      "evidence": "tests/test_wiki_dir_env.py:24",
+      "id": "c-ad291004",
+      "oracle": "grep",
+      "predicate": "env:ISIDORE_WIKI_DIR",
+      "statement": "WIKI_DIRNAME is set to the value of ISIDORE_WIKI_DIR when provided",
+      "verdict": "TRUE"
+    },
+    {
+      "detail": "no comparable literal assignment to WIKI_DIRNAME found",
+      "ehash": "9a63d3e4b4ea",
+      "evidence": "tests/test_wiki_dir_env.py:29",
+      "id": "c-baf9c0d4",
+      "oracle": "none",
+      "predicate": "value:WIKI_DIRNAME;wiki",
+      "statement": "Blank ISIDORE_WIKI_DIR falls back to the default \"wiki\"",
+      "verdict": "UNDECIDABLE"
+    },
+    {
+      "detail": "test_save_state_creates_nested_wiki_dir calls save_state",
+      "ehash": "cac7c705cfe0",
+      "evidence": "tests/test_wiki_dir_env.py:37",
+      "id": "c-a806df90",
+      "oracle": "ast",
+      "predicate": "calls:test_save_state_creates_nested_wiki_dir;save_state",
+      "statement": "Nested directories are created when saving state",
+      "verdict": "TRUE"
+    },
+    {
+      "detail": "teardown_module calls reload",
+      "ehash": "3677870356be",
+      "evidence": "tests/test_wiki_dir_env.py:44",
+      "id": "c-6abc3dda",
+      "oracle": "ast",
+      "predicate": "calls:teardown_module;reload",
+      "statement": "The default binding is restored after tests",
+      "verdict": "TRUE"
+    }
+  ],
+  "graph_commit": "1a34c13ecf2ef7ce206f1ceeaeb1987fea5f8272",
+  "marks": [],
+  "mass": {
+    "gray": 10,
+    "green": 20,
+    "yellow": 2
+  },
+  "page": "tests-test_wiki_dir_env_py.md",
+  "prose_sha256": "b6178cd8edc3053942fc5ea85bb96573f7cd131ba7b8ced23bee39816da74a4b",
+  "version": "pcp-1",
+  "violations": []
+}

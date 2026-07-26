@@ -1,0 +1,111 @@
+{
+  "child_cert_hashes": {},
+  "claims": [
+    {
+      "detail": "no predicate (existence-anchored only)",
+      "ehash": "1be60d251ae9",
+      "evidence": "tests/test_detectors.py:1",
+      "id": "c-95c08869",
+      "oracle": "none",
+      "predicate": "",
+      "statement": "The module tests the `isidore.detectors` subsystem",
+      "verdict": "UNDECIDABLE"
+    },
+    {
+      "detail": "_ctx calls load_graph",
+      "ehash": "55e731282a08",
+      "evidence": "tests/test_detectors.py:14",
+      "id": "c-41ac1643",
+      "oracle": "ast",
+      "predicate": "calls:_ctx;load_graph",
+      "statement": "The test context loads graph data from `graph.json`",
+      "verdict": "TRUE"
+    },
+    {
+      "detail": "no comparable literal assignment to hit[0].severity found",
+      "ehash": "4761db950837",
+      "evidence": "tests/test_detectors.py:22",
+      "id": "c-3cf95c4b",
+      "oracle": "none",
+      "predicate": "value:hit[0].severity;danger",
+      "statement": "The entropy detector flags the backdoor token with \"danger\" severity",
+      "verdict": "UNDECIDABLE"
+    },
+    {
+      "detail": "no comparable literal assignment to entropy_lines found",
+      "ehash": "337d68ce3d23",
+      "evidence": "tests/test_detectors.py:29",
+      "id": "c-835bd679",
+      "oracle": "none",
+      "predicate": "value:entropy_lines;{(\"svc/auth.py\", 23)}",
+      "statement": "The entropy detector does not flag non-secret strings",
+      "verdict": "UNDECIDABLE"
+    },
+    {
+      "detail": "no comparable literal assignment to m.family found",
+      "ehash": "753706362632",
+      "evidence": "tests/test_detectors.py:34",
+      "id": "c-aff40267",
+      "oracle": "none",
+      "predicate": "value:m.family;topology",
+      "statement": "The topology detector flags tokens in `svc/tokens.py`",
+      "verdict": "UNDECIDABLE"
+    },
+    {
+      "detail": "test_determinism calls scan",
+      "ehash": "b9aed984a086",
+      "evidence": "tests/test_detectors.py:38",
+      "id": "c-7a6a0657",
+      "oracle": "ast",
+      "predicate": "calls:test_determinism;scan",
+      "statement": "The detector output is deterministic",
+      "verdict": "TRUE"
+    },
+    {
+      "detail": "no comparable literal assignment to scan(tmp_path, ctx) found",
+      "ehash": "e916f048f4e3",
+      "evidence": "tests/test_detectors.py:45",
+      "id": "c-577b78b3",
+      "oracle": "none",
+      "predicate": "value:scan(tmp_path, ctx);[]",
+      "statement": "The system handles missing files gracefully",
+      "verdict": "UNDECIDABLE"
+    },
+    {
+      "detail": "no comparable literal assignment to shannon_entropy(\"\") found",
+      "ehash": "d39079ca10d5",
+      "evidence": "tests/test_detectors.py:49",
+      "id": "c-3ebfecaa",
+      "oracle": "none",
+      "predicate": "value:shannon_entropy(\"\");0.0",
+      "statement": "The entropy function returns 0.0 for empty strings",
+      "verdict": "UNDECIDABLE"
+    }
+  ],
+  "graph_commit": "1a34c13ecf2ef7ce206f1ceeaeb1987fea5f8272",
+  "marks": [
+    {
+      "disposition": "",
+      "family": "topology",
+      "file": "tests/test_detectors.py",
+      "line": 1,
+      "reason": "auth/secret/crypto surface (direct)",
+      "severity": "info"
+    }
+  ],
+  "mass": {
+    "gray": 19,
+    "green": 24,
+    "yellow": 2
+  },
+  "page": "tests-test_detectors_py.md",
+  "prose_sha256": "49fc8dcd1deac07be577095f9ba498aa986d6d6d8a9ba0bdda7fbdc8f825737f",
+  "version": "pcp-1",
+  "violations": [
+    {
+      "detail": "Prose describes region near 'tests/test_detectors.py' in positive terms, contradicting finding: security risk: hardcoded secret (sk_live_) is flagged as dangerous",
+      "kind": "prose-contradicts-finding",
+      "where": "tests/test_detectors.py:22"
+    }
+  ]
+}

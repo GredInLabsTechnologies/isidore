@@ -1,0 +1,6 @@
+{
+  "_why_module_depth": "isidore's own package is FLAT: every module lives directly in src/isidore/. At the default depth of 2 the whole package collapses into a single page, and a page covering 24 modules can only say package-level things — 'the pipeline is deterministic except for the bounded call' is true, useful, and matches no decidable predicate, so it is cited and never proven. Depth 3 gives one page per module here, which is exactly what tests/ already gets for free by sitting at the top level; that is why tests pages carried 15 proven claims and src/isidore carried none. A repo with nested subdirectories (src/daemon, src/cli) wants the default 2.",
+  "module_depth": 3,
+  "min_symbols": 5,
+  "top_k": 40
+}

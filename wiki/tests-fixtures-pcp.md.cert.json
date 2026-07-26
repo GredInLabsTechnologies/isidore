@@ -1,0 +1,125 @@
+{
+  "child_cert_hashes": {},
+  "claims": [
+    {
+      "detail": "authenticate calls verify_jwt",
+      "ehash": "0f4f56be82b1",
+      "evidence": "tests/fixtures/pcp/repo/svc/auth.py:14",
+      "id": "c-2dd8fe5a",
+      "oracle": "ast",
+      "predicate": "calls:authenticate;verify_jwt",
+      "statement": "authenticate verifies the JWT by calling verify_jwt",
+      "verdict": "TRUE"
+    },
+    {
+      "detail": "MAX_ATTEMPTS == 5",
+      "ehash": "234aa98f1c0f",
+      "evidence": "tests/fixtures/pcp/repo/svc/auth.py:7",
+      "id": "c-11e675b5",
+      "oracle": "ast",
+      "predicate": "value:MAX_ATTEMPTS;5",
+      "statement": "the attempt ceiling MAX_ATTEMPTS is 5",
+      "verdict": "TRUE"
+    },
+    {
+      "detail": "no import edge tests/fixtures/pcp/repo/svc/auth.py->tests/fixtures/pcp/repo/svc/tokens.py in the graph; imports are partially resolved, so absence is not decidable",
+      "ehash": "cc92d602edbd",
+      "evidence": "tests/fixtures/pcp/repo/svc/auth.py:5",
+      "id": "c-4856c5c7",
+      "oracle": "none",
+      "predicate": "imports:tests/fixtures/pcp/repo/svc/auth.py;tests/fixtures/pcp/repo/svc/tokens.py",
+      "statement": "the auth module imports the tokens service",
+      "verdict": "UNDECIDABLE"
+    },
+    {
+      "detail": "AUTH_SIGNING_KEY read in tests/fixtures/pcp/repo/svc/auth.py",
+      "ehash": "fac6bd2f57b6",
+      "evidence": "tests/fixtures/pcp/repo/svc/auth.py:13",
+      "id": "c-0243c424",
+      "oracle": "grep",
+      "predicate": "env:AUTH_SIGNING_KEY",
+      "statement": "authenticate reads the AUTH_SIGNING_KEY environment variable",
+      "verdict": "TRUE"
+    },
+    {
+      "detail": "tests/fixtures/pcp/repo/svc/auth.py defines authenticate",
+      "ehash": "b35ac700f702",
+      "evidence": "tests/fixtures/pcp/repo/svc/auth.py:10",
+      "id": "c-8e3347e7",
+      "oracle": "graph",
+      "predicate": "defines:tests/fixtures/pcp/repo/svc/auth.py;authenticate",
+      "statement": "the auth module defines authenticate",
+      "verdict": "TRUE"
+    },
+    {
+      "detail": "no predicate (existence-anchored only)",
+      "ehash": "9f730a1a70a6",
+      "evidence": "tests/fixtures/pcp/repo/svc/auth.py:16",
+      "id": "c-4d27ffcc",
+      "oracle": "none",
+      "predicate": "",
+      "statement": "authenticate returns None when the token is invalid",
+      "verdict": "UNDECIDABLE"
+    }
+  ],
+  "graph_commit": "1a34c13ecf2ef7ce206f1ceeaeb1987fea5f8272",
+  "marks": [
+    {
+      "disposition": "",
+      "family": "topology",
+      "file": "tests/fixtures/pcp/repo/svc/auth.py",
+      "line": 1,
+      "reason": "auth/secret/crypto surface (direct)",
+      "severity": "info"
+    },
+    {
+      "disposition": "",
+      "family": "entropy",
+      "file": "tests/fixtures/pcp/repo/svc/auth.py",
+      "line": 23,
+      "reason": "credential-shaped literal (sk_ prefix)",
+      "severity": "danger"
+    },
+    {
+      "disposition": "",
+      "family": "topology",
+      "file": "tests/fixtures/pcp/repo/svc/tokens.py",
+      "line": 1,
+      "reason": "auth/secret/crypto surface (direct)",
+      "severity": "info"
+    },
+    {
+      "disposition": "",
+      "family": "entropy",
+      "file": "tests/fixtures/pcp/repo/wiki/svc.md.cert.json",
+      "line": 82,
+      "reason": "high-entropy literal (>=24 chars, >=3.5 bits/char)",
+      "severity": "danger"
+    }
+  ],
+  "mass": {
+    "gray": 26,
+    "green": 2,
+    "yellow": 0
+  },
+  "page": "tests-fixtures-pcp.md",
+  "prose_sha256": "16e425a1af5ce1fdd85da650bf03a367eb746cb4b2df10bcb075caff9b43b2df",
+  "version": "pcp-1",
+  "violations": [
+    {
+      "detail": "Prose describes region near 'tests/fixtures/pcp/repo/svc/auth.py' in positive terms, contradicting finding: security risk: hardcoded credential literal in auth path",
+      "kind": "prose-contradicts-finding",
+      "where": "tests/fixtures/pcp/repo/svc/auth.py:23"
+    },
+    {
+      "detail": "Security-relevant mark (entropy) at tests/fixtures/pcp/repo/svc/auth.py:23 has no covering claim.",
+      "kind": "mark-uncovered",
+      "where": "tests/fixtures/pcp/repo/svc/auth.py:23"
+    },
+    {
+      "detail": "Security-relevant mark (entropy) at tests/fixtures/pcp/repo/wiki/svc.md.cert.json:82 has no covering claim.",
+      "kind": "mark-uncovered",
+      "where": "tests/fixtures/pcp/repo/wiki/svc.md.cert.json:82"
+    }
+  ]
+}

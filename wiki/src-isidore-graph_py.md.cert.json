@@ -1,0 +1,105 @@
+{
+  "child_cert_hashes": {},
+  "claims": [
+    {
+      "detail": "src/isidore/graph.py defines load_graph",
+      "ehash": "375346641a62",
+      "evidence": "src/isidore/graph.py:54",
+      "id": "c-dfca30af",
+      "oracle": "graph",
+      "predicate": "defines:src/isidore/graph.py;load_graph",
+      "statement": "The graph format requires nodes to be a list",
+      "verdict": "TRUE"
+    },
+    {
+      "detail": "src/isidore/graph.py defines load_graph",
+      "ehash": "90274b9bdde4",
+      "evidence": "src/isidore/graph.py:55",
+      "id": "c-ee546780",
+      "oracle": "graph",
+      "predicate": "defines:src/isidore/graph.py;load_graph",
+      "statement": "The graph format requires links to be a list",
+      "verdict": "TRUE"
+    },
+    {
+      "detail": "git_listed_files has no call to git ls-files",
+      "ehash": "e5da56ab6767",
+      "evidence": "src/isidore/graph.py:102",
+      "id": "c-666473a6",
+      "oracle": "ast",
+      "predicate": "calls:git_listed_files;git ls-files",
+      "statement": "The module uses git ls-files to determine tracked files",
+      "verdict": "FALSE"
+    },
+    {
+      "detail": "src/isidore/graph.py imports src/isidore/langspec.py",
+      "ehash": "d561e60320be",
+      "evidence": "src/isidore/graph.py:31",
+      "id": "c-7e203abe",
+      "oracle": "graph",
+      "predicate": "imports:src/isidore/graph.py;src/isidore/langspec.py",
+      "statement": "The module imports language specifications from langspec.py",
+      "verdict": "TRUE"
+    },
+    {
+      "detail": "src/isidore/graph.py defines GraphError",
+      "ehash": "3bfecaad11de",
+      "evidence": "src/isidore/graph.py:42",
+      "id": "c-bde6a71d",
+      "oracle": "graph",
+      "predicate": "defines:src/isidore/graph.py;GraphError",
+      "statement": "The module defines a GraphError exception for invalid graphs",
+      "verdict": "TRUE"
+    },
+    {
+      "detail": "load_graph calls read_text",
+      "ehash": "28e3ad9d52ec",
+      "evidence": "src/isidore/graph.py:47",
+      "id": "c-b3552b66",
+      "oracle": "ast",
+      "predicate": "calls:load_graph;read_text",
+      "statement": "The module uses UTF-8 encoding for file operations",
+      "verdict": "TRUE"
+    },
+    {
+      "detail": "module_of calls replace",
+      "ehash": "6da28815e310",
+      "evidence": "src/isidore/graph.py:81",
+      "id": "c-0b91488c",
+      "oracle": "ast",
+      "predicate": "calls:module_of;replace",
+      "statement": "The module normalizes paths to POSIX format",
+      "verdict": "TRUE"
+    },
+    {
+      "detail": "CONCEPTS_BUCKET == (concepts)",
+      "ehash": "02548f2e276f",
+      "evidence": "src/isidore/graph.py:33",
+      "id": "c-4032b74c",
+      "oracle": "ast",
+      "predicate": "value:CONCEPTS_BUCKET;(concepts)",
+      "statement": "The module defines a concepts bucket for files without sources",
+      "verdict": "TRUE"
+    }
+  ],
+  "graph_commit": "1a34c13ecf2ef7ce206f1ceeaeb1987fea5f8272",
+  "marks": [
+    {
+      "disposition": "",
+      "family": "topology",
+      "file": "src/isidore/graph.py",
+      "line": 1,
+      "reason": "reachable from auth/secret surface: src/isidore/detectors.py",
+      "severity": "info"
+    }
+  ],
+  "mass": {
+    "gray": 18,
+    "green": 18,
+    "yellow": 2
+  },
+  "page": "src-isidore-graph_py.md",
+  "prose_sha256": "c7dc8395262462855e496dee79e0903802a03328ed2126f6e598f8eef0e3a968",
+  "version": "pcp-1",
+  "violations": []
+}

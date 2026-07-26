@@ -1,20 +1,24 @@
 ## Purpose
-`tests/test_surface.py` tests the API surface extraction logic in `isidore.surface`. It verifies that the module correctly identifies and classifies Python symbols (functions, methods, classes, constants) by their qualified names, signatures, and visibility. The tests ensure that the surface extraction is precise, handles nested structures, and distinguishes between public and private symbols. The module operates purely on text input, without external dependencies like git or disk access.
+`tests/test_surface.py` verifies the correctness of the API surface extraction logic in `isidore.surface`. It tests how the module parses Python source code to identify symbols (functions, classes, methods, constants) and their metadata (qualified names, signatures, visibility). The tests ensure that the surface extraction is precise, handles nested structures, and correctly identifies public vs. private symbols. The module is part of a larger system that tracks API changes for changelog generation, as evidenced by the recent git history (`71afec9`, `ba29200`).
 
 ## Architecture
-The test module uses a helper function `_by_name()` to index extracted symbols by their qualified names (`tests/test_surface.py:L18-L19`). It defines a constant `PY_SOURCE` containing a multi-line Python snippet with various symbol declarations (`tests/test_surface.py:L24-L61`). The tests then call `python_surface()` on this snippet and assert properties of the extracted symbols, such as their kind, visibility, and signature.
+The module uses a test-driven approach to validate the `python_surface` function from `isidore.surface`. It defines a constant `PY_SOURCE` containing a multi-line Python snippet with various symbols (top-level functions, classes, nested classes, private symbols) and tests that the extracted surface matches expectations. The helper function `_by_name` converts the extracted symbols into a dictionary keyed by qualified names for easy lookup in tests. The tests focus on three key aspects:
+1. **Symbol coverage**: Ensuring all expected symbols (functions, methods, nested classes, constants) are extracted.
+2. **Visibility rules**: Verifying that private symbols (prefixed with `_`) are correctly marked as non-public, even if they are part of a public class.
+3. **Signature stability**: Confirming that signatures are preserved exactly, including defaults and formatting, and that changes to parameters or defaults are detected.
 
 ## Key entry points
-- `test_python_surface_covers_functions_methods_nested_and_constants()`: Validates that the surface extraction correctly identifies functions, methods, nested classes, and constants (`tests/test_surface.py:L64-L76`).
-- `test_python_surface_marks_visibility_including_inheritance_from_the_container()`: Ensures that visibility rules (public/private) are applied correctly, including inheritance from container classes (`tests/test_surface.py:L79-L89`).
-- `test_python_signature_is_exact_and_survives_reformatting()`: Confirms that signatures are preserved exactly, even when reformatted across lines (`tests/test_surface.py:L92-L100`).
-- `test_python_signature_moves_when_a_default_or_parameter_changes()`: Checks that signature changes are detected when defaults or parameters are modified (`tests/test_surface.py:L103-L108`).
+- `test_python_surface_covers_functions_methods_nested_and_constants()`: Validates that all expected symbols are extracted, including nested structures.
+- `test_python_surface_marks_visibility_including_inheritance_from_the_container()`: Ensures private symbols are correctly identified.
+- `test_python_signature_is_exact_and_survives_reformatting()`: Confirms that signatures are preserved across reformatting.
+- `test_python_signature_moves_when_a_default_or_parameter_changes()`: Verifies that changes to parameters or defaults are detected.
 
 ## Dependencies
-The module depends on `isidore.surface`, which provides the `python_surface()` function and related constants (`tests/test_surface.py:L5-L15`). It does not have cross-module dependencies.
+The module depends on `isidore.surface`, which provides the `python_surface` function and related constants (`KIND_CLASS`, `KIND_CONSTANT`, etc.). It does not have cross-module dependencies, as evidenced by the fact that it is not depended on by any other module.
 
 ## How to change safely
 When modifying `tests/test_surface.py`, ensure that:
-1. The `PY_SOURCE` constant remains syntactically valid Python to avoid test failures due to syntax errors.
-2. Changes to assertions reflect the actual behavior of `isidore.surface` to maintain test accuracy.
-3. New tests follow the same pattern of extracting symbols and asserting their properties.
+1. The `PY_SOURCE` constant is updated to reflect any changes in the expected symbol structure.
+2. Tests are added for new features or edge cases in the surface extraction logic.
+3. Existing tests are updated if the behavior of `python_surface` changes.
+4. The helper function `_by_name` is not modified unless the test structure itself changes.

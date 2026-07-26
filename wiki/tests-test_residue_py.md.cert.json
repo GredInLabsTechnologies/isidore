@@ -1,0 +1,96 @@
+{
+  "child_cert_hashes": {},
+  "claims": [
+    {
+      "detail": "test_section_diff_reports_changed_headings_and_line_delta calls section_diff",
+      "ehash": "7bcb3c4645b4",
+      "evidence": "tests/test_residue.py:38",
+      "id": "c-bcbfa564",
+      "oracle": "ast",
+      "predicate": "calls:test_section_diff_reports_changed_headings_and_line_delta;section_diff",
+      "statement": "The module tests section diffing functionality",
+      "verdict": "TRUE"
+    },
+    {
+      "detail": "test_journal_and_stats_track_calls_saved_and_unstable calls render_stats",
+      "ehash": "adae0fe1d689",
+      "evidence": "tests/test_residue.py:46",
+      "id": "c-a4bae5f7",
+      "oracle": "ast",
+      "predicate": "calls:test_journal_and_stats_track_calls_saved_and_unstable;render_stats",
+      "statement": "The module verifies compile journaling",
+      "verdict": "TRUE"
+    },
+    {
+      "detail": "test_page_history_records_section_changes calls compile_wiki",
+      "ehash": "5f38beb2a8b7",
+      "evidence": "tests/test_residue.py:58",
+      "id": "c-009e8f22",
+      "oracle": "ast",
+      "predicate": "calls:test_page_history_records_section_changes;compile_wiki",
+      "statement": "The module validates per-page history tracking",
+      "verdict": "TRUE"
+    },
+    {
+      "detail": "test_claims_for_file_and_grep calls claims_for_file",
+      "ehash": "c12b7656b689",
+      "evidence": "tests/test_residue.py:73",
+      "id": "c-6a5df50a",
+      "oracle": "ast",
+      "predicate": "calls:test_claims_for_file_and_grep;claims_for_file",
+      "statement": "The module checks claims/findings querying",
+      "verdict": "TRUE"
+    },
+    {
+      "detail": "_repo calls write_scan",
+      "ehash": "72020fa88d9f",
+      "evidence": "tests/test_residue.py:22",
+      "id": "c-40f28d89",
+      "oracle": "ast",
+      "predicate": "calls:_repo;write_scan",
+      "statement": "The test harness creates temporary repositories",
+      "verdict": "TRUE"
+    },
+    {
+      "detail": "no import edge tests/test_residue.py->isidore.journal in the graph; imports are partially resolved, so absence is not decidable",
+      "ehash": "e9e4ee7d3484",
+      "evidence": "tests/test_residue.py:12",
+      "id": "c-978e5aaa",
+      "oracle": "none",
+      "predicate": "imports:tests/test_residue.py;isidore.journal",
+      "statement": "The module depends on isidore.journal",
+      "verdict": "UNDECIDABLE"
+    },
+    {
+      "detail": "no import edge tests/test_residue.py->isidore.pipeline in the graph; imports are partially resolved, so absence is not decidable",
+      "ehash": "cfbdf9e3c2bd",
+      "evidence": "tests/test_residue.py:13",
+      "id": "c-4d71d937",
+      "oracle": "none",
+      "predicate": "imports:tests/test_residue.py;isidore.pipeline",
+      "statement": "The module depends on isidore.pipeline",
+      "verdict": "UNDECIDABLE"
+    },
+    {
+      "detail": "no import edge tests/test_residue.py->isidore.claims in the graph; imports are partially resolved, so absence is not decidable",
+      "ehash": "ce7b799d71b1",
+      "evidence": "tests/test_residue.py:9",
+      "id": "c-36b85015",
+      "oracle": "none",
+      "predicate": "imports:tests/test_residue.py;isidore.claims",
+      "statement": "The module depends on isidore.claims",
+      "verdict": "UNDECIDABLE"
+    }
+  ],
+  "graph_commit": "1a34c13ecf2ef7ce206f1ceeaeb1987fea5f8272",
+  "marks": [],
+  "mass": {
+    "gray": 20,
+    "green": 21,
+    "yellow": 1
+  },
+  "page": "tests-test_residue_py.md",
+  "prose_sha256": "34f38fe60dcd12425b913f0c22962bd8b5ea5d037270a5d774a4bb8a190c05e3",
+  "version": "pcp-1",
+  "violations": []
+}
