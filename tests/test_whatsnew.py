@@ -304,7 +304,7 @@ def test_artifact_lives_outside_the_page_state_and_the_verify_glob(repo):
     result = run_whatsnew(root, base)
     # `isidore verify` globs wiki/*.md non-recursively; a range snapshot must not join that loop,
     # nor the staleness loop that would slowly mark it stale as the code moves past the range.
-    assert result.page_path.parent.name == "whatsnew"
+    assert result.page_path.parent.parent.name == "releases"
     assert not (root / WIKI_DIRNAME / ".isidore-state.json").exists()
 
 
@@ -489,3 +489,62 @@ def test_cli_reports_a_bad_ref_without_writing_an_artifact(repo, capsys):
     root, _base, _head = repo
     assert main(["whatsnew", "--since", "nope", "--repo", str(root)]) == 2
     assert not (root / WIKI_DIRNAME / "whatsnew").exists()
+
+
+# --------------------------------------------------------- published by tag, never by date
+
+def test_a_range_is_published_under_the_tag_on_its_end_commit(repo):
+    """A date answers "when did someone run this", which nobody asks. A tag answers "what shipped",
+    which is what a reader quotes and what a bug report cites — and it is stable across re-runs,
+    where a date silently forks the artifact every day."""
+    root, base, _head = repo
+    _git(root, "tag", "v2.3.0")
+
+    result = run_whatsnew(root, base)
+
+    out = result.page_path.parent
+    assert out.name == "v2.3.0"
+    assert (out / "notes.md").is_file() and (out / "notes.md.cert.json").is_file()
+    assert (out / "delta.toon").is_file() and (out / "meta.toon").is_file()
+
+
+def test_an_untagged_end_commit_is_unreleased(repo):
+    root, base, _head = repo
+    assert run_whatsnew(root, base).page_path.parent.name == "unreleased"
+
+
+def test_an_explicit_tag_wins_over_the_one_git_reports(repo):
+    root, base, _head = repo
+    _git(root, "tag", "v9.9.9")
+    assert run_whatsnew(root, base, tag="v1.0.0-rc1").page_path.parent.name == "v1.0.0-rc1"
+
+
+def test_a_tag_with_a_slash_cannot_escape_into_a_subdirectory(repo):
+    """`release/2.3` is a legal tag and an illegal directory component here — it would silently
+    scatter one release across two levels."""
+    root, base, _head = repo
+    out = run_whatsnew(root, base, tag="release/2.3").page_path.parent
+    assert out.name == "release-2.3" and out.parent.name == "releases"
+
+
+def test_the_range_is_recorded_inside_so_the_artifact_stays_reproducible(repo):
+    """The directory name says WHICH release; only the two SHAs say exactly which commits it spans.
+    Without them a moved or re-cut tag quietly changes what the notes are about."""
+    root, base, head = repo
+    result = run_whatsnew(root, base, tag="v2.3.0")
+
+    meta = (result.page_path.parent / "meta.toon").read_text(encoding="utf-8")
+    assert "v2.3.0" in meta
+    assert result.delta.since_sha in meta and result.delta.until_sha in meta
+    assert head[:7] in meta or result.delta.until_sha in meta
+
+
+def test_re_running_an_unchanged_range_rewrites_the_same_bytes(repo):
+    """Same tag, same range, same output — otherwise every run shows up as a diff and nobody can
+    tell a real change from a re-run."""
+    root, base, _head = repo
+    first = run_whatsnew(root, base, tag="v2.3.0").page_path
+    before = {p.name: p.read_bytes() for p in first.parent.iterdir()}
+    run_whatsnew(root, base, tag="v2.3.0")
+    after = {p.name: p.read_bytes() for p in first.parent.iterdir()}
+    assert before == after

@@ -410,8 +410,8 @@
     "semantic_hash": ""
   },
   "src/isidore/whatsnew.py": {
-    "mtime": 1785109572.4853346,
-    "ast_hash": "7809905ada1fd284a174d71ce12c8765",
+    "mtime": 1785112605.7249815,
+    "ast_hash": "8b466604fcb3646e94dda761a5a440e3",
     "semantic_hash": ""
   },
   "tests/fixtures/pcp/repo/svc/tokens.py": {
@@ -425,8 +425,8 @@
     "semantic_hash": ""
   },
   "tests/test_whatsnew.py": {
-    "mtime": 1785017371.3860705,
-    "ast_hash": "599fdcdc5954262bdcf13151aa837c9d",
+    "mtime": 1785112673.670315,
+    "ast_hash": "8736dc366946e1040f628b6581b7709a",
     "semantic_hash": ""
   },
   "tests/test_wiki_dir_env.py": {
@@ -469,11 +469,6 @@
     "ast_hash": "631c587d5fe73db98f8cc03cc09c27fc",
     "semantic_hash": ""
   },
-  "wiki/whatsnew/14a96ad..8540eaf.md.cert.json": {
-    "mtime": 1785016813.7424316,
-    "ast_hash": "7409b80ce49f76c17115b0cec1e2a996",
-    "semantic_hash": ""
-  },
   "wiki/overview.md": {
     "mtime": 1785079821.4117296,
     "ast_hash": "e8d980bf1ce45dd2c89cf14226dec02a",
@@ -492,11 +487,6 @@
   "wiki/tests-test_whatsnew_py.md": {
     "mtime": 1785027881.303691,
     "ast_hash": "997f477bb34a708879855b3d8fa20856",
-    "semantic_hash": ""
-  },
-  "wiki/whatsnew/14a96ad..8540eaf.md": {
-    "mtime": 1785016813.4103608,
-    "ast_hash": "2a5b46c2482ed40a8e59d8e8674c0b19",
     "semantic_hash": ""
   },
   "wiki/subsystem-tests.md.cert.json": {
@@ -830,7 +820,7 @@
     "semantic_hash": ""
   },
   "llms.txt": {
-    "mtime": 1785112457.418605,
+    "mtime": 1785113037.5280826,
     "ast_hash": "17c37f4b5ad0f9d9a66f9f6900385b58",
     "semantic_hash": ""
   },

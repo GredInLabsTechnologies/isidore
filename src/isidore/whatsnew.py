@@ -31,10 +31,22 @@ Three decisions are load-bearing and are documented where they are enforced:
   handler is usually private, so a public-only filter would hide exactly the news that matters. The
   RENDER separates `api` from `internal`; the data keeps everything.
 
-The artifact is a `wiki/whatsnew/<since>..<until>.md` page with a `.cert.json` sidecar. It is a
-photograph of a range, not a living page: it never enters `state["pages"]`, so `claims --check` will
-not slowly mark it stale as the code moves on past the range it describes. (`isidore verify` globs
-`wiki/*.md` non-recursively, so these pages stay out of its loop by construction.)
+The artifact is a directory, `<wiki>/releases/<tag>/`, holding one published document and its
+evidence:
+
+    notes.md            the release note — the ONE thing a person opens
+    notes.md.cert.json  its certificate: every claim, its oracle, its verdict
+    delta.toon          the verified delta as data, for an agent
+    meta.toon           tag, both refs and both SHAs, so the artifact is reproducible
+
+Named by TAG rather than by date, and `unreleased` when the end commit carries none. The note itself
+is layered by reader (`render_whatsnew_md`), so the plain-language summary, the developer detail and
+the machine view are one document plus one sidecar rather than three that drift apart.
+
+It is a photograph of a range, not a living page: it never enters `state["pages"]`, so
+`claims --check` will not slowly mark it stale as the code moves on past the range it describes.
+(`isidore verify` globs `<wiki>/*.md` non-recursively, so these pages stay out of its loop by
+construction.)
 """
 from __future__ import annotations
 
@@ -63,10 +75,34 @@ from .pipeline import (
 )
 from .render import WIKI_DIRNAME
 from .surface import KIND_CLASS, SurfaceSymbol, extract_surface
-from .toon import encode
+from .toon import encode, encode_table
 from .verify import build_certificate
 
 WHATSNEW_DIRNAME = "whatsnew"
+
+# A release is identified by its TAG, not by the day it was compiled. A date answers "when did
+# someone run this", which nobody asks; a tag answers "what shipped", which is what a reader quotes
+# and what a bug report cites. Dates are also ambiguous — two runs in one day, and whose timezone.
+# OpenHarmony's api-diff tree settled the same way: directories named v4.1-release, v5.0.0-release,
+# and where the comparison itself matters, v4.0-Release-vs-v3.2-Release. The range is not lost — it
+# is recorded INSIDE, as two commit SHAs, which is what makes the artifact reproducible.
+RELEASES_DIRNAME = "releases"
+UNRELEASED_DIRNAME = "unreleased"
+NOTES_BASENAME = "notes.md"
+DELTA_BASENAME = "delta.toon"
+META_BASENAME = "meta.toon"
+
+
+def release_name(repo: Path, until_sha: str, explicit: str | None = None) -> str:
+    """The directory a range is published under: an explicit tag, the tag on the end commit, or
+    `unreleased`. Never a date."""
+    if explicit and explicit.strip():
+        return explicit.strip().replace("/", "-")
+    tags = _git(repo, "tag", "--points-at", until_sha) or ""
+    for line in str(tags).splitlines():
+        if line.strip():
+            return line.strip().replace("/", "-")
+    return UNRELEASED_DIRNAME
 
 # The typed vocabulary of novelty. Naming each kind (rather than emitting one undifferentiated "this
 # changed") is what lets a reader — and a CI gate — treat an added symbol differently from a changed
@@ -801,7 +837,8 @@ def generate_prose(repo: Path, delta: SurfaceDelta, hints: list[str], generator,
 
 def run_whatsnew(repo: Path, since: str, until: str = "HEAD", *, execute: bool = False,
                  generator=None, max_calls: int = DEFAULT_MAX_CALLS,
-                 module_depth: int = DEFAULT_MODULE_DEPTH) -> WhatsnewResult:
+                 module_depth: int = DEFAULT_MODULE_DEPTH,
+                 tag: str | None = None) -> WhatsnewResult:
     """Build the delta, optionally write the prose, and persist page + certificate."""
     delta = build_delta(repo, since, until)
     result = WhatsnewResult(delta=delta, warnings=list(delta.warnings))
@@ -841,21 +878,33 @@ def run_whatsnew(repo: Path, since: str, until: str = "HEAD", *, execute: bool =
         result.plain_rejected = int(stats["plain_rejected"])
 
     markdown = render_whatsnew_md(delta, prose or None, plain or None)
-    page_name = f"{WHATSNEW_DIRNAME}/{delta.short_range}"
-    out_dir = repo / WIKI_DIRNAME / WHATSNEW_DIRNAME
+    name = release_name(repo, delta.until_sha, tag)
+    page_name = f"{RELEASES_DIRNAME}/{name}"
+    out_dir = repo / WIKI_DIRNAME / RELEASES_DIRNAME / name
     out_dir.mkdir(parents=True, exist_ok=True)
-    page_path = out_dir / f"{delta.short_range}.md"
+    page_path = out_dir / NOTES_BASENAME
     page_path.write_text(markdown, encoding="utf-8")
 
     # The agent-facing view of the SAME delta, persisted beside the page. An agent reading the wiki
     # later should not have to parse Markdown prose to recover the rows the page was built from.
-    toon_path = out_dir / f"{delta.short_range}.toon"
+    toon_path = out_dir / DELTA_BASENAME
     toon_path.write_text(render_whatsnew_toon(delta), encoding="utf-8")
+
+    # What the directory name cannot carry. A tag says WHICH release; these two SHAs say exactly
+    # which commits it spans, so anyone can regenerate this artifact and get the same bytes — and so
+    # a re-tagged or moved tag cannot quietly change what the notes are about.
+    (out_dir / META_BASENAME).write_text(
+        encode_table("release", ["field", "value"], [
+            ["tag", name], ["since_ref", delta.since_ref], ["until_ref", delta.until_ref],
+            ["since_sha", delta.since_sha], ["until_sha", delta.until_sha],
+            ["range", delta.short_range], ["changes", str(len(delta.entries))],
+            ["files", str(len(delta.changed_files))],
+        ]) + "\n", encoding="utf-8")
 
     ctx = surface_verify_ctx(repo, delta)
     cert = build_certificate(page_name, markdown, claims, ctx)
     cert.graph_commit = delta.until_sha
-    cert_path = out_dir / f"{delta.short_range}.md{CERT_SUFFIX}"
+    cert_path = out_dir / f"{NOTES_BASENAME}{CERT_SUFFIX}"
     write_certificate(cert, cert_path)
 
     result.page_path = page_path
@@ -870,7 +919,7 @@ def _cmd_whatsnew(args) -> int:
     repo = args.repo.resolve()
     try:
         result = run_whatsnew(repo, args.since, args.until, execute=args.execute,
-                              max_calls=args.max_calls)
+                              max_calls=args.max_calls, tag=args.tag)
     except WhatsnewError as exc:
         print(f"[isidore] {exc}")
         return 2
@@ -902,5 +951,8 @@ def register_cli(sub) -> None:
                         help="also write prose (one LLM call per changed module; requires --until HEAD)")
     parser.add_argument("--public-only", action="store_true", help="print only public surface")
     parser.add_argument("--max-calls", type=int, default=DEFAULT_MAX_CALLS)
+    parser.add_argument("--tag", default=None,
+                        help="publish under this release name (default: the tag on --until, "
+                             "else 'unreleased')")
     parser.add_argument("--md", action="store_true", help="print Markdown instead of TOON")
     parser.set_defaults(func=_cmd_whatsnew)
