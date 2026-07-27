@@ -23,7 +23,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "src_isidore_init",
-      "community": 37,
+      "community": 15,
       "norm_label": "__init__.py"
     },
     {
@@ -33,7 +33,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "src_isidore_init_rationale_1",
-      "community": 37,
+      "community": 15,
       "norm_label": "isidore \u2014 compile an agent-oriented wiki from your codebase's structure graph."
     },
     {
@@ -193,7 +193,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "src_isidore_claims",
-      "community": 10,
+      "community": 113,
       "norm_label": "claims.py"
     },
     {
@@ -203,7 +203,7 @@
       "source_location": "L105",
       "_origin": "ast",
       "id": "src_isidore_claims_is_negative_existential",
-      "community": 40,
+      "community": 64,
       "norm_label": "is_negative_existential()"
     },
     {
@@ -223,7 +223,7 @@
       "source_location": "L117",
       "_origin": "ast",
       "id": "src_isidore_claims_parse_claims_block",
-      "community": 113,
+      "community": 42,
       "norm_label": "parse_claims_block()"
     },
     {
@@ -233,7 +233,7 @@
       "source_location": "L141",
       "_origin": "ast",
       "id": "src_isidore_claims_split_evidence",
-      "community": 10,
+      "community": 113,
       "norm_label": "_split_evidence()"
     },
     {
@@ -263,7 +263,7 @@
       "source_location": "L163",
       "_origin": "ast",
       "id": "src_isidore_claims_read_lines",
-      "community": 10,
+      "community": 113,
       "norm_label": "_read_lines()"
     },
     {
@@ -273,7 +273,7 @@
       "source_location": "",
       "_origin": "ast",
       "id": "src_isidore_claims_py_path",
-      "community": 10,
+      "community": 113,
       "norm_label": "path"
     },
     {
@@ -283,7 +283,7 @@
       "source_location": "L173",
       "_origin": "ast",
       "id": "src_isidore_claims_evidence_hash",
-      "community": 10,
+      "community": 113,
       "norm_label": "evidence_hash()"
     },
     {
@@ -293,7 +293,7 @@
       "source_location": "L206",
       "_origin": "ast",
       "id": "src_isidore_claims_evidence_state",
-      "community": 10,
+      "community": 113,
       "norm_label": "evidence_state()"
     },
     {
@@ -333,7 +333,7 @@
       "source_location": "L315",
       "_origin": "ast",
       "id": "src_isidore_claims_check_claims",
-      "community": 10,
+      "community": 113,
       "norm_label": "check_claims()"
     },
     {
@@ -343,7 +343,7 @@
       "source_location": "L330",
       "_origin": "ast",
       "id": "src_isidore_claims_claims_for_file",
-      "community": 10,
+      "community": 113,
       "norm_label": "claims_for_file()"
     },
     {
@@ -353,7 +353,7 @@
       "source_location": "L343",
       "_origin": "ast",
       "id": "src_isidore_claims_claims_grep",
-      "community": 10,
+      "community": 113,
       "norm_label": "claims_grep()"
     },
     {
@@ -363,7 +363,7 @@
       "source_location": "L350",
       "_origin": "ast",
       "id": "src_isidore_claims_stale_pages",
-      "community": 40,
+      "community": 15,
       "norm_label": "stale_pages()"
     },
     {
@@ -373,7 +373,7 @@
       "source_location": "L356",
       "_origin": "ast",
       "id": "src_isidore_claims_render_claims",
-      "community": 10,
+      "community": 15,
       "norm_label": "render_claims()"
     },
     {
@@ -383,7 +383,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "src_isidore_claims_rationale_1",
-      "community": 10,
+      "community": 113,
       "norm_label": "claims: the atomic, evidence-anchored form of wiki knowledge.  a claim is a si"
     },
     {
@@ -393,7 +393,7 @@
       "source_location": "L106",
       "_origin": "ast",
       "id": "src_isidore_claims_rationale_106",
-      "community": 40,
+      "community": 64,
       "norm_label": "true for statements asserting existential/definitional absence (unanchorable). c"
     },
     {
@@ -413,7 +413,7 @@
       "source_location": "L118",
       "_origin": "ast",
       "id": "src_isidore_claims_rationale_118",
-      "community": 113,
+      "community": 42,
       "norm_label": "split a generated page into (clean page, raw claim rows). tolerant of malformed"
     },
     {
@@ -433,7 +433,7 @@
       "source_location": "L174",
       "_origin": "ast",
       "id": "src_isidore_claims_rationale_174",
-      "community": 10,
+      "community": 113,
       "norm_label": "fingerprint of the cited line's normalized content (whole normalized file if no"
     },
     {
@@ -443,7 +443,7 @@
       "source_location": "L207",
       "_origin": "ast",
       "id": "src_isidore_claims_rationale_207",
-      "community": 10,
+      "community": 113,
       "norm_label": "ok\" | \"stale\" | \"orphan\" | \"superseded\" \u2014 content-anchored, tolerant of line shi"
     },
     {
@@ -483,7 +483,7 @@
       "source_location": "L316",
       "_origin": "ast",
       "id": "src_isidore_claims_rationale_316",
-      "community": 10,
+      "community": 113,
       "norm_label": "re-hash every stored claim's evidence \u2014 the zero-llm staleness audit.      ret"
     },
     {
@@ -493,7 +493,7 @@
       "source_location": "L331",
       "_origin": "ast",
       "id": "src_isidore_claims_rationale_331",
-      "community": 10,
+      "community": 113,
       "norm_label": "the documentation contract of a file: every anchored claim whose evidence points"
     },
     {
@@ -503,7 +503,7 @@
       "source_location": "L344",
       "_origin": "ast",
       "id": "src_isidore_claims_rationale_344",
-      "community": 10,
+      "community": 113,
       "norm_label": "free-text search over verified atomic facts \u2014 answers many questions with 0 llm"
     },
     {
@@ -513,7 +513,7 @@
       "source_location": "L351",
       "_origin": "ast",
       "id": "src_isidore_claims_rationale_351",
-      "community": 40,
+      "community": 15,
       "norm_label": "pages owning at least one stale/orphan claim \u2014 they must regenerate even if thei"
     },
     {
@@ -563,7 +563,7 @@
       "source_location": "L110",
       "_origin": "ast",
       "id": "src_isidore_cli_cmd_ask",
-      "community": 35,
+      "community": 24,
       "norm_label": "_cmd_ask()"
     },
     {
@@ -593,7 +593,7 @@
       "source_location": "L169",
       "_origin": "ast",
       "id": "src_isidore_cli_cmd_claims",
-      "community": 10,
+      "community": 113,
       "norm_label": "_cmd_claims()"
     },
     {
@@ -613,7 +613,7 @@
       "source_location": "L221",
       "_origin": "ast",
       "id": "src_isidore_cli_cmd_stats",
-      "community": 35,
+      "community": 56,
       "norm_label": "_cmd_stats()"
     },
     {
@@ -633,7 +633,7 @@
       "source_location": "L255",
       "_origin": "ast",
       "id": "src_isidore_cli_cmd_sync",
-      "community": 40,
+      "community": 11,
       "norm_label": "_cmd_sync()"
     },
     {
@@ -693,7 +693,7 @@
       "source_location": "L35",
       "_origin": "ast",
       "id": "src_isidore_connect_save_config",
-      "community": 103,
+      "community": 11,
       "norm_label": "save_config()"
     },
     {
@@ -703,7 +703,7 @@
       "source_location": "",
       "_origin": "ast",
       "id": "src_isidore_connect_py_path",
-      "community": 103,
+      "community": 11,
       "norm_label": "path"
     },
     {
@@ -723,7 +723,7 @@
       "source_location": "L60",
       "_origin": "ast",
       "id": "src_isidore_connect_apply_settings",
-      "community": 103,
+      "community": 11,
       "norm_label": "apply_settings()"
     },
     {
@@ -793,7 +793,7 @@
       "source_location": "L36",
       "_origin": "ast",
       "id": "src_isidore_connect_rationale_36",
-      "community": 103,
+      "community": 11,
       "norm_label": "write a connector's config with the home's restrictive permissions."
     },
     {
@@ -813,7 +813,7 @@
       "source_location": "L61",
       "_origin": "ast",
       "id": "src_isidore_connect_rationale_61",
-      "community": 103,
+      "community": 11,
       "norm_label": "fold `key=value` settings into a config. repeating a key accumulates into a list"
     },
     {
@@ -1043,7 +1043,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "src_isidore_connectors_git_repo",
-      "community": 22,
+      "community": 67,
       "norm_label": "git_repo.py"
     },
     {
@@ -1053,7 +1053,7 @@
       "source_location": "L31",
       "_origin": "ast",
       "id": "src_isidore_connectors_git_repo_window_floor",
-      "community": 22,
+      "community": 67,
       "norm_label": "_window_floor()"
     },
     {
@@ -1073,7 +1073,7 @@
       "source_location": "L74",
       "_origin": "ast",
       "id": "src_isidore_connectors_git_repo_gitrepoconnector",
-      "community": 20,
+      "community": 4,
       "norm_label": "gitrepoconnector"
     },
     {
@@ -1083,7 +1083,7 @@
       "source_location": "L79",
       "_origin": "ast",
       "id": "src_isidore_connectors_git_repo_gitrepoconnector_ingest",
-      "community": 22,
+      "community": 67,
       "norm_label": ".ingest()"
     },
     {
@@ -1093,7 +1093,7 @@
       "source_location": "L127",
       "_origin": "ast",
       "id": "src_isidore_connectors_git_repo_gitrepoconnector_manifest",
-      "community": 20,
+      "community": 4,
       "norm_label": "._manifest()"
     },
     {
@@ -1103,7 +1103,7 @@
       "source_location": "L164",
       "_origin": "ast",
       "id": "src_isidore_connectors_git_repo_gitrepoconnector_commits",
-      "community": 20,
+      "community": 4,
       "norm_label": "._commits()"
     },
     {
@@ -1113,7 +1113,7 @@
       "source_location": "L187",
       "_origin": "ast",
       "id": "src_isidore_connectors_git_repo_gitrepoconnector_git",
-      "community": 20,
+      "community": 4,
       "norm_label": "._git()"
     },
     {
@@ -1123,7 +1123,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "src_isidore_connectors_git_repo_rationale_1",
-      "community": 22,
+      "community": 67,
       "norm_label": "git-repo connector (adr-0032 f1): local repositories as a knowledge source. no n"
     },
     {
@@ -1133,7 +1133,7 @@
       "source_location": "L32",
       "_origin": "ast",
       "id": "src_isidore_connectors_git_repo_rationale_32",
-      "community": 22,
+      "community": 67,
       "norm_label": "epoch second a commit must reach to be inside the window, or (none, note) if unb"
     },
     {
@@ -1153,7 +1153,7 @@
       "source_location": "L129",
       "_origin": "ast",
       "id": "src_isidore_connectors_git_repo_rationale_129",
-      "community": 20,
+      "community": 4,
       "norm_label": "(item, none) for a changed repo, (none, none) if head is unchanged, (none, warni"
     },
     {
@@ -1163,7 +1163,7 @@
       "source_location": "L188",
       "_origin": "ast",
       "id": "src_isidore_connectors_git_repo_rationale_188",
-      "community": 20,
+      "community": 4,
       "norm_label": "run a git command; return stdout or none on any failure (never raises)."
     },
     {
@@ -1223,7 +1223,7 @@
       "source_location": "L77",
       "_origin": "ast",
       "id": "src_isidore_connectors_hackernews_parse_hits",
-      "community": 67,
+      "community": 16,
       "norm_label": "parse_hits()"
     },
     {
@@ -1313,7 +1313,7 @@
       "source_location": "L78",
       "_origin": "ast",
       "id": "src_isidore_connectors_hackernews_rationale_78",
-      "community": 67,
+      "community": 16,
       "norm_label": "the `hits` array, or valueerror. a payload without one is malformed, not empty ("
     },
     {
@@ -1443,7 +1443,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "src_isidore_connectors_mcp",
-      "community": 22,
+      "community": 13,
       "norm_label": "mcp.py"
     },
     {
@@ -1453,7 +1453,7 @@
       "source_location": "L33",
       "_origin": "ast",
       "id": "src_isidore_connectors_mcp_allowed",
-      "community": 105,
+      "community": 13,
       "norm_label": "_allowed()"
     },
     {
@@ -1463,7 +1463,7 @@
       "source_location": "L74",
       "_origin": "ast",
       "id": "src_isidore_connectors_mcp_result_text",
-      "community": 105,
+      "community": 13,
       "norm_label": "_result_text()"
     },
     {
@@ -1473,7 +1473,7 @@
       "source_location": "",
       "_origin": "ast",
       "id": "src_isidore_connectors_mcp_py_any",
-      "community": 105,
+      "community": 13,
       "norm_label": "any"
     },
     {
@@ -1503,7 +1503,7 @@
       "source_location": "L115",
       "_origin": "ast",
       "id": "src_isidore_connectors_mcp_mcpconnector",
-      "community": 105,
+      "community": 13,
       "norm_label": "mcpconnector"
     },
     {
@@ -1513,7 +1513,7 @@
       "source_location": "L120",
       "_origin": "ast",
       "id": "src_isidore_connectors_mcp_mcpconnector_ingest",
-      "community": 105,
+      "community": 13,
       "norm_label": ".ingest()"
     },
     {
@@ -1523,7 +1523,7 @@
       "source_location": "L177",
       "_origin": "ast",
       "id": "src_isidore_connectors_mcp_mcpconnector_tool_annotations",
-      "community": 105,
+      "community": 13,
       "norm_label": "._tool_annotations()"
     },
     {
@@ -1533,7 +1533,7 @@
       "source_location": "L195",
       "_origin": "ast",
       "id": "src_isidore_connectors_mcp_mcpconnector_load_config",
-      "community": 105,
+      "community": 13,
       "norm_label": "._load_config()"
     },
     {
@@ -1543,7 +1543,7 @@
       "source_location": "L203",
       "_origin": "ast",
       "id": "src_isidore_connectors_mcp_jsonrpcclient",
-      "community": 105,
+      "community": 13,
       "norm_label": "_jsonrpcclient"
     },
     {
@@ -1563,7 +1563,7 @@
       "source_location": "L223",
       "_origin": "ast",
       "id": "src_isidore_connectors_mcp_jsonrpcclient_close",
-      "community": 105,
+      "community": 13,
       "norm_label": ".close()"
     },
     {
@@ -1573,7 +1573,7 @@
       "source_location": "L233",
       "_origin": "ast",
       "id": "src_isidore_connectors_mcp_jsonrpcclient_request",
-      "community": 105,
+      "community": 13,
       "norm_label": ".request()"
     },
     {
@@ -1583,7 +1583,7 @@
       "source_location": "L241",
       "_origin": "ast",
       "id": "src_isidore_connectors_mcp_jsonrpcclient_notify",
-      "community": 105,
+      "community": 13,
       "norm_label": ".notify()"
     },
     {
@@ -1593,7 +1593,7 @@
       "source_location": "L244",
       "_origin": "ast",
       "id": "src_isidore_connectors_mcp_jsonrpcclient_send",
-      "community": 105,
+      "community": 13,
       "norm_label": "._send()"
     },
     {
@@ -1603,7 +1603,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "src_isidore_connectors_mcp_rationale_1",
-      "community": 22,
+      "community": 13,
       "norm_label": "minimal read-only mcp connector (adr-0032 f3).  the implementation deliberately"
     },
     {
@@ -1613,7 +1613,7 @@
       "source_location": "L34",
       "_origin": "ast",
       "id": "src_isidore_connectors_mcp_rationale_34",
-      "community": 105,
+      "community": 13,
       "norm_label": "normalise the allowlist into `{entry, arguments}` records, sorted for determinis"
     },
     {
@@ -1623,7 +1623,7 @@
       "source_location": "L75",
       "_origin": "ast",
       "id": "src_isidore_connectors_mcp_rationale_75",
-      "community": 105,
+      "community": 13,
       "norm_label": "the readable text of an mcp tool result, falling back to compact json.      mcp"
     },
     {
@@ -1653,7 +1653,7 @@
       "source_location": "L178",
       "_origin": "ast",
       "id": "src_isidore_connectors_mcp_rationale_178",
-      "community": 105,
+      "community": 13,
       "norm_label": "map tool name -> its mcp annotations via tools/list (paginated). empty if the se"
     },
     {
@@ -1823,7 +1823,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "src_isidore_connectors_store",
-      "community": 22,
+      "community": 10,
       "norm_label": "store.py"
     },
     {
@@ -1863,7 +1863,7 @@
       "source_location": "L48",
       "_origin": "ast",
       "id": "src_isidore_connectors_store_check_item_id",
-      "community": 22,
+      "community": 16,
       "norm_label": "check_item_id()"
     },
     {
@@ -1873,7 +1873,7 @@
       "source_location": "L57",
       "_origin": "ast",
       "id": "src_isidore_connectors_store_safe_item_id",
-      "community": 22,
+      "community": 67,
       "norm_label": "safe_item_id()"
     },
     {
@@ -1883,7 +1883,7 @@
       "source_location": "L70",
       "_origin": "ast",
       "id": "src_isidore_connectors_store_slug",
-      "community": 22,
+      "community": 67,
       "norm_label": "_slug()"
     },
     {
@@ -1903,7 +1903,7 @@
       "source_location": "L94",
       "_origin": "ast",
       "id": "src_isidore_connectors_store_read_state",
-      "community": 22,
+      "community": 10,
       "norm_label": "read_state()"
     },
     {
@@ -1913,7 +1913,7 @@
       "source_location": "L110",
       "_origin": "ast",
       "id": "src_isidore_connectors_store_write_state",
-      "community": 22,
+      "community": 67,
       "norm_label": "write_state()"
     },
     {
@@ -1923,7 +1923,7 @@
       "source_location": "L120",
       "_origin": "ast",
       "id": "src_isidore_connectors_store_update_cursor",
-      "community": 22,
+      "community": 13,
       "norm_label": "update_cursor()"
     },
     {
@@ -1933,7 +1933,7 @@
       "source_location": "L124",
       "_origin": "ast",
       "id": "src_isidore_connectors_store_record_run",
-      "community": 22,
+      "community": 67,
       "norm_label": "record_run()"
     },
     {
@@ -1953,7 +1953,7 @@
       "source_location": "L152",
       "_origin": "ast",
       "id": "src_isidore_connectors_store_run_ids_newest_first",
-      "community": 22,
+      "community": 10,
       "norm_label": "_run_ids_newest_first()"
     },
     {
@@ -1963,7 +1963,7 @@
       "source_location": "L164",
       "_origin": "ast",
       "id": "src_isidore_connectors_store_resolve_uri",
-      "community": 10,
+      "community": 113,
       "norm_label": "resolve_uri()"
     },
     {
@@ -1973,7 +1973,7 @@
       "source_location": "L186",
       "_origin": "ast",
       "id": "src_isidore_connectors_store_prune_runs",
-      "community": 22,
+      "community": 10,
       "norm_label": "prune_runs()"
     },
     {
@@ -1983,7 +1983,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "src_isidore_connectors_store_rationale_1",
-      "community": 22,
+      "community": 10,
       "norm_label": "the raw store: immutable ingested items + per-connector cursor state (adr-0032 f"
     },
     {
@@ -2003,7 +2003,7 @@
       "source_location": "L49",
       "_origin": "ast",
       "id": "src_isidore_connectors_store_rationale_49",
-      "community": 22,
+      "community": 16,
       "norm_label": "raise valueerror if `item_id` cannot be addressed by a `src://` uri."
     },
     {
@@ -2013,7 +2013,7 @@
       "source_location": "L58",
       "_origin": "ast",
       "id": "src_isidore_connectors_store_rationale_58",
-      "community": 22,
+      "community": 67,
       "norm_label": "a stable, addressable id from a stream name and whatever native id the source ga"
     },
     {
@@ -2033,7 +2033,7 @@
       "source_location": "L95",
       "_origin": "ast",
       "id": "src_isidore_connectors_store_rationale_95",
-      "community": 22,
+      "community": 10,
       "norm_label": "current state, or a fresh default if missing or corrupt (i13-style recovery, nev"
     },
     {
@@ -2043,7 +2043,7 @@
       "source_location": "L111",
       "_origin": "ast",
       "id": "src_isidore_connectors_store_rationale_111",
-      "community": 22,
+      "community": 67,
       "norm_label": "atomic write (tmp + os.replace) so a crash mid-write never corrupts the live sta"
     },
     {
@@ -2053,7 +2053,7 @@
       "source_location": "L125",
       "_origin": "ast",
       "id": "src_isidore_connectors_store_rationale_125",
-      "community": 22,
+      "community": 67,
       "norm_label": "prepend a run summary, keeping the last 20 (newest first)."
     },
     {
@@ -2073,7 +2073,7 @@
       "source_location": "L153",
       "_origin": "ast",
       "id": "src_isidore_connectors_store_rationale_153",
-      "community": 22,
+      "community": 10,
       "norm_label": "run ids from state (already newest-first); fall back to sorting the raw dir if s"
     },
     {
@@ -2083,7 +2083,7 @@
       "source_location": "L165",
       "_origin": "ast",
       "id": "src_isidore_connectors_store_rationale_165",
-      "community": 10,
+      "community": 113,
       "norm_label": "`src://<cid>/<instance>/<item-id>` or `src://<cid>/<item-id>` -> the raw item, o"
     },
     {
@@ -2093,7 +2093,7 @@
       "source_location": "L187",
       "_origin": "ast",
       "id": "src_isidore_connectors_store_rationale_187",
-      "community": 22,
+      "community": 10,
       "norm_label": "drop all but the newest `keep` runs, deleting their raw dirs and trimming state."
     },
     {
@@ -2543,7 +2543,7 @@
       "source_location": "L70",
       "_origin": "ast",
       "id": "src_isidore_findings_parse_findings_block",
-      "community": 3,
+      "community": 64,
       "norm_label": "parse_findings_block()"
     },
     {
@@ -2703,7 +2703,7 @@
       "source_location": "L366",
       "_origin": "ast",
       "id": "src_isidore_findings_render_findings",
-      "community": 3,
+      "community": 23,
       "norm_label": "render_findings()"
     },
     {
@@ -2723,7 +2723,7 @@
       "source_location": "L71",
       "_origin": "ast",
       "id": "src_isidore_findings_rationale_71",
-      "community": 3,
+      "community": 64,
       "norm_label": "split a generated page into (clean page, findings rows). tolerant of malformed l"
     },
     {
@@ -2863,7 +2863,7 @@
       "source_location": "L42",
       "_origin": "ast",
       "id": "src_isidore_graph_grapherror",
-      "community": 108,
+      "community": 35,
       "norm_label": "grapherror"
     },
     {
@@ -2883,7 +2883,7 @@
       "source_location": "L46",
       "_origin": "ast",
       "id": "src_isidore_graph_load_graph",
-      "community": 35,
+      "community": 25,
       "norm_label": "load_graph()"
     },
     {
@@ -3093,7 +3093,7 @@
       "source_location": "L43",
       "_origin": "ast",
       "id": "src_isidore_graph_rationale_43",
-      "community": 108,
+      "community": 35,
       "norm_label": "the graph file exists but is not valid (malformed json or wrong shape)."
     },
     {
@@ -3233,7 +3233,7 @@
       "source_location": "L51",
       "_origin": "ast",
       "id": "src_isidore_handoff_handoff_dir",
-      "community": 0,
+      "community": 108,
       "norm_label": "handoff_dir()"
     },
     {
@@ -3243,7 +3243,7 @@
       "source_location": "",
       "_origin": "ast",
       "id": "src_isidore_handoff_py_path",
-      "community": 0,
+      "community": 108,
       "norm_label": "path"
     },
     {
@@ -3273,7 +3273,7 @@
       "source_location": "L77",
       "_origin": "ast",
       "id": "src_isidore_handoff_emit",
-      "community": 0,
+      "community": 108,
       "norm_label": "emit()"
     },
     {
@@ -3283,7 +3283,7 @@
       "source_location": "L97",
       "_origin": "ast",
       "id": "src_isidore_handoff_response_generator",
-      "community": 0,
+      "community": 115,
       "norm_label": "response_generator()"
     },
     {
@@ -3353,7 +3353,7 @@
       "source_location": "L78",
       "_origin": "ast",
       "id": "src_isidore_handoff_rationale_78",
-      "community": 0,
+      "community": 108,
       "norm_label": "write one prompt file per dirty page. returns (count, page names)."
     },
     {
@@ -3363,7 +3363,7 @@
       "source_location": "L98",
       "_origin": "ast",
       "id": "src_isidore_handoff_rationale_98",
-      "community": 0,
+      "community": 115,
       "norm_label": "a generator that answers from disk. raises generationerror when an answer is mis"
     },
     {
@@ -3393,7 +3393,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "src_isidore_home",
-      "community": 11,
+      "community": 10,
       "norm_label": "home.py"
     },
     {
@@ -3403,7 +3403,7 @@
       "source_location": "L13",
       "_origin": "ast",
       "id": "src_isidore_home_home",
-      "community": 11,
+      "community": 10,
       "norm_label": "home()"
     },
     {
@@ -3413,7 +3413,7 @@
       "source_location": "",
       "_origin": "ast",
       "id": "src_isidore_home_py_path",
-      "community": 11,
+      "community": 10,
       "norm_label": "path"
     },
     {
@@ -3423,7 +3423,7 @@
       "source_location": "L19",
       "_origin": "ast",
       "id": "src_isidore_home_connector_dir",
-      "community": 11,
+      "community": 10,
       "norm_label": "connector_dir()"
     },
     {
@@ -3433,7 +3433,7 @@
       "source_location": "L24",
       "_origin": "ast",
       "id": "src_isidore_home_raw_dir",
-      "community": 11,
+      "community": 10,
       "norm_label": "raw_dir()"
     },
     {
@@ -3453,7 +3453,7 @@
       "source_location": "L32",
       "_origin": "ast",
       "id": "src_isidore_home_state_path",
-      "community": 11,
+      "community": 10,
       "norm_label": "state_path()"
     },
     {
@@ -3463,7 +3463,7 @@
       "source_location": "L36",
       "_origin": "ast",
       "id": "src_isidore_home_knowledge_dir",
-      "community": 11,
+      "community": 10,
       "norm_label": "knowledge_dir()"
     },
     {
@@ -3473,7 +3473,7 @@
       "source_location": "L40",
       "_origin": "ast",
       "id": "src_isidore_home_safe_chmod",
-      "community": 40,
+      "community": 64,
       "norm_label": "safe_chmod()"
     },
     {
@@ -3483,7 +3483,7 @@
       "source_location": "L50",
       "_origin": "ast",
       "id": "src_isidore_home_safe_mkdir",
-      "community": 40,
+      "community": 64,
       "norm_label": "safe_mkdir()"
     },
     {
@@ -3493,7 +3493,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "src_isidore_home_rationale_1",
-      "community": 11,
+      "community": 10,
       "norm_label": "the knowledge home (`~/.isidore`, override with `isidore_home`).  where connecto"
     },
     {
@@ -3503,7 +3503,7 @@
       "source_location": "L14",
       "_origin": "ast",
       "id": "src_isidore_home_rationale_14",
-      "community": 11,
+      "community": 10,
       "norm_label": "`$isidore_home` if set, else `~/.isidore`."
     },
     {
@@ -3513,7 +3513,7 @@
       "source_location": "L41",
       "_origin": "ast",
       "id": "src_isidore_home_rationale_41",
-      "community": 40,
+      "community": 64,
       "norm_label": "chmod that never raises; a no-op on windows where posix modes don't apply."
     },
     {
@@ -3523,7 +3523,7 @@
       "source_location": "L51",
       "_origin": "ast",
       "id": "src_isidore_home_rationale_51",
-      "community": 40,
+      "community": 64,
       "norm_label": "mkdir -p with restrictive mode, best-effort \u2014 never raises on a perms/fs quirk."
     },
     {
@@ -3833,7 +3833,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "src_isidore_journal",
-      "community": 15,
+      "community": 56,
       "norm_label": "journal.py"
     },
     {
@@ -3843,7 +3843,7 @@
       "source_location": "L21",
       "_origin": "ast",
       "id": "src_isidore_journal_append_run",
-      "community": 15,
+      "community": 56,
       "norm_label": "append_run()"
     },
     {
@@ -3873,7 +3873,7 @@
       "source_location": "L51",
       "_origin": "ast",
       "id": "src_isidore_journal_record_page_change",
-      "community": 15,
+      "community": 56,
       "norm_label": "record_page_change()"
     },
     {
@@ -3883,7 +3883,7 @@
       "source_location": "L61",
       "_origin": "ast",
       "id": "src_isidore_journal_render_stats",
-      "community": 35,
+      "community": 56,
       "norm_label": "render_stats()"
     },
     {
@@ -3893,7 +3893,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "src_isidore_journal_rationale_1",
-      "community": 15,
+      "community": 56,
       "norm_label": "compile journal + per-page changelog \u2014 residue mining, all zero-llm.  every comp"
     },
     {
@@ -3923,7 +3923,7 @@
       "source_location": "L52",
       "_origin": "ast",
       "id": "src_isidore_journal_rationale_52",
-      "community": 15,
+      "community": 56,
       "norm_label": "append an h2-level changelog entry to a page's state (capped). no-op if the pros"
     },
     {
@@ -3933,7 +3933,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "src_isidore_knowledge",
-      "community": 40,
+      "community": 64,
       "norm_label": "knowledge.py"
     },
     {
@@ -3943,7 +3943,7 @@
       "source_location": "L92",
       "_origin": "ast",
       "id": "src_isidore_knowledge_topiccompileresult",
-      "community": 40,
+      "community": 64,
       "norm_label": "topiccompileresult"
     },
     {
@@ -3953,7 +3953,7 @@
       "source_location": "L113",
       "_origin": "ast",
       "id": "src_isidore_knowledge_knowledge_dir",
-      "community": 40,
+      "community": 64,
       "norm_label": "knowledge_dir()"
     },
     {
@@ -3963,7 +3963,7 @@
       "source_location": "",
       "_origin": "ast",
       "id": "src_isidore_knowledge_py_path",
-      "community": 40,
+      "community": 64,
       "norm_label": "path"
     },
     {
@@ -3973,7 +3973,7 @@
       "source_location": "L119",
       "_origin": "ast",
       "id": "src_isidore_knowledge_state_path",
-      "community": 40,
+      "community": 64,
       "norm_label": "state_path()"
     },
     {
@@ -3983,7 +3983,7 @@
       "source_location": "L123",
       "_origin": "ast",
       "id": "src_isidore_knowledge_load_knowledge_state",
-      "community": 40,
+      "community": 37,
       "norm_label": "load_knowledge_state()"
     },
     {
@@ -3993,7 +3993,7 @@
       "source_location": "L137",
       "_origin": "ast",
       "id": "src_isidore_knowledge_write_knowledge_state",
-      "community": 40,
+      "community": 64,
       "norm_label": "write_knowledge_state()"
     },
     {
@@ -4003,7 +4003,7 @@
       "source_location": "L146",
       "_origin": "ast",
       "id": "src_isidore_knowledge_load_topics",
-      "community": 40,
+      "community": 64,
       "norm_label": "load_topics()"
     },
     {
@@ -4033,7 +4033,7 @@
       "source_location": "L234",
       "_origin": "ast",
       "id": "src_isidore_knowledge_seal_content",
-      "community": 124,
+      "community": 64,
       "norm_label": "seal_content()"
     },
     {
@@ -4073,7 +4073,7 @@
       "source_location": "L360",
       "_origin": "ast",
       "id": "src_isidore_knowledge_compile_topics",
-      "community": 40,
+      "community": 64,
       "norm_label": "compile_topics()"
     },
     {
@@ -4083,7 +4083,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "src_isidore_knowledge_rationale_1",
-      "community": 40,
+      "community": 64,
       "norm_label": "the knowledge core: user-defined topics compile + 0-llm suggest topics (adr-0032"
     },
     {
@@ -4113,7 +4113,7 @@
       "source_location": "L235",
       "_origin": "ast",
       "id": "src_isidore_knowledge_rationale_235",
-      "community": 124,
+      "community": 64,
       "norm_label": "(content with any delimiter-shaped line defanged, how many were found).      mar"
     },
     {
@@ -4153,7 +4153,7 @@
       "source_location": "L365",
       "_origin": "ast",
       "id": "src_isidore_knowledge_rationale_365",
-      "community": 40,
+      "community": 64,
       "norm_label": "compile dirty topic pages based on topics.json configurations."
     },
     {
@@ -4433,7 +4433,7 @@
       "source_location": "L112",
       "_origin": "ast",
       "id": "src_isidore_llm_default_generator",
-      "community": 35,
+      "community": 64,
       "norm_label": "default_generator()"
     },
     {
@@ -4473,7 +4473,7 @@
       "source_location": "L113",
       "_origin": "ast",
       "id": "src_isidore_llm_rationale_113",
-      "community": 35,
+      "community": 64,
       "norm_label": "build the env-configured generator. fails closed if no model is set."
     },
     {
@@ -4583,7 +4583,7 @@
       "source_location": "L155",
       "_origin": "ast",
       "id": "src_isidore_pcp_verifier_call",
-      "community": 55,
+      "community": 5,
       "norm_label": ".__call__()"
     },
     {
@@ -4613,7 +4613,7 @@
       "source_location": "L172",
       "_origin": "ast",
       "id": "src_isidore_pcp_verify_predicate",
-      "community": 5,
+      "community": 42,
       "norm_label": "verify_predicate()"
     },
     {
@@ -4623,7 +4623,7 @@
       "source_location": "L185",
       "_origin": "ast",
       "id": "src_isidore_pcp_claimverdict",
-      "community": 42,
+      "community": 31,
       "norm_label": "claimverdict"
     },
     {
@@ -4633,7 +4633,7 @@
       "source_location": "L204",
       "_origin": "ast",
       "id": "src_isidore_pcp_verifiedmass",
-      "community": 29,
+      "community": 31,
       "norm_label": "verifiedmass"
     },
     {
@@ -4643,7 +4643,7 @@
       "source_location": "L210",
       "_origin": "ast",
       "id": "src_isidore_pcp_verifiedmass_total",
-      "community": 29,
+      "community": 31,
       "norm_label": ".total()"
     },
     {
@@ -4703,7 +4703,7 @@
       "source_location": "L264",
       "_origin": "ast",
       "id": "src_isidore_pcp_certificate_from_dict",
-      "community": 29,
+      "community": 31,
       "norm_label": "certificate_from_dict()"
     },
     {
@@ -4853,7 +4853,7 @@
       "source_location": "L173",
       "_origin": "ast",
       "id": "src_isidore_pcp_rationale_173",
-      "community": 5,
+      "community": 42,
       "norm_label": "dispatch one predicate to its registered verifier. no verifier -> undecidable (f"
     },
     {
@@ -4863,7 +4863,7 @@
       "source_location": "L186",
       "_origin": "ast",
       "id": "src_isidore_pcp_rationale_186",
-      "community": 42,
+      "community": 31,
       "norm_label": "one claim's line in a certificate: the anchored claim + its typed verdict (if an"
     },
     {
@@ -4923,7 +4923,7 @@
       "source_location": "L265",
       "_origin": "ast",
       "id": "src_isidore_pcp_rationale_265",
-      "community": 29,
+      "community": 31,
       "norm_label": "rebuild a certificate from parsed json, reconstructing the nested dataclasses. t"
     },
     {
@@ -5023,7 +5023,7 @@
       "source_location": "L212",
       "_origin": "ast",
       "id": "src_isidore_pipeline_pagespec",
-      "community": 15,
+      "community": 126,
       "norm_label": "pagespec"
     },
     {
@@ -5033,7 +5033,7 @@
       "source_location": "L225",
       "_origin": "ast",
       "id": "src_isidore_pipeline_pagespec_filename",
-      "community": 15,
+      "community": 126,
       "norm_label": ".filename()"
     },
     {
@@ -5043,7 +5043,7 @@
       "source_location": "L232",
       "_origin": "ast",
       "id": "src_isidore_pipeline_module_dep_edges",
-      "community": 66,
+      "community": 9,
       "norm_label": "module_dep_edges()"
     },
     {
@@ -5053,7 +5053,7 @@
       "source_location": "",
       "_origin": "ast",
       "id": "counter",
-      "community": 3,
+      "community": 56,
       "norm_label": "counter"
     },
     {
@@ -5083,7 +5083,7 @@
       "source_location": "L281",
       "_origin": "ast",
       "id": "src_isidore_pipeline_plan_pages",
-      "community": 2,
+      "community": 126,
       "norm_label": "plan_pages()"
     },
     {
@@ -5153,7 +5153,7 @@
       "source_location": "L451",
       "_origin": "ast",
       "id": "src_isidore_pipeline_assemble_context",
-      "community": 15,
+      "community": 126,
       "norm_label": "assemble_context()"
     },
     {
@@ -5163,7 +5163,7 @@
       "source_location": "L497",
       "_origin": "ast",
       "id": "src_isidore_pipeline_prompt_for",
-      "community": 15,
+      "community": 126,
       "norm_label": "prompt_for()"
     },
     {
@@ -5173,7 +5173,7 @@
       "source_location": "L503",
       "_origin": "ast",
       "id": "src_isidore_pipeline_context_hash",
-      "community": 15,
+      "community": 126,
       "norm_label": "context_hash()"
     },
     {
@@ -5243,7 +5243,7 @@
       "source_location": "L584",
       "_origin": "ast",
       "id": "src_isidore_pipeline_match_only",
-      "community": 15,
+      "community": 9,
       "norm_label": "_match_only()"
     },
     {
@@ -5313,7 +5313,7 @@
       "source_location": "L234",
       "_origin": "ast",
       "id": "src_isidore_pipeline_rationale_234",
-      "community": 66,
+      "community": 9,
       "norm_label": "cross-module dependency edges (src_module, dst_module) -> link count. shared by"
     },
     {
@@ -5343,7 +5343,7 @@
       "source_location": "L289",
       "_origin": "ast",
       "id": "src_isidore_pipeline_rationale_289",
-      "community": 2,
+      "community": 126,
       "norm_label": "module pages from the graph: top-k modules holding at least min_symbols code sym"
     },
     {
@@ -5383,7 +5383,7 @@
       "source_location": "L453",
       "_origin": "ast",
       "id": "src_isidore_pipeline_rationale_453",
-      "community": 15,
+      "community": 126,
       "norm_label": "gather one page's facts. returns (context, truncation-warnings)."
     },
     {
@@ -5393,7 +5393,7 @@
       "source_location": "L504",
       "_origin": "ast",
       "id": "src_isidore_pipeline_rationale_504",
-      "community": 15,
+      "community": 126,
       "norm_label": "content-addressed page identity: same prompt -> nothing to regenerate."
     },
     {
@@ -5433,7 +5433,7 @@
       "source_location": "L585",
       "_origin": "ast",
       "id": "src_isidore_pipeline_rationale_585",
-      "community": 15,
+      "community": 9,
       "norm_label": "a page matches a selector if the selector equals its filename, or is a prefix of"
     },
     {
@@ -5573,7 +5573,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "src_isidore_pyramid",
-      "community": 14,
+      "community": 25,
       "norm_label": "pyramid.py"
     },
     {
@@ -5583,7 +5583,7 @@
       "source_location": "L39",
       "_origin": "ast",
       "id": "src_isidore_pyramid_claim_verdict",
-      "community": 14,
+      "community": 5,
       "norm_label": "_claim_verdict()"
     },
     {
@@ -5603,7 +5603,7 @@
       "source_location": "L96",
       "_origin": "ast",
       "id": "src_isidore_pyramid_top_dir",
-      "community": 14,
+      "community": 25,
       "norm_label": "_top_dir()"
     },
     {
@@ -5613,7 +5613,7 @@
       "source_location": "L101",
       "_origin": "ast",
       "id": "src_isidore_pyramid_seed_subsystems",
-      "community": 14,
+      "community": 25,
       "norm_label": "_seed_subsystems()"
     },
     {
@@ -5623,7 +5623,7 @@
       "source_location": "L127",
       "_origin": "ast",
       "id": "src_isidore_pyramid_norm",
-      "community": 14,
+      "community": 25,
       "norm_label": "_norm()"
     },
     {
@@ -5633,7 +5633,7 @@
       "source_location": "L131",
       "_origin": "ast",
       "id": "src_isidore_pyramid_plan_pyramid",
-      "community": 14,
+      "community": 25,
       "norm_label": "plan_pyramid()"
     },
     {
@@ -5643,7 +5643,7 @@
       "source_location": "L163",
       "_origin": "ast",
       "id": "src_isidore_pyramid_subsystem_page_name",
-      "community": 57,
+      "community": 25,
       "norm_label": "subsystem_page_name()"
     },
     {
@@ -5653,7 +5653,7 @@
       "source_location": "L168",
       "_origin": "ast",
       "id": "src_isidore_pyramid_module_pages_of",
-      "community": 14,
+      "community": 25,
       "norm_label": "_module_pages_of()"
     },
     {
@@ -5663,7 +5663,7 @@
       "source_location": "",
       "_origin": "ast",
       "id": "src_isidore_pyramid_py_path",
-      "community": 21,
+      "community": 25,
       "norm_label": "path"
     },
     {
@@ -5673,7 +5673,7 @@
       "source_location": "L179",
       "_origin": "ast",
       "id": "src_isidore_pyramid_page_purpose",
-      "community": 21,
+      "community": 25,
       "norm_label": "_page_purpose()"
     },
     {
@@ -5683,7 +5683,7 @@
       "source_location": "L196",
       "_origin": "ast",
       "id": "src_isidore_pyramid_subsystem_facts",
-      "community": 21,
+      "community": 25,
       "norm_label": "subsystem_facts()"
     },
     {
@@ -5693,7 +5693,7 @@
       "source_location": "L271",
       "_origin": "ast",
       "id": "src_isidore_pyramid_compile_subsystems",
-      "community": 57,
+      "community": 25,
       "norm_label": "compile_subsystems()"
     },
     {
@@ -5703,7 +5703,7 @@
       "source_location": "L359",
       "_origin": "ast",
       "id": "src_isidore_pyramid_verified_claims",
-      "community": 21,
+      "community": 25,
       "norm_label": "verified_claims()"
     },
     {
@@ -5713,7 +5713,7 @@
       "source_location": "L399",
       "_origin": "ast",
       "id": "src_isidore_pyramid_readme_context",
-      "community": 21,
+      "community": 25,
       "norm_label": "_readme_context()"
     },
     {
@@ -5723,7 +5723,7 @@
       "source_location": "L409",
       "_origin": "ast",
       "id": "src_isidore_pyramid_overview_facts",
-      "community": 21,
+      "community": 25,
       "norm_label": "overview_facts()"
     },
     {
@@ -5743,7 +5743,7 @@
       "source_location": "L500",
       "_origin": "ast",
       "id": "src_isidore_pyramid_relink_wiki_uris",
-      "community": 57,
+      "community": 25,
       "norm_label": "relink_wiki_uris()"
     },
     {
@@ -5773,7 +5773,7 @@
       "source_location": "L611",
       "_origin": "ast",
       "id": "src_isidore_pyramid_chain_verdicts",
-      "community": 14,
+      "community": 25,
       "norm_label": "_chain_verdicts()"
     },
     {
@@ -5783,7 +5783,7 @@
       "source_location": "L645",
       "_origin": "ast",
       "id": "src_isidore_pyramid_register_cli",
-      "community": 123,
+      "community": 25,
       "norm_label": "register_cli()"
     },
     {
@@ -5793,7 +5793,7 @@
       "source_location": "L666",
       "_origin": "ast",
       "id": "src_isidore_pyramid_cmd_subsystems",
-      "community": 123,
+      "community": 25,
       "norm_label": "_cmd_subsystems()"
     },
     {
@@ -5803,7 +5803,7 @@
       "source_location": "L693",
       "_origin": "ast",
       "id": "src_isidore_pyramid_load_graph_for",
-      "community": 123,
+      "community": 25,
       "norm_label": "_load_graph_for()"
     },
     {
@@ -5813,7 +5813,7 @@
       "source_location": "L705",
       "_origin": "ast",
       "id": "src_isidore_pyramid_cmd_overview",
-      "community": 123,
+      "community": 25,
       "norm_label": "_cmd_overview()"
     },
     {
@@ -5823,7 +5823,7 @@
       "source_location": "L729",
       "_origin": "ast",
       "id": "src_isidore_pyramid_cmd_pyramid",
-      "community": 35,
+      "community": 25,
       "norm_label": "_cmd_pyramid()"
     },
     {
@@ -5833,7 +5833,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "src_isidore_pyramid_rationale_1",
-      "community": 14,
+      "community": 25,
       "norm_label": "lane d \u2014 the pyramid: hierarchical synthesis with wiki:// claim chains. (t-af65"
     },
     {
@@ -5843,7 +5843,7 @@
       "source_location": "L40",
       "_origin": "ast",
       "id": "src_isidore_pyramid_rationale_40",
-      "community": 14,
+      "community": 5,
       "norm_label": "resolve (verdict, state) for a cited claim. truth comes from the page's certific"
     },
     {
@@ -5863,7 +5863,7 @@
       "source_location": "L102",
       "_origin": "ast",
       "id": "src_isidore_pyramid_rationale_102",
-      "community": 14,
+      "community": 25,
       "norm_label": "0-llm subsystem suggester: group files by top directory (the isidore graph uses"
     },
     {
@@ -5873,7 +5873,7 @@
       "source_location": "L132",
       "_origin": "ast",
       "id": "src_isidore_pyramid_rationale_132",
-      "community": 14,
+      "community": 25,
       "norm_label": "plan deterministic n2 subsystem + n3 product pages. 0 llm.      explicit `pyrami"
     },
     {
@@ -5883,7 +5883,7 @@
       "source_location": "L169",
       "_origin": "ast",
       "id": "src_isidore_pyramid_rationale_169",
-      "community": 14,
+      "community": 25,
       "norm_label": "the compiled module pages that belong to one subsystem, keyed by page file name."
     },
     {
@@ -5893,7 +5893,7 @@
       "source_location": "L180",
       "_origin": "ast",
       "id": "src_isidore_pyramid_rationale_180",
-      "community": 21,
+      "community": 25,
       "norm_label": "the first sentence of a module page's `## purpose` \u2014 what that module says it is"
     },
     {
@@ -5903,7 +5903,7 @@
       "source_location": "L197",
       "_origin": "ast",
       "id": "src_isidore_pyramid_rationale_197",
-      "community": 21,
+      "community": 25,
       "norm_label": "what one subsystem page is written from: its module pages, what each says it is"
     },
     {
@@ -5913,7 +5913,7 @@
       "source_location": "L273",
       "_origin": "ast",
       "id": "src_isidore_pyramid_rationale_273",
-      "community": 57,
+      "community": 25,
       "norm_label": "compile the n2 layer: one bounded call per area, each page chained to its module"
     },
     {
@@ -5923,7 +5923,7 @@
       "source_location": "L360",
       "_origin": "ast",
       "id": "src_isidore_pyramid_rationale_360",
-      "community": 21,
+      "community": 25,
       "norm_label": "every claim the pages below proved, as citable `wiki://page#id` facts.      this"
     },
     {
@@ -5933,7 +5933,7 @@
       "source_location": "L400",
       "_origin": "ast",
       "id": "src_isidore_pyramid_rationale_400",
-      "community": 21,
+      "community": 25,
       "norm_label": "the project's own words about itself \u2014 context, never evidence (see overview_pro"
     },
     {
@@ -5943,7 +5943,7 @@
       "source_location": "L410",
       "_origin": "ast",
       "id": "src_isidore_pyramid_rationale_410",
-      "community": 21,
+      "community": 25,
       "norm_label": "everything the overview is allowed to be written from. 0 llm."
     },
     {
@@ -5963,7 +5963,7 @@
       "source_location": "L501",
       "_origin": "ast",
       "id": "src_isidore_pyramid_rationale_501",
-      "community": 57,
+      "community": 25,
       "norm_label": "turn `wiki://page` into `page` in prose, so the links a reader clicks actually r"
     },
     {
@@ -5993,7 +5993,7 @@
       "source_location": "L612",
       "_origin": "ast",
       "id": "src_isidore_pyramid_rationale_612",
-      "community": 14,
+      "community": 25,
       "norm_label": "resolve `wiki://` claims through lane d's verifier and compose the child certifi"
     },
     {
@@ -6003,7 +6003,7 @@
       "source_location": "L646",
       "_origin": "ast",
       "id": "src_isidore_pyramid_rationale_646",
-      "community": 123,
+      "community": 25,
       "norm_label": "add `isidore pyramid` (plan/preview) and `isidore overview` (the n3 product page"
     },
     {
@@ -6013,7 +6013,7 @@
       "source_location": "L730",
       "_origin": "ast",
       "id": "src_isidore_pyramid_rationale_730",
-      "community": 35,
+      "community": 25,
       "norm_label": "print a deterministic json plan for humans and scripts."
     },
     {
@@ -6223,7 +6223,7 @@
       "source_location": "L68",
       "_origin": "ast",
       "id": "src_isidore_recertify_level",
-      "community": 31,
+      "community": 29,
       "norm_label": "_level()"
     },
     {
@@ -6303,7 +6303,7 @@
       "source_location": "L69",
       "_origin": "ast",
       "id": "src_isidore_recertify_rationale_69",
-      "community": 31,
+      "community": 29,
       "norm_label": "pyramid level, so children are recertified before the pages that cite them."
     },
     {
@@ -6413,78 +6413,18 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "src_isidore_render",
-      "community": 126,
+      "community": 104,
       "norm_label": "render.py"
     },
     {
-      "label": "render_quickstart()",
+      "label": "configured_wiki_dirname()",
       "file_type": "code",
       "source_file": "src/isidore/render.py",
       "source_location": "L25",
       "_origin": "ast",
-      "id": "src_isidore_render_render_quickstart",
-      "community": 126,
-      "norm_label": "render_quickstart()"
-    },
-    {
-      "label": "render_toon_index()",
-      "file_type": "code",
-      "source_file": "src/isidore/render.py",
-      "source_location": "L52",
-      "_origin": "ast",
-      "id": "src_isidore_render_render_toon_index",
-      "community": 126,
-      "norm_label": "render_toon_index()"
-    },
-    {
-      "label": "agents_md_block()",
-      "file_type": "code",
-      "source_file": "src/isidore/render.py",
-      "source_location": "L77",
-      "_origin": "ast",
-      "id": "src_isidore_render_agents_md_block",
-      "community": 126,
-      "norm_label": "agents_md_block()"
-    },
-    {
-      "label": "knowledge_summary()",
-      "file_type": "code",
-      "source_file": "src/isidore/render.py",
-      "source_location": "L111",
-      "_origin": "ast",
-      "id": "src_isidore_render_knowledge_summary",
-      "community": 126,
-      "norm_label": "knowledge_summary()"
-    },
-    {
-      "label": "upsert_agents_block()",
-      "file_type": "code",
-      "source_file": "src/isidore/render.py",
-      "source_location": "L130",
-      "_origin": "ast",
-      "id": "src_isidore_render_upsert_agents_block",
-      "community": 126,
-      "norm_label": "upsert_agents_block()"
-    },
-    {
-      "label": "_first_sentence()",
-      "file_type": "code",
-      "source_file": "src/isidore/render.py",
-      "source_location": "L148",
-      "_origin": "ast",
-      "id": "src_isidore_render_first_sentence",
+      "id": "src_isidore_render_configured_wiki_dirname",
       "community": 104,
-      "norm_label": "_first_sentence()"
-    },
-    {
-      "label": "render_llms_txt()",
-      "file_type": "code",
-      "source_file": "src/isidore/render.py",
-      "source_location": "L156",
-      "_origin": "ast",
-      "id": "src_isidore_render_render_llms_txt",
-      "community": 104,
-      "norm_label": "render_llms_txt()"
+      "norm_label": "configured_wiki_dirname()"
     },
     {
       "label": "Path",
@@ -6497,10 +6437,80 @@
       "norm_label": "path"
     },
     {
+      "label": "render_quickstart()",
+      "file_type": "code",
+      "source_file": "src/isidore/render.py",
+      "source_location": "L66",
+      "_origin": "ast",
+      "id": "src_isidore_render_render_quickstart",
+      "community": 15,
+      "norm_label": "render_quickstart()"
+    },
+    {
+      "label": "render_toon_index()",
+      "file_type": "code",
+      "source_file": "src/isidore/render.py",
+      "source_location": "L93",
+      "_origin": "ast",
+      "id": "src_isidore_render_render_toon_index",
+      "community": 126,
+      "norm_label": "render_toon_index()"
+    },
+    {
+      "label": "agents_md_block()",
+      "file_type": "code",
+      "source_file": "src/isidore/render.py",
+      "source_location": "L118",
+      "_origin": "ast",
+      "id": "src_isidore_render_agents_md_block",
+      "community": 15,
+      "norm_label": "agents_md_block()"
+    },
+    {
+      "label": "knowledge_summary()",
+      "file_type": "code",
+      "source_file": "src/isidore/render.py",
+      "source_location": "L152",
+      "_origin": "ast",
+      "id": "src_isidore_render_knowledge_summary",
+      "community": 15,
+      "norm_label": "knowledge_summary()"
+    },
+    {
+      "label": "upsert_agents_block()",
+      "file_type": "code",
+      "source_file": "src/isidore/render.py",
+      "source_location": "L171",
+      "_origin": "ast",
+      "id": "src_isidore_render_upsert_agents_block",
+      "community": 15,
+      "norm_label": "upsert_agents_block()"
+    },
+    {
+      "label": "_first_sentence()",
+      "file_type": "code",
+      "source_file": "src/isidore/render.py",
+      "source_location": "L189",
+      "_origin": "ast",
+      "id": "src_isidore_render_first_sentence",
+      "community": 104,
+      "norm_label": "_first_sentence()"
+    },
+    {
+      "label": "render_llms_txt()",
+      "file_type": "code",
+      "source_file": "src/isidore/render.py",
+      "source_location": "L197",
+      "_origin": "ast",
+      "id": "src_isidore_render_render_llms_txt",
+      "community": 104,
+      "norm_label": "render_llms_txt()"
+    },
+    {
       "label": "write_llms_txt()",
       "file_type": "code",
       "source_file": "src/isidore/render.py",
-      "source_location": "L212",
+      "source_location": "L253",
       "_origin": "ast",
       "id": "src_isidore_render_write_llms_txt",
       "community": 104,
@@ -6510,7 +6520,7 @@
       "label": "register_cli()",
       "file_type": "code",
       "source_file": "src/isidore/render.py",
-      "source_location": "L219",
+      "source_location": "L260",
       "_origin": "ast",
       "id": "src_isidore_render_register_cli",
       "community": 104,
@@ -6520,7 +6530,7 @@
       "label": "_cmd_llms()",
       "file_type": "code",
       "source_file": "src/isidore/render.py",
-      "source_location": "L226",
+      "source_location": "L267",
       "_origin": "ast",
       "id": "src_isidore_render_cmd_llms",
       "community": 104,
@@ -6533,46 +6543,56 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "src_isidore_render_rationale_1",
-      "community": 126,
+      "community": 104,
       "norm_label": "deterministic outputs: quickstart.md, index.toon, llms.txt, and the agents.md re"
+    },
+    {
+      "label": "Where this repository keeps its living docs, relative to its root.      Preceden",
+      "file_type": "rationale",
+      "source_file": "src/isidore/render.py",
+      "source_location": "L26",
+      "_origin": "ast",
+      "id": "src_isidore_render_rationale_26",
+      "community": 104,
+      "norm_label": "where this repository keeps its living docs, relative to its root.      preceden"
     },
     {
       "label": "The self-reference an agent reads before touching the repo. 0 LLM, idempotent.",
       "file_type": "rationale",
       "source_file": "src/isidore/render.py",
-      "source_location": "L78",
+      "source_location": "L119",
       "_origin": "ast",
-      "id": "src_isidore_render_rationale_78",
-      "community": 126,
+      "id": "src_isidore_render_rationale_119",
+      "community": 15,
       "norm_label": "the self-reference an agent reads before touching the repo. 0 llm, idempotent."
     },
     {
       "label": "`{path, pages, streams}` for the local knowledge home, or {} if there is none. N",
       "file_type": "rationale",
       "source_file": "src/isidore/render.py",
-      "source_location": "L112",
+      "source_location": "L153",
       "_origin": "ast",
-      "id": "src_isidore_render_rationale_112",
-      "community": 126,
+      "id": "src_isidore_render_rationale_153",
+      "community": 15,
       "norm_label": "`{path, pages, streams}` for the local knowledge home, or {} if there is none. n"
     },
     {
       "label": "Insert or replace the delimited block without touching the rest of the file (ide",
       "file_type": "rationale",
       "source_file": "src/isidore/render.py",
-      "source_location": "L131",
+      "source_location": "L172",
       "_origin": "ast",
-      "id": "src_isidore_render_rationale_131",
-      "community": 126,
+      "id": "src_isidore_render_rationale_172",
+      "community": 15,
       "norm_label": "insert or replace the delimited block without touching the rest of the file (ide"
     },
     {
       "label": "The wiki, in the layout agents are converging on for being handed documentation.",
       "file_type": "rationale",
       "source_file": "src/isidore/render.py",
-      "source_location": "L157",
+      "source_location": "L198",
       "_origin": "ast",
-      "id": "src_isidore_render_rationale_157",
+      "id": "src_isidore_render_rationale_198",
       "community": 104,
       "norm_label": "the wiki, in the layout agents are converging on for being handed documentation."
     },
@@ -6580,9 +6600,9 @@
       "label": "Write llms.txt at the repo root \u2014 where the convention puts it, so a fetcher fin",
       "file_type": "rationale",
       "source_file": "src/isidore/render.py",
-      "source_location": "L213",
+      "source_location": "L254",
       "_origin": "ast",
-      "id": "src_isidore_render_rationale_213",
+      "id": "src_isidore_render_rationale_254",
       "community": 104,
       "norm_label": "write llms.txt at the repo root \u2014 where the convention puts it, so a fetcher fin"
     },
@@ -6590,9 +6610,9 @@
       "label": "Add `isidore llms` (regenerate llms.txt from whatever is compiled). 0 LLM.",
       "file_type": "rationale",
       "source_file": "src/isidore/render.py",
-      "source_location": "L220",
+      "source_location": "L261",
       "_origin": "ast",
-      "id": "src_isidore_render_rationale_220",
+      "id": "src_isidore_render_rationale_261",
       "community": 104,
       "norm_label": "add `isidore llms` (regenerate llms.txt from whatever is compiled). 0 llm."
     },
@@ -6633,7 +6653,7 @@
       "source_location": "L106",
       "_origin": "ast",
       "id": "src_isidore_surface_clean_sig",
-      "community": 18,
+      "community": 20,
       "norm_label": "clean_sig()"
     },
     {
@@ -6683,7 +6703,7 @@
       "source_location": "L160",
       "_origin": "ast",
       "id": "src_isidore_surface_py_signature",
-      "community": 18,
+      "community": 20,
       "norm_label": "_py_signature()"
     },
     {
@@ -6693,7 +6713,7 @@
       "source_location": "",
       "_origin": "ast",
       "id": "src_isidore_surface_py_functiondef",
-      "community": 18,
+      "community": 20,
       "norm_label": "functiondef"
     },
     {
@@ -6703,7 +6723,7 @@
       "source_location": "",
       "_origin": "ast",
       "id": "src_isidore_surface_py_asyncfunctiondef",
-      "community": 18,
+      "community": 20,
       "norm_label": "asyncfunctiondef"
     },
     {
@@ -6713,7 +6733,7 @@
       "source_location": "L200",
       "_origin": "ast",
       "id": "src_isidore_surface_py_constant",
-      "community": 18,
+      "community": 20,
       "norm_label": "_py_constant()"
     },
     {
@@ -6723,7 +6743,7 @@
       "source_location": "",
       "_origin": "ast",
       "id": "stmt",
-      "community": 18,
+      "community": 20,
       "norm_label": "stmt"
     },
     {
@@ -6833,7 +6853,7 @@
       "source_location": "L107",
       "_origin": "ast",
       "id": "src_isidore_surface_rationale_107",
-      "community": 18,
+      "community": 20,
       "norm_label": "collapse a declaration header into a stable one-line comparison key, readable as"
     },
     {
@@ -6873,7 +6893,7 @@
       "source_location": "L161",
       "_origin": "ast",
       "id": "src_isidore_surface_rationale_161",
-      "community": 18,
+      "community": 20,
       "norm_label": "the parameter list and return annotation, rendered from the ast rather than the"
     },
     {
@@ -6883,7 +6903,7 @@
       "source_location": "L201",
       "_origin": "ast",
       "id": "src_isidore_surface_rationale_201",
-      "community": 18,
+      "community": 20,
       "norm_label": "a module-level binding -> (name, `= value`). config constants are api: a consume"
     },
     {
@@ -6973,7 +6993,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "src_isidore_toon",
-      "community": 126,
+      "community": 104,
       "norm_label": "toon.py"
     },
     {
@@ -6983,7 +7003,7 @@
       "source_location": "L21",
       "_origin": "ast",
       "id": "src_isidore_toon_field",
-      "community": 126,
+      "community": 104,
       "norm_label": "_field()"
     },
     {
@@ -6993,7 +7013,7 @@
       "source_location": "",
       "_origin": "ast",
       "id": "src_isidore_toon_py_any",
-      "community": 126,
+      "community": 104,
       "norm_label": "any"
     },
     {
@@ -7003,7 +7023,7 @@
       "source_location": "L51",
       "_origin": "ast",
       "id": "src_isidore_toon_row_values",
-      "community": 126,
+      "community": 104,
       "norm_label": "_row_values()"
     },
     {
@@ -7013,7 +7033,7 @@
       "source_location": "L59",
       "_origin": "ast",
       "id": "src_isidore_toon_encode_table",
-      "community": 126,
+      "community": 104,
       "norm_label": "encode_table()"
     },
     {
@@ -7023,7 +7043,7 @@
       "source_location": "L77",
       "_origin": "ast",
       "id": "src_isidore_toon_encode",
-      "community": 126,
+      "community": 104,
       "norm_label": "encode()"
     },
     {
@@ -7033,7 +7053,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "src_isidore_toon_rationale_1",
-      "community": 126,
+      "community": 104,
       "norm_label": "toon (token-oriented object notation) serializer \u2014 tabular subset.  one declarat"
     },
     {
@@ -7043,7 +7063,7 @@
       "source_location": "L60",
       "_origin": "ast",
       "id": "src_isidore_toon_rationale_60",
-      "community": 126,
+      "community": 104,
       "norm_label": "serialize one table.      >>> print(encode_table(\"pages\", [\"file\", \"module\"], ["
     },
     {
@@ -7053,7 +7073,7 @@
       "source_location": "L78",
       "_origin": "ast",
       "id": "src_isidore_toon_rationale_78",
-      "community": 126,
+      "community": 104,
       "norm_label": "serialize several tables into one toon document (newline-separated)."
     },
     {
@@ -7093,7 +7113,7 @@
       "source_location": "L56",
       "_origin": "ast",
       "id": "src_isidore_verify_symbol_nodes",
-      "community": 5,
+      "community": 26,
       "norm_label": "_symbol_nodes()"
     },
     {
@@ -7297,10 +7317,30 @@
       "norm_label": "v_signature()"
     },
     {
-      "label": "v_env()",
+      "label": "_env_read_pattern()",
       "file_type": "code",
       "source_file": "src/isidore/verify.py",
       "source_location": "L366",
+      "_origin": "ast",
+      "id": "src_isidore_verify_env_read_pattern",
+      "community": 5,
+      "norm_label": "_env_read_pattern()"
+    },
+    {
+      "label": "Pattern",
+      "file_type": "code",
+      "source_file": "",
+      "source_location": "",
+      "_origin": "ast",
+      "id": "src_isidore_verify_py_pattern",
+      "community": 5,
+      "norm_label": "pattern"
+    },
+    {
+      "label": "v_env()",
+      "file_type": "code",
+      "source_file": "src/isidore/verify.py",
+      "source_location": "L378",
       "_origin": "ast",
       "id": "src_isidore_verify_v_env",
       "community": 5,
@@ -7310,7 +7350,7 @@
       "label": "v_route()",
       "file_type": "code",
       "source_file": "src/isidore/verify.py",
-      "source_location": "L387",
+      "source_location": "L415",
       "_origin": "ast",
       "id": "src_isidore_verify_v_route",
       "community": 5,
@@ -7320,7 +7360,7 @@
       "label": "register_verifiers()",
       "file_type": "code",
       "source_file": "src/isidore/verify.py",
-      "source_location": "L392",
+      "source_location": "L420",
       "_origin": "ast",
       "id": "src_isidore_verify_register_verifiers",
       "community": 5,
@@ -7330,7 +7370,7 @@
       "label": "_prose_identifiers()",
       "file_type": "code",
       "source_file": "src/isidore/verify.py",
-      "source_location": "L409",
+      "source_location": "L437",
       "_origin": "ast",
       "id": "src_isidore_verify_prose_identifiers",
       "community": 5,
@@ -7340,7 +7380,7 @@
       "label": "ground_symbols()",
       "file_type": "code",
       "source_file": "src/isidore/verify.py",
-      "source_location": "L420",
+      "source_location": "L448",
       "_origin": "ast",
       "id": "src_isidore_verify_ground_symbols",
       "community": 5,
@@ -7350,37 +7390,37 @@
       "label": "_sentence_split()",
       "file_type": "code",
       "source_file": "src/isidore/verify.py",
-      "source_location": "L430",
+      "source_location": "L458",
       "_origin": "ast",
       "id": "src_isidore_verify_sentence_split",
-      "community": 42,
+      "community": 31,
       "norm_label": "_sentence_split()"
     },
     {
       "label": "_claim_symbols()",
       "file_type": "code",
       "source_file": "src/isidore/verify.py",
-      "source_location": "L435",
+      "source_location": "L463",
       "_origin": "ast",
       "id": "src_isidore_verify_claim_symbols",
-      "community": 42,
+      "community": 31,
       "norm_label": "_claim_symbols()"
     },
     {
       "label": "classify_mass()",
       "file_type": "code",
       "source_file": "src/isidore/verify.py",
-      "source_location": "L450",
+      "source_location": "L478",
       "_origin": "ast",
       "id": "src_isidore_verify_classify_mass",
-      "community": 42,
+      "community": 31,
       "norm_label": "classify_mass()"
     },
     {
       "label": "build_certificate()",
       "file_type": "code",
       "source_file": "src/isidore/verify.py",
-      "source_location": "L473",
+      "source_location": "L501",
       "_origin": "ast",
       "id": "src_isidore_verify_build_certificate",
       "community": 42,
@@ -7390,17 +7430,17 @@
       "label": "verify_predicate_ctx()",
       "file_type": "code",
       "source_file": "src/isidore/verify.py",
-      "source_location": "L491",
+      "source_location": "L519",
       "_origin": "ast",
       "id": "src_isidore_verify_verify_predicate_ctx",
-      "community": 5,
+      "community": 31,
       "norm_label": "verify_predicate_ctx()"
     },
     {
       "label": "_ctx_for()",
       "file_type": "code",
       "source_file": "src/isidore/verify.py",
-      "source_location": "L500",
+      "source_location": "L528",
       "_origin": "ast",
       "id": "src_isidore_verify_ctx_for",
       "community": 41,
@@ -7420,7 +7460,7 @@
       "label": "CertStatus",
       "file_type": "code",
       "source_file": "src/isidore/verify.py",
-      "source_location": "L522",
+      "source_location": "L550",
       "_origin": "ast",
       "id": "src_isidore_verify_certstatus",
       "community": 31,
@@ -7430,7 +7470,7 @@
       "label": ".ok()",
       "file_type": "code",
       "source_file": "src/isidore/verify.py",
-      "source_location": "L533",
+      "source_location": "L561",
       "_origin": "ast",
       "id": "src_isidore_verify_certstatus_ok",
       "community": 31,
@@ -7440,7 +7480,7 @@
       "label": ".refuted()",
       "file_type": "code",
       "source_file": "src/isidore/verify.py",
-      "source_location": "L537",
+      "source_location": "L565",
       "_origin": "ast",
       "id": "src_isidore_verify_certstatus_refuted",
       "community": 31,
@@ -7450,7 +7490,7 @@
       "label": "certificate_status()",
       "file_type": "code",
       "source_file": "src/isidore/verify.py",
-      "source_location": "L548",
+      "source_location": "L576",
       "_origin": "ast",
       "id": "src_isidore_verify_certificate_status",
       "community": 41,
@@ -7460,7 +7500,7 @@
       "label": "_cert_digest()",
       "file_type": "code",
       "source_file": "src/isidore/verify.py",
-      "source_location": "L590",
+      "source_location": "L618",
       "_origin": "ast",
       "id": "src_isidore_verify_cert_digest",
       "community": 41,
@@ -7470,7 +7510,7 @@
       "label": "verify_page()",
       "file_type": "code",
       "source_file": "src/isidore/verify.py",
-      "source_location": "L599",
+      "source_location": "L627",
       "_origin": "ast",
       "id": "src_isidore_verify_verify_page",
       "community": 41,
@@ -7480,7 +7520,7 @@
       "label": "register_cli()",
       "file_type": "code",
       "source_file": "src/isidore/verify.py",
-      "source_location": "L609",
+      "source_location": "L637",
       "_origin": "ast",
       "id": "src_isidore_verify_register_cli",
       "community": 41,
@@ -7490,7 +7530,7 @@
       "label": "_cmd_verify()",
       "file_type": "code",
       "source_file": "src/isidore/verify.py",
-      "source_location": "L623",
+      "source_location": "L651",
       "_origin": "ast",
       "id": "src_isidore_verify_cmd_verify",
       "community": 41,
@@ -7523,7 +7563,7 @@
       "source_location": "L57",
       "_origin": "ast",
       "id": "src_isidore_verify_rationale_57",
-      "community": 5,
+      "community": 26,
       "norm_label": "graph nodes whose symbol label matches `name` (last dotted component tolerated)."
     },
     {
@@ -7637,12 +7677,22 @@
       "norm_label": "signature(fn, a1, a2, ...): fn's positional parameter names, in order. oracles:"
     },
     {
-      "label": "env(NAME): NAME is read from the environment somewhere in the repo. Oracle: grep",
+      "label": "The ways a language spells \"read this from the environment\", for a literal or a",
       "file_type": "rationale",
       "source_file": "src/isidore/verify.py",
       "source_location": "L367",
       "_origin": "ast",
       "id": "src_isidore_verify_rationale_367",
+      "community": 5,
+      "norm_label": "the ways a language spells \"read this from the environment\", for a literal or a"
+    },
+    {
+      "label": "env(NAME): NAME is read from the environment somewhere in the repo. Oracle: grep",
+      "file_type": "rationale",
+      "source_file": "src/isidore/verify.py",
+      "source_location": "L379",
+      "_origin": "ast",
+      "id": "src_isidore_verify_rationale_379",
       "community": 5,
       "norm_label": "env(name): name is read from the environment somewhere in the repo. oracle: grep"
     },
@@ -7650,9 +7700,9 @@
       "label": "route(method path, handler): needs a framework extractor. Honest UNDECIDABLE for",
       "file_type": "rationale",
       "source_file": "src/isidore/verify.py",
-      "source_location": "L388",
+      "source_location": "L416",
       "_origin": "ast",
-      "id": "src_isidore_verify_rationale_388",
+      "id": "src_isidore_verify_rationale_416",
       "community": 5,
       "norm_label": "route(method path, handler): needs a framework extractor. honest undecidable for"
     },
@@ -7660,9 +7710,9 @@
       "label": "Return prose identifiers that DON'T resolve to any graph symbol or file (groundi",
       "file_type": "rationale",
       "source_file": "src/isidore/verify.py",
-      "source_location": "L421",
+      "source_location": "L449",
       "_origin": "ast",
-      "id": "src_isidore_verify_rationale_421",
+      "id": "src_isidore_verify_rationale_449",
       "community": 5,
       "norm_label": "return prose identifiers that don't resolve to any graph symbol or file (groundi"
     },
@@ -7670,29 +7720,29 @@
       "label": "The code identifiers a claim is about: its predicate args (last dotted component",
       "file_type": "rationale",
       "source_file": "src/isidore/verify.py",
-      "source_location": "L436",
+      "source_location": "L464",
       "_origin": "ast",
-      "id": "src_isidore_verify_rationale_436",
-      "community": 42,
+      "id": "src_isidore_verify_rationale_464",
+      "community": 31,
       "norm_label": "the code identifiers a claim is about: its predicate args (last dotted component"
     },
     {
       "label": "Per-sentence confidence, 0-LLM: green if a sentence mentions a symbol from a cla",
       "file_type": "rationale",
       "source_file": "src/isidore/verify.py",
-      "source_location": "L451",
+      "source_location": "L479",
       "_origin": "ast",
-      "id": "src_isidore_verify_rationale_451",
-      "community": 42,
+      "id": "src_isidore_verify_rationale_479",
+      "community": 31,
       "norm_label": "per-sentence confidence, 0-llm: green if a sentence mentions a symbol from a cla"
     },
     {
       "label": "Verify each claim's predicate, classify prose mass, hash the prose -> a re-verif",
       "file_type": "rationale",
       "source_file": "src/isidore/verify.py",
-      "source_location": "L475",
+      "source_location": "L503",
       "_origin": "ast",
-      "id": "src_isidore_verify_rationale_475",
+      "id": "src_isidore_verify_rationale_503",
       "community": 42,
       "norm_label": "verify each claim's predicate, classify prose mass, hash the prose -> a re-verif"
     },
@@ -7700,19 +7750,19 @@
       "label": "Dispatch through the registry (kept local so callers don't import pcp directly).",
       "file_type": "rationale",
       "source_file": "src/isidore/verify.py",
-      "source_location": "L492",
+      "source_location": "L520",
       "_origin": "ast",
-      "id": "src_isidore_verify_rationale_492",
-      "community": 5,
+      "id": "src_isidore_verify_rationale_520",
+      "community": 31,
       "norm_label": "dispatch through the registry (kept local so callers don't import pcp directly)."
     },
     {
       "label": "Why a page's certificate does or does not still describe the page. 0 LLM.",
       "file_type": "rationale",
       "source_file": "src/isidore/verify.py",
-      "source_location": "L523",
+      "source_location": "L551",
       "_origin": "ast",
-      "id": "src_isidore_verify_rationale_523",
+      "id": "src_isidore_verify_rationale_551",
       "community": 31,
       "norm_label": "why a page's certificate does or does not still describe the page. 0 llm."
     },
@@ -7720,9 +7770,9 @@
       "label": "Drift that re-running the oracles CANNOT repair: the page states it, the code de",
       "file_type": "rationale",
       "source_file": "src/isidore/verify.py",
-      "source_location": "L538",
+      "source_location": "L566",
       "_origin": "ast",
-      "id": "src_isidore_verify_rationale_538",
+      "id": "src_isidore_verify_rationale_566",
       "community": 31,
       "norm_label": "drift that re-running the oracles cannot repair: the page states it, the code de"
     },
@@ -7730,9 +7780,9 @@
       "label": "Check a page against its sidecar certificate, offline, 0 LLM (invariant I11).",
       "file_type": "rationale",
       "source_file": "src/isidore/verify.py",
-      "source_location": "L550",
+      "source_location": "L578",
       "_origin": "ast",
-      "id": "src_isidore_verify_rationale_550",
+      "id": "src_isidore_verify_rationale_578",
       "community": 41,
       "norm_label": "check a page against its sidecar certificate, offline, 0 llm (invariant i11)."
     },
@@ -7740,9 +7790,9 @@
       "label": "sha256 of a page's certificate file, \"\" if it is gone.",
       "file_type": "rationale",
       "source_file": "src/isidore/verify.py",
-      "source_location": "L591",
+      "source_location": "L619",
       "_origin": "ast",
-      "id": "src_isidore_verify_rationale_591",
+      "id": "src_isidore_verify_rationale_619",
       "community": 41,
       "norm_label": "sha256 of a page's certificate file, \"\" if it is gone."
     },
@@ -7750,9 +7800,9 @@
       "label": "(ok, cert) for one page. ok is False on any tamper/mismatch/missing-graph.",
       "file_type": "rationale",
       "source_file": "src/isidore/verify.py",
-      "source_location": "L601",
+      "source_location": "L629",
       "_origin": "ast",
-      "id": "src_isidore_verify_rationale_601",
+      "id": "src_isidore_verify_rationale_629",
       "community": 41,
       "norm_label": "(ok, cert) for one page. ok is false on any tamper/mismatch/missing-graph."
     },
@@ -7760,9 +7810,9 @@
       "label": "Add `isidore verify` (called once from cli.main via the registrar loop \u2014 P0 owns",
       "file_type": "rationale",
       "source_file": "src/isidore/verify.py",
-      "source_location": "L610",
+      "source_location": "L638",
       "_origin": "ast",
-      "id": "src_isidore_verify_rationale_610",
+      "id": "src_isidore_verify_rationale_638",
       "community": 41,
       "norm_label": "add `isidore verify` (called once from cli.main via the registrar loop \u2014 p0 owns"
     },
@@ -7773,7 +7823,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "src_isidore_whatsnew",
-      "community": 120,
+      "community": 70,
       "norm_label": "whatsnew.py"
     },
     {
@@ -7783,7 +7833,7 @@
       "source_location": "L108",
       "_origin": "ast",
       "id": "src_isidore_whatsnew_whatsnewerror",
-      "community": 8,
+      "community": 69,
       "norm_label": "whatsnewerror"
     },
     {
@@ -7793,7 +7843,7 @@
       "source_location": "",
       "_origin": "ast",
       "id": "src_isidore_whatsnew_py_runtimeerror",
-      "community": 8,
+      "community": 69,
       "norm_label": "runtimeerror"
     },
     {
@@ -7803,7 +7853,7 @@
       "source_location": "L113",
       "_origin": "ast",
       "id": "src_isidore_whatsnew_deltaentry",
-      "community": 120,
+      "community": 12,
       "norm_label": "deltaentry"
     },
     {
@@ -7813,7 +7863,7 @@
       "source_location": "L127",
       "_origin": "ast",
       "id": "src_isidore_whatsnew_deltaentry_evidence",
-      "community": 120,
+      "community": 12,
       "norm_label": ".evidence()"
     },
     {
@@ -7823,7 +7873,7 @@
       "source_location": "L131",
       "_origin": "ast",
       "id": "src_isidore_whatsnew_deltaentry_area",
-      "community": 120,
+      "community": 12,
       "norm_label": ".area()"
     },
     {
@@ -7923,7 +7973,7 @@
       "source_location": "L225",
       "_origin": "ast",
       "id": "src_isidore_whatsnew_is_comparable",
-      "community": 69,
+      "community": 70,
       "norm_label": "_is_comparable()"
     },
     {
@@ -7973,7 +8023,7 @@
       "source_location": "L289",
       "_origin": "ast",
       "id": "src_isidore_whatsnew_diff_surfaces",
-      "community": 120,
+      "community": 69,
       "norm_label": "_diff_surfaces()"
     },
     {
@@ -8033,7 +8083,7 @@
       "source_location": "L502",
       "_origin": "ast",
       "id": "src_isidore_whatsnew_md_section",
-      "community": 120,
+      "community": 12,
       "norm_label": "_md_section()"
     },
     {
@@ -8073,7 +8123,7 @@
       "source_location": "L694",
       "_origin": "ast",
       "id": "src_isidore_whatsnew_llm_entries",
-      "community": 120,
+      "community": 12,
       "norm_label": "_llm_entries()"
     },
     {
@@ -8123,7 +8173,7 @@
       "source_location": "L869",
       "_origin": "ast",
       "id": "src_isidore_whatsnew_cmd_whatsnew",
-      "community": 12,
+      "community": 70,
       "norm_label": "_cmd_whatsnew()"
     },
     {
@@ -8133,7 +8183,7 @@
       "source_location": "L896",
       "_origin": "ast",
       "id": "src_isidore_whatsnew_register_cli",
-      "community": 12,
+      "community": 70,
       "norm_label": "register_cli()"
     },
     {
@@ -8143,7 +8193,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "src_isidore_whatsnew_rationale_1",
-      "community": 120,
+      "community": 70,
       "norm_label": "isidore whatsnew \u2014 a changelog you can re-verify, instead of one you have to tru"
     },
     {
@@ -8153,7 +8203,7 @@
       "source_location": "L109",
       "_origin": "ast",
       "id": "src_isidore_whatsnew_rationale_109",
-      "community": 8,
+      "community": 69,
       "norm_label": "git could not answer, or a ref does not resolve. fail closed: never guess a rang"
     },
     {
@@ -8163,7 +8213,7 @@
       "source_location": "L114",
       "_origin": "ast",
       "id": "src_isidore_whatsnew_rationale_114",
-      "community": 120,
+      "community": 12,
       "norm_label": "one typed novelty row. `file` is always the path as of `until` (renames map old"
     },
     {
@@ -8203,7 +8253,7 @@
       "source_location": "L226",
       "_origin": "ast",
       "id": "src_isidore_whatsnew_rationale_226",
-      "community": 69,
+      "community": 70,
       "norm_label": "skip generated wiki output, the graph store, and anything not source code. compa"
     },
     {
@@ -8243,7 +8293,7 @@
       "source_location": "L290",
       "_origin": "ast",
       "id": "src_isidore_whatsnew_rationale_290",
-      "community": 120,
+      "community": 69,
       "norm_label": "typed difference between two surfaces of the same file.      identity is the qua"
     },
     {
@@ -8323,7 +8373,7 @@
       "source_location": "L695",
       "_origin": "ast",
       "id": "src_isidore_whatsnew_rationale_695",
-      "community": 120,
+      "community": 12,
       "norm_label": "what the model is allowed to write about: product surface, and only what can be"
     },
     {
@@ -8613,7 +8663,7 @@
       "source_location": "L21",
       "_origin": "ast",
       "id": "tests_test_claims_test_is_negative_existential_flags_absence_not_behavior",
-      "community": 113,
+      "community": 64,
       "norm_label": "test_is_negative_existential_flags_absence_not_behavior()"
     },
     {
@@ -9003,7 +9053,7 @@
       "source_location": "L56",
       "_origin": "ast",
       "id": "tests_test_connect_cli_test_repeating_a_key_builds_a_list",
-      "community": 103,
+      "community": 11,
       "norm_label": "test_repeating_a_key_builds_a_list()"
     },
     {
@@ -9013,7 +9063,7 @@
       "source_location": "L63",
       "_origin": "ast",
       "id": "tests_test_connect_cli_test_a_credential_shaped_value_is_refused_and_never_written",
-      "community": 103,
+      "community": 11,
       "norm_label": "test_a_credential_shaped_value_is_refused_and_never_written()"
     },
     {
@@ -9023,7 +9073,7 @@
       "source_location": "L74",
       "_origin": "ast",
       "id": "tests_test_connect_cli_test_a_corrupt_config_reads_as_empty_rather_than_crashing",
-      "community": 11,
+      "community": 103,
       "norm_label": "test_a_corrupt_config_reads_as_empty_rather_than_crashing()"
     },
     {
@@ -9063,7 +9113,7 @@
       "source_location": "L133",
       "_origin": "ast",
       "id": "tests_test_connect_cli_test_a_windowed_manifest_says_it_is_windowed",
-      "community": 20,
+      "community": 103,
       "norm_label": "test_a_windowed_manifest_says_it_is_windowed()"
     },
     {
@@ -9143,7 +9193,7 @@
       "source_location": "L246",
       "_origin": "ast",
       "id": "tests_test_connect_cli_test_an_unknown_connector_is_named_not_ignored",
-      "community": 103,
+      "community": 35,
       "norm_label": "test_an_unknown_connector_is_named_not_ignored()"
     },
     {
@@ -9183,7 +9233,7 @@
       "source_location": "L64",
       "_origin": "ast",
       "id": "tests_test_connect_cli_rationale_64",
-      "community": 103,
+      "community": 11,
       "norm_label": "invariant i9: a connector's config holds the name of an env var, never its value"
     },
     {
@@ -9213,7 +9263,7 @@
       "source_location": "L134",
       "_origin": "ast",
       "id": "tests_test_connect_cli_rationale_134",
-      "community": 20,
+      "community": 103,
       "norm_label": "measured live: agora's manifest under a 24h window listed no commits at all. cor"
     },
     {
@@ -9243,7 +9293,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "tests_test_connectors_f1",
-      "community": 20,
+      "community": 4,
       "norm_label": "test_connectors_f1.py"
     },
     {
@@ -9253,7 +9303,7 @@
       "source_location": "L18",
       "_origin": "ast",
       "id": "tests_test_connectors_f1_git",
-      "community": 20,
+      "community": 4,
       "norm_label": "_git()"
     },
     {
@@ -9263,7 +9313,7 @@
       "source_location": "L22",
       "_origin": "ast",
       "id": "tests_test_connectors_f1_make_repo",
-      "community": 20,
+      "community": 4,
       "norm_label": "_make_repo()"
     },
     {
@@ -9273,7 +9323,7 @@
       "source_location": "L33",
       "_origin": "ast",
       "id": "tests_test_connectors_f1_head",
-      "community": 20,
+      "community": 4,
       "norm_label": "_head()"
     },
     {
@@ -9283,7 +9333,7 @@
       "source_location": "L40",
       "_origin": "ast",
       "id": "tests_test_connectors_f1_test_home_env_override",
-      "community": 20,
+      "community": 4,
       "norm_label": "test_home_env_override()"
     },
     {
@@ -9293,7 +9343,7 @@
       "source_location": "L47",
       "_origin": "ast",
       "id": "tests_test_connectors_f1_test_write_items_stamps_chash_and_does_not_mutate",
-      "community": 20,
+      "community": 4,
       "norm_label": "test_write_items_stamps_chash_and_does_not_mutate()"
     },
     {
@@ -9303,7 +9353,7 @@
       "source_location": "L57",
       "_origin": "ast",
       "id": "tests_test_connectors_f1_test_read_state_missing_and_corrupt_return_default",
-      "community": 20,
+      "community": 4,
       "norm_label": "test_read_state_missing_and_corrupt_return_default()"
     },
     {
@@ -9313,7 +9363,7 @@
       "source_location": "L67",
       "_origin": "ast",
       "id": "tests_test_connectors_f1_test_record_run_keeps_last_20",
-      "community": 20,
+      "community": 4,
       "norm_label": "test_record_run_keeps_last_20()"
     },
     {
@@ -9323,7 +9373,7 @@
       "source_location": "L76",
       "_origin": "ast",
       "id": "tests_test_connectors_f1_test_resolve_uri_forms_and_malformed",
-      "community": 20,
+      "community": 4,
       "norm_label": "test_resolve_uri_forms_and_malformed()"
     },
     {
@@ -9333,7 +9383,7 @@
       "source_location": "L88",
       "_origin": "ast",
       "id": "tests_test_connectors_f1_test_git_repo_ingest_persists_and_is_idempotent",
-      "community": 20,
+      "community": 4,
       "norm_label": "test_git_repo_ingest_persists_and_is_idempotent()"
     },
     {
@@ -9343,7 +9393,7 @@
       "source_location": "L117",
       "_origin": "ast",
       "id": "tests_test_connectors_f1_test_git_repo_handles_non_ascii_commit_messages",
-      "community": 20,
+      "community": 4,
       "norm_label": "test_git_repo_handles_non_ascii_commit_messages()"
     },
     {
@@ -9353,7 +9403,7 @@
       "source_location": "L134",
       "_origin": "ast",
       "id": "tests_test_connectors_f1_test_git_repo_bad_path_warns_not_crashes",
-      "community": 20,
+      "community": 4,
       "norm_label": "test_git_repo_bad_path_warns_not_crashes()"
     },
     {
@@ -9363,7 +9413,7 @@
       "source_location": "L143",
       "_origin": "ast",
       "id": "tests_test_connectors_f1_test_git_repo_no_repos_skips",
-      "community": 20,
+      "community": 4,
       "norm_label": "test_git_repo_no_repos_skips()"
     },
     {
@@ -9373,7 +9423,7 @@
       "source_location": "L149",
       "_origin": "ast",
       "id": "tests_test_connectors_f1_test_one_bad_repo_does_not_abort_the_good_one",
-      "community": 20,
+      "community": 4,
       "norm_label": "test_one_bad_repo_does_not_abort_the_good_one()"
     },
     {
@@ -9383,7 +9433,7 @@
       "source_location": "L160",
       "_origin": "ast",
       "id": "tests_test_connectors_f1_test_registry_discovers_git_repo",
-      "community": 20,
+      "community": 4,
       "norm_label": "test_registry_discovers_git_repo()"
     },
     {
@@ -9393,7 +9443,7 @@
       "source_location": "L168",
       "_origin": "ast",
       "id": "tests_test_connectors_f1_test_limit_caps_repos",
-      "community": 20,
+      "community": 4,
       "norm_label": "test_limit_caps_repos()"
     },
     {
@@ -9403,7 +9453,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "tests_test_connectors_f1_rationale_1",
-      "community": 20,
+      "community": 4,
       "norm_label": "f1 (adr-0032): knowledge home + raw store + git-repo connector.  the load-bearin"
     },
     {
@@ -9413,7 +9463,7 @@
       "source_location": "L118",
       "_origin": "ast",
       "id": "tests_test_connectors_f1_rationale_118",
-      "community": 20,
+      "community": 4,
       "norm_label": "regression: a real repo's commit messages carry utf-8 (accents, emoji). on windo"
     },
     {
@@ -9653,7 +9703,7 @@
       "source_location": "L275",
       "_origin": "ast",
       "id": "tests_test_connectors_f4_test_the_two_characters_that_break_a_src_uri_are_rejected",
-      "community": 4,
+      "community": 16,
       "norm_label": "test_the_two_characters_that_break_a_src_uri_are_rejected()"
     },
     {
@@ -9663,7 +9713,7 @@
       "source_location": "L295",
       "_origin": "ast",
       "id": "tests_test_connectors_f4_test_a_derived_id_is_addressable_readable_and_stable",
-      "community": 22,
+      "community": 16,
       "norm_label": "test_a_derived_id_is_addressable_readable_and_stable()"
     },
     {
@@ -9673,7 +9723,7 @@
       "source_location": "L315",
       "_origin": "ast",
       "id": "tests_test_connectors_f4_test_the_store_refuses_to_write_an_unaddressable_item",
-      "community": 22,
+      "community": 4,
       "norm_label": "test_the_store_refuses_to_write_an_unaddressable_item()"
     },
     {
@@ -9703,7 +9753,7 @@
       "source_location": "L355",
       "_origin": "ast",
       "id": "tests_test_connectors_f4_test_an_item_cannot_forge_a_second_excerpt",
-      "community": 4,
+      "community": 22,
       "norm_label": "test_an_item_cannot_forge_a_second_excerpt()"
     },
     {
@@ -9713,7 +9763,7 @@
       "source_location": "L379",
       "_origin": "ast",
       "id": "tests_test_connectors_f4_test_the_marking_removes_nothing_from_the_evidence",
-      "community": 124,
+      "community": 64,
       "norm_label": "test_the_marking_removes_nothing_from_the_evidence()"
     },
     {
@@ -9723,7 +9773,7 @@
       "source_location": "L392",
       "_origin": "ast",
       "id": "tests_test_connectors_f4_test_innocent_content_is_left_exactly_as_it_was",
-      "community": 124,
+      "community": 64,
       "norm_label": "test_innocent_content_is_left_exactly_as_it_was()"
     },
     {
@@ -9803,7 +9853,7 @@
       "source_location": "L276",
       "_origin": "ast",
       "id": "tests_test_connectors_f4_rationale_276",
-      "community": 4,
+      "community": 16,
       "norm_label": "both were found in production, and both silently emptied the claims block instea"
     },
     {
@@ -9823,7 +9873,7 @@
       "source_location": "L356",
       "_origin": "ast",
       "id": "tests_test_connectors_f4_rationale_356",
-      "community": 4,
+      "community": 22,
       "norm_label": "the hole f4 would have opened, measured before the fix: one hostile rss item pro"
     },
     {
@@ -9953,7 +10003,7 @@
       "source_location": "L218",
       "_origin": "ast",
       "id": "tests_test_connectors_f5_test_a_recipe_never_contains_a_credential",
-      "community": 13,
+      "community": 6,
       "norm_label": "test_a_recipe_never_contains_a_credential()"
     },
     {
@@ -10023,7 +10073,7 @@
       "source_location": "L219",
       "_origin": "ast",
       "id": "tests_test_connectors_f5_rationale_219",
-      "community": 13,
+      "community": 6,
       "norm_label": "i9, checked mechanically: a recipe names env vars, and never a value that looks"
     },
     {
@@ -10063,7 +10113,7 @@
       "source_location": "L40",
       "_origin": "ast",
       "id": "tests_test_contracts_test_contracts_cli_promote_and_list",
-      "community": 55,
+      "community": 31,
       "norm_label": "test_contracts_cli_promote_and_list()"
     },
     {
@@ -10293,7 +10343,7 @@
       "source_location": "L83",
       "_origin": "ast",
       "id": "tests_test_handoff_test_emit_writes_one_prompt_per_dirty_page_and_calls_nothing",
-      "community": 0,
+      "community": 108,
       "norm_label": "test_emit_writes_one_prompt_per_dirty_page_and_calls_nothing()"
     },
     {
@@ -10303,7 +10353,7 @@
       "source_location": "L95",
       "_origin": "ast",
       "id": "tests_test_handoff_test_the_manifest_keys_prompts_by_their_content",
-      "community": 0,
+      "community": 108,
       "norm_label": "test_the_manifest_keys_prompts_by_their_content()"
     },
     {
@@ -10403,7 +10453,7 @@
       "source_location": "L216",
       "_origin": "ast",
       "id": "tests_test_handoff_test_a_longer_prompt_that_merely_starts_the_same_is_still_refused",
-      "community": 0,
+      "community": 115,
       "norm_label": "test_a_longer_prompt_that_merely_starts_the_same_is_still_refused()"
     },
     {
@@ -10563,7 +10613,7 @@
       "source_location": "L217",
       "_origin": "ast",
       "id": "tests_test_handoff_rationale_217",
-      "community": 0,
+      "community": 115,
       "norm_label": "the repair round is recognised by a prefix match, and a prefix match alone would"
     },
     {
@@ -10573,7 +10623,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "tests_test_hostile_f6",
-      "community": 111,
+      "community": 113,
       "norm_label": "test_hostile_f6.py"
     },
     {
@@ -10583,7 +10633,7 @@
       "source_location": "L30",
       "_origin": "ast",
       "id": "tests_test_hostile_f6_home",
-      "community": 111,
+      "community": 113,
       "norm_label": "home()"
     },
     {
@@ -10593,7 +10643,7 @@
       "source_location": "L35",
       "_origin": "ast",
       "id": "tests_test_hostile_f6_store",
-      "community": 111,
+      "community": 113,
       "norm_label": "_store()"
     },
     {
@@ -10603,7 +10653,7 @@
       "source_location": "L45",
       "_origin": "ast",
       "id": "tests_test_hostile_f6_item",
-      "community": 111,
+      "community": 113,
       "norm_label": "_item()"
     },
     {
@@ -10613,7 +10663,7 @@
       "source_location": "L53",
       "_origin": "ast",
       "id": "tests_test_hostile_f6_test_a_purged_item_makes_its_claim_an_orphan_not_a_lie",
-      "community": 111,
+      "community": 113,
       "norm_label": "test_a_purged_item_makes_its_claim_an_orphan_not_a_lie()"
     },
     {
@@ -10623,7 +10673,7 @@
       "source_location": "L72",
       "_origin": "ast",
       "id": "tests_test_hostile_f6_test_a_half_written_jsonl_line_costs_only_that_line",
-      "community": 111,
+      "community": 113,
       "norm_label": "test_a_half_written_jsonl_line_costs_only_that_line()"
     },
     {
@@ -10633,7 +10683,7 @@
       "source_location": "L87",
       "_origin": "ast",
       "id": "tests_test_hostile_f6_test_a_corrupt_state_re_ingests_from_scratch_instead_of_crashing",
-      "community": 111,
+      "community": 113,
       "norm_label": "test_a_corrupt_state_re_ingests_from_scratch_instead_of_crashing()"
     },
     {
@@ -10643,7 +10693,7 @@
       "source_location": "L98",
       "_origin": "ast",
       "id": "tests_test_hostile_f6_test_a_state_file_that_is_not_even_a_dict_is_survivable",
-      "community": 111,
+      "community": 113,
       "norm_label": "test_a_state_file_that_is_not_even_a_dict_is_survivable()"
     },
     {
@@ -10653,7 +10703,7 @@
       "source_location": "L107",
       "_origin": "ast",
       "id": "tests_test_hostile_f6_test_a_giant_item_is_truncated_and_the_truncation_is_reported",
-      "community": 111,
+      "community": 113,
       "norm_label": "test_a_giant_item_is_truncated_and_the_truncation_is_reported()"
     },
     {
@@ -10663,7 +10713,7 @@
       "source_location": "L125",
       "_origin": "ast",
       "id": "tests_test_hostile_f6_test_an_item_far_over_the_byte_cap_says_how_much_was_lost",
-      "community": 111,
+      "community": 113,
       "norm_label": "test_an_item_far_over_the_byte_cap_says_how_much_was_lost()"
     },
     {
@@ -10673,7 +10723,7 @@
       "source_location": "L139",
       "_origin": "ast",
       "id": "tests_test_hostile_f6_test_an_injected_instruction_is_cited_and_never_obeyed",
-      "community": 111,
+      "community": 113,
       "norm_label": "test_an_injected_instruction_is_cited_and_never_obeyed()"
     },
     {
@@ -10683,7 +10733,7 @@
       "source_location": "L162",
       "_origin": "ast",
       "id": "tests_test_hostile_f6_test_the_nonce_changes_every_assembly_so_it_cannot_be_learned",
-      "community": 111,
+      "community": 113,
       "norm_label": "test_the_nonce_changes_every_assembly_so_it_cannot_be_learned()"
     },
     {
@@ -10693,7 +10743,7 @@
       "source_location": "L176",
       "_origin": "ast",
       "id": "tests_test_hostile_f6_test_a_claim_citing_a_uri_the_attacker_invented_does_not_anchor",
-      "community": 111,
+      "community": 113,
       "norm_label": "test_a_claim_citing_a_uri_the_attacker_invented_does_not_anchor()"
     },
     {
@@ -10703,7 +10753,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "tests_test_hostile_f6_rationale_1",
-      "community": 111,
+      "community": 113,
       "norm_label": "f6's hostile gate: what the knowledge home does when its own data is broken, eno"
     },
     {
@@ -10713,7 +10763,7 @@
       "source_location": "L54",
       "_origin": "ast",
       "id": "tests_test_hostile_f6_rationale_54",
-      "community": 111,
+      "community": 113,
       "norm_label": "the honest failure. a claim whose evidence is gone must say so \u2014 the alternative"
     },
     {
@@ -10723,7 +10773,7 @@
       "source_location": "L73",
       "_origin": "ast",
       "id": "tests_test_hostile_f6_rationale_73",
-      "community": 111,
+      "community": 113,
       "norm_label": "an interrupted append leaves a truncated last line. losing the whole run over it"
     },
     {
@@ -10733,7 +10783,7 @@
       "source_location": "L108",
       "_origin": "ast",
       "id": "tests_test_hostile_f6_rationale_108",
-      "community": 111,
+      "community": 113,
       "norm_label": "a cap that bites silently turns a partial answer into a confident one."
     },
     {
@@ -10743,7 +10793,7 @@
       "source_location": "L140",
       "_origin": "ast",
       "id": "tests_test_hostile_f6_rationale_140",
-      "community": 111,
+      "community": 113,
       "norm_label": "the whole point of i8, end to end: an item that issues commands and forges a del"
     },
     {
@@ -10753,7 +10803,7 @@
       "source_location": "L177",
       "_origin": "ast",
       "id": "tests_test_hostile_f6_rationale_177",
-      "community": 111,
+      "community": 113,
       "norm_label": "the second half of the defence: even if a forged uri reaches a claim, it has to"
     },
     {
@@ -10903,7 +10953,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "tests_test_knowledge",
-      "community": 40,
+      "community": 22,
       "norm_label": "test_knowledge.py"
     },
     {
@@ -10913,7 +10963,7 @@
       "source_location": "L16",
       "_origin": "ast",
       "id": "tests_test_knowledge_test_split_evidence_src",
-      "community": 40,
+      "community": 22,
       "norm_label": "test_split_evidence_src()"
     },
     {
@@ -10923,7 +10973,7 @@
       "source_location": "L33",
       "_origin": "ast",
       "id": "tests_test_knowledge_test_evidence_hash_and_state_src",
-      "community": 10,
+      "community": 22,
       "norm_label": "test_evidence_hash_and_state_src()"
     },
     {
@@ -10943,7 +10993,7 @@
       "source_location": "L98",
       "_origin": "ast",
       "id": "tests_test_knowledge_test_compile_topics",
-      "community": 40,
+      "community": 22,
       "norm_label": "test_compile_topics()"
     },
     {
@@ -10963,7 +11013,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "tests_test_langspec",
-      "community": 101,
+      "community": 21,
       "norm_label": "test_langspec.py"
     },
     {
@@ -10973,7 +11023,7 @@
       "source_location": "L13",
       "_origin": "ast",
       "id": "tests_test_langspec_names",
-      "community": 101,
+      "community": 21,
       "norm_label": "_names()"
     },
     {
@@ -10993,7 +11043,7 @@
       "source_location": "L31",
       "_origin": "ast",
       "id": "tests_test_langspec_test_sanitize_handles_escaped_quote",
-      "community": 101,
+      "community": 21,
       "norm_label": "test_sanitize_handles_escaped_quote()"
     },
     {
@@ -11023,7 +11073,7 @@
       "source_location": "L70",
       "_origin": "ast",
       "id": "tests_test_langspec_test_go_func_and_type",
-      "community": 101,
+      "community": 21,
       "norm_label": "test_go_func_and_type()"
     },
     {
@@ -11033,7 +11083,7 @@
       "source_location": "L75",
       "_origin": "ast",
       "id": "tests_test_langspec_test_control_flow_is_not_mistaken_for_a_symbol",
-      "community": 101,
+      "community": 21,
       "norm_label": "test_control_flow_is_not_mistaken_for_a_symbol()"
     },
     {
@@ -11053,7 +11103,7 @@
       "source_location": "L106",
       "_origin": "ast",
       "id": "tests_test_langspec_test_ruby_uses_end_blocks_not_braces",
-      "community": 101,
+      "community": 21,
       "norm_label": "test_ruby_uses_end_blocks_not_braces()"
     },
     {
@@ -11103,7 +11153,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "tests_test_langspec_rationale_1",
-      "community": 101,
+      "community": 21,
       "norm_label": "multi-language scanner: the declarative engine (langspec) and its wiring into sc"
     },
     {
@@ -11543,7 +11593,7 @@
       "source_location": "L53",
       "_origin": "ast",
       "id": "tests_test_overview_test_only_proven_claims_become_citable_facts",
-      "community": 21,
+      "community": 25,
       "norm_label": "test_only_proven_claims_become_citable_facts()"
     },
     {
@@ -11623,7 +11673,7 @@
       "source_location": "L150",
       "_origin": "ast",
       "id": "tests_test_overview_nodes",
-      "community": 57,
+      "community": 25,
       "norm_label": "_nodes()"
     },
     {
@@ -11633,7 +11683,7 @@
       "source_location": "L155",
       "_origin": "ast",
       "id": "tests_test_overview_test_an_area_page_is_chained_to_the_module_pages_below_it",
-      "community": 57,
+      "community": 25,
       "norm_label": "test_an_area_page_is_chained_to_the_module_pages_below_it()"
     },
     {
@@ -11643,7 +11693,7 @@
       "source_location": "L168",
       "_origin": "ast",
       "id": "tests_test_overview_test_an_area_with_nothing_proven_under_it_is_skipped_not_invented",
-      "community": 57,
+      "community": 25,
       "norm_label": "test_an_area_with_nothing_proven_under_it_is_skipped_not_invented()"
     },
     {
@@ -11653,7 +11703,7 @@
       "source_location": "L176",
       "_origin": "ast",
       "id": "tests_test_overview_test_the_machine_scheme_never_reaches_a_reader_facing_link",
-      "community": 57,
+      "community": 25,
       "norm_label": "test_the_machine_scheme_never_reaches_a_reader_facing_link()"
     },
     {
@@ -11663,7 +11713,7 @@
       "source_location": "L186",
       "_origin": "ast",
       "id": "tests_test_overview_test_relink_leaves_a_working_link_in_both_shapes_a_model_writes",
-      "community": 57,
+      "community": 25,
       "norm_label": "test_relink_leaves_a_working_link_in_both_shapes_a_model_writes()"
     },
     {
@@ -11693,7 +11743,7 @@
       "source_location": "L229",
       "_origin": "ast",
       "id": "tests_test_overview_test_the_product_page_prefers_the_layer_directly_below_it",
-      "community": 21,
+      "community": 25,
       "norm_label": "test_the_product_page_prefers_the_layer_directly_below_it()"
     },
     {
@@ -11743,7 +11793,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "tests_test_pcp_pipeline",
-      "community": 116,
+      "community": 29,
       "norm_label": "test_pcp_pipeline.py"
     },
     {
@@ -11753,7 +11803,7 @@
       "source_location": "L17",
       "_origin": "ast",
       "id": "tests_test_pcp_pipeline_fake_generator",
-      "community": 116,
+      "community": 29,
       "norm_label": "_fake_generator()"
     },
     {
@@ -11763,7 +11813,7 @@
       "source_location": "L31",
       "_origin": "ast",
       "id": "tests_test_pcp_pipeline_compile",
-      "community": 116,
+      "community": 29,
       "norm_label": "_compile()"
     },
     {
@@ -11773,7 +11823,7 @@
       "source_location": "",
       "_origin": "ast",
       "id": "tests_test_pcp_pipeline_py_path",
-      "community": 116,
+      "community": 29,
       "norm_label": "path"
     },
     {
@@ -11783,7 +11833,7 @@
       "source_location": "L43",
       "_origin": "ast",
       "id": "tests_test_pcp_pipeline_test_compile_writes_a_certificate_with_typed_verdicts",
-      "community": 116,
+      "community": 29,
       "norm_label": "test_compile_writes_a_certificate_with_typed_verdicts()"
     },
     {
@@ -11793,7 +11843,7 @@
       "source_location": "L57",
       "_origin": "ast",
       "id": "tests_test_pcp_pipeline_test_deterministic_mark_forces_the_banner_despite_calm_prose",
-      "community": 116,
+      "community": 29,
       "norm_label": "test_deterministic_mark_forces_the_banner_despite_calm_prose()"
     },
     {
@@ -11803,7 +11853,7 @@
       "source_location": "L70",
       "_origin": "ast",
       "id": "tests_test_pcp_pipeline_fake_generator_with_a_lie",
-      "community": 116,
+      "community": 29,
       "norm_label": "_fake_generator_with_a_lie()"
     },
     {
@@ -11813,7 +11863,7 @@
       "source_location": "L82",
       "_origin": "ast",
       "id": "tests_test_pcp_pipeline_test_refuted_claim_is_quarantined_not_published",
-      "community": 116,
+      "community": 29,
       "norm_label": "test_refuted_claim_is_quarantined_not_published()"
     },
     {
@@ -11823,7 +11873,7 @@
       "source_location": "L106",
       "_origin": "ast",
       "id": "tests_test_pcp_pipeline_test_verify_ci_gates",
-      "community": 116,
+      "community": 29,
       "norm_label": "test_verify_ci_gates()"
     },
     {
@@ -11833,7 +11883,7 @@
       "source_location": "L118",
       "_origin": "ast",
       "id": "tests_test_pcp_pipeline_test_verify_page_passes_then_breaks_on_tamper",
-      "community": 116,
+      "community": 29,
       "norm_label": "test_verify_page_passes_then_breaks_on_tamper()"
     },
     {
@@ -11843,7 +11893,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "tests_test_pcp_pipeline_rationale_1",
-      "community": 116,
+      "community": 29,
       "norm_label": "p-int gate \u2014 the pipeline wiring ties all five pcp lanes together end to end: a"
     },
     {
@@ -11873,7 +11923,7 @@
       "source_location": "L42",
       "_origin": "ast",
       "id": "tests_test_pcp_seams_test_golden_certificate_round_trips",
-      "community": 31,
+      "community": 55,
       "norm_label": "test_golden_certificate_round_trips()"
     },
     {
@@ -12033,7 +12083,7 @@
       "source_location": "L59",
       "_origin": "ast",
       "id": "tests_test_pipeline_graph",
-      "community": 2,
+      "community": 126,
       "norm_label": "_graph()"
     },
     {
@@ -12063,7 +12113,7 @@
       "source_location": "L81",
       "_origin": "ast",
       "id": "tests_test_pipeline_test_plan_pages_top_k_and_none_means_all",
-      "community": 2,
+      "community": 126,
       "norm_label": "test_plan_pages_top_k_and_none_means_all()"
     },
     {
@@ -12073,7 +12123,7 @@
       "source_location": "L88",
       "_origin": "ast",
       "id": "tests_test_pipeline_test_plan_pages_records_cross_module_deps",
-      "community": 2,
+      "community": 126,
       "norm_label": "test_plan_pages_records_cross_module_deps()"
     },
     {
@@ -12103,7 +12153,7 @@
       "source_location": "L118",
       "_origin": "ast",
       "id": "tests_test_pipeline_test_suggest_flows_ranks_heaviest_bridges",
-      "community": 2,
+      "community": 9,
       "norm_label": "test_suggest_flows_ranks_heaviest_bridges()"
     },
     {
@@ -12123,7 +12173,7 @@
       "source_location": "L139",
       "_origin": "ast",
       "id": "tests_test_pipeline_test_assemble_context_includes_docs_excerpts_deps_and_budget_warning",
-      "community": 2,
+      "community": 126,
       "norm_label": "test_assemble_context_includes_docs_excerpts_deps_and_budget_warning()"
     },
     {
@@ -12133,7 +12183,7 @@
       "source_location": "L152",
       "_origin": "ast",
       "id": "tests_test_pipeline_test_prompt_carries_findings_addendum_and_hash_is_stable",
-      "community": 2,
+      "community": 126,
       "norm_label": "test_prompt_carries_findings_addendum_and_hash_is_stable()"
     },
     {
@@ -12163,7 +12213,7 @@
       "source_location": "L192",
       "_origin": "ast",
       "id": "tests_test_pipeline_test_upsert_agents_block_is_idempotent_and_preserves_content",
-      "community": 126,
+      "community": 15,
       "norm_label": "test_upsert_agents_block_is_idempotent_and_preserves_content()"
     },
     {
@@ -12813,7 +12863,7 @@
       "source_location": "L232",
       "_origin": "ast",
       "id": "tests_test_recertify_context_hash_for",
-      "community": 15,
+      "community": 126,
       "norm_label": "_context_hash_for()"
     },
     {
@@ -12893,7 +12943,7 @@
       "source_location": "L233",
       "_origin": "ast",
       "id": "tests_test_recertify_rationale_233",
-      "community": 15,
+      "community": 126,
       "norm_label": "recompute the context hash compile would store for a page, so the test can pin i"
     },
     {
@@ -13373,7 +13423,7 @@
       "source_location": "L162",
       "_origin": "ast",
       "id": "tests_test_source_disclosure_gate_test_the_handoff_still_works_when_the_gate_is_shut",
-      "community": 0,
+      "community": 24,
       "norm_label": "test_the_handoff_still_works_when_the_gate_is_shut()"
     },
     {
@@ -13403,7 +13453,7 @@
       "source_location": "L226",
       "_origin": "ast",
       "id": "tests_test_source_disclosure_gate_test_whatsnew_refuses_at_an_undeclared_host",
-      "community": 8,
+      "community": 69,
       "norm_label": "test_whatsnew_refuses_at_an_undeclared_host()"
     },
     {
@@ -13463,7 +13513,7 @@
       "source_location": "L163",
       "_origin": "ast",
       "id": "tests_test_source_disclosure_gate_rationale_163",
-      "community": 0,
+      "community": 24,
       "norm_label": "the escape hatch has to be open exactly when the gate is closed, or the gate bec"
     },
     {
@@ -13493,7 +13543,7 @@
       "source_location": "L227",
       "_origin": "ast",
       "id": "tests_test_source_disclosure_gate_rationale_227",
-      "community": 8,
+      "community": 69,
       "norm_label": "its prompts carry an excerpt of every added and changed symbol \u2014 a compile by an"
     },
     {
@@ -13653,7 +13703,7 @@
       "source_location": "L236",
       "_origin": "ast",
       "id": "tests_test_surface_test_signature_is_kept_verbatim_for_human_eyes_and_still_encodes_as_toon",
-      "community": 18,
+      "community": 20,
       "norm_label": "test_signature_is_kept_verbatim_for_human_eyes_and_still_encodes_as_toon()"
     },
     {
@@ -13663,7 +13713,7 @@
       "source_location": "L246",
       "_origin": "ast",
       "id": "tests_test_surface_test_clean_sig_normalises_whitespace_and_caps_length",
-      "community": 18,
+      "community": 20,
       "norm_label": "test_clean_sig_normalises_whitespace_and_caps_length()"
     },
     {
@@ -13683,7 +13733,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "tests_test_units",
-      "community": 3,
+      "community": 19,
       "norm_label": "test_units.py"
     },
     {
@@ -13693,7 +13743,7 @@
       "source_location": "L26",
       "_origin": "ast",
       "id": "tests_test_units_test_toon_encode_table_quoting_and_counts",
-      "community": 3,
+      "community": 19,
       "norm_label": "test_toon_encode_table_quoting_and_counts()"
     },
     {
@@ -13703,7 +13753,7 @@
       "source_location": "L33",
       "_origin": "ast",
       "id": "tests_test_units_test_module_of_normalizes_and_buckets",
-      "community": 9,
+      "community": 19,
       "norm_label": "test_module_of_normalizes_and_buckets()"
     },
     {
@@ -13773,7 +13823,7 @@
       "source_location": "L123",
       "_origin": "ast",
       "id": "tests_test_units_test_restrict_to_tracked_noop_without_git",
-      "community": 1,
+      "community": 19,
       "norm_label": "test_restrict_to_tracked_noop_without_git()"
     },
     {
@@ -13783,7 +13833,7 @@
       "source_location": "L134",
       "_origin": "ast",
       "id": "tests_test_units_test_parse_findings_block_extracts_and_strips",
-      "community": 3,
+      "community": 64,
       "norm_label": "test_parse_findings_block_extracts_and_strips()"
     },
     {
@@ -13793,7 +13843,7 @@
       "source_location": "L147",
       "_origin": "ast",
       "id": "tests_test_units_test_filter_findings_drops_hallucinated_paths",
-      "community": 3,
+      "community": 19,
       "norm_label": "test_filter_findings_drops_hallucinated_paths()"
     },
     {
@@ -13843,7 +13893,7 @@
       "source_location": "L209",
       "_origin": "ast",
       "id": "tests_test_units_test_render_findings_tables_and_summary",
-      "community": 3,
+      "community": 19,
       "norm_label": "test_render_findings_tables_and_summary()"
     },
     {
@@ -13853,7 +13903,7 @@
       "source_location": "L219",
       "_origin": "ast",
       "id": "tests_test_units_qa_repo",
-      "community": 3,
+      "community": 19,
       "norm_label": "_qa_repo()"
     },
     {
@@ -13863,7 +13913,7 @@
       "source_location": "L232",
       "_origin": "ast",
       "id": "tests_test_units_test_question_terms_tokenizes",
-      "community": 3,
+      "community": 19,
       "norm_label": "test_question_terms_tokenizes()"
     },
     {
@@ -13873,7 +13923,7 @@
       "source_location": "L236",
       "_origin": "ast",
       "id": "tests_test_units_test_gather_evidence_prefers_matching_pages_and_excerpts",
-      "community": 3,
+      "community": 19,
       "norm_label": "test_gather_evidence_prefers_matching_pages_and_excerpts()"
     },
     {
@@ -13883,7 +13933,7 @@
       "source_location": "L244",
       "_origin": "ast",
       "id": "tests_test_units_test_ask_uses_single_injected_generator_call",
-      "community": 3,
+      "community": 19,
       "norm_label": "test_ask_uses_single_injected_generator_call()"
     },
     {
@@ -13893,7 +13943,7 @@
       "source_location": "L253",
       "_origin": "ast",
       "id": "tests_test_units_test_ask_without_evidence_refuses_instead_of_calling",
-      "community": 3,
+      "community": 19,
       "norm_label": "test_ask_without_evidence_refuses_instead_of_calling()"
     },
     {
@@ -13923,7 +13973,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "tests_test_units_rationale_1",
-      "community": 3,
+      "community": 19,
       "norm_label": "unit tests: toon encoder, graph scanner, findings residue, qa retrieval, llm req"
     },
     {
@@ -13963,7 +14013,7 @@
       "source_location": "L124",
       "_origin": "ast",
       "id": "tests_test_units_rationale_124",
-      "community": 1,
+      "community": 19,
       "norm_label": "outside a git tree we cannot tell what's ignored -> index everything, unchanged."
     },
     {
@@ -14053,7 +14103,7 @@
       "source_location": "L93",
       "_origin": "ast",
       "id": "tests_test_verify_test_verified_mass_classifies_sentences",
-      "community": 42,
+      "community": 31,
       "norm_label": "test_verified_mass_classifies_sentences()"
     },
     {
@@ -14075,6 +14125,16 @@
       "id": "tests_test_verify_test_a_homonym_in_another_file_does_not_refute_a_true_signature",
       "community": 42,
       "norm_label": "test_a_homonym_in_another_file_does_not_refute_a_true_signature()"
+    },
+    {
+      "label": "test_an_env_read_through_a_named_constant_is_still_a_read()",
+      "file_type": "code",
+      "source_file": "tests/test_verify.py",
+      "source_location": "L156",
+      "_origin": "ast",
+      "id": "tests_test_verify_test_an_env_read_through_a_named_constant_is_still_a_read",
+      "community": 42,
+      "norm_label": "test_an_env_read_through_a_named_constant_is_still_a_read()"
     },
     {
       "label": "Lane A gate \u2014 the typed-claim verifiers decide truth against the two oracles, bu",
@@ -14105,6 +14165,16 @@
       "id": "tests_test_verify_rationale_135",
       "community": 42,
       "norm_label": "a predicate names a function, not a file, and helpers repeat across test modules"
+    },
+    {
+      "label": "Naming the variable once and using the constant is the better habit, and a grep",
+      "file_type": "rationale",
+      "source_file": "tests/test_verify.py",
+      "source_location": "L157",
+      "_origin": "ast",
+      "id": "tests_test_verify_rationale_157",
+      "community": 42,
+      "norm_label": "naming the variable once and using the constant is the better habit, and a grep"
     },
     {
       "label": "test_whatsnew.py",
@@ -14273,7 +14343,7 @@
       "source_location": "L240",
       "_origin": "ast",
       "id": "tests_test_whatsnew_test_unresolvable_ref_fails_closed",
-      "community": 8,
+      "community": 69,
       "norm_label": "test_unresolvable_ref_fails_closed()"
     },
     {
@@ -14303,7 +14373,7 @@
       "source_location": "L268",
       "_origin": "ast",
       "id": "tests_test_whatsnew_test_test_files_are_reported_in_their_own_area",
-      "community": 12,
+      "community": 8,
       "norm_label": "test_test_files_are_reported_in_their_own_area()"
     },
     {
@@ -14453,7 +14523,7 @@
       "source_location": "L480",
       "_origin": "ast",
       "id": "tests_test_whatsnew_test_cli_smoke",
-      "community": 8,
+      "community": 35,
       "norm_label": "test_cli_smoke()"
     },
     {
@@ -14463,7 +14533,7 @@
       "source_location": "L487",
       "_origin": "ast",
       "id": "tests_test_whatsnew_test_cli_reports_a_bad_ref_without_writing_an_artifact",
-      "community": 8,
+      "community": 35,
       "norm_label": "test_cli_reports_a_bad_ref_without_writing_an_artifact()"
     },
     {
@@ -14485,6 +14555,176 @@
       "id": "tests_test_whatsnew_rationale_53",
       "community": 8,
       "norm_label": "a repository mirroring the shape of the change that motivated this command: a me"
+    },
+    {
+      "label": "test_wiki_dir_config.py",
+      "file_type": "code",
+      "source_file": "tests/test_wiki_dir_config.py",
+      "source_location": "L1",
+      "_origin": "ast",
+      "id": "tests_test_wiki_dir_config",
+      "community": 104,
+      "norm_label": "test_wiki_dir_config.py"
+    },
+    {
+      "label": "no_env()",
+      "file_type": "code",
+      "source_file": "tests/test_wiki_dir_config.py",
+      "source_location": "L23",
+      "_origin": "ast",
+      "id": "tests_test_wiki_dir_config_no_env",
+      "community": 104,
+      "norm_label": "no_env()"
+    },
+    {
+      "label": "_config()",
+      "file_type": "code",
+      "source_file": "tests/test_wiki_dir_config.py",
+      "source_location": "L28",
+      "_origin": "ast",
+      "id": "tests_test_wiki_dir_config_config",
+      "community": 104,
+      "norm_label": "_config()"
+    },
+    {
+      "label": "test_a_repo_without_a_setting_gets_the_default()",
+      "file_type": "code",
+      "source_file": "tests/test_wiki_dir_config.py",
+      "source_location": "L34",
+      "_origin": "ast",
+      "id": "tests_test_wiki_dir_config_test_a_repo_without_a_setting_gets_the_default",
+      "community": 104,
+      "norm_label": "test_a_repo_without_a_setting_gets_the_default()"
+    },
+    {
+      "label": "test_a_repo_says_where_its_docs_live()",
+      "file_type": "code",
+      "source_file": "tests/test_wiki_dir_config.py",
+      "source_location": "L39",
+      "_origin": "ast",
+      "id": "tests_test_wiki_dir_config_test_a_repo_says_where_its_docs_live",
+      "community": 104,
+      "norm_label": "test_a_repo_says_where_its_docs_live()"
+    },
+    {
+      "label": "test_the_setting_is_found_from_a_subdirectory()",
+      "file_type": "code",
+      "source_file": "tests/test_wiki_dir_config.py",
+      "source_location": "L45",
+      "_origin": "ast",
+      "id": "tests_test_wiki_dir_config_test_the_setting_is_found_from_a_subdirectory",
+      "community": 104,
+      "norm_label": "test_the_setting_is_found_from_a_subdirectory()"
+    },
+    {
+      "label": "test_the_environment_still_wins()",
+      "file_type": "code",
+      "source_file": "tests/test_wiki_dir_config.py",
+      "source_location": "L54",
+      "_origin": "ast",
+      "id": "tests_test_wiki_dir_config_test_the_environment_still_wins",
+      "community": 104,
+      "norm_label": "test_the_environment_still_wins()"
+    },
+    {
+      "label": "test_a_config_without_a_usable_value_settles_on_the_default()",
+      "file_type": "code",
+      "source_file": "tests/test_wiki_dir_config.py",
+      "source_location": "L63",
+      "_origin": "ast",
+      "id": "tests_test_wiki_dir_config_test_a_config_without_a_usable_value_settles_on_the_default",
+      "community": 104,
+      "norm_label": "test_a_config_without_a_usable_value_settles_on_the_default()"
+    },
+    {
+      "label": "test_an_unreadable_config_is_the_default_never_a_guess()",
+      "file_type": "code",
+      "source_file": "tests/test_wiki_dir_config.py",
+      "source_location": "L72",
+      "_origin": "ast",
+      "id": "tests_test_wiki_dir_config_test_an_unreadable_config_is_the_default_never_a_guess",
+      "community": 104,
+      "norm_label": "test_an_unreadable_config_is_the_default_never_a_guess()"
+    },
+    {
+      "label": "test_the_value_is_normalised()",
+      "file_type": "code",
+      "source_file": "tests/test_wiki_dir_config.py",
+      "source_location": "L81",
+      "_origin": "ast",
+      "id": "tests_test_wiki_dir_config_test_the_value_is_normalised",
+      "community": 104,
+      "norm_label": "test_the_value_is_normalised()"
+    },
+    {
+      "label": "test_the_cli_refuses_a_repo_whose_wiki_is_somewhere_else()",
+      "file_type": "code",
+      "source_file": "tests/test_wiki_dir_config.py",
+      "source_location": "L88",
+      "_origin": "ast",
+      "id": "tests_test_wiki_dir_config_test_the_cli_refuses_a_repo_whose_wiki_is_somewhere_else",
+      "community": 104,
+      "norm_label": "test_the_cli_refuses_a_repo_whose_wiki_is_somewhere_else()"
+    },
+    {
+      "label": "The wiki directory travels with the repository, not with whoever remembers to ex",
+      "file_type": "rationale",
+      "source_file": "tests/test_wiki_dir_config.py",
+      "source_location": "L1",
+      "_origin": "ast",
+      "id": "tests_test_wiki_dir_config_rationale_1",
+      "community": 104,
+      "norm_label": "the wiki directory travels with the repository, not with whoever remembers to ex"
+    },
+    {
+      "label": "Found by walking up, so running from `src/` behaves like running from the root \u2014",
+      "file_type": "rationale",
+      "source_file": "tests/test_wiki_dir_config.py",
+      "source_location": "L46",
+      "_origin": "ast",
+      "id": "tests_test_wiki_dir_config_rationale_46",
+      "community": 104,
+      "norm_label": "found by walking up, so running from `src/` behaves like running from the root \u2014"
+    },
+    {
+      "label": "An existing export keeps working, and a one-off override stays possible.",
+      "file_type": "rationale",
+      "source_file": "tests/test_wiki_dir_config.py",
+      "source_location": "L55",
+      "_origin": "ast",
+      "id": "tests_test_wiki_dir_config_rationale_55",
+      "community": 104,
+      "norm_label": "an existing export keeps working, and a one-off override stays possible."
+    },
+    {
+      "label": "And it STOPS there: a parent repo's setting must not leak into a nested one that",
+      "file_type": "rationale",
+      "source_file": "tests/test_wiki_dir_config.py",
+      "source_location": "L64",
+      "_origin": "ast",
+      "id": "tests_test_wiki_dir_config_rationale_64",
+      "community": 104,
+      "norm_label": "and it stops there: a parent repo's setting must not leak into a nested one that"
+    },
+    {
+      "label": "A Windows separator or a stray slash must not make two spellings of one director",
+      "file_type": "rationale",
+      "source_file": "tests/test_wiki_dir_config.py",
+      "source_location": "L82",
+      "_origin": "ast",
+      "id": "tests_test_wiki_dir_config_rationale_82",
+      "community": 104,
+      "norm_label": "a windows separator or a stray slash must not make two spellings of one director"
+    },
+    {
+      "label": "Half a run in the right place and half in the wrong one is the failure this prev",
+      "file_type": "rationale",
+      "source_file": "tests/test_wiki_dir_config.py",
+      "source_location": "L89",
+      "_origin": "ast",
+      "id": "tests_test_wiki_dir_config_rationale_89",
+      "community": 104,
+      "norm_label": "half a run in the right place and half in the wrong one is the failure this prev"
     },
     {
       "label": "test_wiki_dir_env.py",
@@ -16700,7 +16940,7 @@
       "label": "Architecture",
       "file_type": "document",
       "source_file": "wiki/src-isidore-render_py.md",
-      "source_location": "L10",
+      "source_location": "L13",
       "_origin": "ast",
       "id": "wiki_src_isidore_render_py_architecture",
       "community": 107,
@@ -16710,7 +16950,7 @@
       "label": "Key entry points",
       "file_type": "document",
       "source_file": "wiki/src-isidore-render_py.md",
-      "source_location": "L19",
+      "source_location": "L40",
       "_origin": "ast",
       "id": "wiki_src_isidore_render_py_key_entry_points",
       "community": 107,
@@ -16720,7 +16960,7 @@
       "label": "Dependencies",
       "file_type": "document",
       "source_file": "wiki/src-isidore-render_py.md",
-      "source_location": "L25",
+      "source_location": "L49",
       "_origin": "ast",
       "id": "wiki_src_isidore_render_py_dependencies",
       "community": 107,
@@ -16730,7 +16970,7 @@
       "label": "How to change safely",
       "file_type": "document",
       "source_file": "wiki/src-isidore-render_py.md",
-      "source_location": "L28",
+      "source_location": "L55",
       "_origin": "ast",
       "id": "wiki_src_isidore_render_py_how_to_change_safely",
       "community": 107,
@@ -20051,7 +20291,7 @@
       "context": "import",
       "confidence": "EXTRACTED",
       "source_file": "src/isidore/verify.py",
-      "source_location": "L438",
+      "source_location": "L466",
       "weight": 1.0,
       "source": "src_isidore_verify",
       "target": "src_isidore_claims_parse_predicate_field",
@@ -20062,7 +20302,7 @@
       "context": "call",
       "confidence": "EXTRACTED",
       "source_file": "src/isidore/verify.py",
-      "source_location": "L479",
+      "source_location": "L507",
       "weight": 1.0,
       "source": "src_isidore_verify_build_certificate",
       "target": "src_isidore_claims_parse_predicate_field",
@@ -20073,7 +20313,7 @@
       "context": "call",
       "confidence": "EXTRACTED",
       "source_file": "src/isidore/verify.py",
-      "source_location": "L440",
+      "source_location": "L468",
       "weight": 1.0,
       "source": "src_isidore_verify_claim_symbols",
       "target": "src_isidore_claims_parse_predicate_field",
@@ -20088,6 +20328,17 @@
       "source_location": "L147",
       "weight": 1.0,
       "source": "tests_test_verify_test_a_homonym_in_another_file_does_not_refute_a_true_signature",
+      "target": "src_isidore_claims_parse_predicate_field"
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "INFERRED",
+      "confidence_score": 0.8,
+      "source_file": "tests/test_verify.py",
+      "source_location": "L169",
+      "weight": 1.0,
+      "source": "tests_test_verify_test_an_env_read_through_a_named_constant_is_still_a_read",
       "target": "src_isidore_claims_parse_predicate_field"
     },
     {
@@ -20226,7 +20477,7 @@
       "context": "import",
       "confidence": "EXTRACTED",
       "source_file": "src/isidore/verify.py",
-      "source_location": "L563",
+      "source_location": "L591",
       "weight": 1.0,
       "source": "src_isidore_verify",
       "target": "src_isidore_claims_parse_claims_block",
@@ -20237,7 +20488,7 @@
       "context": "call",
       "confidence": "EXTRACTED",
       "source_file": "src/isidore/verify.py",
-      "source_location": "L564",
+      "source_location": "L592",
       "weight": 1.0,
       "source": "src_isidore_verify_certificate_status",
       "target": "src_isidore_claims_parse_claims_block",
@@ -21938,6 +22189,17 @@
       "confidence_score": 1.0
     },
     {
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "src/isidore/cli.py",
+      "source_location": "L439",
+      "weight": 1.0,
+      "source": "src_isidore_cli",
+      "target": "src_isidore_render_configured_wiki_dirname",
+      "confidence_score": 1.0
+    },
+    {
       "relation": "imports_from",
       "context": "submodule_import",
       "confidence": "EXTRACTED",
@@ -22499,6 +22761,17 @@
     {
       "relation": "calls",
       "context": "call",
+      "confidence": "EXTRACTED",
+      "source_file": "src/isidore/cli.py",
+      "source_location": "L440",
+      "weight": 1.0,
+      "source": "src_isidore_cli_main",
+      "target": "src_isidore_render_configured_wiki_dirname",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "calls",
+      "context": "call",
       "confidence": "INFERRED",
       "confidence_score": 0.8,
       "source_file": "tests/test_connect_cli.py",
@@ -22626,6 +22899,17 @@
       "source_location": "L483",
       "weight": 1.0,
       "source": "tests_test_whatsnew_test_cli_smoke",
+      "target": "src_isidore_cli_main"
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "INFERRED",
+      "confidence_score": 0.8,
+      "source_file": "tests/test_wiki_dir_config.py",
+      "source_location": "L97",
+      "weight": 1.0,
+      "source": "tests_test_wiki_dir_config_test_the_cli_refuses_a_repo_whose_wiki_is_somewhere_else",
       "target": "src_isidore_cli_main"
     },
     {
@@ -27990,7 +28274,7 @@
       "context": "import",
       "confidence": "EXTRACTED",
       "source_file": "src/isidore/render.py",
-      "source_location": "L121",
+      "source_location": "L162",
       "weight": 1.0,
       "source": "src_isidore_render",
       "target": "src_isidore_connectors_store_read_state",
@@ -28001,7 +28285,7 @@
       "context": "call",
       "confidence": "EXTRACTED",
       "source_file": "src/isidore/render.py",
-      "source_location": "L124",
+      "source_location": "L165",
       "weight": 1.0,
       "source": "src_isidore_render_knowledge_summary",
       "target": "src_isidore_connectors_store_read_state",
@@ -28893,7 +29177,7 @@
       "context": "import",
       "confidence": "EXTRACTED",
       "source_file": "src/isidore/verify.py",
-      "source_location": "L648",
+      "source_location": "L676",
       "weight": 1.0,
       "source": "src_isidore_verify",
       "target": "src_isidore_contracts_verify_contracts",
@@ -28904,7 +29188,7 @@
       "context": "call",
       "confidence": "EXTRACTED",
       "source_file": "src/isidore/verify.py",
-      "source_location": "L652",
+      "source_location": "L680",
       "weight": 1.0,
       "source": "src_isidore_verify_cmd_verify",
       "target": "src_isidore_contracts_verify_contracts",
@@ -31414,7 +31698,7 @@
       "context": "call",
       "confidence": "EXTRACTED",
       "source_file": "src/isidore/verify.py",
-      "source_location": "L504",
+      "source_location": "L532",
       "weight": 1.0,
       "source": "src_isidore_verify_ctx_for",
       "target": "src_isidore_graph_load_graph",
@@ -31743,7 +32027,7 @@
       "context": "call",
       "confidence": "EXTRACTED",
       "source_file": "src/isidore/verify.py",
-      "source_location": "L501",
+      "source_location": "L529",
       "weight": 1.0,
       "source": "src_isidore_verify_ctx_for",
       "target": "src_isidore_graph_find_graph",
@@ -33654,7 +33938,7 @@
       "context": "import",
       "confidence": "EXTRACTED",
       "source_file": "src/isidore/render.py",
-      "source_location": "L114",
+      "source_location": "L155",
       "weight": 1.0,
       "source": "src_isidore_render",
       "target": "src_isidore_home_home",
@@ -33665,7 +33949,7 @@
       "context": "call",
       "confidence": "EXTRACTED",
       "source_file": "src/isidore/render.py",
-      "source_location": "L116",
+      "source_location": "L157",
       "weight": 1.0,
       "source": "src_isidore_render_knowledge_summary",
       "target": "src_isidore_home_home",
@@ -35429,7 +35713,7 @@
       "context": "import",
       "confidence": "EXTRACTED",
       "source_file": "src/isidore/render.py",
-      "source_location": "L115",
+      "source_location": "L156",
       "weight": 1.0,
       "source": "src_isidore_render",
       "target": "src_isidore_knowledge_load_knowledge_state",
@@ -35440,7 +35724,7 @@
       "context": "call",
       "confidence": "EXTRACTED",
       "source_file": "src/isidore/render.py",
-      "source_location": "L117",
+      "source_location": "L158",
       "weight": 1.0,
       "source": "src_isidore_render_knowledge_summary",
       "target": "src_isidore_knowledge_load_knowledge_state",
@@ -37430,7 +37714,7 @@
       "context": "parameter_type",
       "confidence": "EXTRACTED",
       "source_file": "src/isidore/verify.py",
-      "source_location": "L366",
+      "source_location": "L378",
       "weight": 1.0,
       "source": "src_isidore_verify_v_env",
       "target": "src_isidore_pcp_predicate",
@@ -37463,7 +37747,7 @@
       "context": "parameter_type",
       "confidence": "EXTRACTED",
       "source_file": "src/isidore/verify.py",
-      "source_location": "L387",
+      "source_location": "L415",
       "weight": 1.0,
       "source": "src_isidore_verify_v_route",
       "target": "src_isidore_pcp_predicate",
@@ -37496,7 +37780,7 @@
       "context": "parameter_type",
       "confidence": "EXTRACTED",
       "source_file": "src/isidore/verify.py",
-      "source_location": "L491",
+      "source_location": "L519",
       "weight": 1.0,
       "source": "src_isidore_verify_verify_predicate_ctx",
       "target": "src_isidore_pcp_predicate",
@@ -37758,7 +38042,7 @@
       "context": "call",
       "confidence": "EXTRACTED",
       "source_file": "src/isidore/verify.py",
-      "source_location": "L574",
+      "source_location": "L602",
       "weight": 1.0,
       "source": "src_isidore_verify_certificate_status",
       "target": "src_isidore_pcp_parse_stored_predicate",
@@ -37899,7 +38183,7 @@
       "context": "return_type",
       "confidence": "EXTRACTED",
       "source_file": "src/isidore/verify.py",
-      "source_location": "L366",
+      "source_location": "L378",
       "weight": 1.0,
       "source": "src_isidore_verify_v_env",
       "target": "src_isidore_pcp_verdict",
@@ -37932,7 +38216,7 @@
       "context": "return_type",
       "confidence": "EXTRACTED",
       "source_file": "src/isidore/verify.py",
-      "source_location": "L387",
+      "source_location": "L415",
       "weight": 1.0,
       "source": "src_isidore_verify_v_route",
       "target": "src_isidore_pcp_verdict",
@@ -37976,7 +38260,7 @@
       "context": "return_type",
       "confidence": "EXTRACTED",
       "source_file": "src/isidore/verify.py",
-      "source_location": "L491",
+      "source_location": "L519",
       "weight": 1.0,
       "source": "src_isidore_verify_verify_predicate_ctx",
       "target": "src_isidore_pcp_verdict",
@@ -38064,7 +38348,7 @@
       "context": "call",
       "confidence": "EXTRACTED",
       "source_file": "src/isidore/verify.py",
-      "source_location": "L369",
+      "source_location": "L390",
       "weight": 1.0,
       "source": "src_isidore_verify_v_env",
       "target": "src_isidore_pcp_undecidable",
@@ -38097,7 +38381,7 @@
       "context": "call",
       "confidence": "EXTRACTED",
       "source_file": "src/isidore/verify.py",
-      "source_location": "L389",
+      "source_location": "L417",
       "weight": 1.0,
       "source": "src_isidore_verify_v_route",
       "target": "src_isidore_pcp_undecidable",
@@ -38292,7 +38576,7 @@
       "context": "parameter_type",
       "confidence": "EXTRACTED",
       "source_file": "src/isidore/verify.py",
-      "source_location": "L473",
+      "source_location": "L501",
       "weight": 1.0,
       "source": "src_isidore_verify_build_certificate",
       "target": "src_isidore_pcp_verifycontext",
@@ -38303,7 +38587,7 @@
       "context": "parameter_type",
       "confidence": "EXTRACTED",
       "source_file": "src/isidore/verify.py",
-      "source_location": "L548",
+      "source_location": "L576",
       "weight": 1.0,
       "source": "src_isidore_verify_certificate_status",
       "target": "src_isidore_pcp_verifycontext",
@@ -38324,7 +38608,7 @@
       "context": "return_type",
       "confidence": "EXTRACTED",
       "source_file": "src/isidore/verify.py",
-      "source_location": "L500",
+      "source_location": "L528",
       "weight": 1.0,
       "source": "src_isidore_verify_ctx_for",
       "target": "src_isidore_pcp_verifycontext",
@@ -38346,7 +38630,7 @@
       "context": "parameter_type",
       "confidence": "EXTRACTED",
       "source_file": "src/isidore/verify.py",
-      "source_location": "L420",
+      "source_location": "L448",
       "weight": 1.0,
       "source": "src_isidore_verify_ground_symbols",
       "target": "src_isidore_pcp_verifycontext",
@@ -38423,7 +38707,7 @@
       "context": "parameter_type",
       "confidence": "EXTRACTED",
       "source_file": "src/isidore/verify.py",
-      "source_location": "L366",
+      "source_location": "L378",
       "weight": 1.0,
       "source": "src_isidore_verify_v_env",
       "target": "src_isidore_pcp_verifycontext",
@@ -38456,7 +38740,7 @@
       "context": "parameter_type",
       "confidence": "EXTRACTED",
       "source_file": "src/isidore/verify.py",
-      "source_location": "L387",
+      "source_location": "L415",
       "weight": 1.0,
       "source": "src_isidore_verify_v_route",
       "target": "src_isidore_pcp_verifycontext",
@@ -38500,7 +38784,7 @@
       "context": "parameter_type",
       "confidence": "EXTRACTED",
       "source_file": "src/isidore/verify.py",
-      "source_location": "L599",
+      "source_location": "L627",
       "weight": 1.0,
       "source": "src_isidore_verify_verify_page",
       "target": "src_isidore_pcp_verifycontext",
@@ -38511,7 +38795,7 @@
       "context": "parameter_type",
       "confidence": "EXTRACTED",
       "source_file": "src/isidore/verify.py",
-      "source_location": "L491",
+      "source_location": "L519",
       "weight": 1.0,
       "source": "src_isidore_verify_verify_predicate_ctx",
       "target": "src_isidore_pcp_verifycontext",
@@ -38727,6 +39011,17 @@
       "context": "call",
       "confidence": "EXTRACTED",
       "source_file": "tests/test_verify.py",
+      "source_location": "L167",
+      "weight": 1.0,
+      "source": "tests_test_verify_test_an_env_read_through_a_named_constant_is_still_a_read",
+      "target": "src_isidore_pcp_verifycontext",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "source_file": "tests/test_verify.py",
       "source_location": "L119",
       "weight": 1.0,
       "source": "tests_test_verify_test_verify_page_tamper_evidence",
@@ -38812,7 +39107,7 @@
       "context": "call",
       "confidence": "EXTRACTED",
       "source_file": "src/isidore/verify.py",
-      "source_location": "L396",
+      "source_location": "L424",
       "weight": 1.0,
       "source": "src_isidore_verify_register_verifiers",
       "target": "src_isidore_pcp_register_verifier",
@@ -38866,7 +39161,7 @@
       "context": "import",
       "confidence": "EXTRACTED",
       "source_file": "src/isidore/verify.py",
-      "source_location": "L493",
+      "source_location": "L521",
       "weight": 1.0,
       "source": "src_isidore_verify",
       "target": "src_isidore_pcp_verify_predicate",
@@ -38877,7 +39172,7 @@
       "context": "call",
       "confidence": "EXTRACTED",
       "source_file": "src/isidore/verify.py",
-      "source_location": "L494",
+      "source_location": "L522",
       "weight": 1.0,
       "source": "src_isidore_verify_verify_predicate_ctx",
       "target": "src_isidore_pcp_verify_predicate",
@@ -38903,6 +39198,17 @@
       "source_location": "L147",
       "weight": 1.0,
       "source": "tests_test_verify_test_a_homonym_in_another_file_does_not_refute_a_true_signature",
+      "target": "src_isidore_pcp_verify_predicate"
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "INFERRED",
+      "confidence_score": 0.8,
+      "source_file": "tests/test_verify.py",
+      "source_location": "L169",
+      "weight": 1.0,
+      "source": "tests_test_verify_test_an_env_read_through_a_named_constant_is_still_a_read",
       "target": "src_isidore_pcp_verify_predicate"
     },
     {
@@ -38986,7 +39292,7 @@
       "context": "call",
       "confidence": "EXTRACTED",
       "source_file": "src/isidore/verify.py",
-      "source_location": "L481",
+      "source_location": "L509",
       "weight": 1.0,
       "source": "src_isidore_verify_build_certificate",
       "target": "src_isidore_pcp_claimverdict",
@@ -39007,7 +39313,7 @@
       "context": "parameter_type",
       "confidence": "EXTRACTED",
       "source_file": "src/isidore/verify.py",
-      "source_location": "L435",
+      "source_location": "L463",
       "weight": 1.0,
       "source": "src_isidore_verify_claim_symbols",
       "target": "src_isidore_pcp_claimverdict",
@@ -39018,7 +39324,7 @@
       "context": "generic_arg",
       "confidence": "EXTRACTED",
       "source_file": "src/isidore/verify.py",
-      "source_location": "L450",
+      "source_location": "L478",
       "weight": 1.0,
       "source": "src_isidore_verify_classify_mass",
       "target": "src_isidore_pcp_claimverdict",
@@ -39148,7 +39454,7 @@
       "context": "return_type",
       "confidence": "EXTRACTED",
       "source_file": "src/isidore/verify.py",
-      "source_location": "L450",
+      "source_location": "L478",
       "weight": 1.0,
       "source": "src_isidore_verify_classify_mass",
       "target": "src_isidore_pcp_verifiedmass",
@@ -39396,7 +39702,7 @@
       "context": "return_type",
       "confidence": "EXTRACTED",
       "source_file": "src/isidore/verify.py",
-      "source_location": "L473",
+      "source_location": "L501",
       "weight": 1.0,
       "source": "src_isidore_verify_build_certificate",
       "target": "src_isidore_pcp_certificate",
@@ -39417,7 +39723,7 @@
       "context": "generic_arg",
       "confidence": "EXTRACTED",
       "source_file": "src/isidore/verify.py",
-      "source_location": "L599",
+      "source_location": "L627",
       "weight": 1.0,
       "source": "src_isidore_verify_verify_page",
       "target": "src_isidore_pcp_certificate",
@@ -39504,7 +39810,7 @@
       "context": "call",
       "confidence": "EXTRACTED",
       "source_file": "src/isidore/verify.py",
-      "source_location": "L486",
+      "source_location": "L514",
       "weight": 1.0,
       "source": "src_isidore_verify_build_certificate",
       "target": "src_isidore_pcp_prose_hash",
@@ -39515,7 +39821,7 @@
       "context": "call",
       "confidence": "EXTRACTED",
       "source_file": "src/isidore/verify.py",
-      "source_location": "L565",
+      "source_location": "L593",
       "weight": 1.0,
       "source": "src_isidore_verify_certificate_status",
       "target": "src_isidore_pcp_prose_hash",
@@ -39874,7 +40180,7 @@
       "context": "call",
       "confidence": "EXTRACTED",
       "source_file": "src/isidore/verify.py",
-      "source_location": "L560",
+      "source_location": "L588",
       "weight": 1.0,
       "source": "src_isidore_verify_certificate_status",
       "target": "src_isidore_pcp_read_certificate",
@@ -40027,7 +40333,7 @@
       "context": "import",
       "confidence": "EXTRACTED",
       "source_file": "src/isidore/verify.py",
-      "source_location": "L649",
+      "source_location": "L677",
       "weight": 1.0,
       "source": "src_isidore_verify",
       "target": "src_isidore_pcp_read_contracts",
@@ -40038,7 +40344,7 @@
       "context": "call",
       "confidence": "EXTRACTED",
       "source_file": "src/isidore/verify.py",
-      "source_location": "L651",
+      "source_location": "L679",
       "weight": 1.0,
       "source": "src_isidore_verify_cmd_verify",
       "target": "src_isidore_pcp_read_contracts",
@@ -45160,7 +45466,7 @@
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "src/isidore/render.py",
-      "source_location": "L77",
+      "source_location": "L118",
       "weight": 1.0,
       "source": "src_isidore_render",
       "target": "src_isidore_render_agents_md_block",
@@ -45170,7 +45476,7 @@
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "src/isidore/render.py",
-      "source_location": "L226",
+      "source_location": "L267",
       "weight": 1.0,
       "source": "src_isidore_render",
       "target": "src_isidore_render_cmd_llms",
@@ -45180,7 +45486,17 @@
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "src/isidore/render.py",
-      "source_location": "L148",
+      "source_location": "L25",
+      "weight": 1.0,
+      "source": "src_isidore_render",
+      "target": "src_isidore_render_configured_wiki_dirname",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "src/isidore/render.py",
+      "source_location": "L189",
       "weight": 1.0,
       "source": "src_isidore_render",
       "target": "src_isidore_render_first_sentence",
@@ -45190,7 +45506,7 @@
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "src/isidore/render.py",
-      "source_location": "L111",
+      "source_location": "L152",
       "weight": 1.0,
       "source": "src_isidore_render",
       "target": "src_isidore_render_knowledge_summary",
@@ -45200,7 +45516,7 @@
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "src/isidore/render.py",
-      "source_location": "L219",
+      "source_location": "L260",
       "weight": 1.0,
       "source": "src_isidore_render",
       "target": "src_isidore_render_register_cli",
@@ -45210,7 +45526,7 @@
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "src/isidore/render.py",
-      "source_location": "L156",
+      "source_location": "L197",
       "weight": 1.0,
       "source": "src_isidore_render",
       "target": "src_isidore_render_render_llms_txt",
@@ -45220,7 +45536,7 @@
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "src/isidore/render.py",
-      "source_location": "L25",
+      "source_location": "L66",
       "weight": 1.0,
       "source": "src_isidore_render",
       "target": "src_isidore_render_render_quickstart",
@@ -45230,7 +45546,7 @@
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "src/isidore/render.py",
-      "source_location": "L52",
+      "source_location": "L93",
       "weight": 1.0,
       "source": "src_isidore_render",
       "target": "src_isidore_render_render_toon_index",
@@ -45240,7 +45556,7 @@
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "src/isidore/render.py",
-      "source_location": "L130",
+      "source_location": "L171",
       "weight": 1.0,
       "source": "src_isidore_render",
       "target": "src_isidore_render_upsert_agents_block",
@@ -45250,7 +45566,7 @@
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "src/isidore/render.py",
-      "source_location": "L212",
+      "source_location": "L253",
       "weight": 1.0,
       "source": "src_isidore_render",
       "target": "src_isidore_render_write_llms_txt",
@@ -45261,7 +45577,7 @@
       "context": "import",
       "confidence": "EXTRACTED",
       "source_file": "src/isidore/render.py",
-      "source_location": "L13",
+      "source_location": "L14",
       "weight": 1.0,
       "source": "src_isidore_render",
       "target": "src_isidore_toon",
@@ -45272,7 +45588,7 @@
       "context": "import",
       "confidence": "EXTRACTED",
       "source_file": "src/isidore/render.py",
-      "source_location": "L13",
+      "source_location": "L14",
       "weight": 1.0,
       "source": "src_isidore_render",
       "target": "src_isidore_toon_encode",
@@ -45344,11 +45660,153 @@
       "confidence_score": 1.0
     },
     {
+      "relation": "imports_from",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "tests/test_wiki_dir_config.py",
+      "source_location": "L14",
+      "weight": 1.0,
+      "source": "tests_test_wiki_dir_config",
+      "target": "src_isidore_render",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "references",
+      "context": "parameter_type",
+      "confidence": "EXTRACTED",
+      "source_file": "src/isidore/render.py",
+      "source_location": "L25",
+      "weight": 1.0,
+      "source": "src_isidore_render_configured_wiki_dirname",
+      "target": "src_isidore_render_py_path",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "rationale_for",
+      "confidence": "EXTRACTED",
+      "source_file": "src/isidore/render.py",
+      "source_location": "L26",
+      "weight": 1.0,
+      "source": "src_isidore_render_rationale_26",
+      "target": "src_isidore_render_configured_wiki_dirname",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "INFERRED",
+      "confidence_score": 0.8,
+      "source_file": "tests/test_wiki_dir_config.py",
+      "source_location": "L68",
+      "weight": 1.0,
+      "source": "tests_test_wiki_dir_config_test_a_config_without_a_usable_value_settles_on_the_default",
+      "target": "src_isidore_render_configured_wiki_dirname"
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "INFERRED",
+      "confidence_score": 0.8,
+      "source_file": "tests/test_wiki_dir_config.py",
+      "source_location": "L41",
+      "weight": 1.0,
+      "source": "tests_test_wiki_dir_config_test_a_repo_says_where_its_docs_live",
+      "target": "src_isidore_render_configured_wiki_dirname"
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "INFERRED",
+      "confidence_score": 0.8,
+      "source_file": "tests/test_wiki_dir_config.py",
+      "source_location": "L35",
+      "weight": 1.0,
+      "source": "tests_test_wiki_dir_config_test_a_repo_without_a_setting_gets_the_default",
+      "target": "src_isidore_render_configured_wiki_dirname"
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "INFERRED",
+      "confidence_score": 0.8,
+      "source_file": "tests/test_wiki_dir_config.py",
+      "source_location": "L74",
+      "weight": 1.0,
+      "source": "tests_test_wiki_dir_config_test_an_unreadable_config_is_the_default_never_a_guess",
+      "target": "src_isidore_render_configured_wiki_dirname"
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "INFERRED",
+      "confidence_score": 0.8,
+      "source_file": "tests/test_wiki_dir_config.py",
+      "source_location": "L58",
+      "weight": 1.0,
+      "source": "tests_test_wiki_dir_config_test_the_environment_still_wins",
+      "target": "src_isidore_render_configured_wiki_dirname"
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "INFERRED",
+      "confidence_score": 0.8,
+      "source_file": "tests/test_wiki_dir_config.py",
+      "source_location": "L51",
+      "weight": 1.0,
+      "source": "tests_test_wiki_dir_config_test_the_setting_is_found_from_a_subdirectory",
+      "target": "src_isidore_render_configured_wiki_dirname"
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "INFERRED",
+      "confidence_score": 0.8,
+      "source_file": "tests/test_wiki_dir_config.py",
+      "source_location": "L84",
+      "weight": 1.0,
+      "source": "tests_test_wiki_dir_config_test_the_value_is_normalised",
+      "target": "src_isidore_render_configured_wiki_dirname"
+    },
+    {
       "relation": "calls",
       "context": "call",
       "confidence": "EXTRACTED",
       "source_file": "src/isidore/render.py",
-      "source_location": "L74",
+      "source_location": "L263",
+      "weight": 1.0,
+      "source": "src_isidore_render_register_cli",
+      "target": "src_isidore_render_py_path",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "references",
+      "context": "parameter_type",
+      "confidence": "EXTRACTED",
+      "source_file": "src/isidore/render.py",
+      "source_location": "L197",
+      "weight": 1.0,
+      "source": "src_isidore_render_render_llms_txt",
+      "target": "src_isidore_render_py_path",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "references",
+      "context": "return_type",
+      "confidence": "EXTRACTED",
+      "source_file": "src/isidore/render.py",
+      "source_location": "L253",
+      "weight": 1.0,
+      "source": "src_isidore_render_write_llms_txt",
+      "target": "src_isidore_render_py_path",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "source_file": "src/isidore/render.py",
+      "source_location": "L115",
       "weight": 1.0,
       "source": "src_isidore_render_render_toon_index",
       "target": "src_isidore_toon_encode",
@@ -45369,9 +45827,9 @@
       "relation": "rationale_for",
       "confidence": "EXTRACTED",
       "source_file": "src/isidore/render.py",
-      "source_location": "L78",
+      "source_location": "L119",
       "weight": 1.0,
-      "source": "src_isidore_render_rationale_78",
+      "source": "src_isidore_render_rationale_119",
       "target": "src_isidore_render_agents_md_block",
       "confidence_score": 1.0
     },
@@ -45390,9 +45848,9 @@
       "relation": "rationale_for",
       "confidence": "EXTRACTED",
       "source_file": "src/isidore/render.py",
-      "source_location": "L112",
+      "source_location": "L153",
       "weight": 1.0,
-      "source": "src_isidore_render_rationale_112",
+      "source": "src_isidore_render_rationale_153",
       "target": "src_isidore_render_knowledge_summary",
       "confidence_score": 1.0
     },
@@ -45400,9 +45858,9 @@
       "relation": "rationale_for",
       "confidence": "EXTRACTED",
       "source_file": "src/isidore/render.py",
-      "source_location": "L131",
+      "source_location": "L172",
       "weight": 1.0,
-      "source": "src_isidore_render_rationale_131",
+      "source": "src_isidore_render_rationale_172",
       "target": "src_isidore_render_upsert_agents_block",
       "confidence_score": 1.0
     },
@@ -45422,7 +45880,7 @@
       "context": "call",
       "confidence": "EXTRACTED",
       "source_file": "src/isidore/render.py",
-      "source_location": "L177",
+      "source_location": "L218",
       "weight": 1.0,
       "source": "src_isidore_render_render_llms_txt",
       "target": "src_isidore_render_first_sentence",
@@ -45433,7 +45891,7 @@
       "context": "call",
       "confidence": "EXTRACTED",
       "source_file": "src/isidore/render.py",
-      "source_location": "L232",
+      "source_location": "L273",
       "weight": 1.0,
       "source": "src_isidore_render_cmd_llms",
       "target": "src_isidore_render_render_llms_txt",
@@ -45443,21 +45901,10 @@
       "relation": "rationale_for",
       "confidence": "EXTRACTED",
       "source_file": "src/isidore/render.py",
-      "source_location": "L157",
+      "source_location": "L198",
       "weight": 1.0,
-      "source": "src_isidore_render_rationale_157",
+      "source": "src_isidore_render_rationale_198",
       "target": "src_isidore_render_render_llms_txt",
-      "confidence_score": 1.0
-    },
-    {
-      "relation": "references",
-      "context": "parameter_type",
-      "confidence": "EXTRACTED",
-      "source_file": "src/isidore/render.py",
-      "source_location": "L156",
-      "weight": 1.0,
-      "source": "src_isidore_render_render_llms_txt",
-      "target": "src_isidore_render_py_path",
       "confidence_score": 1.0
     },
     {
@@ -45465,7 +45912,7 @@
       "context": "call",
       "confidence": "EXTRACTED",
       "source_file": "src/isidore/render.py",
-      "source_location": "L215",
+      "source_location": "L256",
       "weight": 1.0,
       "source": "src_isidore_render_write_llms_txt",
       "target": "src_isidore_render_render_llms_txt",
@@ -45542,29 +45989,7 @@
       "context": "call",
       "confidence": "EXTRACTED",
       "source_file": "src/isidore/render.py",
-      "source_location": "L222",
-      "weight": 1.0,
-      "source": "src_isidore_render_register_cli",
-      "target": "src_isidore_render_py_path",
-      "confidence_score": 1.0
-    },
-    {
-      "relation": "references",
-      "context": "return_type",
-      "confidence": "EXTRACTED",
-      "source_file": "src/isidore/render.py",
-      "source_location": "L212",
-      "weight": 1.0,
-      "source": "src_isidore_render_write_llms_txt",
-      "target": "src_isidore_render_py_path",
-      "confidence_score": 1.0
-    },
-    {
-      "relation": "calls",
-      "context": "call",
-      "confidence": "EXTRACTED",
-      "source_file": "src/isidore/render.py",
-      "source_location": "L231",
+      "source_location": "L272",
       "weight": 1.0,
       "source": "src_isidore_render_cmd_llms",
       "target": "src_isidore_render_write_llms_txt",
@@ -45574,9 +45999,9 @@
       "relation": "rationale_for",
       "confidence": "EXTRACTED",
       "source_file": "src/isidore/render.py",
-      "source_location": "L213",
+      "source_location": "L254",
       "weight": 1.0,
-      "source": "src_isidore_render_rationale_213",
+      "source": "src_isidore_render_rationale_254",
       "target": "src_isidore_render_write_llms_txt",
       "confidence_score": 1.0
     },
@@ -45595,9 +46020,9 @@
       "relation": "rationale_for",
       "confidence": "EXTRACTED",
       "source_file": "src/isidore/render.py",
-      "source_location": "L220",
+      "source_location": "L261",
       "weight": 1.0,
-      "source": "src_isidore_render_rationale_220",
+      "source": "src_isidore_render_rationale_261",
       "target": "src_isidore_render_register_cli",
       "confidence_score": 1.0
     },
@@ -45606,7 +46031,7 @@
       "context": "argument",
       "confidence": "INFERRED",
       "source_file": "src/isidore/render.py",
-      "source_location": "L223",
+      "source_location": "L264",
       "weight": 1.0,
       "source": "src_isidore_render_register_cli",
       "target": "src_isidore_render_cmd_llms",
@@ -46848,7 +47273,7 @@
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "src/isidore/verify.py",
-      "source_location": "L473",
+      "source_location": "L501",
       "weight": 1.0,
       "source": "src_isidore_verify",
       "target": "src_isidore_verify_build_certificate",
@@ -46858,7 +47283,7 @@
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "src/isidore/verify.py",
-      "source_location": "L590",
+      "source_location": "L618",
       "weight": 1.0,
       "source": "src_isidore_verify",
       "target": "src_isidore_verify_cert_digest",
@@ -46868,7 +47293,7 @@
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "src/isidore/verify.py",
-      "source_location": "L548",
+      "source_location": "L576",
       "weight": 1.0,
       "source": "src_isidore_verify",
       "target": "src_isidore_verify_certificate_status",
@@ -46878,7 +47303,7 @@
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "src/isidore/verify.py",
-      "source_location": "L522",
+      "source_location": "L550",
       "weight": 1.0,
       "source": "src_isidore_verify",
       "target": "src_isidore_verify_certstatus",
@@ -46888,7 +47313,7 @@
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "src/isidore/verify.py",
-      "source_location": "L435",
+      "source_location": "L463",
       "weight": 1.0,
       "source": "src_isidore_verify",
       "target": "src_isidore_verify_claim_symbols",
@@ -46898,7 +47323,7 @@
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "src/isidore/verify.py",
-      "source_location": "L450",
+      "source_location": "L478",
       "weight": 1.0,
       "source": "src_isidore_verify",
       "target": "src_isidore_verify_classify_mass",
@@ -46908,7 +47333,7 @@
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "src/isidore/verify.py",
-      "source_location": "L623",
+      "source_location": "L651",
       "weight": 1.0,
       "source": "src_isidore_verify",
       "target": "src_isidore_verify_cmd_verify",
@@ -46918,7 +47343,7 @@
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "src/isidore/verify.py",
-      "source_location": "L500",
+      "source_location": "L528",
       "weight": 1.0,
       "source": "src_isidore_verify",
       "target": "src_isidore_verify_ctx_for",
@@ -46932,6 +47357,16 @@
       "weight": 1.0,
       "source": "src_isidore_verify",
       "target": "src_isidore_verify_decide",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "src/isidore/verify.py",
+      "source_location": "L366",
+      "weight": 1.0,
+      "source": "src_isidore_verify",
+      "target": "src_isidore_verify_env_read_pattern",
       "confidence_score": 1.0
     },
     {
@@ -46958,7 +47393,7 @@
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "src/isidore/verify.py",
-      "source_location": "L420",
+      "source_location": "L448",
       "weight": 1.0,
       "source": "src_isidore_verify",
       "target": "src_isidore_verify_ground_symbols",
@@ -46998,7 +47433,7 @@
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "src/isidore/verify.py",
-      "source_location": "L409",
+      "source_location": "L437",
       "weight": 1.0,
       "source": "src_isidore_verify",
       "target": "src_isidore_verify_prose_identifiers",
@@ -47018,7 +47453,7 @@
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "src/isidore/verify.py",
-      "source_location": "L609",
+      "source_location": "L637",
       "weight": 1.0,
       "source": "src_isidore_verify",
       "target": "src_isidore_verify_register_cli",
@@ -47028,7 +47463,7 @@
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "src/isidore/verify.py",
-      "source_location": "L392",
+      "source_location": "L420",
       "weight": 1.0,
       "source": "src_isidore_verify",
       "target": "src_isidore_verify_register_verifiers",
@@ -47038,7 +47473,7 @@
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "src/isidore/verify.py",
-      "source_location": "L430",
+      "source_location": "L458",
       "weight": 1.0,
       "source": "src_isidore_verify",
       "target": "src_isidore_verify_sentence_split",
@@ -47108,7 +47543,7 @@
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "src/isidore/verify.py",
-      "source_location": "L366",
+      "source_location": "L378",
       "weight": 1.0,
       "source": "src_isidore_verify",
       "target": "src_isidore_verify_v_env",
@@ -47138,7 +47573,7 @@
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "src/isidore/verify.py",
-      "source_location": "L387",
+      "source_location": "L415",
       "weight": 1.0,
       "source": "src_isidore_verify",
       "target": "src_isidore_verify_v_route",
@@ -47178,7 +47613,7 @@
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "src/isidore/verify.py",
-      "source_location": "L599",
+      "source_location": "L627",
       "weight": 1.0,
       "source": "src_isidore_verify",
       "target": "src_isidore_verify_verify_page",
@@ -47188,7 +47623,7 @@
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "src/isidore/verify.py",
-      "source_location": "L491",
+      "source_location": "L519",
       "weight": 1.0,
       "source": "src_isidore_verify",
       "target": "src_isidore_verify_verify_predicate_ctx",
@@ -47275,7 +47710,7 @@
       "context": "call",
       "confidence": "EXTRACTED",
       "source_file": "src/isidore/verify.py",
-      "source_location": "L423",
+      "source_location": "L451",
       "weight": 1.0,
       "source": "src_isidore_verify_ground_symbols",
       "target": "src_isidore_verify_norm",
@@ -47319,7 +47754,7 @@
       "context": "call",
       "confidence": "EXTRACTED",
       "source_file": "src/isidore/verify.py",
-      "source_location": "L377",
+      "source_location": "L392",
       "weight": 1.0,
       "source": "src_isidore_verify_v_env",
       "target": "src_isidore_verify_norm",
@@ -47374,7 +47809,7 @@
       "context": "call",
       "confidence": "EXTRACTED",
       "source_file": "src/isidore/verify.py",
-      "source_location": "L422",
+      "source_location": "L450",
       "weight": 1.0,
       "source": "src_isidore_verify_ground_symbols",
       "target": "src_isidore_verify_symbol_base",
@@ -47515,7 +47950,7 @@
       "context": "call",
       "confidence": "EXTRACTED",
       "source_file": "src/isidore/verify.py",
-      "source_location": "L381",
+      "source_location": "L396",
       "weight": 1.0,
       "source": "src_isidore_verify_v_env",
       "target": "src_isidore_verify_read_source",
@@ -47635,7 +48070,7 @@
       "context": "collection",
       "confidence": "INFERRED",
       "source_file": "src/isidore/verify.py",
-      "source_location": "L393",
+      "source_location": "L421",
       "weight": 1.0,
       "source": "src_isidore_verify_register_verifiers",
       "target": "src_isidore_verify_v_calls",
@@ -47656,7 +48091,7 @@
       "context": "collection",
       "confidence": "INFERRED",
       "source_file": "src/isidore/verify.py",
-      "source_location": "L393",
+      "source_location": "L421",
       "weight": 1.0,
       "source": "src_isidore_verify_register_verifiers",
       "target": "src_isidore_verify_v_defines",
@@ -47699,7 +48134,7 @@
       "context": "collection",
       "confidence": "INFERRED",
       "source_file": "src/isidore/verify.py",
-      "source_location": "L393",
+      "source_location": "L421",
       "weight": 1.0,
       "source": "src_isidore_verify_register_verifiers",
       "target": "src_isidore_verify_v_exports",
@@ -47720,7 +48155,7 @@
       "context": "collection",
       "confidence": "INFERRED",
       "source_file": "src/isidore/verify.py",
-      "source_location": "L394",
+      "source_location": "L422",
       "weight": 1.0,
       "source": "src_isidore_verify_register_verifiers",
       "target": "src_isidore_verify_v_imports",
@@ -47901,7 +48336,7 @@
       "context": "collection",
       "confidence": "INFERRED",
       "source_file": "src/isidore/verify.py",
-      "source_location": "L394",
+      "source_location": "L422",
       "weight": 1.0,
       "source": "src_isidore_verify_register_verifiers",
       "target": "src_isidore_verify_v_value",
@@ -47977,7 +48412,7 @@
       "context": "collection",
       "confidence": "INFERRED",
       "source_file": "src/isidore/verify.py",
-      "source_location": "L394",
+      "source_location": "L422",
       "weight": 1.0,
       "source": "src_isidore_verify_register_verifiers",
       "target": "src_isidore_verify_v_signature",
@@ -48050,12 +48485,44 @@
       "target": "src_isidore_verify_v_signature"
     },
     {
+      "relation": "references",
+      "context": "return_type",
+      "confidence": "EXTRACTED",
+      "source_file": "src/isidore/verify.py",
+      "source_location": "L366",
+      "weight": 1.0,
+      "source": "src_isidore_verify_env_read_pattern",
+      "target": "src_isidore_verify_py_pattern",
+      "confidence_score": 1.0
+    },
+    {
       "relation": "rationale_for",
       "confidence": "EXTRACTED",
       "source_file": "src/isidore/verify.py",
       "source_location": "L367",
       "weight": 1.0,
       "source": "src_isidore_verify_rationale_367",
+      "target": "src_isidore_verify_env_read_pattern",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "source_file": "src/isidore/verify.py",
+      "source_location": "L397",
+      "weight": 1.0,
+      "source": "src_isidore_verify_v_env",
+      "target": "src_isidore_verify_env_read_pattern",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "rationale_for",
+      "confidence": "EXTRACTED",
+      "source_file": "src/isidore/verify.py",
+      "source_location": "L379",
+      "weight": 1.0,
+      "source": "src_isidore_verify_rationale_379",
       "target": "src_isidore_verify_v_env",
       "confidence_score": 1.0
     },
@@ -48064,7 +48531,7 @@
       "context": "collection",
       "confidence": "INFERRED",
       "source_file": "src/isidore/verify.py",
-      "source_location": "L395",
+      "source_location": "L423",
       "weight": 1.0,
       "source": "src_isidore_verify_register_verifiers",
       "target": "src_isidore_verify_v_env",
@@ -48074,9 +48541,9 @@
       "relation": "rationale_for",
       "confidence": "EXTRACTED",
       "source_file": "src/isidore/verify.py",
-      "source_location": "L388",
+      "source_location": "L416",
       "weight": 1.0,
-      "source": "src_isidore_verify_rationale_388",
+      "source": "src_isidore_verify_rationale_416",
       "target": "src_isidore_verify_v_route",
       "confidence_score": 1.0
     },
@@ -48085,7 +48552,7 @@
       "context": "collection",
       "confidence": "INFERRED",
       "source_file": "src/isidore/verify.py",
-      "source_location": "L395",
+      "source_location": "L423",
       "weight": 1.0,
       "source": "src_isidore_verify_register_verifiers",
       "target": "src_isidore_verify_v_route",
@@ -48096,7 +48563,7 @@
       "context": "call",
       "confidence": "EXTRACTED",
       "source_file": "src/isidore/verify.py",
-      "source_location": "L424",
+      "source_location": "L452",
       "weight": 1.0,
       "source": "src_isidore_verify_ground_symbols",
       "target": "src_isidore_verify_prose_identifiers",
@@ -48107,7 +48574,7 @@
       "context": "call",
       "confidence": "EXTRACTED",
       "source_file": "src/isidore/verify.py",
-      "source_location": "L423",
+      "source_location": "L451",
       "weight": 1.0,
       "source": "src_isidore_verify_ground_symbols",
       "target": "src_isidore_verify_py_path",
@@ -48117,9 +48584,9 @@
       "relation": "rationale_for",
       "confidence": "EXTRACTED",
       "source_file": "src/isidore/verify.py",
-      "source_location": "L421",
+      "source_location": "L449",
       "weight": 1.0,
-      "source": "src_isidore_verify_rationale_421",
+      "source": "src_isidore_verify_rationale_449",
       "target": "src_isidore_verify_ground_symbols",
       "confidence_score": 1.0
     },
@@ -48139,7 +48606,7 @@
       "context": "call",
       "confidence": "EXTRACTED",
       "source_file": "src/isidore/verify.py",
-      "source_location": "L462",
+      "source_location": "L490",
       "weight": 1.0,
       "source": "src_isidore_verify_classify_mass",
       "target": "src_isidore_verify_sentence_split",
@@ -48150,7 +48617,7 @@
       "context": "call",
       "confidence": "EXTRACTED",
       "source_file": "src/isidore/verify.py",
-      "source_location": "L459",
+      "source_location": "L487",
       "weight": 1.0,
       "source": "src_isidore_verify_classify_mass",
       "target": "src_isidore_verify_claim_symbols",
@@ -48160,9 +48627,9 @@
       "relation": "rationale_for",
       "confidence": "EXTRACTED",
       "source_file": "src/isidore/verify.py",
-      "source_location": "L436",
+      "source_location": "L464",
       "weight": 1.0,
-      "source": "src_isidore_verify_rationale_436",
+      "source": "src_isidore_verify_rationale_464",
       "target": "src_isidore_verify_claim_symbols",
       "confidence_score": 1.0
     },
@@ -48171,7 +48638,7 @@
       "context": "call",
       "confidence": "EXTRACTED",
       "source_file": "src/isidore/verify.py",
-      "source_location": "L485",
+      "source_location": "L513",
       "weight": 1.0,
       "source": "src_isidore_verify_build_certificate",
       "target": "src_isidore_verify_classify_mass",
@@ -48181,9 +48648,9 @@
       "relation": "rationale_for",
       "confidence": "EXTRACTED",
       "source_file": "src/isidore/verify.py",
-      "source_location": "L451",
+      "source_location": "L479",
       "weight": 1.0,
-      "source": "src_isidore_verify_rationale_451",
+      "source": "src_isidore_verify_rationale_479",
       "target": "src_isidore_verify_classify_mass",
       "confidence_score": 1.0
     },
@@ -48203,7 +48670,7 @@
       "context": "call",
       "confidence": "EXTRACTED",
       "source_file": "src/isidore/verify.py",
-      "source_location": "L480",
+      "source_location": "L508",
       "weight": 1.0,
       "source": "src_isidore_verify_build_certificate",
       "target": "src_isidore_verify_verify_predicate_ctx",
@@ -48213,9 +48680,9 @@
       "relation": "rationale_for",
       "confidence": "EXTRACTED",
       "source_file": "src/isidore/verify.py",
-      "source_location": "L475",
+      "source_location": "L503",
       "weight": 1.0,
-      "source": "src_isidore_verify_rationale_475",
+      "source": "src_isidore_verify_rationale_503",
       "target": "src_isidore_verify_build_certificate",
       "confidence_score": 1.0
     },
@@ -48268,7 +48735,7 @@
       "context": "call",
       "confidence": "EXTRACTED",
       "source_file": "src/isidore/verify.py",
-      "source_location": "L577",
+      "source_location": "L605",
       "weight": 1.0,
       "source": "src_isidore_verify_certificate_status",
       "target": "src_isidore_verify_verify_predicate_ctx",
@@ -48278,9 +48745,9 @@
       "relation": "rationale_for",
       "confidence": "EXTRACTED",
       "source_file": "src/isidore/verify.py",
-      "source_location": "L492",
+      "source_location": "L520",
       "weight": 1.0,
-      "source": "src_isidore_verify_rationale_492",
+      "source": "src_isidore_verify_rationale_520",
       "target": "src_isidore_verify_verify_predicate_ctx",
       "confidence_score": 1.0
     },
@@ -48289,7 +48756,7 @@
       "context": "call",
       "confidence": "EXTRACTED",
       "source_file": "src/isidore/verify.py",
-      "source_location": "L567",
+      "source_location": "L595",
       "weight": 1.0,
       "source": "src_isidore_verify_certificate_status",
       "target": "src_isidore_verify_ctx_for",
@@ -48300,7 +48767,7 @@
       "context": "call",
       "confidence": "EXTRACTED",
       "source_file": "src/isidore/verify.py",
-      "source_location": "L633",
+      "source_location": "L661",
       "weight": 1.0,
       "source": "src_isidore_verify_cmd_verify",
       "target": "src_isidore_verify_ctx_for",
@@ -48311,7 +48778,7 @@
       "context": "parameter_type",
       "confidence": "EXTRACTED",
       "source_file": "src/isidore/verify.py",
-      "source_location": "L500",
+      "source_location": "L528",
       "weight": 1.0,
       "source": "src_isidore_verify_ctx_for",
       "target": "src_isidore_verify_py_path",
@@ -48322,7 +48789,7 @@
       "context": "parameter_type",
       "confidence": "EXTRACTED",
       "source_file": "src/isidore/verify.py",
-      "source_location": "L590",
+      "source_location": "L618",
       "weight": 1.0,
       "source": "src_isidore_verify_cert_digest",
       "target": "src_isidore_verify_py_path",
@@ -48333,7 +48800,7 @@
       "context": "parameter_type",
       "confidence": "EXTRACTED",
       "source_file": "src/isidore/verify.py",
-      "source_location": "L548",
+      "source_location": "L576",
       "weight": 1.0,
       "source": "src_isidore_verify_certificate_status",
       "target": "src_isidore_verify_py_path",
@@ -48344,7 +48811,7 @@
       "context": "call",
       "confidence": "EXTRACTED",
       "source_file": "src/isidore/verify.py",
-      "source_location": "L612",
+      "source_location": "L640",
       "weight": 1.0,
       "source": "src_isidore_verify_register_cli",
       "target": "src_isidore_verify_py_path",
@@ -48355,7 +48822,7 @@
       "context": "parameter_type",
       "confidence": "EXTRACTED",
       "source_file": "src/isidore/verify.py",
-      "source_location": "L599",
+      "source_location": "L627",
       "weight": 1.0,
       "source": "src_isidore_verify_verify_page",
       "target": "src_isidore_verify_py_path",
@@ -48366,7 +48833,7 @@
       "context": "return_type",
       "confidence": "EXTRACTED",
       "source_file": "src/isidore/verify.py",
-      "source_location": "L548",
+      "source_location": "L576",
       "weight": 1.0,
       "source": "src_isidore_verify_certificate_status",
       "target": "src_isidore_verify_certstatus",
@@ -48376,7 +48843,7 @@
       "relation": "method",
       "confidence": "EXTRACTED",
       "source_file": "src/isidore/verify.py",
-      "source_location": "L533",
+      "source_location": "L561",
       "weight": 1.0,
       "source": "src_isidore_verify_certstatus",
       "target": "src_isidore_verify_certstatus_ok",
@@ -48386,7 +48853,7 @@
       "relation": "method",
       "confidence": "EXTRACTED",
       "source_file": "src/isidore/verify.py",
-      "source_location": "L537",
+      "source_location": "L565",
       "weight": 1.0,
       "source": "src_isidore_verify_certstatus",
       "target": "src_isidore_verify_certstatus_refuted",
@@ -48396,9 +48863,9 @@
       "relation": "rationale_for",
       "confidence": "EXTRACTED",
       "source_file": "src/isidore/verify.py",
-      "source_location": "L523",
+      "source_location": "L551",
       "weight": 1.0,
-      "source": "src_isidore_verify_rationale_523",
+      "source": "src_isidore_verify_rationale_551",
       "target": "src_isidore_verify_certstatus",
       "confidence_score": 1.0
     },
@@ -48406,9 +48873,9 @@
       "relation": "rationale_for",
       "confidence": "EXTRACTED",
       "source_file": "src/isidore/verify.py",
-      "source_location": "L538",
+      "source_location": "L566",
       "weight": 1.0,
-      "source": "src_isidore_verify_rationale_538",
+      "source": "src_isidore_verify_rationale_566",
       "target": "src_isidore_verify_certstatus_refuted",
       "confidence_score": 1.0
     },
@@ -48417,7 +48884,7 @@
       "context": "call",
       "confidence": "EXTRACTED",
       "source_file": "src/isidore/verify.py",
-      "source_location": "L584",
+      "source_location": "L612",
       "weight": 1.0,
       "source": "src_isidore_verify_certificate_status",
       "target": "src_isidore_verify_cert_digest",
@@ -48427,9 +48894,9 @@
       "relation": "rationale_for",
       "confidence": "EXTRACTED",
       "source_file": "src/isidore/verify.py",
-      "source_location": "L550",
+      "source_location": "L578",
       "weight": 1.0,
-      "source": "src_isidore_verify_rationale_550",
+      "source": "src_isidore_verify_rationale_578",
       "target": "src_isidore_verify_certificate_status",
       "confidence_score": 1.0
     },
@@ -48438,7 +48905,7 @@
       "context": "call",
       "confidence": "EXTRACTED",
       "source_file": "src/isidore/verify.py",
-      "source_location": "L602",
+      "source_location": "L630",
       "weight": 1.0,
       "source": "src_isidore_verify_verify_page",
       "target": "src_isidore_verify_certificate_status",
@@ -48459,9 +48926,9 @@
       "relation": "rationale_for",
       "confidence": "EXTRACTED",
       "source_file": "src/isidore/verify.py",
-      "source_location": "L591",
+      "source_location": "L619",
       "weight": 1.0,
-      "source": "src_isidore_verify_rationale_591",
+      "source": "src_isidore_verify_rationale_619",
       "target": "src_isidore_verify_cert_digest",
       "confidence_score": 1.0
     },
@@ -48470,7 +48937,7 @@
       "context": "call",
       "confidence": "EXTRACTED",
       "source_file": "src/isidore/verify.py",
-      "source_location": "L635",
+      "source_location": "L663",
       "weight": 1.0,
       "source": "src_isidore_verify_cmd_verify",
       "target": "src_isidore_verify_verify_page",
@@ -48480,9 +48947,9 @@
       "relation": "rationale_for",
       "confidence": "EXTRACTED",
       "source_file": "src/isidore/verify.py",
-      "source_location": "L601",
+      "source_location": "L629",
       "weight": 1.0,
-      "source": "src_isidore_verify_rationale_601",
+      "source": "src_isidore_verify_rationale_629",
       "target": "src_isidore_verify_verify_page",
       "confidence_score": 1.0
     },
@@ -48545,9 +49012,9 @@
       "relation": "rationale_for",
       "confidence": "EXTRACTED",
       "source_file": "src/isidore/verify.py",
-      "source_location": "L610",
+      "source_location": "L638",
       "weight": 1.0,
-      "source": "src_isidore_verify_rationale_610",
+      "source": "src_isidore_verify_rationale_638",
       "target": "src_isidore_verify_register_cli",
       "confidence_score": 1.0
     },
@@ -48556,7 +49023,7 @@
       "context": "argument",
       "confidence": "INFERRED",
       "source_file": "src/isidore/verify.py",
-      "source_location": "L620",
+      "source_location": "L648",
       "weight": 1.0,
       "source": "src_isidore_verify_register_cli",
       "target": "src_isidore_verify_cmd_verify",
@@ -58460,6 +58927,16 @@
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "tests/test_verify.py",
+      "source_location": "L156",
+      "weight": 1.0,
+      "source": "tests_test_verify",
+      "target": "tests_test_verify_test_an_env_read_through_a_named_constant_is_still_a_read",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "tests/test_verify.py",
       "source_location": "L54",
       "weight": 1.0,
       "source": "tests_test_verify",
@@ -58609,6 +59086,16 @@
       "weight": 1.0,
       "source": "tests_test_verify_rationale_135",
       "target": "tests_test_verify_test_a_homonym_in_another_file_does_not_refute_a_true_signature",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "rationale_for",
+      "confidence": "EXTRACTED",
+      "source_file": "tests/test_verify.py",
+      "source_location": "L157",
+      "weight": 1.0,
+      "source": "tests_test_verify_rationale_157",
+      "target": "tests_test_verify_test_an_env_read_through_a_named_constant_is_still_a_read",
       "confidence_score": 1.0
     },
     {
@@ -59188,6 +59675,232 @@
       "weight": 1.0,
       "source": "tests_test_whatsnew_test_prose_never_sees_a_raw_diff_and_is_told_hints_are_not_evidence",
       "target": "tests_test_whatsnew_one_file_repo",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "tests/test_wiki_dir_config.py",
+      "source_location": "L28",
+      "weight": 1.0,
+      "source": "tests_test_wiki_dir_config",
+      "target": "tests_test_wiki_dir_config_config",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "tests/test_wiki_dir_config.py",
+      "source_location": "L23",
+      "weight": 1.0,
+      "source": "tests_test_wiki_dir_config",
+      "target": "tests_test_wiki_dir_config_no_env",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "tests/test_wiki_dir_config.py",
+      "source_location": "L63",
+      "weight": 1.0,
+      "source": "tests_test_wiki_dir_config",
+      "target": "tests_test_wiki_dir_config_test_a_config_without_a_usable_value_settles_on_the_default",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "tests/test_wiki_dir_config.py",
+      "source_location": "L39",
+      "weight": 1.0,
+      "source": "tests_test_wiki_dir_config",
+      "target": "tests_test_wiki_dir_config_test_a_repo_says_where_its_docs_live",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "tests/test_wiki_dir_config.py",
+      "source_location": "L34",
+      "weight": 1.0,
+      "source": "tests_test_wiki_dir_config",
+      "target": "tests_test_wiki_dir_config_test_a_repo_without_a_setting_gets_the_default",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "tests/test_wiki_dir_config.py",
+      "source_location": "L72",
+      "weight": 1.0,
+      "source": "tests_test_wiki_dir_config",
+      "target": "tests_test_wiki_dir_config_test_an_unreadable_config_is_the_default_never_a_guess",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "tests/test_wiki_dir_config.py",
+      "source_location": "L88",
+      "weight": 1.0,
+      "source": "tests_test_wiki_dir_config",
+      "target": "tests_test_wiki_dir_config_test_the_cli_refuses_a_repo_whose_wiki_is_somewhere_else",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "tests/test_wiki_dir_config.py",
+      "source_location": "L54",
+      "weight": 1.0,
+      "source": "tests_test_wiki_dir_config",
+      "target": "tests_test_wiki_dir_config_test_the_environment_still_wins",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "tests/test_wiki_dir_config.py",
+      "source_location": "L45",
+      "weight": 1.0,
+      "source": "tests_test_wiki_dir_config",
+      "target": "tests_test_wiki_dir_config_test_the_setting_is_found_from_a_subdirectory",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "tests/test_wiki_dir_config.py",
+      "source_location": "L81",
+      "weight": 1.0,
+      "source": "tests_test_wiki_dir_config",
+      "target": "tests_test_wiki_dir_config_test_the_value_is_normalised",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "rationale_for",
+      "confidence": "EXTRACTED",
+      "source_file": "tests/test_wiki_dir_config.py",
+      "source_location": "L1",
+      "weight": 1.0,
+      "source": "tests_test_wiki_dir_config_rationale_1",
+      "target": "tests_test_wiki_dir_config",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "source_file": "tests/test_wiki_dir_config.py",
+      "source_location": "L66",
+      "weight": 1.0,
+      "source": "tests_test_wiki_dir_config_test_a_config_without_a_usable_value_settles_on_the_default",
+      "target": "tests_test_wiki_dir_config_config",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "source_file": "tests/test_wiki_dir_config.py",
+      "source_location": "L40",
+      "weight": 1.0,
+      "source": "tests_test_wiki_dir_config_test_a_repo_says_where_its_docs_live",
+      "target": "tests_test_wiki_dir_config_config",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "source_file": "tests/test_wiki_dir_config.py",
+      "source_location": "L95",
+      "weight": 1.0,
+      "source": "tests_test_wiki_dir_config_test_the_cli_refuses_a_repo_whose_wiki_is_somewhere_else",
+      "target": "tests_test_wiki_dir_config_config",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "source_file": "tests/test_wiki_dir_config.py",
+      "source_location": "L56",
+      "weight": 1.0,
+      "source": "tests_test_wiki_dir_config_test_the_environment_still_wins",
+      "target": "tests_test_wiki_dir_config_config",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "source_file": "tests/test_wiki_dir_config.py",
+      "source_location": "L48",
+      "weight": 1.0,
+      "source": "tests_test_wiki_dir_config_test_the_setting_is_found_from_a_subdirectory",
+      "target": "tests_test_wiki_dir_config_config",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "source_file": "tests/test_wiki_dir_config.py",
+      "source_location": "L83",
+      "weight": 1.0,
+      "source": "tests_test_wiki_dir_config_test_the_value_is_normalised",
+      "target": "tests_test_wiki_dir_config_config",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "rationale_for",
+      "confidence": "EXTRACTED",
+      "source_file": "tests/test_wiki_dir_config.py",
+      "source_location": "L46",
+      "weight": 1.0,
+      "source": "tests_test_wiki_dir_config_rationale_46",
+      "target": "tests_test_wiki_dir_config_test_the_setting_is_found_from_a_subdirectory",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "rationale_for",
+      "confidence": "EXTRACTED",
+      "source_file": "tests/test_wiki_dir_config.py",
+      "source_location": "L55",
+      "weight": 1.0,
+      "source": "tests_test_wiki_dir_config_rationale_55",
+      "target": "tests_test_wiki_dir_config_test_the_environment_still_wins",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "rationale_for",
+      "confidence": "EXTRACTED",
+      "source_file": "tests/test_wiki_dir_config.py",
+      "source_location": "L64",
+      "weight": 1.0,
+      "source": "tests_test_wiki_dir_config_rationale_64",
+      "target": "tests_test_wiki_dir_config_test_a_config_without_a_usable_value_settles_on_the_default",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "rationale_for",
+      "confidence": "EXTRACTED",
+      "source_file": "tests/test_wiki_dir_config.py",
+      "source_location": "L82",
+      "weight": 1.0,
+      "source": "tests_test_wiki_dir_config_rationale_82",
+      "target": "tests_test_wiki_dir_config_test_the_value_is_normalised",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "rationale_for",
+      "confidence": "EXTRACTED",
+      "source_file": "tests/test_wiki_dir_config.py",
+      "source_location": "L89",
+      "weight": 1.0,
+      "source": "tests_test_wiki_dir_config_rationale_89",
+      "target": "tests_test_wiki_dir_config_test_the_cli_refuses_a_repo_whose_wiki_is_somewhere_else",
       "confidence_score": 1.0
     },
     {
@@ -60269,16 +60982,6 @@
       "relation": "references",
       "confidence": "EXTRACTED",
       "source_file": "wiki/quickstart.md",
-      "source_location": "L54",
-      "weight": 1.0,
-      "source": "wiki_quickstart",
-      "target": "wiki_src_isidore_connect_py",
-      "confidence_score": 1.0
-    },
-    {
-      "relation": "references",
-      "confidence": "EXTRACTED",
-      "source_file": "wiki/quickstart.md",
       "source_location": "L15",
       "weight": 1.0,
       "source": "wiki_quickstart",
@@ -60369,7 +61072,7 @@
       "relation": "references",
       "confidence": "EXTRACTED",
       "source_file": "wiki/quickstart.md",
-      "source_location": "L51",
+      "source_location": "L52",
       "weight": 1.0,
       "source": "wiki_quickstart",
       "target": "wiki_src_isidore_qa_py",
@@ -60379,7 +61082,7 @@
       "relation": "references",
       "confidence": "EXTRACTED",
       "source_file": "wiki/quickstart.md",
-      "source_location": "L49",
+      "source_location": "L45",
       "weight": 1.0,
       "source": "wiki_quickstart",
       "target": "wiki_src_isidore_render_py",
@@ -60419,7 +61122,7 @@
       "relation": "references",
       "confidence": "EXTRACTED",
       "source_file": "wiki/quickstart.md",
-      "source_location": "L53",
+      "source_location": "L54",
       "weight": 1.0,
       "source": "wiki_quickstart",
       "target": "wiki_tests_fixtures_pcp",
@@ -60439,7 +61142,7 @@
       "relation": "references",
       "confidence": "EXTRACTED",
       "source_file": "wiki/quickstart.md",
-      "source_location": "L45",
+      "source_location": "L46",
       "weight": 1.0,
       "source": "wiki_quickstart",
       "target": "wiki_tests_test_classification_gate_py",
@@ -60539,7 +61242,7 @@
       "relation": "references",
       "confidence": "EXTRACTED",
       "source_file": "wiki/quickstart.md",
-      "source_location": "L52",
+      "source_location": "L53",
       "weight": 1.0,
       "source": "wiki_quickstart",
       "target": "wiki_tests_test_pcp_pipeline_py",
@@ -60549,7 +61252,7 @@
       "relation": "references",
       "confidence": "EXTRACTED",
       "source_file": "wiki/quickstart.md",
-      "source_location": "L46",
+      "source_location": "L47",
       "weight": 1.0,
       "source": "wiki_quickstart",
       "target": "wiki_tests_test_pcp_seams_py",
@@ -60579,7 +61282,7 @@
       "relation": "references",
       "confidence": "EXTRACTED",
       "source_file": "wiki/quickstart.md",
-      "source_location": "L47",
+      "source_location": "L48",
       "weight": 1.0,
       "source": "wiki_quickstart",
       "target": "wiki_tests_test_security_prose_py",
@@ -60609,7 +61312,7 @@
       "relation": "references",
       "confidence": "EXTRACTED",
       "source_file": "wiki/quickstart.md",
-      "source_location": "L48",
+      "source_location": "L49",
       "weight": 1.0,
       "source": "wiki_quickstart",
       "target": "wiki_tests_test_verify_py",
@@ -60629,7 +61332,7 @@
       "relation": "references",
       "confidence": "EXTRACTED",
       "source_file": "wiki/quickstart.md",
-      "source_location": "L50",
+      "source_location": "L51",
       "weight": 1.0,
       "source": "wiki_quickstart",
       "target": "wiki_tests_test_wiki_not_input_py",
@@ -61549,7 +62252,7 @@
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "wiki/src-isidore-render_py.md",
-      "source_location": "L10",
+      "source_location": "L13",
       "weight": 1.0,
       "source": "wiki_src_isidore_render_py",
       "target": "wiki_src_isidore_render_py_architecture",
@@ -61559,7 +62262,7 @@
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "wiki/src-isidore-render_py.md",
-      "source_location": "L25",
+      "source_location": "L49",
       "weight": 1.0,
       "source": "wiki_src_isidore_render_py",
       "target": "wiki_src_isidore_render_py_dependencies",
@@ -61569,7 +62272,7 @@
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "wiki/src-isidore-render_py.md",
-      "source_location": "L28",
+      "source_location": "L55",
       "weight": 1.0,
       "source": "wiki_src_isidore_render_py",
       "target": "wiki_src_isidore_render_py_how_to_change_safely",
@@ -61579,7 +62282,7 @@
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "wiki/src-isidore-render_py.md",
-      "source_location": "L19",
+      "source_location": "L40",
       "weight": 1.0,
       "source": "wiki_src_isidore_render_py",
       "target": "wiki_src_isidore_render_py_key_entry_points",
@@ -63487,5 +64190,5 @@
     }
   ],
   "hyperedges": [],
-  "built_at_commit": "3f397e139e6990661d04185ce0130368e5017bdd"
+  "built_at_commit": "572c271278e9c155b85ee9c9b40ce81d18d0f0ac"
 }

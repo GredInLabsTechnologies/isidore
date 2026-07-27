@@ -151,3 +151,25 @@ def test_a_homonym_in_another_file_does_not_refute_a_true_signature(tmp_path):
     bad = verify_predicate(parse_predicate_field("signature:_make_repo;request"), ctx)
     assert bad.value == FALSE
     assert "a/helpers.py" in bad.detail and "b/helpers.py" in bad.detail
+
+
+def test_an_env_read_through_a_named_constant_is_still_a_read(tmp_path):
+    """Naming the variable once and using the constant is the better habit, and a grep for the
+    literal at the call site does not see it. Extracting exactly one such constant in this repo
+    flipped three TRUE claims to FALSE across two pages while the code kept reading the same
+    variable — a verifier that punishes tidier code is manufacturing refutations."""
+    (tmp_path / "app.py").write_text(
+        'WIKI_DIR_ENV = "ISIDORE_WIKI_DIR"\n\n\n'
+        'def where():\n    return os.environ.get(WIKI_DIR_ENV, "")\n', encoding="utf-8")
+    (tmp_path / "other.py").write_text('X = os.environ.get("PLAIN_NAME", "")\n', encoding="utf-8")
+    nodes = [{"id": r, "source_file": r, "file_type": "code", "label": r, "source_location": "L1"}
+             for r in ("app.py", "other.py")]
+    ctx = VerifyContext(repo=tmp_path, nodes=nodes, links=[], commit="deadbee")
+
+    via_constant = verify_predicate(parse_predicate_field("env:ISIDORE_WIKI_DIR"), ctx)
+    assert via_constant.value == TRUE, via_constant.detail
+    assert "WIKI_DIR_ENV" in via_constant.detail          # says HOW it was found, not just that
+
+    # the plain spelling still works, and a variable nobody reads is still refuted
+    assert verify_predicate(parse_predicate_field("env:PLAIN_NAME"), ctx).value == TRUE
+    assert verify_predicate(parse_predicate_field("env:NEVER_READ"), ctx).value == FALSE

@@ -7,6 +7,7 @@ an agent — see `render_llms_txt`.
 """
 from __future__ import annotations
 
+import json
 import os
 from pathlib import Path
 
@@ -14,12 +15,52 @@ from .toon import encode
 
 MARKER_START = "<!-- ISIDORE:START -->"
 MARKER_END = "<!-- ISIDORE:END -->"
-# Output directory for the compiled wiki, relative to the repo root. Defaults to
-# "wiki"; override with ISIDORE_WIKI_DIR so a repo/org can keep its living docs
-# elsewhere (e.g. "doc/isidore"). Read once at import; every module imports this
-# constant, so the whole toolchain (scan, compile, certs, state, AGENTS.md block)
-# resolves to the same directory.
-WIKI_DIRNAME = os.environ.get("ISIDORE_WIKI_DIR", "wiki").strip() or "wiki"
+
+WIKI_DIR_ENV = "ISIDORE_WIKI_DIR"
+WIKI_DIR_KEY = "wiki_dir"
+CONFIG_FILENAME = "isidore.json"
+DEFAULT_WIKI_DIRNAME = "wiki"
+
+
+def configured_wiki_dirname(start: Path | None = None) -> str:
+    """Where this repository keeps its living docs, relative to its root.
+
+    Precedence: the environment, then the repository's own `isidore.json`, then `wiki`.
+
+    The repository setting exists because the environment alone was a trap. A repo whose wiki is
+    NOT at the default path had to export ISIDORE_WIKI_DIR on every single invocation; forget it
+    once and the toolchain protects a directory that does not exist while indexing the real one as
+    if it were source — which is exactly the self-indexing bug this project already had to fix
+    (GIMO, wiki at `doc/isidore`: a 13 MB certificate for a page about the documentation). A
+    setting that has to be remembered is a setting that will be forgotten. This one travels with
+    the repository.
+
+    The config is found by walking up from `start` (the working directory by default), the way a
+    repo marker is normally found. The environment still wins, so an existing export keeps working
+    and a one-off override stays possible.
+    """
+    from_env = os.environ.get(WIKI_DIR_ENV, "").strip()
+    if from_env:
+        return from_env
+    here = (start or Path.cwd()).resolve()
+    for folder in (here, *here.parents):
+        config = folder / CONFIG_FILENAME
+        if not config.is_file():
+            continue
+        try:
+            value = json.loads(config.read_text(encoding="utf-8")).get(WIKI_DIR_KEY)
+        except (OSError, ValueError):
+            return DEFAULT_WIKI_DIRNAME     # unreadable config: the default, never a guess
+        if isinstance(value, str) and value.strip():
+            return value.strip().replace("\\", "/").strip("/")
+        return DEFAULT_WIKI_DIRNAME         # a config without the key settles it: stop walking
+    return DEFAULT_WIKI_DIRNAME
+
+
+# Resolved ONCE at import: every module imports this constant, so the whole toolchain (scan,
+# compile, certs, state, AGENTS.md block) agrees on one directory for the life of the process.
+# `isidore.cli` checks it against the repo actually being operated on and refuses a mismatch.
+WIKI_DIRNAME = configured_wiki_dirname()
 
 
 def render_quickstart(module_specs, flow_specs, commit: str | None) -> str:

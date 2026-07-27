@@ -1,8 +1,8 @@
-# isidore claims · commit 3f397e139e6990661d04185ce0130368e5017bdd
+# isidore claims · commit 572c271278e9c155b85ee9c9b40ce81d18d0f0ac
 # each claim is anchored to its evidence by a content hash; state is re-checked
 # mechanically on every compile (zero LLM calls). stale/orphan => page regenerates.
-# summary: 318 claims, 0 stale/orphan
-claims[318]{page,id,statement,evidence,state}:
+# summary: 323 claims, 0 stale/orphan
+claims[323]{page,id,statement,evidence,state}:
   src-isidore-changeset_py.md,c-1ea2e1cc,The module processes git diffs to identify changed lines,src/isidore/changeset.py:36,ok
   src-isidore-changeset_py.md,c-90be0b37,changed_lines() maps files to sets of changed line numbers,src/isidore/changeset.py:36,ok
   src-isidore-changeset_py.md,c-6b86763d,symbol_spans() converts graph nodes to line ranges,src/isidore/changeset.py:68,ok
@@ -114,9 +114,14 @@ claims[318]{page,id,statement,evidence,state}:
   src-isidore-recertify_py.md,c-9b117055,The module defines _level to determine pyramid levels for recertification order,src/isidore/recertify.py:68,ok
   src-isidore-recertify_py.md,c-36fc78a0,The module defines _child_digest to compute child certificate hashes,src/isidore/recertify.py:80,ok
   src-isidore-recertify_py.md,c-42eae30c,The module defines rebuild_certificate to recompute certificates,src/isidore/recertify.py:95,ok
-  src-isidore-render_py.md,c-2c60b580,The output directory is configurable via ISIDORE_WIKI_DIR,src/isidore/render.py:L22,ok
-  src-isidore-render_py.md,c-bcc8ef1f,The module uses src/isidore/toon.py for TOON encoding,src/isidore/render.py:L13,ok
-  src-isidore-render_py.md,c-bf4896a4,The knowledge home is optional and never travels with the repository,src/isidore/render.py:L105,ok
+  src-isidore-render_py.md,c-0c596a0e,"render.py defines configured_wiki_dirname, which resolves where the living docs live",src/isidore/render.py:25,ok
+  src-isidore-render_py.md,c-5bf044b3,configured_wiki_dirname takes the directory to start the search from,src/isidore/render.py:25,ok
+  src-isidore-render_py.md,c-80a825cc,the wiki directory can be set from the environment,src/isidore/render.py:42,ok
+  src-isidore-render_py.md,c-74a62233,"the environment variable is named once, as a constant",src/isidore/render.py:19,ok
+  src-isidore-render_py.md,c-28496925,the repository declares its wiki directory under the wiki_dir key,src/isidore/render.py:20,ok
+  src-isidore-render_py.md,c-1cc96af8,the repository setting is read from isidore.json,src/isidore/render.py:21,ok
+  src-isidore-render_py.md,c-1ac6b5f8,a repository that declares nothing falls back to wiki,src/isidore/render.py:22,ok
+  src-isidore-render_py.md,c-684049d1,the module renders the TOON index alongside the human catalog,src/isidore/render.py:93,ok
   src-isidore-surface_py.md,c-7acd8a27,"The module extracts API surfaces from text, not paths",src/isidore/surface.py:1,ok
   src-isidore-surface_py.md,c-ccec6a56,"SurfaceSymbol represents a declared symbol with qualname, kind, and sig",src/isidore/surface.py:88,ok
   src-isidore-surface_py.md,c-10c60224,clean_sig normalizes whitespace and drops trailing braces,src/isidore/surface.py:106,ok

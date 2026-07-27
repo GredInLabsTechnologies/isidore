@@ -429,6 +429,22 @@ def main(argv: list[str] | None = None) -> int:
         _mod.register_cli(sub)
 
     args = parser.parse_args(argv)
+
+    # The wiki directory is bound once, at import, from the working directory. Operating on a repo
+    # that keeps its docs somewhere else would silently write half the run into the wrong place and
+    # index the other half as source. Refuse instead, and say how to fix it. This is the guard that
+    # the environment variable alone never had.
+    repo = getattr(args, "repo", None)
+    if repo is not None:
+        from .render import WIKI_DIRNAME, configured_wiki_dirname
+        wanted = configured_wiki_dirname(Path(repo))
+        if wanted != WIKI_DIRNAME:
+            print(f"ERROR: this repo keeps its wiki in '{wanted}', but the toolchain resolved "
+                  f"'{WIKI_DIRNAME}' from the working directory.\n"
+                  f"  - run isidore from inside {Path(repo).resolve()}\n"
+                  f"  - or export ISIDORE_WIKI_DIR={wanted}", file=sys.stderr)
+            return 2
+
     return args.func(args)
 
 

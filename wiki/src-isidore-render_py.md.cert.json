@@ -2,37 +2,87 @@
   "child_cert_hashes": {},
   "claims": [
     {
-      "detail": "ISIDORE_WIKI_DIR read in src/isidore/render.py",
-      "ehash": "8a35caa15e3f",
-      "evidence": "src/isidore/render.py:L22",
-      "id": "c-2c60b580",
+      "detail": "src/isidore/render.py defines configured_wiki_dirname",
+      "ehash": "fc08c9c23478",
+      "evidence": "src/isidore/render.py:25",
+      "id": "c-0c596a0e",
+      "oracle": "graph",
+      "predicate": "defines:src/isidore/render.py;configured_wiki_dirname",
+      "statement": "render.py defines configured_wiki_dirname, which resolves where the living docs live",
+      "verdict": "TRUE"
+    },
+    {
+      "detail": "configured_wiki_dirname(start)",
+      "ehash": "fc08c9c23478",
+      "evidence": "src/isidore/render.py:25",
+      "id": "c-5bf044b3",
+      "oracle": "ast",
+      "predicate": "signature:configured_wiki_dirname;start",
+      "statement": "configured_wiki_dirname takes the directory to start the search from",
+      "verdict": "TRUE"
+    },
+    {
+      "detail": "ISIDORE_WIKI_DIR read in src/isidore/render.py via WIKI_DIR_ENV",
+      "ehash": "cb097522090c",
+      "evidence": "src/isidore/render.py:42",
+      "id": "c-80a825cc",
       "oracle": "grep",
       "predicate": "env:ISIDORE_WIKI_DIR",
-      "statement": "The output directory is configurable via ISIDORE_WIKI_DIR",
+      "statement": "the wiki directory can be set from the environment",
       "verdict": "TRUE"
     },
     {
-      "detail": "src/isidore/render.py imports src/isidore/toon.py",
-      "ehash": "2c7ee6ca1137",
-      "evidence": "src/isidore/render.py:L13",
-      "id": "c-bcc8ef1f",
-      "oracle": "graph",
-      "predicate": "imports:src/isidore/render.py;src/isidore/toon.py",
-      "statement": "The module uses src/isidore/toon.py for TOON encoding",
+      "detail": "WIKI_DIR_ENV == ISIDORE_WIKI_DIR",
+      "ehash": "696f800c3329",
+      "evidence": "src/isidore/render.py:19",
+      "id": "c-74a62233",
+      "oracle": "ast",
+      "predicate": "value:WIKI_DIR_ENV;ISIDORE_WIKI_DIR",
+      "statement": "the environment variable is named once, as a constant",
       "verdict": "TRUE"
     },
     {
-      "detail": "src/isidore/render.py defines knowledge_summary",
-      "ehash": "56ee158aed41",
-      "evidence": "src/isidore/render.py:L105",
-      "id": "c-bf4896a4",
+      "detail": "WIKI_DIR_KEY == wiki_dir",
+      "ehash": "a1b3f9e8d8ad",
+      "evidence": "src/isidore/render.py:20",
+      "id": "c-28496925",
+      "oracle": "ast",
+      "predicate": "value:WIKI_DIR_KEY;wiki_dir",
+      "statement": "the repository declares its wiki directory under the wiki_dir key",
+      "verdict": "TRUE"
+    },
+    {
+      "detail": "CONFIG_FILENAME == isidore.json",
+      "ehash": "c5d6a6cb5204",
+      "evidence": "src/isidore/render.py:21",
+      "id": "c-1cc96af8",
+      "oracle": "ast",
+      "predicate": "value:CONFIG_FILENAME;isidore.json",
+      "statement": "the repository setting is read from isidore.json",
+      "verdict": "TRUE"
+    },
+    {
+      "detail": "DEFAULT_WIKI_DIRNAME == wiki",
+      "ehash": "cf54e962a482",
+      "evidence": "src/isidore/render.py:22",
+      "id": "c-1ac6b5f8",
+      "oracle": "ast",
+      "predicate": "value:DEFAULT_WIKI_DIRNAME;wiki",
+      "statement": "a repository that declares nothing falls back to wiki",
+      "verdict": "TRUE"
+    },
+    {
+      "detail": "src/isidore/render.py defines render_toon_index",
+      "ehash": "a0efbfd4f8e5",
+      "evidence": "src/isidore/render.py:93",
+      "id": "c-684049d1",
       "oracle": "graph",
-      "predicate": "defines:src/isidore/render.py;knowledge_summary",
-      "statement": "The knowledge home is optional and never travels with the repository",
+      "predicate": "defines:src/isidore/render.py;render_toon_index",
+      "statement": "the module renders the TOON index alongside the human catalog",
       "verdict": "TRUE"
     }
   ],
-  "graph_commit": "d5d1a1f33219a3171cc701884ca77e794db897e2",
+  "graph_commit": "572c271278e9c155b85ee9c9b40ce81d18d0f0ac",
   "marks": [
     {
       "disposition": "",
@@ -44,12 +94,12 @@
     }
   ],
   "mass": {
-    "gray": 21,
-    "green": 17,
+    "gray": 52,
+    "green": 7,
     "yellow": 0
   },
   "page": "src-isidore-render_py.md",
-  "prose_sha256": "23f7e735b397b38e2a0af2cf36c7f286b1ee1ebb5331257518496eb47698093f",
+  "prose_sha256": "b00f1cd8f83c7a84ab5646a0f7c02f796a2e6d61ed55c829b7947d63fe706c5d",
   "version": "pcp-1",
   "violations": []
 }

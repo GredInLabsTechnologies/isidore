@@ -1,33 +1,61 @@
 ## Purpose
-`src/isidore/render.py` generates deterministic, LLM-free documentation for agents. It produces four outputs:
-1. `quickstart.md`: A human-readable catalog of modules and flows, with `path:line` citations.
-2. `index.toon`: A machine-friendly TOON table version of the same catalog, cheaper for agents to load.
-3. `llms.txt`: A standardized format for agent documentation, emitted as `f3399f1`.
-4. An `AGENTS.md` block: A self-reference for agents before they modify the repo, inserted between `<!-- ISIDORE:START -->` and `<!-- ISIDORE:END -->` markers.
 
-The module exists to provide a consistent, low-cost documentation layer for agents, ensuring they have reliable access to repository structure and purpose without requiring LLM calls.
+`src/isidore/render.py` holds the outputs that cost nothing: `quickstart.md`, `index.toon`,
+`llms.txt` and the AGENTS.md reference block (`src/isidore/render.py:1`). None of them needs an LLM
+call — they are projections of what the compiler already knows, so the expensive path stays reserved
+for prose (`src/isidore/render.py:3`).
+
+It also answers one question the whole toolchain depends on: **where this repository keeps its
+living docs**. That answer has to be the same for `scan`, `compile`, the certificates, the state
+file and the AGENTS.md block, or a run writes half of itself into one directory and reads the other
+half from another.
 
 ## Architecture
-The module is structured around four key functions:
-- `render_quickstart()`: Generates the human-readable `quickstart.md` with tables of modules and flows.
-- `render_toon_index()`: Creates the TOON-formatted `index.toon` for agent consumption.
-- `agents_md_block()`: Produces the `AGENTS.md` block with a self-reference and optional knowledge home summary.
-- `knowledge_summary()`: Collects metadata about the local knowledge home (if it exists).
 
-The module uses `src/isidore/toon.py` for TOON encoding (`src/isidore/render.py:L13`) and defines markers for delimiting the `AGENTS.md` block (`src/isidore/render.py:L15-L16`). The output directory is configurable via `ISIDORE_WIKI_DIR` (`src/isidore/render.py:L22`).
+`configured_wiki_dirname` resolves the directory with a stated precedence: the environment, then the
+repository's own `isidore.json`, then `wiki` (`src/isidore/render.py:28`). The environment is read
+first and returns immediately when set (`src/isidore/render.py:42`), so an existing export keeps
+working and a one-off override stays possible.
+
+The repository setting exists because the environment alone was a trap. A repo whose wiki is not at
+the default path had to export the variable on every invocation; forget it once and the toolchain
+guards a directory that does not exist while indexing the real one as if it were source — the
+self-indexing bug this project already had to fix, measured in GIMO as a 13 MB certificate for a page
+about the documentation (`src/isidore/render.py:30`). A setting that must be remembered is a setting
+that will be forgotten, so this one travels with the repository
+(`src/isidore/render.py:35`).
+
+The config is located by walking up from the starting directory, the way a repo marker is normally
+found (`src/isidore/render.py:38`), which makes running from `src/` behave like running from the
+root. The names it depends on are declared once at the top rather than repeated: the variable
+(`src/isidore/render.py:19`), the key (`src/isidore/render.py:20`), the filename
+(`src/isidore/render.py:21`) and the fallback (`src/isidore/render.py:22`).
+
+The rest of the module is rendering. `render_quickstart` (`src/isidore/render.py:66`) and
+`render_toon_index` (`src/isidore/render.py:93`) are the human and machine faces of the same
+catalog — `index.toon` exists because TOON tables are cheaper for an agent to load than prose.
+`agents_md_block` (`src/isidore/render.py:118`) is the block written into a repo's AGENTS.md, and
+`knowledge_summary` (`src/isidore/render.py:152`) covers the knowledge home.
 
 ## Key entry points
-- `render_quickstart()`: Entry point for generating `quickstart.md`.
-- `render_toon_index()`: Entry point for generating `index.toon`.
-- `agents_md_block()`: Entry point for generating the `AGENTS.md` block.
-- `knowledge_summary()`: Entry point for collecting knowledge home metadata.
+
+- `configured_wiki_dirname(start)` — where the docs live, by precedence
+  (`src/isidore/render.py:25`).
+- `render_quickstart(...)` — the catalog a human reads (`src/isidore/render.py:66`).
+- `render_toon_index(...)` — the same catalog for an agent (`src/isidore/render.py:93`).
+- `agents_md_block()` — the reference block for a repo's AGENTS.md (`src/isidore/render.py:118`).
+- `knowledge_summary(...)` — the knowledge home's section (`src/isidore/render.py:152`).
 
 ## Dependencies
-- `src/isidore/toon.py`: Used for TOON encoding (`src/isidore/render.py:L13`).
+
+Only `src/isidore/toon.py`, for encoding the TOON tables (`src/isidore/render.py:14`). That thinness
+is deliberate: `src/isidore/pipeline.py` and `src/isidore/whatsnew.py` both import from here, so a
+dependency added to this module is a dependency added to the compiler.
 
 ## How to change safely
-1. To modify the `quickstart.md` format, edit `render_quickstart()` (`src/isidore/render.py:L25-L49`).
-2. To change the `index.toon` structure, modify `render_toon_index()` (`src/isidore/render.py:L52-L74`).
-3. To update the `AGENTS.md` block, adjust `agents_md_block()` (`src/isidore/render.py:L77-L108`).
-4. To alter knowledge home handling, edit `knowledge_summary()` (`src/isidore/render.py:L111-L127`).
-5. To change the output directory, modify `WIKI_DIRNAME` (`src/isidore/render.py:L22`).
+
+The resolved directory is bound once per process and every module reads the same constant. Keep it
+that way: a second place that answers "where is the wiki" is a second answer, and the two will
+disagree on the day it matters. When the resolution rules change, change them here and let the CLI's
+mismatch check keep a run from starting in the wrong place. And keep the fallbacks boring — an
+unreadable config resolves to the default, never to a guess.

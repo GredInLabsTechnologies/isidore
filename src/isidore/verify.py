@@ -363,24 +363,52 @@ def v_signature(pred: Predicate, ctx: VerifyContext) -> Verdict:
     return _signature_via_langspec(fn_name, expected, ctx)
 
 
+def _env_read_pattern(token: str) -> re.Pattern:
+    """The ways a language spells "read this from the environment", for a literal or a name."""
+    t = re.escape(token)
+    q = r"[\"']?"                       # a constant NAME appears unquoted where a literal is quoted
+    return re.compile(
+        r"(?:os\.environ\[\s*" + q + t + q + r"\s*\]"
+        r"|os\.environ\.get\(\s*" + q + t + q + r"\s*[,)]"
+        r"|getenv\(\s*" + q + t + q + r"\s*[,)]"
+        r"|process\.env\." + t + r"\b"
+        r"|process\.env\[\s*" + q + t + q + r"\s*\])")
+
+
 def v_env(pred: Predicate, ctx: VerifyContext) -> Verdict:
-    """env(NAME): NAME is read from the environment somewhere in the repo. Oracle: grep."""
+    """env(NAME): NAME is read from the environment somewhere in the repo. Oracle: grep.
+
+    The read is found through a named constant as well as a literal. Naming the variable once —
+    `WIKI_DIR_ENV = "ISIDORE_WIKI_DIR"`, then `os.environ.get(WIKI_DIR_ENV, "")` — is the better
+    habit, and a grep for the literal at the call site does not see it. Measured on this repo:
+    extracting exactly that constant flipped three TRUE claims to FALSE across two pages while the
+    code kept reading the same variable. A verifier that punishes tidier code is manufacturing
+    refutations, and a false FALSE is worse than no verdict — it records a true statement as
+    contradicted.
+    """
     if len(pred.args) != 1:
         return undecidable("env expects (NAME)")
     name = pred.args[0]
-    pat = re.compile(
-        r"(?:os\.environ\[[\"']" + re.escape(name) + r"[\"']\]"
-        r"|os\.environ\.get\(\s*[\"']" + re.escape(name) + r"[\"']"
-        r"|getenv\(\s*[\"']" + re.escape(name) + r"[\"']"
-        r"|process\.env\." + re.escape(name) + r"\b"
-        r"|process\.env\[[\"']" + re.escape(name) + r"[\"']\])")
     files = {_norm(n["source_file"]) for n in ctx.nodes if n.get("source_file")}
     if not files:
         return undecidable("no source files in the graph to scan for env reads")
-    for rel in sorted(files):
-        src = _read_source(ctx, rel)
-        if src and pat.search(src):
+
+    sources = {rel: _read_source(ctx, rel) for rel in sorted(files)}
+    direct = _env_read_pattern(name)
+    for rel, src in sources.items():
+        if src and direct.search(src):
             return Verdict(TRUE, ORACLE_GREP, f"{name} read in {rel}")
+
+    # Second pass: any constant BOUND to that exact string, then read from the environment. The
+    # binding and the read may live in different files, so both passes span the repository.
+    binding = re.compile(r"^\s*([A-Za-z_][A-Za-z_0-9]*)\s*[:=][^=\n]*?[\"']"
+                         + re.escape(name) + r"[\"']", re.MULTILINE)
+    aliases = {m.group(1) for src in sources.values() if src for m in binding.finditer(src)}
+    for alias in sorted(aliases):
+        pat = _env_read_pattern(alias)
+        for rel, src in sources.items():
+            if src and pat.search(src):
+                return Verdict(TRUE, ORACLE_GREP, f"{name} read in {rel} via {alias}")
     return Verdict(FALSE, ORACLE_GREP, f"no environment read of {name} found")
 
 

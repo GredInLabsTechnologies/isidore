@@ -585,6 +585,19 @@
       "quarantined": 0,
       "retries": 0,
       "skipped": 0
+    },
+    {
+      "calls_saved": 0,
+      "commit": "572c271278e9",
+      "dirty": 1,
+      "generated": 1,
+      "generated_pages": [
+        "src-isidore-render_py.md"
+      ],
+      "planned": 40,
+      "quarantined": 0,
+      "retries": 0,
+      "skipped": 0
     }
   ],
   "pages": {
@@ -2111,32 +2124,72 @@
     "src-isidore-render_py.md": {
       "claims": [
         {
-          "ehash": "8a35caa15e3f",
-          "evidence": "src/isidore/render.py:L22",
-          "id": "c-2c60b580",
+          "ehash": "fc08c9c23478",
+          "evidence": "src/isidore/render.py:25",
+          "id": "c-0c596a0e",
+          "predicate": "defines:src/isidore/render.py;configured_wiki_dirname",
+          "statement": "render.py defines configured_wiki_dirname, which resolves where the living docs live",
+          "verdict": "TRUE"
+        },
+        {
+          "ehash": "fc08c9c23478",
+          "evidence": "src/isidore/render.py:25",
+          "id": "c-5bf044b3",
+          "predicate": "signature:configured_wiki_dirname;start",
+          "statement": "configured_wiki_dirname takes the directory to start the search from",
+          "verdict": "TRUE"
+        },
+        {
+          "ehash": "cb097522090c",
+          "evidence": "src/isidore/render.py:42",
+          "id": "c-80a825cc",
           "predicate": "env:ISIDORE_WIKI_DIR",
-          "statement": "The output directory is configurable via ISIDORE_WIKI_DIR",
+          "statement": "the wiki directory can be set from the environment",
           "verdict": "TRUE"
         },
         {
-          "ehash": "2c7ee6ca1137",
-          "evidence": "src/isidore/render.py:L13",
-          "id": "c-bcc8ef1f",
-          "predicate": "imports:src/isidore/render.py;src/isidore/toon.py",
-          "statement": "The module uses src/isidore/toon.py for TOON encoding",
+          "ehash": "696f800c3329",
+          "evidence": "src/isidore/render.py:19",
+          "id": "c-74a62233",
+          "predicate": "value:WIKI_DIR_ENV;ISIDORE_WIKI_DIR",
+          "statement": "the environment variable is named once, as a constant",
           "verdict": "TRUE"
         },
         {
-          "ehash": "56ee158aed41",
-          "evidence": "src/isidore/render.py:L105",
-          "id": "c-bf4896a4",
-          "predicate": "defines:src/isidore/render.py;knowledge_summary",
-          "statement": "The knowledge home is optional and never travels with the repository",
+          "ehash": "a1b3f9e8d8ad",
+          "evidence": "src/isidore/render.py:20",
+          "id": "c-28496925",
+          "predicate": "value:WIKI_DIR_KEY;wiki_dir",
+          "statement": "the repository declares its wiki directory under the wiki_dir key",
+          "verdict": "TRUE"
+        },
+        {
+          "ehash": "c5d6a6cb5204",
+          "evidence": "src/isidore/render.py:21",
+          "id": "c-1cc96af8",
+          "predicate": "value:CONFIG_FILENAME;isidore.json",
+          "statement": "the repository setting is read from isidore.json",
+          "verdict": "TRUE"
+        },
+        {
+          "ehash": "cf54e962a482",
+          "evidence": "src/isidore/render.py:22",
+          "id": "c-1ac6b5f8",
+          "predicate": "value:DEFAULT_WIKI_DIRNAME;wiki",
+          "statement": "a repository that declares nothing falls back to wiki",
+          "verdict": "TRUE"
+        },
+        {
+          "ehash": "a0efbfd4f8e5",
+          "evidence": "src/isidore/render.py:93",
+          "id": "c-684049d1",
+          "predicate": "defines:src/isidore/render.py;render_toon_index",
+          "statement": "the module renders the TOON index alongside the human catalog",
           "verdict": "TRUE"
         }
       ],
-      "compiled_at": "2026-07-26T18:26:08Z",
-      "context_hash": "08df87019a14ad4712483bed17d24ecb8d3d185d4cab8c193054bcefac2a0e5b",
+      "compiled_at": "2026-07-27T00:32:36Z",
+      "context_hash": "56f3890a52ea838905cebec9befb0bb542c756b091ef0bd51da038f804ec15e1",
       "findings": [],
       "history": [
         {
@@ -2153,6 +2206,17 @@
         {
           "commit": "d5d1a1f33219",
           "line_delta": 6,
+          "sections_changed": [
+            "Architecture",
+            "Dependencies",
+            "How to change safely",
+            "Key entry points",
+            "Purpose"
+          ]
+        },
+        {
+          "commit": "572c271278e9",
+          "line_delta": 28,
           "sections_changed": [
             "Architecture",
             "Dependencies",

@@ -1,4 +1,4 @@
-# isidore wiki index · commit 3f397e139e6990661d04185ce0130368e5017bdd
+# isidore wiki index · commit 572c271278e9c155b85ee9c9b40ce81d18d0f0ac
 # same catalog as quickstart.md, in TOON tables (cheap for agents to load)
 modules[40]{module,files,symbols,page}:
   src/isidore/connectors,9,67,src-isidore-connectors.md
@@ -31,16 +31,16 @@ modules[40]{module,files,symbols,page}:
   src/isidore/cli.py,1,13,src-isidore-cli_py.md
   tests/test_connectors_f5.py,1,12,tests-test_connectors_f5_py.md
   src/isidore/langspec.py,1,12,src-isidore-langspec_py.md
+  src/isidore/render.py,1,12,src-isidore-render_py.md
   tests/test_classification_gate.py,1,11,tests-test_classification_gate_py.md
   tests/test_pcp_seams.py,1,11,tests-test_pcp_seams_py.md
   tests/test_security_prose.py,1,11,tests-test_security_prose_py.md
   tests/test_verify.py,1,11,tests-test_verify_py.md
-  src/isidore/render.py,1,11,src-isidore-render_py.md
+  tests/test_wiki_dir_config.py,1,11,tests-test_wiki_dir_config_py.md
   tests/test_wiki_not_input.py,1,10,tests-test_wiki_not_input_py.md
   src/isidore/qa.py,1,10,src-isidore-qa_py.md
   tests/test_pcp_pipeline.py,1,9,tests-test_pcp_pipeline_py.md
   tests/fixtures/pcp,8,9,tests-fixtures-pcp.md
-  src/isidore/connect.py,1,9,src-isidore-connect_py.md
 flows[0]{flow,modules,page}:
 hot_symbols[240]{module,symbol,file,line,degree}:
   src/isidore/connectors,store.py,src/isidore/connectors/store.py,1,17
@@ -140,11 +140,11 @@ hot_symbols[240]{module,symbol,file,line,degree}:
   tests/test_overview.py,test_a_wiki_claim_is_chained_and_verified_instead_of_being_dropped(),tests/test_overview.py,66-L79,0
   tests/test_overview.py,test_a_page_that_can_prove_nothing_is_refused(),tests/test_overview.py,82-L89,0
   src/isidore/claims.py,claims.py,src/isidore/claims.py,1,18
-  src/isidore/claims.py,is_negative_existential(),src/isidore/claims.py,103-L106,0
-  src/isidore/claims.py,parse_predicate_field(),src/isidore/claims.py,109-L112,0
-  src/isidore/claims.py,parse_claims_block(),src/isidore/claims.py,115-L136,0
-  src/isidore/claims.py,_split_evidence(),src/isidore/claims.py,139-L148,0
-  src/isidore/claims.py,_normalize(),src/isidore/claims.py,151-L154,0
+  src/isidore/claims.py,is_negative_existential(),src/isidore/claims.py,105-L108,0
+  src/isidore/claims.py,parse_predicate_field(),src/isidore/claims.py,111-L114,0
+  src/isidore/claims.py,parse_claims_block(),src/isidore/claims.py,117-L138,0
+  src/isidore/claims.py,_split_evidence(),src/isidore/claims.py,141-L150,0
+  src/isidore/claims.py,_normalize(),src/isidore/claims.py,153-L156,0
   tests/test_claims.py,test_claims.py,tests/test_claims.py,1,16
   tests/test_claims.py,test_is_negative_existential_flags_absence_not_behavior(),tests/test_claims.py,21-L43,0
   tests/test_claims.py,_make_repo(),tests/test_claims.py,59-L75,0
@@ -223,6 +223,12 @@ hot_symbols[240]{module,symbol,file,line,degree}:
   src/isidore/langspec.py,sanitize(),src/isidore/langspec.py,56-L120,0
   src/isidore/langspec.py,_Pending,src/isidore/langspec.py,124-L127,0
   src/isidore/langspec.py,extract(),src/isidore/langspec.py,130-L195,0
+  src/isidore/render.py,render.py,src/isidore/render.py,1,12
+  src/isidore/render.py,configured_wiki_dirname(),src/isidore/render.py,25-L57,0
+  src/isidore/render.py,render_quickstart(),src/isidore/render.py,66-L90,0
+  src/isidore/render.py,render_toon_index(),src/isidore/render.py,93-L115,0
+  src/isidore/render.py,agents_md_block(),src/isidore/render.py,118-L149,0
+  src/isidore/render.py,knowledge_summary(),src/isidore/render.py,152-L168,0
   tests/test_classification_gate.py,test_classification_gate.py,tests/test_classification_gate.py,1,10
   tests/test_classification_gate.py,home(),tests/test_classification_gate.py,31-L34,0
   tests/test_classification_gate.py,_store(),tests/test_classification_gate.py,37-L43,0
@@ -247,12 +253,12 @@ hot_symbols[240]{module,symbol,file,line,degree}:
   tests/test_verify.py,test_three_field_parser_captures_predicate(),tests/test_verify.py,28-L32,0
   tests/test_verify.py,test_each_predicate_kind_decides_correctly(),tests/test_verify.py,35-L51,0
   tests/test_verify.py,test_certificate_matches_golden_verdicts(),tests/test_verify.py,54-L65,0
-  src/isidore/render.py,render.py,src/isidore/render.py,1,11
-  src/isidore/render.py,render_quickstart(),src/isidore/render.py,25-L49,0
-  src/isidore/render.py,render_toon_index(),src/isidore/render.py,52-L74,0
-  src/isidore/render.py,agents_md_block(),src/isidore/render.py,77-L108,0
-  src/isidore/render.py,knowledge_summary(),src/isidore/render.py,111-L127,0
-  src/isidore/render.py,upsert_agents_block(),src/isidore/render.py,130-L137,0
+  tests/test_wiki_dir_config.py,test_wiki_dir_config.py,tests/test_wiki_dir_config.py,1,10
+  tests/test_wiki_dir_config.py,no_env(),tests/test_wiki_dir_config.py,23-L25,0
+  tests/test_wiki_dir_config.py,_config(),tests/test_wiki_dir_config.py,28-L30,0
+  tests/test_wiki_dir_config.py,test_a_repo_without_a_setting_gets_the_default(),tests/test_wiki_dir_config.py,33-L34,0
+  tests/test_wiki_dir_config.py,test_a_repo_says_where_its_docs_live(),tests/test_wiki_dir_config.py,37-L39,0
+  tests/test_wiki_dir_config.py,test_the_setting_is_found_from_a_subdirectory(),tests/test_wiki_dir_config.py,42-L48,0
   tests/test_wiki_not_input.py,test_wiki_not_input.py,tests/test_wiki_not_input.py,1,9
   tests/test_wiki_not_input.py,nested_wiki_dir(),tests/test_wiki_not_input.py,28-L33,0
   tests/test_wiki_not_input.py,repo_with_nested_wiki(),tests/test_wiki_not_input.py,37-L53,0
@@ -277,13 +283,7 @@ hot_symbols[240]{module,symbol,file,line,degree}:
   tests/fixtures/pcp,graph.json,tests/fixtures/pcp/graph.json,1,0
   tests/fixtures/pcp,marks.json,tests/fixtures/pcp/marks.json,1,0
   tests/fixtures/pcp,pyramid_config.json,tests/fixtures/pcp/pyramid_config.json,1,0
-  src/isidore/connect.py,connect.py,src/isidore/connect.py,1,12
-  src/isidore/connect.py,load_config(),src/isidore/connect.py,23-L32,0
-  src/isidore/connect.py,save_config(),src/isidore/connect.py,35-L42,0
-  src/isidore/connect.py,parse_setting(),src/isidore/connect.py,45-L57,0
-  src/isidore/connect.py,apply_settings(),src/isidore/connect.py,60-L84,0
-  src/isidore/connect.py,connector_summary(),src/isidore/connect.py,87-L102,0
-module_deps[41]{from,to,links}:
+module_deps[38]{from,to,links}:
   src/isidore/connectors,src/isidore/home.py,2
   src/isidore/connectors,src/isidore/claims.py,1
   src/isidore/verify.py,src/isidore/graph.py,1
@@ -322,6 +322,3 @@ module_deps[41]{from,to,links}:
   src/isidore/render.py,src/isidore/toon.py,1
   src/isidore/qa.py,src/isidore/graph.py,1
   src/isidore/qa.py,src/isidore/pipeline.py,1
-  src/isidore/connect.py,src/isidore/connectors,2
-  src/isidore/connect.py,src/isidore/home.py,1
-  src/isidore/connect.py,src/isidore/toon.py,1

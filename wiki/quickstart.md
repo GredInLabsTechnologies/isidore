@@ -1,6 +1,6 @@
 # Wiki (isidore)
 
-Compiled from the repository structure graph at commit `3f397e139e6990661d04185ce0130368e5017bdd`.
+Compiled from the repository structure graph at commit `572c271278e9c155b85ee9c9b40ce81d18d0f0ac`.
 Pages are generated from exact structural facts; cited `path:line` references are
 mechanically lint-checked against the repository.
 
@@ -42,13 +42,13 @@ Side observations harvested during compilation live in [findings.toon](findings.
 | src/isidore/cli.py | 1 | 13 | [src-isidore-cli_py.md](src-isidore-cli_py.md) |
 | tests/test_connectors_f5.py | 1 | 12 | [tests-test_connectors_f5_py.md](tests-test_connectors_f5_py.md) |
 | src/isidore/langspec.py | 1 | 12 | [src-isidore-langspec_py.md](src-isidore-langspec_py.md) |
+| src/isidore/render.py | 1 | 12 | [src-isidore-render_py.md](src-isidore-render_py.md) |
 | tests/test_classification_gate.py | 1 | 11 | [tests-test_classification_gate_py.md](tests-test_classification_gate_py.md) |
 | tests/test_pcp_seams.py | 1 | 11 | [tests-test_pcp_seams_py.md](tests-test_pcp_seams_py.md) |
 | tests/test_security_prose.py | 1 | 11 | [tests-test_security_prose_py.md](tests-test_security_prose_py.md) |
 | tests/test_verify.py | 1 | 11 | [tests-test_verify_py.md](tests-test_verify_py.md) |
-| src/isidore/render.py | 1 | 11 | [src-isidore-render_py.md](src-isidore-render_py.md) |
+| tests/test_wiki_dir_config.py | 1 | 11 | [tests-test_wiki_dir_config_py.md](tests-test_wiki_dir_config_py.md) |
 | tests/test_wiki_not_input.py | 1 | 10 | [tests-test_wiki_not_input_py.md](tests-test_wiki_not_input_py.md) |
 | src/isidore/qa.py | 1 | 10 | [src-isidore-qa_py.md](src-isidore-qa_py.md) |
 | tests/test_pcp_pipeline.py | 1 | 9 | [tests-test_pcp_pipeline_py.md](tests-test_pcp_pipeline_py.md) |
 | tests/fixtures/pcp | 8 | 9 | [tests-fixtures-pcp.md](tests-fixtures-pcp.md) |
-| src/isidore/connect.py | 1 | 9 | [src-isidore-connect_py.md](src-isidore-connect_py.md) |
