@@ -55,9 +55,9 @@
     "semantic_hash": ""
   },
   "src/isidore/detectors.py": {
-    "mtime": 1783887902.1507604,
-    "ast_hash": "1a4c9cecd97ff3272e89095b96dae60f",
-    "semantic_hash": "1a4c9cecd97ff3272e89095b96dae60f"
+    "mtime": 1790646745.4399965,
+    "ast_hash": "9c2770d3def304ccada1c8d479434646",
+    "semantic_hash": ""
   },
   "src/isidore/export.py": {
     "mtime": 1783699744.150089,
@@ -205,9 +205,9 @@
     "semantic_hash": ""
   },
   "tests/test_detectors.py": {
-    "mtime": 1783887843.4590418,
-    "ast_hash": "3fc652bf2daf8cf1e2fd4d0252ba4257",
-    "semantic_hash": "3fc652bf2daf8cf1e2fd4d0252ba4257"
+    "mtime": 1790646715.0949767,
+    "ast_hash": "b0857db1e0bba4b6a0b890636736b326",
+    "semantic_hash": ""
   },
   "tests/test_export.py": {
     "mtime": 1783699856.073987,

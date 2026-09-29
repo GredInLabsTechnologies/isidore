@@ -54,6 +54,12 @@ _STRING_RE = re.compile(r"""(['"])((?:(?!\1).){4,})\1""")
 _HEX_COLOR = re.compile(r"^#(?:[0-9a-fA-F]{3,8})$")
 _URL = re.compile(r"^[a-z][a-z0-9+.\-]*://")
 _REPEATED = re.compile(r"^(.)\1*$")
+# A rooted or explicitly relative POSIX path. `/tmp/pytest-of-runner/.../one` fits the entropy rule
+# exactly — long, varied, all in [A-Za-z0-9_-/] — so on Linux and macOS every absolute path was a
+# "credential": `connect git-repo --set repos=/home/me/code` was refused, and a path literal in source
+# became a danger mark. Windows never saw it, because `C:\` falls outside the charset. Known-prefix
+# credentials are still caught above this check, whatever they start with.
+_POSIX_PATH = re.compile(r"^(?:~|\.{1,2})?/")
 
 
 def shannon_entropy(s: str) -> float:
@@ -75,7 +81,7 @@ def _looks_like_secret(literal: str) -> str | None:
     if (len(literal) >= 24 and shannon_entropy(literal) >= 3.5
             and re.fullmatch(r"[A-Za-z0-9_\-+/=]+", literal)
             and not _HEX_COLOR.match(literal) and not _URL.match(literal)
-            and not _REPEATED.match(literal)):
+            and not _REPEATED.match(literal) and not _POSIX_PATH.match(literal)):
         return "high-entropy literal (>=24 chars, >=3.5 bits/char)"
     return None
 

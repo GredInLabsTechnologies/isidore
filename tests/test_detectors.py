@@ -49,3 +49,16 @@ def test_shannon_entropy_basic():
     assert shannon_entropy("") == 0.0
     assert shannon_entropy("aaaa") == 0.0
     assert shannon_entropy("ab") == 1.0
+
+
+def test_a_posix_path_is_not_a_credential():
+    # regression, found by the first Linux CI run: every long absolute path passed the entropy rule,
+    # so `connect git-repo --set repos=/home/...` was REFUSED on Linux/macOS and never on Windows.
+    from isidore.detectors import _looks_like_secret
+    for path in ("/tmp/pytest-of-runner/pytest-0/test_configure_then_ingest_end0/one",
+                 "~/src/GredInLabsTechnologies/isidore-wiki", "../vendor/k8sClusterBootstrapV2/x",
+                 "./node_modules/@scope/packageNameLong/dist"):
+        assert _looks_like_secret(path) is None, path
+    # ...while the credentials it exists for are still caught, slashes and all
+    assert _looks_like_secret("wJalrXUtnFEMI/K7MDENG/bPxRfiCYEXAMPLEKEY")
+    assert _looks_like_secret("sk_live_ops_2f9d1a7c8b3e5f60a1d4c7e9b2f5a8d0")
