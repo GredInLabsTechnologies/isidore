@@ -162,6 +162,33 @@ def test_harvest_todos_finds_markers_with_lines(tmp_path):
     assert [(r["marker"], r["line"]) for r in rows] == [("TODO", 2), ("FIXME", 3)]
 
 
+def test_harvest_todos_reads_comments_not_strings(tmp_path):
+    # regression: the regex ran over raw lines, so every marker isidore listed about itself was a
+    # string (the harvesting regex, a help text, test data) or a comment ABOUT markers. A marker is
+    # a comment someone left, and it opens that comment.
+    (tmp_path / "a.py").write_text(
+        '"""Docstring naming TODO markers."""\n'
+        'PAT = r"\\b(TODO|FIXME)\\b"\n'
+        'HELP = "list TODO/FIXME"  # HACK: real one\n'
+        'x = "#"  # XXX after a hash in a string\n'
+        '# harvest TODO/FIXME markers from comments\n'
+        '# TODO/FIXME in the changed files\n'
+        '# TODO(ana) the owner form counts\n', encoding="utf-8")
+    (tmp_path / "b.js").write_text(
+        'const s = "TODO not me";\n// TODO: me\n/* FIXME\n   spans */ let t = "// HACK no";\n',
+        encoding="utf-8")
+    (tmp_path / "notes.md").write_text("- TODO: prose keeps working\n", encoding="utf-8")
+    rows = harvest_todos(tmp_path, {"a.py", "b.js", "notes.md"})
+    assert [(r["file"], r["marker"], r["line"]) for r in rows] == [
+        ("a.py", "HACK", 3), ("a.py", "XXX", 4), ("a.py", "TODO", 7),
+        ("b.js", "TODO", 2), ("b.js", "FIXME", 3),
+        ("notes.md", "TODO", 1)]
+
+    # a file tokenize rejects is still scanned, never silently skipped
+    (tmp_path / "broken.py").write_text('s = """unterminated\n# TODO still found\n', encoding="utf-8")
+    assert [r["line"] for r in harvest_todos(tmp_path, {"broken.py"})] == [2]
+
+
 def test_harvest_todos_skips_oversized_files(tmp_path):
     # regression (scale): a pathologically large file must not stall the compile
     from isidore.findings import MAX_TODO_FILE_BYTES
@@ -199,6 +226,13 @@ def test_orphan_and_coverage_gap_candidates():
     links = [{"source": "f1", "target": "f2", "relation": "imports"}]
     orphans = orphan_file_candidates(nodes, links)
     assert [o["file"] for o in orphans] == ["pkg/orphan.py"]
+
+    # A file TYPE no import edge ever targets carries no evidence: before, every JSON/TOML/LICENSE
+    # (and every file of a language the scanner does not link) was reported as dead code.
+    data = nodes + [
+        {"id": f"d{i}", "file_type": "code", "source_file": p, "source_location": "L1"}
+        for i, p in enumerate(["pyproject.toml", "LICENSE", "web/app.js", "tests/fixtures/x.py"])]
+    assert [o["file"] for o in orphan_file_candidates(data, links)] == ["pkg/orphan.py"]
 
     spec_no_tests = PageSpec("module", "pkg/core", symbols=20, deps_in=[("pkg/other", 3)])
     spec_tested = PageSpec("module", "pkg/api", symbols=15, deps_in=[("tests/unit", 9)])
@@ -278,3 +312,19 @@ def test_render_toon_index_contains_all_tables():
     out = render_toon_index([mod], [flow], "beef")
     for fragment in ("modules[1]", "flows[1]", "hot_symbols[1]", "module_deps[1]", "beef"):
         assert fragment in out
+
+
+def test_resolve_finding_ledger_is_never_silently_erased(tmp_path, capsys, monkeypatch):
+    # regression (data loss): an unreadable ledger was swallowed and rewritten holding ONLY the new
+    # resolution. And the ledger lives in the CONFIGURED wiki dir, or a resolution is never read back.
+    from isidore import render
+    from isidore.findings import is_finding_resolved, resolve_finding
+    monkeypatch.setattr(render, "WIKI_DIRNAME", "doc/isidore")
+    assert resolve_finding(tmp_path, "f-aaaa0001", "human", "fixture secret") == 0
+    ledger = tmp_path / "doc" / "isidore" / "resolved_findings.json"
+    assert ledger.is_file() and is_finding_resolved(tmp_path, "f-aaaa0001")
+
+    ledger.write_text('{"resolutions": [{"id": "f-aaaa0001"}', encoding="utf-8")   # truncated
+    assert resolve_finding(tmp_path, "f-bbbb0002", "human", "x") == 1
+    assert "refusing to overwrite" in capsys.readouterr().err
+    assert ledger.read_text(encoding="utf-8").startswith('{"resolutions": [{"id": "f-aaaa0001"}')

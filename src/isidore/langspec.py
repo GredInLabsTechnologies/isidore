@@ -371,7 +371,7 @@ BINARY_EXTS = frozenset({
     ".tar", ".xz", ".bz2", ".7z", ".rar", ".jar", ".war", ".class", ".pyc", ".pyo", ".so",
     ".dylib", ".dll", ".exe", ".bin", ".o", ".a", ".lib", ".wasm", ".mp3", ".mp4", ".mov",
     ".avi", ".mkv", ".wav", ".flac", ".ogg", ".woff", ".woff2", ".ttf", ".otf", ".eot",
-    ".db", ".sqlite", ".lock", ".pdf", ".doc", ".docx", ".xls", ".xlsx", ".ppt", ".pptx",
+    ".db", ".sqlite", ".lock", ".doc", ".docx", ".xls", ".xlsx", ".ppt", ".pptx",
 })
 
 

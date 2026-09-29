@@ -1,0 +1,16 @@
+{
+  "resolutions": [
+    {
+      "id": "f-b067c20b",
+      "reason": "Deliberate detector bait: the fixture comments it as a lane-C entropy target, and tests/test_detectors.py asserts it is flagged danger at svc/auth.py:23. Not a credential.",
+      "resolved_at": "2026-09-29T01:39:45.487603+00:00",
+      "resolved_by": "claude-opus-5-5 (audit 2026-09-29)"
+    },
+    {
+      "id": "f-a1852a77",
+      "reason": "The cited line is the test asserting the detector flags the fixture's bait token; the test holds no secret.",
+      "resolved_at": "2026-09-29T01:39:46.094327+00:00",
+      "resolved_by": "claude-opus-5-5 (audit 2026-09-29)"
+    }
+  ]
+}

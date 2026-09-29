@@ -248,10 +248,22 @@ def _scan_python_file(repo: Path, path: Path) -> tuple[list[dict], list[dict], l
             nodes.append({"id": sym_id, "label": f"{item.name}{suffix}", "file_type": "code",
                           "source_file": rel, "source_location": f"L{item.lineno}-L{end}"})
             links.append({"source": file_id, "target": sym_id, "relation": "contains"})
-        elif isinstance(item, ast.Import):
+    # Imports from the WHOLE tree, not just the module body. Reading only `tree.body` saw 83 import
+    # edges in isidore's own repo where there are several hundred: every lazy import inside a
+    # function (all of cli.py's subcommands), every `try:` fallback and every `if TYPE_CHECKING:`
+    # block was invisible, so modules reached only that way were reported as orphan files.
+    for item in ast.walk(tree):
+        if isinstance(item, ast.Import):
             imports.extend(alias.name for alias in item.names)
-        elif isinstance(item, ast.ImportFrom) and item.module:
-            imports.append(("." * item.level) + item.module)
+        elif isinstance(item, ast.ImportFrom):
+            prefix = "." * item.level
+            if item.module:
+                imports.append(prefix + item.module)
+            # `from pkg import sub` and `from . import sub` import a MODULE when `sub` is one; the
+            # candidates that resolve to no file are dropped at resolution, so a class name costs
+            # nothing. `from . import x` used to be skipped outright (no `module`).
+            base = prefix + (item.module + "." if item.module else "")
+            imports.extend(base + alias.name for alias in item.names if alias.name != "*")
     return nodes, links, imports
 
 
@@ -295,20 +307,55 @@ def _scan_bare_file(repo: Path, path: Path, kind: str = "code") -> tuple[list[di
     return nodes, [], []
 
 
-def _resolve_import(importer_rel: str, module: str, known: dict[str, str]) -> str | None:
-    """Map an import to a repo file id if the module resolves inside the repo."""
+def python_import_roots(known: dict[str, str] | set[str]) -> list[str]:
+    """Directories an absolute Python import is resolved from: the repo root, plus the directory
+    ABOVE every top-level package (a dir with `__init__.py` whose parent has none).
+
+    Without this an absolute import only resolved when the package sat at the repo root. In a `src/`
+    layout — isidore's own, and the packaging default — `from isidore.handoff import x` looked for
+    `isidore/handoff.py`, found nothing, and no test was ever linked to the module it tests: every
+    source module came out as a test gap and most as orphans.
+    """
+    inits = {PurePosixPath(rel).parent for rel in known if rel.endswith("__init__.py")}
+    roots = {""}
+    for pkg in inits:
+        top = pkg
+        while top.parent in inits:
+            top = top.parent
+        parent = top.parent.as_posix()
+        roots.add("" if parent == "." else parent)
+    return sorted(roots, key=lambda r: (r.count("/") if r else -1, r))
+
+
+def _resolve_import(importer_rel: str, module: str, known: dict[str, str],
+                    roots: list[str] | None = None) -> str | None:
+    """Map an import to a repo file id if the module resolves inside the repo.
+
+    Relative imports resolve against the importer's package. Absolute ones are tried from each
+    import root (see `python_import_roots`) and then from the importer's own directory, which is on
+    `sys.path` for a script or a pytest module run from its folder; the first hit wins, roots nearest
+    the repo top first, so the result is deterministic.
+    """
     if module.startswith("."):
         base = PurePosixPath(importer_rel).parent
         stripped = module.lstrip(".")
         hops = len(module) - len(stripped) - 1
         for _ in range(hops):
             base = base.parent
-        candidate = (str(base) + "/" if str(base) != "." else "") + stripped.replace(".", "/")
+        if not stripped:
+            return None
+        candidates = [(str(base) + "/" if str(base) != "." else "") + stripped.replace(".", "/")]
     else:
-        candidate = module.replace(".", "/")
-    for rel in (f"{candidate}.py", f"{candidate}/__init__.py"):
-        if rel in known:
-            return known[rel]
+        path = module.replace(".", "/")
+        own_dir = PurePosixPath(importer_rel).parent.as_posix()
+        bases = list(roots if roots is not None else [""])
+        if own_dir != "." and own_dir not in bases:
+            bases.append(own_dir)
+        candidates = [f"{b}/{path}" if b and b != "." else path for b in bases]
+    for candidate in candidates:
+        for rel in (f"{candidate}.py", f"{candidate}/__init__.py"):
+            if rel in known:
+                return known[rel]
     return None
 
 
@@ -339,11 +386,16 @@ def scan_repo(repo: Path) -> tuple[list[dict], list[dict]]:
         file_ids[rel] = file_nodes[0]["id"]
         pending_imports.extend((rel, module) for module in imports)
 
+    roots = python_import_roots(file_ids)
+    seen: set[tuple[str, str]] = set()
     for importer_rel, module in pending_imports:
-        target_id = _resolve_import(importer_rel, module, file_ids)
-        if target_id and target_id != file_ids[importer_rel]:
-            links.append({"source": file_ids[importer_rel], "target": target_id,
-                          "relation": "imports"})
+        # Python roots only for Python importers: `import "./x"` in JS already carries its own path.
+        target_id = _resolve_import(importer_rel, module, file_ids,
+                                    roots if importer_rel.endswith(".py") else None)
+        edge = (file_ids[importer_rel], target_id or "")
+        if target_id and target_id != file_ids[importer_rel] and edge not in seen:
+            seen.add(edge)      # a module imported lazily in five functions is ONE dependency
+            links.append({"source": edge[0], "target": target_id, "relation": "imports"})
     return nodes, links
 
 

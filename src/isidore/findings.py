@@ -64,6 +64,10 @@ observable; report only what the evidence shows (a suspicious line, a doc-vs-cod
 
 _FENCE = re.compile(r"```isidore-findings\s*\n(.*?)```", re.DOTALL)
 _TODO = re.compile(r"\b(TODO|FIXME|HACK|XXX)\b[:\s]*(.{0,120})")
+# In a comment the marker must OPEN it (`# TODO: x`, `// FIXME`, ` * HACK` inside a block): a comment
+# that merely talks about the markers ("harvest them from comments", "TODO/FIXME in the changed
+# files") is documentation, not one. `TODO(owner):` is the one decoration a marker takes.
+_TODO_LEAD = re.compile(r"^[\s#/*;!%<>-]*\b(TODO|FIXME|HACK|XXX)(?=[:\s(]|$)[:\s]*(.{0,120})")
 _ENTRYPOINT_HINTS = ("main", "cli", "app", "index", "setup", "conftest", "__init__")
 
 
@@ -92,10 +96,18 @@ def finding_id(finding: dict) -> str:
     return "f-" + hashlib.sha256(f"{kind}\x00{where}\x00{note}".encode("utf-8")).hexdigest()[:8]
 
 
+def _resolutions_path(repo: Path) -> Path:
+    """The resolutions ledger lives in the CONFIGURED wiki directory, not a literal `wiki/`: with
+    `wiki_dir` set (GIMO keeps its wiki at `doc/isidore`) a resolution written to `wiki/` was never
+    read back, and the finding it resolved kept its security banner."""
+    from .render import WIKI_DIRNAME
+    return repo / WIKI_DIRNAME / "resolved_findings.json"
+
+
 def is_finding_resolved(repo: Path, f_id: str) -> bool:
     """Check if a finding has been resolved by human audit."""
     import json
-    resolutions_path = repo / "wiki" / "resolved_findings.json"
+    resolutions_path = _resolutions_path(repo)
     if not resolutions_path.is_file():
         return False
     try:
@@ -110,16 +122,23 @@ def resolve_finding(repo: Path, f_id: str, actor: str, reason: str) -> int:
     """Resolve a finding, logging it in wiki/resolved_findings.json."""
     import json
     from datetime import datetime, timezone
-    wiki_dir = repo / "wiki"
-    resolutions_path = wiki_dir / "resolved_findings.json"
+    resolutions_path = _resolutions_path(repo)
+    wiki_dir = resolutions_path.parent
 
     resolutions = []
     if resolutions_path.is_file():
+        # An unreadable ledger is a refusal, never an empty one: this used to swallow the parse
+        # error and then write a file holding only the new resolution, erasing every audited
+        # resolution before it.
         try:
             data = json.loads(resolutions_path.read_text(encoding="utf-8"))
             resolutions = data.get("resolutions", [])
-        except Exception:
-            pass
+            if not isinstance(resolutions, list):
+                raise ValueError("'resolutions' is not a list")
+        except (OSError, ValueError, AttributeError) as exc:
+            print(f"ERROR: {resolutions_path} is unreadable ({exc}); fix or remove it by hand — "
+                  "refusing to overwrite the resolutions it holds", file=sys.stderr)
+            return 1
 
     if any(r.get("id") == f_id for r in resolutions):
         print(f"Finding {f_id} is already resolved.")
@@ -264,8 +283,39 @@ MAX_TODO_FILE_BYTES = 2_000_000       # skip pathologically large files (generat
 MAX_TODO_FILES = 4000                 # bound total files scanned so a huge repo can't stall a compile
 
 
+def _comment_lines(rel: str, text: str) -> tuple[list[str], bool]:
+    """The file's lines with everything but COMMENT text blanked, so a marker is harvested only
+    where a person left it — not inside a string, a regex or a docstring.
+
+    The regex used to run over raw lines, so isidore's own findings listed ten "TODOs" and none was
+    one: the harvesting regex itself, a CLI help string, and test data spelling the markers. Python
+    goes through `tokenize` (exact); a language with a spec goes through the same sanitizer the
+    scanner trusts, where a blanked character is by construction a comment character. Anything else
+    (Markdown, plain text, a file tokenize rejects) is scanned whole, as before. The flag is True
+    when the lines hold comment text only.
+    """
+    if rel.endswith(".py"):
+        import io
+        import tokenize
+        lines = [""] * (text.count("\n") + 1)
+        try:
+            for tok in tokenize.generate_tokens(io.StringIO(text).readline):
+                if tok.type == tokenize.COMMENT:
+                    lines[tok.start[0] - 1] = tok.string
+        except (tokenize.TokenError, IndentationError, SyntaxError):
+            return text.splitlines(), False
+        return lines, True
+    from .langspec import sanitize, spec_for
+    spec = spec_for(Path(rel).suffix.lower())
+    if spec is None or spec.kind != "code" or not (spec.line_comments or spec.block_comments):
+        return text.splitlines(), False
+    code = sanitize(text, spec, blank_strings=False)
+    return "".join(c if c != k or c == "\n" else " " for c, k in zip(text, code, strict=True)
+                   ).splitlines(), True
+
+
 def harvest_todos(repo: Path, source_files: set[str], cap: int = 200) -> list[dict]:
-    """TODO/FIXME/HACK/XXX with file:line — regex over the files the graph already knows.
+    """TODO/FIXME/HACK/XXX with file:line — regex over the COMMENTS of the files the graph knows.
 
     Bounded for scale: skips files over MAX_TODO_FILE_BYTES and scans at most MAX_TODO_FILES
     (sorted for determinism), so this stays fast even on very large repos.
@@ -278,11 +328,13 @@ def harvest_todos(repo: Path, source_files: set[str], cap: int = 200) -> list[di
         try:
             if path.stat().st_size > MAX_TODO_FILE_BYTES:
                 continue
-            lines = path.read_text(encoding="utf-8", errors="replace").splitlines()
+            lines, comments_only = _comment_lines(
+                rel, path.read_text(encoding="utf-8", errors="replace"))
         except OSError:
             continue
+        pattern = _TODO_LEAD if comments_only else _TODO
         for i, line in enumerate(lines, 1):
-            m = _TODO.search(line)
+            m = pattern.search(line)
             if m:
                 rows.append({"marker": m.group(1), "file": rel, "line": i,
                              "note": m.group(2).strip()})
@@ -308,16 +360,33 @@ def findings_new(repo: Path, pages_state: dict, since: str) -> tuple[list[dict],
     return llm, todos
 
 
+_DATA_DIRS = ("fixtures", "fixture", "testdata", "test_data", "__fixtures__", "__mocks__")
+
+
 def orphan_file_candidates(nodes: list[dict], links: list[dict], cap: int = 40) -> list[dict]:
-    """Code FILE nodes nothing links to — dead-code candidates (entrypoint-looking names excluded)."""
+    """Code FILE nodes nothing links to — dead-code candidates (entrypoint-looking names excluded).
+
+    "Nothing links to it" is evidence only for a file TYPE the graph demonstrably links: a suffix
+    that is the target of at least one `imports` edge. The built-in scanner resolves Python imports
+    only, so before this every JSON, TOML, LICENSE and `.gitignore` in a repo — and every file of a
+    JS or Go repo — was reported as dead code. A richer producer that links more languages widens
+    the check by itself. Files under a fixtures/testdata directory are data by convention.
+    """
+    by_id = {n.get("id"): n for n in nodes}
     targeted = {link.get("target") for link in links}
+    linkable = {Path(by_id[link.get("target")].get("source_file") or "").suffix.lower()
+                for link in links
+                if link.get("relation") in ("imports", "imports_from") and link.get("target") in by_id}
     rows = []
     for n in nodes:
         if n.get("file_type") != "code" or n.get("source_location") != "L1":
             continue  # only file-level nodes (convention: files anchor at L1)
         if n.get("id") in targeted:
             continue
-        stem = Path(n.get("source_file", "")).stem.lower()
+        source = Path(n.get("source_file", ""))
+        if source.suffix.lower() not in linkable or any(p in _DATA_DIRS for p in source.parts[:-1]):
+            continue
+        stem = source.stem.lower()
         if any(h in stem for h in _ENTRYPOINT_HINTS) or stem.startswith("test"):
             continue
         rows.append({"file": n.get("source_file", "?")})

@@ -485,7 +485,7 @@ def classify_mass(prose: str, claims: list[ClaimVerdict]) -> VerifiedMass:
     yellow_syms: set[str] = set()
     for c in claims:
         (green_syms if c.verdict == TRUE else yellow_syms).update(_claim_symbols(c))
-    green_syms, yellow_syms = green_syms, yellow_syms - green_syms
+    yellow_syms -= green_syms
     mass = VerifiedMass()
     for sent in _sentence_split(prose):
         toks = set(re.findall(r"[a-z_][a-z0-9_]*", sent.lower()))
@@ -675,15 +675,34 @@ def _cmd_verify(args) -> int:
     if args.contracts:
         from .contracts import verify_contracts
         from .pcp import CONTRACTS_FILENAME, read_contracts
-        ctx = _ctx_for(args.repo)
-        contracts = read_contracts(wiki / CONTRACTS_FILENAME)
-        for c, v in verify_contracts(contracts, ctx) if ctx else []:
+        # A contract gate that cannot run BLOCKS; it never passes by default. Three ways it used to
+        # print "OK" over invariants nobody checked: no graph (the loop ran over []), a predicate
+        # that no longer decides (UNDECIDABLE was not FALSE), and a corrupt contracts file (a
+        # traceback, which a CI step reading only the summary line could mistake for noise).
+        try:
+            contracts = read_contracts(wiki / CONTRACTS_FILENAME)
+        except (ValueError, TypeError) as exc:
+            contracts = []
+            bad.append("contracts unreadable")
+            print(f"  BLOCKED contracts: {exc}")
+        if contracts and shared_ctx is None:
+            bad.append(f"{len(contracts)} contract(s) unchecked")
+            print(f"  BLOCKED {len(contracts)} contract(s): no structure graph to check them "
+                  "against — run `isidore scan`")
+        for c, v in verify_contracts(contracts, shared_ctx) if shared_ctx else []:
             if v.value == FALSE:
                 bad.append(f"contract {c.id}")
                 print(f"  BROKEN contract {c.id}: {c.predicate} — {v.detail}")
+            elif v.value != TRUE:
+                bad.append(f"contract {c.id} undecidable")
+                print(f"  UNDECIDABLE contract {c.id}: {c.predicate} — {v.detail}")
     # opt-in gates
     total = green + yellow + gray
-    if args.min_verified_mass is not None and total:
+    if args.min_verified_mass is not None and not total:
+        # No certified sentence at all is not "above the threshold": the gate has nothing to
+        # measure, so it blocks instead of passing an empty wiki.
+        bad.append("verified-mass gate has no certified sentences to measure")
+    elif args.min_verified_mass is not None:
         ratio = green / total
         print(f"[isidore] verified mass: {ratio:.0%} green (gate >= {args.min_verified_mass:.0%})")
         if ratio < args.min_verified_mass:

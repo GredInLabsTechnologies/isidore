@@ -5,13 +5,18 @@ only explicitly allowlisted ``tools/<name>`` and ``resources/<uri>`` operations 
 """
 from __future__ import annotations
 
+import collections
 import json
 import os
+import queue
 import re
 import subprocess
+import threading
+import time
 import urllib.error
 import urllib.request
 from typing import Any
+from urllib.parse import urlsplit
 
 from ..home import config_path
 from .base import IngestOptions, IngestResult, register
@@ -200,10 +205,34 @@ class McpConnector:
             return {}
 
 
+# Bounds on one exchange. A stdio server that never answers used to block `isidore sync` forever
+# (readline has no timeout); an HTTP one could stream without end. Both are now errors that leave the
+# connector's state untouched, like any other server failure.
+RPC_TIMEOUT_S = 30
+MAX_RESPONSE_BYTES = 8_000_000
+_STDERR_TAIL_LINES = 20
+_SESSION_HEADER = "Mcp-Session-Id"
+
+
 class _JsonRpcClient:
+    """JSON-RPC 2.0 over the two MCP transports (spec 2025-06-18, basic/transports).
+
+    What a real server does and the stub this was tested against never did, each of which broke it:
+    - a request's reply may arrive as an SSE stream (`text/event-stream`), which the client MUST
+      support — it advertised it in `Accept` and then `json.loads`-ed the stream;
+    - the server may send its own notifications and requests BEFORE the response, on stdio and on the
+      SSE stream alike — the first message was taken as the reply, so a log notification became an
+      empty result;
+    - an `Mcp-Session-Id` returned at initialization MUST be sent on every later request — it was
+      dropped, so a stateful server answered 400 from the second call on;
+    - stderr is the server's log channel — it was piped and never read, so a chatty server filled the
+      pipe and deadlocked.
+    """
+
     def __init__(self, transport: dict):
         self.transport = transport
         self._next_id = 0
+        self.session_id: str | None = None
         typ = transport.get("type")
         if typ == "stdio":
             command = transport.get("command")
@@ -213,22 +242,67 @@ class _JsonRpcClient:
             self.proc = subprocess.Popen([str(command), *args], stdin=subprocess.PIPE,
                                          stdout=subprocess.PIPE, stderr=subprocess.PIPE,
                                          text=True, encoding="utf-8", errors="replace")
+            self._lines: queue.Queue = queue.Queue()
+            self._stderr: collections.deque[str] = collections.deque(maxlen=_STDERR_TAIL_LINES)
+            threading.Thread(target=self._pump_stdout, daemon=True).start()
+            threading.Thread(target=self._drain_stderr, daemon=True).start()
         elif typ == "http":
             self.proc = None
-            if not transport.get("url"):
+            url = str(transport.get("url") or "")
+            if not url:
                 raise ValueError("http transport requires url")
+            parts = urlsplit(url)
+            # urllib would open file:// as happily as https://; a connector config is not a licence
+            # to read the local filesystem through what looks like a server.
+            if parts.scheme not in ("http", "https") or not parts.netloc:
+                raise ValueError(f"http transport needs an http(s) URL with a host, got {url!r}")
         else:
             raise ValueError("transport.type must be http or stdio")
 
+    # ------------------------------------------------------------------ lifecycle
+
     def close(self) -> None:
         if self.proc is None:
+            if self.session_id:              # SHOULD end the session explicitly; 405 is a valid no
+                try:
+                    req = urllib.request.Request(self.transport["url"], method="DELETE",
+                                                 headers=self._headers())
+                    urllib.request.urlopen(req, timeout=5).close()   # noqa: S310 - scheme checked
+                except (OSError, urllib.error.URLError):
+                    pass
             return
-        self.proc.terminate()
+        # The spec's order: close stdin (the server's cue to exit), then terminate if it does not.
+        try:
+            if self.proc.stdin:
+                self.proc.stdin.close()
+        except OSError:
+            pass
         try:
             self.proc.wait(timeout=2)
         except subprocess.TimeoutExpired:
-            self.proc.kill()
-            self.proc.wait(timeout=2)
+            self.proc.terminate()
+            try:
+                self.proc.wait(timeout=2)
+            except subprocess.TimeoutExpired:
+                self.proc.kill()
+                self.proc.wait(timeout=2)
+
+    def _pump_stdout(self) -> None:
+        assert self.proc and self.proc.stdout
+        for line in iter(self.proc.stdout.readline, ""):
+            self._lines.put(line)
+        self._lines.put(None)                # EOF sentinel: the server closed stdout
+
+    def _drain_stderr(self) -> None:
+        assert self.proc and self.proc.stderr
+        for line in iter(self.proc.stderr.readline, ""):
+            self._stderr.append(line.rstrip())
+
+    def _stderr_hint(self) -> str:
+        tail = [line for line in getattr(self, "_stderr", ()) if line]
+        return f"; server stderr: {' | '.join(tail[-3:])[:300]}" if tail else ""
+
+    # ------------------------------------------------------------------ JSON-RPC
 
     def request(self, method: str, params: dict) -> Any:
         self._next_id += 1
@@ -243,53 +317,150 @@ class _JsonRpcClient:
 
     def _send(self, payload: dict, *, notification: bool = False) -> dict:
         if self.proc is None:
-            headers = {}
-            for key, value in (self.transport.get("headers") or {}).items():
-                # `headers` accepts literal values; `env` is the only secret-bearing map.
-                headers[str(key)] = str(value)
-            for key, env_name in (self.transport.get("env") or {}).items():
-                if str(env_name) in os.environ:
-                    headers[str(key)] = os.environ[str(env_name)]
-            # Streamable HTTP: the client MUST send an Accept listing BOTH content types, because the
-            # server chooses between one JSON object and an SSE stream (spec 2025-06-18). Sending
-            # neither is how a request gets rejected by a compliant server for no visible reason.
-            req = urllib.request.Request(
-                self.transport["url"], data=(json.dumps(payload) + "\n").encode(),
-                headers={"Content-Type": "application/json",
-                         "Accept": "application/json, text/event-stream",
-                         "MCP-Protocol-Version": MCP_PROTOCOL_VERSION, **headers},
-                method="POST")
-            try:
-                with urllib.request.urlopen(req, timeout=30) as response:
-                    body = response.read().decode("utf-8")
-            except (OSError, urllib.error.URLError) as exc:
-                raise RuntimeError(str(exc)) from exc
-            return {} if notification or not body.strip() else json.loads(body)
+            return self._send_http(payload, notification=notification)
+        return self._send_stdio(payload, notification=notification)
+
+    def _match(self, message: Any, want_id: Any) -> dict | None:
+        """The response to `want_id` if `message` is (or, as a batch, holds) it. Anything else the
+        server sends meanwhile is handled here: its requests are answered, its notifications and
+        stray responses skipped — never mistaken for the reply."""
+        for msg in message if isinstance(message, list) else [message]:
+            if not isinstance(msg, dict):
+                continue
+            if "method" in msg:
+                if msg.get("id") is not None:
+                    self._answer_server_request(msg)
+                continue
+            if msg.get("id") == want_id and ("result" in msg or "error" in msg):
+                return msg
+        return None
+
+    def _answer_server_request(self, msg: dict) -> None:
+        """A server may ask the client something mid-request (`ping`, `roots/list`, sampling...).
+        Ping gets its empty result; the rest a JSON-RPC 'method not found', which is the truthful
+        answer for a read-only ingester — and an answer, so the server is not left waiting."""
+        reply: dict = {"jsonrpc": "2.0", "id": msg["id"]}
+        if msg.get("method") == "ping":
+            reply["result"] = {}
+        else:
+            reply["error"] = {"code": -32601, "message": f"client does not support {msg.get('method')}"}
+        self._send(reply, notification=True)
+
+    # stdio: newline-delimited JSON --------------------------------------------------------------
+
+    def _send_stdio(self, payload: dict, *, notification: bool) -> dict:
         # MCP stdio is NEWLINE-delimited JSON, not LSP's `Content-Length` framing: "Messages are
         # delimited by newlines, and MUST NOT contain embedded newlines" (spec 2025-06-18,
         # basic/transports#stdio). This spoke LSP, so it could not have exchanged a single message
         # with a real MCP server — and the only stub it was ever tested against spoke LSP too, so the
         # suite was green over an interoperability failure. Found by pointing it at a server written
         # from the spec rather than from this file.
-        assert self.proc.stdin and self.proc.stdout
-        self.proc.stdin.write(json.dumps(payload, ensure_ascii=False) + "\n")
-        self.proc.stdin.flush()
+        assert self.proc and self.proc.stdin
+        try:
+            self.proc.stdin.write(json.dumps(payload, ensure_ascii=False) + "\n")
+            self.proc.stdin.flush()
+        except OSError as exc:
+            raise RuntimeError(f"stdio MCP server is gone ({exc}){self._stderr_hint()}") from exc
         if notification:
             return {}
+        deadline = time.monotonic() + RPC_TIMEOUT_S
         while True:
-            line = self.proc.stdout.readline()
-            if not line:
-                raise RuntimeError("stdio MCP server closed the connection")
+            try:
+                line = self._lines.get(timeout=max(0.0, deadline - time.monotonic()))
+            except queue.Empty:
+                raise RuntimeError(f"stdio MCP server sent no reply to {payload['method']!r} within "
+                                   f"{RPC_TIMEOUT_S}s{self._stderr_hint()}") from None
+            if line is None:
+                self._lines.put(None)        # keep EOF visible to any later call
+                raise RuntimeError(f"stdio MCP server closed the connection{self._stderr_hint()}")
             line = line.strip()
             if not line:
                 continue                    # blank keep-alive line: not a message, not an error
             try:
-                return json.loads(line)
+                message = json.loads(line)
             except ValueError as exc:
                 # A server that writes anything but MCP messages to stdout is out of spec. Say which
                 # line, because "invalid JSON" with no sample is unactionable.
                 raise RuntimeError(
                     f"stdio MCP server wrote a non-message line to stdout: {line[:120]!r}") from exc
+            found = self._match(message, payload["id"])
+            if found is not None:
+                return found
+
+    # Streamable HTTP ----------------------------------------------------------------------------
+
+    def _headers(self) -> dict[str, str]:
+        headers = {"MCP-Protocol-Version": MCP_PROTOCOL_VERSION}
+        if self.session_id:
+            headers[_SESSION_HEADER] = self.session_id
+        for key, value in (self.transport.get("headers") or {}).items():
+            # `headers` accepts literal values; `env` is the only secret-bearing map.
+            headers[str(key)] = str(value)
+        for key, env_name in (self.transport.get("env") or {}).items():
+            if str(env_name) in os.environ:
+                headers[str(key)] = os.environ[str(env_name)]
+        return headers
+
+    def _send_http(self, payload: dict, *, notification: bool) -> dict:
+        # Streamable HTTP: the client MUST send an Accept listing BOTH content types, because the
+        # server chooses between one JSON object and an SSE stream (spec 2025-06-18). Sending
+        # neither is how a request gets rejected by a compliant server for no visible reason.
+        req = urllib.request.Request(
+            self.transport["url"], data=(json.dumps(payload) + "\n").encode(),
+            headers={"Content-Type": "application/json",
+                     "Accept": "application/json, text/event-stream", **self._headers()},
+            method="POST")
+        try:
+            with urllib.request.urlopen(req, timeout=RPC_TIMEOUT_S) as response:  # noqa: S310
+                session = response.headers.get(_SESSION_HEADER)
+                if session and payload.get("method") == "initialize":
+                    self.session_id = session.strip()
+                if notification or response.status == 202:
+                    return {}
+                ctype = (response.headers.get("Content-Type") or "").split(";")[0].strip().lower()
+                if ctype == "text/event-stream":
+                    found = self._read_sse(response, payload["id"])
+                else:
+                    body = response.read(MAX_RESPONSE_BYTES + 1)
+                    if len(body) > MAX_RESPONSE_BYTES:
+                        raise RuntimeError(f"MCP response exceeds {MAX_RESPONSE_BYTES} bytes")
+                    text = body.decode("utf-8")
+                    found = self._match(json.loads(text), payload["id"]) if text.strip() else None
+        except urllib.error.HTTPError as exc:
+            if exc.code == 404 and self.session_id:
+                raise RuntimeError("MCP server ended the session (404); the next run starts a new "
+                                   "one") from exc
+            raise RuntimeError(f"MCP server answered HTTP {exc.code}: {exc.reason}") from exc
+        except (OSError, urllib.error.URLError) as exc:
+            raise RuntimeError(str(exc)) from exc
+        if found is None:
+            raise RuntimeError(f"MCP server sent no response to {payload['method']!r}")
+        return found
+
+    def _read_sse(self, response, want_id: Any) -> dict | None:
+        """Read SSE events until the one carrying the reply to `want_id`. Each event's `data:` lines
+        join with newlines into one JSON-RPC message (WHATWG event-stream rules); comments (`:`),
+        `event:`/`id:`/`retry:` fields and events of other messages are consumed and passed on."""
+        data: list[str] = []
+        read = 0
+        for raw in response:
+            read += len(raw)
+            if read > MAX_RESPONSE_BYTES:
+                raise RuntimeError(f"MCP event stream exceeds {MAX_RESPONSE_BYTES} bytes")
+            line = raw.decode("utf-8").rstrip("\r\n")
+            if line.startswith("data:"):
+                value = line[5:]
+                data.append(value[1:] if value.startswith(" ") else value)
+                continue
+            if line or not data:
+                continue                     # a field we do not need, a comment, or a lone blank
+            found = self._match(json.loads("\n".join(data)), want_id)
+            data = []
+            if found is not None:
+                return found
+        if data:                             # a stream that ends without its final blank line
+            return self._match(json.loads("\n".join(data)), want_id)
+        return None
 
 
 register(McpConnector())

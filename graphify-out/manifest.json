@@ -40,8 +40,8 @@
     "semantic_hash": ""
   },
   "src/isidore/connectors/mcp.py": {
-    "mtime": 1785081857.4336338,
-    "ast_hash": "f150a1327c1d4ec3dc87b3171cdf7107",
+    "mtime": 1790645461.9213777,
+    "ast_hash": "006d50452b782c63b38f1731dc2ccd90",
     "semantic_hash": ""
   },
   "src/isidore/connectors/store.py": {
@@ -50,9 +50,9 @@
     "semantic_hash": ""
   },
   "src/isidore/contracts.py": {
-    "mtime": 1783888096.6137981,
-    "ast_hash": "631826dc26a11c7cfc01aa461e9e8282",
-    "semantic_hash": "631826dc26a11c7cfc01aa461e9e8282"
+    "mtime": 1790644960.0042343,
+    "ast_hash": "1a889706aff06f4ab4e1c9fce26e2177",
+    "semantic_hash": ""
   },
   "src/isidore/detectors.py": {
     "mtime": 1783887902.1507604,
@@ -65,13 +65,13 @@
     "semantic_hash": "c822058972c2f53b32bb3b3a15e3d617"
   },
   "src/isidore/findings.py": {
-    "mtime": 1783889274.2975354,
-    "ast_hash": "764de9030cc4bc136933845bee2d4fcc",
-    "semantic_hash": "764de9030cc4bc136933845bee2d4fcc"
+    "mtime": 1790645927.122998,
+    "ast_hash": "339d58615cc31060dd7420e3b2e7c13f",
+    "semantic_hash": ""
   },
   "src/isidore/graph.py": {
-    "mtime": 1785090646.9304113,
-    "ast_hash": "24dbdf0caa0bf2491831c282ca476506",
+    "mtime": 1790644960.0087602,
+    "ast_hash": "ddc56bdd7dae3aa4be0ca32958896539",
     "semantic_hash": ""
   },
   "src/isidore/home.py": {
@@ -100,9 +100,9 @@
     "semantic_hash": ""
   },
   "src/isidore/langspec.py": {
-    "mtime": 1783805025.8803728,
-    "ast_hash": "26401eb2889d7ae989e236fead93f20e",
-    "semantic_hash": "26401eb2889d7ae989e236fead93f20e"
+    "mtime": 1790645471.1508262,
+    "ast_hash": "dee0478b28efcacc0307a111c4a64525",
+    "semantic_hash": ""
   },
   "src/isidore/llm.py": {
     "mtime": 1785106545.973387,
@@ -145,8 +145,8 @@
     "semantic_hash": "4b23f65b30ef457e4f4d90ed192c621d"
   },
   "src/isidore/verify.py": {
-    "mtime": 1785112249.2915823,
-    "ast_hash": "0071187b894726e101d7ba70a3044496",
+    "mtime": 1790645471.185436,
+    "ast_hash": "b0b84c41f63ab246b4eaa6b1e60582d4",
     "semantic_hash": ""
   },
   "tests/fixtures/pcp/contracts.json": {
@@ -200,9 +200,9 @@
     "semantic_hash": ""
   },
   "tests/test_contracts.py": {
-    "mtime": 1783888135.3395064,
-    "ast_hash": "38443c6c214eaf16ef47f7272e01b203",
-    "semantic_hash": "38443c6c214eaf16ef47f7272e01b203"
+    "mtime": 1790644935.0438569,
+    "ast_hash": "5d1be8f3173a81adbb99fe2ecee65223",
+    "semantic_hash": ""
   },
   "tests/test_detectors.py": {
     "mtime": 1783887843.4590418,
@@ -230,9 +230,9 @@
     "semantic_hash": "e11ab28f6c1469d1bc0e38452cb50196"
   },
   "tests/test_langspec.py": {
-    "mtime": 1783805025.881374,
-    "ast_hash": "a6af78537ae50813320f6bf30c1f67d8",
-    "semantic_hash": "a6af78537ae50813320f6bf30c1f67d8"
+    "mtime": 1790644833.5254655,
+    "ast_hash": "079876edd7f61c541e835176fa9922ca",
+    "semantic_hash": ""
   },
   "tests/test_mcp_barrier.py": {
     "mtime": 1783889987.3844223,
@@ -280,9 +280,9 @@
     "semantic_hash": "43df21410d7e3970e161f0924d632c2c"
   },
   "tests/test_units.py": {
-    "mtime": 1783350317.940442,
-    "ast_hash": "fa6b6946a9320e92bfec24a455d1a91d",
-    "semantic_hash": "fa6b6946a9320e92bfec24a455d1a91d"
+    "mtime": 1790645947.1436625,
+    "ast_hash": "0eec85075d6f5e08942b28b25fe758e6",
+    "semantic_hash": ""
   },
   "tests/test_verify.py": {
     "mtime": 1785112262.0188065,
@@ -353,11 +353,6 @@
     "mtime": 1783875673.1823008,
     "ast_hash": "b9ac1e76db103ba73cbf3ef0e002667e",
     "semantic_hash": "b9ac1e76db103ba73cbf3ef0e002667e"
-  },
-  "isidore-pack/index.html": {
-    "mtime": 1783888970.4065647,
-    "ast_hash": "6eb3693dfd53cc917947ad567e9d6723",
-    "semantic_hash": "6eb3693dfd53cc917947ad567e9d6723"
   },
   "tests/fixtures/pcp/repo/wiki/svc.md": {
     "mtime": 1783875356.8744283,
@@ -820,7 +815,7 @@
     "semantic_hash": ""
   },
   "llms.txt": {
-    "mtime": 1785113037.5280826,
+    "mtime": 1790646125.4588192,
     "ast_hash": "17c37f4b5ad0f9d9a66f9f6900385b58",
     "semantic_hash": ""
   },
@@ -1067,6 +1062,21 @@
   "tests/test_wiki_dir_config.py": {
     "mtime": 1785112194.2826402,
     "ast_hash": "239ad7e52dec9624085bcaa1cb2fe673",
+    "semantic_hash": ""
+  },
+  "tests/test_mcp_transport.py": {
+    "mtime": 1790645176.592639,
+    "ast_hash": "23a5826317f092e8c59f2881b32a6ed9",
+    "semantic_hash": ""
+  },
+  ".github/workflows/ci.yml": {
+    "mtime": 1790645747.2878053,
+    "ast_hash": "7877b06bd5285698c398bf01de3279b7",
+    "semantic_hash": ""
+  },
+  "wiki/resolved_findings.json": {
+    "mtime": 1790645986.0950632,
+    "ast_hash": "ea6632960a1b49033ab855b811767a75",
     "semantic_hash": ""
   }
 }

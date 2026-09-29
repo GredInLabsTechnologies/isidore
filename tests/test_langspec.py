@@ -125,6 +125,46 @@ def test_scan_repo_is_multilanguage(tmp_path):
     assert any(link["relation"] == "contains" for link in links)
 
 
+def test_scan_repo_resolves_python_imports_the_way_python_does(tmp_path):
+    # regression: only module-body imports were read, and absolute ones only resolved from the repo
+    # root. In a src/ layout no test linked to its module; isidore's own graph had 83 import edges
+    # of several hundred, and every source module was reported as a test gap.
+    pkg = tmp_path / "src" / "pkg"
+    (pkg / "sub").mkdir(parents=True)
+    (tmp_path / "tests").mkdir()
+    (pkg / "__init__.py").write_text("", encoding="utf-8")
+    (pkg / "sub" / "__init__.py").write_text("", encoding="utf-8")
+    (pkg / "core.py").write_text("X = 1\n", encoding="utf-8")
+    (pkg / "lazy.py").write_text("Y = 1\n", encoding="utf-8")
+    (pkg / "sub" / "leaf.py").write_text("Z = 1\n", encoding="utf-8")
+    (pkg / "cli.py").write_text(
+        "from .core import X\n"
+        "from . import sub\n"
+        "from .sub import leaf\n"
+        "def run():\n"
+        "    from .lazy import Y\n"
+        "    from .lazy import Y as Y2\n"
+        "    return Y\n", encoding="utf-8")
+    (tmp_path / "tests" / "helpers.py").write_text("H = 1\n", encoding="utf-8")
+    (tmp_path / "tests" / "test_core.py").write_text(
+        "from pkg.core import X\nimport helpers\ntry:\n    import pkg.lazy\nexcept ImportError:\n"
+        "    pass\n", encoding="utf-8")
+
+    _nodes, links = scan_repo(tmp_path)
+    edges = [(link["source"], link["target"]) for link in links if link["relation"] == "imports"]
+    got = {(s, t) for s, t in edges}
+    assert len(edges) == len(got), "a module imported in two places is one dependency"
+    assert got == {
+        ("src_pkg_cli_py", "src_pkg_core_py"),
+        ("src_pkg_cli_py", "src_pkg_sub___init___py"),
+        ("src_pkg_cli_py", "src_pkg_sub_leaf_py"),
+        ("src_pkg_cli_py", "src_pkg_lazy_py"),
+        ("tests_test_core_py", "src_pkg_core_py"),
+        ("tests_test_core_py", "src_pkg_lazy_py"),
+        ("tests_test_core_py", "tests_helpers_py"),
+    }
+
+
 def test_scan_repo_unknown_text_becomes_bare_file_node(tmp_path):
     # a language with no spec still gets a file node so it appears in a module page
     (tmp_path / "query.sql").write_text("SELECT 1;\n", encoding="utf-8")

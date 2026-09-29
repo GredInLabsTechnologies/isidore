@@ -45,7 +45,11 @@ def register_cli(sub) -> None:
 
 def _cmd_contracts(args) -> int:
     """Command implementation for `isidore contracts`."""
-    wiki_dir = args.repo / "wiki"
+    # The configured wiki directory, which is where `verify` reads contracts from. A literal
+    # `wiki/` here promoted contracts into a file `verify` never opened whenever `wiki_dir` was set:
+    # the invariant was reported as promoted and was never enforced.
+    from .render import WIKI_DIRNAME
+    wiki_dir = args.repo / WIKI_DIRNAME
 
     if args.promote:
         claim_id = args.promote.strip()
