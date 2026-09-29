@@ -79,8 +79,7 @@ def _level(name: str) -> int:
 
 def _child_digest(repo: Path, uri: str) -> tuple[str, str] | None:
     """(child page, sha256 of its certificate) for a wiki:// URI, or None if there is no child cert."""
-    import hashlib
-
+    from .pcp import cert_file_digest
     from .pipeline import WIKI_DIRNAME
     parsed = parse_wiki_uri(uri)
     if parsed is None:
@@ -89,7 +88,7 @@ def _child_digest(repo: Path, uri: str) -> tuple[str, str] | None:
     child = repo / WIKI_DIRNAME / f"{page}{CERT_SUFFIX}"
     if not child.is_file():
         return None
-    return page, hashlib.sha256(child.read_bytes()).hexdigest()
+    return page, cert_file_digest(child)
 
 
 def rebuild_certificate(repo: Path, page_path: Path, st: CertStatus, ctx) -> Certificate:

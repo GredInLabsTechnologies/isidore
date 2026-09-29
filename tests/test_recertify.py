@@ -253,3 +253,17 @@ def test_a_page_with_no_usable_certificate_never_stampedes_a_recompile(tmp_path,
     result = compile_wiki(root, graph_path=root / ".isidore" / "graph.json", execute=False,
                           min_symbols=1)
     assert result.certs_refuted == [] and result.certs_repairable == []
+
+
+def test_a_pyramid_verifies_whatever_line_endings_the_checkout_gave_it(tmp_path):
+    """Found the first time CI ran on Linux: the child hash was over RAW bytes, so a wiki compiled
+    on Windows (CRLF under autocrlf) failed verify on Linux, and one compiled on Linux would fail on
+    Windows. The same commit must verify on both."""
+    root = _chained(tmp_path)
+    recertify(root, write=True)
+    child_path = root / "wiki" / f"svc.md{CERT_SUFFIX}"
+    assert b"\r\n" not in child_path.read_bytes()    # certificates are written LF everywhere
+    assert certificate_status(root, root / "wiki" / "overview.md").status == CERT_OK
+
+    child_path.write_bytes(child_path.read_bytes().replace(b"\n", b"\r\n"))   # a Windows checkout
+    assert certificate_status(root, root / "wiki" / "overview.md").status == CERT_OK

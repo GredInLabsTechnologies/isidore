@@ -1,13 +1,13 @@
 {
   "child_cert_hashes": {
-    "src-isidore-changeset_py.md": "d09f6b81a54c6bd37ae2ce0dc73d5b1cf5eea1892ca598885cb85f7b9d6afc43",
-    "src-isidore-claims_py.md": "7779ebd4c02b8bb1e5a4455aa78df5eff65695c5ac2c55405e34a72048d9dac1",
-    "src-isidore-detectors_py.md": "60d6374f007123678544e4df2133f4688b64ff0da4f70251f3113d068e685d3d"
+    "src-isidore-changeset_py.md": "6d68fc8efa71b964cd0f66f77855f18063d4b6539a33b834f25f46be3f1e4ade",
+    "src-isidore-claims_py.md": "51b91516bbd75d89323d4612c42b80403b625623a2cb70207aff4fbaa70196ec",
+    "src-isidore-detectors_py.md": "f1a639b48fa7e2d7605f8bec663232574604f6c83b1aa5e2e7e8b860c289448a"
   },
   "claims": [
     {
       "detail": "cited claim proved TRUE",
-      "ehash": "d09f6b81a54c",
+      "ehash": "6d68fc8efa71",
       "evidence": "wiki://src-isidore-changeset_py.md#c-1ea2e1cc",
       "id": "c-dadfcc3c",
       "oracle": "wiki",
@@ -17,7 +17,7 @@
     },
     {
       "detail": "cited claim proved TRUE",
-      "ehash": "7779ebd4c02b",
+      "ehash": "51b91516bbd7",
       "evidence": "wiki://src-isidore-claims_py.md#c-8ea600ba",
       "id": "c-df631b86",
       "oracle": "wiki",
@@ -27,7 +27,7 @@
     },
     {
       "detail": "cited claim proved TRUE",
-      "ehash": "60d6374f0071",
+      "ehash": "f1a639b48fa7",
       "evidence": "wiki://src-isidore-detectors_py.md#c-88adfab5",
       "id": "c-12cfea4c",
       "oracle": "wiki",
@@ -37,7 +37,7 @@
     },
     {
       "detail": "cited claim proved TRUE",
-      "ehash": "d09f6b81a54c",
+      "ehash": "6d68fc8efa71",
       "evidence": "wiki://src-isidore-changeset_py.md#c-1ea2e1cc",
       "id": "c-58282a9f",
       "oracle": "wiki",
@@ -46,7 +46,7 @@
       "verdict": "TRUE"
     }
   ],
-  "graph_commit": null,
+  "graph_commit": "9fdf79637e552aed83ae127716dd5416d2b0e089",
   "marks": [],
   "mass": {
     "gray": 8,

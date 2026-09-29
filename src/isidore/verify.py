@@ -617,11 +617,10 @@ def certificate_status(repo: Path, page_path: Path,
 
 def _cert_digest(repo: Path, page: str) -> str:
     """sha256 of a page's certificate file, "" if it is gone."""
-    import hashlib
-
+    from .pcp import cert_file_digest
     from .pipeline import WIKI_DIRNAME
     child = repo / WIKI_DIRNAME / f"{page}{CERT_SUFFIX}"
-    return hashlib.sha256(child.read_bytes()).hexdigest() if child.is_file() else ""
+    return cert_file_digest(child) if child.is_file() else ""
 
 
 def verify_page(repo: Path, page_path: Path,

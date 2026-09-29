@@ -282,7 +282,17 @@ def certificate_from_dict(data: dict) -> Certificate:
 def write_certificate(cert: Certificate, path: Path) -> None:
     """Persist a certificate as pretty JSON (stable key order for byte-deterministic diffs)."""
     path.write_text(json.dumps(certificate_to_dict(cert), indent=2, sort_keys=True) + "\n",
-                    encoding="utf-8")
+                    encoding="utf-8", newline="\n")
+
+
+def cert_file_digest(path: Path) -> str:
+    """sha256 of a certificate FILE as a pyramid page records it, line endings normalised.
+
+    Raw bytes made the hash a property of the checkout, not of the certificate: a wiki compiled on
+    Windows recorded its children's CRLF bytes (git's autocrlf, and a writer without `newline`), so
+    the same commit verified on Windows and failed on Linux — found the first time CI ran there.
+    """
+    return hashlib.sha256(path.read_bytes().replace(b"\r\n", b"\n")).hexdigest()
 
 
 def read_certificate(path: Path) -> Certificate:

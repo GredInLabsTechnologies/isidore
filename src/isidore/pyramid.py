@@ -615,9 +615,8 @@ def _chain_verdicts(repo: Path, rows: list[dict], ctx: VerifyContext, cert) -> l
     rooted in the pages it rests on: edit a module page and its certificate hash moves, which is
     visible here without re-running a single model call.
     """
-    import hashlib
-
     from .claims import claim_id
+    from .pcp import cert_file_digest
     from .pcp import CERT_SUFFIX, ClaimVerdict, Predicate, verify_predicate
     from .render import WIKI_DIRNAME
 
@@ -632,7 +631,7 @@ def _chain_verdicts(repo: Path, rows: list[dict], ctx: VerifyContext, cert) -> l
             page, _claim = parsed
             child = repo / WIKI_DIRNAME / f"{page}{CERT_SUFFIX}"
             if child.is_file():
-                digest = hashlib.sha256(child.read_bytes()).hexdigest()
+                digest = cert_file_digest(child)
                 cert.child_cert_hashes[page] = digest
                 ehash = digest[:12]
         out.append(ClaimVerdict(

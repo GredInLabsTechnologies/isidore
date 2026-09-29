@@ -1,13 +1,13 @@
 {
   "child_cert_hashes": {
-    "tests-test_claims_py.md": "9b9da050c8aafbba2d2c3bd8fbacc1be5baa62b55aef5db8401f58642afc2c2a",
-    "tests-test_detectors_py.md": "4996de71d08149880a56659f0c2b58aa17cb8ba1950ab73df53f64cdd1b1165e",
-    "tests-test_pcp_pipeline_py.md": "3bb798608291c506ef1f00109e5d415e3fa9f5c7d374c5c1cb0063c2c991477e"
+    "tests-test_claims_py.md": "cd18cd0700184cf079b82449f76fe113bd00ed83d52ad1b54285fcd9663ec2e3",
+    "tests-test_detectors_py.md": "607f7a63ab1386b2aaa99d434ac727499e3760b0b1a2ec68564029bac6d277fd",
+    "tests-test_pcp_pipeline_py.md": "108eda6930c780be6c82ab3719aa7032729b577d7aeefe39494018d40a0c48c8"
   },
   "claims": [
     {
       "detail": "cited claim proved TRUE",
-      "ehash": "9b9da050c8aa",
+      "ehash": "cd18cd070018",
       "evidence": "wiki://tests-test_claims_py.md#c-bc3cb03c",
       "id": "c-aa72aa4e",
       "oracle": "wiki",
@@ -17,7 +17,7 @@
     },
     {
       "detail": "cited claim not found: tests-test_pcp_pipeline_py.md#c-43d8deee",
-      "ehash": "3bb798608291",
+      "ehash": "108eda6930c7",
       "evidence": "wiki://tests-test_pcp_pipeline_py.md#c-43d8deee",
       "id": "c-bc869e85",
       "oracle": "wiki",
@@ -27,7 +27,7 @@
     },
     {
       "detail": "cited claim proved TRUE",
-      "ehash": "4996de71d081",
+      "ehash": "607f7a63ab13",
       "evidence": "wiki://tests-test_detectors_py.md#c-7a6a0657",
       "id": "c-224c6ccc",
       "oracle": "wiki",
@@ -36,7 +36,7 @@
       "verdict": "TRUE"
     }
   ],
-  "graph_commit": null,
+  "graph_commit": "9fdf79637e552aed83ae127716dd5416d2b0e089",
   "marks": [],
   "mass": {
     "gray": 6,
