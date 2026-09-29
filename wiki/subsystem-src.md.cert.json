@@ -1,13 +1,14 @@
 {
   "child_cert_hashes": {
-    "src-isidore-changeset_py.md": "6d68fc8efa71b964cd0f66f77855f18063d4b6539a33b834f25f46be3f1e4ade",
+    "src-isidore-changeset_py.md": "5c276b0580d524ee6f5edd2403657fdf9c940a683e3da22737eb9e529a112688",
+    "src-isidore-citations_py.md": "f139eff68daa293b176b04d7f6aff0a902e4711993866e571840072e208e19cd",
     "src-isidore-claims_py.md": "f319ef45f55d17f4a57f3f23d865dacdbe0961d09043d29e63eff5cca2889030",
-    "src-isidore-cli_py.md": "624ae334d969f4e00335294b627aabc9cde917721266dee05fbd29265f12d3b0"
+    "src-isidore-cli_py.md": "c79528704deefc58f0b8388f7478b4a7c7117ea64c3671057aeb873eeee7127d"
   },
   "claims": [
     {
       "detail": "cited claim proved TRUE",
-      "ehash": "6d68fc8efa71",
+      "ehash": "5c276b0580d5",
       "evidence": "wiki://src-isidore-changeset_py.md#c-7ea4587c",
       "id": "c-3db57964",
       "oracle": "wiki",
@@ -17,7 +18,7 @@
     },
     {
       "detail": "cited claim proved TRUE",
-      "ehash": "6d68fc8efa71",
+      "ehash": "5c276b0580d5",
       "evidence": "wiki://src-isidore-changeset_py.md#c-1ea2e1cc",
       "id": "c-a6d521f7",
       "oracle": "wiki",
@@ -47,17 +48,17 @@
     },
     {
       "detail": "cited claim proved TRUE",
-      "ehash": "624ae334d969",
-      "evidence": "wiki://src-isidore-cli_py.md#c-f6575d7b",
-      "id": "c-b1edf849",
+      "ehash": "f139eff68daa",
+      "evidence": "wiki://src-isidore-citations_py.md#c-bfccd286",
+      "id": "c-2c5aadab",
       "oracle": "wiki",
-      "predicate": "wikichain:wiki://src-isidore-cli_py.md#c-f6575d7b",
-      "statement": "the CLI's compile command reaches the compiler in pipeline.py",
+      "predicate": "wikichain:wiki://src-isidore-citations_py.md#c-bfccd286",
+      "statement": "citations.py anchors prose citations with claims.py's own hashing",
       "verdict": "TRUE"
     },
     {
       "detail": "cited claim proved TRUE",
-      "ehash": "624ae334d969",
+      "ehash": "c79528704dee",
       "evidence": "wiki://src-isidore-cli_py.md#c-a5cfe99f",
       "id": "c-37a11856",
       "oracle": "wiki",
@@ -74,7 +75,7 @@
     "yellow": 0
   },
   "page": "subsystem-src.md",
-  "prose_sha256": "e641b4f6d7f35e8727c1cc1b646447631fcd970082128cf5f0533eb19228a952",
+  "prose_sha256": "af623bb7cad61a41e92ce0e521ef2f980b58e4b5801324a69569c876e72454c5",
   "version": "pcp-1",
   "violations": []
 }

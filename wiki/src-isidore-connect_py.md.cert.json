@@ -100,17 +100,46 @@
       "predicate": "calls:register_cli;add_parser",
       "statement": "The CLI is registered in a subparser",
       "verdict": "TRUE"
+    },
+    {
+      "detail": "src/isidore/connect.py imports src/isidore/detectors.py",
+      "ehash": "c51c46a8ea3e",
+      "evidence": "src/isidore/connect.py:L67",
+      "id": "c-c0c3e1df",
+      "oracle": "graph",
+      "predicate": "imports:src/isidore/connect.py;src/isidore/detectors.py",
+      "statement": "apply_settings imports _looks_like_secret from detectors",
+      "verdict": "TRUE"
+    },
+    {
+      "detail": "src/isidore/connect.py imports src/isidore/toon.py",
+      "ehash": "f911393dcea8",
+      "evidence": "src/isidore/connect.py:L20",
+      "id": "c-17724142",
+      "oracle": "graph",
+      "predicate": "imports:src/isidore/connect.py;src/isidore/toon.py",
+      "statement": "connect.py imports encode_table from toon",
+      "verdict": "TRUE"
     }
   ],
-  "graph_commit": "b78c836100f72c8de8a10a0def794b104ab4f424",
-  "marks": [],
+  "graph_commit": "25e46585ff277fe8131d8f77e7c61ee993b21869",
+  "marks": [
+    {
+      "disposition": "",
+      "family": "topology",
+      "file": "src/isidore/connect.py",
+      "line": 1,
+      "reason": "reachable from auth/secret surface: src/isidore/detectors.py",
+      "severity": "info"
+    }
+  ],
   "mass": {
-    "gray": 15,
-    "green": 16,
+    "gray": 13,
+    "green": 19,
     "yellow": 0
   },
   "page": "src-isidore-connect_py.md",
-  "prose_sha256": "6ec882fbe53c03a115f4ae4160aa909974c2b1a8447fb821b722096242b79c73",
+  "prose_sha256": "66637a351ee7f88bca449e76c32267eced4cd1671e0b0b968a82d0bdf74c1210",
   "version": "pcp-1",
   "violations": []
 }

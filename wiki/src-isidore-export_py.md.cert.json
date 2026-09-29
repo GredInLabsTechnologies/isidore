@@ -1,0 +1,65 @@
+{
+  "child_cert_hashes": {},
+  "claims": [
+    {
+      "detail": "src/isidore/export.py imports src/isidore/claims.py",
+      "ehash": "073aa2533d66",
+      "evidence": "src/isidore/export.py:L13",
+      "id": "c-50cade4c",
+      "oracle": "graph",
+      "predicate": "imports:src/isidore/export.py;src/isidore/claims.py",
+      "statement": "export.py imports check_claims from claims",
+      "verdict": "TRUE"
+    },
+    {
+      "detail": "src/isidore/export.py imports src/isidore/pipeline.py",
+      "ehash": "4492265401d9",
+      "evidence": "src/isidore/export.py:L14",
+      "id": "c-9fd358db",
+      "oracle": "graph",
+      "predicate": "imports:src/isidore/export.py;src/isidore/pipeline.py",
+      "statement": "export.py imports WIKI_DIRNAME and load_state from pipeline",
+      "verdict": "TRUE"
+    },
+    {
+      "detail": "no predicate (existence-anchored only)",
+      "ehash": "2e9b25e6d6c4",
+      "evidence": "src/isidore/export.py:L43",
+      "id": "c-baac00ef",
+      "oracle": "none",
+      "predicate": "",
+      "statement": "render_card includes verify_cmd as isidore claims --check --repo .",
+      "verdict": "UNDECIDABLE"
+    },
+    {
+      "detail": "write_cards calls mkdir",
+      "ehash": "780f694a245e",
+      "evidence": "src/isidore/export.py:L84",
+      "id": "c-2d0621d4",
+      "oracle": "ast",
+      "predicate": "calls:write_cards;mkdir",
+      "statement": "write_cards creates output directory if absent",
+      "verdict": "TRUE"
+    }
+  ],
+  "graph_commit": "25e46585ff277fe8131d8f77e7c61ee993b21869",
+  "marks": [
+    {
+      "disposition": "",
+      "family": "topology",
+      "file": "src/isidore/export.py",
+      "line": 1,
+      "reason": "reachable from auth/secret surface: src/isidore/detectors.py",
+      "severity": "info"
+    }
+  ],
+  "mass": {
+    "gray": 29,
+    "green": 6,
+    "yellow": 5
+  },
+  "page": "src-isidore-export_py.md",
+  "prose_sha256": "5a5c6f15d67ed980ddc0d26017fb7543c98c9e29d66c8f1c1fe56308f129a21c",
+  "version": "pcp-1",
+  "violations": []
+}

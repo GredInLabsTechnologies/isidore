@@ -1,0 +1,75 @@
+{
+  "child_cert_hashes": {},
+  "claims": [
+    {
+      "detail": "no predicate (existence-anchored only)",
+      "ehash": "e8fa6e2b3295",
+      "evidence": "src/isidore/llm.py:L94",
+      "id": "c-80f4427b",
+      "oracle": "none",
+      "predicate": "",
+      "statement": "generate_via_cli passes prompt on STDIN not argv",
+      "verdict": "UNDECIDABLE"
+    },
+    {
+      "detail": "ISIDORE_PROVIDER read in src/isidore/llm.py",
+      "ehash": "3ce326620cc5",
+      "evidence": "src/isidore/llm.py:L115",
+      "id": "c-8a8016d0",
+      "oracle": "grep",
+      "predicate": "env:ISIDORE_PROVIDER",
+      "statement": "default_generator reads ISIDORE_PROVIDER to choose path",
+      "verdict": "TRUE"
+    },
+    {
+      "detail": "ISIDORE_MODEL read in src/isidore/llm.py",
+      "ehash": "afffd9520523",
+      "evidence": "src/isidore/llm.py:L114",
+      "id": "c-54b584c1",
+      "oracle": "grep",
+      "predicate": "env:ISIDORE_MODEL",
+      "statement": "default_generator reads ISIDORE_MODEL",
+      "verdict": "TRUE"
+    },
+    {
+      "detail": "DEFAULT_BASE_URL == http://localhost:11434/v1",
+      "ehash": "9dc7382f57c6",
+      "evidence": "src/isidore/llm.py:L26",
+      "id": "c-23604b90",
+      "oracle": "ast",
+      "predicate": "value:DEFAULT_BASE_URL;http://localhost:11434/v1",
+      "statement": "DEFAULT_BASE_URL is http://localhost:11434/v1",
+      "verdict": "TRUE"
+    },
+    {
+      "detail": "generate_via_cli calls which",
+      "ehash": "90da158facd0",
+      "evidence": "src/isidore/llm.py:L87",
+      "id": "c-22bc1925",
+      "oracle": "ast",
+      "predicate": "calls:generate_via_cli;which",
+      "statement": "generate_via_cli uses shutil.which to resolve CLI on Windows",
+      "verdict": "TRUE"
+    }
+  ],
+  "graph_commit": "25e46585ff277fe8131d8f77e7c61ee993b21869",
+  "marks": [
+    {
+      "disposition": "",
+      "family": "topology",
+      "file": "src/isidore/llm.py",
+      "line": 1,
+      "reason": "reachable from auth/secret surface: src/isidore/detectors.py",
+      "severity": "info"
+    }
+  ],
+  "mass": {
+    "gray": 31,
+    "green": 14,
+    "yellow": 0
+  },
+  "page": "src-isidore-llm_py.md",
+  "prose_sha256": "ce78567e625edb6475140ea22557e8741993cf38d6f4ee35fc5b5fd9fb6bb633",
+  "version": "pcp-1",
+  "violations": []
+}

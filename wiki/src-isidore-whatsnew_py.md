@@ -30,6 +30,6 @@ The module depends on:
 
 ## How to change safely
 1. **Add a new change kind**: Extend `_WRITABLE_KINDS` in `src/isidore/whatsnew.py:120` to include the new kind, ensuring it is citable to the current tree.
-2. **Modify area classification**: Adjust `_TEST_MARKERS` or `_DOC_SUFFIXES` in `src/isidore/whatsnew.py:131-L132` to update how files are categorized.
-3. **Update git commands**: Modify `_git` in `src/isidore/whatsnew.py:216` to handle new git operations, ensuring failures are raised as `WhatsnewError`.
-4. **Add a new output format**: Extend `WhatsnewResult` in `src/isidore/whatsnew.py:199` to include paths for new artifact types.
+2. **Modify area classification**: Documentation files are recognised by `_DOC_SUFFIXES` (`src/isidore/whatsnew.py:131`). Test files are no longer recognised here: `area` asks the shared `is_test_path` (`src/isidore/whatsnew.py:168`), so a new test convention belongs in that function, where the page planner uses the same answer — two lists would drift apart.
+3. **Update git commands**: Modify `_git` in `src/isidore/whatsnew.py:214` to handle new git operations, ensuring failures are raised as `WhatsnewError`.
+4. **Add a new output format**: Extend `WhatsnewResult` in `src/isidore/whatsnew.py:197` to include paths for new artifact types.

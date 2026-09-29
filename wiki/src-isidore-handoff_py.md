@@ -22,20 +22,20 @@ belongs to whoever answers rather than to the planner (`src/isidore/handoff.py:7
 
 `emit` turns that plan into files. Before writing a round it deletes the previous prompts *and*
 responses, so a page that is no longer dirty cannot leave an answerable prompt behind for the next
-`apply` to certify (`src/isidore/handoff.py:86`). Each prompt is written out and recorded in a
+`apply` to certify (`src/isidore/handoff.py:87`). Each prompt is written out and recorded in a
 manifest keyed by `prompt_id` — the pairing is by content, never by filename order
-(`src/isidore/handoff.py:92`).
+(`src/isidore/handoff.py:93`).
 
 `response_generator` is the seam that makes the whole thing safe. It reads the manifest, failing
-closed with an instruction to run `emit` first if it cannot (`src/isidore/handoff.py:104`), and
+closed with an instruction to run `emit` first if it cannot (`src/isidore/handoff.py:105`), and
 returns a function shaped exactly like a provider call. Its `_lookup` tries the exact prompt hash
-first (`src/isidore/handoff.py:120`). The fallback exists because the lint gate appends a correction
+first (`src/isidore/handoff.py:121`). The fallback exists because the lint gate appends a correction
 addendum to the original prompt and asks again — a round nobody can answer here, since the answer was
 written before `apply` ran. Serving the same answer lets the gate re-lint it and quarantine the page
 with its bad citation annotated, instead of aborting and taking every other page down
-(`src/isidore/handoff.py:111`). The tail is required to be that addendum and nothing else: a bare
+(`src/isidore/handoff.py:112`). The tail is required to be that addendum and nothing else: a bare
 prefix match would silently certify a stale answer whenever new facts were appended to a page's
-context (`src/isidore/handoff.py:116`).
+context (`src/isidore/handoff.py:117`).
 
 ## Key entry points
 
@@ -43,8 +43,8 @@ context (`src/isidore/handoff.py:116`).
 - `prompt_id(prompt)` — the pairing key, a truncated SHA-256 of the prompt text
   (`src/isidore/handoff.py:54`).
 - `emit(repo, config, args)` — one prompt file per dirty page, plus the manifest
-  (`src/isidore/handoff.py:77`).
-- `response_generator(repo)` — a generator that answers from disk (`src/isidore/handoff.py:97`).
+  (`src/isidore/handoff.py:78`).
+- `response_generator(repo)` — a generator that answers from disk (`src/isidore/handoff.py:98`).
 
 ## Dependencies
 
@@ -53,7 +53,8 @@ addendum (`src/isidore/handoff.py:28`). `REPAIR_MARKER` is derived from that add
 retyped, so a change to the gate's wording moves the marker with it instead of quietly ceasing to
 match (`src/isidore/handoff.py:47`). `src/isidore/graph.py` resolves the structure graph and
 `src/isidore/llm.py` supplies `GenerationError`, the one failure type the loop speaks
-(`src/isidore/handoff.py:26`).
+(`src/isidore/handoff.py:26`). `src/isidore/home.py` provides `safe_mkdir` for creating the handoff
+directory (`src/isidore/handoff.py:L80`).
 
 ## How to change safely
 

@@ -1,0 +1,85 @@
+{
+  "child_cert_hashes": {},
+  "claims": [
+    {
+      "detail": "no predicate (existence-anchored only)",
+      "ehash": "694705e87199",
+      "evidence": "src/isidore/plain.py:104",
+      "id": "c-bbea979a",
+      "oracle": "none",
+      "predicate": "",
+      "statement": "check strips accepted terms before applying the rules",
+      "verdict": "UNDECIDABLE"
+    },
+    {
+      "detail": "no predicate (existence-anchored only)",
+      "ehash": "3b58bdfaf604",
+      "evidence": "src/isidore/plain.py:105",
+      "id": "c-65494211",
+      "oracle": "none",
+      "predicate": "",
+      "statement": "check returns the names of the rules the text breaks",
+      "verdict": "UNDECIDABLE"
+    },
+    {
+      "detail": "no predicate (existence-anchored only)",
+      "ehash": "1bf223770081",
+      "evidence": "src/isidore/plain.py:109",
+      "id": "c-8e2aa76d",
+      "oracle": "none",
+      "predicate": "",
+      "statement": "is_plain is true when check finds nothing",
+      "verdict": "UNDECIDABLE"
+    },
+    {
+      "detail": "no predicate (existence-anchored only)",
+      "ehash": "a6f44717b623",
+      "evidence": "src/isidore/plain.py:69",
+      "id": "c-7313b2aa",
+      "oracle": "none",
+      "predicate": "",
+      "statement": "PlainRule declares a kind, vocabulary or structure",
+      "verdict": "UNDECIDABLE"
+    },
+    {
+      "detail": "src/isidore/plain.py defines check",
+      "ehash": "b91a606a71e9",
+      "evidence": "src/isidore/plain.py:98",
+      "id": "c-da7ad8d3",
+      "oracle": "graph",
+      "predicate": "defines:src/isidore/plain.py;check",
+      "statement": "plain.py defines check",
+      "verdict": "TRUE"
+    },
+    {
+      "detail": "no predicate (existence-anchored only)",
+      "ehash": "84b741a330bb",
+      "evidence": "src/isidore/plain.py:86",
+      "id": "c-7386eecf",
+      "oracle": "none",
+      "predicate": "",
+      "statement": "The camel-case rule matches a lowercase letter followed by an uppercase one",
+      "verdict": "UNDECIDABLE"
+    }
+  ],
+  "graph_commit": "25e46585ff277fe8131d8f77e7c61ee993b21869",
+  "marks": [
+    {
+      "disposition": "",
+      "family": "topology",
+      "file": "src/isidore/plain.py",
+      "line": 1,
+      "reason": "reachable from auth/secret surface: tests/test_source_disclosure_gate.py",
+      "severity": "info"
+    }
+  ],
+  "mass": {
+    "gray": 11,
+    "green": 4,
+    "yellow": 18
+  },
+  "page": "src-isidore-plain_py.md",
+  "prose_sha256": "4d5b8ca7046f8d9dcb5cd21a892eb129b7ffc9b02c2afe9a1a76a9a597d949e8",
+  "version": "pcp-1",
+  "violations": []
+}

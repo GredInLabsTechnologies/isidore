@@ -12,7 +12,7 @@
       "verdict": "TRUE"
     },
     {
-      "detail": "no comparable literal assignment to ROOTS found",
+      "detail": "no declaration of 'ROOTS' this oracle can read",
       "ehash": "c943d970554b",
       "evidence": "src/isidore/detectors.py:25",
       "id": "c-2c5f9fb3",
@@ -24,7 +24,7 @@
     {
       "detail": "_looks_like_secret calls shannon_entropy",
       "ehash": "ed166de86e45",
-      "evidence": "src/isidore/detectors.py:75",
+      "evidence": "src/isidore/detectors.py:81",
       "id": "c-e9c3c73d",
       "oracle": "ast",
       "predicate": "calls:_looks_like_secret;shannon_entropy",
@@ -34,7 +34,7 @@
     {
       "detail": "_scan_file calls search",
       "ehash": "1b5a8889e3d0",
-      "evidence": "src/isidore/detectors.py:108",
+      "evidence": "src/isidore/detectors.py:114",
       "id": "c-9ed5afb6",
       "oracle": "ast",
       "predicate": "calls:_scan_file;re.search",
@@ -60,9 +60,19 @@
       "predicate": "imports:src/isidore/detectors.py;src/isidore/pcp.py",
       "statement": "The module imports Mark and VerifyContext from pcp.py",
       "verdict": "TRUE"
+    },
+    {
+      "detail": "TOPOLOGY_DEPTH == 2",
+      "ehash": "e6ee0c462d6f",
+      "evidence": "src/isidore/detectors.py:L26",
+      "id": "c-b5d46e56",
+      "oracle": "ast",
+      "predicate": "value:TOPOLOGY_DEPTH;2",
+      "statement": "TOPOLOGY_DEPTH limits BFS traversal to 2 hops",
+      "verdict": "TRUE"
     }
   ],
-  "graph_commit": "1a34c13ecf2ef7ce206f1ceeaeb1987fea5f8272",
+  "graph_commit": "25e46585ff277fe8131d8f77e7c61ee993b21869",
   "marks": [
     {
       "disposition": "",
@@ -178,12 +188,12 @@
     }
   ],
   "mass": {
-    "gray": 36,
-    "green": 18,
+    "gray": 38,
+    "green": 20,
     "yellow": 0
   },
   "page": "src-isidore-detectors_py.md",
-  "prose_sha256": "c8a05a3a25cd41a979d1732050d9f48f66b724daa9208bfcc77ef82705c9f8cd",
+  "prose_sha256": "962626936a946d2bb28e3e8be0a7ec7d3f4d6167918d98139c23646ce69dabd2",
   "version": "pcp-1",
   "violations": [
     {

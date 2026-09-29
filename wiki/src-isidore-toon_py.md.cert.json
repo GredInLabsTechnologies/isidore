@@ -1,0 +1,95 @@
+{
+  "child_cert_hashes": {},
+  "claims": [
+    {
+      "detail": "no predicate (existence-anchored only)",
+      "ehash": "a6db131f06b6",
+      "evidence": "src/isidore/toon.py:18",
+      "id": "c-3bef8b78",
+      "oracle": "none",
+      "predicate": "",
+      "statement": "toon.py exports exactly encode_table and encode",
+      "verdict": "UNDECIDABLE"
+    },
+    {
+      "detail": "no predicate (existence-anchored only)",
+      "ehash": "2684f271aef8",
+      "evidence": "src/isidore/toon.py:23",
+      "id": "c-c0c4d862",
+      "oracle": "none",
+      "predicate": "",
+      "statement": "None and the empty string render as an empty field",
+      "verdict": "UNDECIDABLE"
+    },
+    {
+      "detail": "no predicate (existence-anchored only)",
+      "ehash": "483102394862",
+      "evidence": "src/isidore/toon.py:30",
+      "id": "c-ca9904b9",
+      "oracle": "none",
+      "predicate": "",
+      "statement": "A field is quoted when it holds a comma, quote, newline or edge space",
+      "verdict": "UNDECIDABLE"
+    },
+    {
+      "detail": "no predicate (existence-anchored only)",
+      "ehash": "b33c225c76fe",
+      "evidence": "src/isidore/toon.py:56",
+      "id": "c-86693853",
+      "oracle": "none",
+      "predicate": "",
+      "statement": "A row that is neither a mapping nor a sequence raises TypeError",
+      "verdict": "UNDECIDABLE"
+    },
+    {
+      "detail": "no predicate (existence-anchored only)",
+      "ehash": "c5b8e46c398b",
+      "evidence": "src/isidore/toon.py:73",
+      "id": "c-a8c2b3bc",
+      "oracle": "none",
+      "predicate": "",
+      "statement": "Rows are indented two spaces and comma-separated",
+      "verdict": "UNDECIDABLE"
+    },
+    {
+      "detail": "src/isidore/toon.py defines encode_table",
+      "ehash": "80e84e4bb166",
+      "evidence": "src/isidore/toon.py:59",
+      "id": "c-9b18c8b7",
+      "oracle": "graph",
+      "predicate": "defines:src/isidore/toon.py;encode_table",
+      "statement": "toon.py defines encode_table",
+      "verdict": "TRUE"
+    },
+    {
+      "detail": "no predicate (existence-anchored only)",
+      "ehash": "3ad96c0d619e",
+      "evidence": "src/isidore/toon.py:79",
+      "id": "c-7b83a9c6",
+      "oracle": "none",
+      "predicate": "",
+      "statement": "encode joins tables with newlines",
+      "verdict": "UNDECIDABLE"
+    }
+  ],
+  "graph_commit": "25e46585ff277fe8131d8f77e7c61ee993b21869",
+  "marks": [
+    {
+      "disposition": "",
+      "family": "topology",
+      "file": "src/isidore/toon.py",
+      "line": 1,
+      "reason": "reachable from auth/secret surface: src/isidore/detectors.py",
+      "severity": "info"
+    }
+  ],
+  "mass": {
+    "gray": 22,
+    "green": 2,
+    "yellow": 5
+  },
+  "page": "src-isidore-toon_py.md",
+  "prose_sha256": "a119e6b30ec919e5711e8a5ceadd76d4e84f59b3defcc8cfe2d5405cb5d14a8f",
+  "version": "pcp-1",
+  "violations": []
+}

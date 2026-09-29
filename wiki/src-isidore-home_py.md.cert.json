@@ -12,16 +12,6 @@
       "verdict": "TRUE"
     },
     {
-      "detail": "home()",
-      "ehash": "ef20de3efaaf",
-      "evidence": "src/isidore/home.py:13",
-      "id": "c-74984f74",
-      "oracle": "ast",
-      "predicate": "signature:home",
-      "statement": "The `home()` function returns a `Path` object for the knowledge home directory",
-      "verdict": "TRUE"
-    },
-    {
       "detail": "src/isidore/home.py defines connector_dir",
       "ehash": "25c8c09518a0",
       "evidence": "src/isidore/home.py:19",
@@ -72,16 +62,6 @@
       "verdict": "TRUE"
     },
     {
-      "detail": "safe_chmod has no call to name",
-      "ehash": "2cfa9cad049d",
-      "evidence": "src/isidore/home.py:40",
-      "id": "c-f0bf5fcc",
-      "oracle": "ast",
-      "predicate": "calls:safe_chmod;os.name",
-      "statement": "The `safe_chmod()` function skips operations on Windows",
-      "verdict": "FALSE"
-    },
-    {
       "detail": "safe_mkdir calls safe_chmod",
       "ehash": "c541e3c67777",
       "evidence": "src/isidore/home.py:50",
@@ -90,17 +70,46 @@
       "predicate": "calls:safe_mkdir;safe_chmod",
       "statement": "The `safe_mkdir()` function creates directories with restrictive permissions",
       "verdict": "TRUE"
+    },
+    {
+      "detail": "ISIDORE_HOME read in src/isidore/home.py",
+      "ehash": "38904d9668e7",
+      "evidence": "src/isidore/home.py:L15",
+      "id": "c-079ae992",
+      "oracle": "grep",
+      "predicate": "env:ISIDORE_HOME",
+      "statement": "home reads ISIDORE_HOME env var",
+      "verdict": "TRUE"
+    },
+    {
+      "detail": "no declaration of 'mode' this oracle can read",
+      "ehash": "c541e3c67777",
+      "evidence": "src/isidore/home.py:L50",
+      "id": "c-4e8fbb85",
+      "oracle": "none",
+      "predicate": "value:mode;0o700",
+      "statement": "safe_mkdir default mode is 0o700",
+      "verdict": "UNDECIDABLE"
     }
   ],
-  "graph_commit": "f92c64149ed85261aab4389441ceab868b67e5e6",
-  "marks": [],
+  "graph_commit": "25e46585ff277fe8131d8f77e7c61ee993b21869",
+  "marks": [
+    {
+      "disposition": "",
+      "family": "topology",
+      "file": "src/isidore/home.py",
+      "line": 1,
+      "reason": "reachable from auth/secret surface: src/isidore/detectors.py",
+      "severity": "info"
+    }
+  ],
   "mass": {
-    "gray": 8,
-    "green": 20,
-    "yellow": 1
+    "gray": 11,
+    "green": 19,
+    "yellow": 0
   },
   "page": "src-isidore-home_py.md",
-  "prose_sha256": "c48959a8e09a89caa31b80903eabc0dc96fdff4a56e6a760c15bdf0a40af438c",
+  "prose_sha256": "bfcfe70d2e489bfb6cea59f0d2c6224cb865c0f0a3edc1aa1cb6f721d1127e92",
   "version": "pcp-1",
   "violations": []
 }

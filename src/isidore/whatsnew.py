@@ -61,7 +61,7 @@ from .claims import (
     is_negative_existential,
     parse_claims_block,
 )
-from .graph import ISIDORE_DIR, module_of
+from .graph import ISIDORE_DIR, is_test_path, module_of
 from .langspec import BINARY_EXTS
 from .pcp import CERT_SUFFIX, VerifyContext, write_certificate
 from .plain import check as plain_check
@@ -128,7 +128,6 @@ AREA_INTERNAL = "internal"
 AREA_TESTS = "tests"
 AREA_DOCS = "docs"
 
-_TEST_MARKERS = ("/tests/", "/test/", "/__tests__/", "/spec/", ".test.", ".spec.", "_test.")
 _DOC_SUFFIXES = frozenset({".md", ".markdown", ".rst", ".txt", ".adoc"})
 
 DEFAULT_MAX_CALLS = 8
@@ -166,8 +165,7 @@ class DeltaEntry:
     @property
     def area(self) -> str:
         posix = f"/{self.file.replace(chr(92), '/')}"
-        name = posix.rsplit("/", 1)[-1]
-        if any(marker in posix for marker in _TEST_MARKERS) or name.startswith("test_"):
+        if is_test_path(self.file):
             return AREA_TESTS
         if Path(posix).suffix.lower() in _DOC_SUFFIXES:
             return AREA_DOCS

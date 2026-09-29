@@ -20,13 +20,17 @@ Key data structures:
 ## Key entry points
 - `changed_lines(repo, since)`: The primary interface, returning `{file: {changed_lines}}`
 - `changed_symbols(nodes, changed)`: Maps changed lines to graph node IDs
+- `modules_of(nodes, node_ids, module_depth)`: Resolves a set of node IDs to their owning module paths
 - `_module_fan_in(nodes, links, module_depth)`: Calculates module dependencies
 
 ## Dependencies
 - `src/isidore/graph.py`: Only imports `module_of` to determine a file's module path
 - Used by:
+  - `src/isidore/findings.py` (for mapping findings to changed symbols)
   - `src/isidore/impact.py` (for impact analysis)
   - `src/isidore/pipeline.py` (for incremental compilation)
+- Tested by:
+  - `tests/test_changeset.py`
 
 ## How to change safely
 1. **Git diff parsing**: Changes to `_git_diff()` or diff parsing logic must preserve the exact line number mapping

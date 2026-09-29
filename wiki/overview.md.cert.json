@@ -1,12 +1,11 @@
 {
   "child_cert_hashes": {
-    "subsystem-src.md": "500de47f58017ab6da6977197789390c5c98d826726f2fd4cc7ffc4a9d6235df",
-    "subsystem-tests.md": "35f88638cba9175431a7afb46a67e519d2609dfc5727a31588620373c70d0d37"
+    "subsystem-src.md": "1d988582b31409b575532d9fa6635c165876a19b5be62339e364d2ea23fda230"
   },
   "claims": [
     {
       "detail": "cited claim proved TRUE",
-      "ehash": "500de47f5801",
+      "ehash": "1d988582b314",
       "evidence": "wiki://subsystem-src.md#c-7e7e28f5",
       "id": "c-bef61711",
       "oracle": "wiki",
@@ -16,7 +15,7 @@
     },
     {
       "detail": "cited claim proved TRUE",
-      "ehash": "500de47f5801",
+      "ehash": "1d988582b314",
       "evidence": "wiki://subsystem-src.md#c-3db57964",
       "id": "c-66ce7e08",
       "oracle": "wiki",
@@ -26,7 +25,7 @@
     },
     {
       "detail": "cited claim proved TRUE",
-      "ehash": "500de47f5801",
+      "ehash": "1d988582b314",
       "evidence": "wiki://subsystem-src.md#c-a6d521f7",
       "id": "c-9fb7b7ec",
       "oracle": "wiki",
@@ -36,34 +35,24 @@
     },
     {
       "detail": "cited claim proved TRUE",
-      "ehash": "35f88638cba9",
-      "evidence": "wiki://subsystem-tests.md#c-b9e36aa0",
-      "id": "c-d8c750d2",
+      "ehash": "1d988582b314",
+      "evidence": "wiki://subsystem-src.md#c-2c5aadab",
+      "id": "c-9c8e834a",
       "oracle": "wiki",
-      "predicate": "wikichain:wiki://subsystem-tests.md#c-b9e36aa0",
-      "statement": "Items marked as restricted are left out of what is sent for writing.",
-      "verdict": "TRUE"
-    },
-    {
-      "detail": "cited claim proved TRUE",
-      "ehash": "35f88638cba9",
-      "evidence": "wiki://subsystem-tests.md#c-34aa9ef1",
-      "id": "c-c8a9c8f8",
-      "oracle": "wiki",
-      "predicate": "wikichain:wiki://subsystem-tests.md#c-34aa9ef1",
-      "statement": "A claim is marked only when the line behind it changes.",
+      "predicate": "wikichain:wiki://subsystem-src.md#c-2c5aadab",
+      "statement": "The places the guide points to are tracked the same way its claims are.",
       "verdict": "TRUE"
     }
   ],
   "graph_commit": null,
   "marks": [],
   "mass": {
-    "gray": 5,
-    "green": 7,
+    "gray": 2,
+    "green": 10,
     "yellow": 0
   },
   "page": "overview.md",
-  "prose_sha256": "88f9ce16588e0a6cdfee2ab77e8ae1bc0ff23504d1bf63800111becdf3ccef80",
+  "prose_sha256": "5416b2db3cfddfcddca40b1906e21581612b3c2c5274d904627aa530b0b0fe2e",
   "version": "pcp-1",
   "violations": []
 }

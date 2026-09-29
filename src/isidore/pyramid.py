@@ -303,6 +303,25 @@ def _overview_identity(facts: dict) -> dict:
     return {"readme": facts.get("readme"), "claims": facts.get("claims")}
 
 
+def _prune_areas(repo: Path, keep: set[str]) -> list[str]:
+    """Delete area pages (and their certificates and stored facts) that no longer have an area."""
+    from .pcp import CERT_SUFFIX
+    from .pipeline import load_state, save_state
+    from .render import WIKI_DIRNAME
+    wiki = repo / WIKI_DIRNAME
+    gone = [p.name for p in wiki.glob(f"{SUBSYSTEM_PREFIX}*.md") if p.name not in keep]
+    if not gone:
+        return []
+    state = load_state(wiki)
+    for name in gone:
+        for stale in (wiki / name, wiki / f"{name}{CERT_SUFFIX}"):
+            if stale.is_file():
+                stale.unlink()
+        state.get("pyramid", {}).pop(name, None)
+    save_state(wiki, state)
+    return gone
+
+
 def compile_subsystems(repo: Path, nodes: list[dict], links: list[dict], config: dict, *,
                        execute: bool = False, generator=None, max_calls: int = 0,
                        rewrite: bool = False) -> list[dict]:
@@ -320,6 +339,10 @@ def compile_subsystems(repo: Path, nodes: list[dict], links: list[dict], config:
 
     specs = [s for s in plan_pyramid(nodes, links, config) if s.get("level") == 2]
     specs = [s for s in specs if _module_pages_of(repo, s["name"])][:_MAX_SUBSYSTEM_PAGES]
+    if execute:
+        # An area left with no module page under it (the test area, once tests stopped getting
+        # pages) must not keep a page resting on certificates that are gone.
+        _prune_areas(repo, {subsystem_page_name(s["name"]) for s in specs})
     results = [{"name": s["name"], "page": subsystem_page_name(s["name"]),
                 "facts": subsystem_facts(repo, s), "calls": 0, "proved": 0, "written": False}
                for s in specs]
@@ -449,12 +472,20 @@ def _readme_context(repo: Path) -> str:
 
 def overview_facts(repo: Path, nodes: list[dict], links: list[dict], config: dict) -> dict:
     """Everything the overview is allowed to be written from. 0 LLM."""
-    from .graph import module_of
+    from .graph import is_test_path, module_of
 
     counts: dict[str, int] = defaultdict(int)
     for node in nodes:
-        if node.get("file_type") == "code" and node.get("source_file"):
-            counts[module_of(node["source_file"], 2)] += 1
+        # What the software is MADE OF, for a reader who will never see code: its tests are not.
+        # ...and a file with no symbol in it (LICENSE, .gitignore, a JSON artifact) is not a part
+        # either: each such file carries one file-level node, and once tests left this list those
+        # nodes filled it — ".gitignore (1 symbols)" was the second part of the product.
+        source = node.get("source_file")
+        file_node = (node.get("source_location") == "L1"
+                     and node.get("label") == PurePosixPath(str(source).replace("\\", "/")).name)
+        if (node.get("file_type") == "code" and source and not file_node
+                and not is_test_path(source)):
+            counts[module_of(source, 2)] += 1
     modules = sorted(counts.items(), key=lambda kv: (-kv[1], kv[0]))[:_MAX_MODULES]
     return {
         "name": repo.resolve().name,

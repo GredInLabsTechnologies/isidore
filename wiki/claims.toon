@@ -1,14 +1,15 @@
-# isidore claims · commit c0fff51567e31fdf936331ff4354c0f26bea0cfd
+# isidore claims · commit 25e46585ff277fe8131d8f77e7c61ee993b21869
 # each claim is anchored to its evidence by a content hash; state is re-checked
 # mechanically on every compile (zero LLM calls). stale/orphan => page regenerates.
-# summary: 410 claims, 0 stale/orphan
-claims[410]{page,id,statement,evidence,state}:
+# summary: 244 claims, 0 stale/orphan
+claims[244]{page,id,statement,evidence,state}:
   src-isidore-changeset_py.md,c-1ea2e1cc,The module processes git diffs to identify changed lines,src/isidore/changeset.py:36,ok
   src-isidore-changeset_py.md,c-90be0b37,changed_lines() maps files to sets of changed line numbers,src/isidore/changeset.py:36,ok
   src-isidore-changeset_py.md,c-6b86763d,symbol_spans() converts graph nodes to line ranges,src/isidore/changeset.py:68,ok
   src-isidore-changeset_py.md,c-7ea4587c,changed_symbols() maps changed lines to graph node IDs,src/isidore/changeset.py:95,ok
   src-isidore-changeset_py.md,c-436a43d3,WHOLE_FILE is a sentinel for pure renames,src/isidore/changeset.py:22,ok
   src-isidore-changeset_py.md,c-e4061fd8,The module depends on graph.py's module_of,src/isidore/changeset.py:15,ok
+  src-isidore-changeset_py.md,c-82be4b71,findings.py imports and uses changeset,src/isidore/findings.py:L1,ok
   src-isidore-citations_py.md,c-bfccd286,"citations.py reuses claims.py's hashing, normalisation and file reading",src/isidore/citations.py:30,ok
   src-isidore-citations_py.md,c-e3b26a9c,A fingerprint spans three non-empty lines,src/isidore/citations.py:38,ok
   src-isidore-citations_py.md,c-4cec4f56,Lines shorter than three characters are not tracked,src/isidore/citations.py:39,ok
@@ -29,13 +30,14 @@ claims[410]{page,id,statement,evidence,state}:
   src-isidore-cli_py.md,c-7fd6b071,"The module defines five subcommands: scan, compile, ask, suggest-flows, and claims",src/isidore/cli.py:1,ok
   src-isidore-cli_py.md,c-a5cfe99f,The _cmd_scan function writes a structure graph to disk,src/isidore/cli.py:40,ok
   src-isidore-cli_py.md,c-e9131176,The _cmd_compile function uses _setting to resolve configuration values,src/isidore/cli.py:54,ok
-  src-isidore-cli_py.md,c-9deb2e29,The _cmd_ask function supports an offline mode that uses verified claims,src/isidore/cli.py:116,ok
-  src-isidore-cli_py.md,c-d638bd55,The _cmd_suggest_flows function identifies cross-module bridges,src/isidore/cli.py:145,ok
-  src-isidore-cli_py.md,c-d957b324,The _cmd_impact function analyzes changes and their impact,src/isidore/cli.py:161,ok
+  src-isidore-cli_py.md,c-9deb2e29,The _cmd_ask function supports an offline mode that uses verified claims,src/isidore/cli.py:123,ok
+  src-isidore-cli_py.md,c-d638bd55,The _cmd_suggest_flows function identifies cross-module bridges,src/isidore/cli.py:152,ok
+  src-isidore-cli_py.md,c-d957b324,The _cmd_impact function analyzes changes and their impact,src/isidore/cli.py:168,ok
   src-isidore-cli_py.md,c-9622dbf4,cli.py imports write_scan from src/isidore/graph.py,src/isidore/cli.py:17,ok
   src-isidore-cli_py.md,c-f6575d7b,cli.py imports compile_wiki from src/isidore/pipeline.py,src/isidore/cli.py:25,ok
   src-isidore-cli_py.md,c-cbf5a4a4,cli.py imports ask from src/isidore/qa.py,src/isidore/cli.py:29,ok
-  src-isidore-cli_py.md,c-63d6f4ba,_cmd_impact imports build_impact and render_impact from src/isidore/impact.py,src/isidore/cli.py:155,ok
+  src-isidore-cli_py.md,c-63d6f4ba,_cmd_impact imports build_impact and render_impact from src/isidore/impact.py,src/isidore/cli.py:162,ok
+  src-isidore-cli_py.md,c-ac50be19,_cmd_compile passes rewrite arg to compile_wiki,src/isidore/cli.py:L65,ok
   src-isidore-connect_py.md,c-6c2aef5b,The module provides CLI commands for connector management,src/isidore/connect.py:1,ok
   src-isidore-connect_py.md,c-248091fa,Connector configurations are stored as JSON files,src/isidore/connect.py:23,ok
   src-isidore-connect_py.md,c-012e9e18,The config file path is determined by config_path(),src/isidore/connect.py:25,ok
@@ -46,6 +48,8 @@ claims[410]{page,id,statement,evidence,state}:
   src-isidore-connect_py.md,c-26b49a52,Credentials are never stored in configs,src/isidore/connect.py:71,ok
   src-isidore-connect_py.md,c-69cf56b8,Connector summaries include readiness status,src/isidore/connect.py:96,ok
   src-isidore-connect_py.md,c-5bb8b0a4,The CLI is registered in a subparser,src/isidore/connect.py:110,ok
+  src-isidore-connect_py.md,c-c0c3e1df,apply_settings imports _looks_like_secret from detectors,src/isidore/connect.py:L67,ok
+  src-isidore-connect_py.md,c-17724142,connect.py imports encode_table from toon,src/isidore/connect.py:L20,ok
   src-isidore-connectors.md,c-eb966636,"The `store.py` module defines a raw item format with `id`, `stream`, `ts`, `content`, `meta`, and `chash`",src/isidore/connectors/store.py:3,ok
   src-isidore-connectors.md,c-eddbf2a1,The `hackernews.py` connector uses Algolia's public API to fetch items,src/isidore/connectors/hackernews.py:3,ok
   src-isidore-connectors.md,c-6fd307c6,"The `rss.py` connector generates item IDs from `guid`, `link`, or a hash of `title` and `date`",src/isidore/connectors/rss.py:3,ok
@@ -56,10 +60,15 @@ claims[410]{page,id,statement,evidence,state}:
   src-isidore-connectors.md,c-46a1ec17,store.py imports connector_dir from src/isidore/home.py,src/isidore/connectors/store.py:19,ok
   src-isidore-detectors_py.md,c-88adfab5,The module defines a SINKS table for Python and JavaScript/TypeScript files,src/isidore/detectors.py:34,ok
   src-isidore-detectors_py.md,c-2c5f9fb3,The ROOTS set contains security-sensitive file patterns,src/isidore/detectors.py:25,ok
-  src-isidore-detectors_py.md,c-e9c3c73d,The entropy detector uses Shannon entropy with a threshold of 3.5 bits/character,src/isidore/detectors.py:75,ok
-  src-isidore-detectors_py.md,c-9ed5afb6,The sink detector uses regex patterns from the SINKS table,src/isidore/detectors.py:108,ok
+  src-isidore-detectors_py.md,c-e9c3c73d,The entropy detector uses Shannon entropy with a threshold of 3.5 bits/character,src/isidore/detectors.py:81,ok
+  src-isidore-detectors_py.md,c-9ed5afb6,The sink detector uses regex patterns from the SINKS table,src/isidore/detectors.py:114,ok
   src-isidore-detectors_py.md,c-8afaf211,The topology analysis performs a BFS with a depth limit of 2,src/isidore/detectors.py:26,ok
   src-isidore-detectors_py.md,c-ceb5bfe6,The module imports Mark and VerifyContext from pcp.py,src/isidore/detectors.py:21,ok
+  src-isidore-detectors_py.md,c-b5d46e56,TOPOLOGY_DEPTH limits BFS traversal to 2 hops,src/isidore/detectors.py:L26,ok
+  src-isidore-export_py.md,c-50cade4c,export.py imports check_claims from claims,src/isidore/export.py:L13,ok
+  src-isidore-export_py.md,c-9fd358db,export.py imports WIKI_DIRNAME and load_state from pipeline,src/isidore/export.py:L14,ok
+  src-isidore-export_py.md,c-baac00ef,render_card includes verify_cmd as isidore claims --check --repo .,src/isidore/export.py:L43,ok
+  src-isidore-export_py.md,c-2d0621d4,write_cards creates output directory if absent,src/isidore/export.py:L84,ok
   src-isidore-findings_py.md,c-1b8b552a,The module harvests findings from LLM and deterministic sources,src/isidore/findings.py:1,ok
   src-isidore-findings_py.md,c-d233ab86,The findings are stored in wiki/findings.toon,src/isidore/findings.py:23,ok
   src-isidore-findings_py.md,c-b778740c,The `parse_findings_block()` function splits markdown into clean prose and findings,src/isidore/findings.py:74,ok
@@ -70,19 +79,23 @@ claims[410]{page,id,statement,evidence,state}:
   src-isidore-findings_py.md,c-e293091a,_resolutions_path imports WIKI_DIRNAME from src/isidore/render.py,src/isidore/findings.py:103,ok
   src-isidore-findings_py.md,c-150e5c9c,_resolutions_path returns repo / WIKI_DIRNAME / resolved_findings.json,src/isidore/findings.py:104,ok
   src-isidore-graph_py.md,c-170cf7e8,The graph format requires 'nodes' and 'links' (or 'edges') as lists,src/isidore/graph.py:5,ok
-  src-isidore-graph_py.md,c-65547764,The module prioritizes user-specified graphs over its own output,src/isidore/graph.py:64,ok
-  src-isidore-graph_py.md,c-a496259d,Git-ignored files are excluded from scanning,src/isidore/graph.py:94,ok
-  src-isidore-graph_py.md,c-6b9deb15,Files are grouped into modules by directory structure,src/isidore/graph.py:84,ok
+  src-isidore-graph_py.md,c-65547764,The module prioritizes user-specified graphs over its own output,src/isidore/graph.py:65,ok
+  src-isidore-graph_py.md,c-a496259d,Git-ignored files are excluded from scanning,src/isidore/graph.py:116,ok
+  src-isidore-graph_py.md,c-6b9deb15,Files are grouped into modules by directory structure,src/isidore/graph.py:106,ok
   src-isidore-graph_py.md,c-623faedc,The scanner uses Python's ast module for Python files,src/isidore/graph.py:17,ok
-  src-isidore-graph_py.md,c-015ca744,graph.py imports BARE_CODE_EXTS from src/isidore/langspec.py,src/isidore/graph.py:31,ok
-  src-isidore-handoff_py.md,c-6d704832,prompt_id derives a prompt's pairing key from its SHA-256 digest,src/isidore/handoff.py:58,ok
-  src-isidore-handoff_py.md,c-922e9f53,prompt_id takes the prompt text as its only parameter,src/isidore/handoff.py:55,ok
-  src-isidore-handoff_py.md,c-723ad279,"handoff.py defines emit, which writes one prompt file per dirty page",src/isidore/handoff.py:77,ok
+  src-isidore-graph_py.md,c-015ca744,graph.py imports BARE_CODE_EXTS from src/isidore/langspec.py,src/isidore/graph.py:32,ok
+  src-isidore-graph_py.md,c-be63b0da,is_test_path normalizes backslashes to forward slashes before matching,src/isidore/graph.py:L96,ok
+  src-isidore-handoff_py.md,c-6d704832,prompt_id derives a prompt's pairing key from its SHA-256 digest,src/isidore/handoff.py:57,ok
+  src-isidore-handoff_py.md,c-922e9f53,prompt_id takes the prompt text as its only parameter,src/isidore/handoff.py:54,ok
+  src-isidore-handoff_py.md,c-723ad279,"handoff.py defines emit, which writes one prompt file per dirty page",src/isidore/handoff.py:78,ok
   src-isidore-handoff_py.md,c-2d05a25b,handoff.py imports the compiler pipeline it delegates to,src/isidore/handoff.py:28,ok
-  src-isidore-handoff_py.md,c-e095926b,"_plan asks the pipeline for a dry run, so planning a round reaches no model",src/isidore/handoff.py:66,ok
-  src-isidore-handoff_py.md,c-ef1b0332,"_plan plans every dirty page uncapped, leaving the cap to whoever answers",src/isidore/handoff.py:70,ok
-  src-isidore-handoff_py.md,c-feb6cb44,emit clears the previous round's prompts and responses before writing a new one,src/isidore/handoff.py:86,ok
-  src-isidore-handoff_py.md,c-b3e357ec,REPAIR_MARKER is derived from the lint gate's addendum instead of being retyped,src/isidore/handoff.py:48,ok
+  src-isidore-handoff_py.md,c-e095926b,"_plan asks the pipeline for a dry run, so planning a round reaches no model",src/isidore/handoff.py:65,ok
+  src-isidore-handoff_py.md,c-ef1b0332,"_plan plans every dirty page uncapped, leaving the cap to whoever answers",src/isidore/handoff.py:69,ok
+  src-isidore-handoff_py.md,c-feb6cb44,emit clears the previous round's prompts and responses before writing a new one,src/isidore/handoff.py:87,ok
+  src-isidore-handoff_py.md,c-b3e357ec,REPAIR_MARKER is derived from the lint gate's addendum instead of being retyped,src/isidore/handoff.py:47,ok
+  src-isidore-handoff_py.md,c-a28e973e,emit imports safe_mkdir from home,src/isidore/handoff.py:L80,ok
+  src-isidore-handoff_py.md,c-5b4a1a50,prompt_id uses truncated SHA-256 (first 16 hex chars),src/isidore/handoff.py:L57,ok
+  src-isidore-handoff_py.md,c-b58596b0,REPAIR_MARKER is derived from LINT_REPAIR_ADDENDUM,src/isidore/handoff.py:L47,ok
   src-isidore-home_py.md,c-348916ba,The module defines the base knowledge home directory as `~/.isidore` or `$ISIDORE_HOME`,src/isidore/home.py:13,ok
   src-isidore-home_py.md,c-839d2ad8,The `connector_dir()` function constructs paths under `~/.isidore/connectors/<cid>`,src/isidore/home.py:19,ok
   src-isidore-home_py.md,c-aa9e20cc,The `raw_dir()` function appends `/raw/<run_id>` to a connector's directory,src/isidore/home.py:24,ok
@@ -90,12 +103,23 @@ claims[410]{page,id,statement,evidence,state}:
   src-isidore-home_py.md,c-0da326e0,The `state_path()` function returns the path to `state.json` in a connector's directory,src/isidore/home.py:32,ok
   src-isidore-home_py.md,c-b136761c,The `knowledge_dir()` function returns the path to `~/.isidore/knowledge`,src/isidore/home.py:36,ok
   src-isidore-home_py.md,c-aeba801e,The `safe_mkdir()` function creates directories with restrictive permissions,src/isidore/home.py:50,ok
+  src-isidore-home_py.md,c-079ae992,home reads ISIDORE_HOME env var,src/isidore/home.py:L15,ok
+  src-isidore-home_py.md,c-4e8fbb85,safe_mkdir default mode is 0o700,src/isidore/home.py:L50,ok
   src-isidore-humanpack_py.md,c-a18b42c0,The module generates a self-contained HTML/PDF onboarding pack,src/isidore/humanpack.py:1,ok
   src-isidore-humanpack_py.md,c-f3f98252,The module avoids LLM dependencies,src/isidore/humanpack.py:10,ok
   src-isidore-humanpack_py.md,c-2529691a,The module uses `load_graph` from `src/isidore/graph.py`,src/isidore/humanpack.py:20,ok
   src-isidore-humanpack_py.md,c-c95b8b5a,humanpack.py imports load_graph from src/isidore/graph.py,src/isidore/humanpack.py:20,ok
   src-isidore-humanpack_py.md,c-ca61ac3c,humanpack.py imports Certificate from src/isidore/pcp.py,src/isidore/humanpack.py:25,ok
   src-isidore-humanpack_py.md,c-0bb42d10,_esc uses html.escape to prevent markup injection,src/isidore/humanpack.py:37,ok
+  src-isidore-impact_py.md,c-2ace38cf,build_impact calls changed_lines from changeset,src/isidore/impact.py:L64,ok
+  src-isidore-impact_py.md,c-89c0d57b,build_impact calls check_claims from claims,src/isidore/impact.py:L95,ok
+  src-isidore-impact_py.md,c-f1d62fda,build_impact calls compile_wiki with execute=False for dry-run,src/isidore/impact.py:L102,ok
+  src-isidore-impact_py.md,c-9688129f,impact.py imports encode from toon,src/isidore/impact.py:L27,ok
+  src-isidore-impact_py.md,c-0eaacc79,impact.py imports harvest_todos from findings,src/isidore/impact.py:L52,ok
+  src-isidore-journal_py.md,c-3989bc2c,append_run caps journal at 50 entries,src/isidore/journal.py:L24,ok
+  src-isidore-journal_py.md,c-68d95eda,render_stats uses toon encode for output,src/isidore/journal.py:L83,ok
+  src-isidore-journal_py.md,c-c97d53e4,HISTORY_CAP limits per-page changelog to 5 entries,src/isidore/journal.py:L58,ok
+  src-isidore-journal_py.md,c-6b1ae085,journal.py imports encode from toon,src/isidore/journal.py:L14,ok
   src-isidore-knowledge_py.md,c-62080b10,knowledge.py imports home from src/isidore/home.py,src/isidore/knowledge.py:17,ok
   src-isidore-knowledge_py.md,c-3b75ec14,knowledge.py imports default_generator from src/isidore/llm.py,src/isidore/knowledge.py:18,ok
   src-isidore-knowledge_py.md,c-e405ff44,knowledge.py imports parse_claims_block from src/isidore/claims.py,src/isidore/knowledge.py:22,ok
@@ -104,6 +128,11 @@ claims[410]{page,id,statement,evidence,state}:
   src-isidore-langspec_py.md,c-b6b5c7b3,The `extract()` function returns symbols and imports,src/isidore/langspec.py:130,ok
   src-isidore-langspec_py.md,c-42f4b8db,The `sanitize()` function preserves newlines and length,src/isidore/langspec.py:56,ok
   src-isidore-langspec_py.md,c-3b7a37c8,The module depends only on Python's standard library,src/isidore/langspec.py:28,ok
+  src-isidore-llm_py.md,c-80f4427b,generate_via_cli passes prompt on STDIN not argv,src/isidore/llm.py:L94,ok
+  src-isidore-llm_py.md,c-8a8016d0,default_generator reads ISIDORE_PROVIDER to choose path,src/isidore/llm.py:L115,ok
+  src-isidore-llm_py.md,c-54b584c1,default_generator reads ISIDORE_MODEL,src/isidore/llm.py:L114,ok
+  src-isidore-llm_py.md,c-23604b90,DEFAULT_BASE_URL is http://localhost:11434/v1,src/isidore/llm.py:L26,ok
+  src-isidore-llm_py.md,c-22bc1925,generate_via_cli uses shutil.which to resolve CLI on Windows,src/isidore/llm.py:L87,ok
   src-isidore-pcp_py.md,c-7e336a57,The module defines the `Predicate` class with `kind` and `args` fields,src/isidore/pcp.py:76,ok
   src-isidore-pcp_py.md,c-e33fd50b,The `Predicate` class is frozen to ensure immutability,src/isidore/pcp.py:77,ok
   src-isidore-pcp_py.md,c-7b684eaf,The `parse_stored_predicate` function falls back to `parse_predicate` for model-facing predicates,src/isidore/pcp.py:117,ok
@@ -112,16 +141,26 @@ claims[410]{page,id,statement,evidence,state}:
   src-isidore-pcp_py.md,c-5a20f323,"The `Verifier` protocol requires deterministic, 0-LLM implementations",src/isidore/pcp.py:153,ok
   src-isidore-pcp_py.md,c-54b5ed57,The `VERIFIERS` registry is initialized as an empty dictionary,src/isidore/pcp.py:161,ok
   src-isidore-pcp_py.md,c-cd07c6e5,VERIFIERS is a dict mapping kind strings to Verifier callables,src/isidore/pcp.py:161,ok
-  src-isidore-pipeline_py.md,c-8bed42b4,"pipeline.py defines source_destination, which classifies where a compile would send the source",src/isidore/pipeline.py:169,ok
-  src-isidore-pipeline_py.md,c-6902494e,assert_may_send_source takes the description of what would be sent as its parameter,src/isidore/pipeline.py:194,ok
-  src-isidore-pipeline_py.md,c-3a6e8d37,TRUST_ENV names the environment variable an operator sets to declare a host fit,src/isidore/pipeline.py:156,ok
-  src-isidore-pipeline_py.md,c-bab550d7,an undeclared destination raises instead of sending,src/isidore/pipeline.py:208,ok
-  src-isidore-pipeline_py.md,c-0a32d518,"a destination the operator declared is permitted, and returns a line to record",src/isidore/pipeline.py:218,ok
-  src-isidore-pipeline_py.md,c-423b7283,the certificate violation cap is a constant in code,src/isidore/pipeline.py:264,ok
-  src-isidore-pipeline_py.md,c-23b1a2ee,degenerate_certificate reports why a runaway certificate must not be written,src/isidore/pipeline.py:268,ok
-  src-isidore-pipeline_py.md,c-7c68a00e,source_destination reads ISIDORE_BASE_URL from the environment,src/isidore/pipeline.py:182,ok
-  src-isidore-pipeline_py.md,c-fa851cb2,degenerate_certificate caps violations at MAX_CERT_VIOLATIONS=500,src/isidore/pipeline.py:263,ok
-  src-isidore-pipeline_py.md,c-755d1887,TRUST_ENV is set to ISIDORE_PROMPT_TRUSTS_PROVIDER,src/isidore/pipeline.py:155,ok
+  src-isidore-pipeline_py.md,c-8bed42b4,"pipeline.py defines source_destination, which classifies where a compile would send the source",src/isidore/pipeline.py:172,ok
+  src-isidore-pipeline_py.md,c-6902494e,assert_may_send_source takes the description of what would be sent as its parameter,src/isidore/pipeline.py:197,ok
+  src-isidore-pipeline_py.md,c-3a6e8d37,TRUST_ENV names the environment variable an operator sets to declare a host fit,src/isidore/pipeline.py:159,ok
+  src-isidore-pipeline_py.md,c-bab550d7,an undeclared destination raises instead of sending,src/isidore/pipeline.py:211,ok
+  src-isidore-pipeline_py.md,c-0a32d518,"a destination the operator declared is permitted, and returns a line to record",src/isidore/pipeline.py:221,ok
+  src-isidore-pipeline_py.md,c-423b7283,the certificate violation cap is a constant in code,src/isidore/pipeline.py:268,ok
+  src-isidore-pipeline_py.md,c-23b1a2ee,degenerate_certificate reports why a runaway certificate must not be written,src/isidore/pipeline.py:272,ok
+  src-isidore-pipeline_py.md,c-7c68a00e,source_destination reads ISIDORE_BASE_URL from the environment,src/isidore/pipeline.py:185,ok
+  src-isidore-pipeline_py.md,c-fa851cb2,degenerate_certificate caps violations at MAX_CERT_VIOLATIONS=500,src/isidore/pipeline.py:267,ok
+  src-isidore-pipeline_py.md,c-755d1887,TRUST_ENV is set to ISIDORE_PROMPT_TRUSTS_PROVIDER,src/isidore/pipeline.py:158,ok
+  src-isidore-pipeline_py.md,c-84950963,PageSpec has tested_by field listing test modules,src/isidore/pipeline.py:L237,ok
+  src-isidore-pipeline_py.md,c-80ebdd70,module_dep_edges accepts module_depth parameter,src/isidore/pipeline.py:L248,ok
+  src-isidore-pipeline_py.md,c-310c6c7a,MAX_CERT_VIOLATIONS caps certificate violations at 500,src/isidore/pipeline.py:L267,ok
+  src-isidore-pipeline_py.md,c-be6d0ad8,MAX_CERT_MARKS caps certificate marks at 500,src/isidore/pipeline.py:L268,ok
+  src-isidore-plain_py.md,c-bbea979a,check strips accepted terms before applying the rules,src/isidore/plain.py:104,ok
+  src-isidore-plain_py.md,c-65494211,check returns the names of the rules the text breaks,src/isidore/plain.py:105,ok
+  src-isidore-plain_py.md,c-8e2aa76d,is_plain is true when check finds nothing,src/isidore/plain.py:109,ok
+  src-isidore-plain_py.md,c-7313b2aa,"PlainRule declares a kind, vocabulary or structure",src/isidore/plain.py:69,ok
+  src-isidore-plain_py.md,c-da7ad8d3,plain.py defines check,src/isidore/plain.py:98,ok
+  src-isidore-plain_py.md,c-7386eecf,The camel-case rule matches a lowercase letter followed by an uppercase one,src/isidore/plain.py:86,ok
   src-isidore-pyramid_py.md,c-d85d28ff,The module implements a wiki:// chain verifier,src/isidore/pyramid.py:70,ok
   src-isidore-pyramid_py.md,c-e89e31e3,The verifier checks certificates first for claim resolution,src/isidore/pyramid.py:44,ok
   src-isidore-pyramid_py.md,c-87dac6a7,The subsystem suggester groups files by top directory,src/isidore/pyramid.py:110,ok
@@ -149,7 +188,10 @@ claims[410]{page,id,statement,evidence,state}:
   src-isidore-recertify_py.md,c-d04bc675,"The module defines ACT_OK, ACT_RECERTIFY, ACT_REFUTED, ACT_TAMPERED, and ACT_NO_CERT constants",src/isidore/recertify.py:39,ok
   src-isidore-recertify_py.md,c-9b117055,The module defines _level to determine pyramid levels for recertification order,src/isidore/recertify.py:68,ok
   src-isidore-recertify_py.md,c-36fc78a0,The module defines _child_digest to compute child certificate hashes,src/isidore/recertify.py:80,ok
-  src-isidore-recertify_py.md,c-42eae30c,The module defines rebuild_certificate to recompute certificates,src/isidore/recertify.py:95,ok
+  src-isidore-recertify_py.md,c-42eae30c,The module defines rebuild_certificate to recompute certificates,src/isidore/recertify.py:94,ok
+  src-isidore-recertify_py.md,c-84e36274,_child_digest hashes a child certificate through cert_file_digest,src/isidore/recertify.py:91,ok
+  src-isidore-recertify_py.md,c-9dba22eb,recertify.py imports its certificate utilities from pcp.py,src/isidore/recertify.py:24,ok
+  src-isidore-recertify_py.md,c-300080c7,recertify.py defines rebuild_certificate,src/isidore/recertify.py:94,ok
   src-isidore-render_py.md,c-0c596a0e,"render.py defines configured_wiki_dirname, which resolves where the living docs live",src/isidore/render.py:25,ok
   src-isidore-render_py.md,c-5bf044b3,configured_wiki_dirname takes the directory to start the search from,src/isidore/render.py:25,ok
   src-isidore-render_py.md,c-80a825cc,the wiki directory can be set from the environment,src/isidore/render.py:42,ok
@@ -164,10 +206,12 @@ claims[410]{page,id,statement,evidence,state}:
   src-isidore-render_py.md,c-05699853,knowledge_summary imports home from src/isidore/home.py,src/isidore/render.py:160,ok
   src-isidore-revise_py.md,c-24fdc664,NO_CHANGES is the literal string NO-CHANGES,src/isidore/revise.py:31,ok
   src-isidore-revise_py.md,c-60ca8c67,revise.py imports hashlib at module level,src/isidore/revise.py:26,ok
-  src-isidore-revise_py.md,c-bb6aa6e8,facts_fingerprint drops the ignored keys before hashing,src/isidore/revise.py:91,ok
-  src-isidore-revise_py.md,c-7611d2bd,revise.py defines facts_fingerprint,src/isidore/revise.py:87,ok
-  src-isidore-revise_py.md,c-91b61d2a,Counts and deps_in never dirty a page on their own,src/isidore/revise.py:84,ok
-  src-isidore-revise_py.md,c-da31d6e4,facts_fingerprint drops the ignored keys right before hashing,src/isidore/revise.py:91,ok
+  src-isidore-revise_py.md,c-bb6aa6e8,facts_fingerprint drops the ignored keys before hashing,src/isidore/revise.py:93,ok
+  src-isidore-revise_py.md,c-7611d2bd,revise.py defines facts_fingerprint,src/isidore/revise.py:89,ok
+  src-isidore-revise_py.md,c-da31d6e4,facts_fingerprint drops the ignored keys right before hashing,src/isidore/revise.py:93,ok
+  src-isidore-revise_py.md,c-391c04cb,facts_record records the test modules that exercise a module,src/isidore/revise.py:62,ok
+  src-isidore-revise_py.md,c-a4f2d5a2,"Counts, deps_in and tested_by never dirty a page on their own",src/isidore/revise.py:86,ok
+  src-isidore-revise_py.md,c-622c00f3,facts_delta still reports new tests of the module,src/isidore/revise.py:114,ok
   src-isidore-surface_py.md,c-7acd8a27,"The module extracts API surfaces from text, not paths",src/isidore/surface.py:1,ok
   src-isidore-surface_py.md,c-ccec6a56,"SurfaceSymbol represents a declared symbol with qualname, kind, and sig",src/isidore/surface.py:88,ok
   src-isidore-surface_py.md,c-10c60224,clean_sig normalizes whitespace and drops trailing braces,src/isidore/surface.py:106,ok
@@ -176,6 +220,13 @@ claims[410]{page,id,statement,evidence,state}:
   src-isidore-surface_py.md,c-fb465f47,The module depends on langspec for language-specific rules,src/isidore/surface.py:17,ok
   src-isidore-surface_py.md,c-aa3ada51,whatsnew uses this module to generate changelogs,src/isidore/whatsnew.py:1,ok
   src-isidore-surface_py.md,c-8580e206,surface.py is depended on by src/isidore/verify.py,src/isidore/verify.py:1,ok
+  src-isidore-toon_py.md,c-3bef8b78,toon.py exports exactly encode_table and encode,src/isidore/toon.py:18,ok
+  src-isidore-toon_py.md,c-c0c4d862,None and the empty string render as an empty field,src/isidore/toon.py:23,ok
+  src-isidore-toon_py.md,c-ca9904b9,"A field is quoted when it holds a comma, quote, newline or edge space",src/isidore/toon.py:30,ok
+  src-isidore-toon_py.md,c-86693853,A row that is neither a mapping nor a sequence raises TypeError,src/isidore/toon.py:56,ok
+  src-isidore-toon_py.md,c-a8c2b3bc,Rows are indented two spaces and comma-separated,src/isidore/toon.py:73,ok
+  src-isidore-toon_py.md,c-9b18c8b7,toon.py defines encode_table,src/isidore/toon.py:59,ok
+  src-isidore-toon_py.md,c-7b83a9c6,encode joins tables with newlines,src/isidore/toon.py:79,ok
   src-isidore-verify_py.md,c-85d2741a,The verifiers decide a Predicate's truth against two oracles: graph.json and a reparse of the cited file's AST,src/isidore/verify.py:4,ok
   src-isidore-verify_py.md,c-7ffe4506,Every verifier returns TRUE / FALSE / UNDECIDABLE and records its oracle,src/isidore/verify.py:9,ok
   src-isidore-verify_py.md,c-5eca5a17,UNDECIDABLE never masquerades as TRUE — fail-closed,src/isidore/verify.py:9,ok
@@ -186,230 +237,13 @@ claims[410]{page,id,statement,evidence,state}:
   src-isidore-verify_py.md,c-3eb5fca7,verify.py imports from src/isidore/contracts.py,src/isidore/verify.py:42,ok
   src-isidore-verify_py.md,c-beb6d886,cli.py imports from src/isidore/verify.py,src/isidore/cli.py:1,ok
   src-isidore-whatsnew_py.md,c-7a5d1dad,The module generates verifiable changelogs by comparing API surfaces at two git revisions,src/isidore/whatsnew.py:1,ok
-  src-isidore-whatsnew_py.md,c-16280d6f,"DeltaEntry represents a typed novelty row with fields like kind, file, and line",src/isidore/whatsnew.py:149,ok
-  src-isidore-whatsnew_py.md,c-b95b1c52,"SurfaceDelta contains all changes between two revisions, including refs and SHAs",src/isidore/whatsnew.py:178,ok
-  src-isidore-whatsnew_py.md,c-dfb9e9ae,WhatsnewResult combines the delta with paths to generated artifacts and metrics,src/isidore/whatsnew.py:199,ok
-  src-isidore-whatsnew_py.md,c-20585703,The module fails closed on git errors to avoid false claims,src/isidore/whatsnew.py:217,ok
+  src-isidore-whatsnew_py.md,c-16280d6f,"DeltaEntry represents a typed novelty row with fields like kind, file, and line",src/isidore/whatsnew.py:148,ok
+  src-isidore-whatsnew_py.md,c-b95b1c52,"SurfaceDelta contains all changes between two revisions, including refs and SHAs",src/isidore/whatsnew.py:176,ok
+  src-isidore-whatsnew_py.md,c-dfb9e9ae,WhatsnewResult combines the delta with paths to generated artifacts and metrics,src/isidore/whatsnew.py:197,ok
+  src-isidore-whatsnew_py.md,c-20585703,The module fails closed on git errors to avoid false claims,src/isidore/whatsnew.py:215,ok
   src-isidore-whatsnew_py.md,c-cda781c2,"The LLM tier only writes about API and internal changes, not tests or docs",src/isidore/whatsnew.py:124,ok
   src-isidore-whatsnew_py.md,c-8699797d,whatsnew.py imports build_certificate from src/isidore/verify.py,src/isidore/whatsnew.py:79,ok
   src-isidore-whatsnew_py.md,c-1e4f8eeb,whatsnew.py imports encode from src/isidore/toon.py,src/isidore/whatsnew.py:78,ok
   src-isidore-whatsnew_py.md,c-0322bea9,_WRITABLE_KINDS excludes SYMBOL_REMOVED and FILE_REMOVED,src/isidore/whatsnew.py:120,ok
-  tests-fixtures-pcp.md,c-2dd8fe5a,authenticate verifies the JWT by calling verify_jwt,tests/fixtures/pcp/repo/svc/auth.py:14,ok
-  tests-fixtures-pcp.md,c-11e675b5,the attempt ceiling MAX_ATTEMPTS is 5,tests/fixtures/pcp/repo/svc/auth.py:7,ok
-  tests-fixtures-pcp.md,c-4856c5c7,the auth module imports the tokens service,tests/fixtures/pcp/repo/svc/auth.py:5,ok
-  tests-fixtures-pcp.md,c-0243c424,authenticate reads the AUTH_SIGNING_KEY environment variable,tests/fixtures/pcp/repo/svc/auth.py:13,ok
-  tests-fixtures-pcp.md,c-8e3347e7,the auth module defines authenticate,tests/fixtures/pcp/repo/svc/auth.py:10,ok
-  tests-fixtures-pcp.md,c-4d27ffcc,authenticate returns None when the token is invalid,tests/fixtures/pcp/repo/svc/auth.py:16,ok
-  tests-test_changeset_py.md,c-e036b149,The module tests the `symbol_spans` function,tests/test_changeset.py:24,ok
-  tests-test_changeset_py.md,c-06c8edaf,The `test_symbol_spans_accepts_span_and_start_only_forms` test verifies symbol spans,tests/test_changeset.py:24,ok
-  tests-test_changeset_py.md,c-4aa2844e,The `test_changed_symbols_maps_lines_and_whole_file` test verifies changed symbols,tests/test_changeset.py:38,ok
-  tests-test_changeset_py.md,c-891e5265,The `test_affected_modules_is_changed_plus_fan_in_dependents` test verifies affected modules,tests/test_changeset.py:47,ok
-  tests-test_changeset_py.md,c-34ce4a45,The `test_changed_lines_parses_new_side_hunks` test verifies changed lines,tests/test_changeset.py:62,ok
-  tests-test_changeset_py.md,c-392fa01e,The `DEPTH` constant is set to 2,tests/test_changeset.py:16,ok
-  tests-test_changeset_py.md,c-8ba929d8,The module depends on `pytest`,tests/test_changeset.py:7,ok
-  tests-test_changeset_py.md,c-10b0eb2c,The module depends on `subprocess`,tests/test_changeset.py:5,ok
-  tests-test_changeset_py.md,c-906e44fd,The module depends on `shutil`,tests/test_changeset.py:4,ok
-  tests-test_changeset_py.md,c-a3bcc0bd,The module depends on `isidore.changeset`,tests/test_changeset.py:9,ok
-  tests-test_citations_py.md,c-4e2a5e06,"The tests import anchors_for, migrate_by_symbol and repoint from citations.py",tests/test_citations.py:14,ok
-  tests-test_citations_py.md,c-8251ff68,The repo fixture writes SRC to a temporary directory,tests/test_citations.py:31,ok
-  tests-test_citations_py.md,c-f4bad1a9,_shift pads the module with n lines on top,tests/test_citations.py:36,ok
-  tests-test_citations_py.md,c-c4079d99,A changed cited line is reported stale and left as written,tests/test_citations.py:63,ok
-  tests-test_citations_py.md,c-d23f9419,A blank-line citation is recorded with an empty fingerprint,tests/test_citations.py:69,ok
-  tests-test_citations_py.md,c-295e6870,The fence and the missing file are not recorded at all,tests/test_citations.py:70,ok
-  tests-test_claims_py.md,c-bc3cb03c,The module tests the classification of existential vs. behavioral claims,tests/test_claims.py:21,ok
-  tests-test_claims_py.md,c-1068b52d,The module tests the extraction of claims from Markdown blocks,tests/test_claims.py:82,ok
-  tests-test_claims_py.md,c-6f48da29,The module tests the hashing of cited lines,tests/test_claims.py:90,ok
-  tests-test_claims_py.md,c-6011c9b5,The module tests that staleness is only triggered by changes to the cited line,tests/test_claims.py:106,ok
-  tests-test_claims_py.md,c-fed705d0,The module depends on the `isidore.claims` module,tests/test_claims.py:7,ok
-  tests-test_claims_py.md,c-33739bfa,The module depends on the `isidore.pipeline` module,tests/test_claims.py:18,ok
-  tests-test_claims_py.md,c-ca8f3c82,test_claims.py imports compile_wiki from isidore.pipeline,tests/test_claims.py:18,ok
-  tests-test_classification_gate_py.md,c-4adf9590,"The module tests classification precedence, with metadata labels taking priority over document content",tests/test_classification_gate.py:54,ok
-  tests-test_classification_gate_py.md,c-6290f861,"The module verifies trust is only granted for the exact string \"yes\" (case-insensitive, trimmed)",tests/test_classification_gate.py:65,ok
-  tests-test_classification_gate_py.md,c-7cca089e,The module confirms restricted items are filtered out of prompts by default,tests/test_classification_gate.py:78,ok
-  tests-test_classification_gate_py.md,c-e09ab23d,The module depends on isidore.connectors.store for storage operations,tests/test_classification_gate.py:13,ok
-  tests-test_classification_gate_py.md,c-cca1faa7,The module depends on isidore.knowledge for classification and trust logic,tests/test_classification_gate.py:21,ok
-  tests-test_connect_cli_py.md,c-bd6d2903,The module tests the CLI functionality for F1's missing commands,tests/test_connect_cli.py:1,ok
-  tests-test_connectors_f1_py.md,c-69ff94f1,The module tests the idempotency of the git-repo connector,tests/test_connectors_f1.py:1,ok
-  tests-test_connectors_f1_py.md,c-2d264587,The test suite uses helper functions to simulate a git repository,tests/test_connectors_f1.py:18,ok
-  tests-test_connectors_f1_py.md,c-42b9926a,The `_make_repo` function creates a temporary git repository with a single commit,tests/test_connectors_f1.py:22,ok
-  tests-test_connectors_f1_py.md,c-4ac56054,The `_git` function wraps git commands for repository manipulation,tests/test_connectors_f1.py:18,ok
-  tests-test_connectors_f1_py.md,c-8d25cb1a,The `_head` function retrieves the current HEAD commit hash,tests/test_connectors_f1.py:33,ok
-  tests-test_connectors_f1_py.md,c-40708cdc,The `test_home_env_override` function verifies environment variable overrides,tests/test_connectors_f1.py:40,ok
-  tests-test_connectors_f1_py.md,c-eb56045c,The `test_write_items_stamps_chash_and_does_not_mutate` function ensures items are stored with a content hash,tests/test_connectors_f1.py:47,ok
-  tests-test_connectors_f1_py.md,c-a5052f43,The `test_read_state_missing_and_corrupt_return_default` function tests state handling for missing or corrupt files,tests/test_connectors_f1.py:57,ok
-  tests-test_connectors_f1_py.md,c-a337ce23,The `test_record_run_keeps_last_20` function verifies the system retains only the last 20 runs,tests/test_connectors_f1.py:67,ok
-  tests-test_connectors_f1_py.md,c-259319c7,test_connectors_f1.py imports from isidore.connectors.store,tests/test_connectors_f1.py:15,ok
-  tests-test_connectors_f4_py.md,c-84608fcf,The module validates URL safety,tests/test_connectors_f4.py:50,ok
-  tests-test_connectors_f4_py.md,c-edd4f321,The module ensures idempotent RSS ingestion,tests/test_connectors_f4.py:103,ok
-  tests-test_connectors_f4_py.md,c-db36b052,The module defines RSS_XML and ATOM_XML constants,tests/test_connectors_f4.py:19,ok
-  tests-test_connectors_f4_py.md,c-9a42ab3a,The module uses the isolated_home fixture,tests/test_connectors_f4.py:43,ok
-  tests-test_connectors_f4_py.md,c-b05da0e3,The module tests JSON parsing safety,tests/test_connectors_f4.py:62,ok
-  tests-test_connectors_f5_py.md,c-06abccc3,The module tests the F5 connector's integration with MCP,tests/test_connectors_f5.py:1,ok
-  tests-test_connectors_f5_py.md,c-bb921664,The server handles authentication failures,tests/test_connectors_f5.py:73,ok
-  tests-test_connectors_f5_py.md,c-053ead73,The connector enforces read-only operations,tests/test_connectors_f5.py:127,ok
-  tests-test_connectors_f5_py.md,c-e8e527f4,Arguments are passed to tools correctly,tests/test_connectors_f5.py:116,ok
-  tests-test_connectors_f5_py.md,c-745c0ce7,A revoked token results in a closed failure,tests/test_connectors_f5.py:136,ok
-  tests-test_detectors_py.md,c-95c08869,The module tests the `isidore.detectors` subsystem,tests/test_detectors.py:1,ok
-  tests-test_detectors_py.md,c-41ac1643,The test context loads graph data from `graph.json`,tests/test_detectors.py:14,ok
-  tests-test_detectors_py.md,c-3cf95c4b,"The entropy detector flags the backdoor token with \"danger\" severity",tests/test_detectors.py:22,ok
-  tests-test_detectors_py.md,c-835bd679,The entropy detector does not flag non-secret strings,tests/test_detectors.py:29,ok
-  tests-test_detectors_py.md,c-aff40267,The topology detector flags tokens in `svc/tokens.py`,tests/test_detectors.py:34,ok
-  tests-test_detectors_py.md,c-7a6a0657,The detector output is deterministic,tests/test_detectors.py:38,ok
-  tests-test_detectors_py.md,c-577b78b3,The system handles missing files gracefully,tests/test_detectors.py:45,ok
-  tests-test_detectors_py.md,c-3ebfecaa,The entropy function returns 0.0 for empty strings,tests/test_detectors.py:49,ok
-  tests-test_handoff_py.md,c-a28813ea,the fixture deletes the provider environment before every test,tests/test_handoff.py:65,ok
-  tests-test_handoff_py.md,c-72f61900,_answer_all writes one response per emitted prompt and returns the pages answered,tests/test_handoff.py:70,ok
-  tests-test_handoff_py.md,c-40ac4043,the suite defines _answer_all to stand in for the model,tests/test_handoff.py:70,ok
-  tests-test_handoff_py.md,c-0a4f833c,_answer_all derives each page name by stripping the prompt suffix from the filename,tests/test_handoff.py:75,ok
-  tests-test_handoff_py.md,c-5f070dc2,the tests import REPAIR_MARKER from the module instead of retyping the gate's wording,tests/test_handoff.py:20,ok
-  tests-test_handoff_py.md,c-dd7ab8ed,GenerationError is the failure type the suite expects from the loop,tests/test_handoff.py:28,ok
-  tests-test_hostile_f6_py.md,c-b502a72c,The module tests the knowledge home's resilience to corrupted data,tests/test_hostile_f6.py:1,ok
-  tests-test_hostile_f6_py.md,c-32c9b7eb,The `home` fixture sets up a temporary environment for testing,tests/test_hostile_f6.py:30,ok
-  tests-test_hostile_f6_py.md,c-c2ab3e49,The `_store` function writes test items to the knowledge home and records the run,tests/test_hostile_f6.py:35,ok
-  tests-test_hostile_f6_py.md,c-d992d422,The `_item` function creates a test item with a given ID and content,tests/test_hostile_f6.py:45,ok
-  tests-test_hostile_f6_py.md,c-4bb015ed,"The test `test_a_purged_item_makes_its_claim_an_orphan_not_a_lie` verifies that a claim is marked as \"orphan\" when its evidence is deleted",tests/test_hostile_f6.py:53,ok
-  tests-test_hostile_f6_py.md,c-9df9cfc7,The test `test_a_half_written_jsonl_line_costs_only_that_line` verifies that a truncated JSONL line does not invalidate the rest of the data,tests/test_hostile_f6.py:72,ok
-  tests-test_hostile_f6_py.md,c-9a6f3621,The test `test_a_corrupt_state_re_ingests_from_scratch_instead_of_crashing` verifies that a corrupt state file is recovered and the data is still accessible,tests/test_hostile_f6.py:86,ok
-  tests-test_impact_py.md,c-bf5e2a4b,The module tests the emergent interaction detection of Isidore's impact analysis system,tests/test_impact.py:1,ok
-  tests-test_impact_py.md,c-0880ce50,The impact analysis detects new cross-module dependencies,tests/test_impact.py:49,ok
-  tests-test_impact_py.md,c-472bcd14,The impact analysis detects removed cross-module dependencies,tests/test_impact.py:70,ok
-  tests-test_incremental_py.md,c-c4f459fb,Model records every prompt it receives,tests/test_incremental.py:58,ok
-  tests-test_incremental_py.md,c-ac8bab0e,FILLER is 120,tests/test_incremental.py:25,ok
-  tests-test_incremental_py.md,c-48e28d91,"The test module imports splice, strip_security_banner and carry_claims from revise.py",tests/test_incremental.py:21,ok
-  tests-test_incremental_py.md,c-90c16061,The test module defines the Model stub generator,tests/test_incremental.py:54,ok
-  tests-test_incremental_py.md,c-a91d6a3e,The test module defines the _source helper,tests/test_incremental.py:47,ok
-  tests-test_langspec_oracle_py.md,c-a298063a,The module tests the `parameter_names()` function,tests/test_langspec_oracle.py:45,ok
-  tests-test_langspec_oracle_py.md,c-b600997a,The module tests the `literal_value()` function,tests/test_langspec_oracle.py:70,ok
-  tests-test_langspec_oracle_py.md,c-43d8deee,The module verifies the oracle's ability to decide value claims,tests/test_langspec_oracle.py:81,ok
-  tests-test_langspec_oracle_py.md,c-a6b8d13d,The module refuses to answer for unsupported languages,tests/test_langspec_oracle.py:53,ok
-  tests-test_langspec_oracle_py.md,c-1c2f6c25,The module refuses to answer for malformed signatures,tests/test_langspec_oracle.py:59,ok
-  tests-test_langspec_oracle_py.md,c-b097005d,The module refuses to answer for complex parameters,tests/test_langspec_oracle.py:66,ok
-  tests-test_langspec_py.md,c-aab9d212,The module tests the multi-language scanner's declarative engine,tests/test_langspec.py:1,ok
-  tests-test_langspec_py.md,c-b3ca1a85,test_langspec.py imports extract and sanitize from isidore.langspec,tests/test_langspec.py:10,ok
-  tests-test_langspec_py.md,c-d524201f,test_langspec.py imports scan_repo from isidore.graph,tests/test_langspec.py:9,ok
-  tests-test_llms_txt_py.md,c-45b89295,The module tests the `llms.txt` file generation,tests/test_llms_txt.py:L1,ok
-  tests-test_llms_txt_py.md,c-da8be650,"The file must start with an H1 project name, followed by a blockquote summary, and then H2 file lists",tests/test_llms_txt.py:L26,ok
-  tests-test_llms_txt_py.md,c-4e89bbe8,The summary is reused from the product page,tests/test_llms_txt.py:L33,ok
-  tests-test_llms_txt_py.md,c-a3142ae8,"The sections must appear in the order: `## Start here`, `## Areas`, `## Modules`",tests/test_llms_txt.py:L40,ok
-  tests-test_llms_txt_py.md,c-5e29c4bd,Optional content is marked under `## Optional`,tests/test_llms_txt.py:L50,ok
-  tests-test_llms_txt_py.md,c-2caef6a9,The file is written to the repository root as `LLMS_FILENAME`,tests/test_llms_txt.py:L58,ok
-  tests-test_llms_txt_py.md,c-ac882c69,The file generation is deterministic,tests/test_llms_txt.py:L59,ok
-  tests-test_llms_txt_py.md,c-1eb7e9d5,The module depends on `isidore.render`,tests/test_llms_txt.py:L4,ok
-  tests-test_mcp_barrier_py.md,c-7f2d448c,The module tests the read-only barrier for MCP connectors,tests/test_mcp_barrier.py:1,ok
-  tests-test_mcp_barrier_py.md,c-5e5acdef,The authoritative barrier is the protocol's readOnlyHint,tests/test_mcp_barrier.py:3,ok
-  tests-test_mcp_barrier_py.md,c-8b2c4ca9,The name heuristic is a fallback for tools without annotations,tests/test_mcp_barrier.py:3,ok
-  tests-test_overview_py.md,c-66096a06,The test module verifies the behavior of the product overview generator.,tests/test_overview.py:1,ok
-  tests-test_overview_py.md,c-a62ac875,The module uses pytest fixtures to create a mock repository.,tests/test_overview.py:34,ok
-  tests-test_overview_py.md,c-7e5b010e,The test functions verify specific behaviors of the overview compilation process.,tests/test_overview.py:53,ok
-  tests-test_overview_py.md,c-f9d1def0,The module depends on the `isidore.pyramid` module.,tests/test_overview.py:8,ok
-  tests-test_overview_py.md,c-7f98039d,The `repo` fixture sets up a temporary repository with a module page and its certificate.,tests/test_overview.py:36,ok
-  tests-test_overview_py.md,c-d6fe8e39,The test functions ensure that only claims with a `TRUE` verdict are included in the overview.,tests/test_overview.py:54,ok
-  tests-test_overview_py.md,c-71e349ce,A dry run does not call the LLM and correctly reports the material.,tests/test_overview.py:60,ok
-  tests-test_overview_py.md,c-d1c90130,Wiki claims are correctly chained and verified.,tests/test_overview.py:69,ok
-  tests-test_overview_py.md,c-559281c6,Pages with no verifiable claims are refused.,tests/test_overview.py:83,ok
-  tests-test_overview_py.md,c-6ad37d4f,The test module imports its certificate primitives from pcp.py,tests/test_overview.py:8,ok
-  tests-test_overview_py.md,c-36cd0a06,The test module imports the pyramid functions it exercises,tests/test_overview.py:9,ok
-  tests-test_overview_py.md,c-f3da63dc,The repo fixture certifies one TRUE and one FALSE claim for mod.md,tests/test_overview.py:45,ok
-  tests-test_pcp_pipeline_py.md,c-3e899ad1,The test verifies certificate generation,tests/test_pcp_pipeline.py:43,ok
-  tests-test_pcp_pipeline_py.md,c-ca7d9f8f,The test enforces security banners despite calm prose,tests/test_pcp_pipeline.py:60,ok
-  tests-test_pcp_pipeline_py.md,c-619b9513,The test uses a golden fixture repository,tests/test_pcp_pipeline.py:14,ok
-  tests-test_pcp_pipeline_py.md,c-0387f3bd,The test validates the MAX_ATTEMPTS value,tests/test_pcp_pipeline.py:26,ok
-  tests-test_pcp_seams_py.md,c-85c67919,The module tests/test_pcp_seams.py exists,tests/test_pcp_seams.py:1,ok
-  tests-test_pcp_seams_py.md,c-99689e33,The module imports the isidore package,tests/test_pcp_seams.py:12,ok
-  tests-test_pcp_seams_py.md,c-71f4a792,The module defines the test_golden_graph_loads function,tests/test_pcp_seams.py:36,ok
-  tests-test_pcp_seams_py.md,c-dbb97d43,The module defines the test_golden_certificate_round_trips function,tests/test_pcp_seams.py:42,ok
-  tests-test_pcp_seams_py.md,c-ae0111f0,The module defines the test_golden_contracts_load function,tests/test_pcp_seams.py:57,ok
-  tests-test_pcp_seams_py.md,c-69fea626,The module defines the test_golden_marks_and_pyramid_config_parse function,tests/test_pcp_seams.py:62,ok
-  tests-test_pcp_seams_py.md,c-e95a8265,The module defines the test_predicate_parse_and_serialize_round_trip function,tests/test_pcp_seams.py:77,ok
-  tests-test_pcp_seams_py.md,c-64280222,The module defines the test_predicate_rejects_absent_or_unknown function,tests/test_pcp_seams.py:83,ok
-  tests-test_pcp_seams_py.md,c-44842a1f,The module defines the test_wiki_uri_parsing function,tests/test_pcp_seams.py:88,ok
-  tests-test_pcp_seams_py.md,c-e51f6a9f,The module defines the test_registry_has_every_kind_and_is_fail_closed function,tests/test_pcp_seams.py:95,ok
-  tests-test_pcp_seams_py.md,c-7156c13b,test_golden_graph_loads asserts 5 nodes and 4 links,tests/test_pcp_seams.py:38,ok
-  tests-test_pcp_seams_py.md,c-c446fa18,test_golden_contracts_load asserts one contract with predicate calls:authenticate;verify_jwt,tests/test_pcp_seams.py:59,ok
-  tests-test_pcp_seams_py.md,c-6bbf649d,test_registry_has_every_kind_and_is_fail_closed asserts UNDECIDABLE for all kinds,tests/test_pcp_seams.py:100,ok
-  tests-test_pipeline_py.md,c-f69b94e8,The module tests the `plan_pages` function's ability to select top modules for documentation,tests/test_pipeline.py:70,ok
-  tests-test_pipeline_py.md,c-8dd04077,`_make_repo` creates synthetic repositories with configurable modules and symbols,tests/test_pipeline.py:35,ok
-  tests-test_pipeline_py.md,c-b104ba2a,`plan_pages` excludes modules with fewer than `min_symbols` symbols,tests/test_pipeline.py:76,ok
-  tests-test_pipeline_py.md,c-6bba2e61,`plan_pages` limits output to `top_k` modules when specified,tests/test_pipeline.py:84,ok
-  tests-test_pipeline_py.md,c-41e777ff,`_graph` parses the repository's graph.json file,tests/test_pipeline.py:59,ok
-  tests-test_plain_py.md,c-b05f53e7,The plain-language gate enforces ISO 24495-1 compliance,tests/test_plain.py:L1,ok
-  tests-test_plain_py.md,c-c998a651,The gate rejects short jargon sentences,tests/test_plain.py:L39,ok
-  tests-test_pyramid_py.md,c-f20213fa,The module tests the `plan_pyramid` function with a real graph loaded from a fixture,tests/test_pyramid.py:29,ok
-  tests-test_pyramid_py.md,c-27750c7c,"The `wikichain` verifier returns \"UNDECIDABLE\" for a `None` predicate",tests/test_pyramid.py:61,ok
-  tests-test_pyramid_py.md,c-29b4af46,"The verifier correctly resolves \"TRUE\" from a certificate claim",tests/test_pyramid.py:77,ok
-  tests-test_pyramid_py.md,c-18222039,"The verifier returns \"FALSE\" for a missing claim ID",tests/test_pyramid.py:80,ok
-  tests-test_pyramid_py.md,c-716304e3,The `plan_pyramid` function groups nodes by their top-level source directory,tests/test_pyramid.py:30,ok
-  tests-test_pyramid_py.md,c-cc3132b1,The `plan_pyramid` function respects explicit configuration overrides,tests/test_pyramid.py:41,ok
-  tests-test_pyramid_py.md,c-b9710280,The `plan_pyramid` function records dependencies from import links,tests/test_pyramid.py:53,ok
-  tests-test_recertify_py.md,c-2032dcb2,The module tests certificate repair functionality,tests/test_recertify.py:1,ok
-  tests-test_recertify_py.md,c-d2330e0b,The test creates synthetic repositories with code and certificates,tests/test_recertify.py:18,ok
-  tests-test_recertify_py.md,c-43cf0681,The test verifies that outdated certificates are repaired,tests/test_recertify.py:46,ok
-  tests-test_recertify_py.md,c-5811b331,The test ensures prose content remains unchanged,tests/test_recertify.py:60,ok
-  tests-test_recertify_py.md,c-07923bf6,The test verifies dry runs report changes without writing them,tests/test_recertify.py:68,ok
-  tests-test_recertify_py.md,c-fb1c4b50,The test checks verified mass is recomputed,tests/test_recertify.py:78,ok
-  tests-test_recertify_py.md,c-5e1bb3e2,The module uses pytest for testing,tests/test_recertify.py:9,ok
-  tests-test_recertify_py.md,c-6b3bfc1d,The module depends on isidore.pcp for certificate handling,tests/test_recertify.py:11,ok
-  tests-test_recertify_py.md,c-4a3221c6,The module depends on isidore.recertify for core functionality,tests/test_recertify.py:12,ok
-  tests-test_recertify_py.md,c-e3fca78c,test_a_certificate_the_code_outgrew_is_repaired_without_a_model_call asserts recertify changes action to ACT_RECERTIFY,tests/test_recertify.py:54,ok
-  tests-test_reconcile_py.md,c-02f53295,The module tests the reconciliation logic for Proof-Carrying Prose,tests/test_reconcile.py:1,ok
-  tests-test_reconcile_py.md,c-77bfc1ed,The test checks for prose omitting findings,tests/test_reconcile.py:22,ok
-  tests-test_reconcile_py.md,c-0e2f4f4b,The test detects contradictions where prose denies findings,tests/test_reconcile.py:37,ok
-  tests-test_reconcile_py.md,c-74a4bcca,The test detects contradictions where claims contradict findings,tests/test_reconcile.py:56,ok
-  tests-test_reconcile_py.md,c-74c10b55,The test ensures marks are covered by claims or prose,tests/test_reconcile.py:72,ok
-  tests-test_reconcile_py.md,c-e666911f,The test ignores resolved findings,tests/test_reconcile.py:92,ok
-  tests-test_residue_py.md,c-bcbfa564,The module tests section diffing functionality,tests/test_residue.py:38,ok
-  tests-test_residue_py.md,c-a4bae5f7,The module verifies compile journaling,tests/test_residue.py:46,ok
-  tests-test_residue_py.md,c-009e8f22,The module validates per-page history tracking,tests/test_residue.py:58,ok
-  tests-test_residue_py.md,c-6a5df50a,The module checks claims/findings querying,tests/test_residue.py:73,ok
-  tests-test_residue_py.md,c-40f28d89,The test harness creates temporary repositories,tests/test_residue.py:22,ok
-  tests-test_residue_py.md,c-978e5aaa,The module depends on isidore.journal,tests/test_residue.py:12,ok
-  tests-test_residue_py.md,c-4d71d937,The module depends on isidore.pipeline,tests/test_residue.py:13,ok
-  tests-test_residue_py.md,c-36b85015,The module depends on isidore.claims,tests/test_residue.py:9,ok
-  tests-test_security_prose_py.md,c-1fcd4b64,"The module tests the security escalation system that forces a loud, deterministic prose banner when a security suspect is detected.",tests/test_security_prose.py:1,ok
-  tests-test_security_prose_py.md,c-98979583,"The module tests the `is_security_finding` function, which checks if a finding is a security suspect.",tests/test_security_prose.py:11,ok
-  tests-test_security_prose_py.md,c-7f78d184,"The module tests the `security_banner` function, which generates a loud, deterministic prose banner when security suspects are detected.",tests/test_security_prose.py:13,ok
-  tests-test_security_prose_py.md,c-958e38bc,The `test_detects_the_camouflaged_backdoor` function tests that a camouflaged backdoor is detected as a security suspect.,tests/test_security_prose.py:21,ok
-  tests-test_security_prose_py.md,c-38b819bf,The `test_detects_common_security_vocabulary` function tests that common security vocabulary is detected as a security suspect.,tests/test_security_prose.py:25,ok
-  tests-test_security_prose_py.md,c-e3fe2462,The `test_ignores_non_security_and_wrong_kinds` function tests that non-security findings and wrong kinds are ignored.,tests/test_security_prose.py:38,ok
-  tests-test_security_prose_py.md,c-fe894e70,The `test_negation_guard_does_not_escalate_safety_affirming_notes` function tests that safety-affirming notes do not escalate the banner.,tests/test_security_prose.py:45,ok
-  tests-test_security_prose_py.md,c-07f419d3,The `test_hardcoded_with_intervening_word_is_caught` function tests that hardcoded tokens with intervening words are caught as security suspects.,tests/test_security_prose.py:58,ok
-  tests-test_security_prose_py.md,c-080f314e,The `test_banner_is_loud_and_lists_evidence` function tests that the banner is loud and lists evidence.,tests/test_security_prose.py:66,ok
-  tests-test_security_prose_py.md,c-7ea7f198,The `test_no_banner_without_security_suspects` function tests that no banner is generated without security suspects.,tests/test_security_prose.py:75,ok
-  tests-test_security_prose_py.md,c-5b25f0a6,The `test_banner_goes_under_the_h1` function tests that the banner is placed under the H1 heading.,tests/test_security_prose.py:79,ok
-  tests-test_security_prose_py.md,c-159ad7b1,test_detects_the_camouflaged_backdoor asserts is_security_finding returns True for BACKDOOR,tests/test_security_prose.py:22,ok
-  tests-test_security_prose_py.md,c-777e0956,test_ignores_non_security_and_wrong_kinds asserts question kind is not a suspect,tests/test_security_prose.py:42,ok
-  tests-test_security_prose_py.md,c-0e7f6e8c,test_banner_is_loud_and_lists_evidence asserts [!WARNING] in banner,tests/test_security_prose.py:68,ok
-  tests-test_security_prose_py.md,c-7dadc8eb,test_no_banner_without_security_suspects asserts empty string for non-security,tests/test_security_prose.py:76,ok
-  tests-test_source_disclosure_gate_py.md,c-c78a1b76,clean_env strips ISIDORE_PROVIDER ISIDORE_BASE_URL ISIDORE_MODEL and TRUST_ENV,tests/test_source_disclosure_gate.py:51,ok
-  tests-test_surface_py.md,c-a597ecdd,The module tests the API surface extraction logic,tests/test_surface.py:1,ok
-  tests-test_surface_py.md,c-cb239827,The test_python_surface_covers_functions_methods_nested_and_constants function verifies symbol extraction,tests/test_surface.py:64,ok
-  tests-test_surface_py.md,c-a15e08ab,The test_python_surface_marks_visibility_including_inheritance_from_the_container function checks visibility rules,tests/test_surface.py:79,ok
-  tests-test_surface_py.md,c-6f9fd58e,The test_python_signature_is_exact_and_survives_reformatting function ensures signature stability,tests/test_surface.py:92,ok
-  tests-test_surface_py.md,c-1d053b85,The test_python_signature_moves_when_a_default_or_parameter_changes function detects parameter changes,tests/test_surface.py:104,ok
-  tests-test_surface_py.md,c-848152e0,"test_python_signature_is_exact_and_survives_reformatting asserts fetch sig equals (url: str, *, timeout: float=1.0) -> bytes",tests/test_surface.py:95,ok
-  tests-test_surface_py.md,c-3420762e,test_python_surface_returns_none_on_syntax_error asserts python_surface returns None on broken syntax,tests/test_surface.py:121,ok
-  tests-test_units_py.md,c-53c676a8,test_scan_repo_extracts_symbols_imports_and_docs asserts .venv excluded from nodes,tests/test_units.py:53,ok
-  tests-test_verify_py.md,c-4cde9398,The module tests/test_verify.py verifies typed claims against a code graph and prose text,tests/test_verify.py:1,ok
-  tests-test_verify_py.md,c-eedd3dfb,"The module uses a VerifyContext to hold the repository, nodes, links, and commit",tests/test_verify.py:16,ok
-  tests-test_verify_py.md,c-395df6c3,The module anchors claims by parsing a Markdown file and resolving their locations,tests/test_verify.py:21,ok
-  tests-test_verify_py.md,c-d5c8cfe6,The module tests that three-field claims are parsed correctly,tests/test_verify.py:28,ok
-  tests-test_verify_py.md,c-255b2224,The module tests that each predicate type is verified correctly,tests/test_verify.py:35,ok
-  tests-test_verify_py.md,c-45925534,The module tests that the generated certificate matches golden verdicts,tests/test_verify.py:54,ok
-  tests-test_verify_py.md,c-1430865a,test_three_field_parser_captures_predicate asserts two-field claim has no predicate,tests/test_verify.py:32,ok
-  tests-test_whatsnew_py.md,c-cb29003e,tests/test_whatsnew.py tests the whatsnew functionality,tests/test_whatsnew.py:1,ok
-  tests-test_whatsnew_py.md,c-574a699b,the module uses real git repositories in tmp_path,tests/test_whatsnew.py:1,ok
-  tests-test_whatsnew_py.md,c-f03f0a69,the module tests the delta and prose verification,tests/test_whatsnew.py:1,ok
-  tests-test_whatsnew_py.md,c-4a8b7e2a,the repo fixture sets up a synthetic git repository,tests/test_whatsnew.py:52,ok
-  tests-test_whatsnew_py.md,c-02617c63,the test_delta_reports_exactly_the_real_changes_and_invents_nothing verifies the delta reports real changes,tests/test_whatsnew.py:105,ok
-  tests-test_whatsnew_py.md,c-ee644339,the test_signature_change_records_both_sides verifies signature changes include old and new signatures,tests/test_whatsnew.py:124,ok
-  tests-test_wiki_dir_env_py.md,c-d6e38a8d,The module tests the resolution of WIKI_DIRNAME from ISIDORE_WIKI_DIR,tests/test_wiki_dir_env.py:3,ok
-  tests-test_wiki_dir_env_py.md,c-381d5b59,"WIKI_DIRNAME defaults to \"wiki\" when ISIDORE_WIKI_DIR is unset",tests/test_wiki_dir_env.py:19,ok
-  tests-test_wiki_dir_env_py.md,c-ad291004,WIKI_DIRNAME is set to the value of ISIDORE_WIKI_DIR when provided,tests/test_wiki_dir_env.py:24,ok
-  tests-test_wiki_dir_env_py.md,c-baf9c0d4,"Blank ISIDORE_WIKI_DIR falls back to the default \"wiki\"",tests/test_wiki_dir_env.py:29,ok
-  tests-test_wiki_dir_env_py.md,c-a806df90,Nested directories are created when saving state,tests/test_wiki_dir_env.py:37,ok
-  tests-test_wiki_dir_env_py.md,c-6abc3dda,The default binding is restored after tests,tests/test_wiki_dir_env.py:44,ok
-  tests-test_wiki_not_input_py.md,c-94ebb297,The module enforces that the wiki is never treated as input,tests/test_wiki_not_input.py:1,ok
-  tests-test_wiki_not_input_py.md,c-d6ac2e9a,The wiki directory is set to 'doc/isidore',tests/test_wiki_not_input.py:32,ok
-  tests-test_wiki_not_input_py.md,c-f06bd6fa,The wiki output prefix is verified as 'doc/isidore',tests/test_wiki_not_input.py:58,ok
-  tests-test_wiki_not_input_py.md,c-40e1fea4,test_the_prefix_is_a_path_not_a_name asserts wiki_output_prefix returns doc/isidore,tests/test_wiki_not_input.py:58,ok
-  tests-test_wiki_not_input_py.md,c-b3202e68,test_no_page_is_planned_for_the_wiki_itself asserts drop_wiki_output returns 2 from 42 nodes,tests/test_wiki_not_input.py:90,ok
+  src-isidore-whatsnew_py.md,c-a4539d6d,The tests area is decided by the shared is_test_path,src/isidore/whatsnew.py:168,ok
+  src-isidore-whatsnew_py.md,c-9d1ab986,Documentation files are recognised by their suffix,src/isidore/whatsnew.py:131,ok

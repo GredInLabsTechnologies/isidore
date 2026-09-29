@@ -14,7 +14,7 @@
     {
       "detail": "src/isidore/graph.py defines find_graph",
       "ehash": "b567729655c3",
-      "evidence": "src/isidore/graph.py:64",
+      "evidence": "src/isidore/graph.py:65",
       "id": "c-65547764",
       "oracle": "graph",
       "predicate": "defines:src/isidore/graph.py;find_graph",
@@ -24,7 +24,7 @@
     {
       "detail": "git_listed_files calls run",
       "ehash": "c6b2d45faafd",
-      "evidence": "src/isidore/graph.py:94",
+      "evidence": "src/isidore/graph.py:116",
       "id": "c-a496259d",
       "oracle": "ast",
       "predicate": "calls:git_listed_files;subprocess.run",
@@ -34,7 +34,7 @@
     {
       "detail": "src/isidore/graph.py defines module_of",
       "ehash": "f22a98762399",
-      "evidence": "src/isidore/graph.py:84",
+      "evidence": "src/isidore/graph.py:106",
       "id": "c-6b9deb15",
       "oracle": "graph",
       "predicate": "defines:src/isidore/graph.py;module_of",
@@ -54,15 +54,25 @@
     {
       "detail": "src/isidore/graph.py imports src/isidore/langspec.py",
       "ehash": "d561e60320be",
-      "evidence": "src/isidore/graph.py:31",
+      "evidence": "src/isidore/graph.py:32",
       "id": "c-015ca744",
       "oracle": "graph",
       "predicate": "imports:src/isidore/graph.py;src/isidore/langspec.py",
       "statement": "graph.py imports BARE_CODE_EXTS from src/isidore/langspec.py",
       "verdict": "TRUE"
+    },
+    {
+      "detail": "no predicate (existence-anchored only)",
+      "ehash": "6da28815e310",
+      "evidence": "src/isidore/graph.py:L96",
+      "id": "c-be63b0da",
+      "oracle": "none",
+      "predicate": "",
+      "statement": "is_test_path normalizes backslashes to forward slashes before matching",
+      "verdict": "UNDECIDABLE"
     }
   ],
-  "graph_commit": "0f6910df6b7bf6c8cf26df0427bbb2b45197cdf5",
+  "graph_commit": "25e46585ff277fe8131d8f77e7c61ee993b21869",
   "marks": [
     {
       "disposition": "",
@@ -74,12 +84,12 @@
     }
   ],
   "mass": {
-    "gray": 13,
+    "gray": 14,
     "green": 18,
-    "yellow": 0
+    "yellow": 1
   },
   "page": "src-isidore-graph_py.md",
-  "prose_sha256": "2a99d62f2cc1d9919bff021e114af19f379da56f7262ff4f9e43f998aaea5d6a",
+  "prose_sha256": "74a76d602228e579d4eb25aa77fd28f770e85a2fc304d615ccef9af69f394828",
   "version": "pcp-1",
   "violations": []
 }

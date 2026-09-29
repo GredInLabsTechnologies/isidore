@@ -34,7 +34,7 @@
     {
       "detail": "_cmd_ask calls ask",
       "ehash": "49904d276003",
-      "evidence": "src/isidore/cli.py:116",
+      "evidence": "src/isidore/cli.py:123",
       "id": "c-9deb2e29",
       "oracle": "ast",
       "predicate": "calls:_cmd_ask;ask",
@@ -44,7 +44,7 @@
     {
       "detail": "_cmd_suggest_flows calls suggest_flows",
       "ehash": "978ef32176e0",
-      "evidence": "src/isidore/cli.py:145",
+      "evidence": "src/isidore/cli.py:152",
       "id": "c-d638bd55",
       "oracle": "ast",
       "predicate": "calls:_cmd_suggest_flows;suggest_flows",
@@ -54,7 +54,7 @@
     {
       "detail": "_cmd_impact calls build_impact",
       "ehash": "ccf65ffb626c",
-      "evidence": "src/isidore/cli.py:161",
+      "evidence": "src/isidore/cli.py:168",
       "id": "c-d957b324",
       "oracle": "ast",
       "predicate": "calls:_cmd_impact;build_impact",
@@ -94,15 +94,25 @@
     {
       "detail": "src/isidore/cli.py imports src/isidore/impact.py",
       "ehash": "1896f2f5c176",
-      "evidence": "src/isidore/cli.py:155",
+      "evidence": "src/isidore/cli.py:162",
       "id": "c-63d6f4ba",
       "oracle": "graph",
       "predicate": "imports:src/isidore/cli.py;src/isidore/impact.py",
       "statement": "_cmd_impact imports build_impact and render_impact from src/isidore/impact.py",
       "verdict": "TRUE"
+    },
+    {
+      "detail": "_cmd_compile calls compile_wiki",
+      "ehash": "d6a691daa4e1",
+      "evidence": "src/isidore/cli.py:L65",
+      "id": "c-ac50be19",
+      "oracle": "ast",
+      "predicate": "calls:_cmd_compile;compile_wiki",
+      "statement": "_cmd_compile passes rewrite arg to compile_wiki",
+      "verdict": "TRUE"
     }
   ],
-  "graph_commit": "0f6910df6b7bf6c8cf26df0427bbb2b45197cdf5",
+  "graph_commit": "25e46585ff277fe8131d8f77e7c61ee993b21869",
   "marks": [
     {
       "disposition": "",
@@ -114,12 +124,12 @@
     }
   ],
   "mass": {
-    "gray": 16,
+    "gray": 17,
     "green": 22,
     "yellow": 0
   },
   "page": "src-isidore-cli_py.md",
-  "prose_sha256": "e2e4d11a064893a99b059633168fea4af02e1416042c1bc0c749ee6e8067f34f",
+  "prose_sha256": "9190515df5bebe897cc4b15b41fe592264a981389fd7b9be60b9eb3461eb337f",
   "version": "pcp-1",
   "violations": []
 }

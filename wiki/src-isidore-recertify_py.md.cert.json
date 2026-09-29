@@ -64,15 +64,45 @@
     {
       "detail": "src/isidore/recertify.py defines rebuild_certificate",
       "ehash": "5e4169394d9b",
-      "evidence": "src/isidore/recertify.py:95",
+      "evidence": "src/isidore/recertify.py:94",
       "id": "c-42eae30c",
       "oracle": "graph",
       "predicate": "defines:src/isidore/recertify.py;rebuild_certificate",
       "statement": "The module defines rebuild_certificate to recompute certificates",
       "verdict": "TRUE"
+    },
+    {
+      "detail": "no predicate (existence-anchored only)",
+      "ehash": "933a7165b3a6",
+      "evidence": "src/isidore/recertify.py:91",
+      "id": "c-84e36274",
+      "oracle": "none",
+      "predicate": "",
+      "statement": "_child_digest hashes a child certificate through cert_file_digest",
+      "verdict": "UNDECIDABLE"
+    },
+    {
+      "detail": "src/isidore/recertify.py imports src/isidore/pcp.py",
+      "ehash": "b7fdffaa55e6",
+      "evidence": "src/isidore/recertify.py:24",
+      "id": "c-9dba22eb",
+      "oracle": "graph",
+      "predicate": "imports:src/isidore/recertify.py;src/isidore/pcp.py",
+      "statement": "recertify.py imports its certificate utilities from pcp.py",
+      "verdict": "TRUE"
+    },
+    {
+      "detail": "src/isidore/recertify.py defines rebuild_certificate",
+      "ehash": "5e4169394d9b",
+      "evidence": "src/isidore/recertify.py:94",
+      "id": "c-300080c7",
+      "oracle": "graph",
+      "predicate": "defines:src/isidore/recertify.py;rebuild_certificate",
+      "statement": "recertify.py defines rebuild_certificate",
+      "verdict": "TRUE"
     }
   ],
-  "graph_commit": "036487e2137938f623d7cb8688fb7327ef809179",
+  "graph_commit": "25e46585ff277fe8131d8f77e7c61ee993b21869",
   "marks": [
     {
       "disposition": "",
@@ -84,18 +114,12 @@
     }
   ],
   "mass": {
-    "gray": 16,
+    "gray": 17,
     "green": 13,
-    "yellow": 0
+    "yellow": 1
   },
   "page": "src-isidore-recertify_py.md",
-  "prose_sha256": "37a33bedd7d26d751faea5b7043d93a672a0c5eac51baffa33f0bcc95a23b8ec",
+  "prose_sha256": "5ad5a19ee2d95105f0e09f86a65dc975d2b935a247c7fefbc220cb0ad38c2747",
   "version": "pcp-1",
-  "violations": [
-    {
-      "detail": "Prose omits mention of file 'src/isidore/recertify.py' cited in finding.",
-      "kind": "prose-omits-finding",
-      "where": "src/isidore/recertify.py:1"
-    }
-  ]
+  "violations": []
 }

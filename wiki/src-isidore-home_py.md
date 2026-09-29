@@ -15,7 +15,7 @@ The module exposes a set of functions that return `Path` objects, each represent
 - `safe_chmod(path, mode)`: Changes file permissions, skipping on Windows or if the operation fails.
 
 ## Dependencies
-The module depends only on Python's standard library (`os`, `pathlib.Path`). It has no external dependencies and is used by other modules in the `isidore` package, such as `connectors`, `connect.py`, and `knowledge.py`.
+The module depends only on Python's standard library (`os`, `pathlib.Path`). It has no external dependencies. It is used by `src/isidore/connectors` (3 link), `src/isidore/connect.py` (1 link), and tested by `tests/test_classification_gate.py`, `tests/test_connect_cli.py`, `tests/test_connectors_f1.py`, `tests/test_hostile_f6.py`, `tests/test_knowledge.py`, and `tests/test_mcp_barrier.py`.
 
 ## How to change safely
 1. **Add new paths**: If adding a new path function, ensure it builds upon `home()` or existing path functions to maintain consistency. Use `safe_mkdir` and `safe_chmod` for filesystem operations to handle cross-platform quirks.

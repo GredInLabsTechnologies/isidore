@@ -63,6 +63,7 @@ def _cmd_compile(args) -> int:
             since=args.since,
             affected_depth=args.affected_depth,
             rewrite=args.rewrite,
+            document_tests=bool(config.get("document_tests", False)),
         )
     except (FileNotFoundError, GraphError, GenerationError) as exc:
         print(f"ERROR: {exc}", file=sys.stderr)

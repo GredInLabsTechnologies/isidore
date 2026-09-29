@@ -24,6 +24,7 @@ cross-language) will yield richer wikis through the same format.
 from __future__ import annotations
 
 import ast
+import re
 import json
 import subprocess
 from pathlib import Path, PurePosixPath
@@ -73,6 +74,27 @@ def find_graph(repo: Path, explicit: Path | None = None) -> Path | None:
         if candidate and candidate.is_file():
             return candidate
     return None
+
+
+_TEST_DIRS = frozenset({"tests", "test", "__tests__", "spec", "specs", "testing", "testdata",
+                        "test_data", "fixtures", "__fixtures__", "__mocks__", "e2e"})
+_TEST_FILE = re.compile(
+    r"^(?:test_.+|.+_test|conftest)\.py$"           # pytest
+    r"|^.+_test\.go$"                              # go
+    r"|^.+\.(?:test|spec)\.[cm]?[jt]sx?$"          # js/ts: x.test.ts, x.spec.jsx
+    r"|^.+(?:Test|Tests|Spec|IT)\.(?:java|kt|scala|groovy|cs)$"   # jvm/.net: FooTest.java
+    r"|^.+_spec\.rb$|^test_.+\.rb$|^.+_test\.rb$"  # ruby
+    r"|^.+_test\.(?:exs|ex|dart|rs)$"              # elixir, dart, rust integration files
+)
+
+
+def is_test_path(source_file: str | None) -> bool:
+    """Is this file part of a test suite rather than of the product? By the conventions of the
+    languages the scanner reads: a test directory anywhere in the path, or a test file name."""
+    if not source_file:
+        return False
+    parts = PurePosixPath(source_file.replace("\\", "/")).parts
+    return any(p.lower() in _TEST_DIRS for p in parts[:-1]) or bool(_TEST_FILE.match(parts[-1]))
 
 
 def module_of(source_file: str | None, depth: int) -> str:

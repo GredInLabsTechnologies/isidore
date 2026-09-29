@@ -1,12 +1,10 @@
-# isidore findings · commit c0fff51567e31fdf936331ff4354c0f26bea0cfd
+# isidore findings · commit 25e46585ff277fe8131d8f77e7c61ee993b21869
 # suspects/drift/questions: UNVERIFIED model observations (triage queue).
 # todos/orphans/test_gaps/hotspots: mechanical facts from graph+git, no LLM.
-# summary: 0 SECURITY, 2 bug suspects, 1 drift, 1 questions, 0 todos, 0 orphan files, 0 test gaps
+# summary: 0 SECURITY, 0 bug suspects, 1 drift, 1 questions, 0 todos, 0 orphan files, 0 test gaps
 security[0]{kind,where,note}:
-suspects[3]{kind,where,note}:
+suspects[1]{kind,where,note}:
   drift,src/isidore/recertify.py:1,"The docstring describes a gap between `isidore verify` and `isidore compile`, but the code does not explicitly address the compile behavior"
-  bug,tests/fixtures/pcp/repo/svc/auth.py:23,security risk: hardcoded credential literal in auth path
-  bug,tests/test_detectors.py:22,security risk: hardcoded secret (sk_live_) is flagged as dangerous
 questions[1]{where,note}:
   ,"Why are removals never written by the model, and how does this affect the changelog's completeness?"
 terms[0]{where,note}:
@@ -14,18 +12,18 @@ todos[0]{marker,file,line,note}:
 orphan_files[0]{file}:
 test_gaps[0]{module,symbols}:
 hotspots[15]{module,symbol,file,line,degree,churn,risk}:
-  src/isidore/pipeline.py,pipeline.py,src/isidore/pipeline.py,1,40,15,600
-  src/isidore/cli.py,cli.py,src/isidore/cli.py,1,32,16,512
+  src/isidore/pipeline.py,pipeline.py,src/isidore/pipeline.py,1,40,16,640
+  src/isidore/cli.py,cli.py,src/isidore/cli.py,1,32,17,544
   src/isidore/verify.py,verify.py,src/isidore/verify.py,1,44,9,396
-  src/isidore/pyramid.py,pyramid.py,src/isidore/pyramid.py,1,36,8,288
+  src/isidore/pyramid.py,pyramid.py,src/isidore/pyramid.py,1,37,8,296
   src/isidore/whatsnew.py,whatsnew.py,src/isidore/whatsnew.py,1,41,5,205
-  tests/test_pipeline.py,test_pipeline.py,tests/test_pipeline.py,1,38,5,190
-  src/isidore/graph.py,graph.py,src/isidore/graph.py,1,23,8,184
-  tests/test_whatsnew.py,test_whatsnew.py,tests/test_whatsnew.py,1,44,4,176
+  src/isidore/graph.py,graph.py,src/isidore/graph.py,1,24,8,192
   src/isidore/claims.py,claims.py,src/isidore/claims.py,1,21,7,147
   src/isidore/findings.py,findings.py,src/isidore/findings.py,1,23,6,138
-  tests/test_units.py,test_units.py,tests/test_units.py,1,33,4,132
-  tests/test_overview.py,test_overview.py,tests/test_overview.py,1,23,5,115
-  tests/test_claims.py,test_claims.py,tests/test_claims.py,1,18,5,90
   src/isidore/render.py,render.py,src/isidore/render.py,1,15,6,90
   src/isidore/connectors,store.py,src/isidore/connectors/store.py,1,17,5,85
+  src/isidore/pcp.py,pcp.py,src/isidore/pcp.py,1,25,3,75
+  src/isidore/knowledge.py,knowledge.py,src/isidore/knowledge.py,1,18,4,72
+  src/isidore/surface.py,surface.py,src/isidore/surface.py,1,16,4,64
+  src/isidore/qa.py,qa.py,src/isidore/qa.py,1,13,4,52
+  src/isidore/handoff.py,handoff.py,src/isidore/handoff.py,1,12,4,48

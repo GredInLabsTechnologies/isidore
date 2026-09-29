@@ -262,3 +262,23 @@ citations landed on blank lines (certainly wrong), and definitions cited 1-5 lin
 
 Tests: `tests/test_citations.py` (unit, incl. every migration refusal) and the citation cases in
 `tests/test_incremental.py` (real git repo, compile, certificate still verifying).
+
+## 12 · C10 — Tests are evidence, not pages (2026-09-29)
+
+**Why (user question, measured).** Page planning ranks modules by symbol count, and a test file counts
+every test function: on isidore's own repo 23 of the 40 planned pages were tests, 13 product modules
+(handoff, recertify, changeset, detectors, llm, impact, qa, connect, home...) were pushed out of the
+plan, 74 of 151 journaled page generations went to tests, and both model "bug" findings were
+deliberate secrets in test fixtures.
+
+**Decision.**
+- `graph.is_test_path` recognises test files across the scanned languages (test directories anywhere
+  in the path; `test_*.py`/`*_test.py`/`conftest.py`, `*_test.go`, `*.test.ts`/`*.spec.js`,
+  `FooTest.java`/`BarTests.cs`, `*_spec.rb`...). `whatsnew` uses the same function.
+- `plan_pages` gives no page to a module whose files are all tests, unless `document_tests: true` in
+  isidore.json (for projects whose tests ARE the spec). Tests stay in the graph: impact, coverage
+  gaps and TODO harvesting still read them.
+- Each product page's facts list `tested by` — the test modules importing it — which is the fact an
+  agent needs before touching a module. A new test never dirties the page (`_NOT_A_CHANGE`).
+- Pruning a page now removes its certificate too; an area page left with no module pages under it
+  is pruned with its certificate and stored facts; the overview's module list excludes tests.

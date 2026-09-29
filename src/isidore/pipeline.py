@@ -45,7 +45,7 @@ from .findings import (
     security_banner,
     coverage_gap_candidates,
 )
-from .graph import CONCEPTS_BUCKET, load_graph, module_of, restrict_to_tracked
+from .graph import CONCEPTS_BUCKET, is_test_path, load_graph, module_of, restrict_to_tracked
 from .llm import GenerationError, default_generator
 from .pcp import CERT_SUFFIX, VerifyContext, write_certificate
 from .verify import CERT_DRIFTED, build_certificate, certificate_status
@@ -234,6 +234,7 @@ class PageSpec:
     deps_in: list[tuple[str, int]] = field(default_factory=list)
     flow_edges: list[tuple[str, str, str]] = field(default_factory=list)        # (src,relation,tgt)
     modules: list[str] = field(default_factory=list)                            # flows: touched modules
+    tested_by: list[str] = field(default_factory=list)   # test modules importing this one (0 LLM)
 
     @property
     def filename(self) -> str:
@@ -299,8 +300,15 @@ def plan_pages(
     module_depth: int = DEFAULT_MODULE_DEPTH,
     top_k: int | None = DEFAULT_TOP_K_PAGES,
     min_symbols: int = DEFAULT_MIN_SYMBOLS,
+    include_tests: bool = False,
 ) -> list[PageSpec]:
     """Module pages from the graph: top-K modules holding at least min_symbols code symbols.
+
+    Test modules get no page unless `include_tests`: a test file counts every test function as a
+    symbol, so on isidore's own repo 23 of the 40 pages were tests, 13 product modules were pushed
+    out, and half of all page generations went to prose that restated what the module pages say.
+    Tests stay in the graph — impact, coverage gaps and residue use them — and each product page
+    lists the test modules that exercise it (`tested_by`), which is the fact an agent needs.
 
     top_k=None returns ALL eligible modules — pruning must compare against the full universe
     so a later run with a smaller --top-k never deletes valid pages.
@@ -334,15 +342,20 @@ def plan_pages(
 
     dep_out = module_dep_edges(nodes, links, module_depth)
 
+    test_modules = {mod for mod, fs in files.items() if fs and all(is_test_path(f) for f in fs)}
     specs: list[PageSpec] = []
     for mod, syms in symbols.items():
         if mod == CONCEPTS_BUCKET or len(syms) < min_symbols:
+            continue
+        if mod in test_modules and not include_tests:
             continue
         hot = sorted(syms, key=lambda t: t[3], reverse=True)[:DEFAULT_MAX_EXCERPTS]
         outs = sorted(((t, c) for (f, t), c in dep_out.items() if f == mod), key=lambda x: -x[1])[:8]
         ins = sorted(((f, c) for (f, t), c in dep_out.items() if t == mod), key=lambda x: -x[1])[:8]
         doc_files = sorted(docs.get(mod, ()), key=lambda p: ("readme" not in p.lower(), p))[:2]
-        specs.append(PageSpec("module", mod, len(files[mod]), len(syms), doc_files, hot, outs, ins))
+        tested_by = sorted(f for (f, t), _c in dep_out.items() if t == mod and f in test_modules)
+        specs.append(PageSpec("module", mod, len(files[mod]), len(syms), doc_files, hot, outs, ins,
+                              tested_by=tested_by))
 
     specs.sort(key=lambda s: s.symbols, reverse=True)
     return specs if top_k is None else specs[:top_k]
@@ -482,6 +495,7 @@ def assemble_context(repo: Path, spec: PageSpec, *,
             "depends on (cross-module, link count): "
             + (", ".join(f"{m} ({c})" for m, c in spec.deps_out) or "(none)"),
             "depended on by: " + (", ".join(f"{m} ({c})" for m, c in spec.deps_in) or "(none)"),
+            "tested by (test modules that import it): " + (", ".join(spec.tested_by) or "(none)"),
             "most connected symbols: "
             + (", ".join(f"{lbl} [{f}:{loc or '?'}] deg={d}"
                          for lbl, f, loc, d in spec.hot_symbols) or "(none)"),
@@ -716,6 +730,7 @@ def compile_wiki(
     since: str | None = None,
     affected_depth: int = 1,
     rewrite: bool = False,
+    document_tests: bool = False,
 ) -> CompileResult:
     """Run the pipeline. With execute=False no LLM is called and no page is written.
 
@@ -757,7 +772,7 @@ def compile_wiki(
             f"(build artifacts / vendored trees, not tracked source): {sample}"
             + (" ..." if len(dropped_paths) > 3 else ""))
     all_modules = plan_pages(nodes, links, module_depth=module_depth, top_k=None,
-                             min_symbols=min_symbols)
+                             min_symbols=min_symbols, include_tests=document_tests)
     flows = plan_flows(nodes, links, flows_config or [], module_depth=module_depth)
     specs = all_modules[:top_k] + flows
     result.planned = len(specs)
@@ -1101,9 +1116,11 @@ def compile_wiki(
     eligible = {s.filename for s in all_modules} | {s.filename for s in flows}
     if not scoped:
         for name in [n for n in pages_state if n not in eligible]:
-            page = wiki_dir / name
-            if page.is_file():
-                page.unlink()
+            # The certificate goes with its page: left behind, it described prose that no longer
+            # existed (and kept a pruned page's claims looking alive to anything reading certs).
+            for stale_file in (wiki_dir / name, wiki_dir / (name + CERT_SUFFIX)):
+                if stale_file.is_file():
+                    stale_file.unlink()
             del pages_state[name]
             result.pruned.append(name)
 
@@ -1122,9 +1139,11 @@ def compile_wiki(
     for f in llm_findings:
         f["resolved"] = is_finding_resolved(repo, f.get("id") or finding_id(f))
     planned_modules = {s.name for s in module_specs}
+    # Markers left in tests (TODO, FIXME) still count, although tests get no page of their own.
     source_files = {n["source_file"] for n in nodes
                     if n.get("source_file") and n.get("file_type") == "code"
-                    and module_of(n["source_file"], module_depth) in planned_modules}
+                    and (module_of(n["source_file"], module_depth) in planned_modules
+                         or is_test_path(n["source_file"]))}
     (wiki_dir / FINDINGS_FILENAME).write_text(
         render_findings(
             llm_findings,

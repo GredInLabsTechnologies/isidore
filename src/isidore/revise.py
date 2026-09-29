@@ -59,6 +59,7 @@ def facts_record(repo: Path, spec, read_excerpt) -> dict:
         rec["symbols"] = spec.symbols
         rec["deps_out"] = sorted(m for m, _c in spec.deps_out)
         rec["deps_in"] = sorted(m for m, _c in spec.deps_in)
+        rec["tested_by"] = sorted(getattr(spec, "tested_by", []) or [])
         docs = {}
         for doc in spec.doc_files:
             path = repo / doc
@@ -81,7 +82,8 @@ def facts_record(repo: Path, spec, read_excerpt) -> dict:
 # - who depends on this module (`deps_in`): a new consumer does not change what the module does, it is
 #   documented on the consumer's own page — and the list is the top few by link count, so one new
 #   consumer pushed another off it and a module nobody touched came back "changed".
-_NOT_A_CHANGE = frozenset({"files", "symbols", "deps_in"})
+# - `tested_by`: a new test of the module is news for the page's test list, not for its prose.
+_NOT_A_CHANGE = frozenset({"files", "symbols", "deps_in", "tested_by"})
 
 
 def facts_fingerprint(record: dict) -> str:
@@ -109,6 +111,7 @@ def facts_delta(old: dict, new: dict, repo: Path, spec, read_excerpt) -> str:
             out.append(f"{key} count: {old.get(key)} -> {new.get(key)}")
     _set_change("deps_out", "depends on")
     _set_change("deps_in", "depended on by")
+    _set_change("tested_by", "tested by")
     _set_change("modules", "modules involved")
     _set_change("edges", "graph edges")
     old_docs, new_docs = old.get("docs", {}), new.get("docs", {})

@@ -71,6 +71,7 @@ def _plan(repo: Path, config: dict, args) -> CompileResult:
         flows_config=config.get("flows", []),
         only=[s for s in (getattr(args, "only", "") or "").split(",") if s.strip()] or None,
         rewrite=bool(getattr(args, "rewrite", False)),
+        document_tests=bool(config.get("document_tests", False)),
     )
 
 
@@ -168,6 +169,7 @@ def apply(repo: Path, config: dict, args):
         flows_config=config.get("flows", []),
         only=[s for s in (getattr(args, "only", "") or "").split(",") if s.strip()] or None,
         rewrite=bool(getattr(args, "rewrite", False)),
+        document_tests=bool(config.get("document_tests", False)),
     )
 
 

@@ -60,9 +60,19 @@
       "predicate": "imports:src/isidore/changeset.py;src/isidore/graph.py",
       "statement": "The module depends on graph.py's module_of",
       "verdict": "TRUE"
+    },
+    {
+      "detail": "src/isidore/findings.py imports src/isidore/changeset.py",
+      "ehash": "87e3f6cb8856",
+      "evidence": "src/isidore/findings.py:L1",
+      "id": "c-82be4b71",
+      "oracle": "graph",
+      "predicate": "imports:src/isidore/findings.py;src/isidore/changeset.py",
+      "statement": "findings.py imports and uses changeset",
+      "verdict": "TRUE"
     }
   ],
-  "graph_commit": "1a34c13ecf2ef7ce206f1ceeaeb1987fea5f8272",
+  "graph_commit": "25e46585ff277fe8131d8f77e7c61ee993b21869",
   "marks": [
     {
       "disposition": "",
@@ -74,12 +84,12 @@
     }
   ],
   "mass": {
-    "gray": 24,
-    "green": 14,
+    "gray": 27,
+    "green": 15,
     "yellow": 0
   },
   "page": "src-isidore-changeset_py.md",
-  "prose_sha256": "f1c9e097196c84da0308d914764f00aed2d164a86bb60d2c3d0c47a4d62f4174",
+  "prose_sha256": "9e5dfb677278473ed6b74e756ec22f4d282139d48591e3cd0461a14295fe6025",
   "version": "pcp-1",
   "violations": []
 }

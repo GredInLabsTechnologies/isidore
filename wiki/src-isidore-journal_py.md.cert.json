@@ -1,0 +1,65 @@
+{
+  "child_cert_hashes": {},
+  "claims": [
+    {
+      "detail": "JOURNAL_CAP == 50",
+      "ehash": "333b51d446bd",
+      "evidence": "src/isidore/journal.py:L24",
+      "id": "c-3989bc2c",
+      "oracle": "ast",
+      "predicate": "value:JOURNAL_CAP;50",
+      "statement": "append_run caps journal at 50 entries",
+      "verdict": "TRUE"
+    },
+    {
+      "detail": "render_stats calls encode",
+      "ehash": "811aef789d49",
+      "evidence": "src/isidore/journal.py:L83",
+      "id": "c-68d95eda",
+      "oracle": "ast",
+      "predicate": "calls:render_stats;encode",
+      "statement": "render_stats uses toon encode for output",
+      "verdict": "TRUE"
+    },
+    {
+      "detail": "HISTORY_CAP == 5",
+      "ehash": "e3c80c14395a",
+      "evidence": "src/isidore/journal.py:L58",
+      "id": "c-c97d53e4",
+      "oracle": "ast",
+      "predicate": "value:HISTORY_CAP;5",
+      "statement": "HISTORY_CAP limits per-page changelog to 5 entries",
+      "verdict": "TRUE"
+    },
+    {
+      "detail": "src/isidore/journal.py imports src/isidore/toon.py",
+      "ehash": "2c7ee6ca1137",
+      "evidence": "src/isidore/journal.py:L14",
+      "id": "c-6b1ae085",
+      "oracle": "graph",
+      "predicate": "imports:src/isidore/journal.py;src/isidore/toon.py",
+      "statement": "journal.py imports encode from toon",
+      "verdict": "TRUE"
+    }
+  ],
+  "graph_commit": "25e46585ff277fe8131d8f77e7c61ee993b21869",
+  "marks": [
+    {
+      "disposition": "",
+      "family": "topology",
+      "file": "src/isidore/journal.py",
+      "line": 1,
+      "reason": "reachable from auth/secret surface: src/isidore/detectors.py",
+      "severity": "info"
+    }
+  ],
+  "mass": {
+    "gray": 27,
+    "green": 9,
+    "yellow": 0
+  },
+  "page": "src-isidore-journal_py.md",
+  "prose_sha256": "ac2d16388d20ea734289ab89328547eeb7d79c8ebe84f570d47f2a4eca2fb5cc",
+  "version": "pcp-1",
+  "violations": []
+}

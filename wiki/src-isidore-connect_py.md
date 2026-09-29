@@ -17,9 +17,10 @@ All operations are file-based, using JSON for configuration storage, and avoid n
 - `connector_summary()`: Generates a status row for `--list` output
 
 ## Dependencies
-- `src/isidore/connectors`: For connector implementations and state management
-- `src/isidore/home.py`: Provides filesystem paths and permission utilities
-- `src/isidore/toon.py`: Used for table encoding (though not directly in this module)
+- `src/isidore/connectors`: For connector implementations and state management (`all_connectors`, `get`, `missing_env`, `IngestOptions`, `iter_items`, `read_state`)
+- `src/isidore/home.py`: Provides filesystem paths and permission utilities (`config_path`, `home`, `state_path`, `safe_chmod`, `safe_mkdir`)
+- `src/isidore/toon.py`: Used for table encoding (`encode_table`)
+- `src/isidore/detectors.py`: Used by `apply_settings` to detect credential-like values (`_looks_like_secret`)
 
 ## How to change safely
 1. **Configuration handling**: When modifying `load_config` or `save_config`, ensure permissions remain restrictive (0o600) and error handling remains silent (never raises)

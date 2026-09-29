@@ -401,7 +401,8 @@ def coverage_gap_candidates(module_specs) -> list[dict]:
     for spec in module_specs:
         if "test" in spec.name.lower():
             continue
-        has_tests = any("test" in m.lower() for m, _c in spec.deps_in)
+        has_tests = bool(getattr(spec, "tested_by", None)) or any(
+            "test" in m.lower() for m, _c in spec.deps_in)
         if not has_tests:
             rows.append({"module": spec.name, "symbols": spec.symbols})
     return rows

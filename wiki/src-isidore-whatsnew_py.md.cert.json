@@ -14,7 +14,7 @@
     {
       "detail": "src/isidore/whatsnew.py defines DeltaEntry",
       "ehash": "7bef4744a41b",
-      "evidence": "src/isidore/whatsnew.py:149",
+      "evidence": "src/isidore/whatsnew.py:148",
       "id": "c-16280d6f",
       "oracle": "graph",
       "predicate": "defines:src/isidore/whatsnew.py;DeltaEntry",
@@ -24,7 +24,7 @@
     {
       "detail": "src/isidore/whatsnew.py defines SurfaceDelta",
       "ehash": "1aeaf73500c7",
-      "evidence": "src/isidore/whatsnew.py:178",
+      "evidence": "src/isidore/whatsnew.py:176",
       "id": "c-b95b1c52",
       "oracle": "graph",
       "predicate": "defines:src/isidore/whatsnew.py;SurfaceDelta",
@@ -34,7 +34,7 @@
     {
       "detail": "src/isidore/whatsnew.py defines WhatsnewResult",
       "ehash": "e8926d486fb6",
-      "evidence": "src/isidore/whatsnew.py:199",
+      "evidence": "src/isidore/whatsnew.py:197",
       "id": "c-dfb9e9ae",
       "oracle": "graph",
       "predicate": "defines:src/isidore/whatsnew.py;WhatsnewResult",
@@ -44,7 +44,7 @@
     {
       "detail": "no predicate (existence-anchored only)",
       "ehash": "c20699da889b",
-      "evidence": "src/isidore/whatsnew.py:217",
+      "evidence": "src/isidore/whatsnew.py:215",
       "id": "c-20585703",
       "oracle": "none",
       "predicate": "",
@@ -90,9 +90,29 @@
       "predicate": "defines:src/isidore/whatsnew.py;_WRITABLE_KINDS",
       "statement": "_WRITABLE_KINDS excludes SYMBOL_REMOVED and FILE_REMOVED",
       "verdict": "TRUE"
+    },
+    {
+      "detail": "no predicate (existence-anchored only)",
+      "ehash": "94373740fc4f",
+      "evidence": "src/isidore/whatsnew.py:168",
+      "id": "c-a4539d6d",
+      "oracle": "none",
+      "predicate": "",
+      "statement": "The tests area is decided by the shared is_test_path",
+      "verdict": "UNDECIDABLE"
+    },
+    {
+      "detail": "no predicate (existence-anchored only)",
+      "ehash": "5512d2f1fe41",
+      "evidence": "src/isidore/whatsnew.py:131",
+      "id": "c-9d1ab986",
+      "oracle": "none",
+      "predicate": "",
+      "statement": "Documentation files are recognised by their suffix",
+      "verdict": "UNDECIDABLE"
     }
   ],
-  "graph_commit": "0f6910df6b7bf6c8cf26df0427bbb2b45197cdf5",
+  "graph_commit": "25e46585ff277fe8131d8f77e7c61ee993b21869",
   "marks": [
     {
       "disposition": "",
@@ -104,12 +124,12 @@
     }
   ],
   "mass": {
-    "gray": 24,
+    "gray": 23,
     "green": 8,
-    "yellow": 8
+    "yellow": 10
   },
   "page": "src-isidore-whatsnew_py.md",
-  "prose_sha256": "0e3b6ef34b917b127d70dbe452bdf37959e0fece7b309bb4f69fc557861373fc",
+  "prose_sha256": "ee26ce92c5448faac120fc536d2fee09a84642b330009ffcc1ec211de5e464f4",
   "version": "pcp-1",
   "violations": []
 }

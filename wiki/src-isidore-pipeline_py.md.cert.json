@@ -4,7 +4,7 @@
     {
       "detail": "src/isidore/pipeline.py defines source_destination",
       "ehash": "d6680bee67b4",
-      "evidence": "src/isidore/pipeline.py:169",
+      "evidence": "src/isidore/pipeline.py:172",
       "id": "c-8bed42b4",
       "oracle": "graph",
       "predicate": "defines:src/isidore/pipeline.py;source_destination",
@@ -14,7 +14,7 @@
     {
       "detail": "assert_may_send_source(what)",
       "ehash": "e21f9153ca2b",
-      "evidence": "src/isidore/pipeline.py:194",
+      "evidence": "src/isidore/pipeline.py:197",
       "id": "c-6902494e",
       "oracle": "ast",
       "predicate": "signature:assert_may_send_source;what",
@@ -24,7 +24,7 @@
     {
       "detail": "TRUST_ENV == ISIDORE_PROMPT_TRUSTS_PROVIDER",
       "ehash": "47817a0a6077",
-      "evidence": "src/isidore/pipeline.py:156",
+      "evidence": "src/isidore/pipeline.py:159",
       "id": "c-3a6e8d37",
       "oracle": "ast",
       "predicate": "value:TRUST_ENV;ISIDORE_PROMPT_TRUSTS_PROVIDER",
@@ -34,7 +34,7 @@
     {
       "detail": "no predicate (existence-anchored only)",
       "ehash": "3ef98f684774",
-      "evidence": "src/isidore/pipeline.py:208",
+      "evidence": "src/isidore/pipeline.py:211",
       "id": "c-bab550d7",
       "oracle": "none",
       "predicate": "",
@@ -44,7 +44,7 @@
     {
       "detail": "no predicate (existence-anchored only)",
       "ehash": "d7dc08c97b00",
-      "evidence": "src/isidore/pipeline.py:218",
+      "evidence": "src/isidore/pipeline.py:221",
       "id": "c-0a32d518",
       "oracle": "none",
       "predicate": "",
@@ -54,7 +54,7 @@
     {
       "detail": "MAX_CERT_VIOLATIONS == 500",
       "ehash": "69ed233bf956",
-      "evidence": "src/isidore/pipeline.py:264",
+      "evidence": "src/isidore/pipeline.py:268",
       "id": "c-423b7283",
       "oracle": "ast",
       "predicate": "value:MAX_CERT_VIOLATIONS;500",
@@ -64,7 +64,7 @@
     {
       "detail": "src/isidore/pipeline.py defines degenerate_certificate",
       "ehash": "91c2ea334a3a",
-      "evidence": "src/isidore/pipeline.py:268",
+      "evidence": "src/isidore/pipeline.py:272",
       "id": "c-23b1a2ee",
       "oracle": "graph",
       "predicate": "defines:src/isidore/pipeline.py;degenerate_certificate",
@@ -74,7 +74,7 @@
     {
       "detail": "ISIDORE_BASE_URL read in src/isidore/llm.py",
       "ehash": "3a82377a0973",
-      "evidence": "src/isidore/pipeline.py:182",
+      "evidence": "src/isidore/pipeline.py:185",
       "id": "c-7c68a00e",
       "oracle": "grep",
       "predicate": "env:ISIDORE_BASE_URL",
@@ -84,7 +84,7 @@
     {
       "detail": "MAX_CERT_VIOLATIONS == 500",
       "ehash": "36adfd434097",
-      "evidence": "src/isidore/pipeline.py:263",
+      "evidence": "src/isidore/pipeline.py:267",
       "id": "c-fa851cb2",
       "oracle": "ast",
       "predicate": "value:MAX_CERT_VIOLATIONS;500",
@@ -94,15 +94,55 @@
     {
       "detail": "TRUST_ENV == ISIDORE_PROMPT_TRUSTS_PROVIDER",
       "ehash": "4abff6a25471",
-      "evidence": "src/isidore/pipeline.py:155",
+      "evidence": "src/isidore/pipeline.py:158",
       "id": "c-755d1887",
       "oracle": "ast",
       "predicate": "value:TRUST_ENV;ISIDORE_PROMPT_TRUSTS_PROVIDER",
       "statement": "TRUST_ENV is set to ISIDORE_PROMPT_TRUSTS_PROVIDER",
       "verdict": "TRUE"
+    },
+    {
+      "detail": "no predicate (existence-anchored only)",
+      "ehash": "3484bb756226",
+      "evidence": "src/isidore/pipeline.py:L237",
+      "id": "c-84950963",
+      "oracle": "none",
+      "predicate": "",
+      "statement": "PageSpec has tested_by field listing test modules",
+      "verdict": "UNDECIDABLE"
+    },
+    {
+      "detail": "module_dep_edges(nodes, links, module_depth)",
+      "ehash": "834ea10fb349",
+      "evidence": "src/isidore/pipeline.py:L248",
+      "id": "c-80ebdd70",
+      "oracle": "ast",
+      "predicate": "signature:module_dep_edges;nodes;links;module_depth",
+      "statement": "module_dep_edges accepts module_depth parameter",
+      "verdict": "TRUE"
+    },
+    {
+      "detail": "MAX_CERT_VIOLATIONS == 500",
+      "ehash": "36adfd434097",
+      "evidence": "src/isidore/pipeline.py:L267",
+      "id": "c-310c6c7a",
+      "oracle": "ast",
+      "predicate": "value:MAX_CERT_VIOLATIONS;500",
+      "statement": "MAX_CERT_VIOLATIONS caps certificate violations at 500",
+      "verdict": "TRUE"
+    },
+    {
+      "detail": "MAX_CERT_MARKS == 500",
+      "ehash": "69ed233bf956",
+      "evidence": "src/isidore/pipeline.py:L268",
+      "id": "c-be6d0ad8",
+      "oracle": "ast",
+      "predicate": "value:MAX_CERT_MARKS;500",
+      "statement": "MAX_CERT_MARKS caps certificate marks at 500",
+      "verdict": "TRUE"
     }
   ],
-  "graph_commit": "0f6910df6b7bf6c8cf26df0427bbb2b45197cdf5",
+  "graph_commit": "25e46585ff277fe8131d8f77e7c61ee993b21869",
   "marks": [
     {
       "disposition": "",
@@ -114,12 +154,12 @@
     }
   ],
   "mass": {
-    "gray": 56,
-    "green": 10,
-    "yellow": 0
+    "gray": 57,
+    "green": 11,
+    "yellow": 1
   },
   "page": "src-isidore-pipeline_py.md",
-  "prose_sha256": "9cce61ad9a9b1ba39a848548f1eb363c54f2bf975d602350ff3f2260aa722cbe",
+  "prose_sha256": "39c942d89939942817a007b93f6133bd7c3ed36886d916e12ce919b22621ba37",
   "version": "pcp-1",
   "violations": []
 }

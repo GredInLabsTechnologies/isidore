@@ -3,8 +3,8 @@
 
 ## Architecture
 The module is divided into two main sections:
-1. **Graph loading and validation**: Functions for finding, loading, and validating graph files (`find_graph`, `load_graph`).
-2. **Repository scanning**: Utilities for scanning files in a repository (`git_listed_files`, `_norm_source_file`) and grouping them into modules (`module_of`).
+1. **Graph loading and validation**: Functions for finding, loading, and validating graph files (`find_graph`, `load_graph`). `GraphError` is raised for malformed or structurally invalid graph JSON.
+2. **Repository scanning and classification**: Utilities for scanning files in a repository (`git_listed_files`, `_norm_source_file`), grouping them into modules (`module_of`), and identifying test files (`is_test_path`).
 
 The graph format is intentionally simple, supporting basic node types ("code", "document") and relationships. The scanner uses Python's `ast` module for Python files and a declarative engine in `langspec.py` for other languages, with a fallback to bare file nodes for unsupported files.
 
@@ -12,6 +12,7 @@ The graph format is intentionally simple, supporting basic node types ("code", "
 - `load_graph()`: Validates and parses a graph file, returning nodes, links, and the commit hash.
 - `find_graph()`: Locates the graph file, prioritizing user-specified paths over Isidore's own output.
 - `git_listed_files()`: Lists files tracked by git, excluding ignored/untracked build artifacts.
+- `is_test_path()`: Determines whether a file belongs to a test suite, using directory names and filename conventions across multiple languages (`src/isidore/graph.py:L91-L97`).
 - `module_of()`: Groups files into modules based on directory structure.
 
 ## Dependencies

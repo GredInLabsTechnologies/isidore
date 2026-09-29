@@ -24,7 +24,7 @@
     {
       "detail": "no predicate (existence-anchored only)",
       "ehash": "9111f31ff38b",
-      "evidence": "src/isidore/revise.py:91",
+      "evidence": "src/isidore/revise.py:93",
       "id": "c-bb6aa6e8",
       "oracle": "none",
       "predicate": "",
@@ -34,7 +34,7 @@
     {
       "detail": "src/isidore/revise.py defines facts_fingerprint",
       "ehash": "dc77429ef09b",
-      "evidence": "src/isidore/revise.py:87",
+      "evidence": "src/isidore/revise.py:89",
       "id": "c-7611d2bd",
       "oracle": "graph",
       "predicate": "defines:src/isidore/revise.py;facts_fingerprint",
@@ -43,26 +43,46 @@
     },
     {
       "detail": "no predicate (existence-anchored only)",
-      "ehash": "4e16f2d15356",
-      "evidence": "src/isidore/revise.py:84",
-      "id": "c-91b61d2a",
-      "oracle": "none",
-      "predicate": "",
-      "statement": "Counts and deps_in never dirty a page on their own",
-      "verdict": "UNDECIDABLE"
-    },
-    {
-      "detail": "no predicate (existence-anchored only)",
       "ehash": "9111f31ff38b",
-      "evidence": "src/isidore/revise.py:91",
+      "evidence": "src/isidore/revise.py:93",
       "id": "c-da31d6e4",
       "oracle": "none",
       "predicate": "",
       "statement": "facts_fingerprint drops the ignored keys right before hashing",
       "verdict": "UNDECIDABLE"
+    },
+    {
+      "detail": "no predicate (existence-anchored only)",
+      "ehash": "8ee2ab669640",
+      "evidence": "src/isidore/revise.py:62",
+      "id": "c-391c04cb",
+      "oracle": "none",
+      "predicate": "",
+      "statement": "facts_record records the test modules that exercise a module",
+      "verdict": "UNDECIDABLE"
+    },
+    {
+      "detail": "no predicate (existence-anchored only)",
+      "ehash": "254bece4145f",
+      "evidence": "src/isidore/revise.py:86",
+      "id": "c-a4f2d5a2",
+      "oracle": "none",
+      "predicate": "",
+      "statement": "Counts, deps_in and tested_by never dirty a page on their own",
+      "verdict": "UNDECIDABLE"
+    },
+    {
+      "detail": "no predicate (existence-anchored only)",
+      "ehash": "5cc7e3f0b5f8",
+      "evidence": "src/isidore/revise.py:114",
+      "id": "c-622c00f3",
+      "oracle": "none",
+      "predicate": "",
+      "statement": "facts_delta still reports new tests of the module",
+      "verdict": "UNDECIDABLE"
     }
   ],
-  "graph_commit": "c0fff51567e31fdf936331ff4354c0f26bea0cfd",
+  "graph_commit": "25e46585ff277fe8131d8f77e7c61ee993b21869",
   "marks": [
     {
       "disposition": "",
@@ -74,12 +94,12 @@
     }
   ],
   "mass": {
-    "gray": 35,
+    "gray": 30,
     "green": 1,
-    "yellow": 5
+    "yellow": 10
   },
   "page": "src-isidore-revise_py.md",
-  "prose_sha256": "05b4b4e2caa5cb0bab882bfb53a67673f59b08a0b8f87709975858cf38d85df6",
+  "prose_sha256": "a6ccc86d822e8f3c60558d7a520f3449231fd92c06a7dc224b1b2388d12646e4",
   "version": "pcp-1",
   "violations": []
 }

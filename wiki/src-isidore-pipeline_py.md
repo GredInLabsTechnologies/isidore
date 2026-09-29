@@ -38,8 +38,8 @@ variable is named once (`src/isidore/pipeline.py:155`) and the endpoint lists ar
 
 The other loud failure in the module guards the output rather than the input.
 `degenerate_certificate` refuses to write a certificate whose violation or mark counts have run away
-(`src/isidore/pipeline.py:270`), against caps that sit in code beside it
-(`src/isidore/pipeline.py:263`).
+(`src/isidore/pipeline.py:271`), against caps that sit in code beside it
+(`src/isidore/pipeline.py:264`).
 
 ## Key entry points
 
@@ -47,11 +47,13 @@ The other loud failure in the module guards the output rather than the input.
   (`src/isidore/pipeline.py:171`).
 - `assert_may_send_source(what)` — fail closed, or return the disclosure to record
   (`src/isidore/pipeline.py:196`).
-- `PageSpec` — what one page is planned from (`src/isidore/pipeline.py:226`).
-- `module_dep_edges(nodes, links)` — the module-level dependency edges pages are ordered by
-  (`src/isidore/pipeline.py:246`).
+- `PageSpec` — what one page is planned from. Each spec carries `kind`, `name`, file/symbol counts,
+  dependency lists, and a `tested_by` field listing the test modules that import the page's module
+  (`src/isidore/pipeline.py:226-L237`).
+- `module_dep_edges(nodes, links, module_depth)` — the module-level dependency edges pages are ordered
+  by, with configurable depth (`src/isidore/pipeline.py:247`).
 - `degenerate_certificate(cert)` — the reason a certificate must not be written, if there is one
-  (`src/isidore/pipeline.py:270`).
+  (`src/isidore/pipeline.py:271`).
 
 ## Dependencies
 

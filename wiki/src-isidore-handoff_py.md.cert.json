@@ -4,7 +4,7 @@
     {
       "detail": "prompt_id calls sha256",
       "ehash": "6822630b5132",
-      "evidence": "src/isidore/handoff.py:58",
+      "evidence": "src/isidore/handoff.py:57",
       "id": "c-6d704832",
       "oracle": "ast",
       "predicate": "calls:prompt_id;sha256",
@@ -14,7 +14,7 @@
     {
       "detail": "prompt_id(prompt)",
       "ehash": "22c05a4f0235",
-      "evidence": "src/isidore/handoff.py:55",
+      "evidence": "src/isidore/handoff.py:54",
       "id": "c-922e9f53",
       "oracle": "ast",
       "predicate": "signature:prompt_id;prompt",
@@ -24,7 +24,7 @@
     {
       "detail": "src/isidore/handoff.py defines emit",
       "ehash": "27ca25fe9c12",
-      "evidence": "src/isidore/handoff.py:77",
+      "evidence": "src/isidore/handoff.py:78",
       "id": "c-723ad279",
       "oracle": "graph",
       "predicate": "defines:src/isidore/handoff.py;emit",
@@ -44,7 +44,7 @@
     {
       "detail": "no predicate (existence-anchored only)",
       "ehash": "ae4b571d6959",
-      "evidence": "src/isidore/handoff.py:66",
+      "evidence": "src/isidore/handoff.py:65",
       "id": "c-e095926b",
       "oracle": "none",
       "predicate": "",
@@ -54,7 +54,7 @@
     {
       "detail": "no predicate (existence-anchored only)",
       "ehash": "37f084a5f203",
-      "evidence": "src/isidore/handoff.py:70",
+      "evidence": "src/isidore/handoff.py:69",
       "id": "c-ef1b0332",
       "oracle": "none",
       "predicate": "",
@@ -64,7 +64,7 @@
     {
       "detail": "no predicate (existence-anchored only)",
       "ehash": "15b1bbefe28a",
-      "evidence": "src/isidore/handoff.py:86",
+      "evidence": "src/isidore/handoff.py:87",
       "id": "c-feb6cb44",
       "oracle": "none",
       "predicate": "",
@@ -74,15 +74,45 @@
     {
       "detail": "no predicate (existence-anchored only)",
       "ehash": "3987b3a1e84c",
-      "evidence": "src/isidore/handoff.py:48",
+      "evidence": "src/isidore/handoff.py:47",
       "id": "c-b3e357ec",
       "oracle": "none",
       "predicate": "",
       "statement": "REPAIR_MARKER is derived from the lint gate's addendum instead of being retyped",
       "verdict": "UNDECIDABLE"
+    },
+    {
+      "detail": "src/isidore/handoff.py imports src/isidore/home.py",
+      "ehash": "87c6ab7f43a3",
+      "evidence": "src/isidore/handoff.py:L80",
+      "id": "c-a28e973e",
+      "oracle": "graph",
+      "predicate": "imports:src/isidore/handoff.py;src/isidore/home.py",
+      "statement": "emit imports safe_mkdir from home",
+      "verdict": "TRUE"
+    },
+    {
+      "detail": "no predicate (existence-anchored only)",
+      "ehash": "6822630b5132",
+      "evidence": "src/isidore/handoff.py:L57",
+      "id": "c-5b4a1a50",
+      "oracle": "none",
+      "predicate": "",
+      "statement": "prompt_id uses truncated SHA-256 (first 16 hex chars)",
+      "verdict": "UNDECIDABLE"
+    },
+    {
+      "detail": "no predicate (existence-anchored only)",
+      "ehash": "3987b3a1e84c",
+      "evidence": "src/isidore/handoff.py:L47",
+      "id": "c-b58596b0",
+      "oracle": "none",
+      "predicate": "",
+      "statement": "REPAIR_MARKER is derived from LINT_REPAIR_ADDENDUM",
+      "verdict": "UNDECIDABLE"
     }
   ],
-  "graph_commit": "f92c64149ed85261aab4389441ceab868b67e5e6",
+  "graph_commit": "25e46585ff277fe8131d8f77e7c61ee993b21869",
   "marks": [
     {
       "disposition": "",
@@ -94,12 +124,12 @@
     }
   ],
   "mass": {
-    "gray": 53,
-    "green": 11,
+    "gray": 54,
+    "green": 12,
     "yellow": 2
   },
   "page": "src-isidore-handoff_py.md",
-  "prose_sha256": "2ec72771998f68cafe31bfd8a639d5842163daa002c1a59ac2f517c2e5012fb3",
+  "prose_sha256": "c626d9b3fcbfdb620146f2871ce2b76140b6fa65057baef18c0b04c038dfd251",
   "version": "pcp-1",
   "violations": []
 }
