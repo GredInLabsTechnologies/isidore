@@ -2,20 +2,10 @@
   "child_cert_hashes": {},
   "claims": [
     {
-      "detail": "rss.parse_feed has no call to RSS_XML",
-      "ehash": "17350d3353e2",
-      "evidence": "tests/test_connectors_f4.py:L71",
-      "id": "c-1b4a279d",
-      "oracle": "ast",
-      "predicate": "calls:rss.parse_feed;RSS_XML",
-      "statement": "The module tests RSS and Atom feed parsing",
-      "verdict": "FALSE"
-    },
-    {
       "detail": "_check_url calls FetchError",
       "ehash": "b115562af28c",
-      "evidence": "tests/test_connectors_f4.py:L50",
-      "id": "c-b0469e05",
+      "evidence": "tests/test_connectors_f4.py:50",
+      "id": "c-84608fcf",
       "oracle": "ast",
       "predicate": "calls:_check_url;FetchError",
       "statement": "The module validates URL safety",
@@ -24,8 +14,8 @@
     {
       "detail": "caller 'rss.RssConnector.ingest' not a Python symbol in the graph",
       "ehash": "ae24efceb797",
-      "evidence": "tests/test_connectors_f4.py:L103",
-      "id": "c-1b314930",
+      "evidence": "tests/test_connectors_f4.py:103",
+      "id": "c-edd4f321",
       "oracle": "none",
       "predicate": "calls:rss.RssConnector.ingest;IngestOptions",
       "statement": "The module ensures idempotent RSS ingestion",
@@ -34,8 +24,8 @@
     {
       "detail": "tests/test_connectors_f4.py defines RSS_XML",
       "ehash": "8de70b2d9c4f",
-      "evidence": "tests/test_connectors_f4.py:L19",
-      "id": "c-f0209d00",
+      "evidence": "tests/test_connectors_f4.py:19",
+      "id": "c-db36b052",
       "oracle": "ast",
       "predicate": "defines:tests/test_connectors_f4.py;RSS_XML",
       "statement": "The module defines RSS_XML and ATOM_XML constants",
@@ -44,8 +34,8 @@
     {
       "detail": "tests/test_connectors_f4.py defines isolated_home",
       "ehash": "b8fdb9658191",
-      "evidence": "tests/test_connectors_f4.py:L43",
-      "id": "c-87057e6c",
+      "evidence": "tests/test_connectors_f4.py:43",
+      "id": "c-9a42ab3a",
       "oracle": "graph",
       "predicate": "defines:tests/test_connectors_f4.py;isolated_home",
       "statement": "The module uses the isolated_home fixture",
@@ -54,16 +44,24 @@
     {
       "detail": "http.fetch_json calls FetchError",
       "ehash": "2fa7c72129a0",
-      "evidence": "tests/test_connectors_f4.py:L62",
-      "id": "c-ee12bb53",
+      "evidence": "tests/test_connectors_f4.py:62",
+      "id": "c-b05da0e3",
       "oracle": "ast",
       "predicate": "calls:http.fetch_json;FetchError",
       "statement": "The module tests JSON parsing safety",
       "verdict": "TRUE"
     }
   ],
-  "graph_commit": "3abce5854dca7f707ac84a52cbffebf0c2bd0b36",
+  "graph_commit": "0f6910df6b7bf6c8cf26df0427bbb2b45197cdf5",
   "marks": [
+    {
+      "disposition": "",
+      "family": "topology",
+      "file": "tests/test_connectors_f4.py",
+      "line": 1,
+      "reason": "reachable from auth/secret surface: tests/test_connect_cli.py",
+      "severity": "info"
+    },
     {
       "disposition": "",
       "family": "entropy",
@@ -82,12 +80,12 @@
     }
   ],
   "mass": {
-    "gray": 28,
+    "gray": 32,
     "green": 11,
-    "yellow": 4
+    "yellow": 2
   },
   "page": "tests-test_connectors_f4_py.md",
-  "prose_sha256": "98681fd52005d22dee82ca37c35c90a0b11c1be72b71cb2e4272ede31f15e813",
+  "prose_sha256": "6cf0e8b207bb79205e630544d046d6ca309d05ba764cd930aaf058abc5a9b481",
   "version": "pcp-1",
   "violations": [
     {

@@ -1,0 +1,89 @@
+{
+  "child_cert_hashes": {},
+  "claims": [
+    {
+      "detail": "tests/test_incremental.py defines Model",
+      "ehash": "f07f4ae6acd1",
+      "evidence": "tests/test_incremental.py:58",
+      "id": "c-c4f459fb",
+      "oracle": "graph",
+      "predicate": "defines:tests/test_incremental.py;Model",
+      "statement": "Model records every prompt it receives",
+      "verdict": "TRUE"
+    },
+    {
+      "detail": "FILLER == 120",
+      "ehash": "6f85997ccd7e",
+      "evidence": "tests/test_incremental.py:25",
+      "id": "c-ac8bab0e",
+      "oracle": "ast",
+      "predicate": "value:FILLER;120",
+      "statement": "FILLER is 120",
+      "verdict": "TRUE"
+    },
+    {
+      "detail": "tests/test_incremental.py imports src/isidore/revise.py",
+      "ehash": "5f2252569e1c",
+      "evidence": "tests/test_incremental.py:21",
+      "id": "c-48e28d91",
+      "oracle": "graph",
+      "predicate": "imports:tests/test_incremental.py;src/isidore/revise.py",
+      "statement": "The test module imports splice, strip_security_banner and carry_claims from revise.py",
+      "verdict": "TRUE"
+    },
+    {
+      "detail": "tests/test_incremental.py defines Model",
+      "ehash": "8760f8b64123",
+      "evidence": "tests/test_incremental.py:54",
+      "id": "c-90c16061",
+      "oracle": "graph",
+      "predicate": "defines:tests/test_incremental.py;Model",
+      "statement": "The test module defines the Model stub generator",
+      "verdict": "TRUE"
+    },
+    {
+      "detail": "tests/test_incremental.py defines _source",
+      "ehash": "2f3965a9a54b",
+      "evidence": "tests/test_incremental.py:47",
+      "id": "c-a91d6a3e",
+      "oracle": "graph",
+      "predicate": "defines:tests/test_incremental.py;_source",
+      "statement": "The test module defines the _source helper",
+      "verdict": "TRUE"
+    }
+  ],
+  "graph_commit": "0f6910df6b7bf6c8cf26df0427bbb2b45197cdf5",
+  "marks": [
+    {
+      "disposition": "",
+      "family": "topology",
+      "file": "tests/test_incremental.py",
+      "line": 1,
+      "reason": "reachable from auth/secret surface: src/isidore/detectors.py",
+      "severity": "info"
+    },
+    {
+      "disposition": "",
+      "family": "entropy",
+      "file": "tests/test_incremental.py",
+      "line": 248,
+      "reason": "high-entropy literal (>=24 chars, >=3.5 bits/char)",
+      "severity": "danger"
+    }
+  ],
+  "mass": {
+    "gray": 18,
+    "green": 23,
+    "yellow": 0
+  },
+  "page": "tests-test_incremental_py.md",
+  "prose_sha256": "fde5a8731d9ff395794a362c5e4a93d684c9d0c75b42ca581a6b09537eccd3e4",
+  "version": "pcp-1",
+  "violations": [
+    {
+      "detail": "Security-relevant mark (entropy) at tests/test_incremental.py:248 has no covering claim.",
+      "kind": "mark-uncovered",
+      "where": "tests/test_incremental.py:248"
+    }
+  ]
+}

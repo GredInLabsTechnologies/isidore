@@ -41,16 +41,19 @@ catalog — `index.toon` exists because TOON tables are cheaper for an agent to 
 
 - `configured_wiki_dirname(start)` — where the docs live, by precedence
   (`src/isidore/render.py:25`).
-- `render_quickstart(...)` — the catalog a human reads (`src/isidore/render.py:66`).
-- `render_toon_index(...)` — the same catalog for an agent (`src/isidore/render.py:93`).
-- `agents_md_block()` — the reference block for a repo's AGENTS.md (`src/isidore/render.py:118`).
-- `knowledge_summary(...)` — the knowledge home's section (`src/isidore/render.py:152`).
+- `render_quickstart(...)` — the catalog a human reads (`src/isidore/render.py:71`).
+- `render_toon_index(...)` — the same catalog for an agent (`src/isidore/render.py:98`).
+- `agents_md_block()` — the reference block for a repo's AGENTS.md (`src/isidore/render.py:123`).
+- `knowledge_summary(...)` — the knowledge home's section (`src/isidore/render.py:157`).
 
 ## Dependencies
 
-Only `src/isidore/toon.py`, for encoding the TOON tables (`src/isidore/render.py:14`). That thinness
-is deliberate: `src/isidore/pipeline.py` and `src/isidore/whatsnew.py` both import from here, so a
-dependency added to this module is a dependency added to the compiler.
+`src/isidore/toon.py` for encoding the TOON tables (`src/isidore/render.py:14`), `src/isidore/home.py`
+(for `home()`, imported inside `knowledge_summary` at `src/isidore/render.py:160`), and
+`src/isidore/knowledge.py` (for `load_knowledge_state`, imported at `src/isidore/render.py:161`).
+`src/isidore/connectors` is also used (for `read_state`, imported at `src/isidore/render.py:167`).
+That thinness is deliberate: `src/isidore/pipeline.py` and `src/isidore/whatsnew.py` both import from
+here, so a dependency added to this module is a dependency added to the compiler.
 
 ## How to change safely
 

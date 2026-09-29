@@ -90,14 +90,33 @@
       "predicate": "calls:test_record_run_keeps_last_20;store.record_run",
       "statement": "The `test_record_run_keeps_last_20` function verifies the system retains only the last 20 runs",
       "verdict": "TRUE"
+    },
+    {
+      "detail": "no import edge tests/test_connectors_f1.py->isidore.connectors in the graph; imports are partially resolved, so absence is not decidable",
+      "ehash": "03184aec2ecc",
+      "evidence": "tests/test_connectors_f1.py:15",
+      "id": "c-259319c7",
+      "oracle": "none",
+      "predicate": "imports:tests/test_connectors_f1.py;isidore.connectors",
+      "statement": "test_connectors_f1.py imports from isidore.connectors.store",
+      "verdict": "UNDECIDABLE"
     }
   ],
-  "graph_commit": "3abce5854dca7f707ac84a52cbffebf0c2bd0b36",
-  "marks": [],
+  "graph_commit": "0f6910df6b7bf6c8cf26df0427bbb2b45197cdf5",
+  "marks": [
+    {
+      "disposition": "",
+      "family": "topology",
+      "file": "tests/test_connectors_f1.py",
+      "line": 1,
+      "reason": "reachable from auth/secret surface: tests/test_connect_cli.py",
+      "severity": "info"
+    }
+  ],
   "mass": {
-    "gray": 22,
+    "gray": 20,
     "green": 17,
-    "yellow": 1
+    "yellow": 3
   },
   "page": "tests-test_connectors_f1_py.md",
   "prose_sha256": "8c3caba0ab5fc0bb3242b60d08fecd85896e4ad994b2c0b327cb929f7ce3602a",

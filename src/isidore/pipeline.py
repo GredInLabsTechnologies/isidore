@@ -34,8 +34,10 @@ from .findings import (
     FINDINGS_FILENAME,
     FINDINGS_PROMPT_ADDENDUM,
     filter_findings,
+    finding_id,
     harvest_todos,
     insert_security_banner,
+    is_finding_resolved,
     orphan_file_candidates,
     parse_findings_block,
     render_findings,
@@ -49,6 +51,17 @@ from .pcp import CERT_SUFFIX, VerifyContext, write_certificate
 from .verify import CERT_DRIFTED, build_certificate, certificate_status
 from .detectors import scan as scan_marks
 from .reconcile import reconcile
+from .revise import (
+    MODE_FULL,
+    MODE_REVISE,
+    carry_claims,
+    facts_delta,
+    facts_fingerprint,
+    facts_record,
+    revise_prompt,
+    splice,
+    strip_security_banner,
+)
 from .render import (
     WIKI_DIRNAME,
     agents_md_block,
@@ -659,6 +672,11 @@ class CompileResult:
     # page filename -> the exact prompt this run would send. Lets a caller BE the model (see
     # handoff.py): the prompts are already in memory, so carrying them costs nothing.
     prompts: dict[str, str] = field(default_factory=dict)
+    # Incremental updates (revise.py): dirty pages answered as a revision of their current text, how
+    # many sections were actually rewritten, and claims carried over at 0 LLM.
+    revised: list[str] = field(default_factory=list)
+    sections_rewritten: int = 0
+    claims_carried: int = 0
 
 
 def compile_wiki(
@@ -677,6 +695,7 @@ def compile_wiki(
     changed: bool = False,
     since: str | None = None,
     affected_depth: int = 1,
+    rewrite: bool = False,
 ) -> CompileResult:
     """Run the pipeline. With execute=False no LLM is called and no page is written.
 
@@ -685,6 +704,10 @@ def compile_wiki(
       changed  restrict to pages in the blast radius of the git changes since `since` (default: the
                commit recorded at the last compile) — the changed modules plus their dependents
                (fan-in, `affected_depth` hops) plus any claim-stale pages.
+
+    Incremental by default (revise.py): a page is dirty when its SEMANTIC facts change, and a dirty
+    page that already exists is revised — only its affected sections are rewritten. `rewrite=True`
+    regenerates dirty pages from scratch instead.
     """
     result = CompileResult()
     if graph_path is None or not graph_path.is_file():
@@ -729,6 +752,8 @@ def compile_wiki(
     verify_ctx = VerifyContext(repo=repo, nodes=nodes, links=links, commit=commit)
 
     contexts: dict[str, tuple[PageSpec, str, str]] = {}
+    # page -> (mode, facts record, facts fingerprint, old page text for a revision)
+    incremental: dict[str, tuple[str, dict, str, str]] = {}
     for spec in specs:
         if scoped and spec.filename not in scope_pages:
             continue      # out of scope: not assembled, not hash-checked, not generated, not touched
@@ -736,8 +761,31 @@ def compile_wiki(
         result.warnings.extend(warns)
         prompt = prompt_for(spec, context)
         digest = context_hash(prompt)
-        contexts[spec.filename] = (spec, prompt, digest)
         prev = pages_state.get(spec.filename, {})
+        record = facts_record(repo, spec, read_excerpt)
+        fingerprint = facts_fingerprint(record)
+        page_file = wiki_dir / spec.filename
+        # WHETHER the page changed: its semantic facts, when the state knows them. A page compiled
+        # before fingerprints existed falls back to the prompt hash — once; the next write records
+        # its fingerprint, and a page that is not dirty adopts it at 0 LLM (below).
+        facts_moved = (facts_fingerprint(prev["facts"]) != fingerprint if prev.get("facts")
+                       else prev.get("context_hash") != digest)
+        # WHAT gets rewritten: an existing, previously compiled page is revised, not regenerated.
+        mode, old_page = MODE_FULL, ""
+        if not rewrite and page_file.is_file() and prev.get("context_hash"):
+            old_page = strip_security_banner(page_file.read_text(encoding="utf-8"))
+            if prev.get("facts"):
+                facts = facts_delta(prev["facts"], record, repo, spec, read_excerpt)
+                prompt = revise_prompt(spec, old_page, facts or "(no semantic change in the facts; "
+                                       "the page was flagged by its claims or certificate)",
+                                       delta=True, addenda=CLAIMS_PROMPT_ADDENDUM
+                                       + FINDINGS_PROMPT_ADDENDUM)
+            else:
+                prompt = revise_prompt(spec, old_page, context, delta=False,
+                                       addenda=CLAIMS_PROMPT_ADDENDUM + FINDINGS_PROMPT_ADDENDUM)
+            mode = MODE_REVISE
+        contexts[spec.filename] = (spec, prompt, digest)
+        incremental[spec.filename] = (mode, record, fingerprint, old_page)
         # A drifted certificate is not one condition but two, and only one of them is worth an LLM
         # call. `verify` used to fail both with no way out (T-e46b).
         cert_state = certificate_status(repo, wiki_dir / spec.filename, verify_ctx)
@@ -745,7 +793,7 @@ def compile_wiki(
             result.certs_refuted.append(spec.filename)
         elif cert_state.status == CERT_DRIFTED:
             result.certs_repairable.append(spec.filename)
-        if (prev.get("context_hash") != digest
+        if (facts_moved
                 or spec.filename in claim_stale
                 or bool(cert_state.refuted)
                 or not (wiki_dir / spec.filename).is_file()):
@@ -781,7 +829,7 @@ def compile_wiki(
         return result
 
     wiki_dir.mkdir(parents=True, exist_ok=True)  # parents: WIKI_DIRNAME may be nested (e.g. doc/isidore)
-    if generator is None:
+    if generator is None and result.dirty:
         # BEFORE the directory has a single new page in it, and before one byte of source is
         # assembled into a request. An injected generator is exempt because the caller wrote the
         # function that receives the prompt — `handoff` answers from disk and never opens a socket —
@@ -789,13 +837,24 @@ def compile_wiki(
         disclosure = assert_may_send_source(f"source excerpts from {len(result.dirty)} page(s)")
         if disclosure:
             result.warnings.append(disclosure)
-    generate = generator if generator is not None else default_generator()
+    # Built only when there is something to generate: a clean wiki refreshes its index, residue and
+    # AGENTS.md at 0 LLM, and used to be refused for lacking a model it would never have called.
+    generate = generator if generator is not None else (default_generator() if result.dirty
+                                                        else None)
     known_files = {n["source_file"] for n in nodes if n.get("source_file")}
 
     # Deterministic security marks, computed ONCE (0 LLM, before any generation). Per dirty page we
     # then build a re-verifiable certificate, reconcile the model's own outputs, and let danger marks
     # force the banner (monotonic escalation, invariant I10).
     all_marks = scan_marks(repo, verify_ctx)
+
+    # A clean page compiled before fingerprints existed adopts its semantic fingerprint now, at 0 LLM:
+    # it is clean by the old, stricter test, so its facts are the ones it was written against.
+    dirty_set = set(result.dirty)
+    for name, (_mode, record, fingerprint, _old) in incremental.items():
+        entry = pages_state.get(name)
+        if name not in dirty_set and entry and not entry.get("facts"):
+            entry["facts"], entry["facts_fp"] = record, fingerprint
 
     calls_made = 0
     for name in result.dirty:
@@ -806,25 +865,58 @@ def compile_wiki(
             result.warnings.append(f"{name}: dirty but over --max-calls={max_calls} cap (pending)")
             continue
         spec, prompt, digest = contexts[name]
-        raw = generate(prompt)
+        mode, record, fingerprint, old_page = incremental[name]
+
+        def _read(raw: str, mode=mode, old_page=old_page) -> tuple[str | None, list, list, list]:
+            """(page, claim rows, findings, sections rewritten). A revision is spliced onto the
+            current page; an unusable one yields page None."""
+            md, rows = parse_claims_block(raw)
+            md, found = parse_findings_block(md)
+            if mode != MODE_REVISE:
+                return md, rows, found, []
+            spliced = splice(old_page, md)
+            return (None, rows, found, []) if spliced is None else (spliced[0], rows, found,
+                                                                    spliced[1])
+
+        markdown, raw_claims, page_findings, sections = _read(generate(prompt))
         calls_made += 1
-        markdown, raw_claims = parse_claims_block(raw)
-        markdown, page_findings = parse_findings_block(markdown)
 
         # Lint gate: a page citing paths that do not exist gets ONE bounded repair retry (the
         # phantom paths are named back to the model). The retry consumes the call budget — honest
         # cost. If it still fails, the page ships with each phantom citation annotated INLINE and
         # is marked quarantined; it is never silently emitted with a dead citation inside (Bug A).
-        missing = lint_cited_paths(markdown, repo)
+        missing = lint_cited_paths(markdown, repo) if markdown is not None else []
         if missing and calls_made < calls_budget:
             result.retries += 1
             repair = prompt + LINT_REPAIR_ADDENDUM.format(
                 paths="\n".join(f"  - {p}" for p in missing))
-            raw = generate(repair)
+            markdown, raw_claims, page_findings, sections = _read(generate(repair))
             calls_made += 1
-            markdown, raw_claims = parse_claims_block(raw)
-            markdown, page_findings = parse_findings_block(markdown)
-            missing = lint_cited_paths(markdown, repo)
+            missing = lint_cited_paths(markdown, repo) if markdown is not None else []
+
+        if markdown is None:
+            # A revision that is neither NO-CHANGES nor a set of `##` sections: keep the current page
+            # and leave it dirty (pending) rather than guess which part the model meant.
+            pages_state.setdefault(name, {})["pending"] = True
+            result.skipped_by_cap.append(name)
+            result.warnings.append(f"{name}: the revision reply had no `## ` sections and was not "
+                                   f"NO-CHANGES — page kept as it was, still pending")
+            continue
+        if mode == MODE_REVISE:
+            # Claims whose anchored line is still in place survive the revision at 0 LLM; the model
+            # only adds claims about what changed. Same for the findings of files that still exist.
+            carried = carry_claims(repo, pages_state.get(name, {}).get("claims", []))
+            seen = {(r["statement"], r["evidence"]) for r in carried}
+            raw_claims = carried + [r for r in raw_claims
+                                    if (r["statement"], r["evidence"]) not in seen]
+            result.claims_carried += len(carried)
+            known = {(f.get("kind"), f.get("where"), f.get("note")) for f in page_findings}
+            page_findings = page_findings + [
+                {k: f[k] for k in ("kind", "where", "note") if k in f}
+                for f in pages_state.get(name, {}).get("findings", [])
+                if (f.get("kind"), f.get("where"), f.get("note")) not in known]
+            result.revised.append(name)
+            result.sections_rewritten += len(sections)
 
         quarantined = bool(missing)
         if missing:
@@ -920,7 +1012,8 @@ def compile_wiki(
         pages_state[name] = {"context_hash": digest, "kind": spec.kind, "name": spec.name,
                              "findings": kept, "claims": claims_with_verdicts,
                              "quarantined": quarantined, "history": prev_history,
-                             "compiled_at": iso_now}
+                             "compiled_at": iso_now, "facts": record, "facts_fp": fingerprint,
+                             "mode": mode}
         record_page_change(pages_state[name], commit, old_content, markdown)
         result.generated.append(name)
 
@@ -945,6 +1038,11 @@ def compile_wiki(
     # residuo: findings LLM acumulados en el estado (sobreviven compilaciones incrementales)
     # + residuos deterministas recalculados (gratis) — todo a findings.toon, nunca a las páginas
     llm_findings = [f for page in pages_state.values() for f in page.get("findings", [])]
+    # `resolved` is re-read from the ledger NOW: the flag stored with a page is the one it had when
+    # that page was compiled, so a finding resolved afterwards stayed a SECURITY row until its page
+    # happened to be regenerated.
+    for f in llm_findings:
+        f["resolved"] = is_finding_resolved(repo, f.get("id") or finding_id(f))
     planned_modules = {s.name for s in module_specs}
     source_files = {n["source_file"] for n in nodes
                     if n.get("source_file") and n.get("file_type") == "code"

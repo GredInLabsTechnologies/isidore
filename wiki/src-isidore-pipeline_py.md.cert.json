@@ -4,8 +4,8 @@
     {
       "detail": "src/isidore/pipeline.py defines source_destination",
       "ehash": "d6680bee67b4",
-      "evidence": "src/isidore/pipeline.py:158",
-      "id": "c-7b0207dd",
+      "evidence": "src/isidore/pipeline.py:169",
+      "id": "c-8bed42b4",
       "oracle": "graph",
       "predicate": "defines:src/isidore/pipeline.py;source_destination",
       "statement": "pipeline.py defines source_destination, which classifies where a compile would send the source",
@@ -14,8 +14,8 @@
     {
       "detail": "assert_may_send_source(what)",
       "ehash": "e21f9153ca2b",
-      "evidence": "src/isidore/pipeline.py:183",
-      "id": "c-7ff649fd",
+      "evidence": "src/isidore/pipeline.py:194",
+      "id": "c-6902494e",
       "oracle": "ast",
       "predicate": "signature:assert_may_send_source;what",
       "statement": "assert_may_send_source takes the description of what would be sent as its parameter",
@@ -24,8 +24,8 @@
     {
       "detail": "TRUST_ENV == ISIDORE_PROMPT_TRUSTS_PROVIDER",
       "ehash": "47817a0a6077",
-      "evidence": "src/isidore/pipeline.py:145",
-      "id": "c-0bf9c0a4",
+      "evidence": "src/isidore/pipeline.py:156",
+      "id": "c-3a6e8d37",
       "oracle": "ast",
       "predicate": "value:TRUST_ENV;ISIDORE_PROMPT_TRUSTS_PROVIDER",
       "statement": "TRUST_ENV names the environment variable an operator sets to declare a host fit",
@@ -34,8 +34,8 @@
     {
       "detail": "no predicate (existence-anchored only)",
       "ehash": "3ef98f684774",
-      "evidence": "src/isidore/pipeline.py:197",
-      "id": "c-30a5fb79",
+      "evidence": "src/isidore/pipeline.py:208",
+      "id": "c-bab550d7",
       "oracle": "none",
       "predicate": "",
       "statement": "an undeclared destination raises instead of sending",
@@ -44,8 +44,8 @@
     {
       "detail": "no predicate (existence-anchored only)",
       "ehash": "d7dc08c97b00",
-      "evidence": "src/isidore/pipeline.py:207",
-      "id": "c-5ecdf4d0",
+      "evidence": "src/isidore/pipeline.py:218",
+      "id": "c-0a32d518",
       "oracle": "none",
       "predicate": "",
       "statement": "a destination the operator declared is permitted, and returns a line to record",
@@ -54,8 +54,8 @@
     {
       "detail": "MAX_CERT_VIOLATIONS == 500",
       "ehash": "69ed233bf956",
-      "evidence": "src/isidore/pipeline.py:253",
-      "id": "c-a97bacaf",
+      "evidence": "src/isidore/pipeline.py:264",
+      "id": "c-423b7283",
       "oracle": "ast",
       "predicate": "value:MAX_CERT_VIOLATIONS;500",
       "statement": "the certificate violation cap is a constant in code",
@@ -64,15 +64,45 @@
     {
       "detail": "src/isidore/pipeline.py defines degenerate_certificate",
       "ehash": "91c2ea334a3a",
-      "evidence": "src/isidore/pipeline.py:257",
-      "id": "c-5adb29f3",
+      "evidence": "src/isidore/pipeline.py:268",
+      "id": "c-23b1a2ee",
       "oracle": "graph",
       "predicate": "defines:src/isidore/pipeline.py;degenerate_certificate",
       "statement": "degenerate_certificate reports why a runaway certificate must not be written",
       "verdict": "TRUE"
+    },
+    {
+      "detail": "ISIDORE_BASE_URL read in src/isidore/llm.py",
+      "ehash": "3a82377a0973",
+      "evidence": "src/isidore/pipeline.py:182",
+      "id": "c-7c68a00e",
+      "oracle": "grep",
+      "predicate": "env:ISIDORE_BASE_URL",
+      "statement": "source_destination reads ISIDORE_BASE_URL from the environment",
+      "verdict": "TRUE"
+    },
+    {
+      "detail": "MAX_CERT_VIOLATIONS == 500",
+      "ehash": "36adfd434097",
+      "evidence": "src/isidore/pipeline.py:263",
+      "id": "c-fa851cb2",
+      "oracle": "ast",
+      "predicate": "value:MAX_CERT_VIOLATIONS;500",
+      "statement": "degenerate_certificate caps violations at MAX_CERT_VIOLATIONS=500",
+      "verdict": "TRUE"
+    },
+    {
+      "detail": "TRUST_ENV == ISIDORE_PROMPT_TRUSTS_PROVIDER",
+      "ehash": "4abff6a25471",
+      "evidence": "src/isidore/pipeline.py:155",
+      "id": "c-755d1887",
+      "oracle": "ast",
+      "predicate": "value:TRUST_ENV;ISIDORE_PROMPT_TRUSTS_PROVIDER",
+      "statement": "TRUST_ENV is set to ISIDORE_PROMPT_TRUSTS_PROVIDER",
+      "verdict": "TRUE"
     }
   ],
-  "graph_commit": "3f397e139e6990661d04185ce0130368e5017bdd",
+  "graph_commit": "0f6910df6b7bf6c8cf26df0427bbb2b45197cdf5",
   "marks": [
     {
       "disposition": "",
@@ -89,7 +119,7 @@
     "yellow": 0
   },
   "page": "src-isidore-pipeline_py.md",
-  "prose_sha256": "28eb92e27196108a55f6f40fb2dbfdc8cf4d3e8f03dc9cf5d0fa027e24f3d6bb",
+  "prose_sha256": "cce06338c4f0f63f840d9d5e7d9dd46f3a8b30676a8dec7da284681112c932f8",
   "version": "pcp-1",
   "violations": []
 }

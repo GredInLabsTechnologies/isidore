@@ -1,6 +1,6 @@
 # isidore
 
-> Here’s a rewritten front page for *isidore* that adheres to all the rules and avoids jargon:.
+> Software projects need a guide that explains how they are built, and those guides go out of date the moment the work changes.
 
 Documentation compiled by isidore from this repository's structure. Every page ships a `.cert.json` recording which of its statements were mechanically verified against the code.
 
@@ -34,6 +34,7 @@ Documentation compiled by isidore from this repository's structure. Every page s
 - [src-isidore-qa_py.md](wiki/src-isidore-qa_py.md)
 - [src-isidore-recertify_py.md](wiki/src-isidore-recertify_py.md)
 - [src-isidore-render_py.md](wiki/src-isidore-render_py.md)
+- [src-isidore-revise_py.md](wiki/src-isidore-revise_py.md)
 - [src-isidore-surface_py.md](wiki/src-isidore-surface_py.md)
 - [src-isidore-verify_py.md](wiki/src-isidore-verify_py.md)
 - [src-isidore-whatsnew_py.md](wiki/src-isidore-whatsnew_py.md)
@@ -49,6 +50,7 @@ Documentation compiled by isidore from this repository's structure. Every page s
 - [tests-test_handoff_py.md](wiki/tests-test_handoff_py.md)
 - [tests-test_hostile_f6_py.md](wiki/tests-test_hostile_f6_py.md)
 - [tests-test_impact_py.md](wiki/tests-test_impact_py.md)
+- [tests-test_incremental_py.md](wiki/tests-test_incremental_py.md)
 - [tests-test_langspec_oracle_py.md](wiki/tests-test_langspec_oracle_py.md)
 - [tests-test_langspec_py.md](wiki/tests-test_langspec_py.md)
 - [tests-test_llms_txt_py.md](wiki/tests-test_llms_txt_py.md)
@@ -63,10 +65,12 @@ Documentation compiled by isidore from this repository's structure. Every page s
 - [tests-test_reconcile_py.md](wiki/tests-test_reconcile_py.md)
 - [tests-test_residue_py.md](wiki/tests-test_residue_py.md)
 - [tests-test_security_prose_py.md](wiki/tests-test_security_prose_py.md)
+- [tests-test_source_disclosure_gate_py.md](wiki/tests-test_source_disclosure_gate_py.md)
 - [tests-test_surface_py.md](wiki/tests-test_surface_py.md)
 - [tests-test_units_py.md](wiki/tests-test_units_py.md)
 - [tests-test_verify_py.md](wiki/tests-test_verify_py.md)
 - [tests-test_whatsnew_py.md](wiki/tests-test_whatsnew_py.md)
+- [tests-test_wiki_dir_config_py.md](wiki/tests-test_wiki_dir_config_py.md)
 - [tests-test_wiki_dir_env_py.md](wiki/tests-test_wiki_dir_env_py.md)
 - [tests-test_wiki_not_input_py.md](wiki/tests-test_wiki_not_input_py.md)
 

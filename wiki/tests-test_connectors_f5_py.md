@@ -13,7 +13,13 @@ The module uses a pytest fixture `server` to create a stub MCP server that simul
 - `test_a_revoked_token_fails_closed_and_writes_nothing`: Tests that a revoked token results in a closed failure.
 
 ## Dependencies
-The module depends on pytest, the `McpConnector` and `IngestOptions` classes from `isidore.connectors`, and the `iter_items` function from `isidore.connectors.store`. It also uses standard Python libraries like `json`, `re`, and `pathlib`.
+The module depends on:
+- `isidore.connectors`: For `McpConnector` and `IngestOptions` (`tests/test_connectors_f5.py:20-L21`).
+- `isidore.connectors.store`: For `iter_items` (`tests/test_connectors_f5.py:22`).
+- `isidore.claims`: For claim-related operations.
+- `isidore.knowledge`: For knowledge system integration.
+- `isidore.detectors`: For detection logic.
+- `pytest`: Testing framework.
 
 ## How to change safely
 When modifying this module, ensure that changes to the stub server's behavior do not break existing tests. The server's response to `tools/call` should maintain the format of including `[arguments received]` followed by the JSON-encoded arguments. When adding new tests, follow the pattern of using `_config` to set up the connector and verify the expected behavior. Avoid hardcoding paths or environment variables unless necessary, and ensure that all changes are covered by tests.

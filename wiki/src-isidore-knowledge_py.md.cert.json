@@ -1,15 +1,55 @@
 {
   "child_cert_hashes": {},
-  "claims": [],
-  "graph_commit": "d5d1a1f33219a3171cc701884ca77e794db897e2",
-  "marks": [],
+  "claims": [
+    {
+      "detail": "src/isidore/knowledge.py imports src/isidore/home.py",
+      "ehash": "43a21a0807a6",
+      "evidence": "src/isidore/knowledge.py:17",
+      "id": "c-62080b10",
+      "oracle": "graph",
+      "predicate": "imports:src/isidore/knowledge.py;src/isidore/home.py",
+      "statement": "knowledge.py imports home from src/isidore/home.py",
+      "verdict": "TRUE"
+    },
+    {
+      "detail": "src/isidore/knowledge.py imports src/isidore/llm.py",
+      "ehash": "7db0615e56a0",
+      "evidence": "src/isidore/knowledge.py:18",
+      "id": "c-3b75ec14",
+      "oracle": "graph",
+      "predicate": "imports:src/isidore/knowledge.py;src/isidore/llm.py",
+      "statement": "knowledge.py imports default_generator from src/isidore/llm.py",
+      "verdict": "TRUE"
+    },
+    {
+      "detail": "src/isidore/knowledge.py imports src/isidore/claims.py",
+      "ehash": "7a019fea5b75",
+      "evidence": "src/isidore/knowledge.py:22",
+      "id": "c-e405ff44",
+      "oracle": "graph",
+      "predicate": "imports:src/isidore/knowledge.py;src/isidore/claims.py",
+      "statement": "knowledge.py imports parse_claims_block from src/isidore/claims.py",
+      "verdict": "TRUE"
+    }
+  ],
+  "graph_commit": "0f6910df6b7bf6c8cf26df0427bbb2b45197cdf5",
+  "marks": [
+    {
+      "disposition": "",
+      "family": "topology",
+      "file": "src/isidore/knowledge.py",
+      "line": 1,
+      "reason": "reachable from auth/secret surface: src/isidore/detectors.py",
+      "severity": "info"
+    }
+  ],
   "mass": {
-    "gray": 31,
-    "green": 0,
+    "gray": 30,
+    "green": 2,
     "yellow": 0
   },
   "page": "src-isidore-knowledge_py.md",
-  "prose_sha256": "2719efa338140814ed32507842a87204f3d1e17e55709e58eccc78bac816af57",
+  "prose_sha256": "44d74f13e035afaf3633af5d35acfc51cc64dc323c91d0664e215a3c8eaf8c4f",
   "version": "pcp-1",
   "violations": []
 }

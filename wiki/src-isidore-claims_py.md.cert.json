@@ -14,8 +14,8 @@
     {
       "detail": "src/isidore/claims.py defines parse_claims_block",
       "ehash": "a5c2de61e5be",
-      "evidence": "src/isidore/claims.py:103",
-      "id": "c-8ea600ba",
+      "evidence": "src/isidore/claims.py:105",
+      "id": "c-76dad90b",
       "oracle": "graph",
       "predicate": "defines:src/isidore/claims.py;parse_claims_block",
       "statement": "Claims are parsed from markdown fenced blocks",
@@ -24,22 +24,12 @@
     {
       "detail": "src/isidore/claims.py defines evidence_hash",
       "ehash": "22ca2a8b29b8",
-      "evidence": "src/isidore/claims.py:171",
-      "id": "c-85cc085c",
+      "evidence": "src/isidore/claims.py:173",
+      "id": "c-b3e05631",
       "oracle": "graph",
       "predicate": "defines:src/isidore/claims.py;evidence_hash",
       "statement": "The evidence hash is generated from the cited line's normalized content",
       "verdict": "TRUE"
-    },
-    {
-      "detail": "parse_claims_block has no call to is_negative_existential",
-      "ehash": "a5c2de61e5be",
-      "evidence": "src/isidore/claims.py:103",
-      "id": "c-980ed9f2",
-      "oracle": "ast",
-      "predicate": "calls:parse_claims_block;is_negative_existential",
-      "statement": "Claims with existential absence are quarantined",
-      "verdict": "FALSE"
     },
     {
       "detail": "SEARCH_RADIUS == 40",
@@ -64,35 +54,35 @@
     {
       "detail": "_hash calls hexdigest",
       "ehash": "78dcc01294ee",
-      "evidence": "src/isidore/claims.py:157",
-      "id": "c-36709047",
+      "evidence": "src/isidore/claims.py:159",
+      "id": "c-25556847",
       "oracle": "ast",
       "predicate": "calls:_hash;hexdigest",
       "statement": "The evidence hash is truncated to 12 hex characters",
       "verdict": "TRUE"
     },
     {
-      "detail": "_hash has no call to _normalize",
-      "ehash": "9f00f6109919",
-      "evidence": "src/isidore/claims.py:151",
-      "id": "c-ddc1f55d",
-      "oracle": "ast",
-      "predicate": "calls:_hash;_normalize",
-      "statement": "The module normalizes whitespace before hashing",
-      "verdict": "FALSE"
+      "detail": "src/isidore/claims.py imports src/isidore/toon.py",
+      "ehash": "2c7ee6ca1137",
+      "evidence": "src/isidore/claims.py:23",
+      "id": "c-cefc920a",
+      "oracle": "graph",
+      "predicate": "imports:src/isidore/claims.py;src/isidore/toon.py",
+      "statement": "claims.py imports encode from src/isidore/toon.py",
+      "verdict": "TRUE"
     },
     {
-      "detail": "parse_claims_block has no call to parse_predicate_field",
-      "ehash": "7d89914571e6",
-      "evidence": "src/isidore/claims.py:115",
-      "id": "c-7b0185a6",
-      "oracle": "ast",
-      "predicate": "calls:parse_claims_block;parse_predicate_field",
-      "statement": "Claims can include an optional PCP predicate",
-      "verdict": "FALSE"
+      "detail": "src/isidore/claims.py imports src/isidore/pcp.py",
+      "ehash": "9a8db48ea206",
+      "evidence": "src/isidore/claims.py:113",
+      "id": "c-c664ce92",
+      "oracle": "graph",
+      "predicate": "imports:src/isidore/claims.py;src/isidore/pcp.py",
+      "statement": "claims.py imports parse_predicate from src/isidore/pcp.py",
+      "verdict": "TRUE"
     }
   ],
-  "graph_commit": "1a34c13ecf2ef7ce206f1ceeaeb1987fea5f8272",
+  "graph_commit": "0f6910df6b7bf6c8cf26df0427bbb2b45197cdf5",
   "marks": [
     {
       "disposition": "",
@@ -104,12 +94,12 @@
     }
   ],
   "mass": {
-    "gray": 14,
+    "gray": 17,
     "green": 17,
-    "yellow": 2
+    "yellow": 0
   },
   "page": "src-isidore-claims_py.md",
-  "prose_sha256": "a8d1b3bd08a30db11daeb51f4714a7cec536a855bcf89f496649faaa2088bc68",
+  "prose_sha256": "9e0e12dbd06e53f15ff89423895bebc1f28fc0d350126e3e32a4fc520787eff9",
   "version": "pcp-1",
   "violations": []
 }

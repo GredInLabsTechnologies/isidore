@@ -183,3 +183,43 @@ T8 export-agora bridge                  NEW export module, cli                  
 
 Every task: full pytest suite + ruff + vulture green, and the REAL flow exercised (a live compile on
 a real repo with the new flags) before any "done" — green tests alone are not proof.
+
+## 10 · C8 — Semantic dirtiness + section-level revision (2026-09-29, supersedes the page-level half of §4)
+
+**Why (user report, measured).** "When a page or new code is updated, isidore regenerates everything
+from zero instead of only what changed." Confirmed on isidore's own journal: 15 runs, 110 LLM calls,
+5-12 of 40 pages rewritten per commit, `src-isidore-pipeline_py.md` rewritten whole 7 times. Two
+causes, both in `compile_wiki`:
+
+1. *Whether* a page changed was `sha256(whole prompt)`. The prompt carries facts that do not change
+   what the page says — the module's `git log`, link COUNTS and symbol degrees — and the prompt
+   template itself, so a comment fix, a new caller elsewhere, or an isidore upgrade (every page of
+   every repo) dirtied pages.
+2. *What* was rewritten was the whole page, from a prompt that did not include the previous version.
+
+**Decision** (`src/isidore/revise.py`):
+
+- `facts_record(spec)` — the facts a page's content depends on: what the module depends on (a
+  SET, no counts), `sha256` of each excerpt's CODE (no line-number gutter, so shifts are not
+  changes), doc heads. No git log, no template. Counts and who-depends-on-it are kept for display in
+  a delta but never dirty a page alone (a new consumer is documented on the consumer's page).
+  Stored per page as `facts`; dirty ⇔ the fingerprint of the stored record, recomputed with the
+  CURRENT rule, differs from the current one — so changing the rule never dirties every page (or
+  claims stale / certificate refuted / page missing, unchanged).
+- A dirty page that exists is REVISED: prompt = current page + `facts_delta` (added/removed deps and
+  symbols, changed excerpts in full). The model returns only the `##` sections to replace, or
+  `NO-CHANGES`; `splice` keeps every other section byte-identical. An unusable reply keeps the page
+  and leaves it pending — never a guess.
+- Claims whose anchored line is still present are carried over at 0 LLM (`carry_claims`, relocated by
+  content via `claims.relocate_evidence`); a claim about changed code is not carried. Findings of
+  files that still exist are carried too. The spliced page then passes the ordinary gates (lint,
+  quarantine, anchoring, certificate).
+- `--rewrite` (compile, handoff) restores full regeneration on request.
+- Migration: a page compiled before fingerprints falls back to the prompt hash once; clean pages
+  adopt their fingerprint at 0 LLM, dirty ones are revised against the full current facts.
+
+**Known limit.** Prose `path:line` citations in sections that are kept are not re-pointed when lines
+shift (claims are; prose is not). A shift alone no longer dirties a page, so such a citation can drift
+by a few lines until the section is next revised.
+
+Tests: `tests/test_incremental.py` (real git repo + built-in scanner + `compile_wiki --execute`).

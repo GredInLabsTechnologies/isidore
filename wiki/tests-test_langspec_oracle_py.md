@@ -8,13 +8,14 @@ The module uses a helper function `_ctx()` to create a `VerifyContext` with a te
 3. **Verifiers**: Tests for `v_value()` and `v_signature()` that verify the oracle's ability to decide claims about values and signatures.
 
 ## Key entry points
-- `_ctx()`: Creates a test context with a temporary file and `VerifyContext`.
-- `test_parameter_names_are_read_where_the_name_comes_first()`: Tests successful parameter name extraction.
-- `test_a_language_whose_parameter_order_is_not_modelled_refuses_to_answer()`: Tests refusal for unsupported languages.
-- `test_a_truncated_declaration_refuses_to_answer()`: Tests refusal for malformed signatures.
-- `test_a_parameter_that_is_not_a_plain_name_refuses_to_answer()`: Tests refusal for complex parameters.
-- `test_literal_value_reads_only_comparable_literals()`: Tests successful literal extraction.
-- `test_value_now_decides_for_a_typescript_constant()`: Tests the oracle's ability to decide value claims.
+- `_ctx()`: Creates a test context with a temporary file and `VerifyContext` (`tests/test_langspec_oracle.py:L36-L40`).
+- `test_parameter_names_are_read_where_the_name_comes_first()`: Tests successful parameter name extraction (`tests/test_langspec_oracle.py:L45-L50`).
+- `test_a_language_whose_parameter_order_is_not_modelled_refuses_to_answer()`: Tests refusal for unsupported languages (`tests/test_langspec_oracle.py:L53-L56`).
+- `test_a_truncated_declaration_refuses_to_answer()`: Tests refusal for malformed signatures (`tests/test_langspec_oracle.py:L59-L63`).
+- `test_a_parameter_that_is_not_a_plain_name_refuses_to_answer()`: Tests refusal for complex parameters (`tests/test_langspec_oracle.py:L66-L67`).
+- `test_literal_value_reads_only_comparable_literals()`: Tests successful literal extraction (`tests/test_langspec_oracle.py:L70-L76`).
+- `test_value_now_decides_for_a_typescript_constant()`: Tests the oracle's ability to decide value claims (`tests/test_langspec_oracle.py:L81-L87`).
+- `test_value_stays_undecidable_when_the_binding_is_not_a_literal()`: Tests that non-literal bindings stay undecidable (`tests/test_langspec_oracle.py:L90`).
 
 ## Dependencies
 The module depends on:

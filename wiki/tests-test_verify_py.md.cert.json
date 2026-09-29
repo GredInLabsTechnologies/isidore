@@ -60,17 +60,36 @@
       "predicate": "defines:tests/test_verify.py;test_certificate_matches_golden_verdicts",
       "statement": "The module tests that the generated certificate matches golden verdicts",
       "verdict": "TRUE"
+    },
+    {
+      "detail": "test_three_field_parser_captures_predicate calls parse_claims_block",
+      "ehash": "b78cc3445a7e",
+      "evidence": "tests/test_verify.py:32",
+      "id": "c-1430865a",
+      "oracle": "ast",
+      "predicate": "calls:test_three_field_parser_captures_predicate;parse_claims_block",
+      "statement": "test_three_field_parser_captures_predicate asserts two-field claim has no predicate",
+      "verdict": "TRUE"
     }
   ],
-  "graph_commit": "14a96ad814d17fe89cf51e923b45d3b8a67f07e0",
-  "marks": [],
+  "graph_commit": "0f6910df6b7bf6c8cf26df0427bbb2b45197cdf5",
+  "marks": [
+    {
+      "disposition": "",
+      "family": "topology",
+      "file": "tests/test_verify.py",
+      "line": 1,
+      "reason": "reachable from auth/secret surface: src/isidore/detectors.py",
+      "severity": "info"
+    }
+  ],
   "mass": {
-    "gray": 12,
+    "gray": 10,
     "green": 16,
-    "yellow": 0
+    "yellow": 3
   },
   "page": "tests-test_verify_py.md",
-  "prose_sha256": "6375a89da811a11154f8ca4ca573a6f11d6c3d16fda43935b7ee646e033f9198",
+  "prose_sha256": "47d38d0ebbef9b67a538e82f45a113a4fad77b1224a72ccff859b1d480406bcd",
   "version": "pcp-1",
   "violations": []
 }

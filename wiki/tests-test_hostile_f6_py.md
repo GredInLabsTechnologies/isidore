@@ -22,6 +22,7 @@ The module depends on the following external modules:
 - `isidore.connectors.base` for ingest options.
 - `isidore.connectors.store` for functions like `create_run_id`, `iso_now`, `iter_items`, `read_state`, `record_run`, `resolve_uri`, `write_items`, and `write_state`.
 - `isidore.home` for `connector_dir` and `state_path`.
+- `isidore.knowledge` for knowledge system integration.
 
 ## How to change safely
 To modify `tests/test_hostile_f6.py`, follow these guidelines:

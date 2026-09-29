@@ -62,15 +62,24 @@
       "verdict": "TRUE"
     }
   ],
-  "graph_commit": "1a34c13ecf2ef7ce206f1ceeaeb1987fea5f8272",
-  "marks": [],
+  "graph_commit": "0f6910df6b7bf6c8cf26df0427bbb2b45197cdf5",
+  "marks": [
+    {
+      "disposition": "",
+      "family": "topology",
+      "file": "tests/test_whatsnew.py",
+      "line": 1,
+      "reason": "reachable from auth/secret surface: tests/test_connect_cli.py",
+      "severity": "info"
+    }
+  ],
   "mass": {
-    "gray": 31,
+    "gray": 25,
     "green": 4,
-    "yellow": 1
+    "yellow": 8
   },
   "page": "tests-test_whatsnew_py.md",
-  "prose_sha256": "405f665858872f1c241763262b56b5f310a75a504c51446e2214e2299a39d245",
+  "prose_sha256": "1f9c14e68a8a5d294d10dcc9cb80c4c263bd6c3797d310bdc0dab8246783725a",
   "version": "pcp-1",
   "violations": []
 }

@@ -23,14 +23,17 @@ The module uses `load_graph` from `src/isidore/graph.py` and PCP-related types f
 
 ## Key entry points
 The module does not expose a CLI directly but is invoked via the `isidore render` command (`src/isidore/humanpack.py:1`). The core functionality is driven by:
-- `minimal_markdown_to_html()`: Converts markdown to HTML
-- `generate_security_banner()`: Generates security warnings
-- `generate_mass_bar()`: Creates confidence indicators
+- `minimal_markdown_to_html()`: Converts markdown to HTML (`src/isidore/humanpack.py:40-L78`)
+- `generate_security_banner()`: Generates security warnings (`src/isidore/humanpack.py:93-L99`)
+- `generate_mass_bar()`: Creates confidence indicators (`src/isidore/humanpack.py:102-L110`)
+- `generate_claims_table()`: Renders verified claims as an HTML table (`src/isidore/humanpack.py:113`)
+- `format_mark()`: Formats a `Mark` into a human-readable string (`src/isidore/humanpack.py:89-L90`)
 
 ## Dependencies
 The module depends on:
 - `src/isidore/graph.py`: For loading graph data (`src/isidore/humanpack.py:20`)
 - `src/isidore/pcp.py`: For PCP-related types and utilities (`src/isidore/humanpack.py:21-L32`)
+- `src/isidore/pipeline.py`: For pipeline integration
 
 ## How to change safely
 1. **HTML/Markdown rendering**: Modify `minimal_markdown_to_html()` to support additional markdown features, but ensure backward compatibility with existing artifacts.

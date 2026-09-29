@@ -1,7 +1,18 @@
 {
   "child_cert_hashes": {},
-  "claims": [],
-  "graph_commit": "14a96ad814d17fe89cf51e923b45d3b8a67f07e0",
+  "claims": [
+    {
+      "detail": "test_scan_repo_extracts_symbols_imports_and_docs calls scan_repo",
+      "ehash": "eff4ffd7611f",
+      "evidence": "tests/test_units.py:53",
+      "id": "c-53c676a8",
+      "oracle": "ast",
+      "predicate": "calls:test_scan_repo_extracts_symbols_imports_and_docs;scan_repo",
+      "statement": "test_scan_repo_extracts_symbols_imports_and_docs asserts .venv excluded from nodes",
+      "verdict": "TRUE"
+    }
+  ],
+  "graph_commit": "0f6910df6b7bf6c8cf26df0427bbb2b45197cdf5",
   "marks": [
     {
       "disposition": "",
@@ -15,24 +26,24 @@
       "disposition": "",
       "family": "entropy",
       "file": "tests/test_units.py",
-      "line": 268,
+      "line": 302,
       "reason": "credential-shaped literal (sk- prefix)",
       "severity": "danger"
     }
   ],
   "mass": {
-    "gray": 36,
-    "green": 0,
+    "gray": 42,
+    "green": 3,
     "yellow": 0
   },
   "page": "tests-test_units_py.md",
-  "prose_sha256": "3b2cedbfd3ff10fbb50825e99b6268a864fc2f561ae7ded0e37d90b825b03e07",
+  "prose_sha256": "9e7d82ccb353f5e52ab4e2ff728a5a74d9d2d9f5955690a8aa2cff5e6d72320e",
   "version": "pcp-1",
   "violations": [
     {
-      "detail": "Security-relevant mark (entropy) at tests/test_units.py:268 has no covering claim.",
+      "detail": "Security-relevant mark (entropy) at tests/test_units.py:302 has no covering claim.",
       "kind": "mark-uncovered",
-      "where": "tests/test_units.py:268"
+      "where": "tests/test_units.py:302"
     }
   ]
 }

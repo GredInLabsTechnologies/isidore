@@ -338,7 +338,12 @@ CLI flags override config; config overrides defaults.
 ## Design rules
 
 1. **Compile, don't crawl.** The LLM never decides what to read; the graph already knows.
-2. **The no-op is actually free.** Unchanged context hash → zero calls, zero writes.
+2. **The no-op is actually free, and a change costs only what it changed.** A page is dirty only
+   when the facts it describes move — dependency sets, symbols, the code of its excerpts — not when
+   the module's git log, a link count or isidore's own prompt template does. A dirty page is
+   *revised*: the model sees its current text plus the delta and returns only the sections to
+   replace; the rest stays byte-identical and still-anchored claims carry over at zero calls. The
+   area and product pages above follow the same rule. `--rewrite` regenerates from scratch.
 3. **No silent anything.** Caps, truncations and skips are always reported.
 4. **Fail closed.** No model fallback, no retry-with-bigger-model. If the provider fails,
    the run fails.

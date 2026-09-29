@@ -52,8 +52,17 @@
       "verdict": "UNDECIDABLE"
     }
   ],
-  "graph_commit": "1a34c13ecf2ef7ce206f1ceeaeb1987fea5f8272",
-  "marks": [],
+  "graph_commit": "0f6910df6b7bf6c8cf26df0427bbb2b45197cdf5",
+  "marks": [
+    {
+      "disposition": "",
+      "family": "topology",
+      "file": "src/isidore/langspec.py",
+      "line": 1,
+      "reason": "reachable from auth/secret surface: tests/test_detectors.py",
+      "severity": "info"
+    }
+  ],
   "mass": {
     "gray": 16,
     "green": 16,

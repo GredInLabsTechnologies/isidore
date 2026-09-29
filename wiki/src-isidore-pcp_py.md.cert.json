@@ -22,16 +22,6 @@
       "verdict": "UNDECIDABLE"
     },
     {
-      "detail": "parse_predicate has no call to return",
-      "ehash": "aece80b1c7ce",
-      "evidence": "src/isidore/pcp.py:91",
-      "id": "c-25f4bfc3",
-      "oracle": "ast",
-      "predicate": "calls:parse_predicate;return",
-      "statement": "The `parse_predicate` function returns `None` for malformed predicates",
-      "verdict": "FALSE"
-    },
-    {
       "detail": "parse_stored_predicate calls parse_predicate",
       "ehash": "97412e22f52a",
       "evidence": "src/isidore/pcp.py:117",
@@ -80,9 +70,19 @@
       "predicate": "value:VERIFIERS;{}",
       "statement": "The `VERIFIERS` registry is initialized as an empty dictionary",
       "verdict": "UNDECIDABLE"
+    },
+    {
+      "detail": "src/isidore/pcp.py defines VERIFIERS",
+      "ehash": "43ef942000fa",
+      "evidence": "src/isidore/pcp.py:161",
+      "id": "c-cd07c6e5",
+      "oracle": "ast",
+      "predicate": "defines:src/isidore/pcp.py;VERIFIERS",
+      "statement": "VERIFIERS is a dict mapping kind strings to Verifier callables",
+      "verdict": "TRUE"
     }
   ],
-  "graph_commit": "5782a431e6dc22ba8b21583e6f89d91001ef4093",
+  "graph_commit": "0f6910df6b7bf6c8cf26df0427bbb2b45197cdf5",
   "marks": [
     {
       "disposition": "",
@@ -103,8 +103,8 @@
   ],
   "mass": {
     "gray": 10,
-    "green": 16,
-    "yellow": 1
+    "green": 17,
+    "yellow": 0
   },
   "page": "src-isidore-pcp_py.md",
   "prose_sha256": "618aaf89b6358b4533d7a760ea473d07188f31a085afc16dc4b2a4593b89d147",

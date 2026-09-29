@@ -30,9 +30,49 @@
       "predicate": "imports:src/isidore/humanpack.py;src/isidore/graph.py",
       "statement": "The module uses `load_graph` from `src/isidore/graph.py`",
       "verdict": "TRUE"
+    },
+    {
+      "detail": "src/isidore/humanpack.py imports src/isidore/graph.py",
+      "ehash": "905923120838",
+      "evidence": "src/isidore/humanpack.py:20",
+      "id": "c-c95b8b5a",
+      "oracle": "graph",
+      "predicate": "imports:src/isidore/humanpack.py;src/isidore/graph.py",
+      "statement": "humanpack.py imports load_graph from src/isidore/graph.py",
+      "verdict": "TRUE"
+    },
+    {
+      "detail": "src/isidore/humanpack.py imports src/isidore/pcp.py",
+      "ehash": "4605a29997ec",
+      "evidence": "src/isidore/humanpack.py:25",
+      "id": "c-ca61ac3c",
+      "oracle": "graph",
+      "predicate": "imports:src/isidore/humanpack.py;src/isidore/pcp.py",
+      "statement": "humanpack.py imports Certificate from src/isidore/pcp.py",
+      "verdict": "TRUE"
+    },
+    {
+      "detail": "_esc calls escape",
+      "ehash": "4ebc52695ed3",
+      "evidence": "src/isidore/humanpack.py:37",
+      "id": "c-0bb42d10",
+      "oracle": "ast",
+      "predicate": "calls:_esc;html.escape",
+      "statement": "_esc uses html.escape to prevent markup injection",
+      "verdict": "TRUE"
+    },
+    {
+      "detail": "generate_security_banner has no call to list",
+      "ehash": "3a213e931ab1",
+      "evidence": "src/isidore/humanpack.py:94",
+      "id": "c-4fe07655",
+      "oracle": "ast",
+      "predicate": "calls:generate_security_banner;list",
+      "statement": "generate_security_banner filters marks by severity danger",
+      "verdict": "FALSE"
     }
   ],
-  "graph_commit": "1a34c13ecf2ef7ce206f1ceeaeb1987fea5f8272",
+  "graph_commit": "0f6910df6b7bf6c8cf26df0427bbb2b45197cdf5",
   "marks": [
     {
       "disposition": "",
@@ -45,11 +85,11 @@
   ],
   "mass": {
     "gray": 29,
-    "green": 12,
-    "yellow": 0
+    "green": 13,
+    "yellow": 2
   },
   "page": "src-isidore-humanpack_py.md",
-  "prose_sha256": "dbd7e4bc847be5fcb1c8d18ce5107357d3e15e87145d3cceb5570b2ab15ed52a",
+  "prose_sha256": "440b78e65ba6684b32d9145615a0b709f76a8d575c6bc4bb78d3837decb083ef",
   "version": "pcp-1",
   "violations": []
 }

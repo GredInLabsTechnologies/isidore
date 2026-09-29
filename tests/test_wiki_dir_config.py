@@ -63,9 +63,25 @@ def test_the_environment_still_wins(tmp_path, monkeypatch):
 def test_a_config_without_a_usable_value_settles_on_the_default(tmp_path, value):
     """And it STOPS there: a parent repo's setting must not leak into a nested one that declined
     to declare its own."""
-    _config(tmp_path.parent, "parent/wiki")
-    _config(tmp_path, value)
-    assert configured_wiki_dirname(tmp_path) == DEFAULT_WIKI_DIRNAME
+    # Nested INSIDE tmp_path: writing to tmp_path.parent put the file in pytest's shared session
+    # directory, where it redirected the wiki of every later test that had no config of its own.
+    outer, inner = tmp_path / "outer", tmp_path / "outer" / "inner"
+    inner.mkdir(parents=True)
+    _config(outer, "parent/wiki")
+    _config(inner, value)
+    assert configured_wiki_dirname(inner) == DEFAULT_WIKI_DIRNAME
+
+
+@pytest.mark.usefixtures("no_env")
+def test_the_walk_stops_at_the_repository_root(tmp_path):
+    """A stray isidore.json ABOVE a repository (a home directory, a workspace folder) is another
+    tree's setting, not this repo's."""
+    repo = tmp_path / "home" / "repo"
+    (repo / ".git").mkdir(parents=True)
+    _config(tmp_path / "home", "not/mine")
+    assert configured_wiki_dirname(repo / "src") == DEFAULT_WIKI_DIRNAME
+    _config(repo, "doc/isidore")
+    assert configured_wiki_dirname(repo / "src") == "doc/isidore"
 
 
 @pytest.mark.usefixtures("no_env")

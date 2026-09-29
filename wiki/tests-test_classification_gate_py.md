@@ -16,6 +16,7 @@ The module uses pytest fixtures and helper functions to simulate storage and cla
 The module depends on:
 - `isidore.connectors.store`: For storage operations like `create_run_id`, `write_items`, and `read_state`.
 - `isidore.knowledge`: For classification and trust logic, including `item_classification` and `provider_is_trusted`.
+- `isidore.home`: For the home directory resolution used by the `home` fixture.
 
 ## How to change safely
 When modifying this module:

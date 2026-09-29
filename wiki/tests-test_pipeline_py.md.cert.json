@@ -4,8 +4,8 @@
     {
       "detail": "no predicate (existence-anchored only)",
       "ehash": "68c72366c749",
-      "evidence": "tests/test_pipeline.py:L70",
-      "id": "c-1aa09fff",
+      "evidence": "tests/test_pipeline.py:70",
+      "id": "c-f69b94e8",
       "oracle": "none",
       "predicate": "",
       "statement": "The module tests the `plan_pages` function's ability to select top modules for documentation",
@@ -14,8 +14,8 @@
     {
       "detail": "no predicate (existence-anchored only)",
       "ehash": "0164cd6d162e",
-      "evidence": "tests/test_pipeline.py:L35",
-      "id": "c-5ae10ddb",
+      "evidence": "tests/test_pipeline.py:35",
+      "id": "c-8dd04077",
       "oracle": "none",
       "predicate": "",
       "statement": "`_make_repo` creates synthetic repositories with configurable modules and symbols",
@@ -24,8 +24,8 @@
     {
       "detail": "no predicate (existence-anchored only)",
       "ehash": "d7235f17944e",
-      "evidence": "tests/test_pipeline.py:L76",
-      "id": "c-fe806a31",
+      "evidence": "tests/test_pipeline.py:76",
+      "id": "c-b104ba2a",
       "oracle": "none",
       "predicate": "",
       "statement": "`plan_pages` excludes modules with fewer than `min_symbols` symbols",
@@ -34,8 +34,8 @@
     {
       "detail": "no predicate (existence-anchored only)",
       "ehash": "3e86d886adcc",
-      "evidence": "tests/test_pipeline.py:L84",
-      "id": "c-a58891de",
+      "evidence": "tests/test_pipeline.py:84",
+      "id": "c-6bba2e61",
       "oracle": "none",
       "predicate": "",
       "statement": "`plan_pages` limits output to `top_k` modules when specified",
@@ -44,23 +44,32 @@
     {
       "detail": "no predicate (existence-anchored only)",
       "ehash": "6b6b7479841e",
-      "evidence": "tests/test_pipeline.py:L59",
-      "id": "c-7c5b0b9d",
+      "evidence": "tests/test_pipeline.py:59",
+      "id": "c-41e777ff",
       "oracle": "none",
       "predicate": "",
       "statement": "`_graph` parses the repository's graph.json file",
       "verdict": "UNDECIDABLE"
     }
   ],
-  "graph_commit": "14a96ad814d17fe89cf51e923b45d3b8a67f07e0",
-  "marks": [],
+  "graph_commit": "0f6910df6b7bf6c8cf26df0427bbb2b45197cdf5",
+  "marks": [
+    {
+      "disposition": "",
+      "family": "topology",
+      "file": "tests/test_pipeline.py",
+      "line": 1,
+      "reason": "reachable from auth/secret surface: src/isidore/detectors.py",
+      "severity": "info"
+    }
+  ],
   "mass": {
-    "gray": 10,
+    "gray": 14,
     "green": 0,
-    "yellow": 13
+    "yellow": 17
   },
   "page": "tests-test_pipeline_py.md",
-  "prose_sha256": "c2c81e69e4b4820621ded1375275c829d46249e82771d093ad76569131416d50",
+  "prose_sha256": "2c1e29c703abedaa783a423a4ae3080a0119b3855ab78420173cff179a90cd41",
   "version": "pcp-1",
   "violations": []
 }

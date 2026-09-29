@@ -60,14 +60,33 @@
       "predicate": "imports:tests/test_claims.py;isidore.pipeline",
       "statement": "The module depends on the `isidore.pipeline` module",
       "verdict": "UNDECIDABLE"
+    },
+    {
+      "detail": "no import edge tests/test_claims.py->isidore.pipeline in the graph; imports are partially resolved, so absence is not decidable",
+      "ehash": "5f8dff0b6c6b",
+      "evidence": "tests/test_claims.py:18",
+      "id": "c-ca8f3c82",
+      "oracle": "none",
+      "predicate": "imports:tests/test_claims.py;isidore.pipeline",
+      "statement": "test_claims.py imports compile_wiki from isidore.pipeline",
+      "verdict": "UNDECIDABLE"
     }
   ],
-  "graph_commit": "14a96ad814d17fe89cf51e923b45d3b8a67f07e0",
-  "marks": [],
+  "graph_commit": "0f6910df6b7bf6c8cf26df0427bbb2b45197cdf5",
+  "marks": [
+    {
+      "disposition": "",
+      "family": "topology",
+      "file": "tests/test_claims.py",
+      "line": 1,
+      "reason": "reachable from auth/secret surface: src/isidore/detectors.py",
+      "severity": "info"
+    }
+  ],
   "mass": {
-    "gray": 15,
+    "gray": 14,
     "green": 18,
-    "yellow": 1
+    "yellow": 2
   },
   "page": "tests-test_claims_py.md",
   "prose_sha256": "28396cbe7e6afb123e7b32b5cf761e1b9e75d0b87294d282ee1825670e675c8b",

@@ -2,7 +2,7 @@
   "child_cert_hashes": {},
   "claims": [
     {
-      "detail": "no comparable literal assignment to _STOPWORDS found",
+      "detail": "no declaration of '_STOPWORDS' this oracle can read",
       "ehash": "4c7dc10ea293",
       "evidence": "src/isidore/qa.py:43",
       "id": "c-10dc5377",
@@ -80,9 +80,49 @@
       "predicate": "calls:gather_evidence;read_excerpt",
       "statement": "The gather_evidence function calls read_excerpt to include code excerpts in the evidence",
       "verdict": "TRUE"
+    },
+    {
+      "detail": "src/isidore/qa.py imports src/isidore/graph.py",
+      "ehash": "905923120838",
+      "evidence": "src/isidore/qa.py:13",
+      "id": "c-f00116be",
+      "oracle": "graph",
+      "predicate": "imports:src/isidore/qa.py;src/isidore/graph.py",
+      "statement": "qa.py imports load_graph from src/isidore/graph.py",
+      "verdict": "TRUE"
+    },
+    {
+      "detail": "src/isidore/qa.py imports src/isidore/pipeline.py",
+      "ehash": "d5d79e2a38ef",
+      "evidence": "src/isidore/qa.py:19",
+      "id": "c-1a7a35b6",
+      "oracle": "graph",
+      "predicate": "imports:src/isidore/qa.py;src/isidore/pipeline.py",
+      "statement": "qa.py imports read_excerpt from src/isidore/pipeline.py",
+      "verdict": "TRUE"
+    },
+    {
+      "detail": "OFFLINE_MIN_SCORE == 3",
+      "ehash": "d10553321762",
+      "evidence": "src/isidore/qa.py:159",
+      "id": "c-ff643bae",
+      "oracle": "ast",
+      "predicate": "value:OFFLINE_MIN_SCORE;3",
+      "statement": "answer_offline refuses when no claim exceeds OFFLINE_MIN_SCORE=3",
+      "verdict": "TRUE"
+    },
+    {
+      "detail": "gather_claims calls score_text",
+      "ehash": "15813cb3fe59",
+      "evidence": "src/isidore/qa.py:70",
+      "id": "c-46eef43b",
+      "oracle": "ast",
+      "predicate": "calls:gather_claims;score_text",
+      "statement": "gather_claims weights statement matches 3x over evidence matches",
+      "verdict": "TRUE"
     }
   ],
-  "graph_commit": "1a34c13ecf2ef7ce206f1ceeaeb1987fea5f8272",
+  "graph_commit": "0f6910df6b7bf6c8cf26df0427bbb2b45197cdf5",
   "marks": [
     {
       "disposition": "",
@@ -95,11 +135,11 @@
   ],
   "mass": {
     "gray": 13,
-    "green": 15,
+    "green": 16,
     "yellow": 0
   },
   "page": "src-isidore-qa_py.md",
-  "prose_sha256": "28c6ed6bf11d54546d6f39c489c4c34ad5cbeadfaa3fff3da15505f4e92d6780",
+  "prose_sha256": "028bb0d452a8bafccfa9e38e32d2f972618f8ef60399bdc2267c163c998df5d7",
   "version": "pcp-1",
   "violations": []
 }

@@ -12,16 +12,6 @@
       "verdict": "TRUE"
     },
     {
-      "detail": "_make_repo(tmp_path, n_modules)",
-      "ehash": "d2327ab9445f",
-      "evidence": "tests/test_handoff.py:42",
-      "id": "c-c7da32b6",
-      "oracle": "ast",
-      "predicate": "signature:_make_repo;tmp_path;n_modules",
-      "statement": "_make_repo builds the fixture repository and takes the module count as a parameter",
-      "verdict": "TRUE"
-    },
-    {
       "detail": "_answer_all(repo, body)",
       "ehash": "bc51e6b95bec",
       "evidence": "tests/test_handoff.py:70",
@@ -72,15 +62,24 @@
       "verdict": "UNDECIDABLE"
     }
   ],
-  "graph_commit": "f92c64149ed85261aab4389441ceab868b67e5e6",
-  "marks": [],
+  "graph_commit": "0f6910df6b7bf6c8cf26df0427bbb2b45197cdf5",
+  "marks": [
+    {
+      "disposition": "",
+      "family": "topology",
+      "file": "tests/test_handoff.py",
+      "line": 1,
+      "reason": "reachable from auth/secret surface: tests/test_connect_cli.py",
+      "severity": "info"
+    }
+  ],
   "mass": {
-    "gray": 47,
-    "green": 8,
+    "gray": 51,
+    "green": 5,
     "yellow": 3
   },
   "page": "tests-test_handoff_py.md",
-  "prose_sha256": "11d92859b2e4baec726b72a01758a894dab9f5fc5ddd4f5821c59f9918f1189b",
+  "prose_sha256": "9f23c4fa39766389b744c238f8cef2240f8924852bf95911bd521c724c632f2b",
   "version": "pcp-1",
   "violations": []
 }

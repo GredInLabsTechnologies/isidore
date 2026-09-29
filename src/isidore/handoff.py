@@ -26,7 +26,6 @@ from pathlib import Path
 from .graph import GraphError, find_graph
 from .llm import GenerationError
 from .pipeline import (
-    DEFAULT_MAX_CALLS,
     CompileResult,
     DEFAULT_MAX_PROMPT_CHARS,
     DEFAULT_MIN_SYMBOLS,
@@ -71,6 +70,7 @@ def _plan(repo: Path, config: dict, args) -> CompileResult:
         max_prompt_chars=config.get("max_prompt_chars", DEFAULT_MAX_PROMPT_CHARS),
         flows_config=config.get("flows", []),
         only=[s for s in (getattr(args, "only", "") or "").split(",") if s.strip()] or None,
+        rewrite=bool(getattr(args, "rewrite", False)),
     )
 
 
@@ -161,10 +161,13 @@ def apply(repo: Path, config: dict, args):
         module_depth=config.get("module_depth", DEFAULT_MODULE_DEPTH),
         top_k=config.get("top_k", DEFAULT_TOP_K_PAGES),
         min_symbols=config.get("min_symbols", DEFAULT_MIN_SYMBOLS),
-        max_calls=config.get("max_calls", DEFAULT_MAX_CALLS) or 0,
+        # Unlimited: the answers are already written, so there is no cost left to cap. The config's
+        # max_calls (12 by default) applied 12 of 40 answered pages and left 28 pending for nothing.
+        max_calls=0,
         max_prompt_chars=config.get("max_prompt_chars", DEFAULT_MAX_PROMPT_CHARS),
         flows_config=config.get("flows", []),
         only=[s for s in (getattr(args, "only", "") or "").split(",") if s.strip()] or None,
+        rewrite=bool(getattr(args, "rewrite", False)),
     )
 
 
@@ -178,6 +181,8 @@ def register_cli(sub) -> None:
     p.add_argument("--repo", type=Path, default=Path("."))
     p.add_argument("--graph", type=Path, default=None)
     p.add_argument("--only", default="", help="comma-separated page filenames to restrict to")
+    p.add_argument("--rewrite", action="store_true",
+                   help="prompts regenerate dirty pages from scratch instead of revising them")
     p.set_defaults(func=_cmd_handoff)
 
 
@@ -202,8 +207,10 @@ def _cmd_handoff(args) -> int:
         return 2
 
     print(f"[isidore] applied {len(result.generated)} page(s) · "
+          f"revised in place: {len(result.revised)} ({result.sections_rewritten} section(s)) · "
           f"quarantined: {len(result.quarantined)} · "
-          f"claims kept/dropped: {result.claims_total}/{result.claims_dropped}")
+          f"claims kept/dropped/carried: {result.claims_total}/{result.claims_dropped}/"
+          f"{result.claims_carried}")
     for warning in result.warnings[:10]:
         print(f"  ! {warning}")
     return 0

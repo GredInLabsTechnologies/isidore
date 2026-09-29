@@ -62,6 +62,7 @@ def _cmd_compile(args) -> int:
             changed=args.changed,
             since=args.since,
             affected_depth=args.affected_depth,
+            rewrite=args.rewrite,
         )
     except (FileNotFoundError, GraphError, GenerationError) as exc:
         print(f"ERROR: {exc}", file=sys.stderr)
@@ -74,6 +75,10 @@ def _cmd_compile(args) -> int:
           f"{result.findings_dropped_negative} · "
           f"claims new/repaired/dropped/absence: {result.claims_total}/{result.claims_repaired}/"
           f"{result.claims_dropped}/{result.claims_dropped_negative}")
+    if result.revised:
+        print(f"[isidore] incremental: {len(result.revised)} page(s) revised in place · "
+              f"{result.sections_rewritten} section(s) rewritten · "
+              f"{result.claims_carried} claim(s) carried over at 0 LLM")
     if result.certificates:
         m = result.verified_mass
         print(f"[isidore] certificates: {len(result.certificates)} · verified mass "
@@ -339,6 +344,9 @@ def main(argv: list[str] | None = None) -> int:
                            help="git ref baseline for --changed (default: the last compiled commit)")
     p_compile.add_argument("--affected-depth", type=int, default=1,
                            help="--changed: how many fan-in hops of dependents to include (default 1)")
+    p_compile.add_argument("--rewrite", action="store_true",
+                           help="regenerate dirty pages from scratch instead of revising only the "
+                                "sections their changed facts affect (the default)")
     p_compile.set_defaults(func=_cmd_compile)
 
     p_ask = sub.add_parser("ask", help="answer one question (one LLM call)")

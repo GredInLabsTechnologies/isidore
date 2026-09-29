@@ -22,26 +22,6 @@
       "verdict": "UNDECIDABLE"
     },
     {
-      "detail": "scan_repo has no call to repo_with_nested_wiki",
-      "ehash": "7072225e3f3f",
-      "evidence": "tests/test_wiki_not_input.py:69",
-      "id": "c-22f468a7",
-      "oracle": "ast",
-      "predicate": "calls:scan_repo;repo_with_nested_wiki",
-      "statement": "The scanner does not index the wiki as input",
-      "verdict": "FALSE"
-    },
-    {
-      "detail": "drop_wiki_output has no call to foreign",
-      "ehash": "ca2c06d2bfe1",
-      "evidence": "tests/test_wiki_not_input.py:90",
-      "id": "c-1fd2a1a9",
-      "oracle": "ast",
-      "predicate": "calls:drop_wiki_output;foreign",
-      "statement": "The wiki is excluded from page planning",
-      "verdict": "FALSE"
-    },
-    {
       "detail": "no declaration of 'wiki_output_prefix' this oracle can read",
       "ehash": "71afa20f02c1",
       "evidence": "tests/test_wiki_not_input.py:58",
@@ -50,17 +30,46 @@
       "predicate": "value:wiki_output_prefix;doc/isidore",
       "statement": "The wiki output prefix is verified as 'doc/isidore'",
       "verdict": "UNDECIDABLE"
+    },
+    {
+      "detail": "test_the_prefix_is_a_path_not_a_name calls wiki_output_prefix",
+      "ehash": "71afa20f02c1",
+      "evidence": "tests/test_wiki_not_input.py:58",
+      "id": "c-40e1fea4",
+      "oracle": "ast",
+      "predicate": "calls:test_the_prefix_is_a_path_not_a_name;wiki_output_prefix",
+      "statement": "test_the_prefix_is_a_path_not_a_name asserts wiki_output_prefix returns doc/isidore",
+      "verdict": "TRUE"
+    },
+    {
+      "detail": "test_no_page_is_planned_for_the_wiki_itself calls drop_wiki_output",
+      "ehash": "ca2c06d2bfe1",
+      "evidence": "tests/test_wiki_not_input.py:90",
+      "id": "c-b3202e68",
+      "oracle": "ast",
+      "predicate": "calls:test_no_page_is_planned_for_the_wiki_itself;drop_wiki_output",
+      "statement": "test_no_page_is_planned_for_the_wiki_itself asserts drop_wiki_output returns 2 from 42 nodes",
+      "verdict": "TRUE"
     }
   ],
-  "graph_commit": "d5d1a1f33219a3171cc701884ca77e794db897e2",
-  "marks": [],
+  "graph_commit": "0f6910df6b7bf6c8cf26df0427bbb2b45197cdf5",
+  "marks": [
+    {
+      "disposition": "",
+      "family": "topology",
+      "file": "tests/test_wiki_not_input.py",
+      "line": 1,
+      "reason": "reachable from auth/secret surface: src/isidore/detectors.py",
+      "severity": "info"
+    }
+  ],
   "mass": {
-    "gray": 6,
-    "green": 0,
-    "yellow": 19
+    "gray": 10,
+    "green": 4,
+    "yellow": 14
   },
   "page": "tests-test_wiki_not_input_py.md",
-  "prose_sha256": "b4bb36175fc285cf1778d6832c46d638e74cb88611edbb08c875745a9cdf9337",
+  "prose_sha256": "0e0f3d9b881d54aa2074ae43563252d600b4b0fc6710c8cc431b99245552d925",
   "version": "pcp-1",
   "violations": []
 }

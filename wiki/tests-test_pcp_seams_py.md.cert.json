@@ -100,17 +100,56 @@
       "predicate": "",
       "statement": "The module defines the test_registry_has_every_kind_and_is_fail_closed function",
       "verdict": "UNDECIDABLE"
+    },
+    {
+      "detail": "test_golden_graph_loads calls load_graph",
+      "ehash": "e0c1e968982d",
+      "evidence": "tests/test_pcp_seams.py:38",
+      "id": "c-7156c13b",
+      "oracle": "ast",
+      "predicate": "calls:test_golden_graph_loads;load_graph",
+      "statement": "test_golden_graph_loads asserts 5 nodes and 4 links",
+      "verdict": "TRUE"
+    },
+    {
+      "detail": "test_golden_contracts_load calls read_contracts",
+      "ehash": "1804af0dda6d",
+      "evidence": "tests/test_pcp_seams.py:59",
+      "id": "c-c446fa18",
+      "oracle": "ast",
+      "predicate": "calls:test_golden_contracts_load;read_contracts",
+      "statement": "test_golden_contracts_load asserts one contract with predicate calls:authenticate;verify_jwt",
+      "verdict": "TRUE"
+    },
+    {
+      "detail": "test_registry_has_every_kind_and_is_fail_closed calls verify_predicate",
+      "ehash": "1c2a312270c5",
+      "evidence": "tests/test_pcp_seams.py:100",
+      "id": "c-6bbf649d",
+      "oracle": "ast",
+      "predicate": "calls:test_registry_has_every_kind_and_is_fail_closed;verify_predicate",
+      "statement": "test_registry_has_every_kind_and_is_fail_closed asserts UNDECIDABLE for all kinds",
+      "verdict": "TRUE"
     }
   ],
-  "graph_commit": "14a96ad814d17fe89cf51e923b45d3b8a67f07e0",
-  "marks": [],
+  "graph_commit": "0f6910df6b7bf6c8cf26df0427bbb2b45197cdf5",
+  "marks": [
+    {
+      "disposition": "",
+      "family": "topology",
+      "file": "tests/test_pcp_seams.py",
+      "line": 1,
+      "reason": "reachable from auth/secret surface: src/isidore/detectors.py",
+      "severity": "info"
+    }
+  ],
   "mass": {
-    "gray": 17,
-    "green": 0,
-    "yellow": 18
+    "gray": 14,
+    "green": 3,
+    "yellow": 22
   },
   "page": "tests-test_pcp_seams_py.md",
-  "prose_sha256": "cced3a421657f00e00e10ae229a79a4bfa8618b858b3bc430f6a0412f702fa96",
+  "prose_sha256": "1b8d27a3b2df833d28d70973f5c3a4c220fef60ba46e0019aacc4c0bbe8521be",
   "version": "pcp-1",
   "violations": []
 }

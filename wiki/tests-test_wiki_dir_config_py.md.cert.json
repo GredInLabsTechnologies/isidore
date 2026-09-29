@@ -1,0 +1,38 @@
+{
+  "child_cert_hashes": {},
+  "claims": [],
+  "graph_commit": "0f6910df6b7bf6c8cf26df0427bbb2b45197cdf5",
+  "marks": [
+    {
+      "disposition": "",
+      "family": "topology",
+      "file": "tests/test_wiki_dir_config.py",
+      "line": 1,
+      "reason": "reachable from auth/secret surface: tests/test_connect_cli.py",
+      "severity": "info"
+    },
+    {
+      "disposition": "",
+      "family": "entropy",
+      "file": "tests/test_wiki_dir_config.py",
+      "line": 115,
+      "reason": "high-entropy literal (>=24 chars, >=3.5 bits/char)",
+      "severity": "danger"
+    }
+  ],
+  "mass": {
+    "gray": 31,
+    "green": 0,
+    "yellow": 0
+  },
+  "page": "tests-test_wiki_dir_config_py.md",
+  "prose_sha256": "976f6021799aece363753dd0dddd68f209ba3e8658560d74adb97e28f7f0f334",
+  "version": "pcp-1",
+  "violations": [
+    {
+      "detail": "Security-relevant mark (entropy) at tests/test_wiki_dir_config.py:115 has no covering claim.",
+      "kind": "mark-uncovered",
+      "where": "tests/test_wiki_dir_config.py:115"
+    }
+  ]
+}

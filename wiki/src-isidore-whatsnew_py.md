@@ -10,13 +10,14 @@ The module defines three core data structures:
 The module also includes git plumbing functions (`_git`, `resolve_ref`) to safely interact with the repository, failing closed on errors to avoid false claims.
 
 ## Key entry points
-- `DeltaEntry` — the atomic unit of change, with properties to classify and cite changes.
-- `SurfaceDelta` — the structured delta between two revisions, with methods to filter and summarize changes.
-- `WhatsnewResult` — the final output, combining the delta with generated artifacts and metrics.
+- `release_name()` — the directory a range is published under: an explicit tag, the tag on the end commit, or `unreleased` (`src/isidore/whatsnew.py:L96-L105`).
+- `DeltaEntry` — the atomic unit of change, with properties to classify and cite changes (`src/isidore/whatsnew.py:L149-L174`).
+- `SurfaceDelta` — the structured delta between two revisions, with methods to filter and summarize changes (`src/isidore/whatsnew.py:L178-L195`).
+- `WhatsnewResult` — the final output, combining the delta with generated artifacts and metrics (`src/isidore/whatsnew.py:L199-L211`).
 
 ## Dependencies
 The module depends on:
-- `src/isidore/plain.py` (2) — for plain-language summaries.
+- `src/isidore/plain.py` (1) — for plain-language summaries.
 - `src/isidore/claims.py` (1) — for certificate generation.
 - `src/isidore/graph.py` (1) — for TOON diagram generation.
 - `src/isidore/langspec.py` (1) — for language-specific parsing.
@@ -24,9 +25,11 @@ The module depends on:
 - `src/isidore/pipeline.py` (1) — for LLM pipeline execution.
 - `src/isidore/render.py` (1) — for wiki page rendering.
 - `src/isidore/surface.py` (1) — for API surface extraction.
+- `src/isidore/toon.py` — for TOON encoding (`src/isidore/whatsnew.py:78`).
+- `src/isidore/verify.py` — for certificate building (`src/isidore/whatsnew.py:79`).
 
 ## How to change safely
-1. **Add a new change kind**: Extend `_WRITABLE_KINDS` in `src/isidore/whatsnew.py:83` to include the new kind, ensuring it is citable to the current tree.
-2. **Modify area classification**: Adjust `_TEST_MARKERS` or `_DOC_SUFFIXES` in `src/isidore/whatsnew.py:95` to update how files are categorized.
-3. **Update git commands**: Modify `_git` in `src/isidore/whatsnew.py:180` to handle new git operations, ensuring failures are raised as `WhatsnewError`.
-4. **Add a new output format**: Extend `WhatsnewResult` in `src/isidore/whatsnew.py:163` to include paths for new artifact types.
+1. **Add a new change kind**: Extend `_WRITABLE_KINDS` in `src/isidore/whatsnew.py:120` to include the new kind, ensuring it is citable to the current tree.
+2. **Modify area classification**: Adjust `_TEST_MARKERS` or `_DOC_SUFFIXES` in `src/isidore/whatsnew.py:131-L132` to update how files are categorized.
+3. **Update git commands**: Modify `_git` in `src/isidore/whatsnew.py:216` to handle new git operations, ensuring failures are raised as `WhatsnewError`.
+4. **Add a new output format**: Extend `WhatsnewResult` in `src/isidore/whatsnew.py:199` to include paths for new artifact types.

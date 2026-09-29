@@ -12,6 +12,7 @@ crashed on None. Rewritten by claude-agora with those three fixed + tests.
 """
 from __future__ import annotations
 
+import hashlib
 import json
 import re
 from collections import defaultdict
@@ -268,8 +269,43 @@ to `wiki://`, which resolves to nothing for a reader.
 """
 
 
+def _facts_fp(facts: dict) -> str:
+    return hashlib.sha256(json.dumps(facts, sort_keys=True, default=str).encode("utf-8")).hexdigest()
+
+
+def _unchanged(wiki: Path, page: str, facts: dict, identity=lambda f: f) -> bool:
+    """The page exists, is certified, and was compiled from the same facts. The pyramid used to
+    regenerate every area page and the overview on every run, whatever had changed below them.
+
+    The FACTS are stored, not a fingerprint, and both sides go through `identity` with the rule in
+    force now — so narrowing what counts as a change never forces a regeneration of every page."""
+    from .pcp import CERT_SUFFIX
+    from .pipeline import load_state
+    stored = load_state(wiki).get("pyramid", {}).get(page)
+    if isinstance(stored, dict):
+        same = _facts_fp(identity(stored)) == _facts_fp(identity(facts))
+    else:
+        same = stored == _facts_fp(facts)       # a fingerprint over the full facts (earlier format)
+    return same and (wiki / page).is_file() and (wiki / f"{page}{CERT_SUFFIX}").is_file()
+
+
+def _remember(wiki: Path, page: str, facts: dict) -> None:
+    from .pipeline import load_state, save_state
+    state = load_state(wiki)
+    state.setdefault("pyramid", {})[page] = json.loads(json.dumps(facts, default=str))
+    save_state(wiki, state)
+
+
+def _overview_identity(facts: dict) -> dict:
+    """What the product page is written FROM: the README and the proven claims. Not the module list —
+    it is the top twelve by symbol count, so a test file growing past another reshuffled it and a
+    product page nothing had changed under came back dirty."""
+    return {"readme": facts.get("readme"), "claims": facts.get("claims")}
+
+
 def compile_subsystems(repo: Path, nodes: list[dict], links: list[dict], config: dict, *,
-                       execute: bool = False, generator=None, max_calls: int = 0) -> list[dict]:
+                       execute: bool = False, generator=None, max_calls: int = 0,
+                       rewrite: bool = False) -> list[dict]:
     """Compile the N2 layer: one bounded call per area, each page chained to its module pages.
 
     This is the level that makes the pyramid worth having. Without it the product page cites module
@@ -308,6 +344,9 @@ def compile_subsystems(repo: Path, nodes: list[dict], links: list[dict], config:
             # Nothing proven underneath: an area page here could only paraphrase the module list.
             result["skipped"] = "no proven claims in this area yet"
             continue
+        if not rewrite and _unchanged(wiki, result["page"], facts):
+            result["skipped"], result["unchanged"] = "unchanged since its last compile (0 LLM)", True
+            continue
         prompt = SUBSYSTEM_PROMPT.format(
             name=facts["name"],
             pages="\n".join(f"- {p['module']} ({p['page']})"
@@ -339,9 +378,11 @@ def compile_subsystems(repo: Path, nodes: list[dict], links: list[dict], config:
             cert = build_certificate(result["page"], markdown, [], ctx)
             cert.claims.extend(_chain_verdicts(repo, wiki_rows, ctx, cert))
             cert.mass = classify_mass(markdown, cert.claims)
-        (wiki / result["page"]).write_text(markdown, encoding="utf-8")
+        (wiki / result["page"]).write_text(markdown, encoding="utf-8", newline="\n")
         write_certificate(cert, wiki / f"{result['page']}{CERT_SUFFIX}")
         result["written"] = bool(proved)
+        if proved:
+            _remember(wiki, result["page"], facts)
     return results
 
 
@@ -521,7 +562,7 @@ def _plain_violations(markdown: str) -> list[str]:
 
 
 def compile_overview(repo: Path, nodes: list[dict], links: list[dict], config: dict, *,
-                     execute: bool = False, generator=None) -> dict:
+                     execute: bool = False, generator=None, rewrite: bool = False) -> dict:
     """Compile the plain-language product page (N3). One LLM call, plus at most one repair.
 
     Unlike a module page, this one is gated on being READABLE, not only on being true: a page for
@@ -538,6 +579,11 @@ def compile_overview(repo: Path, nodes: list[dict], links: list[dict], config: d
     result = {"page": OVERVIEW_PAGE, "calls": 0, "claims": 0, "plain_broken": [], "written": False,
               "facts": facts}
     if not execute:
+        return result
+    # Recompiled only when what it is written FROM moved (`_overview_identity`): the README and the
+    # proven claims — not the module ranking beside them.
+    if not rewrite and _unchanged(repo / WIKI_DIRNAME, OVERVIEW_PAGE, facts, _overview_identity):
+        result["unchanged"] = True
         return result
 
     if generator is None:
@@ -602,9 +648,11 @@ def compile_overview(repo: Path, nodes: list[dict], links: list[dict], config: d
 
     wiki = repo / WIKI_DIRNAME
     wiki.mkdir(parents=True, exist_ok=True)
-    (wiki / OVERVIEW_PAGE).write_text(markdown, encoding="utf-8")
+    (wiki / OVERVIEW_PAGE).write_text(markdown, encoding="utf-8", newline="\n")
     write_certificate(cert, wiki / f"{OVERVIEW_PAGE}{CERT_SUFFIX}")
     result["written"] = bool(proved)
+    if proved and not refusal:
+        _remember(wiki, OVERVIEW_PAGE, facts)
     return result
 
 
@@ -653,19 +701,23 @@ def register_cli(sub) -> None:
     s.add_argument("--graph", type=Path, default=None)
     s.add_argument("--execute", action="store_true", help="write the pages (1 LLM call per area)")
     s.add_argument("--max-calls", type=int, default=0, help="0 = no cap")
+    s.add_argument("--rewrite", action="store_true",
+                   help="recompile every area page, even those whose facts did not change")
     s.set_defaults(func=_cmd_subsystems)
 
     o = sub.add_parser("overview", help="compile the plain-language product page from proven claims")
     o.add_argument("--repo", type=Path, default=Path("."))
     o.add_argument("--graph", type=Path, default=None)
     o.add_argument("--execute", action="store_true", help="write the page (1 LLM call, +1 repair)")
+    o.add_argument("--rewrite", action="store_true",
+                   help="recompile the page even if the facts it is built from did not change")
     o.set_defaults(func=_cmd_overview)
 
 
 def _cmd_subsystems(args) -> int:
     nodes, links, config = _load_graph_for(args)
     results = compile_subsystems(args.repo, nodes, links, config, execute=args.execute,
-                                 max_calls=args.max_calls)
+                                 max_calls=args.max_calls, rewrite=args.rewrite)
     if not results:
         print("[isidore] no areas with compiled module pages — run `isidore compile --execute` first")
         return 1
@@ -684,9 +736,10 @@ def _cmd_subsystems(args) -> int:
             print(f"  SKIP {item['page']}  ({item['skipped']})")
         else:
             print(f"  REFUSED {item['page']}  (nothing traceable to a proven fact)")
+    unchanged = [r for r in results if r.get("unchanged")]
     print(f"[isidore] {len(written)}/{len(results)} area page(s) written · "
-          f"{sum(r['calls'] for r in results)} call(s)")
-    return 0 if written else 1
+          f"{len(unchanged)} unchanged · {sum(r['calls'] for r in results)} call(s)")
+    return 0 if written or unchanged else 1
 
 
 def _load_graph_for(args) -> tuple[list[dict], list[dict], dict]:
@@ -705,13 +758,18 @@ def _cmd_overview(args) -> int:
     from .plain import explain
 
     nodes, links, config = _load_graph_for(args)
-    result = compile_overview(args.repo, nodes, links, config, execute=args.execute)
+    result = compile_overview(args.repo, nodes, links, config, execute=args.execute,
+                              rewrite=args.rewrite)
     facts = result["facts"]
     if not args.execute:
         print(f"[isidore] overview would be built from {len(facts['claims'])} proven claim(s) "
               f"across {len(facts['modules'])} module(s) — 0 LLM calls made")
         print("[isidore] run with --execute to compile it (1 call, +1 if a plain-language repair "
               "is needed)")
+        return 0
+    if result.get("unchanged"):
+        print(f"[isidore] {OVERVIEW_PAGE} unchanged: the facts it is built from did not move — "
+              "0 LLM calls (--rewrite to recompile it anyway)")
         return 0
     if result["plain_broken"]:
         print(f"[isidore] REFUSED: the overview could not be written in plain language "

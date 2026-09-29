@@ -14,8 +14,8 @@
     {
       "detail": "src/isidore/whatsnew.py defines DeltaEntry",
       "ehash": "7bef4744a41b",
-      "evidence": "src/isidore/whatsnew.py:113",
-      "id": "c-496b23ea",
+      "evidence": "src/isidore/whatsnew.py:149",
+      "id": "c-16280d6f",
       "oracle": "graph",
       "predicate": "defines:src/isidore/whatsnew.py;DeltaEntry",
       "statement": "DeltaEntry represents a typed novelty row with fields like kind, file, and line",
@@ -24,8 +24,8 @@
     {
       "detail": "src/isidore/whatsnew.py defines SurfaceDelta",
       "ehash": "1aeaf73500c7",
-      "evidence": "src/isidore/whatsnew.py:142",
-      "id": "c-d462a529",
+      "evidence": "src/isidore/whatsnew.py:178",
+      "id": "c-b95b1c52",
       "oracle": "graph",
       "predicate": "defines:src/isidore/whatsnew.py;SurfaceDelta",
       "statement": "SurfaceDelta contains all changes between two revisions, including refs and SHAs",
@@ -34,8 +34,8 @@
     {
       "detail": "src/isidore/whatsnew.py defines WhatsnewResult",
       "ehash": "e8926d486fb6",
-      "evidence": "src/isidore/whatsnew.py:163",
-      "id": "c-36361b9c",
+      "evidence": "src/isidore/whatsnew.py:199",
+      "id": "c-dfb9e9ae",
       "oracle": "graph",
       "predicate": "defines:src/isidore/whatsnew.py;WhatsnewResult",
       "statement": "WhatsnewResult combines the delta with paths to generated artifacts and metrics",
@@ -44,8 +44,8 @@
     {
       "detail": "no predicate (existence-anchored only)",
       "ehash": "c20699da889b",
-      "evidence": "src/isidore/whatsnew.py:181",
-      "id": "c-b6ca81bd",
+      "evidence": "src/isidore/whatsnew.py:217",
+      "id": "c-20585703",
       "oracle": "none",
       "predicate": "",
       "statement": "The module fails closed on git errors to avoid false claims",
@@ -54,15 +54,45 @@
     {
       "detail": "no predicate (existence-anchored only)",
       "ehash": "3a51db5e149c",
-      "evidence": "src/isidore/whatsnew.py:88",
-      "id": "c-5d600644",
+      "evidence": "src/isidore/whatsnew.py:124",
+      "id": "c-cda781c2",
       "oracle": "none",
       "predicate": "",
       "statement": "The LLM tier only writes about API and internal changes, not tests or docs",
       "verdict": "UNDECIDABLE"
+    },
+    {
+      "detail": "src/isidore/whatsnew.py imports src/isidore/verify.py",
+      "ehash": "1d7f6b8553c5",
+      "evidence": "src/isidore/whatsnew.py:79",
+      "id": "c-8699797d",
+      "oracle": "graph",
+      "predicate": "imports:src/isidore/whatsnew.py;src/isidore/verify.py",
+      "statement": "whatsnew.py imports build_certificate from src/isidore/verify.py",
+      "verdict": "TRUE"
+    },
+    {
+      "detail": "src/isidore/whatsnew.py imports src/isidore/toon.py",
+      "ehash": "af55441dd26f",
+      "evidence": "src/isidore/whatsnew.py:78",
+      "id": "c-1e4f8eeb",
+      "oracle": "graph",
+      "predicate": "imports:src/isidore/whatsnew.py;src/isidore/toon.py",
+      "statement": "whatsnew.py imports encode from src/isidore/toon.py",
+      "verdict": "TRUE"
+    },
+    {
+      "detail": "src/isidore/whatsnew.py defines _WRITABLE_KINDS",
+      "ehash": "63541ff593d8",
+      "evidence": "src/isidore/whatsnew.py:120",
+      "id": "c-0322bea9",
+      "oracle": "ast",
+      "predicate": "defines:src/isidore/whatsnew.py;_WRITABLE_KINDS",
+      "statement": "_WRITABLE_KINDS excludes SYMBOL_REMOVED and FILE_REMOVED",
+      "verdict": "TRUE"
     }
   ],
-  "graph_commit": "1a34c13ecf2ef7ce206f1ceeaeb1987fea5f8272",
+  "graph_commit": "0f6910df6b7bf6c8cf26df0427bbb2b45197cdf5",
   "marks": [
     {
       "disposition": "",
@@ -74,12 +104,12 @@
     }
   ],
   "mass": {
-    "gray": 22,
-    "green": 7,
+    "gray": 24,
+    "green": 8,
     "yellow": 8
   },
   "page": "src-isidore-whatsnew_py.md",
-  "prose_sha256": "3fb67882442d67c97fcfc82f1a43d6d5e33fdbc5d05e6f15b9e328780b2875ef",
+  "prose_sha256": "0e3b6ef34b917b127d70dbe452bdf37959e0fece7b309bb4f69fc557861373fc",
   "version": "pcp-1",
   "violations": []
 }

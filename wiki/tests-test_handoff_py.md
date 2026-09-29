@@ -46,7 +46,7 @@ The suite imports the module's surface directly — `emit`, `apply`, `response_g
 `REPAIR_MARKER` rather than retyping the gate's wording keeps the tests honest if that wording moves.
 `GenerationError` comes from `isidore.llm` and is the single failure type the loop speaks
 (`tests/test_handoff.py:28`). `PAGE` is the stand-in answer shared across tests
-(`tests/test_handoff.py:30`).
+(`tests/test_handoff.py:30`). The module also depends on `src/isidore/cli.py`.
 
 ## How to change safely
 

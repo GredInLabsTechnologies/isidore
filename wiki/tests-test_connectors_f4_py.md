@@ -26,9 +26,11 @@ Key fixtures and constants include:
 
 ## Dependencies
 The module depends on:
-- `isidore.connectors`: Core connector implementations.
-- `pytest`: Testing framework.
+- `isidore.connectors`: Core connector implementations (RSS, Hacker News, web-search, HTTP, store).
 - `isidore.connectors.base.IngestOptions`: Configuration for ingestion.
+- `isidore.claims`: For claim-related operations.
+- `isidore.knowledge`: For knowledge system integration.
+- `pytest`: Testing framework.
 
 ## How to change safely
 1. **Add New Tests**: Follow the existing pattern of isolated, mocked tests.

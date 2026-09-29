@@ -90,17 +90,36 @@
       "predicate": "imports:tests/test_recertify.py;isidore.recertify",
       "statement": "The module depends on isidore.recertify for core functionality",
       "verdict": "UNDECIDABLE"
+    },
+    {
+      "detail": "test_a_certificate_the_code_outgrew_is_repaired_without_a_model_call calls recertify",
+      "ehash": "5c8373fecb9a",
+      "evidence": "tests/test_recertify.py:54",
+      "id": "c-e3fca78c",
+      "oracle": "ast",
+      "predicate": "calls:test_a_certificate_the_code_outgrew_is_repaired_without_a_model_call;recertify",
+      "statement": "test_a_certificate_the_code_outgrew_is_repaired_without_a_model_call asserts recertify changes action to ACT_RECERTIFY",
+      "verdict": "TRUE"
     }
   ],
-  "graph_commit": "036487e2137938f623d7cb8688fb7327ef809179",
-  "marks": [],
+  "graph_commit": "0f6910df6b7bf6c8cf26df0427bbb2b45197cdf5",
+  "marks": [
+    {
+      "disposition": "",
+      "family": "topology",
+      "file": "tests/test_recertify.py",
+      "line": 1,
+      "reason": "reachable from auth/secret surface: src/isidore/detectors.py",
+      "severity": "info"
+    }
+  ],
   "mass": {
-    "gray": 16,
-    "green": 18,
-    "yellow": 2
+    "gray": 18,
+    "green": 21,
+    "yellow": 1
   },
   "page": "tests-test_recertify_py.md",
-  "prose_sha256": "2dee5b6497115bd58a3020fad87de733ead3e9e5c1d56ba0ef68e6de0c505c1c",
+  "prose_sha256": "4e0a4f03126306a94d9f85a46eb44ebfe4f44f61a569ab24b4b63677b781dcfe",
   "version": "pcp-1",
   "violations": []
 }

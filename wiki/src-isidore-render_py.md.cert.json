@@ -74,15 +74,55 @@
     {
       "detail": "src/isidore/render.py defines render_toon_index",
       "ehash": "a0efbfd4f8e5",
-      "evidence": "src/isidore/render.py:93",
-      "id": "c-684049d1",
+      "evidence": "src/isidore/render.py:98",
+      "id": "c-192dd903",
       "oracle": "graph",
       "predicate": "defines:src/isidore/render.py;render_toon_index",
       "statement": "the module renders the TOON index alongside the human catalog",
       "verdict": "TRUE"
+    },
+    {
+      "detail": "ISIDORE_WIKI_DIR read in src/isidore/render.py via WIKI_DIR_ENV",
+      "ehash": "cb097522090c",
+      "evidence": "src/isidore/render.py:42",
+      "id": "c-d98dee40",
+      "oracle": "grep",
+      "predicate": "env:ISIDORE_WIKI_DIR",
+      "statement": "configured_wiki_dirname reads ISIDORE_WIKI_DIR from the environment",
+      "verdict": "TRUE"
+    },
+    {
+      "detail": "src/isidore/render.py defines WIKI_DIRNAME",
+      "ehash": "7dbe91015b67",
+      "evidence": "src/isidore/render.py:68",
+      "id": "c-424e635c",
+      "oracle": "ast",
+      "predicate": "defines:src/isidore/render.py;WIKI_DIRNAME",
+      "statement": "WIKI_DIRNAME is resolved once at import time",
+      "verdict": "TRUE"
+    },
+    {
+      "detail": "src/isidore/render.py imports src/isidore/toon.py",
+      "ehash": "2c7ee6ca1137",
+      "evidence": "src/isidore/render.py:14",
+      "id": "c-d101a602",
+      "oracle": "graph",
+      "predicate": "imports:src/isidore/render.py;src/isidore/toon.py",
+      "statement": "render.py imports encode from src/isidore/toon.py",
+      "verdict": "TRUE"
+    },
+    {
+      "detail": "src/isidore/render.py imports src/isidore/home.py",
+      "ehash": "7c7a599ccd13",
+      "evidence": "src/isidore/render.py:160",
+      "id": "c-05699853",
+      "oracle": "graph",
+      "predicate": "imports:src/isidore/render.py;src/isidore/home.py",
+      "statement": "knowledge_summary imports home from src/isidore/home.py",
+      "verdict": "TRUE"
     }
   ],
-  "graph_commit": "572c271278e9c155b85ee9c9b40ce81d18d0f0ac",
+  "graph_commit": "0f6910df6b7bf6c8cf26df0427bbb2b45197cdf5",
   "marks": [
     {
       "disposition": "",
@@ -94,12 +134,12 @@
     }
   ],
   "mass": {
-    "gray": 52,
-    "green": 7,
+    "gray": 51,
+    "green": 10,
     "yellow": 0
   },
   "page": "src-isidore-render_py.md",
-  "prose_sha256": "b00f1cd8f83c7a84ab5646a0f7c02f796a2e6d61ed55c829b7947d63fe706c5d",
+  "prose_sha256": "74ed55515e4071a1ec17692b740d882ff5bd7e5baf67f500df430f0df1e8a41e",
   "version": "pcp-1",
   "violations": []
 }

@@ -60,13 +60,98 @@
       "predicate": "env:ISIDORE_WEBSEARCH_URL;env:ISIDORE_WEBSEARCH_KEY",
       "statement": "The `websearch.py` connector reads credentials from `ISIDORE_WEBSEARCH_URL` and `ISIDORE_WEBSEARCH_KEY`",
       "verdict": "UNDECIDABLE"
+    },
+    {
+      "detail": "src/isidore/connectors/store.py imports src/isidore/claims.py",
+      "ehash": "cd5cfdabd103",
+      "evidence": "src/isidore/connectors/store.py:18",
+      "id": "c-f7266443",
+      "oracle": "graph",
+      "predicate": "imports:src/isidore/connectors/store.py;src/isidore/claims.py",
+      "statement": "store.py imports _hash and _normalize from src/isidore/claims.py",
+      "verdict": "TRUE"
+    },
+    {
+      "detail": "src/isidore/connectors/store.py imports src/isidore/home.py",
+      "ehash": "bf66e1178c7f",
+      "evidence": "src/isidore/connectors/store.py:19",
+      "id": "c-46a1ec17",
+      "oracle": "graph",
+      "predicate": "imports:src/isidore/connectors/store.py;src/isidore/home.py",
+      "statement": "store.py imports connector_dir from src/isidore/home.py",
+      "verdict": "TRUE"
     }
   ],
-  "graph_commit": "d5d1a1f33219a3171cc701884ca77e794db897e2",
-  "marks": [],
+  "graph_commit": "0f6910df6b7bf6c8cf26df0427bbb2b45197cdf5",
+  "marks": [
+    {
+      "disposition": "",
+      "family": "topology",
+      "file": "src/isidore/connectors/__init__.py",
+      "line": 1,
+      "reason": "reachable from auth/secret surface: tests/test_connect_cli.py",
+      "severity": "info"
+    },
+    {
+      "disposition": "",
+      "family": "topology",
+      "file": "src/isidore/connectors/base.py",
+      "line": 1,
+      "reason": "reachable from auth/secret surface: src/isidore/detectors.py",
+      "severity": "info"
+    },
+    {
+      "disposition": "",
+      "family": "topology",
+      "file": "src/isidore/connectors/git_repo.py",
+      "line": 1,
+      "reason": "reachable from auth/secret surface: tests/test_connect_cli.py",
+      "severity": "info"
+    },
+    {
+      "disposition": "",
+      "family": "topology",
+      "file": "src/isidore/connectors/hackernews.py",
+      "line": 1,
+      "reason": "reachable from auth/secret surface: tests/test_connect_cli.py",
+      "severity": "info"
+    },
+    {
+      "disposition": "",
+      "family": "topology",
+      "file": "src/isidore/connectors/mcp.py",
+      "line": 1,
+      "reason": "reachable from auth/secret surface: src/isidore/detectors.py",
+      "severity": "info"
+    },
+    {
+      "disposition": "",
+      "family": "topology",
+      "file": "src/isidore/connectors/rss.py",
+      "line": 1,
+      "reason": "reachable from auth/secret surface: tests/test_connect_cli.py",
+      "severity": "info"
+    },
+    {
+      "disposition": "",
+      "family": "topology",
+      "file": "src/isidore/connectors/store.py",
+      "line": 1,
+      "reason": "reachable from auth/secret surface: src/isidore/detectors.py",
+      "severity": "info"
+    },
+    {
+      "disposition": "",
+      "family": "topology",
+      "file": "src/isidore/connectors/websearch.py",
+      "line": 1,
+      "reason": "reachable from auth/secret surface: tests/test_connect_cli.py",
+      "severity": "info"
+    }
+  ],
   "mass": {
-    "gray": 16,
-    "green": 0,
+    "gray": 15,
+    "green": 1,
     "yellow": 15
   },
   "page": "src-isidore-connectors.md",

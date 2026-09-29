@@ -8,13 +8,19 @@ The module uses a test-driven approach to validate the `python_surface` function
 3. **Signature stability**: Confirming that signatures are preserved exactly, including defaults and formatting, and that changes to parameters or defaults are detected.
 
 ## Key entry points
-- `test_python_surface_covers_functions_methods_nested_and_constants()`: Validates that all expected symbols are extracted, including nested structures.
-- `test_python_surface_marks_visibility_including_inheritance_from_the_container()`: Ensures private symbols are correctly identified.
-- `test_python_signature_is_exact_and_survives_reformatting()`: Confirms that signatures are preserved across reformatting.
-- `test_python_signature_moves_when_a_default_or_parameter_changes()`: Verifies that changes to parameters or defaults are detected.
+- `_by_name()`: Converts a list of symbols into a dict keyed by `qualname` for easy lookup (`tests/test_surface.py:18-L19`).
+- `test_python_surface_covers_functions_methods_nested_and_constants()`: Validates all expected symbols are extracted — functions, methods, nested classes, constants (`tests/test_surface.py:64-L76`).
+- `test_python_surface_marks_visibility_including_inheritance_from_the_container()`: Ensures private symbols are correctly identified, including methods of private classes (`tests/test_surface.py:79-L89`).
+- `test_python_signature_is_exact_and_survives_reformatting()`: Confirms signatures are preserved verbatim across reformatting (`tests/test_surface.py:92-L101`).
+- `test_python_signature_moves_when_a_default_or_parameter_changes()`: Verifies that changes to parameters or defaults are detected, but reindenting is not (`tests/test_surface.py:104-L109`).
+- `test_python_constant_value_change_is_visible()`: Asserts that changing a constant's value (e.g. `VERSION = '1.5.1'` → `'1.5.2'`) produces a different signature (`tests/test_surface.py:112-L116`).
+- `test_python_surface_returns_none_on_syntax_error()`: Asserts `None` (not empty list) on syntax error, so "not comparable" is distinct from "everything deleted" (`tests/test_surface.py:119-L121`).
+- `test_python_line_spans_point_at_the_declaration()`: Asserts the `line` field of `put_many_conditional` points at its `async def` declaration (`tests/test_surface.py:124-L127`).
 
 ## Dependencies
-The module depends on `isidore.surface`, which provides the `python_surface` function and related constants (`KIND_CLASS`, `KIND_CONSTANT`, etc.). It does not have cross-module dependencies, as evidenced by the fact that it is not depended on by any other module.
+The module depends on two cross-module imports:
+- `src/isidore/surface.py` (1 link) — for `KIND_CLASS`, `KIND_CONSTANT`, `KIND_FUNCTION`, `KIND_METHOD`, `MAX_SIG_CHARS`, `clean_sig`, `extract_surface`, `logical_lines`, `python_surface` (`tests/test_surface.py:5-L15`).
+- `src/isidore/toon.py` (1 link) — imported by the test module.
 
 ## How to change safely
 When modifying `tests/test_surface.py`, ensure that:

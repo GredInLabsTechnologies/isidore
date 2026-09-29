@@ -8,19 +8,20 @@ The module creates a synthetic git repository with a controlled set of changes (
 3. The delta correctly maps renames to the new paths and handles deleted files appropriately.
 
 ## Key entry points
-- `repo`: A pytest fixture that sets up a synthetic git repository with a base commit and a subsequent commit containing changes.
-- `test_delta_reports_exactly_the_real_changes_and_invents_nothing`: Verifies that the delta correctly identifies all real changes and excludes untouched symbols.
-- `test_signature_change_records_both_sides`: Ensures that signature changes include both the old and new signatures.
-- `test_multiline_typescript_signature_is_cited_at_its_declaration`: Confirms that multiline TypeScript signatures are cited at their declaration.
-- `test_rename_maps_to_the_new_path`: Validates that file renames are correctly mapped to the new paths.
-- `test_deleted_file_is_reported_but_carries_no_line_to_cite`: Checks that deleted files are reported but do not carry line numbers for citation.
+- `_git()`: Runs a git command in the given path via `subprocess.run` (`tests/test_whatsnew.py:39-L40`).
+- `_commit()`: Stages all, commits with `--no-gpg-sign`, and returns the HEAD rev-parse (`tests/test_whatsnew.py:43-L48`).
+- `repo()`: Pytest fixture creating a synthetic git repo with a base commit (client.py, node.ts, old.py, util.py) and a subsequent commit adding methods, a new file, a signature change, a deletion, and a rename (`tests/test_whatsnew.py:52-L100`).
+- `test_delta_reports_exactly_the_real_changes_and_invents_nothing()`: Asserts the delta contains exactly 7 expected entries (2 Python SYMBOL_ADDED, 1 TypeScript SYMBOL_ADDED, 1 FILE_ADDED, 1 SIGNATURE_CHANGED, 1 FILE_REMOVED, 1 FILE_RENAMED) and no inventions (`tests/test_whatsnew.py:105-L121`).
+- `test_signature_change_records_both_sides()`: Asserts `GICSClient.put`'s new sig contains `verify=False` while old sig does not (`tests/test_whatsnew.py:124-L129`).
+- `test_multiline_typescript_signature_is_cited_at_its_declaration()`: Asserts `NodeClient.putManyConditional` line points at `async putManyConditional` and the sig includes `Options = {}` (`tests/test_whatsnew.py:132-L138`).
+- `test_rename_maps_to_the_new_path()`: Asserts `FILE_RENAMED` entry has `file=="helpers.py"` and `old_file=="util.py"` (`tests/test_whatsnew.py:141-L144`).
+- `test_deleted_file_is_reported_but_carries_no_line_to_cite()`: Asserts `FILE_REMOVED` entry for `old.py` (`tests/test_whatsnew.py:147-L149`).
 
 ## Dependencies
-The module depends on the following imports:
-- `subprocess` for running git commands.
-- `shutil` for checking if git is available.
-- `pytest` for testing.
-- Various functions from `isidore.whatsnew` (e.g., `build_delta`, `render_whatsnew_md`, `run_whatsnew`).
+The module depends on three cross-module imports:
+- `src/isidore/render.py` (1 link) — for `WIKI_DIRNAME` (`tests/test_whatsnew.py:11`).
+- `src/isidore/whatsnew.py` (1 link) — for `FILE_ADDED`, `FILE_REMOVED`, `FILE_RENAMED`, `SIGNATURE_CHANGED`, `SYMBOL_ADDED`, `WhatsnewError`, `build_delta`, `impact_summary`, `parse_plain_block`, `render_whatsnew_md`, `render_whatsnew_toon`, `run_whatsnew`, `strip_inline_claim_rows`, `surface_verify_ctx` (`tests/test_whatsnew.py:12-L26`).
+- `src/isidore/cli.py` (1 link) — imported by the test module.
 
 ## How to change safely
 When modifying this module, ensure that:

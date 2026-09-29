@@ -17,10 +17,11 @@ The module consists of a small set of functions that work together to parse, val
 
 ## Key entry points
 - `parse_findings_block()` is the primary entry point for extracting findings from generated pages.
+- `_resolutions_path()` resolves the path to the resolutions ledger, respecting the configured `wiki_dir` rather than a hardcoded `wiki/` (`src/isidore/findings.py:99-104`).
 - `filter_findings()` is used to validate findings before they are stored or displayed.
 
 ## Dependencies
-The module depends on `src/isidore/toon.py` for rendering findings in Toon tables. It is used by `src/isidore/knowledge.py` and `src/isidore/pipeline.py`.
+The module depends on `src/isidore/toon.py` for rendering findings in Toon tables. It also depends on `src/isidore/render.py` (for `WIKI_DIRNAME`, used by `_resolutions_path`), `src/isidore/langspec.py`, `src/isidore/changeset.py`, and `src/isidore/connectors`. It is used by `src/isidore/knowledge.py` and `src/isidore/pipeline.py`.
 
 ## How to change safely
 When modifying this module:

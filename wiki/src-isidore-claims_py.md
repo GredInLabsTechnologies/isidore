@@ -19,6 +19,7 @@ The module also supports optional typed claims via Proof-Carrying Prose (PCP), w
 ## Dependencies
 - `src/isidore/toon.py`: Used for encoding claims (imported as `encode`).
 - `src/isidore/pcp.py`: Used for parsing PCP predicates (imported dynamically in `parse_predicate_field`).
+- `src/isidore/connectors`: Used for connector-related claim operations.
 
 ## How to change safely
 1. **Backward compatibility**: Ensure new claim formats remain backward-compatible with existing pages.

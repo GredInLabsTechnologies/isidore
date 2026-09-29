@@ -24,8 +24,8 @@
     {
       "detail": "no predicate (existence-anchored only)",
       "ehash": "c6d8fb02fbe3",
-      "evidence": "src/isidore/findings.py:70",
-      "id": "c-22ef5c2e",
+      "evidence": "src/isidore/findings.py:74",
+      "id": "c-b778740c",
       "oracle": "none",
       "predicate": "",
       "statement": "The `parse_findings_block()` function splits markdown into clean prose and findings",
@@ -34,8 +34,8 @@
     {
       "detail": "no predicate (existence-anchored only)",
       "ehash": "a9c237fb4e32",
-      "evidence": "src/isidore/findings.py:86",
-      "id": "c-3ea89f6d",
+      "evidence": "src/isidore/findings.py:90",
+      "id": "c-a8b5ed35",
       "oracle": "none",
       "predicate": "",
       "statement": "The `finding_id()` function generates a stable ID for findings",
@@ -44,8 +44,8 @@
     {
       "detail": "no predicate (existence-anchored only)",
       "ehash": "c96053708e22",
-      "evidence": "src/isidore/findings.py:95",
-      "id": "c-cb2e7b03",
+      "evidence": "src/isidore/findings.py:107",
+      "id": "c-86e25da7",
       "oracle": "none",
       "predicate": "",
       "statement": "The `is_finding_resolved()` function checks resolutions in wiki/resolved_findings.json",
@@ -54,8 +54,8 @@
     {
       "detail": "no predicate (existence-anchored only)",
       "ehash": "443b82eb7075",
-      "evidence": "src/isidore/findings.py:109",
-      "id": "c-2da8efbc",
+      "evidence": "src/isidore/findings.py:121",
+      "id": "c-319f5ee4",
       "oracle": "none",
       "predicate": "",
       "statement": "The `resolve_finding()` function records resolutions in wiki/resolved_findings.json",
@@ -64,15 +64,35 @@
     {
       "detail": "no predicate (existence-anchored only)",
       "ehash": "dad79853e188",
-      "evidence": "src/isidore/findings.py:146",
-      "id": "c-2a57f89f",
+      "evidence": "src/isidore/findings.py:165",
+      "id": "c-1d421d91",
       "oracle": "none",
       "predicate": "",
       "statement": "The `filter_findings()` function validates findings against the repository",
       "verdict": "UNDECIDABLE"
+    },
+    {
+      "detail": "src/isidore/findings.py imports src/isidore/render.py",
+      "ehash": "6456510ed98c",
+      "evidence": "src/isidore/findings.py:103",
+      "id": "c-e293091a",
+      "oracle": "graph",
+      "predicate": "imports:src/isidore/findings.py;src/isidore/render.py",
+      "statement": "_resolutions_path imports WIKI_DIRNAME from src/isidore/render.py",
+      "verdict": "TRUE"
+    },
+    {
+      "detail": "src/isidore/findings.py defines _resolutions_path",
+      "ehash": "ebc3e9bd15b4",
+      "evidence": "src/isidore/findings.py:104",
+      "id": "c-150e5c9c",
+      "oracle": "graph",
+      "predicate": "defines:src/isidore/findings.py;_resolutions_path",
+      "statement": "_resolutions_path returns repo / WIKI_DIRNAME / resolved_findings.json",
+      "verdict": "TRUE"
     }
   ],
-  "graph_commit": "1a34c13ecf2ef7ce206f1ceeaeb1987fea5f8272",
+  "graph_commit": "0f6910df6b7bf6c8cf26df0427bbb2b45197cdf5",
   "marks": [
     {
       "disposition": "",
@@ -85,11 +105,11 @@
   ],
   "mass": {
     "gray": 16,
-    "green": 0,
-    "yellow": 17
+    "green": 5,
+    "yellow": 14
   },
   "page": "src-isidore-findings_py.md",
-  "prose_sha256": "0a00bd8efc192787c98ea125fcfc25cbd23bfca8ec9e1db924ea4fd161d76215",
+  "prose_sha256": "495f4e69ddf8bc6323d91ec20dd865bc5102d795ab3d951e58d39e490f1c33b3",
   "version": "pcp-1",
   "violations": []
 }

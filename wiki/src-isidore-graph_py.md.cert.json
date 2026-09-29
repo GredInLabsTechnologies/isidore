@@ -50,9 +50,19 @@
       "predicate": "imports:src/isidore/graph.py;ast",
       "statement": "The scanner uses Python's ast module for Python files",
       "verdict": "UNDECIDABLE"
+    },
+    {
+      "detail": "src/isidore/graph.py imports src/isidore/langspec.py",
+      "ehash": "d561e60320be",
+      "evidence": "src/isidore/graph.py:31",
+      "id": "c-015ca744",
+      "oracle": "graph",
+      "predicate": "imports:src/isidore/graph.py;src/isidore/langspec.py",
+      "statement": "graph.py imports BARE_CODE_EXTS from src/isidore/langspec.py",
+      "verdict": "TRUE"
     }
   ],
-  "graph_commit": "d5d1a1f33219a3171cc701884ca77e794db897e2",
+  "graph_commit": "0f6910df6b7bf6c8cf26df0427bbb2b45197cdf5",
   "marks": [
     {
       "disposition": "",
@@ -69,7 +79,7 @@
     "yellow": 0
   },
   "page": "src-isidore-graph_py.md",
-  "prose_sha256": "6915a7332284be9200f3d2e407585565627fb3ed5af82d4a9a2672b96b7ab972",
+  "prose_sha256": "2a99d62f2cc1d9919bff021e114af19f379da56f7262ff4f9e43f998aaea5d6a",
   "version": "pcp-1",
   "violations": []
 }

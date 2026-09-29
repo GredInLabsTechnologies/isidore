@@ -110,10 +110,58 @@
       "predicate": "",
       "statement": "The `test_banner_goes_under_the_h1` function tests that the banner is placed under the H1 heading.",
       "verdict": "UNDECIDABLE"
+    },
+    {
+      "detail": "test_detects_the_camouflaged_backdoor calls is_security_finding",
+      "ehash": "bd7d5f30894f",
+      "evidence": "tests/test_security_prose.py:22",
+      "id": "c-159ad7b1",
+      "oracle": "ast",
+      "predicate": "calls:test_detects_the_camouflaged_backdoor;is_security_finding",
+      "statement": "test_detects_the_camouflaged_backdoor asserts is_security_finding returns True for BACKDOOR",
+      "verdict": "TRUE"
+    },
+    {
+      "detail": "test_ignores_non_security_and_wrong_kinds calls is_security_finding",
+      "ehash": "2bc0dbae2d8d",
+      "evidence": "tests/test_security_prose.py:42",
+      "id": "c-777e0956",
+      "oracle": "ast",
+      "predicate": "calls:test_ignores_non_security_and_wrong_kinds;is_security_finding",
+      "statement": "test_ignores_non_security_and_wrong_kinds asserts question kind is not a suspect",
+      "verdict": "TRUE"
+    },
+    {
+      "detail": "test_banner_is_loud_and_lists_evidence calls security_banner",
+      "ehash": "f9e5aa9c70ea",
+      "evidence": "tests/test_security_prose.py:68",
+      "id": "c-0e7f6e8c",
+      "oracle": "ast",
+      "predicate": "calls:test_banner_is_loud_and_lists_evidence;security_banner",
+      "statement": "test_banner_is_loud_and_lists_evidence asserts [!WARNING] in banner",
+      "verdict": "TRUE"
+    },
+    {
+      "detail": "test_no_banner_without_security_suspects calls security_banner",
+      "ehash": "510e5c6f2077",
+      "evidence": "tests/test_security_prose.py:76",
+      "id": "c-7dadc8eb",
+      "oracle": "ast",
+      "predicate": "calls:test_no_banner_without_security_suspects;security_banner",
+      "statement": "test_no_banner_without_security_suspects asserts empty string for non-security",
+      "verdict": "TRUE"
     }
   ],
-  "graph_commit": "14a96ad814d17fe89cf51e923b45d3b8a67f07e0",
+  "graph_commit": "0f6910df6b7bf6c8cf26df0427bbb2b45197cdf5",
   "marks": [
+    {
+      "disposition": "",
+      "family": "topology",
+      "file": "tests/test_security_prose.py",
+      "line": 1,
+      "reason": "reachable from auth/secret surface: tests/test_units.py",
+      "severity": "info"
+    },
     {
       "disposition": "",
       "family": "sink",
@@ -141,11 +189,11 @@
   ],
   "mass": {
     "gray": 25,
-    "green": 0,
-    "yellow": 19
+    "green": 7,
+    "yellow": 13
   },
   "page": "tests-test_security_prose_py.md",
-  "prose_sha256": "ed7c71dc9a8595301b024fc5ded9c2588652c380e78aaee11228462ffb47a208",
+  "prose_sha256": "28774a8473229b83a4505f07baec90b1a99e1a7fd84fc6674f8a66de7faf7ae6",
   "version": "pcp-1",
   "violations": [
     {

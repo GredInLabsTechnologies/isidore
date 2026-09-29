@@ -52,15 +52,24 @@
       "verdict": "UNDECIDABLE"
     }
   ],
-  "graph_commit": "d5d1a1f33219a3171cc701884ca77e794db897e2",
-  "marks": [],
+  "graph_commit": "0f6910df6b7bf6c8cf26df0427bbb2b45197cdf5",
+  "marks": [
+    {
+      "disposition": "",
+      "family": "topology",
+      "file": "tests/test_classification_gate.py",
+      "line": 1,
+      "reason": "reachable from auth/secret surface: tests/test_connect_cli.py",
+      "severity": "info"
+    }
+  ],
   "mass": {
     "gray": 14,
-    "green": 15,
+    "green": 16,
     "yellow": 1
   },
   "page": "tests-test_classification_gate_py.md",
-  "prose_sha256": "a530a745f6762d50b4e4ac2b16817393dace00cdd45c9fd7fe433f29a2bedb59",
+  "prose_sha256": "e58ccee68ae2b1e64562d453bba2943cbe3b71cf44afba74f8c6635d06c8603b",
   "version": "pcp-1",
   "violations": []
 }

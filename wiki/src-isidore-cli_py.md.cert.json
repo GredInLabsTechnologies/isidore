@@ -34,8 +34,8 @@
     {
       "detail": "_cmd_ask calls ask",
       "ehash": "49904d276003",
-      "evidence": "src/isidore/cli.py:111",
-      "id": "c-17279e8a",
+      "evidence": "src/isidore/cli.py:116",
+      "id": "c-9deb2e29",
       "oracle": "ast",
       "predicate": "calls:_cmd_ask;ask",
       "statement": "The _cmd_ask function supports an offline mode that uses verified claims",
@@ -44,8 +44,8 @@
     {
       "detail": "_cmd_suggest_flows calls suggest_flows",
       "ehash": "978ef32176e0",
-      "evidence": "src/isidore/cli.py:135",
-      "id": "c-4d7666bd",
+      "evidence": "src/isidore/cli.py:145",
+      "id": "c-d638bd55",
       "oracle": "ast",
       "predicate": "calls:_cmd_suggest_flows;suggest_flows",
       "statement": "The _cmd_suggest_flows function identifies cross-module bridges",
@@ -54,15 +54,55 @@
     {
       "detail": "_cmd_impact calls build_impact",
       "ehash": "ccf65ffb626c",
-      "evidence": "src/isidore/cli.py:151",
-      "id": "c-6ee4a9c0",
+      "evidence": "src/isidore/cli.py:161",
+      "id": "c-d957b324",
       "oracle": "ast",
       "predicate": "calls:_cmd_impact;build_impact",
       "statement": "The _cmd_impact function analyzes changes and their impact",
       "verdict": "TRUE"
+    },
+    {
+      "detail": "src/isidore/cli.py imports src/isidore/graph.py",
+      "ehash": "07796ddd52c8",
+      "evidence": "src/isidore/cli.py:17",
+      "id": "c-9622dbf4",
+      "oracle": "graph",
+      "predicate": "imports:src/isidore/cli.py;src/isidore/graph.py",
+      "statement": "cli.py imports write_scan from src/isidore/graph.py",
+      "verdict": "TRUE"
+    },
+    {
+      "detail": "src/isidore/cli.py imports src/isidore/pipeline.py",
+      "ehash": "7fd5b120789a",
+      "evidence": "src/isidore/cli.py:25",
+      "id": "c-f6575d7b",
+      "oracle": "graph",
+      "predicate": "imports:src/isidore/cli.py;src/isidore/pipeline.py",
+      "statement": "cli.py imports compile_wiki from src/isidore/pipeline.py",
+      "verdict": "TRUE"
+    },
+    {
+      "detail": "src/isidore/cli.py imports src/isidore/qa.py",
+      "ehash": "67c08eece514",
+      "evidence": "src/isidore/cli.py:29",
+      "id": "c-cbf5a4a4",
+      "oracle": "graph",
+      "predicate": "imports:src/isidore/cli.py;src/isidore/qa.py",
+      "statement": "cli.py imports ask from src/isidore/qa.py",
+      "verdict": "TRUE"
+    },
+    {
+      "detail": "src/isidore/cli.py imports src/isidore/impact.py",
+      "ehash": "1896f2f5c176",
+      "evidence": "src/isidore/cli.py:155",
+      "id": "c-63d6f4ba",
+      "oracle": "graph",
+      "predicate": "imports:src/isidore/cli.py;src/isidore/impact.py",
+      "statement": "_cmd_impact imports build_impact and render_impact from src/isidore/impact.py",
+      "verdict": "TRUE"
     }
   ],
-  "graph_commit": "b78c836100f72c8de8a10a0def794b104ab4f424",
+  "graph_commit": "0f6910df6b7bf6c8cf26df0427bbb2b45197cdf5",
   "marks": [
     {
       "disposition": "",
@@ -74,12 +114,12 @@
     }
   ],
   "mass": {
-    "gray": 11,
-    "green": 21,
+    "gray": 16,
+    "green": 22,
     "yellow": 0
   },
   "page": "src-isidore-cli_py.md",
-  "prose_sha256": "5cf6f21e7277d91c1ff8c6f5fb8a126c95c18ce09f928cec174ed2907cc55a26",
+  "prose_sha256": "e2e4d11a064893a99b059633168fea4af02e1416042c1bc0c749ee6e8067f34f",
   "version": "pcp-1",
   "violations": []
 }

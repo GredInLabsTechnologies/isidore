@@ -13,12 +13,15 @@ The module consists of three main components:
 - `plan_pyramid`: Generates specifications for N2 subsystem and N3 product pages
 
 ## Dependencies
-The module depends on `src/isidore/pcp.py` for:
-- Verdict constants (TRUE, FALSE)
-- Verification infrastructure (Predicate, Verdict, VerifyContext)
-- Certificate handling (CERT_SUFFIX, read_certificate)
-- URI parsing (parse_wiki_uri)
-- Verifier registration (register_verifier)
+The module's closest dependency is `src/isidore/pcp.py`, imported at the top of the file (`src/isidore/pyramid.py:22`) for:
+- Verdict constants (TRUE, FALSE) and the wiki oracle/scheme names (ORACLE_WIKI, WIKI_SCHEME, WIKI_VERIFIER_KIND)
+- Verification infrastructure (Predicate, Verdict, VerifyContext, undecidable)
+- URI parsing (parse_wiki_uri) and verifier registration (register_verifier)
+- Certificate handling (CERT_SUFFIX, read_certificate), imported lazily inside `_claim_verdict` (`src/isidore/pyramid.py:44`)
+
+Beyond `pcp.py`, the module reaches into `src/isidore/pipeline.py`, `src/isidore/render.py`, `src/isidore/claims.py`, `src/isidore/verify.py`, `src/isidore/graph.py`, `src/isidore/plain.py` and `src/isidore/llm.py`. Several of these are imported inside functions rather than at module level — `_claim_verdict` takes `WIKI_DIRNAME` from `pipeline.py` only when it runs (`src/isidore/pyramid.py:45`) — which keeps `pyramid.py` importable from modules that `pipeline.py` itself depends on.
+
+It is used by `src/isidore/cli.py` and `src/isidore/recertify.py`, and exercised by `tests/test_pyramid.py`, `tests/test_overview.py` and `tests/test_pcp_seams.py`.
 
 ## How to change safely
 1. When modifying the verifier logic:

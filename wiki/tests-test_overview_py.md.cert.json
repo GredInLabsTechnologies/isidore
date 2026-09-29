@@ -90,17 +90,56 @@
       "predicate": "calls:tests/test_overview.py;compile_overview",
       "statement": "Pages with no verifiable claims are refused.",
       "verdict": "UNDECIDABLE"
+    },
+    {
+      "detail": "tests/test_overview.py imports src/isidore/pcp.py",
+      "ehash": "da4730dd1614",
+      "evidence": "tests/test_overview.py:8",
+      "id": "c-6ad37d4f",
+      "oracle": "graph",
+      "predicate": "imports:tests/test_overview.py;src/isidore/pcp.py",
+      "statement": "The test module imports its certificate primitives from pcp.py",
+      "verdict": "TRUE"
+    },
+    {
+      "detail": "tests/test_overview.py imports src/isidore/pyramid.py",
+      "ehash": "068c777d9c9a",
+      "evidence": "tests/test_overview.py:9",
+      "id": "c-36cd0a06",
+      "oracle": "graph",
+      "predicate": "imports:tests/test_overview.py;src/isidore/pyramid.py",
+      "statement": "The test module imports the pyramid functions it exercises",
+      "verdict": "TRUE"
+    },
+    {
+      "detail": "no predicate (existence-anchored only)",
+      "ehash": "a81d1aed6a1e",
+      "evidence": "tests/test_overview.py:45",
+      "id": "c-f3da63dc",
+      "oracle": "none",
+      "predicate": "",
+      "statement": "The repo fixture certifies one TRUE and one FALSE claim for mod.md",
+      "verdict": "UNDECIDABLE"
     }
   ],
-  "graph_commit": "5782a431e6dc22ba8b21583e6f89d91001ef4093",
-  "marks": [],
+  "graph_commit": "0f6910df6b7bf6c8cf26df0427bbb2b45197cdf5",
+  "marks": [
+    {
+      "disposition": "",
+      "family": "topology",
+      "file": "tests/test_overview.py",
+      "line": 1,
+      "reason": "reachable from auth/secret surface: src/isidore/detectors.py",
+      "severity": "info"
+    }
+  ],
   "mass": {
-    "gray": 7,
-    "green": 16,
-    "yellow": 2
+    "gray": 8,
+    "green": 20,
+    "yellow": 1
   },
   "page": "tests-test_overview_py.md",
-  "prose_sha256": "128ef3e86bb88a835ad7a52ff1e0964bb805ddb0e51c7666e2b44b5ea34abab7",
+  "prose_sha256": "873a0bf8d83618e9a11ae3c3bbebd248e28489846fc0c1aea3b065ca8b606dcc",
   "version": "pcp-1",
   "violations": []
 }

@@ -12,16 +12,6 @@
       "verdict": "UNDECIDABLE"
     },
     {
-      "detail": "server has no call to reply",
-      "ehash": "a666a3a83cdc",
-      "evidence": "tests/test_connectors_f5.py:85",
-      "id": "c-ef3d6576",
-      "oracle": "ast",
-      "predicate": "calls:server;reply",
-      "statement": "The stub server simulates a Gmail server over stdio",
-      "verdict": "FALSE"
-    },
-    {
       "detail": "no declaration of 'FAIL_AUTH' this oracle can read",
       "ehash": "196ae2b710d1",
       "evidence": "tests/test_connectors_f5.py:73",
@@ -62,7 +52,7 @@
       "verdict": "TRUE"
     }
   ],
-  "graph_commit": "d5d1a1f33219a3171cc701884ca77e794db897e2",
+  "graph_commit": "0f6910df6b7bf6c8cf26df0427bbb2b45197cdf5",
   "marks": [
     {
       "disposition": "",
@@ -74,12 +64,12 @@
     }
   ],
   "mass": {
-    "gray": 9,
+    "gray": 14,
     "green": 0,
     "yellow": 15
   },
   "page": "tests-test_connectors_f5_py.md",
-  "prose_sha256": "dd3d6ecf9401685db550340bd20d5406f4e8358067a54a13fff5cf97d853011c",
+  "prose_sha256": "d94341a6a3e7023429eb6e99c15caa3e58f76e352bd5b967e7ba2a9d87c67800",
   "version": "pcp-1",
   "violations": []
 }

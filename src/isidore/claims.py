@@ -261,6 +261,26 @@ def evidence_state(repo: Path, evidence: str, stored_hash: str, compiled_at: str
 
 
 
+def relocate_evidence(repo: Path, evidence: str, stored_hash: str) -> str | None:
+    """The claim's evidence as it stands NOW — `path:line` at wherever the anchored content moved —
+    or None if that content is gone (stale/orphan). What an incremental compile carries a claim over
+    with: re-anchoring at the OLD line number would hash whatever line slid into its place, and a
+    claim about code that changed would come back certified. Same search as `evidence_state`."""
+    if evidence.startswith("src://"):
+        return evidence if evidence_state(repo, evidence, stored_hash) == "ok" else None
+    rel, line = _split_evidence(evidence)
+    lines = _read_lines(repo, rel)
+    if lines is None:
+        return None
+    if line is None:
+        return evidence if evidence_state(repo, evidence, stored_hash) == "ok" else None
+    for offset in range(0, SEARCH_RADIUS + 1):
+        for idx in sorted({line - 1 - offset, line - 1 + offset}):
+            if 0 <= idx < len(lines) and _hash(_normalize(lines[idx])) == stored_hash:
+                return f"{rel}:{idx + 1}"
+    return None
+
+
 def claim_id(statement: str, evidence: str) -> str:
     """Deterministic, ledger-friendly id: stable across runs for the same (statement, evidence)."""
     return "c-" + hashlib.sha256(f"{statement}\x00{evidence}".encode("utf-8")).hexdigest()[:8]
@@ -306,7 +326,9 @@ def anchor_claims(repo: Path, raw_claims: list[dict],
             if ehash is None:
                 dropped += 1
                 continue
-        anchored.append({"id": claim_id(c["statement"], evidence),
+        # A carried-over claim keeps the id it was published under even when its line moved: pages
+        # above cite it as `wiki://page#<id>`, and a fresh id would break every one of those chains.
+        anchored.append({"id": c.get("id") or claim_id(c["statement"], evidence),
                          "statement": c["statement"], "evidence": evidence, "ehash": ehash,
                          "predicate": c.get("predicate", "")})
     return anchored, dropped, repaired

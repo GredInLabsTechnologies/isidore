@@ -1,60 +1,80 @@
 {
   "child_cert_hashes": {
     "src-isidore-changeset_py.md": "6d68fc8efa71b964cd0f66f77855f18063d4b6539a33b834f25f46be3f1e4ade",
-    "src-isidore-claims_py.md": "51b91516bbd75d89323d4612c42b80403b625623a2cb70207aff4fbaa70196ec",
-    "src-isidore-detectors_py.md": "f1a639b48fa7e2d7605f8bec663232574604f6c83b1aa5e2e7e8b860c289448a"
+    "src-isidore-claims_py.md": "f319ef45f55d17f4a57f3f23d865dacdbe0961d09043d29e63eff5cca2889030",
+    "src-isidore-cli_py.md": "624ae334d969f4e00335294b627aabc9cde917721266dee05fbd29265f12d3b0"
   },
   "claims": [
     {
       "detail": "cited claim proved TRUE",
       "ehash": "6d68fc8efa71",
-      "evidence": "wiki://src-isidore-changeset_py.md#c-1ea2e1cc",
-      "id": "c-dadfcc3c",
+      "evidence": "wiki://src-isidore-changeset_py.md#c-7ea4587c",
+      "id": "c-3db57964",
       "oracle": "wiki",
-      "predicate": "wikichain:wiki://src-isidore-changeset_py.md#c-1ea2e1cc",
-      "statement": "The `src` area bridges Git diffs to Isidore's graph model",
-      "verdict": "TRUE"
-    },
-    {
-      "detail": "cited claim proved TRUE",
-      "ehash": "51b91516bbd7",
-      "evidence": "wiki://src-isidore-claims_py.md#c-8ea600ba",
-      "id": "c-df631b86",
-      "oracle": "wiki",
-      "predicate": "wikichain:wiki://src-isidore-claims_py.md#c-8ea600ba",
-      "statement": "The area splits responsibilities between changeset handling, staleness detection, and documentation generation",
-      "verdict": "TRUE"
-    },
-    {
-      "detail": "cited claim proved TRUE",
-      "ehash": "f1a639b48fa7",
-      "evidence": "wiki://src-isidore-detectors_py.md#c-88adfab5",
-      "id": "c-12cfea4c",
-      "oracle": "wiki",
-      "predicate": "wikichain:wiki://src-isidore-detectors_py.md#c-88adfab5",
-      "statement": "Security analysis is performed by `detectors.py`",
+      "predicate": "wikichain:wiki://src-isidore-changeset_py.md#c-7ea4587c",
+      "statement": "changeset.py maps a git diff onto the graph, so a change is known symbol by symbol",
       "verdict": "TRUE"
     },
     {
       "detail": "cited claim proved TRUE",
       "ehash": "6d68fc8efa71",
       "evidence": "wiki://src-isidore-changeset_py.md#c-1ea2e1cc",
-      "id": "c-58282a9f",
+      "id": "c-a6d521f7",
       "oracle": "wiki",
       "predicate": "wikichain:wiki://src-isidore-changeset_py.md#c-1ea2e1cc",
-      "statement": "The area depends on Git for version control",
+      "statement": "changeset.py processes git diffs to find changed lines",
+      "verdict": "TRUE"
+    },
+    {
+      "detail": "cited claim proved TRUE",
+      "ehash": "f319ef45f55d",
+      "evidence": "wiki://src-isidore-claims_py.md#c-76dad90b",
+      "id": "c-c268b4f8",
+      "oracle": "wiki",
+      "predicate": "wikichain:wiki://src-isidore-claims_py.md#c-76dad90b",
+      "statement": "claims are parsed from the pages the area writes",
+      "verdict": "TRUE"
+    },
+    {
+      "detail": "cited claim proved TRUE",
+      "ehash": "f319ef45f55d",
+      "evidence": "wiki://src-isidore-claims_py.md#c-b3e05631",
+      "id": "c-7e7e28f5",
+      "oracle": "wiki",
+      "predicate": "wikichain:wiki://src-isidore-claims_py.md#c-b3e05631",
+      "statement": "claims.py anchors each claim to the content of the line it cites",
+      "verdict": "TRUE"
+    },
+    {
+      "detail": "cited claim proved TRUE",
+      "ehash": "624ae334d969",
+      "evidence": "wiki://src-isidore-cli_py.md#c-f6575d7b",
+      "id": "c-b1edf849",
+      "oracle": "wiki",
+      "predicate": "wikichain:wiki://src-isidore-cli_py.md#c-f6575d7b",
+      "statement": "the CLI's compile command reaches the compiler in pipeline.py",
+      "verdict": "TRUE"
+    },
+    {
+      "detail": "cited claim proved TRUE",
+      "ehash": "624ae334d969",
+      "evidence": "wiki://src-isidore-cli_py.md#c-a5cfe99f",
+      "id": "c-37a11856",
+      "oracle": "wiki",
+      "predicate": "wikichain:wiki://src-isidore-cli_py.md#c-a5cfe99f",
+      "statement": "the CLI's scan command writes the structure graph",
       "verdict": "TRUE"
     }
   ],
-  "graph_commit": "9fdf79637e552aed83ae127716dd5416d2b0e089",
+  "graph_commit": null,
   "marks": [],
   "mass": {
-    "gray": 8,
-    "green": 13,
+    "gray": 17,
+    "green": 0,
     "yellow": 0
   },
   "page": "subsystem-src.md",
-  "prose_sha256": "36ad738a69a019ac706e94a5fc4b65474e6d67c83340f9a679d85d2a961143d4",
+  "prose_sha256": "e641b4f6d7f35e8727c1cc1b646447631fcd970082128cf5f0533eb19228a952",
   "version": "pcp-1",
   "violations": []
 }

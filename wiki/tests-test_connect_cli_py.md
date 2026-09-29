@@ -24,6 +24,8 @@ The module depends on:
 - `isidore.connect`: For functions like `apply_settings`, `connector_summary`, `load_config`, `parse_setting`, and `save_config`.
 - `isidore.connectors.base`: For `IngestOptions`.
 - `isidore.connectors.git_repo`: For `GitRepoConnector`, `_cap_content`, and `_window_floor`.
+- `isidore.home`: For `config_path` and `safe_mkdir` (used in the corrupt-config test at `tests/test_connect_cli.py:75`).
+- `isidore.cli`: For CLI command integration.
 
 ## How to change safely
 When modifying this module:

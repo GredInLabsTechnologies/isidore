@@ -8,9 +8,10 @@ The module consists of three main components:
 3. **Offline answering**: `answer_offline()` provides answers using only verified claims, with no LLM calls, or refuses if no confident match is found.
 
 ## Key entry points
-- `answer_offline()`: The primary interface for offline Q&A, returning answers from verified claims.
-- `gather_evidence()`: Assembles evidence for LLM-based answers, combining claims, wiki pages, and code excerpts.
-- `question_terms()` and `score_text()`: Core utilities for term extraction and relevance scoring.
+- `answer_offline()`: The primary interface for offline Q&A, returning answers from verified claims (`src/isidore/qa.py:156-L167`).
+- `gather_evidence()`: Assembles evidence for LLM-based answers, combining claims, wiki pages, and code excerpts (`src/isidore/qa.py:85-L150`).
+- `gather_claims()`: Scores every anchored claim against the question, returning deduplicated results (`src/isidore/qa.py:61-L82`).
+- `question_terms()` and `score_text()`: Core utilities for term extraction and relevance scoring (`src/isidore/qa.py:52-L58`).
 
 ## Dependencies
 - `src/isidore/graph.py`: For loading the repository structure graph.

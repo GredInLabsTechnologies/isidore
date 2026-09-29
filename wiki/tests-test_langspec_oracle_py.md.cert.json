@@ -62,15 +62,24 @@
       "verdict": "TRUE"
     }
   ],
-  "graph_commit": "5782a431e6dc22ba8b21583e6f89d91001ef4093",
-  "marks": [],
+  "graph_commit": "0f6910df6b7bf6c8cf26df0427bbb2b45197cdf5",
+  "marks": [
+    {
+      "disposition": "",
+      "family": "topology",
+      "file": "tests/test_langspec_oracle.py",
+      "line": 1,
+      "reason": "reachable from auth/secret surface: src/isidore/detectors.py",
+      "severity": "info"
+    }
+  ],
   "mass": {
-    "gray": 17,
+    "gray": 18,
     "green": 20,
     "yellow": 0
   },
   "page": "tests-test_langspec_oracle_py.md",
-  "prose_sha256": "0b2ba72d06b3dc2ef40096b80edbef41b7604bda16e8928cd463177dad8eb878",
+  "prose_sha256": "0b7752c1b446999d732d657fb877bb095e06b590232fbc00aeeb74d290944993",
   "version": "pcp-1",
   "violations": []
 }

@@ -15,7 +15,7 @@ The graph format is intentionally simple, supporting basic node types ("code", "
 - `module_of()`: Groups files into modules based on directory structure.
 
 ## Dependencies
-The module depends on `src/isidore/langspec.py` for language-specific scanning rules. It is used by several other modules including `changeset.py`, `cli.py`, and `impact.py`.
+The module depends on `src/isidore/langspec.py` for language-specific scanning rules and `src/isidore/render.py`. It is used by several other modules including `changeset.py`, `cli.py`, and `impact.py`.
 
 ## How to change safely
 When modifying this module:

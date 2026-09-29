@@ -284,3 +284,13 @@ def test_the_cli_fails_closed_on_a_missing_answer(repo, capsys):
 
     assert main(["handoff", "apply", "--repo", str(repo)]) == 2
     assert "ERROR" in capsys.readouterr().out
+
+
+def test_apply_ingests_every_answer_whatever_the_call_cap(repo):
+    # regression: apply honoured the config's max_calls, so with the default 12 an emit of 40 pages
+    # applied 12 answers and left 28 pending — a cap on a cost that had already been paid.
+    emit(repo, {"max_calls": 1}, _Args(repo))
+    assert len(_answer_all(repo)) == 3
+    result = apply(repo, {"max_calls": 1}, _Args(repo))
+    assert sorted(result.generated) == ["mod0-core.md", "mod1-core.md", "mod2-core.md"]
+    assert result.skipped_by_cap == []

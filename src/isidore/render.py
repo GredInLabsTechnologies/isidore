@@ -46,6 +46,11 @@ def configured_wiki_dirname(start: Path | None = None) -> str:
     for folder in (here, *here.parents):
         config = folder / CONFIG_FILENAME
         if not config.is_file():
+            # The walk ends at the repository root. Past it, an `isidore.json` belongs to some
+            # other tree: a stray one in a home directory used to redirect the wiki of every repo
+            # beneath it (found as a test that wrote one into pytest's shared session directory).
+            if (folder / ".git").exists():
+                break
             continue
         try:
             value = json.loads(config.read_text(encoding="utf-8")).get(WIKI_DIR_KEY)

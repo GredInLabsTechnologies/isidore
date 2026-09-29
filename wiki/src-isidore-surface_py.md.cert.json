@@ -70,17 +70,36 @@
       "predicate": "",
       "statement": "whatsnew uses this module to generate changelogs",
       "verdict": "UNDECIDABLE"
+    },
+    {
+      "detail": "src/isidore/verify.py imports src/isidore/surface.py",
+      "ehash": "bcf33fd7c55e",
+      "evidence": "src/isidore/verify.py:1",
+      "id": "c-8580e206",
+      "oracle": "graph",
+      "predicate": "imports:src/isidore/verify.py;src/isidore/surface.py",
+      "statement": "surface.py is depended on by src/isidore/verify.py",
+      "verdict": "TRUE"
     }
   ],
-  "graph_commit": "5782a431e6dc22ba8b21583e6f89d91001ef4093",
-  "marks": [],
+  "graph_commit": "0f6910df6b7bf6c8cf26df0427bbb2b45197cdf5",
+  "marks": [
+    {
+      "disposition": "",
+      "family": "topology",
+      "file": "src/isidore/surface.py",
+      "line": 1,
+      "reason": "reachable from auth/secret surface: tests/test_source_disclosure_gate.py",
+      "severity": "info"
+    }
+  ],
   "mass": {
     "gray": 14,
     "green": 0,
-    "yellow": 14
+    "yellow": 16
   },
   "page": "src-isidore-surface_py.md",
-  "prose_sha256": "415b05c61e2f63d5f68086ee0eb8493837651bfc20367463eea9e58bb0f46d4b",
+  "prose_sha256": "a2f013e85a81af0c75b5c6b4821b1fdc5d2888c6fa33d9da1f1ddaddb8a04a99",
   "version": "pcp-1",
   "violations": []
 }

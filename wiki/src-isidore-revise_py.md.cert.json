@@ -1,0 +1,85 @@
+{
+  "child_cert_hashes": {},
+  "claims": [
+    {
+      "detail": "NO_CHANGES == NO-CHANGES",
+      "ehash": "7cb5a8b14b1a",
+      "evidence": "src/isidore/revise.py:31",
+      "id": "c-24fdc664",
+      "oracle": "ast",
+      "predicate": "value:NO_CHANGES;NO-CHANGES",
+      "statement": "NO_CHANGES is the literal string NO-CHANGES",
+      "verdict": "TRUE"
+    },
+    {
+      "detail": "no import edge src/isidore/revise.py->hashlib in the graph; imports are partially resolved, so absence is not decidable",
+      "ehash": "ada1d9e0a360",
+      "evidence": "src/isidore/revise.py:26",
+      "id": "c-60ca8c67",
+      "oracle": "none",
+      "predicate": "imports:src/isidore/revise.py;hashlib",
+      "statement": "revise.py imports hashlib at module level",
+      "verdict": "UNDECIDABLE"
+    },
+    {
+      "detail": "no predicate (existence-anchored only)",
+      "ehash": "9111f31ff38b",
+      "evidence": "src/isidore/revise.py:91",
+      "id": "c-bb6aa6e8",
+      "oracle": "none",
+      "predicate": "",
+      "statement": "facts_fingerprint drops the ignored keys before hashing",
+      "verdict": "UNDECIDABLE"
+    },
+    {
+      "detail": "src/isidore/revise.py defines facts_fingerprint",
+      "ehash": "dc77429ef09b",
+      "evidence": "src/isidore/revise.py:87",
+      "id": "c-7611d2bd",
+      "oracle": "graph",
+      "predicate": "defines:src/isidore/revise.py;facts_fingerprint",
+      "statement": "revise.py defines facts_fingerprint",
+      "verdict": "TRUE"
+    },
+    {
+      "detail": "no predicate (existence-anchored only)",
+      "ehash": "4e16f2d15356",
+      "evidence": "src/isidore/revise.py:84",
+      "id": "c-91b61d2a",
+      "oracle": "none",
+      "predicate": "",
+      "statement": "Counts and deps_in never dirty a page on their own",
+      "verdict": "UNDECIDABLE"
+    },
+    {
+      "detail": "no predicate (existence-anchored only)",
+      "ehash": "9111f31ff38b",
+      "evidence": "src/isidore/revise.py:91",
+      "id": "c-da31d6e4",
+      "oracle": "none",
+      "predicate": "",
+      "statement": "facts_fingerprint drops the ignored keys right before hashing",
+      "verdict": "UNDECIDABLE"
+    }
+  ],
+  "graph_commit": "0f6910df6b7bf6c8cf26df0427bbb2b45197cdf5",
+  "marks": [
+    {
+      "disposition": "",
+      "family": "topology",
+      "file": "src/isidore/revise.py",
+      "line": 1,
+      "reason": "reachable from auth/secret surface: src/isidore/detectors.py",
+      "severity": "info"
+    }
+  ],
+  "mass": {
+    "gray": 35,
+    "green": 1,
+    "yellow": 5
+  },
+  "page": "src-isidore-revise_py.md",
+  "prose_sha256": "05b4b4e2caa5cb0bab882bfb53a67673f59b08a0b8f87709975858cf38d85df6",
+  "version": "pcp-1",
+  "violations": []
+}

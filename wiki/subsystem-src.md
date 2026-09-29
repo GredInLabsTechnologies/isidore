@@ -1,21 +1,19 @@
 ## What this area is responsible for
-The `src` area implements Isidore's core functionality for compiling and verifying documentation from a codebase. It bridges Git's version control with Isidore's graph model, detects security patterns, and generates verifiable documentation artifacts. The area's responsibility is to transform raw code and changes into structured knowledge while ensuring the documentation remains tamper-evident and up-to-date.
+`src` is the whole of Isidore's machinery: it turns a repository into an agent-oriented wiki whose statements are checked against the code, and keeps that wiki honest as the code changes. It builds the structure graph, compiles pages from it, verifies what the pages claim, and tells a reader which of those claims have gone stale.
 
 ## How the work is divided
-The modules split responsibilities along logical boundaries:
-- **Changeset handling** (`changeset.py`) bridges Git diffs to Isidore's graph model.
-- **Staleness detection** (`claims.py`) tracks documentation freshness by hashing evidence.
-- **Security analysis** (`detectors.py`) identifies sensitive patterns in code.
-- **Documentation generation** (`knowledge.py`, `pipeline.py`, `render.py`) compiles structured content.
-- **Verification** (`pcp.py`, `verify.py`) ensures claims hold true against the codebase.
+- **Seeing the code.** `src-isidore-graph_py.md` and `src-isidore-langspec_py.md` build and load the structure graph in any language; `src-isidore-changeset_py.md` maps a git diff onto that graph, so a change is known symbol by symbol rather than file by file.
+- **Writing pages.** `src-isidore-pipeline_py.md` is the compiler; `src-isidore-revise_py.md` makes it incremental, rewriting only what a change touched; `src-isidore-handoff_py.md` lets the caller act as the model so the source never leaves the machine; `src-isidore-pyramid_py.md` composes module pages into area and product pages.
+- **Proving pages.** `src-isidore-claims_py.md` anchors each claim to the content of the line it cites, `src-isidore-pcp_py.md` and `src-isidore-verify_py.md` decide typed claims against the code, and `src-isidore-recertify_py.md` repairs certificates the code has outgrown without a model call.
+- **Everything around it.** The CLI (`src-isidore-cli_py.md`), residue and security findings (`src-isidore-findings_py.md`, `src-isidore-detectors_py.md`), the external knowledge home (`src-isidore-connectors.md`, `src-isidore-connect_py.md`, `src-isidore-knowledge_py.md`) and the free outputs (`src-isidore-render_py.md`, `src-isidore-qa_py.md`, `src-isidore-whatsnew_py.md`).
 
-The split reflects Isidore's architecture: changesets feed into security analysis and documentation, while verification operates on the compiled graph. This separation keeps concerns distinct while allowing cross-module dependencies where needed.
+The split follows the one rule the system rests on: generating prose and trusting prose are different jobs, done by different modules, so nothing a model writes is believed until the proving side has checked it.
 
 ## What it depends on, and what depends on it
-This area has no external dependencies but relies on Git for version control and Python's standard library for file operations. It promises to other areas a complete pipeline from code to verified documentation, with artifacts like `quickstart.md` and `AGENTS.md` serving as entry points for users.
+The area needs git and the repository's own files; claims are parsed from the pages it writes and anchored back to the source lines they cite. What it promises the rest is a wiki in which every certified statement can be re-verified offline, with no model call.
 
 ## Where to start reading
-- `changeset.py` for understanding how Git diffs map to Isidore's graph model.
-- `claims.py` to see how staleness is detected in documentation.
-- `detectors.py` for security pattern analysis in code.
-- `knowledge.py` to understand how documentation is compiled from the graph.
+- `src-isidore-pipeline_py.md` — how a page is planned, compiled and written.
+- `src-isidore-claims_py.md` — why a claim stays true or goes stale.
+- `src-isidore-changeset_py.md` — how a change is traced to the symbols it touches.
+- `src-isidore-cli_py.md` — the commands, and which module each one reaches.

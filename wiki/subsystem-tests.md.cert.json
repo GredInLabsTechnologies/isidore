@@ -1,50 +1,81 @@
 {
   "child_cert_hashes": {
-    "tests-test_claims_py.md": "cd18cd0700184cf079b82449f76fe113bd00ed83d52ad1b54285fcd9663ec2e3",
-    "tests-test_detectors_py.md": "607f7a63ab1386b2aaa99d434ac727499e3760b0b1a2ec68564029bac6d277fd",
-    "tests-test_pcp_pipeline_py.md": "108eda6930c780be6c82ab3719aa7032729b577d7aeefe39494018d40a0c48c8"
+    "tests-fixtures-pcp.md": "597af0cf8277696c8ec362fa896db9470896fc04a9f43998d02a082bb985f45a",
+    "tests-test_changeset_py.md": "18959d7d93c40954960457a6115de504239347d9b6e4c94d01d10802215dffff",
+    "tests-test_claims_py.md": "2d032235bbe43809ca6b62a30ea8641e3e9a2f167f6d069e7bcf034a67944283",
+    "tests-test_classification_gate_py.md": "0224892b174bac3ab296a8f5b47008e6710064f4ad6bf2447fa1fecbda2f4c3d"
   },
   "claims": [
     {
       "detail": "cited claim proved TRUE",
-      "ehash": "cd18cd070018",
-      "evidence": "wiki://tests-test_claims_py.md#c-bc3cb03c",
-      "id": "c-aa72aa4e",
+      "ehash": "2d032235bbe4",
+      "evidence": "wiki://tests-test_claims_py.md#c-1068b52d",
+      "id": "c-2ddb1eae",
       "oracle": "wiki",
-      "predicate": "wikichain:wiki://tests-test_claims_py.md#c-bc3cb03c",
-      "statement": "The tests area ensures the correctness, robustness, and security of the Isidore system by validating its core functionality through unit, integration, and regression tests.",
+      "predicate": "wikichain:wiki://tests-test_claims_py.md#c-1068b52d",
+      "statement": "test_claims.py covers how claims are extracted from Markdown blocks",
       "verdict": "TRUE"
-    },
-    {
-      "detail": "cited claim not found: tests-test_pcp_pipeline_py.md#c-43d8deee",
-      "ehash": "108eda6930c7",
-      "evidence": "wiki://tests-test_pcp_pipeline_py.md#c-43d8deee",
-      "id": "c-bc869e85",
-      "oracle": "wiki",
-      "predicate": "wikichain:wiki://tests-test_pcp_pipeline_py.md#c-43d8deee",
-      "statement": "The tests are split by subsystem: claims parsing, change detection, connector behavior, security enforcement, and pipeline validation.",
-      "verdict": "FALSE"
     },
     {
       "detail": "cited claim proved TRUE",
-      "ehash": "607f7a63ab13",
-      "evidence": "wiki://tests-test_detectors_py.md#c-7a6a0657",
-      "id": "c-224c6ccc",
+      "ehash": "2d032235bbe4",
+      "evidence": "wiki://tests-test_claims_py.md#c-6011c9b5",
+      "id": "c-34aa9ef1",
       "oracle": "wiki",
-      "predicate": "wikichain:wiki://tests-test_detectors_py.md#c-7a6a0657",
-      "statement": "This area depends on the core system's modules but makes no assumptions about external dependencies.",
+      "predicate": "wikichain:wiki://tests-test_claims_py.md#c-6011c9b5",
+      "statement": "test_claims.py pins that staleness follows the cited line only",
+      "verdict": "TRUE"
+    },
+    {
+      "detail": "cited claim proved TRUE",
+      "ehash": "597af0cf8277",
+      "evidence": "wiki://tests-fixtures-pcp.md#c-11e675b5",
+      "id": "c-1b393b1e",
+      "oracle": "wiki",
+      "predicate": "wikichain:wiki://tests-fixtures-pcp.md#c-11e675b5",
+      "statement": "the golden fixture's auth module has a known attempt ceiling",
+      "verdict": "TRUE"
+    },
+    {
+      "detail": "cited claim proved TRUE",
+      "ehash": "597af0cf8277",
+      "evidence": "wiki://tests-fixtures-pcp.md#c-2dd8fe5a",
+      "id": "c-d16abbab",
+      "oracle": "wiki",
+      "predicate": "wikichain:wiki://tests-fixtures-pcp.md#c-2dd8fe5a",
+      "statement": "the golden fixture's authenticate calls verify_jwt",
+      "verdict": "TRUE"
+    },
+    {
+      "detail": "cited claim proved TRUE",
+      "ehash": "18959d7d93c4",
+      "evidence": "wiki://tests-test_changeset_py.md#c-34ce4a45",
+      "id": "c-1ec46389",
+      "oracle": "wiki",
+      "predicate": "wikichain:wiki://tests-test_changeset_py.md#c-34ce4a45",
+      "statement": "test_changeset.py checks that changed lines are parsed from diff hunks",
+      "verdict": "TRUE"
+    },
+    {
+      "detail": "cited claim proved TRUE",
+      "ehash": "0224892b174b",
+      "evidence": "wiki://tests-test_classification_gate_py.md#c-7cca089e",
+      "id": "c-b9e36aa0",
+      "oracle": "wiki",
+      "predicate": "wikichain:wiki://tests-test_classification_gate_py.md#c-7cca089e",
+      "statement": "the classification gate keeps restricted items out of prompts by default",
       "verdict": "TRUE"
     }
   ],
-  "graph_commit": "9fdf79637e552aed83ae127716dd5416d2b0e089",
+  "graph_commit": null,
   "marks": [],
   "mass": {
-    "gray": 6,
-    "green": 9,
+    "gray": 16,
+    "green": 0,
     "yellow": 0
   },
   "page": "subsystem-tests.md",
-  "prose_sha256": "edda75ecc670bda5f241bafe200fcbb506dfcc12232b09291d66cf528f4e63a7",
+  "prose_sha256": "4f6d56c600201b97dc9377d581cd82fea22cecbc8b904d2d7bde1ae87fcf55e4",
   "version": "pcp-1",
   "violations": []
 }

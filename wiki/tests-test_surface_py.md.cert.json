@@ -50,17 +50,46 @@
       "predicate": "defines:tests/test_surface.py;test_python_signature_moves_when_a_default_or_parameter_changes",
       "statement": "The test_python_signature_moves_when_a_default_or_parameter_changes function detects parameter changes",
       "verdict": "TRUE"
+    },
+    {
+      "detail": "test_python_signature_is_exact_and_survives_reformatting calls python_surface",
+      "ehash": "cf66fe9da373",
+      "evidence": "tests/test_surface.py:95",
+      "id": "c-848152e0",
+      "oracle": "ast",
+      "predicate": "calls:test_python_signature_is_exact_and_survives_reformatting;python_surface",
+      "statement": "test_python_signature_is_exact_and_survives_reformatting asserts fetch sig equals (url: str, *, timeout: float=1.0) -> bytes",
+      "verdict": "TRUE"
+    },
+    {
+      "detail": "test_python_surface_returns_none_on_syntax_error calls python_surface",
+      "ehash": "eefe25f92818",
+      "evidence": "tests/test_surface.py:121",
+      "id": "c-3420762e",
+      "oracle": "ast",
+      "predicate": "calls:test_python_surface_returns_none_on_syntax_error;python_surface",
+      "statement": "test_python_surface_returns_none_on_syntax_error asserts python_surface returns None on broken syntax",
+      "verdict": "TRUE"
     }
   ],
-  "graph_commit": "1a34c13ecf2ef7ce206f1ceeaeb1987fea5f8272",
-  "marks": [],
+  "graph_commit": "0f6910df6b7bf6c8cf26df0427bbb2b45197cdf5",
+  "marks": [
+    {
+      "disposition": "",
+      "family": "topology",
+      "file": "tests/test_surface.py",
+      "line": 1,
+      "reason": "reachable from auth/secret surface: tests/test_units.py",
+      "severity": "info"
+    }
+  ],
   "mass": {
-    "gray": 17,
-    "green": 18,
+    "gray": 20,
+    "green": 21,
     "yellow": 0
   },
   "page": "tests-test_surface_py.md",
-  "prose_sha256": "682f136fd8098d5cd526456893a62efc11692282fc5499be1dcaf2e61ab3a375",
+  "prose_sha256": "244d58f523156e61d3866d7ea24e0a6d8741751c313923b2cbf40d61337e4ac7",
   "version": "pcp-1",
   "violations": []
 }

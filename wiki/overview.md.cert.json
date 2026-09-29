@@ -1,59 +1,69 @@
 {
   "child_cert_hashes": {
-    "subsystem-src.md": "f658721e02630194ba9deb6fe300d84782eee124404d357fc0b9f1671ab19f3e",
-    "subsystem-tests.md": "5674858c18b550e85dc5ac75e77b6afdef52257e3e26d75e56a0221daa2486eb"
+    "subsystem-src.md": "500de47f58017ab6da6977197789390c5c98d826726f2fd4cc7ffc4a9d6235df",
+    "subsystem-tests.md": "35f88638cba9175431a7afb46a67e519d2609dfc5727a31588620373c70d0d37"
   },
   "claims": [
     {
       "detail": "cited claim proved TRUE",
-      "ehash": "f658721e0263",
-      "evidence": "wiki://subsystem-src.md#c-dadfcc3c",
-      "id": "c-1db9bb9d",
+      "ehash": "500de47f5801",
+      "evidence": "wiki://subsystem-src.md#c-7e7e28f5",
+      "id": "c-bef61711",
       "oracle": "wiki",
-      "predicate": "wikichain:wiki://subsystem-src.md#c-dadfcc3c",
-      "statement": "*isidore* helps teams understand their software by automatically creating a guide from the code.",
+      "predicate": "wikichain:wiki://subsystem-src.md#c-7e7e28f5",
+      "statement": "Each claim in the guide points to the exact line of the project it rests on, so anyone can check it.",
       "verdict": "TRUE"
     },
     {
       "detail": "cited claim proved TRUE",
-      "ehash": "f658721e0263",
-      "evidence": "wiki://subsystem-src.md#c-df631b86",
-      "id": "c-9edbd087",
+      "ehash": "500de47f5801",
+      "evidence": "wiki://subsystem-src.md#c-3db57964",
+      "id": "c-66ce7e08",
       "oracle": "wiki",
-      "predicate": "wikichain:wiki://subsystem-src.md#c-df631b86",
-      "statement": "The guide stays up to date as the code changes.",
+      "predicate": "wikichain:wiki://subsystem-src.md#c-3db57964",
+      "statement": "When the project changes, the tool works out which parts were affected, down to the individual pieces of work involved.",
       "verdict": "TRUE"
     },
     {
       "detail": "cited claim proved TRUE",
-      "ehash": "f658721e0263",
-      "evidence": "wiki://subsystem-src.md#c-12cfea4c",
-      "id": "c-7a4456d7",
+      "ehash": "500de47f5801",
+      "evidence": "wiki://subsystem-src.md#c-a6d521f7",
+      "id": "c-9fb7b7ec",
       "oracle": "wiki",
-      "predicate": "wikichain:wiki://subsystem-src.md#c-12cfea4c",
-      "statement": "*isidore* checks the code to make sure the guide is correct.",
+      "predicate": "wikichain:wiki://subsystem-src.md#c-a6d521f7",
+      "statement": "Each change is followed back to the lines it altered.",
       "verdict": "TRUE"
     },
     {
       "detail": "cited claim proved TRUE",
-      "ehash": "5674858c18b5",
-      "evidence": "wiki://subsystem-tests.md#c-aa72aa4e",
-      "id": "c-54e11540",
+      "ehash": "35f88638cba9",
+      "evidence": "wiki://subsystem-tests.md#c-b9e36aa0",
+      "id": "c-d8c750d2",
       "oracle": "wiki",
-      "predicate": "wikichain:wiki://subsystem-tests.md#c-aa72aa4e",
-      "statement": "The guide is written in a way that is easy to read and understand.",
+      "predicate": "wikichain:wiki://subsystem-tests.md#c-b9e36aa0",
+      "statement": "Items marked as restricted are left out of what is sent for writing.",
+      "verdict": "TRUE"
+    },
+    {
+      "detail": "cited claim proved TRUE",
+      "ehash": "35f88638cba9",
+      "evidence": "wiki://subsystem-tests.md#c-34aa9ef1",
+      "id": "c-c8a9c8f8",
+      "oracle": "wiki",
+      "predicate": "wikichain:wiki://subsystem-tests.md#c-34aa9ef1",
+      "statement": "A claim is marked only when the line behind it changes.",
       "verdict": "TRUE"
     }
   ],
-  "graph_commit": "9fdf79637e552aed83ae127716dd5416d2b0e089",
+  "graph_commit": null,
   "marks": [],
   "mass": {
-    "gray": 6,
-    "green": 10,
+    "gray": 5,
+    "green": 7,
     "yellow": 0
   },
   "page": "overview.md",
-  "prose_sha256": "77f8174c9a698b9412a23775c61ccb2e9f08426acda3f69083f93f402c82f1b5",
+  "prose_sha256": "88f9ce16588e0a6cdfee2ab77e8ae1bc0ff23504d1bf63800111becdf3ccef80",
   "version": "pcp-1",
   "violations": []
 }

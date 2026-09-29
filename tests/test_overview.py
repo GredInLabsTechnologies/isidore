@@ -236,3 +236,41 @@ def test_the_product_page_prefers_the_layer_directly_below_it(repo_with_module_p
     # a shorter, more defensible step than "the product is trustworthy because a test module says so".
     assert preferred and all(c["level"] == 2 for c in preferred)
     assert all(c["page"].startswith("subsystem-") for c in preferred)
+
+
+def test_the_pyramid_is_not_recompiled_when_nothing_below_it_moved(repo_with_module_page):
+    # regression (user report: "it regenerates everything from zero"): `subsystems --execute` and
+    # `overview --execute` called the model for every page on every run, changed or not.
+    root = repo_with_module_page
+    compile_subsystems(root, _nodes(), [], {}, execute=True, generator=lambda p: AREA_PAGE)
+    compile_overview(root, [], [], {}, execute=True, generator=lambda p: PAGE)
+
+    never = lambda p: pytest.fail("nothing changed: must not call the LLM")  # noqa: E731
+    again = compile_subsystems(root, _nodes(), [], {}, execute=True, generator=never)
+    assert [r.get("unchanged") for r in again if r["name"] == "src"] == [True]
+    assert compile_overview(root, [], [], {}, execute=True, generator=never).get("unchanged")
+
+    # ...and --rewrite still recompiles on request
+    calls = []
+    compile_overview(root, [], [], {}, execute=True, rewrite=True,
+                     generator=lambda p: calls.append(p) or PAGE)
+    assert len(calls) == 1
+
+
+def test_a_change_below_recompiles_the_page_above(repo_with_module_page):
+    root = repo_with_module_page
+    compile_overview(root, [], [], {}, execute=True, generator=lambda p: PAGE)
+    (root / "README.md").write_text("# A different product description\n", encoding="utf-8")
+    calls = []
+    compile_overview(root, [], [], {}, execute=True, generator=lambda p: calls.append(p) or PAGE)
+    assert len(calls) == 1
+
+
+def test_a_reshuffled_module_ranking_does_not_recompile_the_product_page(repo_with_module_page):
+    # regression: the overview's identity included its top-12 module list, so a test file growing
+    # past another pushed a new name in and a product page nothing had changed under came back dirty.
+    root = repo_with_module_page
+    compile_overview(root, _nodes(), [], {}, execute=True, generator=lambda p: PAGE)
+    other = [dict(_nodes()[0], id="n2", source_file="lib/other.py")]
+    never = lambda p: pytest.fail("only the ranking moved: must not call the LLM")  # noqa: E731
+    assert compile_overview(root, other, [], {}, execute=True, generator=never).get("unchanged")

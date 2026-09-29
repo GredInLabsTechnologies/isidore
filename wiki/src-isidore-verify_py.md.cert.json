@@ -50,9 +50,49 @@
       "predicate": "",
       "statement": "The most connected symbol is the module itself (verify.py)",
       "verdict": "UNDECIDABLE"
+    },
+    {
+      "detail": "src/isidore/verify.py imports src/isidore/pcp.py",
+      "ehash": "d7d718e12ef0",
+      "evidence": "src/isidore/verify.py:27",
+      "id": "c-05fd8950",
+      "oracle": "graph",
+      "predicate": "imports:src/isidore/verify.py;src/isidore/pcp.py",
+      "statement": "verify.py imports ORACLE_GREP from src/isidore/pcp.py",
+      "verdict": "TRUE"
+    },
+    {
+      "detail": "src/isidore/verify.py imports src/isidore/surface.py",
+      "ehash": "ba5ec51d07a4",
+      "evidence": "src/isidore/verify.py:42",
+      "id": "c-2d9f7d0a",
+      "oracle": "graph",
+      "predicate": "imports:src/isidore/verify.py;src/isidore/surface.py",
+      "statement": "verify.py imports from src/isidore/surface.py",
+      "verdict": "TRUE"
+    },
+    {
+      "detail": "src/isidore/verify.py imports src/isidore/contracts.py",
+      "ehash": "ba5ec51d07a4",
+      "evidence": "src/isidore/verify.py:42",
+      "id": "c-3eb5fca7",
+      "oracle": "graph",
+      "predicate": "imports:src/isidore/verify.py;src/isidore/contracts.py",
+      "statement": "verify.py imports from src/isidore/contracts.py",
+      "verdict": "TRUE"
+    },
+    {
+      "detail": "src/isidore/cli.py imports src/isidore/verify.py",
+      "ehash": "f62eb76cad8c",
+      "evidence": "src/isidore/cli.py:1",
+      "id": "c-beb6d886",
+      "oracle": "graph",
+      "predicate": "imports:src/isidore/cli.py;src/isidore/verify.py",
+      "statement": "cli.py imports from src/isidore/verify.py",
+      "verdict": "TRUE"
     }
   ],
-  "graph_commit": "036487e2137938f623d7cb8688fb7327ef809179",
+  "graph_commit": "0f6910df6b7bf6c8cf26df0427bbb2b45197cdf5",
   "marks": [
     {
       "disposition": "",
@@ -64,12 +104,12 @@
     }
   ],
   "mass": {
-    "gray": 7,
-    "green": 0,
-    "yellow": 15
+    "gray": 9,
+    "green": 1,
+    "yellow": 14
   },
   "page": "src-isidore-verify_py.md",
-  "prose_sha256": "86b222215b56e1854b560476780a3ffbadec44cf41f2ae8620db170a5d0e498c",
+  "prose_sha256": "54871658f4371c595eb58fae8ceb2aa9e2faf645ef05d29845925aa29e83009d",
   "version": "pcp-1",
   "violations": []
 }

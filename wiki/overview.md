@@ -1,19 +1,11 @@
-Here’s a rewritten front page for *isidore* that adheres to all the rules and avoids jargon:
-
----
-
 ## What this is
-*isidore* helps teams understand their software by automatically creating a guide from the code. Instead of manually writing or updating documentation, it reads the code and writes it for you. This saves time and keeps the guide up to date.
+Software projects need a guide that explains how they are built, and those guides go out of date the moment the work changes. This tool writes that guide for a software project and keeps it honest: every statement in it can be checked against the project itself, and the guide says so when something it claims is no longer true.
 
 ## What you can do with it
-- **Get a clear overview** of how the software works by reading the guide.
-- **Find answers quickly** without searching through files or asking others.
-- **Stay updated** as the guide refreshes when the code changes.
-- **Share knowledge** with others by giving them a reliable, always-current guide.
+- **Know that each statement is backed.** Each claim in the guide points to the exact line of the project it rests on, so anyone can check it.
+- **See what a change touched.** When the project changes, the tool works out which parts were affected, down to the individual pieces of work involved.
+- **Get a guide that updates without starting over.** Each change is followed back to the lines it altered, so only the parts of the guide that depend on them need attention.
+- **Keep private material private.** Items marked as restricted are left out of what is sent for writing, unless someone explicitly allows it.
 
 ## How the pieces fit together
-*isidore* looks at the code, picks the most important parts, and writes a guide. It checks the code to make sure the guide is correct, and only updates the guide when the code changes. This way, the guide stays useful without extra work.
-
-
-
----
+The tool first reads the project and draws a map of what exists and where. From that map it writes each page of the guide, and every claim on a page is tied to the line it came from. When the project changes, the tool compares the lines behind each claim, marks the ones that moved, and points to the pages that need a second look.

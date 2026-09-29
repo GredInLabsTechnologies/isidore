@@ -10,12 +10,14 @@ The module defines a `SurfaceSymbol` dataclass to represent symbols with fields 
 - Language-specific handlers (e.g., `_py_signature()` for Python) to extract signatures from ASTs.
 
 ## Key entry points
-- `SurfaceSymbol`: The core data structure representing a symbol's API surface.
-- `clean_sig()`: Normalizes signatures for stable comparison.
-- `_is_declaration()`: Determines if a line is a declaration rather than a call.
+- `SurfaceSymbol`: The core data structure representing a symbol's API surface, with `qualname` (identity across revisions), `kind`, `sig`, and `end_line` (`src/isidore/surface.py:88-L103`).
+- `clean_sig()`: Normalizes signatures for stable comparison — whitespace collapsed, trailing brace dropped, truncated to `MAX_SIG_CHARS` (`src/isidore/surface.py:106-L116`).
+- `_declaration_tail()`: What follows the parameter list, or `None` if parens never close — separates a definition from a call (`src/isidore/surface.py:119-L137`).
+- `_is_declaration()`: Body opens after parameters close and no arrow intervenes — rejects test-framework blocks (`src/isidore/surface.py:140-L149`).
+- `_is_public()`: Underscore convention; dunders are surface, single-underscore is not (`src/isidore/surface.py:152-L155`).
 
 ## Dependencies
-The module depends on `src/isidore/langspec.py` for language-specific rules, such as comment/string sanitization and declaration keywords. It is used by `src/isidore/whatsnew.py` to generate changelogs.
+The module depends on `src/isidore/langspec.py` for language-specific rules, such as comment/string sanitization and declaration keywords. It is used by `src/isidore/whatsnew.py` to generate changelogs and by `src/isidore/verify.py` for signature verification.
 
 ## How to change safely
 When modifying `surface.py`, focus on:
