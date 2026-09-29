@@ -37,3 +37,10 @@ pythonpath = ["src"]
 [tool.ruff]
 line-length = 110
 src = ["src", "tests"]
+
+[tool.ruff.lint]
+# Declared, not inherited: ruff 0.16 widened its default rule set, and the same tree that was clean
+# under 0.15 reported 99 errors in CI. The lint a repo passes must not depend on which ruff it met.
+# B (bugbear) is here because it catches real defects — a duplicate in BINARY_EXTS, a zip that would
+# silently truncate.
+select = ["E4", "E7", "E9", "F", "B"]

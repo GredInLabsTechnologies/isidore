@@ -221,7 +221,7 @@ def ask_knowledge(question: str, generator, offline: bool = False) -> str:
     # 2. Topic Pages
     terms = question_terms(question)
     scored = []
-    for page_name, entry in pages_state.items():
+    for page_name in pages_state:
         page = wiki_dir / page_name
         body = page.read_text(encoding="utf-8", errors="replace") if page.is_file() else ""
         score = score_text(terms, page_name) * 5 + score_text(terms, body)

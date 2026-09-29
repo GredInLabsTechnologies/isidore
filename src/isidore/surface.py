@@ -181,7 +181,7 @@ def _py_signature(node: ast.FunctionDef | ast.AsyncFunctionDef) -> str:
         parts.append(f"*{args.vararg.arg}")
     elif args.kwonlyargs:
         parts.append("*")
-    for arg, default in zip(args.kwonlyargs, args.kw_defaults):
+    for arg, default in zip(args.kwonlyargs, args.kw_defaults, strict=True):
         text = arg.arg
         if arg.annotation is not None:
             text += f": {ast.unparse(arg.annotation)}"
