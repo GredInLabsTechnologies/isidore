@@ -1,4 +1,4 @@
-# isidore wiki index · commit 0f6910df6b7bf6c8cf26df0427bbb2b45197cdf5
+# isidore wiki index · commit c0fff51567e31fdf936331ff4354c0f26bea0cfd
 # same catalog as quickstart.md, in TOON tables (cheap for agents to load)
 modules[40]{module,files,symbols,page}:
   src/isidore/connectors,9,67,src-isidore-connectors.md
@@ -7,15 +7,15 @@ modules[40]{module,files,symbols,page}:
   tests/test_pipeline.py,1,35,tests-test_pipeline_py.md
   tests/test_connectors_f4.py,1,32,tests-test_connectors_f4_py.md
   src/isidore/whatsnew.py,1,31,src-isidore-whatsnew_py.md
-  src/isidore/pyramid.py,1,28,src-isidore-pyramid_py.md
+  tests/test_incremental.py,1,30,tests-test_incremental_py.md
+  src/isidore/pyramid.py,1,29,src-isidore-pyramid_py.md
+  src/isidore/pipeline.py,1,27,src-isidore-pipeline_py.md
   tests/test_units.py,1,26,tests-test_units_py.md
   src/isidore/pcp.py,1,26,src-isidore-pcp_py.md
-  src/isidore/pipeline.py,1,26,src-isidore-pipeline_py.md
   tests/test_handoff.py,1,24,tests-test_handoff_py.md
-  tests/test_incremental.py,1,24,tests-test_incremental_py.md
   tests/test_connect_cli.py,1,23,tests-test_connect_cli_py.md
   src/isidore/graph.py,1,22,src-isidore-graph_py.md
-  tests/test_overview.py,1,20,tests-test_overview_py.md
+  tests/test_overview.py,1,21,tests-test_overview_py.md
   tests/test_recertify.py,1,20,tests-test_recertify_py.md
   tests/test_source_disclosure_gate.py,1,19,tests-test_source_disclosure_gate_py.md
   src/isidore/claims.py,1,19,src-isidore-claims_py.md
@@ -25,8 +25,10 @@ modules[40]{module,files,symbols,page}:
   tests/test_surface.py,1,17,tests-test_surface_py.md
   tests/test_connectors_f1.py,1,16,tests-test_connectors_f1_py.md
   src/isidore/surface.py,1,16,src-isidore-surface_py.md
+  tests/test_citations.py,1,15,tests-test_citations_py.md
   tests/test_langspec.py,1,15,tests-test_langspec_py.md
   src/isidore/humanpack.py,1,15,src-isidore-humanpack_py.md
+  src/isidore/citations.py,1,14,src-isidore-citations_py.md
   src/isidore/knowledge.py,1,14,src-isidore-knowledge_py.md
   tests/test_hostile_f6.py,1,13,tests-test_hostile_f6_py.md
   src/isidore/cli.py,1,13,src-isidore-cli_py.md
@@ -39,8 +41,6 @@ modules[40]{module,files,symbols,page}:
   tests/test_pcp_seams.py,1,11,tests-test_pcp_seams_py.md
   tests/test_security_prose.py,1,11,tests-test_security_prose_py.md
   src/isidore/revise.py,1,11,src-isidore-revise_py.md
-  tests/test_wiki_not_input.py,1,10,tests-test_wiki_not_input_py.md
-  src/isidore/qa.py,1,10,src-isidore-qa_py.md
 flows[0]{flow,modules,page}:
 hot_symbols[240]{module,symbol,file,line,degree}:
   src/isidore/connectors,store.py,src/isidore/connectors/store.py,1,17
@@ -79,12 +79,24 @@ hot_symbols[240]{module,symbol,file,line,degree}:
   src/isidore/whatsnew.py,DeltaEntry,src/isidore/whatsnew.py,149-L174,0
   src/isidore/whatsnew.py,SurfaceDelta,src/isidore/whatsnew.py,178-L195,0
   src/isidore/whatsnew.py,WhatsnewResult,src/isidore/whatsnew.py,199-L211,0
-  src/isidore/pyramid.py,pyramid.py,src/isidore/pyramid.py,1,35
+  tests/test_incremental.py,test_incremental.py,tests/test_incremental.py,1,36
+  tests/test_incremental.py,_git(),tests/test_incremental.py,43-L44,0
+  tests/test_incremental.py,_source(),tests/test_incremental.py,47-L51,0
+  tests/test_incremental.py,Model,tests/test_incremental.py,54-L63,0
+  tests/test_incremental.py,repo(),tests/test_incremental.py,67-L78,0
+  tests/test_incremental.py,_compile(),tests/test_incremental.py,81-L84,0
+  src/isidore/pyramid.py,pyramid.py,src/isidore/pyramid.py,1,36
   src/isidore/pyramid.py,_claim_verdict(),src/isidore/pyramid.py,40-L67,0
   src/isidore/pyramid.py,_wikichain_verifier(),src/isidore/pyramid.py,70-L88,0
   src/isidore/pyramid.py,_top_dir(),src/isidore/pyramid.py,97-L99,0
   src/isidore/pyramid.py,_seed_subsystems(),src/isidore/pyramid.py,102-L125,0
   src/isidore/pyramid.py,_norm(),src/isidore/pyramid.py,128-L129,0
+  src/isidore/pipeline.py,pipeline.py,src/isidore/pipeline.py,1,40
+  src/isidore/pipeline.py,source_destination(),src/isidore/pipeline.py,171-L193,0
+  src/isidore/pipeline.py,assert_may_send_source(),src/isidore/pipeline.py,196-L222,0
+  src/isidore/pipeline.py,PageSpec,src/isidore/pipeline.py,226-L241,0
+  src/isidore/pipeline.py,module_dep_edges(),src/isidore/pipeline.py,246-L260,0
+  src/isidore/pipeline.py,degenerate_certificate(),src/isidore/pipeline.py,270-L278,0
   tests/test_units.py,test_units.py,tests/test_units.py,1,33
   tests/test_units.py,test_toon_encode_table_quoting_and_counts(),tests/test_units.py,26-L28,0
   tests/test_units.py,test_module_of_normalizes_and_buckets(),tests/test_units.py,33-L36,0
@@ -97,24 +109,12 @@ hot_symbols[240]{module,symbol,file,line,degree}:
   src/isidore/pcp.py,parse_stored_predicate(),src/isidore/pcp.py,103-L126,0
   src/isidore/pcp.py,Verdict,src/isidore/pcp.py,130-L134,0
   src/isidore/pcp.py,undecidable(),src/isidore/pcp.py,138-L139,0
-  src/isidore/pipeline.py,pipeline.py,src/isidore/pipeline.py,1,37
-  src/isidore/pipeline.py,source_destination(),src/isidore/pipeline.py,170-L192,0
-  src/isidore/pipeline.py,assert_may_send_source(),src/isidore/pipeline.py,195-L221,0
-  src/isidore/pipeline.py,PageSpec,src/isidore/pipeline.py,225-L240,0
-  src/isidore/pipeline.py,module_dep_edges(),src/isidore/pipeline.py,245-L259,0
-  src/isidore/pipeline.py,degenerate_certificate(),src/isidore/pipeline.py,269-L277,0
   tests/test_handoff.py,test_handoff.py,tests/test_handoff.py,1,26
   tests/test_handoff.py,_Args,tests/test_handoff.py,33-L39,0
   tests/test_handoff.py,_make_repo(),tests/test_handoff.py,42-L59,0
   tests/test_handoff.py,repo(),tests/test_handoff.py,63-L67,0
   tests/test_handoff.py,_answer_all(),tests/test_handoff.py,70-L78,0
   tests/test_handoff.py,test_emit_writes_one_prompt_per_dirty_page_and_calls_nothing(),tests/test_handoff.py,83-L92,0
-  tests/test_incremental.py,test_incremental.py,tests/test_incremental.py,1,28
-  tests/test_incremental.py,_git(),tests/test_incremental.py,43-L44,0
-  tests/test_incremental.py,_source(),tests/test_incremental.py,47-L51,0
-  tests/test_incremental.py,Model,tests/test_incremental.py,54-L63,0
-  tests/test_incremental.py,repo(),tests/test_incremental.py,67-L78,0
-  tests/test_incremental.py,_compile(),tests/test_incremental.py,81-L84,0
   tests/test_connect_cli.py,test_connect_cli.py,tests/test_connect_cli.py,1,28
   tests/test_connect_cli.py,_git(),tests/test_connect_cli.py,20-L21,0
   tests/test_connect_cli.py,_make_repo(),tests/test_connect_cli.py,24-L32,0
@@ -127,7 +127,7 @@ hot_symbols[240]{module,symbol,file,line,degree}:
   src/isidore/graph.py,find_graph(),src/isidore/graph.py,61-L75,0
   src/isidore/graph.py,module_of(),src/isidore/graph.py,78-L84,0
   src/isidore/graph.py,git_listed_files(),src/isidore/graph.py,89-L109,0
-  tests/test_overview.py,test_overview.py,tests/test_overview.py,1,22
+  tests/test_overview.py,test_overview.py,tests/test_overview.py,1,23
   tests/test_overview.py,repo(),tests/test_overview.py,34-L50,0
   tests/test_overview.py,test_only_proven_claims_become_citable_facts(),tests/test_overview.py,53-L56,0
   tests/test_overview.py,test_dry_run_makes_no_call_and_reports_the_material(),tests/test_overview.py,59-L63,0
@@ -187,6 +187,12 @@ hot_symbols[240]{module,symbol,file,line,degree}:
   src/isidore/surface.py,_declaration_tail(),src/isidore/surface.py,119-L137,0
   src/isidore/surface.py,_is_declaration(),src/isidore/surface.py,140-L149,0
   src/isidore/surface.py,_is_public(),src/isidore/surface.py,152-L155,0
+  tests/test_citations.py,test_citations.py,tests/test_citations.py,1,15
+  tests/test_citations.py,repo(),tests/test_citations.py,30-L32,0
+  tests/test_citations.py,_shift(),tests/test_citations.py,35-L36,0
+  tests/test_citations.py,test_a_citation_and_its_range_follow_their_lines(),tests/test_citations.py,39-L45,0
+  tests/test_citations.py,test_the_same_code_twice_resolves_to_the_nearest_copy(),tests/test_citations.py,48-L55,0
+  tests/test_citations.py,test_changed_content_is_reported_and_left_as_written(),tests/test_citations.py,58-L63,0
   tests/test_langspec.py,test_langspec.py,tests/test_langspec.py,1,16
   tests/test_langspec.py,_names(),tests/test_langspec.py,13-L15,0
   tests/test_langspec.py,test_sanitize_blanks_comments_and_strings_preserving_lines(),tests/test_langspec.py,20-L28,0
@@ -199,6 +205,12 @@ hot_symbols[240]{module,symbol,file,line,degree}:
   src/isidore/humanpack.py,_verdict_color(),src/isidore/humanpack.py,81-L86,0
   src/isidore/humanpack.py,format_mark(),src/isidore/humanpack.py,89-L90,0
   src/isidore/humanpack.py,generate_security_banner(),src/isidore/humanpack.py,93-L99,0
+  src/isidore/citations.py,citations.py,src/isidore/citations.py,1,16
+  src/isidore/citations.py,_fingerprint(),src/isidore/citations.py,45-L60,0
+  src/isidore/citations.py,_window(),src/isidore/citations.py,63-L64,0
+  src/isidore/citations.py,_relocate(),src/isidore/citations.py,67-L78,0
+  src/isidore/citations.py,_matches(),src/isidore/citations.py,81-L86,0
+  src/isidore/citations.py,_render(),src/isidore/citations.py,89-L90,0
   src/isidore/knowledge.py,knowledge.py,src/isidore/knowledge.py,1,18
   src/isidore/knowledge.py,TopicCompileResult,src/isidore/knowledge.py,92-L110,0
   src/isidore/knowledge.py,knowledge_dir(),src/isidore/knowledge.py,113-L116,0
@@ -214,9 +226,9 @@ hot_symbols[240]{module,symbol,file,line,degree}:
   src/isidore/cli.py,cli.py,src/isidore/cli.py,1,32
   src/isidore/cli.py,_setting(),src/isidore/cli.py,32-L36,0
   src/isidore/cli.py,_cmd_scan(),src/isidore/cli.py,39-L43,0
-  src/isidore/cli.py,_cmd_compile(),src/isidore/cli.py,46-L112,0
-  src/isidore/cli.py,_cmd_ask(),src/isidore/cli.py,115-L136,0
-  src/isidore/cli.py,_cmd_suggest_flows(),src/isidore/cli.py,139-L151,0
+  src/isidore/cli.py,_cmd_compile(),src/isidore/cli.py,46-L118,0
+  src/isidore/cli.py,_cmd_ask(),src/isidore/cli.py,121-L142,0
+  src/isidore/cli.py,_cmd_suggest_flows(),src/isidore/cli.py,145-L157,0
   tests/test_connectors_f5.py,test_connectors_f5.py,tests/test_connectors_f5.py,1,17
   tests/test_connectors_f5.py,server(),tests/test_connectors_f5.py,85-L89,0
   tests/test_connectors_f5.py,_config(),tests/test_connectors_f5.py,92-L95,0
@@ -269,21 +281,9 @@ hot_symbols[240]{module,symbol,file,line,degree}:
   src/isidore/revise.py,_h(),src/isidore/revise.py,39-L40,0
   src/isidore/revise.py,_excerpt_code(),src/isidore/revise.py,43-L47,0
   src/isidore/revise.py,facts_record(),src/isidore/revise.py,50-L75,0
-  src/isidore/revise.py,facts_fingerprint(),src/isidore/revise.py,84-L89,0
-  src/isidore/revise.py,facts_delta(),src/isidore/revise.py,92-L132,0
-  tests/test_wiki_not_input.py,test_wiki_not_input.py,tests/test_wiki_not_input.py,1,12
-  tests/test_wiki_not_input.py,nested_wiki_dir(),tests/test_wiki_not_input.py,28-L33,0
-  tests/test_wiki_not_input.py,repo_with_nested_wiki(),tests/test_wiki_not_input.py,37-L53,0
-  tests/test_wiki_not_input.py,test_the_prefix_is_a_path_not_a_name(),tests/test_wiki_not_input.py,57-L65,0
-  tests/test_wiki_not_input.py,test_the_scanner_does_not_index_its_own_output(),tests/test_wiki_not_input.py,68-L73,0
-  tests/test_wiki_not_input.py,test_no_page_is_planned_for_the_wiki_itself(),tests/test_wiki_not_input.py,77-L92,0
-  src/isidore/qa.py,qa.py,src/isidore/qa.py,1,13
-  src/isidore/qa.py,question_terms(),src/isidore/qa.py,52-L53,0
-  src/isidore/qa.py,score_text(),src/isidore/qa.py,56-L58,0
-  src/isidore/qa.py,gather_claims(),src/isidore/qa.py,61-L82,0
-  src/isidore/qa.py,gather_evidence(),src/isidore/qa.py,85-L150,0
-  src/isidore/qa.py,answer_offline(),src/isidore/qa.py,156-L167,0
-module_deps[151]{from,to,links}:
+  src/isidore/revise.py,facts_fingerprint(),src/isidore/revise.py,87-L92,0
+  src/isidore/revise.py,facts_delta(),src/isidore/revise.py,95-L135,0
+module_deps[150]{from,to,links}:
   src/isidore/connectors,src/isidore/home.py,3
   src/isidore/connectors,src/isidore/claims.py,1
   tests/test_whatsnew.py,src/isidore/render.py,1
@@ -311,6 +311,13 @@ module_deps[151]{from,to,links}:
   src/isidore/whatsnew.py,src/isidore/pipeline.py,1
   src/isidore/whatsnew.py,src/isidore/render.py,1
   src/isidore/whatsnew.py,src/isidore/surface.py,1
+  tests/test_incremental.py,src/isidore/__init__.py,1
+  tests/test_incremental.py,src/isidore/pipeline.py,1
+  tests/test_incremental.py,src/isidore/graph.py,1
+  tests/test_incremental.py,src/isidore/revise.py,1
+  tests/test_incremental.py,src/isidore/claims.py,1
+  tests/test_incremental.py,src/isidore/verify.py,1
+  tests/test_incremental.py,src/isidore/llm.py,1
   src/isidore/pyramid.py,src/isidore/pcp.py,1
   src/isidore/pyramid.py,src/isidore/pipeline.py,1
   src/isidore/pyramid.py,src/isidore/render.py,1
@@ -319,14 +326,6 @@ module_deps[151]{from,to,links}:
   src/isidore/pyramid.py,src/isidore/graph.py,1
   src/isidore/pyramid.py,src/isidore/plain.py,1
   src/isidore/pyramid.py,src/isidore/llm.py,1
-  tests/test_units.py,src/isidore/findings.py,1
-  tests/test_units.py,src/isidore/graph.py,1
-  tests/test_units.py,src/isidore/llm.py,1
-  tests/test_units.py,src/isidore/pipeline.py,1
-  tests/test_units.py,src/isidore/qa.py,1
-  tests/test_units.py,src/isidore/render.py,1
-  tests/test_units.py,src/isidore/toon.py,1
-  tests/test_units.py,src/isidore/__init__.py,1
   src/isidore/pipeline.py,src/isidore/changeset.py,1
   src/isidore/pipeline.py,src/isidore/journal.py,1
   src/isidore/pipeline.py,src/isidore/claims.py,1
@@ -335,14 +334,17 @@ module_deps[151]{from,to,links}:
   src/isidore/pipeline.py,src/isidore/llm.py,1
   src/isidore/pipeline.py,src/isidore/pcp.py,1
   src/isidore/pipeline.py,src/isidore/verify.py,1
+  tests/test_units.py,src/isidore/findings.py,1
+  tests/test_units.py,src/isidore/graph.py,1
+  tests/test_units.py,src/isidore/llm.py,1
+  tests/test_units.py,src/isidore/pipeline.py,1
+  tests/test_units.py,src/isidore/qa.py,1
+  tests/test_units.py,src/isidore/render.py,1
+  tests/test_units.py,src/isidore/toon.py,1
+  tests/test_units.py,src/isidore/__init__.py,1
   tests/test_handoff.py,src/isidore/handoff.py,1
   tests/test_handoff.py,src/isidore/llm.py,1
   tests/test_handoff.py,src/isidore/cli.py,1
-  tests/test_incremental.py,src/isidore/__init__.py,1
-  tests/test_incremental.py,src/isidore/pipeline.py,1
-  tests/test_incremental.py,src/isidore/graph.py,1
-  tests/test_incremental.py,src/isidore/revise.py,1
-  tests/test_incremental.py,src/isidore/claims.py,1
   tests/test_connect_cli.py,src/isidore/connectors,3
   tests/test_connect_cli.py,src/isidore/connect.py,1
   tests/test_connect_cli.py,src/isidore/home.py,1
@@ -379,11 +381,15 @@ module_deps[151]{from,to,links}:
   tests/test_connectors_f1.py,src/isidore/connectors,4
   tests/test_connectors_f1.py,src/isidore/home.py,1
   src/isidore/surface.py,src/isidore/langspec.py,1
+  tests/test_citations.py,src/isidore/citations.py,1
   tests/test_langspec.py,src/isidore/graph.py,1
   tests/test_langspec.py,src/isidore/langspec.py,1
   src/isidore/humanpack.py,src/isidore/graph.py,1
   src/isidore/humanpack.py,src/isidore/pcp.py,1
   src/isidore/humanpack.py,src/isidore/pipeline.py,1
+  src/isidore/citations.py,src/isidore/claims.py,1
+  src/isidore/citations.py,src/isidore/pcp.py,1
+  src/isidore/citations.py,src/isidore/verify.py,1
   src/isidore/knowledge.py,src/isidore/home.py,1
   src/isidore/knowledge.py,src/isidore/llm.py,1
   src/isidore/knowledge.py,src/isidore/claims.py,1
@@ -428,10 +434,3 @@ module_deps[151]{from,to,links}:
   tests/test_pcp_seams.py,src/isidore/cli.py,1
   tests/test_security_prose.py,src/isidore/findings.py,1
   src/isidore/revise.py,src/isidore/claims.py,1
-  tests/test_wiki_not_input.py,src/isidore/graph.py,1
-  tests/test_wiki_not_input.py,src/isidore/pipeline.py,1
-  tests/test_wiki_not_input.py,src/isidore/render.py,1
-  src/isidore/qa.py,src/isidore/graph.py,1
-  src/isidore/qa.py,src/isidore/pipeline.py,1
-  src/isidore/qa.py,src/isidore/claims.py,1
-  src/isidore/qa.py,src/isidore/knowledge.py,1

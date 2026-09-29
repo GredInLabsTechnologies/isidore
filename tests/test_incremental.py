@@ -31,7 +31,7 @@ Core holds the arithmetic helpers `pkg/core.py:1`.
 Twelve small functions, each returning a constant.
 
 ## How to change safely
-Keep the return values stable.
+Keep the return values stable; the constants end at `X_100` (`pkg/core.py:149`).
 
 ```isidore-claims
 core defines alpha | pkg/core.py:1 | defines:pkg/core.py;alpha
@@ -141,7 +141,7 @@ def test_changed_code_is_revised_section_by_section(repo):
     after = (repo / "wiki" / PAGE).read_text(encoding="utf-8")
     # the sections the reply did not return are byte-identical; the returned one replaced
     for kept in ("## Purpose\nCore holds the arithmetic helpers `pkg/core.py:1`.",
-                 "## How to change safely\nKeep the return values stable."):
+                 "## How to change safely\nKeep the return values stable; the constants end at"):
         assert kept in before and kept in after
     assert "gamma now returns 99" in after and "each returning a constant" not in after
     # both old claims still anchor (their lines did not change) and ride along at 0 LLM
@@ -296,3 +296,91 @@ def test_carry_claims_skips_refuted_and_unanchored_claims(tmp_path):
                                    dict(good, id="c-4", ehash="")])
     assert rows == [{"statement": "x is one", "evidence": "m.py:1", "id": "c-1",
                      "predicate": "value:x;1"}]
+
+
+# ------------------------------------------------------------ prose citations follow the code
+
+def _with_line_inserted(at: int, text: str = "X_EXTRA = 0\n", **kw) -> str:
+    lines = _source(**kw).splitlines(keepends=True)
+    lines.insert(at, text)
+    return "".join(lines)
+
+
+def test_a_citation_follows_its_line_without_touching_the_page(repo):
+    # The known limit this closes: a section an incremental compile rightly kept used to keep its
+    # old line numbers. A line inserted among the constants — outside every excerpt, so the page's
+    # facts do not move and no call is made — shifts the cited `X_100` from :149 to :150.
+    model = Model()
+    _compile(repo, model)
+    (repo / "pkg" / "core.py").write_text(_with_line_inserted(100), encoding="utf-8")
+    _commit(repo, "one constant more, above the cited one")
+    model.prompts.clear()
+    res = _compile(repo, model)
+    assert res.dirty == [] and model.prompts == []
+    assert res.citations_moved == 1 and res.citations_stale == []
+    page = (repo / "wiki" / PAGE).read_text(encoding="utf-8")
+    assert "`X_100` (`pkg/core.py:150`)" in page and "pkg/core.py:149" not in page
+    from isidore.verify import verify_page
+    assert verify_page(repo, repo / "wiki" / PAGE)[0] is True     # the certificate followed too
+
+
+def test_a_citation_whose_line_changed_is_reported_not_guessed(repo):
+    model = Model()
+    _compile(repo, model)
+    src = _source().replace("X_100 = 100\n", "X_100 = 999\n")
+    (repo / "pkg" / "core.py").write_text(src, encoding="utf-8")
+    _commit(repo, "the cited constant changed")
+    res = _compile(repo, model)
+    assert res.citations_moved == 0
+    assert res.citations_stale == [f"{PAGE}: pkg/core.py:149"]
+    assert "pkg/core.py:149" in (repo / "wiki" / PAGE).read_text(encoding="utf-8")
+
+
+def test_a_revision_prompt_shows_the_page_with_its_citations_already_repointed(repo):
+    # Order matters: re-point first, then revise. Otherwise a NO-CHANGES reply keeps — and re-anchors
+    # — citations that drifted.
+    model = Model()
+    _compile(repo, model)
+    (repo / "pkg" / "core.py").write_text(_with_line_inserted(100, returns={"gamma": 99}),
+                                          encoding="utf-8")
+    _commit(repo, "gamma changes and a constant shifts the cited one")
+    model.prompts.clear()
+    res = _compile(repo, model)
+    assert res.revised == [PAGE]
+    assert "`pkg/core.py:150`" in model.prompts[0] and "pkg/core.py:149" not in model.prompts[0]
+    assert "`pkg/core.py:150`" in (repo / "wiki" / PAGE).read_text(encoding="utf-8")
+
+
+def test_a_graph_older_than_the_code_is_said_out_loud(repo):
+    # regression: a page recorded against a stale graph came back "changed" the next run with nothing
+    # changed — every excerpt window had been placed on old line numbers. Now the run says so.
+    import os
+    import time
+    graph = write_scan(repo)
+    old = time.time() - 60
+    os.utime(graph, (old, old))
+    res = compile_wiki(repo, graph_path=graph, min_symbols=5)
+    assert any("older than" in w and "pkg/core.py" in w for w in res.warnings)
+    assert not any("older than" in w for w in compile_wiki(
+        repo, graph_path=write_scan(repo), min_symbols=5).warnings)
+
+
+def test_a_run_stopped_at_the_provider_gate_writes_no_citation_either(repo, monkeypatch):
+    # regression, from a live round trip: citations were re-pointed on disk BEFORE the provider gate,
+    # so a run that then stopped for a missing model left pages moved and their anchors unsaved.
+    from isidore.llm import GenerationError
+    model = Model()
+    _compile(repo, model)
+    before = (repo / "wiki" / PAGE).read_text(encoding="utf-8")
+    state_before = (repo / "wiki" / ".isidore-state.json").read_text(encoding="utf-8")
+    (repo / "pkg" / "core.py").write_text(_with_line_inserted(100, returns={"gamma": 99}),
+                                          encoding="utf-8")       # a citation moves AND a page is dirty
+    _commit(repo, "shift and change")
+
+    def no_provider():
+        raise GenerationError("ISIDORE_MODEL is not set")
+    monkeypatch.setattr(pipeline, "default_generator", no_provider)
+    with pytest.raises(GenerationError):
+        compile_wiki(repo, graph_path=write_scan(repo), execute=True, min_symbols=5, max_calls=0)
+    assert (repo / "wiki" / PAGE).read_text(encoding="utf-8") == before
+    assert (repo / "wiki" / ".isidore-state.json").read_text(encoding="utf-8") == state_before

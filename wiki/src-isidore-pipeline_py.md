@@ -21,37 +21,37 @@ here is missing everywhere.
 The newest part is the disclosure gate. Compiling puts real source excerpts into a prompt, so it is a
 disclosure, and the module now asks where that disclosure is going before making it.
 `source_destination` reads the answer out of the environment, because the environment is where a
-destination actually lives (`src/isidore/pipeline.py:168`). It recognises the caller's own Claude
+destination actually lives (`src/isidore/pipeline.py:171`). It recognises the caller's own Claude
 session (`src/isidore/pipeline.py:177`), a model on this machine (`src/isidore/pipeline.py:184`), an
 endpoint held under an agreement the operator already has (`src/isidore/pipeline.py:186`), and a host
 the operator has explicitly declared fit (`src/isidore/pipeline.py:188`). Anything else comes back
 undeclared (`src/isidore/pipeline.py:190`).
 
-`assert_may_send_source` turns that classification into a decision (`src/isidore/pipeline.py:193`).
+`assert_may_send_source` turns that classification into a decision (`src/isidore/pipeline.py:196`).
 An undeclared destination raises rather than sends (`src/isidore/pipeline.py:206`), and a declared
 third party is allowed but returns a line to record (`src/isidore/pipeline.py:218`) — consent is not
 the end of it, because a disclosure nobody can see afterwards is one nobody can audit. The trust
 variable is named once (`src/isidore/pipeline.py:155`) and the endpoint lists are deliberately short:
-`LOCAL_HOSTS` covers the ways of addressing this machine (`src/isidore/pipeline.py:156`) and
+`LOCAL_HOSTS` covers the ways of addressing this machine (`src/isidore/pipeline.py:159`) and
 `TRUSTED_HOSTS` is a statement about terms rather than about quality
 (`src/isidore/pipeline.py:159`).
 
 The other loud failure in the module guards the output rather than the input.
 `degenerate_certificate` refuses to write a certificate whose violation or mark counts have run away
-(`src/isidore/pipeline.py:267`), against caps that sit in code beside it
+(`src/isidore/pipeline.py:270`), against caps that sit in code beside it
 (`src/isidore/pipeline.py:263`).
 
 ## Key entry points
 
 - `source_destination()` — classify where a compile would send the source
-  (`src/isidore/pipeline.py:168`).
+  (`src/isidore/pipeline.py:171`).
 - `assert_may_send_source(what)` — fail closed, or return the disclosure to record
-  (`src/isidore/pipeline.py:193`).
-- `PageSpec` — what one page is planned from (`src/isidore/pipeline.py:223`).
+  (`src/isidore/pipeline.py:196`).
+- `PageSpec` — what one page is planned from (`src/isidore/pipeline.py:226`).
 - `module_dep_edges(nodes, links)` — the module-level dependency edges pages are ordered by
-  (`src/isidore/pipeline.py:243`).
+  (`src/isidore/pipeline.py:246`).
 - `degenerate_certificate(cert)` — the reason a certificate must not be written, if there is one
-  (`src/isidore/pipeline.py:267`).
+  (`src/isidore/pipeline.py:270`).
 
 ## Dependencies
 

@@ -31,11 +31,11 @@ root. The names it depends on are declared once at the top rather than repeated:
 (`src/isidore/render.py:19`), the key (`src/isidore/render.py:20`), the filename
 (`src/isidore/render.py:21`) and the fallback (`src/isidore/render.py:22`).
 
-The rest of the module is rendering. `render_quickstart` (`src/isidore/render.py:66`) and
-`render_toon_index` (`src/isidore/render.py:93`) are the human and machine faces of the same
+The rest of the module is rendering. `render_quickstart` (`src/isidore/render.py:71`) and
+`render_toon_index` (`src/isidore/render.py:98`) are the human and machine faces of the same
 catalog — `index.toon` exists because TOON tables are cheaper for an agent to load than prose.
-`agents_md_block` (`src/isidore/render.py:118`) is the block written into a repo's AGENTS.md, and
-`knowledge_summary` (`src/isidore/render.py:152`) covers the knowledge home.
+`agents_md_block` (`src/isidore/render.py:123`) is the block written into a repo's AGENTS.md, and
+`knowledge_summary` (`src/isidore/render.py:157`) covers the knowledge home.
 
 ## Key entry points
 

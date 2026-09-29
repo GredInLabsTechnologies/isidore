@@ -1,5 +1,5 @@
 {
-  "commit": "0f6910df6b7bf6c8cf26df0427bbb2b45197cdf5",
+  "commit": "c0fff51567e31fdf936331ff4354c0f26bea0cfd",
   "deps": [
     [
       "src/isidore/__init__.py",
@@ -14,6 +14,21 @@
     [
       "src/isidore/changeset.py",
       "src/isidore/graph.py",
+      1
+    ],
+    [
+      "src/isidore/citations.py",
+      "src/isidore/claims.py",
+      1
+    ],
+    [
+      "src/isidore/citations.py",
+      "src/isidore/pcp.py",
+      1
+    ],
+    [
+      "src/isidore/citations.py",
+      "src/isidore/verify.py",
       1
     ],
     [
@@ -328,6 +343,11 @@
     ],
     [
       "src/isidore/pipeline.py",
+      "src/isidore/citations.py",
+      1
+    ],
+    [
+      "src/isidore/pipeline.py",
       "src/isidore/claims.py",
       1
     ],
@@ -359,6 +379,11 @@
     [
       "src/isidore/pipeline.py",
       "src/isidore/pcp.py",
+      1
+    ],
+    [
+      "src/isidore/pipeline.py",
+      "src/isidore/recertify.py",
       1
     ],
     [
@@ -612,6 +637,11 @@
       1
     ],
     [
+      "tests/test_citations.py",
+      "src/isidore/citations.py",
+      1
+    ],
+    [
       "tests/test_claims.py",
       "src/isidore/claims.py",
       1
@@ -833,12 +863,22 @@
     ],
     [
       "tests/test_incremental.py",
+      "src/isidore/llm.py",
+      1
+    ],
+    [
+      "tests/test_incremental.py",
       "src/isidore/pipeline.py",
       1
     ],
     [
       "tests/test_incremental.py",
       "src/isidore/revise.py",
+      1
+    ],
+    [
+      "tests/test_incremental.py",
+      "src/isidore/verify.py",
       1
     ],
     [
@@ -1682,10 +1722,130 @@
       "quarantined": 0,
       "retries": 0,
       "skipped": 0
+    },
+    {
+      "calls_saved": 36,
+      "commit": "c0fff51567e3",
+      "dirty": 4,
+      "generated": 4,
+      "generated_pages": [
+        "src-isidore-citations_py.md",
+        "src-isidore-revise_py.md",
+        "tests-test_citations_py.md",
+        "tests-test_incremental_py.md"
+      ],
+      "planned": 40,
+      "quarantined": 0,
+      "retries": 0,
+      "skipped": 0
+    },
+    {
+      "calls_saved": 40,
+      "commit": "c0fff51567e3",
+      "dirty": 0,
+      "generated": 0,
+      "generated_pages": [],
+      "planned": 40,
+      "quarantined": 0,
+      "retries": 0,
+      "skipped": 0
+    },
+    {
+      "calls_saved": 40,
+      "commit": "c0fff51567e3",
+      "dirty": 0,
+      "generated": 0,
+      "generated_pages": [],
+      "planned": 40,
+      "quarantined": 0,
+      "retries": 0,
+      "skipped": 0
+    },
+    {
+      "calls_saved": 40,
+      "commit": "c0fff51567e3",
+      "dirty": 0,
+      "generated": 0,
+      "generated_pages": [],
+      "planned": 40,
+      "quarantined": 0,
+      "retries": 0,
+      "skipped": 0
+    },
+    {
+      "calls_saved": 40,
+      "commit": "c0fff51567e3",
+      "dirty": 0,
+      "generated": 0,
+      "generated_pages": [],
+      "planned": 40,
+      "quarantined": 0,
+      "retries": 0,
+      "skipped": 0
+    },
+    {
+      "calls_saved": 37,
+      "commit": "c0fff51567e3",
+      "dirty": 3,
+      "generated": 3,
+      "generated_pages": [
+        "src-isidore-citations_py.md",
+        "tests-test_citations_py.md",
+        "tests-test_incremental_py.md"
+      ],
+      "planned": 40,
+      "quarantined": 0,
+      "retries": 0,
+      "skipped": 0
+    },
+    {
+      "calls_saved": 40,
+      "commit": "c0fff51567e3",
+      "dirty": 0,
+      "generated": 0,
+      "generated_pages": [],
+      "planned": 40,
+      "quarantined": 0,
+      "retries": 0,
+      "skipped": 0
+    },
+    {
+      "calls_saved": 40,
+      "commit": "c0fff51567e3",
+      "dirty": 0,
+      "generated": 0,
+      "generated_pages": [],
+      "planned": 40,
+      "quarantined": 0,
+      "retries": 0,
+      "skipped": 0
+    },
+    {
+      "calls_saved": 40,
+      "commit": "c0fff51567e3",
+      "dirty": 0,
+      "generated": 0,
+      "generated_pages": [],
+      "planned": 40,
+      "quarantined": 0,
+      "retries": 0,
+      "skipped": 0
+    },
+    {
+      "calls_saved": 40,
+      "commit": "c0fff51567e3",
+      "dirty": 0,
+      "generated": 0,
+      "generated_pages": [],
+      "planned": 40,
+      "quarantined": 0,
+      "retries": 0,
+      "skipped": 0
     }
   ],
   "pages": {
     "src-isidore-changeset_py.md": {
+      "citations": {},
       "claims": [
         {
           "ehash": "83ec2767721b",
@@ -1756,7 +1916,160 @@
       "name": "src/isidore/changeset.py",
       "quarantined": false
     },
+    "src-isidore-citations_py.md": {
+      "citations": {
+        "src/isidore/citations.py:1": "01419f7b3178:2caafe85bd26",
+        "src/isidore/citations.py:10": "bf0fc4ee4a37:fdd23d2bb1d8",
+        "src/isidore/citations.py:109": "b8f4579d6eaf:dbde4a04530f",
+        "src/isidore/citations.py:113": "66ccb3a34730:0c38a0f2fec3",
+        "src/isidore/citations.py:15": "b6c4b7f4384c:27e3b6425ebc",
+        "src/isidore/citations.py:18": "1d62a9468abc:147ef218c143",
+        "src/isidore/citations.py:23": "3d26f6068eb4:289ed2b72a20",
+        "src/isidore/citations.py:3": "18079bc77c9f:38cfef900148",
+        "src/isidore/citations.py:30": "7588a3cfd5c4:a1d0113c8f8d",
+        "src/isidore/citations.py:32": "c1b5548136f9:c6fda840ca98",
+        "src/isidore/citations.py:37": "514365f011c6:7e5ef2fd09be",
+        "src/isidore/citations.py:38": "4cfd839663d0:06ae403b2c9f",
+        "src/isidore/citations.py:39": "b6afb0f05229:973c38ff651c",
+        "src/isidore/citations.py:40": "3f473be7cfe8:06489ca38fc2",
+        "src/isidore/citations.py:45": "447d5c9ae899:317d7ee3aa6d",
+        "src/isidore/citations.py:50": "0b318c933e28:3dc6549d8ce0",
+        "src/isidore/citations.py:67": "8b114c7b3ac3:1fccf70806d9",
+        "src/isidore/citations.py:81": "ac17e7ec821e:9df8126a0ed5",
+        "src/isidore/citations.py:89": "e0fe332e2b99:b4f75cdcf57a",
+        "src/isidore/citations.py:93": "5bfb89901088:38578ac6edef",
+        "src/isidore/citations.py:99": "1f1a1d12d48c:974745d47a32"
+      },
+      "claims": [
+        {
+          "ehash": "a1d0113c8f8d",
+          "evidence": "src/isidore/citations.py:30",
+          "id": "c-bfccd286",
+          "predicate": "imports:src/isidore/citations.py;src/isidore/claims.py",
+          "statement": "citations.py reuses claims.py's hashing, normalisation and file reading",
+          "verdict": "TRUE"
+        },
+        {
+          "ehash": "06ae403b2c9f",
+          "evidence": "src/isidore/citations.py:38",
+          "id": "c-e3b26a9c",
+          "predicate": "value:_CONTEXT;3",
+          "statement": "A fingerprint spans three non-empty lines",
+          "verdict": "TRUE"
+        },
+        {
+          "ehash": "973c38ff651c",
+          "evidence": "src/isidore/citations.py:39",
+          "id": "c-4cec4f56",
+          "predicate": "value:_MIN_CHARS;3",
+          "statement": "Lines shorter than three characters are not tracked",
+          "verdict": "TRUE"
+        },
+        {
+          "ehash": "7e5ef2fd09be",
+          "evidence": "src/isidore/citations.py:37",
+          "id": "c-66cdf89c",
+          "predicate": "value:RADIUS;400",
+          "statement": "The re-pointing search reaches 400 lines either side",
+          "verdict": "TRUE"
+        },
+        {
+          "ehash": "60459035f477",
+          "evidence": "src/isidore/citations.py:85",
+          "id": "c-8c969b84",
+          "predicate": "",
+          "statement": "_matches skips citations inside code fences",
+          "verdict": "UNDECIDABLE"
+        },
+        {
+          "ehash": "23f67a634ba8",
+          "evidence": "src/isidore/citations.py:116",
+          "id": "c-795b49f3",
+          "predicate": "defines:src/isidore/citations.py;anchors_for",
+          "statement": "citations.py defines anchors_for",
+          "verdict": "TRUE"
+        },
+        {
+          "ehash": "0c38a0f2fec3",
+          "evidence": "src/isidore/citations.py:113",
+          "id": "c-8daf7469",
+          "predicate": "",
+          "statement": "A citation whose line identifies nothing is recorded as UNANCHORED, the empty string",
+          "verdict": "UNDECIDABLE"
+        },
+        {
+          "ehash": "e92c04c8e4c0",
+          "evidence": "src/isidore/citations.py:78",
+          "id": "c-90287a8c",
+          "predicate": "",
+          "statement": "_relocate falls back to the cited line alone only when it occurs exactly once in the file",
+          "verdict": "UNDECIDABLE"
+        },
+        {
+          "ehash": "1fccf70806d9",
+          "evidence": "src/isidore/citations.py:67",
+          "id": "c-12d26ea6",
+          "predicate": "defines:src/isidore/citations.py;_relocate",
+          "statement": "citations.py defines _relocate",
+          "verdict": "TRUE"
+        }
+      ],
+      "compiled_at": "2026-09-29T09:56:06Z",
+      "context_hash": "9dc5137cc07b722f0b23bb9129c3f32367af3c7b534566d401cbba57d77dad27",
+      "facts": {
+        "deps_in": [
+          "src/isidore/pipeline.py",
+          "tests/test_citations.py"
+        ],
+        "deps_out": [
+          "src/isidore/claims.py",
+          "src/isidore/pcp.py",
+          "src/isidore/verify.py"
+        ],
+        "docs": {},
+        "excerpts": {
+          "src/isidore/citations.py::_fingerprint()": "7cfc02d1f01a1c38",
+          "src/isidore/citations.py::_matches()": "0a1ada83117ab345",
+          "src/isidore/citations.py::_relocate()": "1524e4fa106dccfc",
+          "src/isidore/citations.py::_render()": "7118f53c027f878f",
+          "src/isidore/citations.py::_window()": "66b97532c1345f5d",
+          "src/isidore/citations.py::citations.py": "1edefebcbf6cf733"
+        },
+        "files": 1,
+        "kind": "module",
+        "name": "src/isidore/citations.py",
+        "symbols": 14
+      },
+      "facts_fp": "d3059c9600248bd33e7ed132f0eee49c4f9ac691f4e01880fea474cf4e32cdc5",
+      "findings": [],
+      "history": [
+        {
+          "commit": "c0fff51567e3",
+          "line_delta": 31,
+          "sections_changed": [
+            "Architecture",
+            "Dependencies",
+            "How to change safely",
+            "Key entry points",
+            "Purpose"
+          ]
+        },
+        {
+          "commit": "c0fff51567e3",
+          "line_delta": 0,
+          "sections_changed": [
+            "Architecture",
+            "Key entry points"
+          ]
+        }
+      ],
+      "kind": "module",
+      "mode": "revise",
+      "name": "src/isidore/citations.py",
+      "quarantined": false
+    },
     "src-isidore-claims_py.md": {
+      "citations": {},
       "claims": [
         {
           "ehash": "e7b4cb831799",
@@ -1883,6 +2196,9 @@
       "quarantined": false
     },
     "src-isidore-cli_py.md": {
+      "citations": {
+        "src/isidore/cli.py:128": "fb189bad22c7:e409d8b0d3f9"
+      },
       "claims": [
         {
           "ehash": "f62eb76cad8c",
@@ -2064,6 +2380,7 @@
       "quarantined": false
     },
     "src-isidore-connect_py.md": {
+      "citations": {},
       "claims": [
         {
           "ehash": "9a265d75edcb",
@@ -2178,6 +2495,7 @@
       "quarantined": false
     },
     "src-isidore-connectors.md": {
+      "citations": {},
       "claims": [
         {
           "ehash": "a556f415f250",
@@ -2340,6 +2658,15 @@
       "quarantined": false
     },
     "src-isidore-detectors_py.md": {
+      "citations": {
+        "src/isidore/detectors.py:29": "97a5edd1b174:e259d09203db",
+        "src/isidore/detectors.py:34": "1cdd19b3cd92:077587e84882",
+        "src/isidore/detectors.py:35": "0ffbbef651d9:35981ede5ecd",
+        "src/isidore/detectors.py:36": "e05022412982:95092eabbcb8",
+        "src/isidore/detectors.py:38": "427c78f7266b:40fcdf2b634f",
+        "src/isidore/detectors.py:39": "52e504749fbc:0e68af0ba76d",
+        "src/isidore/detectors.py:43": "8dc2fd4f8a4b:077587e84882"
+      },
       "claims": [
         {
           "ehash": "077587e84882",
@@ -2412,6 +2739,9 @@
       "quarantined": false
     },
     "src-isidore-findings_py.md": {
+      "citations": {
+        "src/isidore/findings.py:99": "d8333cbbbbf4:829522567135"
+      },
       "claims": [
         {
           "ehash": "87e3f6cb8856",
@@ -2549,6 +2879,7 @@
       "quarantined": false
     },
     "src-isidore-graph_py.md": {
+      "citations": {},
       "claims": [
         {
           "ehash": "021fb596db81",
@@ -2669,6 +3000,27 @@
       "quarantined": false
     },
     "src-isidore-handoff_py.md": {
+      "citations": {
+        "src/isidore/handoff.py:104": "64ed17781e38:c29d0a399032",
+        "src/isidore/handoff.py:111": "e59b6168e646:40f875dc7102",
+        "src/isidore/handoff.py:116": "6261e7e43ff3:f241ca281321",
+        "src/isidore/handoff.py:120": "a453bf43c507:c199e7d7f476",
+        "src/isidore/handoff.py:26": "f855f2c13616:0912f97311bc",
+        "src/isidore/handoff.py:28": "8d5f1c3ef009:2dcf74273b0e",
+        "src/isidore/handoff.py:47": "e71740a5d209:3987b3a1e84c",
+        "src/isidore/handoff.py:5": "b7f2d0083875:d5dbcb1dc27b",
+        "src/isidore/handoff.py:51": "c7f41df008db:c9bde861cc6f",
+        "src/isidore/handoff.py:54": "3c40f0484ae1:22c05a4f0235",
+        "src/isidore/handoff.py:57": "e965945c3741:6822630b5132",
+        "src/isidore/handoff.py:66": "68645058854a:84dd98f40bcc",
+        "src/isidore/handoff.py:7": "f2975908ef56:f137137808c7",
+        "src/isidore/handoff.py:70": "1e40b6b766d8:563e1454e4d6",
+        "src/isidore/handoff.py:77": "91e82d8b69c5:27ca25fe9c12",
+        "src/isidore/handoff.py:86": "f7e526fa2aee:15b1bbefe28a",
+        "src/isidore/handoff.py:9": "1e7e3bb1f70b:783eec3836d0",
+        "src/isidore/handoff.py:92": "0c8d8d1b7c80:d2842d0704e2",
+        "src/isidore/handoff.py:97": "bbb859590ac8:eb5f453e5823"
+      },
       "claims": [
         {
           "ehash": "6822630b5132",
@@ -2767,6 +3119,7 @@
       "quarantined": false
     },
     "src-isidore-home_py.md": {
+      "citations": {},
       "claims": [
         {
           "ehash": "ef20de3efaaf",
@@ -2879,6 +3232,19 @@
       "quarantined": false
     },
     "src-isidore-humanpack_py.md": {
+      "citations": {
+        "src/isidore/humanpack.py:1": "0dc5688c901c:26aeb924df3f",
+        "src/isidore/humanpack.py:10": "e2793297b6e9:a4a988157ce6",
+        "src/isidore/humanpack.py:102": "c0d4b4625709:6fc5cbc76ee6",
+        "src/isidore/humanpack.py:113": "d207a8864a0b:00ed4653619b",
+        "src/isidore/humanpack.py:20": "2ec4122654ab:905923120838",
+        "src/isidore/humanpack.py:21": "0b1444a616a6:c6d57b910390",
+        "src/isidore/humanpack.py:35": "6274ba8bc9c7:c63e7f7dfd86",
+        "src/isidore/humanpack.py:40": "48e7d620ed85:8c141196d8b5",
+        "src/isidore/humanpack.py:81": "88159611019c:bb9d530fdbd2",
+        "src/isidore/humanpack.py:89": "32809df699a9:ec2913318323",
+        "src/isidore/humanpack.py:93": "2e4e4a4e780b:0ac48f619bd4"
+      },
       "claims": [
         {
           "ehash": "26aeb924df3f",
@@ -2985,6 +3351,12 @@
       "quarantined": false
     },
     "src-isidore-knowledge_py.md": {
+      "citations": {
+        "src/isidore/knowledge.py:17": "9bfc9cf9977f:43a21a0807a6",
+        "src/isidore/knowledge.py:18": "6bb3420be9ee:7db0615e56a0",
+        "src/isidore/knowledge.py:19": "088a950038d1:893f5abc8b34",
+        "src/isidore/knowledge.py:92": "b64f79ba9c0c:35ec918b4efd"
+      },
       "claims": [
         {
           "ehash": "43a21a0807a6",
@@ -3108,6 +3480,7 @@
       "quarantined": true
     },
     "src-isidore-langspec_py.md": {
+      "citations": {},
       "claims": [
         {
           "ehash": "802ac45245fc",
@@ -3197,6 +3570,9 @@
       "quarantined": false
     },
     "src-isidore-pcp_py.md": {
+      "citations": {
+        "src/isidore/pcp.py:233": "444dee909f0e:0b79d6ab3f84"
+      },
       "claims": [
         {
           "ehash": "140f60d47e23",
@@ -3325,6 +3701,26 @@
       "quarantined": false
     },
     "src-isidore-pipeline_py.md": {
+      "citations": {
+        "src/isidore/pipeline.py:1": "fdfb1e2612db:dccd940a0f97",
+        "src/isidore/pipeline.py:155": "d17d88ada49d:fe6941e8864d",
+        "src/isidore/pipeline.py:159": "beb13569bc7f:47817a0a6077",
+        "src/isidore/pipeline.py:171": "cf23d6f509bd:6e16af43374c",
+        "src/isidore/pipeline.py:177": "f51aac6be61e:f45f5245fe7f",
+        "src/isidore/pipeline.py:184": "",
+        "src/isidore/pipeline.py:186": "2db4410ad78b:f0c6c50ed561",
+        "src/isidore/pipeline.py:188": "6ec8b6a75a11:60acf7befe1a",
+        "src/isidore/pipeline.py:190": "bb804e5ef0df:50f6fb9e9bc4",
+        "src/isidore/pipeline.py:196": "95f554309744:3319662a7a35",
+        "src/isidore/pipeline.py:206": "26cc4c7d4a11:139f523e5811",
+        "src/isidore/pipeline.py:218": "89cdcc463274:85f350979fac",
+        "src/isidore/pipeline.py:226": "4e17a11502c0:c4762e57a622",
+        "src/isidore/pipeline.py:246": "2b3da7d51949:5dac3ee6a72f",
+        "src/isidore/pipeline.py:263": "9df596353800:f031648033ba",
+        "src/isidore/pipeline.py:270": "a578ae99fbf3:39de4826fe9b",
+        "src/isidore/pipeline.py:3": "cb5281a88234:906171e70802",
+        "src/isidore/pipeline.py:7": "92d4bd70fa5c:16e719e7b066"
+      },
       "claims": [
         {
           "ehash": "d6680bee67b4",
@@ -3462,6 +3858,11 @@
       "quarantined": false
     },
     "src-isidore-pyramid_py.md": {
+      "citations": {
+        "src/isidore/pyramid.py:22": "f8abef40a325:c6d57b910390",
+        "src/isidore/pyramid.py:44": "40f91c4f78ca:b9fc5de6dbaf",
+        "src/isidore/pyramid.py:45": "962f2a8457e4:0a77c1792a80"
+      },
       "claims": [
         {
           "ehash": "78a0a6cc47ed",
@@ -3609,6 +4010,12 @@
       "quarantined": false
     },
     "src-isidore-qa_py.md": {
+      "citations": {
+        "src/isidore/qa.py:156": "9a7a0ad1b3c8:ceb39386c220",
+        "src/isidore/qa.py:52": "12030f0b7739:6e1cb5a0d565",
+        "src/isidore/qa.py:61": "dfaec3ecf94c:4880a61062ca",
+        "src/isidore/qa.py:85": "67f001c40c23:6126251b4e1c"
+      },
       "claims": [
         {
           "ehash": "4c7dc10ea293",
@@ -3764,6 +4171,7 @@
       "quarantined": false
     },
     "src-isidore-recertify_py.md": {
+      "citations": {},
       "claims": [
         {
           "ehash": "00437b771a7f",
@@ -3862,6 +4270,28 @@
       "quarantined": false
     },
     "src-isidore-render_py.md": {
+      "citations": {
+        "src/isidore/render.py:1": "22e27a4de00d:0396be2ae9eb",
+        "src/isidore/render.py:123": "2e0e21cffd87:6e34d139e764",
+        "src/isidore/render.py:14": "875482361344:2c7ee6ca1137",
+        "src/isidore/render.py:157": "bd4d97782d7b:48638b7934a8",
+        "src/isidore/render.py:160": "9ee64a82c6a9:7c7a599ccd13",
+        "src/isidore/render.py:161": "7af9441c69c8:a25542066609",
+        "src/isidore/render.py:167": "b64920b743fb:d043f57d18a8",
+        "src/isidore/render.py:19": "6f9ef291ce38:696f800c3329",
+        "src/isidore/render.py:20": "866140bee83a:a1b3f9e8d8ad",
+        "src/isidore/render.py:21": "b80bed79fb34:c5d6a6cb5204",
+        "src/isidore/render.py:22": "cfc17ff6227c:cf54e962a482",
+        "src/isidore/render.py:25": "0b12fedbab8e:fc08c9c23478",
+        "src/isidore/render.py:28": "3efaf82d7de8:9756da337bdd",
+        "src/isidore/render.py:3": "0e74572f8437:1f79c9c8951a",
+        "src/isidore/render.py:30": "f187da211430:082de1ab6e01",
+        "src/isidore/render.py:35": "5404dbf96882:3a2f89806f8f",
+        "src/isidore/render.py:38": "167df99252f7:279575221438",
+        "src/isidore/render.py:42": "69e570d2d4c0:cb097522090c",
+        "src/isidore/render.py:71": "f5eed5e3e9ce:85917968f609",
+        "src/isidore/render.py:98": "61cfb5ad43bf:a0efbfd4f8e5"
+      },
       "claims": [
         {
           "ehash": "fc08c9c23478",
@@ -4044,6 +4474,16 @@
       "quarantined": false
     },
     "src-isidore-revise_py.md": {
+      "citations": {
+        "src/isidore/revise.py:1": "c05e26845287:b5030e0a3277",
+        "src/isidore/revise.py:39": "8c1fe58f66de:3bc62dbc262b",
+        "src/isidore/revise.py:43": "f5ef3b9fde51:aa0e92556aa9",
+        "src/isidore/revise.py:50": "2a4d56a3fb4f:bd560bafa207",
+        "src/isidore/revise.py:81": "fbe8d880721c:31818f7ace7f",
+        "src/isidore/revise.py:84": "d50e4e873e5d:4e16f2d15356",
+        "src/isidore/revise.py:85": "",
+        "src/isidore/revise.py:91": "a4c4d2a8d098:9111f31ff38b"
+      },
       "claims": [
         {
           "ehash": "7cb5a8b14b1a",
@@ -4094,8 +4534,8 @@
           "verdict": "UNDECIDABLE"
         }
       ],
-      "compiled_at": "2026-09-29T04:12:56Z",
-      "context_hash": "0d4680581bf797070230cac6a80a279c9e02bb0584d7a4966ad19580e357cac3",
+      "compiled_at": "2026-09-29T09:43:35Z",
+      "context_hash": "4995bad4bba843b0069d6aa79a675142a36d439f017e93d9cca890d751ef5adf",
       "facts": {
         "deps_in": [
           "src/isidore/pipeline.py",
@@ -4108,8 +4548,8 @@
         "excerpts": {
           "src/isidore/revise.py::_excerpt_code()": "160bd94811492b5d",
           "src/isidore/revise.py::_h()": "d4ac6ea05057d5f4",
-          "src/isidore/revise.py::facts_delta()": "c99749199e0a529d",
-          "src/isidore/revise.py::facts_fingerprint()": "d9ff83933559652e",
+          "src/isidore/revise.py::facts_delta()": "a84d38519e0d6db0",
+          "src/isidore/revise.py::facts_fingerprint()": "a44ee7c92a96e505",
           "src/isidore/revise.py::facts_record()": "9f092f301d15902d",
           "src/isidore/revise.py::revise.py": "2328fa799c04f985"
         },
@@ -4118,7 +4558,7 @@
         "name": "src/isidore/revise.py",
         "symbols": 11
       },
-      "facts_fp": "89adb69ccd25047a51a70bc1bbc08d673cbf431244c4f2c04ea2cab7a3cbe7b7",
+      "facts_fp": "09dcff71dcca6c73ea43c5600b56b00805eda891123dfe3fdb8b6b601e25c094",
       "findings": [],
       "history": [
         {
@@ -4156,6 +4596,13 @@
       "quarantined": false
     },
     "src-isidore-surface_py.md": {
+      "citations": {
+        "src/isidore/surface.py:106": "e876c3684269:6e7d9b3f76ef",
+        "src/isidore/surface.py:119": "e632725478b1:1a210a90de99",
+        "src/isidore/surface.py:140": "789b0ea2d3c7:7264bac51424",
+        "src/isidore/surface.py:152": "2f95f2a5c389:32e4d3d695bd",
+        "src/isidore/surface.py:88": "a5bd96eed53d:eeb0efde5e8f"
+      },
       "claims": [
         {
           "ehash": "9d4920c93459",
@@ -4288,6 +4735,10 @@
       "quarantined": false
     },
     "src-isidore-verify_py.md": {
+      "citations": {
+        "src/isidore/verify.py:19": "0e64b7b98e70:5b46d7049f79",
+        "src/isidore/verify.py:20": "fc0484b029c8:c6d57b910390"
+      },
       "claims": [
         {
           "ehash": "b1bd38130168",
@@ -4449,6 +4900,14 @@
       "quarantined": false
     },
     "src-isidore-whatsnew_py.md": {
+      "citations": {
+        "src/isidore/whatsnew.py:120": "20726acd1d10:63541ff593d8",
+        "src/isidore/whatsnew.py:131": "5bf75e3fca8c:96e5e8aef923",
+        "src/isidore/whatsnew.py:199": "84d936d8e62f:e8926d486fb6",
+        "src/isidore/whatsnew.py:216": "ea9010b26b07:c78c45088024",
+        "src/isidore/whatsnew.py:78": "8635bb1c447a:af55441dd26f",
+        "src/isidore/whatsnew.py:79": "c1f3f863f984:1d7f6b8553c5"
+      },
       "claims": [
         {
           "ehash": "8d601f16147f",
@@ -4593,6 +5052,9 @@
       "quarantined": false
     },
     "tests-fixtures-pcp.md": {
+      "citations": {
+        "tests/fixtures/pcp/repo/svc/auth.py:23": "88b13b05176e:88b13b05176e"
+      },
       "claims": [
         {
           "ehash": "0f4f56be82b1",
@@ -4673,6 +5135,7 @@
       "quarantined": false
     },
     "tests-test_changeset_py.md": {
+      "citations": {},
       "claims": [
         {
           "ehash": "1d0b905d13c7",
@@ -4775,7 +5238,121 @@
       "name": "tests/test_changeset.py",
       "quarantined": false
     },
+    "tests-test_citations_py.md": {
+      "citations": {
+        "tests/test_citations.py:1": "a766ae7feafd:328ac4b22e33",
+        "tests/test_citations.py:14": "d34aaea0f613:2aaff139123c",
+        "tests/test_citations.py:16": "bfca10da16b3:8a34e6e9e4b6",
+        "tests/test_citations.py:3": "f4f2f8990723:662dba9c36b4",
+        "tests/test_citations.py:30": "6532962be188:8687d7ad6238",
+        "tests/test_citations.py:35": "d9fdfb915f17:fd995961f643",
+        "tests/test_citations.py:39": "8404b9d1f580:432a2006bf1d",
+        "tests/test_citations.py:48": "0c99a820844a:7ea14afc4620",
+        "tests/test_citations.py:5": "87a2894ab047:0dba699be883",
+        "tests/test_citations.py:58": "df0028fcf465:dbcc62e37231",
+        "tests/test_citations.py:66": "4dc7c71de828:c3521e5f2168",
+        "tests/test_citations.py:79": "4809c0ea984d:a05863e334c4"
+      },
+      "claims": [
+        {
+          "ehash": "2aaff139123c",
+          "evidence": "tests/test_citations.py:14",
+          "id": "c-4e2a5e06",
+          "predicate": "imports:tests/test_citations.py;src/isidore/citations.py",
+          "statement": "The tests import anchors_for, migrate_by_symbol and repoint from citations.py",
+          "verdict": "TRUE"
+        },
+        {
+          "ehash": "72adc9517ecc",
+          "evidence": "tests/test_citations.py:31",
+          "id": "c-8251ff68",
+          "predicate": "",
+          "statement": "The repo fixture writes SRC to a temporary directory",
+          "verdict": "UNDECIDABLE"
+        },
+        {
+          "ehash": "9b287bfc5220",
+          "evidence": "tests/test_citations.py:36",
+          "id": "c-f4bad1a9",
+          "predicate": "defines:tests/test_citations.py;_shift",
+          "statement": "_shift pads the module with n lines on top",
+          "verdict": "TRUE"
+        },
+        {
+          "ehash": "bb1b0d055373",
+          "evidence": "tests/test_citations.py:63",
+          "id": "c-c4079d99",
+          "predicate": "",
+          "statement": "A changed cited line is reported stale and left as written",
+          "verdict": "UNDECIDABLE"
+        },
+        {
+          "ehash": "9a4922d93545",
+          "evidence": "tests/test_citations.py:69",
+          "id": "c-d23f9419",
+          "predicate": "",
+          "statement": "A blank-line citation is recorded with an empty fingerprint",
+          "verdict": "UNDECIDABLE"
+        },
+        {
+          "ehash": "7fafe7d7010b",
+          "evidence": "tests/test_citations.py:70",
+          "id": "c-295e6870",
+          "predicate": "",
+          "statement": "The fence and the missing file are not recorded at all",
+          "verdict": "UNDECIDABLE"
+        }
+      ],
+      "compiled_at": "2026-09-29T09:56:06Z",
+      "context_hash": "a4a7053f81318af9dac00fc78d6e451dfbdd49c539f6de166124777b7387a483",
+      "facts": {
+        "deps_in": [],
+        "deps_out": [
+          "src/isidore/citations.py"
+        ],
+        "docs": {},
+        "excerpts": {
+          "tests/test_citations.py::_shift()": "df4c229bb267a4aa",
+          "tests/test_citations.py::repo()": "1a371e3cd2c86c96",
+          "tests/test_citations.py::test_a_citation_and_its_range_follow_their_lines()": "38e80b860590f63d",
+          "tests/test_citations.py::test_changed_content_is_reported_and_left_as_written()": "7021f6c53638dcf9",
+          "tests/test_citations.py::test_citations.py": "daa01431601f6d8d",
+          "tests/test_citations.py::test_the_same_code_twice_resolves_to_the_nearest_copy()": "786c0be35fd0b02e"
+        },
+        "files": 1,
+        "kind": "module",
+        "name": "tests/test_citations.py",
+        "symbols": 15
+      },
+      "facts_fp": "b0e68fa2d6fa1fe8dbd85c57044d45bb15e76d0dff33c1c70b4a3b5d35651f86",
+      "findings": [],
+      "history": [
+        {
+          "commit": "c0fff51567e3",
+          "line_delta": 31,
+          "sections_changed": [
+            "Architecture",
+            "Dependencies",
+            "How to change safely",
+            "Key entry points",
+            "Purpose"
+          ]
+        },
+        {
+          "commit": "c0fff51567e3",
+          "line_delta": 0,
+          "sections_changed": [
+            "Architecture"
+          ]
+        }
+      ],
+      "kind": "module",
+      "mode": "revise",
+      "name": "tests/test_citations.py",
+      "quarantined": false
+    },
     "tests-test_claims_py.md": {
+      "citations": {},
       "claims": [
         {
           "ehash": "48ee2fb383bc",
@@ -4888,6 +5465,7 @@
       "quarantined": false
     },
     "tests-test_classification_gate_py.md": {
+      "citations": {},
       "claims": [
         {
           "ehash": "d0ed692fe9bf",
@@ -4981,6 +5559,11 @@
       "quarantined": false
     },
     "tests-test_connect_cli_py.md": {
+      "citations": {
+        "tests/test_connect_cli.py:66": "cded813dd202:dc921c07afc9",
+        "tests/test_connect_cli.py:70": "0f004158a230:d642fb897cea",
+        "tests/test_connect_cli.py:75": "80534809fd47:413991e0f884"
+      },
       "claims": [
         {
           "ehash": "39c89c1379ef",
@@ -5055,6 +5638,7 @@
       "quarantined": false
     },
     "tests-test_connectors_f1_py.md": {
+      "citations": {},
       "claims": [
         {
           "ehash": "b611ed236258",
@@ -5202,6 +5786,9 @@
       "quarantined": false
     },
     "tests-test_connectors_f4_py.md": {
+      "citations": {
+        "tests/test_connectors_f4.py:291": "e24af42f6cf6:a6cd35e1b603"
+      },
       "claims": [
         {
           "ehash": "b115562af28c",
@@ -5307,6 +5894,10 @@
       "quarantined": false
     },
     "tests-test_connectors_f5_py.md": {
+      "citations": {
+        "tests/test_connectors_f5.py:20": "1656c54feba4:1cb903b24efe",
+        "tests/test_connectors_f5.py:22": "edc798129b41:db281de2e463"
+      },
       "claims": [
         {
           "ehash": "e997d341d5f9",
@@ -5412,6 +6003,9 @@
       "quarantined": false
     },
     "tests-test_detectors_py.md": {
+      "citations": {
+        "tests/test_detectors.py:22": "25e8f3a9964f:4761db950837"
+      },
       "claims": [
         {
           "ehash": "1be60d251ae9",
@@ -5508,6 +6102,24 @@
       "quarantined": false
     },
     "tests-test_handoff_py.md": {
+      "citations": {
+        "tests/test_handoff.py:17": "8ff8db2fdb6a:17c58eb6eaf1",
+        "tests/test_handoff.py:28": "ab0f9d549235:1cc71821b224",
+        "tests/test_handoff.py:30": "42e34d38c4d2:e8a332baa1f6",
+        "tests/test_handoff.py:34": "810a34b5438b:7e6d583ce3ef",
+        "tests/test_handoff.py:4": "fc76ff656e0b:f1028a9707b0",
+        "tests/test_handoff.py:42": "268b5a7e3c4b:d2327ab9445f",
+        "tests/test_handoff.py:43": "2e15f2aa0859:1e1336e52707",
+        "tests/test_handoff.py:57": "768891855a5d:8e2c0a97b254",
+        "tests/test_handoff.py:63": "2bd75703e312:c5fc8f39deaf",
+        "tests/test_handoff.py:64": "628a80235702:c9c23215a733",
+        "tests/test_handoff.py:65": "c42823bdd63b:c1beb0900688",
+        "tests/test_handoff.py:7": "b489221e588a:debbc4f093b4",
+        "tests/test_handoff.py:70": "5a489d089cd2:bc51e6b95bec",
+        "tests/test_handoff.py:71": "19fb7af4be38:c2a89c60c1d2",
+        "tests/test_handoff.py:75": "ba0d079b15fb:e2b765d33ae1",
+        "tests/test_handoff.py:83": "bca18a53d28d:091ba782ff66"
+      },
       "claims": [
         {
           "ehash": "c1beb0900688",
@@ -5609,6 +6221,7 @@
       "quarantined": false
     },
     "tests-test_hostile_f6_py.md": {
+      "citations": {},
       "claims": [
         {
           "ehash": "399841f53738",
@@ -5719,6 +6332,7 @@
       "quarantined": false
     },
     "tests-test_impact_py.md": {
+      "citations": {},
       "claims": [
         {
           "ehash": "3db03487082b",
@@ -5766,6 +6380,22 @@
       "quarantined": false
     },
     "tests-test_incremental_py.md": {
+      "citations": {
+        "tests/test_incremental.py:1": "7431973502e8:c5f7246e9149",
+        "tests/test_incremental.py:18": "f4aaae9016f0:0428606be44f",
+        "tests/test_incremental.py:19": "f27763ea4f13:05a862b3a961",
+        "tests/test_incremental.py:20": "1f702b2f0ecc:17fe66c7be64",
+        "tests/test_incremental.py:21": "8c17575de93c:5f2252569e1c",
+        "tests/test_incremental.py:23": "28cde2268a79:c9a461cda86f",
+        "tests/test_incremental.py:248": "305201d839b4:402a4edd0be5",
+        "tests/test_incremental.py:25": "907b5bd425bc:6f85997ccd7e",
+        "tests/test_incremental.py:27": "7b8e056ae010:b4d0c7fa6593",
+        "tests/test_incremental.py:34": "1081b2962b9f:d89ec69bf292",
+        "tests/test_incremental.py:47": "ed8a5d1f7dd6:2f3965a9a54b",
+        "tests/test_incremental.py:54": "c2c4d99f6fa3:8760f8b64123",
+        "tests/test_incremental.py:67": "a1fcf3b19ce9:5df5b58927e8",
+        "tests/test_incremental.py:8": "8fcf0f4a22e7:d3f7785bbe60"
+      },
       "claims": [
         {
           "ehash": "f07f4ae6acd1",
@@ -5808,32 +6438,34 @@
           "verdict": "TRUE"
         }
       ],
-      "compiled_at": "2026-09-29T04:12:57Z",
-      "context_hash": "2f6fced44bd35cadaf838a9ef69ee3fb728e8f8a1cf3878c7d189ea667bc660b",
+      "compiled_at": "2026-09-29T09:56:06Z",
+      "context_hash": "9a1cd75d85aa1c21255408a2563600eccc41e3eb1f723418120e2ffe55ca1f98",
       "facts": {
         "deps_in": [],
         "deps_out": [
           "src/isidore/__init__.py",
           "src/isidore/claims.py",
           "src/isidore/graph.py",
+          "src/isidore/llm.py",
           "src/isidore/pipeline.py",
-          "src/isidore/revise.py"
+          "src/isidore/revise.py",
+          "src/isidore/verify.py"
         ],
         "docs": {},
         "excerpts": {
-          "tests/test_incremental.py::Model": "9ceb9c16fc25ddae",
+          "tests/test_incremental.py::Model": "79e0434fffe3cd51",
           "tests/test_incremental.py::_compile()": "64ad5d686dcf4b6c",
-          "tests/test_incremental.py::_git()": "b807c0ad59ee496c",
-          "tests/test_incremental.py::_source()": "4d7603616ff8de72",
+          "tests/test_incremental.py::_git()": "658ef899c9f01b2e",
+          "tests/test_incremental.py::_source()": "e1de4ccb8d0f0d0a",
           "tests/test_incremental.py::repo()": "8d852c4f95775db9",
           "tests/test_incremental.py::test_incremental.py": "fc0ca27c744a7b8c"
         },
         "files": 1,
         "kind": "module",
         "name": "tests/test_incremental.py",
-        "symbols": 24
+        "symbols": 30
       },
-      "facts_fp": "12c610c9a45f92ba454dbb3e5c07428994cf5a428c1169f5a2f605a872dabb9d",
+      "facts_fp": "e618c9dff733fb5baa3e460cb5671b30127a1b9bc370b4a88057fb3da63a8fbd",
       "findings": [],
       "history": [
         {
@@ -5856,6 +6488,21 @@
             "Dependencies",
             "Key entry points"
           ]
+        },
+        {
+          "commit": "c0fff51567e3",
+          "line_delta": 1,
+          "sections_changed": [
+            "Architecture",
+            "Dependencies"
+          ]
+        },
+        {
+          "commit": "c0fff51567e3",
+          "line_delta": 1,
+          "sections_changed": [
+            "Dependencies"
+          ]
         }
       ],
       "kind": "module",
@@ -5864,6 +6511,7 @@
       "quarantined": false
     },
     "tests-test_langspec_oracle_py.md": {
+      "citations": {},
       "claims": [
         {
           "ehash": "e203312e61de",
@@ -5965,6 +6613,7 @@
       "quarantined": false
     },
     "tests-test_langspec_py.md": {
+      "citations": {},
       "claims": [
         {
           "ehash": "ef548ba122ce",
@@ -6034,6 +6683,7 @@
       "quarantined": false
     },
     "tests-test_llms_txt_py.md": {
+      "citations": {},
       "claims": [
         {
           "ehash": "994efd7625f5",
@@ -6121,6 +6771,7 @@
       "quarantined": false
     },
     "tests-test_mcp_barrier_py.md": {
+      "citations": {},
       "claims": [
         {
           "ehash": "c940e1850036",
@@ -6168,6 +6819,16 @@
       "quarantined": false
     },
     "tests-test_overview_py.md": {
+      "citations": {
+        "tests/test_overview.py:53": "454c8a138c6c:9d5092f1da05",
+        "tests/test_overview.py:59": "56a4b6dd8916:6d592405d993",
+        "tests/test_overview.py:66": "cd139e709624:ec6bc2f54fef",
+        "tests/test_overview.py:8": "a0d9a3cea284:da4730dd1614",
+        "tests/test_overview.py:82": "96287f334ac8:9633d5b88c77",
+        "tests/test_overview.py:9": "98500adce39c:068c777d9c9a",
+        "tests/test_overview.py:92": "33861d993d0a:a7dfa49c54a2",
+        "tests/test_overview.py:99": "9466ccd650a3:77c4af5b1ee3"
+      },
       "claims": [
         {
           "ehash": "3c779363b8e8",
@@ -6329,6 +6990,7 @@
       "quarantined": false
     },
     "tests-test_pcp_pipeline_py.md": {
+      "citations": {},
       "claims": [
         {
           "ehash": "0d9776ccb828",
@@ -6384,6 +7046,18 @@
       "quarantined": false
     },
     "tests-test_pcp_seams_py.md": {
+      "citations": {
+        "tests/test_pcp_seams.py:12": "84dddca8c442:60f58a70e5c4",
+        "tests/test_pcp_seams.py:13": "3179d6837daa:bb8ecf737644",
+        "tests/test_pcp_seams.py:36": "a31514b264f8:f2d4efdb85bc",
+        "tests/test_pcp_seams.py:42": "5d5cd756c037:08036236f822",
+        "tests/test_pcp_seams.py:57": "77c7b6ee7210:62585bea45e1",
+        "tests/test_pcp_seams.py:62": "d342bad491fa:d50c4722b9a4",
+        "tests/test_pcp_seams.py:77": "bf853bb57fac:c1a6d26c2ef3",
+        "tests/test_pcp_seams.py:83": "c4423d8b33cc:e4c60d884381",
+        "tests/test_pcp_seams.py:88": "d2a2726dd741:d164c6bc681f",
+        "tests/test_pcp_seams.py:95": "1834eb8cff65:ce138b19e6ef"
+      },
       "claims": [
         {
           "ehash": "0f534ef449cd",
@@ -6558,6 +7232,19 @@
       "quarantined": false
     },
     "tests-test_pipeline_py.md": {
+      "citations": {
+        "tests/test_pipeline.py:10": "323ec6999eb7:5fd2e084f6f0",
+        "tests/test_pipeline.py:21": "20b106910bf5:1c671ac15231",
+        "tests/test_pipeline.py:26": "fbc382707aef:9fc4d16541a3",
+        "tests/test_pipeline.py:31": "433d90e6deaa:966d6921bb8b",
+        "tests/test_pipeline.py:35": "5c99f2fe3d19:0164cd6d162e",
+        "tests/test_pipeline.py:59": "6566f576e3c0:6b6b7479841e",
+        "tests/test_pipeline.py:64": "ad3f6229a856:f6413d2e98e3",
+        "tests/test_pipeline.py:70": "f5f3dad0bb56:68c72366c749",
+        "tests/test_pipeline.py:81": "7caa9cadcb14:be6845932f86",
+        "tests/test_pipeline.py:88": "958cd6757f07:bb9cebf77fa8",
+        "tests/test_pipeline.py:9": "b3c5bb65e935:1cc71821b224"
+      },
       "claims": [
         {
           "ehash": "68c72366c749",
@@ -6664,6 +7351,7 @@
       "quarantined": false
     },
     "tests-test_plain_py.md": {
+      "citations": {},
       "claims": [
         {
           "ehash": "644dd1c70598",
@@ -6714,6 +7402,7 @@
       "quarantined": false
     },
     "tests-test_pyramid_py.md": {
+      "citations": {},
       "claims": [
         {
           "ehash": "43f9968d0dad",
@@ -6793,6 +7482,18 @@
       "quarantined": false
     },
     "tests-test_recertify_py.md": {
+      "citations": {
+        "tests/test_recertify.py:11": "663cc4a8fd8b:6d1712c7e658",
+        "tests/test_recertify.py:12": "dc940cf19f6d:bb77c768dd8c",
+        "tests/test_recertify.py:13": "a028843a2f3e:dead7120b3df",
+        "tests/test_recertify.py:18": "1573e09ef804:c7d6b88eb0b0",
+        "tests/test_recertify.py:31": "eb6bc439669b:1683882d438b",
+        "tests/test_recertify.py:39": "42dbc9e4b8a3:8c48e90ca22d",
+        "tests/test_recertify.py:46": "930ab083e54a:0952f0ae609d",
+        "tests/test_recertify.py:60": "2e72fb490404:dd386c33ee9c",
+        "tests/test_recertify.py:68": "9220fc48114d:6eac7000a1bd",
+        "tests/test_recertify.py:78": "ccabf6d8f3fc:452110425e88"
+      },
       "claims": [
         {
           "ehash": "e2ca60c588de",
@@ -6940,6 +7641,11 @@
       "quarantined": false
     },
     "tests-test_reconcile_py.md": {
+      "citations": {
+        "tests/test_reconcile.py:46": "d91ac2f170bc:2d227f523a8a",
+        "tests/test_reconcile.py:63": "000446b47ca8:2d227f523a8a",
+        "tests/test_reconcile.py:73": "3dabfcd94b6e:be754c1074ea"
+      },
       "claims": [
         {
           "ehash": "a6284e6d3d43",
@@ -7012,6 +7718,7 @@
       "quarantined": false
     },
     "tests-test_residue_py.md": {
+      "citations": {},
       "claims": [
         {
           "ehash": "7bcb3c4645b4",
@@ -7099,6 +7806,20 @@
       "quarantined": false
     },
     "tests-test_security_prose_py.md": {
+      "citations": {
+        "tests/test_security_prose.py:21": "d5a07aac0630:238c568b4d9b",
+        "tests/test_security_prose.py:25": "608e4f56568c:4127acecf965",
+        "tests/test_security_prose.py:29": "322ab841b793:49292e8fbc72",
+        "tests/test_security_prose.py:38": "9fbbd00b6774:5c34dfd57c62",
+        "tests/test_security_prose.py:45": "db081d8be7fc:93b7791d19e1",
+        "tests/test_security_prose.py:51": "018917cd8dab:faf73b92d7f5",
+        "tests/test_security_prose.py:58": "569f933c2baf:99967fc5302a",
+        "tests/test_security_prose.py:66": "d6fc22ad6149:8f3e143b6d5d",
+        "tests/test_security_prose.py:75": "944f292af32f:ac1820083c84",
+        "tests/test_security_prose.py:79": "b20e54dae941:7f5ed96edc70",
+        "tests/test_security_prose.py:85": "ee80b6a7df43:c867bec45796",
+        "tests/test_security_prose.py:9": "a7aee389ff1f:f12079c754b8"
+      },
       "claims": [
         {
           "ehash": "bf12751d5371",
@@ -7284,6 +8005,22 @@
       "quarantined": false
     },
     "tests-test_source_disclosure_gate_py.md": {
+      "citations": {
+        "tests/test_source_disclosure_gate.py:1": "5fb295c8c2b5:c3efd5d2452e",
+        "tests/test_source_disclosure_gate.py:114": "09337c912ea5:213ee4509796",
+        "tests/test_source_disclosure_gate.py:18": "96b541bbad0d:1cc71821b224",
+        "tests/test_source_disclosure_gate.py:19": "b68dc35f21db:5fd2e084f6f0",
+        "tests/test_source_disclosure_gate.py:34": "24e4fcfbeda4:ef0c3b837882",
+        "tests/test_source_disclosure_gate.py:50": "98879c59b610:1d316e385265",
+        "tests/test_source_disclosure_gate.py:56": "e38e7ee3df64:f6413d2e98e3",
+        "tests/test_source_disclosure_gate.py:62": "a0ce891f3380:f1b163c968c5",
+        "tests/test_source_disclosure_gate.py:70": "5c1191cf8466:b2e75bd747af",
+        "tests/test_source_disclosure_gate.py:75": "dce6e5817a79:5018b187f487",
+        "tests/test_source_disclosure_gate.py:8": "ae474ee9f7be:524329f8efaa",
+        "tests/test_source_disclosure_gate.py:81": "d3b7e83297b0:5fee8be902dc",
+        "tests/test_source_disclosure_gate.py:86": "f38cb10b746b:e364727f6fb1",
+        "tests/test_source_disclosure_gate.py:94": "5a3f2e5d3366:071c4d181cc5"
+      },
       "claims": [
         {
           "ehash": "e69907660e45",
@@ -7340,6 +8077,17 @@
       "quarantined": false
     },
     "tests-test_surface_py.md": {
+      "citations": {
+        "tests/test_surface.py:104": "71c467a7b75e:81aa133d3353",
+        "tests/test_surface.py:112": "96abcc5bf31a:da0184963aba",
+        "tests/test_surface.py:119": "acd52cca7acc:9ba933e2ee00",
+        "tests/test_surface.py:124": "2457fec1ca08:0b19350bdaae",
+        "tests/test_surface.py:18": "3bec87db150d:3efda82a4373",
+        "tests/test_surface.py:5": "0c72e142f7e6:b9c8a35148a2",
+        "tests/test_surface.py:64": "a88f4fde1b1a:d8ba66cf2794",
+        "tests/test_surface.py:79": "482591493ecd:c9facc6a62a2",
+        "tests/test_surface.py:92": "4f15637f31b9:69fe24ffa7bc"
+      },
       "claims": [
         {
           "ehash": "768a285a689e",
@@ -7460,6 +8208,23 @@
       "quarantined": false
     },
     "tests-test_units_py.md": {
+      "citations": {
+        "tests/test_units.py:16": "905d14a19c8d:7702b939f411",
+        "tests/test_units.py:17": "266ee542e41b:629d18c0844e",
+        "tests/test_units.py:18": "ce21fb2c26a2:32b6a1392381",
+        "tests/test_units.py:19": "1ec8c742d71d:4cdff1c7bdd8",
+        "tests/test_units.py:20": "48651d63c528:b479a38877cc",
+        "tests/test_units.py:21": "344f32d61933:3209ea8a84f2",
+        "tests/test_units.py:26": "97adb71dc754:7e91cbd5b207",
+        "tests/test_units.py:302": "f8390501ca46:ab6e965c6b1a",
+        "tests/test_units.py:33": "f01266546d88:fbdd7a2a2f0a",
+        "tests/test_units.py:39": "7789c1903626:eea8bdf9e535",
+        "tests/test_units.py:58": "71b2ff212954:ff1973ec12e5",
+        "tests/test_units.py:64": "da702118220f:38fc5620fcee",
+        "tests/test_units.py:72": "529daee4acfe:f053b0d7ef80",
+        "tests/test_units.py:8": "59022917ff3b:f12079c754b8",
+        "tests/test_units.py:82": "8ebcc0cc7c7e:90daaaa83a75"
+      },
       "claims": [
         {
           "ehash": "eff4ffd7611f",
@@ -7528,6 +8293,18 @@
       "quarantined": false
     },
     "tests-test_verify_py.md": {
+      "citations": {
+        "tests/test_verify.py:10": "7bb5eab842a3:67c32abd375d",
+        "tests/test_verify.py:16": "ea2b4db9109a:55e731282a08",
+        "tests/test_verify.py:21": "d937977ab95f:bea4224f1ef8",
+        "tests/test_verify.py:28": "040bf275c40d:1eac993fac98",
+        "tests/test_verify.py:35": "75cfa28d96c7:7b01f59cf8f4",
+        "tests/test_verify.py:54": "289d112f1a46:f073b2cb30eb",
+        "tests/test_verify.py:68": "217a58bb7bec:34197f908739",
+        "tests/test_verify.py:7": "6459bc5cea62:e49c1017929a",
+        "tests/test_verify.py:8": "ce8eb04fbe76:50da5c391647",
+        "tests/test_verify.py:9": "e6150c43e9be:be77316d8b3c"
+      },
       "claims": [
         {
           "ehash": "8228ecfee182",
@@ -7639,6 +8416,18 @@
       "quarantined": false
     },
     "tests-test_whatsnew_py.md": {
+      "citations": {
+        "tests/test_whatsnew.py:105": "1372e33f6d79:2553035d778b",
+        "tests/test_whatsnew.py:11": "692ee07fb5cd:bc0a6906f0b2",
+        "tests/test_whatsnew.py:12": "707eb6de74d2:8728ed161e04",
+        "tests/test_whatsnew.py:124": "ea99a0879eab:a16920d7b1ef",
+        "tests/test_whatsnew.py:132": "cb738c7b0db8:7efb55bfabdc",
+        "tests/test_whatsnew.py:141": "2cb0c49ef533:52c20aded33d",
+        "tests/test_whatsnew.py:147": "4eddb356ec7f:b9a2cdaabc8e",
+        "tests/test_whatsnew.py:39": "176848371ded:c1059d8b05f7",
+        "tests/test_whatsnew.py:43": "7b45637550e1:3927dd5a0c04",
+        "tests/test_whatsnew.py:52": "538208807219:5df5b58927e8"
+      },
       "claims": [
         {
           "ehash": "baa2e40efa53",
@@ -7752,6 +8541,18 @@
       "quarantined": false
     },
     "tests-test_wiki_dir_config_py.md": {
+      "citations": {
+        "tests/test_wiki_dir_config.py:1": "8c81e64d7f57:9ef60f33cba7",
+        "tests/test_wiki_dir_config.py:115": "2885a68a83f5:3357f772ca38",
+        "tests/test_wiki_dir_config.py:14": "ab26f56da1f3:75a8357ba85c",
+        "tests/test_wiki_dir_config.py:23": "d32730c5c7ca:0ceab5b01fda",
+        "tests/test_wiki_dir_config.py:28": "7913d4c71e12:49cc688f859f",
+        "tests/test_wiki_dir_config.py:34": "ade9a03a31d0:fc2506162cee",
+        "tests/test_wiki_dir_config.py:39": "3ac64c6d9e09:157c28b968bd",
+        "tests/test_wiki_dir_config.py:45": "9d1b97f20965:1dc3bb43c606",
+        "tests/test_wiki_dir_config.py:54": "b3240e748dbc:c3bf4c0c1ca9",
+        "tests/test_wiki_dir_config.py:63": "b9564a69147f:7188fcf5efa0"
+      },
       "claims": [],
       "compiled_at": "2026-09-29T03:50:13Z",
       "context_hash": "06ab80f35eb5b1868feb5d9de4fe7b041c9d7eef75e4eecd87b3499cc31ddd85",
@@ -7797,6 +8598,7 @@
       "quarantined": false
     },
     "tests-test_wiki_dir_env_py.md": {
+      "citations": {},
       "claims": [
         {
           "ehash": "cd502b014d96",
@@ -7868,6 +8670,17 @@
       "quarantined": false
     },
     "tests-test_wiki_not_input_py.md": {
+      "citations": {
+        "tests/test_wiki_not_input.py:18": "1426eda0368c:0b4bad552b61",
+        "tests/test_wiki_not_input.py:19": "0dd5b5ec191b:5fd2e084f6f0",
+        "tests/test_wiki_not_input.py:28": "c42b0005524d:124ad96010de",
+        "tests/test_wiki_not_input.py:31": "70a86000fb5d:d511952fca0b",
+        "tests/test_wiki_not_input.py:37": "9e28467ceae0:8035edf7eeca",
+        "tests/test_wiki_not_input.py:57": "6ad47a079c14:dff073fc0a66",
+        "tests/test_wiki_not_input.py:68": "777c184d1b66:9443892a1b9a",
+        "tests/test_wiki_not_input.py:77": "e5539f1d6281:24b4fd3e8fe4",
+        "tests/test_wiki_not_input.py:95": "08af1abcb3ee:fe5f6b6faa74"
+      },
       "claims": [
         {
           "ehash": "896fef7aa0e7",

@@ -51,6 +51,7 @@ from .pcp import CERT_SUFFIX, VerifyContext, write_certificate
 from .verify import CERT_DRIFTED, build_certificate, certificate_status
 from .detectors import scan as scan_marks
 from .reconcile import reconcile
+from .citations import anchors_for, migrate_by_symbol, repoint, reprose_certificate
 from .revise import (
     MODE_FULL,
     MODE_REVISE,
@@ -677,6 +678,25 @@ class CompileResult:
     revised: list[str] = field(default_factory=list)
     sections_rewritten: int = 0
     claims_carried: int = 0
+    # Prose `path:line` citations re-pointed at 0 LLM, and those whose cited content changed.
+    citations_moved: int = 0
+    citations_stale: list[str] = field(default_factory=list)
+
+
+def _newer_than_graph(repo: Path, graph_path: Path, nodes: list[dict]) -> list[str]:
+    """Source files the graph describes that were modified after the graph was written."""
+    try:
+        built = graph_path.stat().st_mtime
+    except OSError:
+        return []
+    newer = []
+    for rel in sorted({n["source_file"] for n in nodes if n.get("source_file")}):
+        try:
+            if (repo / rel).stat().st_mtime > built + 1:
+                newer.append(rel)
+        except OSError:
+            continue
+    return newer
 
 
 def compile_wiki(
@@ -720,6 +740,16 @@ def compile_wiki(
     # filesystem walk (ours or Graphify's) indexes e.g. a Gradle/Chaquopy copy of a source tree
     # as a phantom duplicate module with stale symbols; git is the source of truth for real code.
     nodes, links, dropped_paths = restrict_to_tracked(nodes, links, repo)
+    # A graph older than the code it describes positions every excerpt window on old line numbers:
+    # the facts, the fingerprints recorded from them and the line numbers shown to the model are all
+    # misaligned. Found when a page recorded against such a graph came back "changed" next run with
+    # nothing changed. Said out loud rather than refused: the graph may come from another producer.
+    stale_graph = _newer_than_graph(repo, graph_path, nodes)
+    if stale_graph:
+        result.warnings.append(
+            f"the structure graph is older than {len(stale_graph)} file(s) it describes "
+            f"({', '.join(stale_graph[:3])}{' ...' if len(stale_graph) > 3 else ''}) — run "
+            "`isidore scan` first, or facts and line numbers are computed from stale positions")
     if dropped_paths:
         sample = ", ".join(sorted(dropped_paths)[:3])
         result.warnings.append(
@@ -751,6 +781,36 @@ def compile_wiki(
     # certificate check below needs it, and the generation loop reuses it.
     verify_ctx = VerifyContext(repo=repo, nodes=nodes, links=links, commit=commit)
 
+    # Prose citations follow the code at 0 LLM (citations.py), and they do it BEFORE anything is
+    # judged or revised: a revision prompt must show the model its page with correct line numbers, or
+    # a NO-CHANGES reply would keep — and re-anchor — citations that drifted. A dry run corrects in
+    # memory only; `--execute` writes the page and its certificate. Without this, every section an
+    # incremental compile rightly kept drifted with each edit above the lines it cites.
+    page_texts: dict[str, str] = {}
+    # (page, corrected text, anchors, citations moved) — applied only once the run is known to go
+    # ahead, after the provider gate below. Written here, a run that then stopped for a missing
+    # model left pages re-pointed on disk with their anchors never saved (found in a live round trip).
+    citation_writes: list[tuple[str, str, dict, int]] = []
+    execute_touched_citations = False
+    # Every compiled page, not only the ones planned this run: `top_k` decides which pages get prose,
+    # but a page past it still exists and is still read. Keeping its citations right costs nothing —
+    # before, twenty of isidore's own sixty pages (handoff.py's among them) were never touched again.
+    for name in sorted(pages_state):
+        page_file, entry = wiki_dir / name, pages_state[name]
+        if (scoped and name not in scope_pages) or not isinstance(entry, dict) \
+                or not page_file.is_file():
+            continue
+        text = page_file.read_text(encoding="utf-8")
+        if "citations" not in entry:            # written before anchors: validated migration first
+            new_text, moved = migrate_by_symbol(repo, text)
+            anchors, stale = anchors_for(repo, new_text), []
+        else:
+            new_text, anchors, moved, stale = repoint(repo, text, entry["citations"])
+        page_texts[name] = new_text
+        result.citations_moved += moved
+        result.citations_stale.extend(f"{name}: {c}" for c in stale)
+        citation_writes.append((name, new_text, anchors, moved))
+
     contexts: dict[str, tuple[PageSpec, str, str]] = {}
     # page -> (mode, facts record, facts fingerprint, old page text for a revision)
     incremental: dict[str, tuple[str, dict, str, str]] = {}
@@ -773,7 +833,8 @@ def compile_wiki(
         # WHAT gets rewritten: an existing, previously compiled page is revised, not regenerated.
         mode, old_page = MODE_FULL, ""
         if not rewrite and page_file.is_file() and prev.get("context_hash"):
-            old_page = strip_security_banner(page_file.read_text(encoding="utf-8"))
+            old_page = strip_security_banner(page_texts.get(spec.filename)
+                                             or page_file.read_text(encoding="utf-8"))
             if prev.get("facts"):
                 facts = facts_delta(prev["facts"], record, repo, spec, read_excerpt)
                 prompt = revise_prompt(spec, old_page, facts or "(no semantic change in the facts; "
@@ -841,6 +902,13 @@ def compile_wiki(
     # AGENTS.md at 0 LLM, and used to be refused for lacking a model it would never have called.
     generate = generator if generator is not None else (default_generator() if result.dirty
                                                         else None)
+    # The gate is passed: now the citation corrections computed above may reach the disk.
+    for name, new_text, anchors, moved in citation_writes:
+        pages_state[name]["citations"] = anchors
+        if moved:
+            (wiki_dir / name).write_text(new_text, encoding="utf-8", newline="\n")
+            reprose_certificate(wiki_dir / (name + CERT_SUFFIX), new_text)
+            execute_touched_citations = True
     known_files = {n["source_file"] for n in nodes if n.get("source_file")}
 
     # Deterministic security marks, computed ONCE (0 LLM, before any generation). Per dirty page we
@@ -1013,9 +1081,19 @@ def compile_wiki(
                              "findings": kept, "claims": claims_with_verdicts,
                              "quarantined": quarantined, "history": prev_history,
                              "compiled_at": iso_now, "facts": record, "facts_fp": fingerprint,
-                             "mode": mode}
+                             "mode": mode, "citations": anchors_for(repo, markdown)}
         record_page_change(pages_state[name], commit, old_content, markdown)
         result.generated.append(name)
+
+    if execute_touched_citations or result.generated:
+        # A module page's certificate moved (re-pointed citations, or a page written this run), so the
+        # area and product pages that hash it are stale by construction. Repair exactly those, at
+        # 0 LLM — `recertify` never rewrites a page whose claims the code now refutes. Before this,
+        # every compile left `verify` red on the pyramid until someone ran `recertify --write`.
+        from .recertify import _level, recertify
+        above = [p.name for p in wiki_dir.glob("*.md") if _level(p.name) > 1]
+        if above:
+            recertify(repo, only=above, write=True)
 
     # prune only when the MODULE/FLOW left the graph/config — never because of a smaller top-k, and
     # NEVER under a scope (--only/--changed only saw a slice of the repo; deleting the rest would be

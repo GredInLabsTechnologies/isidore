@@ -20,7 +20,7 @@ The module builds a controlled test environment around three helpers:
 
 `_compile()` ties it together: `write_scan` builds the graph, then `compile_wiki` runs the pipeline with `execute=True`, `min_symbols=5`, and `max_calls=0` (no cap). `_commit()` wraps add-all + commit for the test cases that modify the source between compiles.
 
-`FULL_PAGE` (`tests/test_incremental.py:27`) is the canned response for first-time generation. It includes two claims (`core defines alpha` and `beta returns 1`) so the test can verify that claims are carried across incremental revisions.
+`FULL_PAGE` (`tests/test_incremental.py:27`) is the canned response for first-time generation. It includes two claims (`core defines alpha` and `beta returns 1`) so the test can verify that claims are carried across incremental revisions, and its last section cites one of the filler constants in prose — `X_100`, at a line inside the filler (`tests/test_incremental.py:34`). Because the filler sits outside every excerpt window, a line inserted above that constant shifts the citation without changing the page's facts, which is how the tests check that prose citations follow their line with no model call.
 
 Beside the end-to-end cases, the module tests the pure parts of `src/isidore/revise.py` directly — `splice`, `strip_security_banner` and `carry_claims` — imported at `tests/test_incremental.py:21`.
 
@@ -37,6 +37,8 @@ Beside the end-to-end cases, the module tests the pure parts of `src/isidore/rev
 - `src/isidore/pipeline.py` — for `compile_wiki` and `load_state` (`tests/test_incremental.py:20`).
 - `src/isidore/revise.py` — for `carry_claims`, `splice` and `strip_security_banner`, tested directly (`tests/test_incremental.py:21`).
 - `src/isidore/claims.py` — for `evidence_hash`, used to build an anchored claim for the carry-over test.
+- `src/isidore/verify.py` — to check that a page whose citations were re-pointed still verifies against its certificate.
+- `src/isidore/llm.py` — for `GenerationError`, raised by a stand-in provider to check that a run stopped at the provider gate leaves no page or state written.
 - `src/isidore/graph.py` — for `write_scan` (`tests/test_incremental.py:19`).
 - `src/isidore/__init__.py` — imported as `from isidore import pipeline` (`tests/test_incremental.py:18`).
 

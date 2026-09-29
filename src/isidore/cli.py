@@ -75,6 +75,12 @@ def _cmd_compile(args) -> int:
           f"{result.findings_dropped_negative} · "
           f"claims new/repaired/dropped/absence: {result.claims_total}/{result.claims_repaired}/"
           f"{result.claims_dropped}/{result.claims_dropped_negative}")
+    if result.citations_moved or result.citations_stale:
+        verb = "re-pointed" if args.execute else "would re-point"
+        print(f"[isidore] citations: {result.citations_moved} {verb} to where their lines moved "
+              f"(0 LLM) · {len(result.citations_stale)} cite a line whose content changed")
+        for item in result.citations_stale[:5]:
+            print(f"  stale citation — {item}")
     if result.revised:
         print(f"[isidore] incremental: {len(result.revised)} page(s) revised in place · "
               f"{result.sections_rewritten} section(s) rewritten · "

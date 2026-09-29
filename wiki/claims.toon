@@ -1,14 +1,23 @@
-# isidore claims · commit 0f6910df6b7bf6c8cf26df0427bbb2b45197cdf5
+# isidore claims · commit c0fff51567e31fdf936331ff4354c0f26bea0cfd
 # each claim is anchored to its evidence by a content hash; state is re-checked
 # mechanically on every compile (zero LLM calls). stale/orphan => page regenerates.
-# summary: 395 claims, 0 stale/orphan
-claims[395]{page,id,statement,evidence,state}:
+# summary: 410 claims, 0 stale/orphan
+claims[410]{page,id,statement,evidence,state}:
   src-isidore-changeset_py.md,c-1ea2e1cc,The module processes git diffs to identify changed lines,src/isidore/changeset.py:36,ok
   src-isidore-changeset_py.md,c-90be0b37,changed_lines() maps files to sets of changed line numbers,src/isidore/changeset.py:36,ok
   src-isidore-changeset_py.md,c-6b86763d,symbol_spans() converts graph nodes to line ranges,src/isidore/changeset.py:68,ok
   src-isidore-changeset_py.md,c-7ea4587c,changed_symbols() maps changed lines to graph node IDs,src/isidore/changeset.py:95,ok
   src-isidore-changeset_py.md,c-436a43d3,WHOLE_FILE is a sentinel for pure renames,src/isidore/changeset.py:22,ok
   src-isidore-changeset_py.md,c-e4061fd8,The module depends on graph.py's module_of,src/isidore/changeset.py:15,ok
+  src-isidore-citations_py.md,c-bfccd286,"citations.py reuses claims.py's hashing, normalisation and file reading",src/isidore/citations.py:30,ok
+  src-isidore-citations_py.md,c-e3b26a9c,A fingerprint spans three non-empty lines,src/isidore/citations.py:38,ok
+  src-isidore-citations_py.md,c-4cec4f56,Lines shorter than three characters are not tracked,src/isidore/citations.py:39,ok
+  src-isidore-citations_py.md,c-66cdf89c,The re-pointing search reaches 400 lines either side,src/isidore/citations.py:37,ok
+  src-isidore-citations_py.md,c-8c969b84,_matches skips citations inside code fences,src/isidore/citations.py:85,ok
+  src-isidore-citations_py.md,c-795b49f3,citations.py defines anchors_for,src/isidore/citations.py:116,ok
+  src-isidore-citations_py.md,c-8daf7469,"A citation whose line identifies nothing is recorded as UNANCHORED, the empty string",src/isidore/citations.py:113,ok
+  src-isidore-citations_py.md,c-90287a8c,_relocate falls back to the cited line alone only when it occurs exactly once in the file,src/isidore/citations.py:78,ok
+  src-isidore-citations_py.md,c-12d26ea6,citations.py defines _relocate,src/isidore/citations.py:67,ok
   src-isidore-claims_py.md,c-b4bccd57,The module defines claims as evidence-anchored statements about the code,src/isidore/claims.py:1,ok
   src-isidore-claims_py.md,c-76dad90b,Claims are parsed from markdown fenced blocks,src/isidore/claims.py:105,ok
   src-isidore-claims_py.md,c-b3e05631,The evidence hash is generated from the cited line's normalized content,src/isidore/claims.py:173,ok
@@ -201,6 +210,12 @@ claims[395]{page,id,statement,evidence,state}:
   tests-test_changeset_py.md,c-10b0eb2c,The module depends on `subprocess`,tests/test_changeset.py:5,ok
   tests-test_changeset_py.md,c-906e44fd,The module depends on `shutil`,tests/test_changeset.py:4,ok
   tests-test_changeset_py.md,c-a3bcc0bd,The module depends on `isidore.changeset`,tests/test_changeset.py:9,ok
+  tests-test_citations_py.md,c-4e2a5e06,"The tests import anchors_for, migrate_by_symbol and repoint from citations.py",tests/test_citations.py:14,ok
+  tests-test_citations_py.md,c-8251ff68,The repo fixture writes SRC to a temporary directory,tests/test_citations.py:31,ok
+  tests-test_citations_py.md,c-f4bad1a9,_shift pads the module with n lines on top,tests/test_citations.py:36,ok
+  tests-test_citations_py.md,c-c4079d99,A changed cited line is reported stale and left as written,tests/test_citations.py:63,ok
+  tests-test_citations_py.md,c-d23f9419,A blank-line citation is recorded with an empty fingerprint,tests/test_citations.py:69,ok
+  tests-test_citations_py.md,c-295e6870,The fence and the missing file are not recorded at all,tests/test_citations.py:70,ok
   tests-test_claims_py.md,c-bc3cb03c,The module tests the classification of existential vs. behavioral claims,tests/test_claims.py:21,ok
   tests-test_claims_py.md,c-1068b52d,The module tests the extraction of claims from Markdown blocks,tests/test_claims.py:82,ok
   tests-test_claims_py.md,c-6f48da29,The module tests the hashing of cited lines,tests/test_claims.py:90,ok

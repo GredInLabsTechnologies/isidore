@@ -41,7 +41,7 @@ context (`src/isidore/handoff.py:116`).
 
 - `handoff_dir(repo)` — where a round lives, under the wiki directory (`src/isidore/handoff.py:51`).
 - `prompt_id(prompt)` — the pairing key, a truncated SHA-256 of the prompt text
-  (`src/isidore/handoff.py:58`).
+  (`src/isidore/handoff.py:54`).
 - `emit(repo, config, args)` — one prompt file per dirty page, plus the manifest
   (`src/isidore/handoff.py:77`).
 - `response_generator(repo)` — a generator that answers from disk (`src/isidore/handoff.py:97`).
@@ -51,14 +51,14 @@ context (`src/isidore/handoff.py:116`).
 `src/isidore/pipeline.py` supplies `compile_wiki`, the defaults, `WIKI_DIRNAME` and the lint gate's
 addendum (`src/isidore/handoff.py:28`). `REPAIR_MARKER` is derived from that addendum rather than
 retyped, so a change to the gate's wording moves the marker with it instead of quietly ceasing to
-match (`src/isidore/handoff.py:48`). `src/isidore/graph.py` resolves the structure graph and
+match (`src/isidore/handoff.py:47`). `src/isidore/graph.py` resolves the structure graph and
 `src/isidore/llm.py` supplies `GenerationError`, the one failure type the loop speaks
 (`src/isidore/handoff.py:26`).
 
 ## How to change safely
 
 Treat `prompt_id` as a wire format: it is what a written answer is bound to, so changing how it is
-computed invalidates every unanswered round on disk (`src/isidore/handoff.py:58`). Keep refusals
+computed invalidates every unanswered round on disk (`src/isidore/handoff.py:57`). Keep refusals
 loud — the module's stance is that refusing beats certifying prose written against a repository that
 has moved. And keep `_lookup`'s tail check exact; loosening it is the difference between tolerating a
 repair round and accepting a stale answer.

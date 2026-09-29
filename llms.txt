@@ -16,6 +16,7 @@ Documentation compiled by isidore from this repository's structure. Every page s
 ## Modules
 
 - [src-isidore-changeset_py.md](wiki/src-isidore-changeset_py.md)
+- [src-isidore-citations_py.md](wiki/src-isidore-citations_py.md)
 - [src-isidore-claims_py.md](wiki/src-isidore-claims_py.md)
 - [src-isidore-cli_py.md](wiki/src-isidore-cli_py.md)
 - [src-isidore-connect_py.md](wiki/src-isidore-connect_py.md)
@@ -40,6 +41,7 @@ Documentation compiled by isidore from this repository's structure. Every page s
 - [src-isidore-whatsnew_py.md](wiki/src-isidore-whatsnew_py.md)
 - [tests-fixtures-pcp.md](wiki/tests-fixtures-pcp.md)
 - [tests-test_changeset_py.md](wiki/tests-test_changeset_py.md)
+- [tests-test_citations_py.md](wiki/tests-test_citations_py.md)
 - [tests-test_claims_py.md](wiki/tests-test_claims_py.md)
 - [tests-test_classification_gate_py.md](wiki/tests-test_classification_gate_py.md)
 - [tests-test_connect_cli_py.md](wiki/tests-test_connect_cli_py.md)

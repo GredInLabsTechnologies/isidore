@@ -211,6 +211,9 @@ def _cmd_handoff(args) -> int:
           f"quarantined: {len(result.quarantined)} · "
           f"claims kept/dropped/carried: {result.claims_total}/{result.claims_dropped}/"
           f"{result.claims_carried}")
+    if result.citations_moved or result.citations_stale:
+        print(f"[isidore] citations: {result.citations_moved} re-pointed to where their lines moved "
+              f"(0 LLM) · {len(result.citations_stale)} cite a line whose content changed")
     for warning in result.warnings[:10]:
         print(f"  ! {warning}")
     return 0

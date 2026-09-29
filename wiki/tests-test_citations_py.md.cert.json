@@ -1,0 +1,76 @@
+{
+  "child_cert_hashes": {},
+  "claims": [
+    {
+      "detail": "tests/test_citations.py imports src/isidore/citations.py",
+      "ehash": "2aaff139123c",
+      "evidence": "tests/test_citations.py:14",
+      "id": "c-4e2a5e06",
+      "oracle": "graph",
+      "predicate": "imports:tests/test_citations.py;src/isidore/citations.py",
+      "statement": "The tests import anchors_for, migrate_by_symbol and repoint from citations.py",
+      "verdict": "TRUE"
+    },
+    {
+      "detail": "no predicate (existence-anchored only)",
+      "ehash": "72adc9517ecc",
+      "evidence": "tests/test_citations.py:31",
+      "id": "c-8251ff68",
+      "oracle": "none",
+      "predicate": "",
+      "statement": "The repo fixture writes SRC to a temporary directory",
+      "verdict": "UNDECIDABLE"
+    },
+    {
+      "detail": "tests/test_citations.py defines _shift",
+      "ehash": "9b287bfc5220",
+      "evidence": "tests/test_citations.py:36",
+      "id": "c-f4bad1a9",
+      "oracle": "graph",
+      "predicate": "defines:tests/test_citations.py;_shift",
+      "statement": "_shift pads the module with n lines on top",
+      "verdict": "TRUE"
+    },
+    {
+      "detail": "no predicate (existence-anchored only)",
+      "ehash": "bb1b0d055373",
+      "evidence": "tests/test_citations.py:63",
+      "id": "c-c4079d99",
+      "oracle": "none",
+      "predicate": "",
+      "statement": "A changed cited line is reported stale and left as written",
+      "verdict": "UNDECIDABLE"
+    },
+    {
+      "detail": "no predicate (existence-anchored only)",
+      "ehash": "9a4922d93545",
+      "evidence": "tests/test_citations.py:69",
+      "id": "c-d23f9419",
+      "oracle": "none",
+      "predicate": "",
+      "statement": "A blank-line citation is recorded with an empty fingerprint",
+      "verdict": "UNDECIDABLE"
+    },
+    {
+      "detail": "no predicate (existence-anchored only)",
+      "ehash": "7fafe7d7010b",
+      "evidence": "tests/test_citations.py:70",
+      "id": "c-295e6870",
+      "oracle": "none",
+      "predicate": "",
+      "statement": "The fence and the missing file are not recorded at all",
+      "verdict": "UNDECIDABLE"
+    }
+  ],
+  "graph_commit": "c0fff51567e31fdf936331ff4354c0f26bea0cfd",
+  "marks": [],
+  "mass": {
+    "gray": 12,
+    "green": 16,
+    "yellow": 0
+  },
+  "page": "tests-test_citations_py.md",
+  "prose_sha256": "7fe1d918011f701d50fd10525d320c1ed34c6fd683e45fb9e229bcb4071e7e76",
+  "version": "pcp-1",
+  "violations": []
+}

@@ -218,8 +218,47 @@ causes, both in `compile_wiki`:
 - Migration: a page compiled before fingerprints falls back to the prompt hash once; clean pages
   adopt their fingerprint at 0 LLM, dirty ones are revised against the full current facts.
 
-**Known limit.** Prose `path:line` citations in sections that are kept are not re-pointed when lines
-shift (claims are; prose is not). A shift alone no longer dirties a page, so such a citation can drift
-by a few lines until the section is next revised.
+**Known limit — closed in §11.** Prose `path:line` citations in kept sections used to keep their old
+line numbers when lines shifted (claims followed; prose did not).
 
 Tests: `tests/test_incremental.py` (real git repo + built-in scanner + `compile_wiki --execute`).
+
+## 11 · C9 — Prose citations follow the code (2026-09-29)
+
+**Why.** §10 stopped rewriting pages whose facts had not moved, so the prose citations of kept
+sections drifted with every edit above them. Measured on isidore's own wiki the same day: 12
+citations landed on blank lines (certainly wrong), and definitions cited 1-5 lines off
+(`prompt_id` at handoff.py:58 while defined at :54).
+
+**Decision** (`src/isidore/citations.py`):
+
+- Every compiled page stores `citations`: `path:line` → fingerprint `<window>:<line>` — the cited line
+  plus the next non-empty lines (one line alone is too common to relocate), and the line on its own.
+  Relocation looks for the window, nearest first; if the lines BELOW changed but the cited one did not
+  (a def whose docstring was edited), it falls back to the line alone, only if it is unique in the
+  file. A citation of a blank or trivial line is stored as UNANCHORED and never followed — found in a
+  live round trip, where such a citation adopted the code an edit slid onto its line.
+- Every `compile --execute` (0 LLM, no provider needed) re-points the citations of EVERY compiled
+  page — not only the `top_k` planned ones — to where their fingerprint now sits, nearest first; a
+  range keeps its length. Content that really changed is reported stale, never guessed. The page's
+  certificate gets the new prose hash, and the area/product pages above are recertified.
+- It is computed BEFORE dirtiness and revision prompts — a revision must show the model its page
+  with correct numbers, or a NO-CHANGES reply would keep and re-anchor drifted citations — but WRITTEN
+  only after the provider gate: a run that stops for a missing model changes nothing on disk (a live
+  round trip first caught pages re-pointed with their anchors unsaved).
+- Pages from before anchors get a one-time, validated migration (`migrate_by_symbol`): a citation is
+  moved only to the unique definition of the symbol its own sentence names, and only when the cited
+  line is blank, or holds none of the sentence's symbols, is not itself a definition, and is not
+  inside that symbol's body; within 20 lines (5 when the symbol is not right before the citation).
+  The first, looser version proposed 14 moves of which 9 would have broken a correct citation; each
+  of those is now a test case. On isidore's wiki it corrected 16 citations across three pages, each
+  checked by hand, and blank-line citations (certainly wrong) went from 8 to 2 — the two left name
+  no symbol to validate against.
+- Measured end to end on isidore's own repo: a line inserted at the top of `handoff.py` re-pointed 19
+  citations at 0 LLM with `verify` green; reverting it moved the same 19 back and left the page and
+  its certificate byte-identical.
+- `compile` now warns when the structure graph is older than the files it describes — a stale graph
+  misplaces every excerpt window, which is how one page recorded misaligned facts.
+
+Tests: `tests/test_citations.py` (unit, incl. every migration refusal) and the citation cases in
+`tests/test_incremental.py` (real git repo, compile, certificate still verifying).
