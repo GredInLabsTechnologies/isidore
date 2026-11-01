@@ -1,5 +1,5 @@
 {
-  "commit": "25e46585ff277fe8131d8f77e7c61ee993b21869",
+  "commit": "c30c908e37f3f8416b3f00858c4456a42248ecc3",
   "deps": [
     [
       "src/isidore/__init__.py",
@@ -1918,6 +1918,19 @@
       "quarantined": 0,
       "retries": 0,
       "skipped": 0
+    },
+    {
+      "calls_saved": 29,
+      "commit": "c30c908e37f3",
+      "dirty": 1,
+      "generated": 1,
+      "generated_pages": [
+        "src-isidore-graph_py.md"
+      ],
+      "planned": 30,
+      "quarantined": 0,
+      "retries": 0,
+      "skipped": 0
     }
   ],
   "pages": {
@@ -3214,7 +3227,7 @@
         },
         {
           "ehash": "b567729655c3",
-          "evidence": "src/isidore/graph.py:65",
+          "evidence": "src/isidore/graph.py:66",
           "id": "c-65547764",
           "predicate": "defines:src/isidore/graph.py;find_graph",
           "statement": "The module prioritizes user-specified graphs over its own output",
@@ -3222,7 +3235,7 @@
         },
         {
           "ehash": "c6b2d45faafd",
-          "evidence": "src/isidore/graph.py:116",
+          "evidence": "src/isidore/graph.py:117",
           "id": "c-a496259d",
           "predicate": "calls:git_listed_files;subprocess.run",
           "statement": "Git-ignored files are excluded from scanning",
@@ -3230,7 +3243,7 @@
         },
         {
           "ehash": "f22a98762399",
-          "evidence": "src/isidore/graph.py:106",
+          "evidence": "src/isidore/graph.py:107",
           "id": "c-6b9deb15",
           "predicate": "defines:src/isidore/graph.py;module_of",
           "statement": "Files are grouped into modules by directory structure",
@@ -3246,7 +3259,7 @@
         },
         {
           "ehash": "d561e60320be",
-          "evidence": "src/isidore/graph.py:32",
+          "evidence": "src/isidore/graph.py:33",
           "id": "c-015ca744",
           "predicate": "imports:src/isidore/graph.py;src/isidore/langspec.py",
           "statement": "graph.py imports BARE_CODE_EXTS from src/isidore/langspec.py",
@@ -3254,15 +3267,55 @@
         },
         {
           "ehash": "6da28815e310",
-          "evidence": "src/isidore/graph.py:L96",
+          "evidence": "src/isidore/graph.py:97",
           "id": "c-be63b0da",
           "predicate": "",
           "statement": "is_test_path normalizes backslashes to forward slashes before matching",
           "verdict": "UNDECIDABLE"
+        },
+        {
+          "ehash": "3bfecaad11de",
+          "evidence": "src/isidore/graph.py:44",
+          "id": "c-0edbdff6",
+          "predicate": "defines:src/isidore/graph.py;GraphError",
+          "statement": "GraphError is defined in src/isidore/graph.py",
+          "verdict": "TRUE"
+        },
+        {
+          "ehash": "331ed976d6b0",
+          "evidence": "src/isidore/graph.py:48",
+          "id": "c-505bfdb0",
+          "predicate": "signature:load_graph;graph_path",
+          "statement": "load_graph takes a graph_path argument",
+          "verdict": "TRUE"
+        },
+        {
+          "ehash": "27bd1b501016",
+          "evidence": "src/isidore/graph.py:63",
+          "id": "c-a96a4905",
+          "predicate": "signature:find_graph;repo;explicit",
+          "statement": "find_graph takes repo and explicit arguments",
+          "verdict": "TRUE"
+        },
+        {
+          "ehash": "94033776ce6a",
+          "evidence": "src/isidore/graph.py:36",
+          "id": "c-92c13c94",
+          "predicate": "value:ISIDORE_DIR;.isidore",
+          "statement": "ISIDORE_DIR equals .isidore",
+          "verdict": "TRUE"
+        },
+        {
+          "ehash": "eddd9257e2de",
+          "evidence": "src/isidore/graph.py:51",
+          "id": "c-8aac5a55",
+          "predicate": "calls:load_graph;loads",
+          "statement": "load_graph calls json.loads",
+          "verdict": "TRUE"
         }
       ],
-      "compiled_at": "2026-09-29T10:35:06Z",
-      "context_hash": "ccc4cd3b956961afad94149ede569c031eacd6e50163221ac5270cb7272c606e",
+      "compiled_at": "2026-11-01T23:54:24Z",
+      "context_hash": "94cad6d2b49d2745b5e6b27f260b387ffe0aef9f6b4677402d61bec6fa5157e1",
       "facts": {
         "deps_in": [
           "tests/test_detectors.py",
@@ -3280,17 +3333,17 @@
         ],
         "docs": {},
         "excerpts": {
-          "src/isidore/graph.py::GraphError": "a9884ea0ea8827c3",
+          "src/isidore/graph.py::GraphError": "9182089afdfbae66",
           "src/isidore/graph.py::find_graph()": "0b58d813f6a18d0e",
           "src/isidore/graph.py::graph.py": "fffae44bb219207f",
           "src/isidore/graph.py::is_test_path()": "8e571d754010a4d9",
-          "src/isidore/graph.py::load_graph()": "4906698738a443d0",
+          "src/isidore/graph.py::load_graph()": "7d8e1710cb792692",
           "src/isidore/graph.py::module_of()": "433a4403e6961cd4"
         },
         "files": 1,
         "kind": "module",
         "name": "src/isidore/graph.py",
-        "symbols": 23,
+        "symbols": 25,
         "tested_by": [
           "tests/test_detectors.py",
           "tests/test_export.py",
@@ -3309,7 +3362,7 @@
           "tests/test_wiki_not_input.py"
         ]
       },
-      "facts_fp": "0908164bdc763a1c70842c90d7231cd932e29af288d05262930d3e0143b713e0",
+      "facts_fp": "55f32fde0245ae5455e22b1f7b496947f0f427d910ef470effef2ac49e718d18",
       "findings": [],
       "history": [
         {

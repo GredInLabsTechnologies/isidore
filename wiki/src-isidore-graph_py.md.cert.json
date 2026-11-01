@@ -14,7 +14,7 @@
     {
       "detail": "src/isidore/graph.py defines find_graph",
       "ehash": "b567729655c3",
-      "evidence": "src/isidore/graph.py:65",
+      "evidence": "src/isidore/graph.py:66",
       "id": "c-65547764",
       "oracle": "graph",
       "predicate": "defines:src/isidore/graph.py;find_graph",
@@ -24,7 +24,7 @@
     {
       "detail": "git_listed_files calls run",
       "ehash": "c6b2d45faafd",
-      "evidence": "src/isidore/graph.py:116",
+      "evidence": "src/isidore/graph.py:117",
       "id": "c-a496259d",
       "oracle": "ast",
       "predicate": "calls:git_listed_files;subprocess.run",
@@ -34,7 +34,7 @@
     {
       "detail": "src/isidore/graph.py defines module_of",
       "ehash": "f22a98762399",
-      "evidence": "src/isidore/graph.py:106",
+      "evidence": "src/isidore/graph.py:107",
       "id": "c-6b9deb15",
       "oracle": "graph",
       "predicate": "defines:src/isidore/graph.py;module_of",
@@ -54,7 +54,7 @@
     {
       "detail": "src/isidore/graph.py imports src/isidore/langspec.py",
       "ehash": "d561e60320be",
-      "evidence": "src/isidore/graph.py:32",
+      "evidence": "src/isidore/graph.py:33",
       "id": "c-015ca744",
       "oracle": "graph",
       "predicate": "imports:src/isidore/graph.py;src/isidore/langspec.py",
@@ -64,15 +64,65 @@
     {
       "detail": "no predicate (existence-anchored only)",
       "ehash": "6da28815e310",
-      "evidence": "src/isidore/graph.py:L96",
+      "evidence": "src/isidore/graph.py:97",
       "id": "c-be63b0da",
       "oracle": "none",
       "predicate": "",
       "statement": "is_test_path normalizes backslashes to forward slashes before matching",
       "verdict": "UNDECIDABLE"
+    },
+    {
+      "detail": "src/isidore/graph.py defines GraphError",
+      "ehash": "3bfecaad11de",
+      "evidence": "src/isidore/graph.py:44",
+      "id": "c-0edbdff6",
+      "oracle": "graph",
+      "predicate": "defines:src/isidore/graph.py;GraphError",
+      "statement": "GraphError is defined in src/isidore/graph.py",
+      "verdict": "TRUE"
+    },
+    {
+      "detail": "load_graph(graph_path)",
+      "ehash": "331ed976d6b0",
+      "evidence": "src/isidore/graph.py:48",
+      "id": "c-505bfdb0",
+      "oracle": "ast",
+      "predicate": "signature:load_graph;graph_path",
+      "statement": "load_graph takes a graph_path argument",
+      "verdict": "TRUE"
+    },
+    {
+      "detail": "find_graph(repo, explicit)",
+      "ehash": "27bd1b501016",
+      "evidence": "src/isidore/graph.py:63",
+      "id": "c-a96a4905",
+      "oracle": "ast",
+      "predicate": "signature:find_graph;repo;explicit",
+      "statement": "find_graph takes repo and explicit arguments",
+      "verdict": "TRUE"
+    },
+    {
+      "detail": "ISIDORE_DIR == .isidore",
+      "ehash": "94033776ce6a",
+      "evidence": "src/isidore/graph.py:36",
+      "id": "c-92c13c94",
+      "oracle": "ast",
+      "predicate": "value:ISIDORE_DIR;.isidore",
+      "statement": "ISIDORE_DIR equals .isidore",
+      "verdict": "TRUE"
+    },
+    {
+      "detail": "load_graph calls loads",
+      "ehash": "eddd9257e2de",
+      "evidence": "src/isidore/graph.py:51",
+      "id": "c-8aac5a55",
+      "oracle": "ast",
+      "predicate": "calls:load_graph;loads",
+      "statement": "load_graph calls json.loads",
+      "verdict": "TRUE"
     }
   ],
-  "graph_commit": "25e46585ff277fe8131d8f77e7c61ee993b21869",
+  "graph_commit": "c30c908e37f3f8416b3f00858c4456a42248ecc3",
   "marks": [
     {
       "disposition": "",
@@ -84,9 +134,9 @@
     }
   ],
   "mass": {
-    "gray": 14,
-    "green": 18,
-    "yellow": 1
+    "gray": 13,
+    "green": 20,
+    "yellow": 0
   },
   "page": "src-isidore-graph_py.md",
   "prose_sha256": "74a76d602228e579d4eb25aa77fd28f770e85a2fc304d615ccef9af69f394828",

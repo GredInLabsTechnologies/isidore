@@ -27,6 +27,7 @@ import ast
 import re
 import json
 import subprocess
+from fnmatch import fnmatchcase
 from pathlib import Path, PurePosixPath
 
 from .langspec import BARE_CODE_EXTS, BINARY_EXTS, LANGUAGES, extract, spec_for
@@ -128,7 +129,44 @@ def git_listed_files(repo: Path) -> set[str] | None:
         return None
     if out.returncode != 0:
         return None
-    return {p for p in out.stdout.decode("utf-8", errors="replace").split("\0") if p}
+    listed = {p for p in out.stdout.decode("utf-8", errors="replace").split("\0") if p}
+    patterns = read_isidoreignore(repo)
+    return {p for p in listed if not isidore_ignored(p, patterns)} if patterns else listed
+
+
+ISIDOREIGNORE = ".isidoreignore"
+
+
+def read_isidoreignore(repo: Path) -> list[str]:
+    """Patterns of `.isidoreignore` at the repo root: tracked code that is not the product (parked
+    modules, a vendored copy). `.gitignore` cannot say it — the files are tracked, so git lists
+    them — and they were documented as live: in Gred-In-Labs-1, 758 nodes of `_parked/` code made a
+    page present a parked GICS copy as a key entry point. Blank lines and `#` comments skipped."""
+    try:
+        text = (repo / ISIDOREIGNORE).read_text(encoding="utf-8")
+    except OSError:
+        return []
+    return [ln.strip() for ln in text.splitlines() if ln.strip() and not ln.strip().startswith("#")]
+
+
+def isidore_ignored(rel_posix: str, patterns: list[str]) -> bool:
+    """A subset of .gitignore, case-sensitive like git: `name/` is a directory of that name at any
+    depth; a pattern with a `/` (or a leading one) is matched from the root, with what is under
+    it; any other pattern is matched against each part of the path (`*.min.js`)."""
+    parts = rel_posix.split("/")
+    for raw in patterns:
+        pat = raw.strip("/")
+        if not pat:
+            continue
+        if "/" in pat or raw.startswith("/"):
+            if fnmatchcase(rel_posix, pat) or fnmatchcase(rel_posix, pat + "/*"):
+                return True
+        elif raw.endswith("/"):
+            if any(fnmatchcase(seg, pat) for seg in parts[:-1]):
+                return True
+        elif any(fnmatchcase(seg, pat) for seg in parts):
+            return True
+    return False
 
 
 def _norm_source_file(source_file: str) -> str:

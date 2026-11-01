@@ -70,8 +70,8 @@
     "semantic_hash": ""
   },
   "src/isidore/graph.py": {
-    "mtime": 1790676664.3903596,
-    "ast_hash": "485ae4f74756834fb80bd41e30eb50d8",
+    "mtime": 1793577153.90547,
+    "ast_hash": "b117e9798c6a5fead87af0e5b83fec53",
     "semantic_hash": ""
   },
   "src/isidore/home.py": {
@@ -280,8 +280,8 @@
     "semantic_hash": "43df21410d7e3970e161f0924d632c2c"
   },
   "tests/test_units.py": {
-    "mtime": 1790645947.1436625,
-    "ast_hash": "0eec85075d6f5e08942b28b25fe758e6",
+    "mtime": 1793576994.0008073,
+    "ast_hash": "85aaaa09d00aa49894fab2a125f69403",
     "semantic_hash": ""
   },
   "tests/test_verify.py": {
@@ -305,8 +305,8 @@
     "semantic_hash": ""
   },
   "README.md": {
-    "mtime": 1790651474.396866,
-    "ast_hash": "24912611ac0eeb192ee554262e3e5cfa",
+    "mtime": 1793577163.6822057,
+    "ast_hash": "5a2e241f2969f502d6ea05b6861dfa5e",
     "semantic_hash": ""
   },
   "design/INCREMENTAL_V1.md": {

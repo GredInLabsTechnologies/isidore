@@ -1,4 +1,4 @@
-# isidore wiki index · commit 25e46585ff277fe8131d8f77e7c61ee993b21869
+# isidore wiki index · commit c30c908e37f3f8416b3f00858c4456a42248ecc3
 # same catalog as quickstart.md, in TOON tables (cheap for agents to load)
 modules[30]{module,files,symbols,page}:
   src/isidore/connectors,9,67,src-isidore-connectors.md
@@ -7,7 +7,7 @@ modules[30]{module,files,symbols,page}:
   src/isidore/pyramid.py,1,30,src-isidore-pyramid_py.md
   src/isidore/pipeline.py,1,27,src-isidore-pipeline_py.md
   src/isidore/pcp.py,1,26,src-isidore-pcp_py.md
-  src/isidore/graph.py,1,23,src-isidore-graph_py.md
+  src/isidore/graph.py,1,25,src-isidore-graph_py.md
   src/isidore/claims.py,1,19,src-isidore-claims_py.md
   src/isidore/findings.py,1,19,src-isidore-findings_py.md
   src/isidore/surface.py,1,16,src-isidore-surface_py.md
@@ -69,12 +69,12 @@ hot_symbols[178]{module,symbol,file,line,degree}:
   src/isidore/pcp.py,parse_stored_predicate(),src/isidore/pcp.py,103-L126,0
   src/isidore/pcp.py,Verdict,src/isidore/pcp.py,130-L134,0
   src/isidore/pcp.py,undecidable(),src/isidore/pcp.py,138-L139,0
-  src/isidore/graph.py,graph.py,src/isidore/graph.py,1,24
-  src/isidore/graph.py,GraphError,src/isidore/graph.py,43-L44,0
-  src/isidore/graph.py,load_graph(),src/isidore/graph.py,47-L59,0
-  src/isidore/graph.py,find_graph(),src/isidore/graph.py,62-L76,0
-  src/isidore/graph.py,is_test_path(),src/isidore/graph.py,91-L97,0
-  src/isidore/graph.py,module_of(),src/isidore/graph.py,100-L106,0
+  src/isidore/graph.py,graph.py,src/isidore/graph.py,1,26
+  src/isidore/graph.py,GraphError,src/isidore/graph.py,44-L45,0
+  src/isidore/graph.py,load_graph(),src/isidore/graph.py,48-L60,0
+  src/isidore/graph.py,find_graph(),src/isidore/graph.py,63-L77,0
+  src/isidore/graph.py,is_test_path(),src/isidore/graph.py,92-L98,0
+  src/isidore/graph.py,module_of(),src/isidore/graph.py,101-L107,0
   src/isidore/claims.py,claims.py,src/isidore/claims.py,1,21
   src/isidore/claims.py,is_negative_existential(),src/isidore/claims.py,105-L108,0
   src/isidore/claims.py,parse_predicate_field(),src/isidore/claims.py,111-L114,0

@@ -320,6 +320,19 @@ graph producers (e.g. Graphify) work as-is:
 By default isidore uses its own `.isidore/graph.json` (from `scan`), then falls back to a
 `graphify-out/graph.json` if present. Any producer emitting the format above works via `--graph`.
 
+## What is documented — `.gitignore` and `.isidoreignore`
+
+Only source git lists counts: gitignored and build artifacts are dropped from any graph, ours or
+a producer's. Code that is tracked but is not the product — parked modules, a vendored copy — is
+listed by git all the same; name it in `.isidoreignore` at the repo root and it is left out too:
+
+```
+# parked and vendored code is not documented
+_parked/      # a directory of that name at any depth
+/vendor/      # with a leading slash (or any slash inside): from the root
+*.min.js      # no slash: matched against each part of the path
+```
+
 ## Config (`isidore.json`, optional)
 
 ```json

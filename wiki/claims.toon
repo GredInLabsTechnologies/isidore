@@ -1,8 +1,8 @@
-# isidore claims · commit 25e46585ff277fe8131d8f77e7c61ee993b21869
+# isidore claims · commit c30c908e37f3f8416b3f00858c4456a42248ecc3
 # each claim is anchored to its evidence by a content hash; state is re-checked
 # mechanically on every compile (zero LLM calls). stale/orphan => page regenerates.
-# summary: 244 claims, 0 stale/orphan
-claims[244]{page,id,statement,evidence,state}:
+# summary: 249 claims, 0 stale/orphan
+claims[249]{page,id,statement,evidence,state}:
   src-isidore-changeset_py.md,c-1ea2e1cc,The module processes git diffs to identify changed lines,src/isidore/changeset.py:36,ok
   src-isidore-changeset_py.md,c-90be0b37,changed_lines() maps files to sets of changed line numbers,src/isidore/changeset.py:36,ok
   src-isidore-changeset_py.md,c-6b86763d,symbol_spans() converts graph nodes to line ranges,src/isidore/changeset.py:68,ok
@@ -79,12 +79,17 @@ claims[244]{page,id,statement,evidence,state}:
   src-isidore-findings_py.md,c-e293091a,_resolutions_path imports WIKI_DIRNAME from src/isidore/render.py,src/isidore/findings.py:103,ok
   src-isidore-findings_py.md,c-150e5c9c,_resolutions_path returns repo / WIKI_DIRNAME / resolved_findings.json,src/isidore/findings.py:104,ok
   src-isidore-graph_py.md,c-170cf7e8,The graph format requires 'nodes' and 'links' (or 'edges') as lists,src/isidore/graph.py:5,ok
-  src-isidore-graph_py.md,c-65547764,The module prioritizes user-specified graphs over its own output,src/isidore/graph.py:65,ok
-  src-isidore-graph_py.md,c-a496259d,Git-ignored files are excluded from scanning,src/isidore/graph.py:116,ok
-  src-isidore-graph_py.md,c-6b9deb15,Files are grouped into modules by directory structure,src/isidore/graph.py:106,ok
+  src-isidore-graph_py.md,c-65547764,The module prioritizes user-specified graphs over its own output,src/isidore/graph.py:66,ok
+  src-isidore-graph_py.md,c-a496259d,Git-ignored files are excluded from scanning,src/isidore/graph.py:117,ok
+  src-isidore-graph_py.md,c-6b9deb15,Files are grouped into modules by directory structure,src/isidore/graph.py:107,ok
   src-isidore-graph_py.md,c-623faedc,The scanner uses Python's ast module for Python files,src/isidore/graph.py:17,ok
-  src-isidore-graph_py.md,c-015ca744,graph.py imports BARE_CODE_EXTS from src/isidore/langspec.py,src/isidore/graph.py:32,ok
-  src-isidore-graph_py.md,c-be63b0da,is_test_path normalizes backslashes to forward slashes before matching,src/isidore/graph.py:L96,ok
+  src-isidore-graph_py.md,c-015ca744,graph.py imports BARE_CODE_EXTS from src/isidore/langspec.py,src/isidore/graph.py:33,ok
+  src-isidore-graph_py.md,c-be63b0da,is_test_path normalizes backslashes to forward slashes before matching,src/isidore/graph.py:97,ok
+  src-isidore-graph_py.md,c-0edbdff6,GraphError is defined in src/isidore/graph.py,src/isidore/graph.py:44,ok
+  src-isidore-graph_py.md,c-505bfdb0,load_graph takes a graph_path argument,src/isidore/graph.py:48,ok
+  src-isidore-graph_py.md,c-a96a4905,find_graph takes repo and explicit arguments,src/isidore/graph.py:63,ok
+  src-isidore-graph_py.md,c-92c13c94,ISIDORE_DIR equals .isidore,src/isidore/graph.py:36,ok
+  src-isidore-graph_py.md,c-8aac5a55,load_graph calls json.loads,src/isidore/graph.py:51,ok
   src-isidore-handoff_py.md,c-6d704832,prompt_id derives a prompt's pairing key from its SHA-256 digest,src/isidore/handoff.py:57,ok
   src-isidore-handoff_py.md,c-922e9f53,prompt_id takes the prompt text as its only parameter,src/isidore/handoff.py:54,ok
   src-isidore-handoff_py.md,c-723ad279,"handoff.py defines emit, which writes one prompt file per dirty page",src/isidore/handoff.py:78,ok

@@ -120,6 +120,47 @@ def test_restrict_to_tracked_filters_foreign_graph(tmp_path):
     assert kept_links == []                                                   # dangling link removed
 
 
+def test_isidoreignore_keeps_tracked_but_unwanted_code_out(tmp_path):
+    """Tracked code that is not part of the product (parked modules, a vendored copy) is still
+    git-listed, so .gitignore cannot express it: .isidoreignore does. Found in Gred-In-Labs-1, where
+    758 nodes of `_parked/` code made a page present a parked GICS copy as a key entry point."""
+    import subprocess
+    _git_repo(tmp_path)
+    for rel, body in {
+        "real.py": "def real():\n    pass\n",
+        "app/_parked/old.py": "def parked():\n    pass\n",          # dir anywhere: `_parked/`
+        "vendor/lib/copy.py": "def vendored():\n    pass\n",        # anchored: `/vendor/`
+        "app/bundle.min.py": "def minified():\n    pass\n",         # basename glob: `*.min.py`
+        "app/_parkedness.py": "def kept():\n    pass\n",            # a name that only starts the same
+        "notvendor/x.py": "def kept2():\n    pass\n",               # anchored means from the root
+    }.items():
+        p = tmp_path / rel
+        p.parent.mkdir(parents=True, exist_ok=True)
+        p.write_text(body, encoding="utf-8")
+    (tmp_path / ".isidoreignore").write_text(
+        "# parked and vendored code is not documented\n\n_parked/\n/vendor/\n*.min.py\n", encoding="utf-8")
+    subprocess.run(["git", "add", "-A"], cwd=tmp_path, check=True, capture_output=True)  # all TRACKED
+
+    sources = {n.get("source_file") for n in scan_repo(tmp_path)[0]}
+    assert {"real.py", "app/_parkedness.py", "notvendor/x.py"} <= sources
+    assert not {"app/_parked/old.py", "vendor/lib/copy.py", "app/bundle.min.py"} & sources
+
+    # a third-party graph that indexed them gets the same treatment
+    from isidore.graph import restrict_to_tracked
+    nodes = [{"id": "a", "source_file": "real.py"}, {"id": "b", "source_file": "app/_parked/old.py"}]
+    kept, _links, dropped = restrict_to_tracked(nodes, [], tmp_path)
+    assert [n["id"] for n in kept] == ["a"] and dropped == {"app/_parked/old.py"}
+
+
+def test_isidoreignore_absent_or_unreadable_changes_nothing(tmp_path):
+    from isidore.graph import isidore_ignored, read_isidoreignore
+    assert read_isidoreignore(tmp_path) == []
+    assert not isidore_ignored("a/_parked/x.py", [])
+    assert isidore_ignored("a/_parked/x.py", ["_parked/"])
+    assert not isidore_ignored("_parked", ["_parked/"])            # a dir pattern needs a dir above the file
+    assert isidore_ignored("docs/x.md", ["/docs"]) and not isidore_ignored("src/docs/x.md", ["/docs"])
+
+
 def test_restrict_to_tracked_noop_without_git(tmp_path):
     """Outside a git tree we cannot tell what's ignored -> index everything, unchanged."""
     from isidore.graph import restrict_to_tracked

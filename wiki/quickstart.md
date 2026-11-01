@@ -1,6 +1,6 @@
 # Wiki (isidore)
 
-Compiled from the repository structure graph at commit `25e46585ff277fe8131d8f77e7c61ee993b21869`.
+Compiled from the repository structure graph at commit `c30c908e37f3f8416b3f00858c4456a42248ecc3`.
 Pages are generated from exact structural facts; cited `path:line` references are
 mechanically lint-checked against the repository.
 
@@ -18,7 +18,7 @@ Side observations harvested during compilation live in [findings.toon](findings.
 | src/isidore/pyramid.py | 1 | 30 | [src-isidore-pyramid_py.md](src-isidore-pyramid_py.md) |
 | src/isidore/pipeline.py | 1 | 27 | [src-isidore-pipeline_py.md](src-isidore-pipeline_py.md) |
 | src/isidore/pcp.py | 1 | 26 | [src-isidore-pcp_py.md](src-isidore-pcp_py.md) |
-| src/isidore/graph.py | 1 | 23 | [src-isidore-graph_py.md](src-isidore-graph_py.md) |
+| src/isidore/graph.py | 1 | 25 | [src-isidore-graph_py.md](src-isidore-graph_py.md) |
 | src/isidore/claims.py | 1 | 19 | [src-isidore-claims_py.md](src-isidore-claims_py.md) |
 | src/isidore/findings.py | 1 | 19 | [src-isidore-findings_py.md](src-isidore-findings_py.md) |
 | src/isidore/surface.py | 1 | 16 | [src-isidore-surface_py.md](src-isidore-surface_py.md) |
